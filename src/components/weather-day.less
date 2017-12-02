@@ -1,3 +1,5 @@
+@import '../config';
+
 .weather-day {
     margin: 0 auto;
     display: flex;
@@ -5,12 +7,21 @@
     font-size: 1rem;
     text-align: left;
     color: #ffffff;
+    &.hot {
+        background-color: @red;
+    }
+    &.cold {
+        background-color: @blue;
+    }
+    &.sunny {
+        background-color: @yellow;
+    }
     .icon-container {
         width: 55%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px 0;
+        padding: 50px 0;
         i {
             font-size: 7rem;
             &[data-icon]:before {
