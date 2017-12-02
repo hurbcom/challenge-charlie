@@ -1,4 +1,4 @@
-export default {
+const translateCondition = {
   '0':  'tornado',                       // tornado
   '1':  'tempestade tropical',           // tropical storm
   '2':  'furacão',                       // hurricane
@@ -49,3 +49,16 @@ export default {
   '47': 'relâmpagos e chuvas isoladas',  // isolated thundershowers
   '3200': 'não disponível'               // not available
 }
+
+const convertTemperature = (temp, type) => {
+  switch (type) {
+    case 'c':
+      return (temp - 32) / 1.8;
+    case 'f':
+      return temp * 1.8 + 32;
+    default:
+      return temp
+  }
+}
+
+export default {translateCondition, convertTemperature}
