@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import './App.less';
 
-export default class BingBg extends Component {
-  componentDidMount () {
-    fetch('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR', {
-      mode: 'no-cors'
-    })
-    .then((response) => response.json())
-    .then((response) => this.setImageBing(`https://www.bing.com/${response.images[0].url}`))
-    .catch((error) => {
-      this.setImageBing('https://www.bing.com/az/hprichbg/rb/LAUnionStation_PT-BR9199909903_1920x1080.jpg')
-      console.log(error)
-    })
-  }
+const defaultBackground = 'https://www.bing.com/az/hprichbg/rb/LAUnionStation_PT-BR9199909903_1920x1080.jpg'
 
-  setImageBing = (image) => {
-    this.refs.bingBg.style.backgroundImage = `url(${image})`
+export default class extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        loading: true,
+        background: defaultBackground
+      }
+  };
+
+  componentDidMount () {
+    fetch('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR', {mode: 'no-cors'})
+    .then((response) => response.json())
+    .then((response) => this.setState({loading: false, background: `https://www.bing.com/${response.images[0].url}`}))
+    .catch((error) => this.setState({loading: false}))
   }
 
   render() {
-    return <div className="bing-bg" ref="bingBg" />
+    const {loading, background} = this.state
+    return <div className="bing-bg" style={{backgroundImage: !loading && `url(${background})`}} />
   }
 }
