@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
 import BingBg from './components/background-bing';
 import WeatherCard from './components/weatherCard';
 import config from './config';

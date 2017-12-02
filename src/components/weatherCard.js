@@ -19,6 +19,7 @@ export default class extends Component {
         <div>
           <p>HOJE</p>
           <p>{this.state.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
+          <img src={`./icons/${data.item.condition.code}.svg`} />
           <p>{utils.translateCondition[data.item.condition.code]}</p>
           <p>Vento: NO {data.wind.speed}km/h</p>
           <p>Humidade:{data.atmosphere.humidity}</p>
