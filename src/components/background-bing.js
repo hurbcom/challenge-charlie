@@ -15,15 +15,15 @@ export default class extends Component {
 
   setDataBackground = (response) => this.setState({loading: false, background: `https://www.bing.com/${response.images[0].url}`});
 
-  setError = (error) => {
-    this.setState({loading: false})
+  resetLoading = (error) => {
+    this.setState({loading: false});
   };
 
   componentDidMount () {
     fetch(config.bingUrl, {mode: 'no-cors'})
     .then(this.setResponseJson)
     .then(this.setDataBackground)
-    .catch(this.setError)
+    .catch(this.resetLoading)
   }
 
   render() {

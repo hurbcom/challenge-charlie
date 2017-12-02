@@ -12,35 +12,48 @@ export default class extends Component {
   }
 
   changeWeather = () => {
-    this.setState({type: this.state.type === 'c' ? 'f' : 'c'})
+    this.setState({type: this.state.type === 'c' ? 'f' : 'c'});
+  }
+
+  renderCard = () => {
+    if (Object.keys(this.props.data).length) {
+      return (
+        <section className='weather-card'>
+          <WeatherDay
+            day='HOJE'
+            temperature={this.props.data.item.condition.temp} 
+            code={this.props.data.item.condition.code}
+            type={this.state.type}
+            changeWeather={this.changeWeather}
+          >
+            <h3>{utils.translateCondition[this.props.data.item.condition.code]}</h3>
+            <p>Vento: NO {this.props.data.wind.speed}km/h</p>
+            <p>Humidade: {this.props.data.atmosphere.humidity}</p>
+            <p>Pressão: {this.props.data.atmosphere.pressure}</p>
+          </WeatherDay>
+          <WeatherDay
+            day='AMANHÃ'
+            temperature={this.props.data.item.forecast[1].low}
+            type={this.state.type}
+          />
+          <WeatherDay
+            day='DEPOIS DE AMANHÃ'
+            temperature={this.props.data.item.forecast[2].low} 
+            type={this.state.type}
+          />
+        </section>
+      )
+    } else {
+      return (
+        <section className='weather-card empty'>
+          <p>{this.props.error}</p>
+        </section>
+      )
+    }
   }
 
   render () {
-    return (
-      <section onClick={this.changeWeather} className='weather-card'>
-        <WeatherDay
-          day='HOJE'
-          temperature={this.props.data.item.condition.temp} 
-          code={this.props.data.item.condition.code}
-          type={this.state.type}
-        >
-          <h3>{utils.translateCondition[this.props.data.item.condition.code]}</h3>
-          <p>Vento: NO {this.props.data.wind.speed}km/h</p>
-          <p>Humidade:{this.props.data.atmosphere.humidity}</p>
-          <p>Pressão:{this.props.data.atmosphere.pressure}</p>
-        </WeatherDay>
-        <WeatherDay
-          day='AMANHÃ'
-          temperature={this.props.data.item.forecast[1].low} 
-          type={this.state.type}
-        />
-        <WeatherDay
-          day='DEPOIS DE AMANHÃ'
-          temperature={this.props.data.item.forecast[2].low} 
-          type={this.state.type}
-        />
-      </section>
-    )
+    return this.renderCard();
   }
 }
 

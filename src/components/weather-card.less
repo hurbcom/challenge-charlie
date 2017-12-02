@@ -1,3 +1,5 @@
+@import '../config';
+
 .opacity-weather(@n, @i: 1) when (@i =< @n) {
   > section:nth-last-child(@{i}) {
     opacity: (1 - (@i / 20));
@@ -11,6 +13,14 @@
     font-family: 'Arial';
     font-size: 16px;
     text-align: left;
-    color: #ffffff;
-    .opacity-weather(10);
+    color: @white;
+    .opacity-weather(7);
+    &.empty {
+      min-height: 450px;
+      opacity: 0.9;
+      background-color: @gray;
+      p {
+        padding: 30px;
+      }
+    }
 }

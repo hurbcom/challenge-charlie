@@ -4,36 +4,35 @@ import './weather-day.less';
 
 const setColorTemperature = (temperature) => {
   if (temperature > 35) {
-    return 'hot'
+    return 'hot';
   } else if (temperature < 15) {
-    return 'cold'
+    return 'cold';
   } else {
-    return 'sunny'
+    return 'sunny';
+  }
+}
+
+const changeWeather = (props) => {
+  if (props.changeWeather) {
+    props.changeWeather();
   }
 }
 
 export default (props) => {
-  if (props.temperature) {
-    const tempCelsius = props.temperature
-    const tempFahrenheit = utils.convertTemperature(props.temperature, 'f')
-
-    return (
-      <section className={`weather-day ${setColorTemperature(props.temperature)}`}>
-        <div className='icon-container'>
-          {props.code && <i data-icon={props.code} />}
+  const tempCelsius = props.temperature
+  const tempFahrenheit = utils.convertTemperature(props.temperature, 'f')
+  return (
+    <section className={`weather-day ${setColorTemperature(props.temperature)}`}>
+      <div className='icon-container'>
+        {props.code && <i data-icon={props.code} />}
+      </div>
+      <div className='weather-container'>
+        <div className='weather-temp' onClick={() => changeWeather(props)}>
+          <h3>{props.day}</h3>
+          <p className='temperature'>{props.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
         </div>
-        <div className='weather-container'>
-          <div className='weather-temp'>
-            <h3>{props.day}</h3>
-            <p className='temperature'>{props.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
-          </div>
-          {props.children}
-        </div>
-      </section>
-    )
-  } else {
-    return (
-      <div className='weather-empty' />
-    )
-  }
+        {props.children}
+      </div>
+    </section>
+  )
 }
