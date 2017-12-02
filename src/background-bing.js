@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.less';
 
 export default class BingBg extends Component {
   componentDidMount () {

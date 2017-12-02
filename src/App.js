@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import BingBg from './background-bing';
-import './App.css';
+import './App.less';
 
 class App extends Component {
   render() {
