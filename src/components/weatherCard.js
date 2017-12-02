@@ -1,4 +1,5 @@
 import React from 'react'
+import translate from '../translate-condition'
 
 const RenderWeatherToday = (props) => {
   const data = props.data
@@ -8,7 +9,7 @@ const RenderWeatherToday = (props) => {
       <div>
         <p>HOJE</p>
         <p>{data.item.condition.temp}</p>
-        <p>{data.item.condition.text}</p>
+        <p>{translate[data.item.condition.code]}</p>
         <p>Vento: NO {data.wind.speed}km/h</p>
         <p>Humidade:{data.atmosphere.humidity}</p>
         <p>Pressão:{data.atmosphere.pressure}</p>
