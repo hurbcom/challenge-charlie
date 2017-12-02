@@ -9,68 +9,6 @@ export default class extends Component {
     }
   }
 
-  renderWeatherToday = () => {
-    const data = this.props.data
-    const tempCelsius = data.item.condition.temp
-    const tempFahrenheit = utils.convertTemperature(tempCelsius, 'f')
-
-    if (data.location) {
-      return (
-        <div>
-          <p>HOJE</p>
-          <p>{this.state.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
-          <img src={`./icons/${data.item.condition.code}.svg`} />
-          <p>{utils.translateCondition[data.item.condition.code]}</p>
-          <p>Vento: NO {data.wind.speed}km/h</p>
-          <p>Humidade:{data.atmosphere.humidity}</p>
-          <p>Pressão:{data.atmosphere.pressure}</p>
-        </div>
-      )
-    } else {
-      return (
-        <div className='weather-empty' />
-      )
-    }
-  }
-
-  renderWeatherTomorrow = () => {
-    const data = this.props.data
-    const tempCelsius = data.item.forecast[1].low
-    const tempFahrenheit = utils.convertTemperature(tempCelsius, 'f')
-
-    if (data.location) {
-      return (
-        <div>
-          <p>AMANHÃ</p>
-          <p>{this.state.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
-        </div>
-      )
-    } else {
-      return (
-        <div className='weather-empty' />
-      )
-    }
-  }
-
-  renderWeatherAfterTomorrow = () => {
-    const data = this.props.data
-    const tempCelsius = data.item.forecast[2].low
-    const tempFahrenheit = utils.convertTemperature(tempCelsius, 'f')
-
-    if (data.location) {
-      return (
-        <div>
-          <p>DEPOIS DE AMANHÃ</p>
-          <p>{this.state.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
-        </div>
-      )
-    } else {
-      return (
-        <div className='weather-empty' />
-      )
-    }
-  }
-
   changeWeather = () => {
     this.setState({type: this.state.type === 'c' ? 'f' : 'c'})
   }
@@ -78,10 +16,52 @@ export default class extends Component {
   render () {
     return (
       <section onClick={this.changeWeather}>
-        {this.renderWeatherToday()}
-        {this.renderWeatherTomorrow()}
-        {this.renderWeatherAfterTomorrow()}
+        <Weather
+          day='HOJE'
+          temperature={this.props.data.item.condition.temp} 
+          code={this.props.data.item.condition.code}
+          type={this.state.type}
+        >
+          <p>{utils.translateCondition[this.props.data.item.condition.code]}</p>
+          <p>Vento: NO {this.props.data.wind.speed}km/h</p>
+          <p>Humidade:{this.props.data.atmosphere.humidity}</p>
+          <p>Pressão:{this.props.data.atmosphere.pressure}</p>
+        </Weather>
+        <Weather
+          day='AMANHÃ'
+          temperature={this.props.data.item.forecast[1].low} 
+          type={this.state.type}
+        />
+        <Weather
+          day='DEPOIS DE AMANHÃ'
+          temperature={this.props.data.item.forecast[2].low} 
+          type={this.state.type}
+        />
       </section>
+    )
+  }
+}
+
+const Weather = (props) => {
+  if (props.temperature) {
+    const tempCelsius = props.temperature
+    const tempFahrenheit = utils.convertTemperature(props.temperature, 'f')
+
+    return (
+      <section>
+        <div>
+          {props.code && <img src={`./icons/${props.code}.svg`} />}
+        </div>
+        <div>
+          <p>{props.day}</p>
+          <p>{props.type === 'c' ? `${tempCelsius}ºC` : `${tempFahrenheit}ºF`}</p>
+          {props.children}
+        </div>
+      </section>
+    )
+  } else {
+    return (
+      <div className='weather-empty' />
     )
   }
 }
