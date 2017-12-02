@@ -1,27 +1,29 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.weather {
+    max-width: 550px;
+    width: 90%;
+    margin: auto;
+    font-family: 'Arial';
+    font-size: 16px;
+    text-align: left;
+    color: #ffffff;
+    input {
+        width: ~"calc(100% - 20px)";
+        padding: 10px;
+        border: 0;
+        font-size: 20px;
+        outline: none;
+        color: #999;
+        font-weight: 700;
+    }
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-
-}
 .bing-bg {
   position: fixed;
   left: 0;

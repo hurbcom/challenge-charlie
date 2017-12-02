@@ -42,9 +42,13 @@ class App extends Component {
   setResponseJson = (response) => response.json();
 
   setDataWeather = (response) => {
-    const data = response.query.results.channel[0] || response.query.results.channel
-    const textInput = `${data.location.city}, ${data.location.region}`
-    this.setState({loading: false, data, textInput})
+    if (response.query.results) {
+      const data = response.query.results.channel[0] || response.query.results.channel
+      const textInput = `${data.location.city}, ${data.location.region}`
+      this.setState({loading: false, data, textInput})
+    } else {
+      this.setState({loading: false, data: []})
+    }
   };
 
   fetchData (location) {
@@ -72,7 +76,7 @@ class App extends Component {
     return (
       <div className="App">
         <BingBg />
-        <div>
+        <div className='weather'>
           <form onSubmit={this.fetchDataInput}>
             <input type="text" value={this.state.textInput} onChange={this.changeInput} />
           </form>
