@@ -1,8 +1,10 @@
+@import "config.less";
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .weather {
@@ -12,28 +14,26 @@
     font-family: 'Arial';
     font-size: 16px;
     text-align: left;
-    color: #ffffff;
-    input {
-        width: ~"calc(100% - 20px)";
+    color: @white;
+    form {
+      width: 100%;
+      color: @white;
+      font-size: 30px;
+      display: flex;
+      background-color: @white;
+      &:before {
+        content: "(";
+        font-family: 'MeteoconsRegular';
+        color: @gray;
         padding: 10px;
+      }
+      input {
+        padding: 10px 10px 10px 5px;
         border: 0;
-        font-size: 20px;
+        font-size: 30px;
         outline: none;
-        color: #999;
+        color: @gray;
         font-weight: 700;
+      }
     }
-}
-
-.bing-bg {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

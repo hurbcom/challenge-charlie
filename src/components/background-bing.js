@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import config from '../config'
-import '../App.less';
+import './background-bing.less';
 
 export default class extends Component {
   constructor(props) {

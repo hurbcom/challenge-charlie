@@ -1,3 +1,10 @@
+.opacity-weather(@n, @i: 1) when (@i =< @n) {
+  > section:nth-last-child(@{i}) {
+    opacity: (1 - (@i / 20));
+  }
+  .opacity-weather(@n, (@i + 1));
+}
+
 .weather-card {
     width: 100%;
     margin: 0 auto;
@@ -5,4 +12,5 @@
     font-size: 16px;
     text-align: left;
     color: #ffffff;
+    .opacity-weather(10);
 }

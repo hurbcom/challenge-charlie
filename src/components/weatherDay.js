@@ -4,11 +4,11 @@ import './weather-day.less';
 
 const setColorTemperature = (temperature) => {
   if (temperature > 35) {
-    return 'red'
+    return '#FF0000'
   } else if (temperature < 15) {
-    return 'blue'
+    return '#007496'
   } else {
-    return 'yellow'
+    return '#FFD900'
   }
 }
 
@@ -20,7 +20,7 @@ export default (props) => {
     return (
       <section className='weather-day' style={{backgroundColor: setColorTemperature(props.temperature)}}>
         <div className='icon-container'>
-          {props.code && <img src={`./icons/${props.code}.svg`} />}
+          {props.code && <i data-icon={props.code} />}
         </div>
         <div className='weather-container'>
           <div className='weather-temp'>
