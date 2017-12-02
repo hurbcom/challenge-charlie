@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import config from './config'
 import './App.less';
 
-const defaultBackground = 'https://www.bing.com/az/hprichbg/rb/LAUnionStation_PT-BR9199909903_1920x1080.jpg'
 
 export default class extends Component {
   constructor(props) {
       super(props);
       this.state = {
         loading: true,
-        background: defaultBackground
+        background: config.defaultBackground
       }
   };
 
