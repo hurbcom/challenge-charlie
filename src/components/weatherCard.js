@@ -26,10 +26,10 @@ export default class extends Component {
             type={this.state.type}
             changeWeather={this.changeWeather}
           >
-            <h3>{utils.translateCondition[this.props.data.item.condition.code]}</h3>
-            <p>Vento: NO {this.props.data.wind.speed}km/h</p>
-            <p>Humidade: {this.props.data.atmosphere.humidity}</p>
-            <p>Pressão: {this.props.data.atmosphere.pressure}</p>
+            <h3 className='condition'>{utils.translateCondition[this.props.data.item.condition.code]}</h3>
+            <p className='wind'>Vento: NO {this.props.data.wind.speed}km/h</p>
+            <p className='humidity'>Humidade: {this.props.data.atmosphere.humidity}</p>
+            <p className='pressure'>Pressão: {this.props.data.atmosphere.pressure}</p>
           </WeatherDay>
           <WeatherDay
             day='AMANHÃ'
