@@ -12,11 +12,15 @@ export default class extends Component {
   };
 
   setResponseJson = (response) => {
-    console.log(response)
     return response.json();
-  }
+  };
 
-  setDataBackground = (response) => this.setState({loading: false, background: `https://www.bing.com/${response.images[0].url}`});
+  setDataBackground = (response) => {
+    this.setState({
+      loading: false, 
+      background: `https://www.bing.com/${response.images[0].url}`
+    });
+  };
 
   resetLoading = (error) => {
     this.setState({loading: false});
