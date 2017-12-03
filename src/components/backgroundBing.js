@@ -11,7 +11,10 @@ export default class extends Component {
       }
   };
 
-  setResponseJson = (response) => response.json();
+  setResponseJson = (response) => {
+    console.log(response)
+    return response.json();
+  }
 
   setDataBackground = (response) => this.setState({loading: false, background: `https://www.bing.com/${response.images[0].url}`});
 
@@ -20,7 +23,14 @@ export default class extends Component {
   };
 
   componentDidMount () {
-    fetch(config.bingUrl, {mode: 'no-cors'})
+    fetch(config.bingUrl, {
+      mode: 'no-cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
     .then(this.setResponseJson)
     .then(this.setDataBackground)
     .catch(this.resetLoading)

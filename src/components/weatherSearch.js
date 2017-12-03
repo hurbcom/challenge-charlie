@@ -69,8 +69,8 @@ export default class WeatherSearch extends Component {
 	};
 
   fetchDataInput = (event) => {
-    event.preventDefault()
-    this.fetchData(this.state.textInput)
+    event.preventDefault();
+    this.fetchData(this.state.textInput);
   };
 
   render() {
