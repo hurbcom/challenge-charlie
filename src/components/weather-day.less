@@ -1,46 +1,59 @@
 @import '../config';
 
 .weather-day {
-    margin: 0 auto;
+  margin: 0 auto;
+  display: flex;
+  font-family: 'Arial';
+  font-size: 1rem;
+  text-align: left;
+  color: @white;
+  &.hot {
+    background-color: @red;
+  }
+  &.cold {
+    background-color: @blue;
+  }
+  &.sunny {
+    background-color: @yellow;
+  }
+  .icon-container {
+    width: 55%;
     display: flex;
-    font-family: 'Arial';
-    font-size: 1rem;
-    text-align: left;
-    color: @white;
-    &.hot {
-        background-color: @red;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+    i {
+      font-size: 7rem;
+      &[data-icon]:before {
+        font-family: 'MeteoconsRegular';
+        content: attr(data-icon);
+      }
     }
-    &.cold {
-        background-color: @blue;
+    @media @smartphones {
+      width: 50%;
+      i {
+        font-size: 3.5rem;
+      }
     }
-    &.sunny {
-        background-color: @yellow;
+    @media @iphone5 {
+      width: 40%;
+      align-items: flex-start;
+      i {
+        font-size: 2.5rem;
+      }
     }
-    .icon-container {
-        width: 55%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 50px 0;
-        i {
-            font-size: 7rem;
-            &[data-icon]:before {
-                font-family: 'MeteoconsRegular';
-                content: attr(data-icon);
-            }
-        }
+  }
+  .weather-container {
+    width: 45%;
+    .weather-temp {
+      padding: 1rem 0;
     }
-    .weather-container {
-        width: 45%;
-        .weather-temp {
-            padding: 20px 0;
-        }
-    }
-    h3, .temperature {
-        font-size: 20px;
-    }
-    h3 {
-        text-transform: uppercase;
-        padding-bottom: 10px;
-    }
+  }
+  h3, .temperature {
+    font-size: 1.3rem;
+  }
+  h3 {
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+  }
 }

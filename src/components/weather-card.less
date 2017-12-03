@@ -8,19 +8,18 @@
 }
 
 .weather-card {
-    width: 100%;
-    margin: 0 auto;
-    font-family: 'Arial';
-    font-size: 16px;
-    text-align: left;
-    color: @white;
-    .opacity-weather(7);
-    &.empty {
-      min-height: 450px;
-      opacity: 0.9;
-      background-color: @gray;
-      p {
-        padding: 30px;
-      }
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Arial';
+  text-align: left;
+  color: @white;
+  .opacity-weather(7);
+  &.empty {
+    min-height: 450px;
+    opacity: 0.9;
+    background-color: @gray;
+    p {
+      padding: 2rem;
     }
+  }
 }

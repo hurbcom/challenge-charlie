@@ -38,6 +38,6 @@ export default class extends Component {
 
   render() {
     const {loading, background} = this.state
-    return <div className="bing-bg" style={{backgroundImage: !loading && `url(${background})`}} />
+    return <div className='bing-bg' style={{backgroundImage: !loading && `url(${background})`}} />
   }
 }

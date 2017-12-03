@@ -5,7 +5,7 @@ import WeatherSearch from './components/weatherSearch';
 import './App.less';
 
 export default () =>      
-  <div className="App">
+  <div className='App'>
     <BingBg />
     <WeatherSearch />
   </div>

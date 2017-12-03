@@ -1,5 +1,7 @@
+@icon-font: 'MeteoconsRegular';
+
 @font-face {
-    font-family: 'MeteoconsRegular';
+    font-family: @icon-font;
     src: url('./fonts/meteocons-webfont.eot');
     src: url('./fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
          url('./fonts/meteocons-webfont.woff') format('woff'),
@@ -14,3 +16,7 @@
 @blue: #007496;
 @gray: #999;
 @white: #fff;
+
+@iphone5: ~"(max-width: 360px)";
+@smartphones: ~"(max-width: 480px)";
+@tablets: ~"(min-width: 768px) and (max-width: 959px)";

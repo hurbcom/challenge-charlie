@@ -56,4 +56,3 @@ export default class extends Component {
     return this.renderCard();
   }
 }
-
