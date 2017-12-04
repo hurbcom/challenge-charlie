@@ -52,7 +52,11 @@ export default class WeatherSearch extends Component {
       const textInput = `${data.location.city}, ${data.location.region}`;
       this.setState({loading: false, data, textInput});
     } else {
-      this.setState({loading: false, data: {}, error: 'Não foram encontrados resultados para essa localização'});
+      this.setState({
+        loading: false,
+        data: {}, 
+        error: 'Não foram encontrados resultados para essa localização'
+      });
     }
   };
 

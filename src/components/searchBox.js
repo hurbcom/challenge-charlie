@@ -33,16 +33,18 @@ export default class WeatherSearch extends Component {
   bindAutoComplete = () => {
     let input = this.refs.textInput;
     const autocomplete = new window.google.maps.places.Autocomplete(input);
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (!place.geometry) {
-        return;
-      }
-      const location = `${place.geometry.location.lat()},${place.geometry.location.lng()}`;
-      this.props.fetchData(location);
-      this.setState({ textInput: `${place.name} - ${place.formatted_address}` });
-    });
+    autocomplete.addListener('place_changed', () => this.fetchAutoCompleteInput(autocomplete))
   };
+
+  fetchAutoCompleteInput  = (event) => {
+    const place = event.getPlace();
+    if (!place.geometry) {
+      return;
+    }
+    const location = `${place.geometry.location.lat()},${place.geometry.location.lng()}`;
+    this.props.fetchData(location);
+    this.setState({ textInput: `${place.name} - ${place.formatted_address}` });
+  }
 
   render() {
     return (
