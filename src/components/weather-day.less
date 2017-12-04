@@ -7,6 +7,8 @@
   font-size: 1rem;
   text-align: left;
   color: @white;
+  justify-content: space-between;
+  position: relative;
   &.hot {
     background-color: @red;
   }
@@ -17,7 +19,6 @@
     background-color: @yellow;
   }
   .icon-container {
-    width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,13 +31,11 @@
       }
     }
     @media @smartphones {
-      width: 50%;
       i {
         font-size: 3.5rem;
       }
     }
     @media @iphone5 {
-      width: 40%;
       align-items: flex-start;
       i {
         font-size: 2.5rem;
@@ -44,7 +43,8 @@
     }
   }
   .weather-container {
-    width: 45%;
+    padding-right: 2rem;
+    width: 170px;
     .weather-temp {
       padding: 1rem 0;
     }

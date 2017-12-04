@@ -6,6 +6,8 @@ import Loading from './loading';
 import config from '../config';
 import './weather-search.less';
 
+import 'whatwg-fetch'
+
 export default class WeatherSearch extends Component {
   constructor(props) {
       super(props);
@@ -75,7 +77,7 @@ export default class WeatherSearch extends Component {
   render() {
     const { data, loading, error, textInput } = this.state;
     return (
-      <div className='weather'>
+      <div className={`weather ${loading ? 'loading' : ''}`}>
         <SearchBox fetchData={this.fetchData} textInput={textInput} />
         {loading ? <Loading /> : <WeatherCard data={data} error={error} />}
       </div>

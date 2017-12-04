@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-
-import WeatherCard from './weatherCard';
-import config from '../config';
 import './weather-search.less';
 
 export default class WeatherSearch extends Component {
