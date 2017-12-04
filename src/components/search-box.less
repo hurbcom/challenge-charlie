@@ -1,0 +1,31 @@
+@import '../config';
+
+form {
+  width: 100%;
+  color: @white;
+  font-size: 2rem;
+  display: flex;
+  background-color: @white;
+  &:before {
+    content: "(";
+    font-family: @icon-font;
+    color: @gray;
+    padding: 0.6rem;
+    position: absolute;
+  }
+  input {
+    padding: 0.6rem 0.6rem 0.6rem 3.5rem;
+    border: 0;
+    font-size: 2rem;
+    outline: none;
+    color: @gray;
+    font-weight: 700;
+    width: 100%;
+  }
+  @media @smartphones {
+    font-size: 1.5rem;
+    input {
+      font-size: 1.5rem;
+    }
+  }
+}

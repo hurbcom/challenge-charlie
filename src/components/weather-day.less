@@ -1,0 +1,65 @@
+@import '../config';
+
+.weather-day {
+  margin: 0 auto;
+  display: flex;
+  font-family: 'Arial';
+  font-size: 1rem;
+  text-align: left;
+  color: @white;
+  justify-content: space-between;
+  position: relative;
+  &.hot {
+    background-color: @red;
+  }
+  &.cold {
+    background-color: @blue;
+  }
+  &.sunny {
+    background-color: @yellow;
+  }
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    z-index: 2;
+    i {
+      font-size: 7rem;
+      &[data-icon]:before {
+        font-family: 'MeteoconsRegular';
+        content: attr(data-icon);
+      }
+    }
+    @media @smartphones {
+      padding: 3rem 0;
+      i {
+        font-size: 3.5rem;
+      }
+    }
+    @media @iphone5 {
+      align-items: flex-start;
+      i {
+        font-size: 2.5rem;
+      }
+    }
+  }
+  .weather-container {
+    padding-right: 2rem;
+    width: 170px;
+    z-index: 2;
+    .weather-temp {
+      padding: 1rem 0;
+    }
+  }
+  h3, .temperature {
+    font-size: 1.3rem;
+  }
+  h3 {
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+  }
+  .temperature {
+    cursor: pointer;
+  }
+}

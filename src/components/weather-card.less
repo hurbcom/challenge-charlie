@@ -1,0 +1,30 @@
+@import '../config';
+
+.opacity-weather(@n, @i: 1) when (@i =< @n) {
+  > section:nth-child(@{i}) {
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: (0 + (@i / 10));
+      background-color: #000;
+      z-index: 1;
+    }
+  }
+  .opacity-weather(@n, (@i + 1));
+}
+
+.weather-card {
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Arial';
+  text-align: left;
+  color: @white;
+  .opacity-weather(7);
+  &.empty {
+    p {
+      padding: 2rem;
+    }
+  }
+}

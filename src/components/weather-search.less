@@ -1,0 +1,27 @@
+@import "../config.less";
+
+.weather {
+  max-width: 550px;
+  width: 90%;
+  margin: auto;
+  font-family: 'Arial';
+  font-size: 1rem;
+  text-align: left;
+  color: @white;
+  height: 491px;
+  opacity: 0.9;
+  position: relative;
+  &.loading {
+    background-color: @gray;
+  }
+  svg {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
