@@ -1,0 +1,149 @@
+@color-black: #000;
+@color-white: #fff;
+@cold-light: #ADD8E6;
+@cold-medium: #4169E1;
+@cold-dark: #0000CD;
+@medium-light: #F0E68C;
+@medium-medium: #FFFF00;
+@medium-dark: #FFD700;
+@hot-light: #FF6347;
+@hot-medium: #FF0000;
+@hot-dark: #B22222;
+
+.color(@color){
+    background: @color;
+    opacity: 0.7;
+}
+
+
+.align {
+    height: auto;
+    align-items: flex-end;
+}
+
+.condition {
+
+    &__background{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        background-size: cover;
+        background-origin: center;
+    }
+    &__content{
+        position: relative;
+    }
+}
+
+.content{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+.today{
+    height: auto;
+    align-items: flex-end;
+}
+
+.tomorrow{
+    .align
+}
+
+.afterTomorrow{
+    .align
+}
+
+.temp-cold-light{
+    .color(@cold-light);
+}
+
+.temp-cold-medium{
+    .color(@cold-medium);
+}
+.temp-cold-dark{
+    .color(@cold-dark);
+}
+
+.temp-medium-light{
+    .color(@medium-light);
+}
+.temp-medium-medium{
+    .color(@medium-medium);
+}
+
+.temp-medium-dark{
+    .color(@medium-dark);
+}
+
+.temp-hot-light{
+    .color(@hot-light);
+}
+
+.temp-hot-medium{
+    .color(@hot-medium);
+}
+
+.temp-hot-dark{
+    .color(@hot-dark);
+}
+
+.locale{
+    font-size: 48px;
+    color: @color-white;
+    font-weight: bold;
+    text-transform: capitalize
+}
+
+.day{
+    margin: 0;
+    text-align: right;
+    color: @color-black;
+}
+
+.title{
+    font-size: 24px;
+    text-transform: capitalize;
+    color: @color-black;
+    font-weight: bold;
+}
+
+.item{
+    color: @color-black;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.temp-large{
+    color: @color-black;
+    opacity: 1;
+    font-size: 175px;
+}
+
+.unit{
+    color: @color-black;
+    font-size: 48px;
+    justify-content: center;
+    margin-left: 15px;
+    margin-top: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover{
+        text-decoration: none;
+        color: @color-black;
+    }
+
+    &:active{
+        color: @color-white;
+    }
+}
+
+.icon{
+    font-size: 60px;
+}
