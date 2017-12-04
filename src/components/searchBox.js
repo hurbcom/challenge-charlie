@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './weather-search.less';
+import './search-box.less';
 
 export default class WeatherSearch extends Component {
   constructor(props) {
@@ -25,11 +25,6 @@ export default class WeatherSearch extends Component {
     this.setState({textInput: event.target.value});
 	};
 
-  fetchDataInput = (event) => {
-    event.preventDefault();
-    this.props.fetchData(this.state.textInput);
-  };
-
   bindAutoComplete = () => {
     let input = this.refs.textInput;
     const autocomplete = new window.google.maps.places.Autocomplete(input);
@@ -48,15 +43,15 @@ export default class WeatherSearch extends Component {
 
   render() {
     return (
-    <form onSubmit={this.fetchDataInput}>
-        <input 
-        type='text'
-        ref='textInput'
-        placeholder='Digite uma localização'
-        value={this.state.textInput} 
-        onChange={this.changeInput} 
-        />
-    </form>
+      <form onSubmit={(e) => e.preventDefault()}>
+          <input 
+          type='text'
+          ref='textInput'
+          placeholder='Digite uma localização'
+          value={this.state.textInput} 
+          onChange={this.changeInput} 
+          />
+      </form>
     );
   };
 }

@@ -2,10 +2,10 @@ import React from 'react';
 
 import BingBg from './components/backgroundBing';
 import WeatherSearch from './components/weatherSearch';
-import './App.less';
+import './app.less';
 
 export default () =>      
-  <div className='App'>
+  <div className='app'>
     <BingBg />
     <WeatherSearch />
   </div>
