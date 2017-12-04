@@ -11,9 +11,7 @@ export default class extends Component {
       }
   };
 
-  setResponseJson = (response) => {
-    return response.json();
-  };
+  setResponseJson = (response) => response.json();
 
   setDataBackground = (response) => {
     this.setState({

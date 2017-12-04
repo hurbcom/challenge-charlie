@@ -27,7 +27,7 @@ export default class WeatherSearch extends Component {
         maximumAge: 0
     };
 
-    navigator.geolocation.getCurrentPosition(this.successSetCoordinates, this.setError, options);
+    navigator.geolocation.getCurrentPosition(this.successSetCoordinates, this.errorCoordinates, options);
   };
 
   successSetCoordinates = (pos) => {
@@ -35,8 +35,10 @@ export default class WeatherSearch extends Component {
     this.fetchData(location);
   };
 
-  setError = (error) => {
-    this.setState({loading: false, error: 'Não foram encontrados resultados para essa localização'})
+  errorCoordinates = (error) => {
+    this.setState({
+      loading: false,
+      error: 'Não foi possível te localizar. Digite a cidade para consultar o tempo'})
   };
 
   setResponseJson = (response) => response.json();
@@ -49,6 +51,13 @@ export default class WeatherSearch extends Component {
     } else {
       this.setState({loading: false, data: {}, error: 'Não foram encontrados resultados para essa localização'});
     }
+  };
+
+  setErrorResponse = () => {
+    this.setState({
+      loading: false,
+      error: 'Ocorreu um erro, tente novamente'
+    })
   };
 
   fetchData (location) {
