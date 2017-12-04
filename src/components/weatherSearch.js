@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import WeatherCard from './weatherCard';
+import SearchBox from './searchBox';
+import Loading from './loading';
 import config from '../config';
 import './weather-search.less';
 
@@ -17,7 +19,6 @@ export default class WeatherSearch extends Component {
 
   componentDidMount() {
     this.setLocationBrowser();
-    window.addEventListener('load', this.bindAutoComplete);
   };
   
   setLocationBrowser = () => {
@@ -60,10 +61,10 @@ export default class WeatherSearch extends Component {
     })
   };
 
-  fetchData (location) {
+  fetchData = (location) => {
     const url = config.weatherUrl(location);
 
-    this.setState({loading: true});
+    this.setState({loading: true, textInput: ''})
 
     fetch(url)
     .then(this.setResponseJson)
@@ -71,42 +72,12 @@ export default class WeatherSearch extends Component {
     .catch(this.setError)
   };
 
-	changeInput = (event) => {
-    this.setState({textInput: event.target.value});
-	};
-
-  fetchDataInput = (event) => {
-    event.preventDefault();
-    this.fetchData(this.state.textInput);
-  };
-
-  bindAutoComplete = () => {
-      let input = this.refs.textInput;
-      const autocomplete = new window.google.maps.places.Autocomplete(input);
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        if (!place.geometry) {
-          return;
-        }
-        const location = `${place.geometry.location.lat()},${place.geometry.location.lng()}`;
-        this.fetchData(location)
-      });
-  };
-
   render() {
     const { data, loading, error, textInput } = this.state;
     return (
       <div className='weather'>
-        <form onSubmit={this.fetchDataInput}>
-          <input 
-            type='text'
-            ref='textInput'
-            placeholder='Digite uma localização'
-            value={loading ? 'Carregando...' : textInput} 
-            onChange={this.changeInput} 
-          />
-        </form>
-        <WeatherCard data={data} error={error} />
+        <SearchBox fetchData={this.fetchData} textInput={textInput} />
+        {loading ? <Loading /> : <WeatherCard data={data} error={error} />}
       </div>
     );
   };

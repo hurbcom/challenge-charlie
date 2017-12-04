@@ -1,9 +1,5 @@
 @import "../config.less";
 
-.pac-container {
-  width: 100%;
-}
-
 .weather {
   max-width: 550px;
   width: 90%;
@@ -12,6 +8,10 @@
   font-size: 1rem;
   text-align: left;
   color: @white;
+  min-height: 475px;
+  opacity: 0.9;
+  background-color: @gray;
+  position: relative;
   form {
     width: 100%;
     color: @white;
@@ -40,5 +40,15 @@
         font-size: 1.5rem;
       }
     }
+  }
+  svg {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
 }
