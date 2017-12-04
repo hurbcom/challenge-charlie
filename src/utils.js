@@ -53,9 +53,9 @@ const translateCondition = {
 const convertTemperature = (temp, type) => {
   switch (type) {
     case 'c':
-      return (temp - 32) / 1.8;
+      return ((temp - 32) / 1.8).toFixed(0);
     case 'f':
-      return temp * 1.8 + 32;
+      return (temp * 1.8 + 32).toFixed(0);
     default:
       return temp
   }
