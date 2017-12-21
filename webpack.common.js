@@ -30,7 +30,12 @@ module.exports = {
         },
         {
           test: /(\.css)$/,
-          loaders: ['style-loader', 'css-loader'],
+          loaders: [
+            'style-loader',
+            // CSS Modules support
+            // eslint-disable-next-line
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          ],
         },
         {
           test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

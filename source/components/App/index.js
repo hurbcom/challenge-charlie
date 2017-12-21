@@ -1,9 +1,10 @@
+import Style from './style.css';
 import React from 'react';
 
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div className={Style.red}>
                 Hello World
             </div>
         );
