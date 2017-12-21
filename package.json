@@ -1,0 +1,59 @@
+{
+  "name": "challenge-charlie-matheusrabelo",
+  "version": "1.0.0",
+  "description": "challenge charlie",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "eslint": "eslint source/**/*.js",
+    "test": "nyc mocha source/**/*.test.js --require babel-core/register --timeout=3000",
+    "coverage": "nyc --reporter=html --reporter=text mocha source/**/*.test.js --require babel-core/register --timeout=3000",
+    "prepublish": "npm run eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusrabelo/challenge-charlie.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "matheusfreirerabelo@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheusrabelo/challenge-charlie/issues"
+  },
+  "homepage": "https://github.com/matheusrabelo/challenge-charlie#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.13.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-react": "^7.5.1",
+    "file-loader": "^1.1.6",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "mocha": "^4.0.1",
+    "node-sass": "^4.7.2",
+    "normalize.css": "^7.0.0",
+    "nyc": "^11.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}
