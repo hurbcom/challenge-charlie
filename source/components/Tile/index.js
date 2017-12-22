@@ -15,7 +15,9 @@ class Tile extends React.Component {
                     <div className={style.day}>
                         {this.props.day}
                     </div>
-                    <div className={style.temperature}>
+                    <div
+                        className={style.temperature}
+                        onClick={this.props.changeTemperatureUnit}>
                         {this.props.temperature}
                     </div>
                 </div>

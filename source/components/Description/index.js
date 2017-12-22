@@ -17,6 +17,7 @@ class Description extends React.Component {
                     className={style.descriptionText}
                     day={this.props.day}
                     temperature={this.props.temperature}
+                    changeTemperatureUnit={this.props.changeTemperatureUnit}
                     weatherType={this.props.weatherType}
                     wind={this.props.wind}
                     humidity={this.props.humidity}

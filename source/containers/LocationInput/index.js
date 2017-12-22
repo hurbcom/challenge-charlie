@@ -8,9 +8,9 @@ import LocationInput from '../../components/LocationInput';
 class LocationContainer extends React.Component {
     render() {
         const items = [
-            { id: 1, label: 'Rio de Janeiro, Rio de Janeiro' },
-            { id: 2, label: 'São Paulo, São Paulo' },
-            { id: 3, label: 'Belo Horizonte, Minas Gerais' },
+            { id: 1, label: 'Rio de Janeiro, RJ' },
+            { id: 2, label: 'São Paulo, SP' },
+            { id: 3, label: 'Belo Horizonte, MG' },
         ];
 
         return (

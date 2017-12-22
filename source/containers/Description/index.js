@@ -1,8 +1,10 @@
 import React from 'react';
 import * as R from 'ramda';
-
-import Description from '../../components/Description';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as temperatureUnitActions from '../../actions/temperatureUnitActions';
+import Description from '../../components/Description';
 
 class DescriptionContainer extends React.Component {
     getTemperature() {
@@ -74,6 +76,8 @@ class DescriptionContainer extends React.Component {
                     icon="2"
                     day="Today"
                     temperature={this.getTemperature()}
+                    changeTemperatureUnit={
+                        this.props.actions.changeTemperatureUnit}
                     weatherType={this.props.weather.weatherType}
                     wind={this.getWind()}
                     humidity={this.getHumidity()}
@@ -88,4 +92,8 @@ class DescriptionContainer extends React.Component {
 const mapStateToProps = (state, ownProps) =>
     ({ weather: state.weather, temperatureUnit: state.temperatureUnit });
 
-export default connect(mapStateToProps, null)(DescriptionContainer);
+const mapDispatchToProps = (dispatch) =>
+    ({ actions: bindActionCreators(temperatureUnitActions, dispatch) });
+
+export default connect(
+    mapStateToProps, mapDispatchToProps)(DescriptionContainer);

@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35.71% </span>
+        <span class="strong">34.78% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/14</span>
+        <span class='fraction'>8/23</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.46% </span>
+        <span class="strong">38.1% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/13</span>
+        <span class='fraction'>8/21</span>
       </div>
     </div>
   </div>
@@ -85,7 +85,24 @@
 40
 41
 42
-43</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -93,6 +110,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -121,6 +147,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -129,21 +159,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import * as R from 'ramda';
-&nbsp;
-import Weather from '../../components/Weather';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+&nbsp;
+import * as temperatureUnitActions from '../../actions/temperatureUnitActions';
+import Weather from '../../components/Weather';
 &nbsp;
 class WeatherContainer extends React.Component {
+    getTemperatureWithUnit(temperatureFarenheit) {
+<span class="cstat-no" title="statement not covered" >        if (this.props.temperatureUnit === 'celsius') {</span>
+            const exactTemperature = <span class="cstat-no" title="statement not covered" >(temperatureFarenheit - 32) * 5/9;</span>
+            const temperature = <span class="cstat-no" title="statement not covered" >Math.round(exactTemperature * 10) / 10;</span>
+<span class="cstat-no" title="statement not covered" >            return `${temperature}ºC`;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return `${temperatureFarenheit}ºF`;</span>
+    }
+&nbsp;
     getFirstTemperature() {
         const temperature =
 <span class="cstat-no" title="statement not covered" >            R.path(['firstTile', 'high'], this.props.weather);</span>
-<span class="cstat-no" title="statement not covered" >        return `${temperature}ºF`;</span>
+<span class="cstat-no" title="statement not covered" >        return this.getTemperatureWithUnit(temperature);</span>
     }
 &nbsp;
     getSecondTemperature() {
         const temperature =
 <span class="cstat-no" title="statement not covered" >            R.path(['secondTile', 'high'], this.props.weather);</span>
-<span class="cstat-no" title="statement not covered" >        return `${temperature}ºF`;</span>
+<span class="cstat-no" title="statement not covered" >        return this.getTemperatureWithUnit(temperature);</span>
     }
 &nbsp;
     render() {
@@ -159,6 +200,7 @@ class WeatherContainer extends React.Component {
                 secondTileDay="After Tomorrow"
                 secondTileTemperature={this.getSecondTemperature()}
                 secondTileColor="darkgoldenrod"
+                changeTemperatureUnit={this.props.actions.changeTemperatureUnit}
                 loading={loading}
             /&gt;
         );
@@ -166,16 +208,19 @@ class WeatherContainer extends React.Component {
 }
 &nbsp;
 const <span class="fstat-no" title="function not covered" >mapStateToProps = <span class="cstat-no" title="statement not covered" >(</span>state, ownProps) =&gt;</span>
-    ({ weather: state.weather });
+    ({ weather: state.weather, temperatureUnit: state.temperatureUnit });
 &nbsp;
-export default connect(mapStateToProps, null)(WeatherContainer);
+const <span class="fstat-no" title="function not covered" >mapDispatchToProps = <span class="cstat-no" title="statement not covered" >(</span>dispatch) =&gt;</span>
+    ({ actions: bindActionCreators(temperatureUnitActions, dispatch) });
+&nbsp;
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherContainer);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 14:44:54 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 15:25:57 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

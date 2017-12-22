@@ -1,8 +1,10 @@
 import React from 'react';
 import * as R from 'ramda';
-
-import Weather from '../../components/Weather';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as temperatureUnitActions from '../../actions/temperatureUnitActions';
+import Weather from '../../components/Weather';
 
 class WeatherContainer extends React.Component {
     getTemperatureWithUnit(temperatureFarenheit) {
@@ -39,6 +41,7 @@ class WeatherContainer extends React.Component {
                 secondTileDay="After Tomorrow"
                 secondTileTemperature={this.getSecondTemperature()}
                 secondTileColor="darkgoldenrod"
+                changeTemperatureUnit={this.props.actions.changeTemperatureUnit}
                 loading={loading}
             />
         );
@@ -48,4 +51,7 @@ class WeatherContainer extends React.Component {
 const mapStateToProps = (state, ownProps) =>
     ({ weather: state.weather, temperatureUnit: state.temperatureUnit });
 
-export default connect(mapStateToProps, null)(WeatherContainer);
+const mapDispatchToProps = (dispatch) =>
+    ({ actions: bindActionCreators(temperatureUnitActions, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherContainer);
