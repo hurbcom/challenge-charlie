@@ -2,6 +2,9 @@
     width: 100vw;
     background-color: lightcyan;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 600px) {
