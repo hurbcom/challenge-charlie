@@ -78,6 +78,7 @@ describe('descriptionContainer', () => {
     it('should getWeatherTypeInfo', () => {
         const weatherInfo =
             wrapper.dive().instance().getWeatherTypeInfo();
+        expect(weatherInfo.icon).to.be.equal('sunny');
         expect(weatherInfo.name).to.be.equal('Ensolarado');
     });
 

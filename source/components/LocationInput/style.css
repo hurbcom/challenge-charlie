@@ -1,4 +1,17 @@
+.wrapper {
+    width: 100%;
+    background-color: white;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 .autocomplete {
     width: 100%;
-    background-color: lightcyan;
+}
+
+.compass {
+    padding: 0.5rem;
+    height: 1.9rem;
 }

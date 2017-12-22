@@ -1,7 +1,8 @@
 import style from './style.css';
 import React from 'react';
-
 import Autocomplete from 'react-autocomplete';
+
+import compassIcon from '../../icons/meteocons-icons/SVG/compass.svg';
 
 const menuStyle = {
     background: 'rgba(255, 255, 255, 0.9)',
@@ -25,8 +26,10 @@ class LocationInput extends React.Component {
 
     render() {
         return (
-            <div className={style.autocomplete}>
+            <div className={style.wrapper}>
+                <img src={compassIcon} className={style.compass}/>
                 <Autocomplete
+                    className={style.autocomplete}
                     menuStyle={menuStyle}
                     items={this.props.items}
                     shouldItemRender={

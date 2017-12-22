@@ -1,17 +1,12 @@
 .app {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
     background-color: lightcyan;
     background-repeat: 'no-repeat';
     background-size: 'cover';
 
     display: flex;
-}
-
-@media (min-width: 600px) {
-    .app {
-        justify-content: center;
-        align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
 }

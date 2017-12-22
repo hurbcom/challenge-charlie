@@ -72,13 +72,13 @@ class DescriptionContainer extends React.Component {
     getWeatherTypeInfo() {
         switch (this.props.weather.weatherType) {
             case 'Mostly Cloudy':
-                return { icon: '2', name: 'Nublado' };
+                return { icon: 'mostly-cloudy', name: 'Nublado' };
             case 'Cloudly':
-                return { icon: '4', name: 'Nublado' };
+                return { icon: 'cloudy', name: 'Nublado' };
             case 'Rain':
-                return { icon: '3', name: 'Chuvoso' };
+                return { icon: 'rain', name: 'Chuvoso' };
             default:
-                return { icon: '2', name: 'Ensolarado' };
+                return { icon: 'sunny', name: 'Ensolarado' };
         }
     }
 
