@@ -82,7 +82,7 @@ class DescriptionContainer extends React.Component {
         }
     }
 
-    getBackbackgroundColor() {
+    getBackgroundColor() {
         const temperature = (this.props.weather.temperature - 32) * 5/9;
         if (temperature > 35) {
             return this.formatRGBA(255, 100, 100);
@@ -103,7 +103,7 @@ class DescriptionContainer extends React.Component {
                 <Description
                     icon={this.getWeatherTypeInfo().icon}
                     day="Hoje"
-                    color={this.getBackbackgroundColor()}
+                    color={this.getBackgroundColor()}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}

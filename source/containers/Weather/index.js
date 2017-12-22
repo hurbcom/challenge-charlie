@@ -40,7 +40,7 @@ class WeatherContainer extends React.Component {
     }
 
     formatRGB(r, g, b) {
-        return `rgb(${r}, ${g}, ${b}`;
+        return `rgb(${r}, ${g}, ${b})`;
     }
 
     getFirstTileColor() {
@@ -49,10 +49,10 @@ class WeatherContainer extends React.Component {
         return this.getBackbackgroundColor(temperature);
     }
 
-    getSecondColor() {
+    getSecondTileColor() {
         const temperature =
             R.path(['secondTile', 'high'], this.props.weather);
-        return this.getBackbackgroundColor(temperature);            
+        return this.getBackbackgroundColor(temperature);
     }
 
     render() {
@@ -69,7 +69,7 @@ class WeatherContainer extends React.Component {
                 secondTileDay="Depois de amanhã"
                 secondTileTemperature={
                     this.getTemperatureWithUnit(this.getSecondTemperature())}
-                secondTileColor={this.getSecondColor()}
+                secondTileColor={this.getSecondTileColor()}
                 changeTemperatureUnit={this.props.actions.changeTemperatureUnit}
                 loading={loading}
             />
