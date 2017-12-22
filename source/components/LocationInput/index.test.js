@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 import LocationInput from './index.js';
 
 function setup() {
-    const props = {};
+    const props = { items: [] };
     return shallow(<LocationInput {...props} />);
 }
 

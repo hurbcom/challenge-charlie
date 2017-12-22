@@ -17,6 +17,6 @@ function setup() {
 describe('Tile', () => {
     it('should build tile component', () => {
         const wrapper = setup();
-        expect(wrapper.find('div')).to.have.length(1);
+        expect(wrapper.find('div')).to.have.length(4);
     });
 });
