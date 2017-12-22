@@ -6,7 +6,13 @@ import { connect } from 'react-redux';
 
 class DescriptionContainer extends React.Component {
     getTemperature() {
-        return `${this.props.weather.temperature}ºF`;
+        const temperatureFarenheit = this.props.weather.temperature;
+        if (this.props.temperatureUnit === 'celsius') {
+            const exactTemperature = (temperatureFarenheit - 32) * 5/9;
+            const temperature = Math.round(exactTemperature * 10) / 10;
+            return `${temperature}ºC`;
+        }
+        return `${temperatureFarenheit}ºF`;
     }
 
     convertDegreesToCardinals(degrees) {
@@ -80,6 +86,6 @@ class DescriptionContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) =>
-({ weather: state.weather });
+    ({ weather: state.weather, temperatureUnit: state.temperatureUnit });
 
 export default connect(mapStateToProps, null)(DescriptionContainer);

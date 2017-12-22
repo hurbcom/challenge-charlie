@@ -13,7 +13,11 @@ import AppContainer from './containers/App';
 import configureStore from './store';
 import { loadBackground } from './actions/backgroundActions';
 
-const store = configureStore();
+const initialState = {
+    temperatureUnit: 'celsius',
+};
+
+const store = configureStore(initialState);
 store.dispatch(loadBackground());
 
 render(
