@@ -28,6 +28,33 @@ class WeatherContainer extends React.Component {
         return temperature;
     }
 
+    getBackbackgroundColor(temperatureFarenheit) {
+        const temperature = (temperatureFarenheit - 32) * 5/9;
+        if (temperature > 35) {
+            return this.formatRGB(255, 100, 100);
+        }
+        if (temperature < 15) {
+            return this.formatRGB(100, 100, 255);
+        }
+        return this.formatRGB(150, 150, 150);
+    }
+
+    formatRGB(r, g, b) {
+        return `rgb(${r}, ${g}, ${b}`;
+    }
+
+    getFirstTileColor() {
+        const temperature =
+            R.path(['firstTile', 'high'], this.props.weather);
+        return this.getBackbackgroundColor(temperature);
+    }
+
+    getSecondColor() {
+        const temperature =
+            R.path(['secondTile', 'high'], this.props.weather);
+        return this.getBackbackgroundColor(temperature);            
+    }
+
     render() {
         let loading = 'true';
         if (this.props.weather.locationName) {
@@ -35,16 +62,14 @@ class WeatherContainer extends React.Component {
         }
         return (
             <Weather
-                firstTileDay="Tomorrow"
+                firstTileDay="Amanhã"
                 firstTileTemperature={
                     this.getTemperatureWithUnit(this.getFirstTemperature())}
-                firstTileTemperatureFarenheitValue={
-                    this.getFirstTemperature()}
-                secondTileDay="After Tomorrow"
+                firstTileColor={this.getFirstTileColor()}
+                secondTileDay="Depois de amanhã"
                 secondTileTemperature={
                     this.getTemperatureWithUnit(this.getSecondTemperature())}
-                secondTileTemperatureFarenheitValue={
-                    this.getSecondTemperature()}
+                secondTileColor={this.getSecondColor()}
                 changeTemperatureUnit={this.props.actions.changeTemperatureUnit}
                 loading={loading}
             />

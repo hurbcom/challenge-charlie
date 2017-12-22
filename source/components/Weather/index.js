@@ -15,15 +15,13 @@ class Weather extends React.Component {
                     day={this.props.firstTileDay}
                     temperature={this.props.firstTileTemperature}
                     loading={this.props.loading}
-                    temperatureFarenheitValue={
-                        this.props.firstTileTemperatureFarenheitValue}
+                    color={this.props.firstTileColor}
                     changeTemperatureUnit={this.props.changeTemperatureUnit}/>
                 <Tile
                     day={this.props.secondTileDay}
                     temperature={this.props.secondTileTemperature}
                     loading={this.props.loading}
-                    temperatureFarenheitValue={
-                        this.props.secondTileTemperatureFarenheitValue}
+                    color={this.props.secondTileColor}
                     changeTemperatureUnit={this.props.changeTemperatureUnit}/>
             </div>
         );

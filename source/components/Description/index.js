@@ -5,21 +5,6 @@ import DescriptionIcon from '../DescriptionIcon';
 import DescriptionText from '../DescriptionText';
 
 class Description extends React.Component {
-    getBackbackgroundColor() {
-        const temperature = (this.props.temperatureFarenheitValue - 32) * 5/9;
-        if (temperature > 35) {
-            return this.formatRGBA(255, 100, 100);
-        }
-        if (temperature < 15) {
-            return this.formatRGBA(100, 100, 255);
-        }
-        return this.formatRGBA(150, 150, 150);
-    }
-
-    formatRGBA(r, g, b, a = 0.7) {
-        return `rgba(${r}, ${g}, ${b}, ${a})`;
-    }
-
     render() {
         if (this.props.loading === 'true') {
             return <div className={style.descriptionLoading}></div>;
@@ -28,7 +13,7 @@ class Description extends React.Component {
             <div
                 className={style.description}
                 style={{
-                    backgroundColor: this.getBackbackgroundColor(),
+                    backgroundColor: this.props.color,
                 }}>
                 <DescriptionIcon
                     icon={this.props.icon}/>

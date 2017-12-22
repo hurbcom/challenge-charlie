@@ -69,17 +69,45 @@ class DescriptionContainer extends React.Component {
         return `${pressure}hPA`;
     }
 
+    getWeatherTypeInfo() {
+        switch (this.props.weather.weatherType) {
+            case 'Mostly Cloudy':
+                return { icon: '2', name: 'Nublado' };
+            case 'Cloudly':
+                return { icon: '4', name: 'Nublado' };
+            case 'Rain':
+                return { icon: '3', name: 'Chuvoso' };
+            default:
+                return { icon: '2', name: 'Ensolarado' };
+        }
+    }
+
+    getBackbackgroundColor() {
+        const temperature = (this.props.weather.temperature - 32) * 5/9;
+        if (temperature > 35) {
+            return this.formatRGBA(255, 100, 100);
+        }
+        if (temperature < 15) {
+            return this.formatRGBA(100, 100, 255);
+        }
+        return this.formatRGBA(150, 150, 150);
+    }
+
+    formatRGBA(r, g, b, a = 0.7) {
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
     render() {
         if (this.props.weather.locationName) {
             return (
                 <Description
-                    icon="2"
-                    day="Today"
-                    temperatureFarenheitValue={this.props.weather.temperature}
+                    icon={this.getWeatherTypeInfo().icon}
+                    day="Hoje"
+                    color={this.getBackbackgroundColor()}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}
-                    weatherType={this.props.weather.weatherType}
+                    weatherType={this.getWeatherTypeInfo().name}
                     wind={this.getWind()}
                     humidity={this.getHumidity()}
                     pressure={this.getPressure()}

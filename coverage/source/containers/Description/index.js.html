@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">24.24% </span>
+        <span class="strong">17.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/33</span>
+        <span class='fraction'>8/46</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25.81% </span>
+        <span class="strong">18.18% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/31</span>
+        <span class='fraction'>8/44</span>
       </div>
     </div>
   </div>
@@ -143,7 +143,35 @@
 98
 99
 100
-101</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -208,6 +236,34 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -314,17 +370,45 @@ class DescriptionContainer extends React.Component {
 <span class="cstat-no" title="statement not covered" >        return `${pressure}hPA`;</span>
     }
 &nbsp;
+    getWeatherTypeInfo() {
+<span class="cstat-no" title="statement not covered" >        switch (this.props.weather.weatherType) {</span>
+            case 'Mostly Cloudy':
+<span class="cstat-no" title="statement not covered" >                return { icon: '2', name: 'Nublado' };</span>
+            case 'Cloudly':
+<span class="cstat-no" title="statement not covered" >                return { icon: '4', name: 'Nublado' };</span>
+            case 'Rain':
+<span class="cstat-no" title="statement not covered" >                return { icon: '3', name: 'Chuvoso' };</span>
+            default:
+<span class="cstat-no" title="statement not covered" >                return { icon: '2', name: 'Ensolarado' };</span>
+        }
+    }
+&nbsp;
+    getBackbackgroundColor() {
+        const temperature = <span class="cstat-no" title="statement not covered" >(this.props.weather.temperature - 32) * 5/9;</span>
+<span class="cstat-no" title="statement not covered" >        if (temperature &gt; 35) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.formatRGBA(255, 100, 100);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (temperature &lt; 15) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.formatRGBA(100, 100, 255);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this.formatRGBA(150, 150, 150);</span>
+    }
+&nbsp;
+    formatRGBA(r, g, b, a = 0.7) <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return `rgba(${r}, ${g}, ${b}, ${a})`;</span>
+    }
+&nbsp;
     render() {
 <span class="cstat-no" title="statement not covered" >        if (this.props.weather.locationName) {</span>
 <span class="cstat-no" title="statement not covered" >            return (</span>
                 &lt;Description
-                    icon="2"
-                    day="Today"
-                    temperatureFarenheitValue={this.props.weather.temperature}
+                    icon={this.getWeatherTypeInfo().icon}
+                    day="Hoje"
+                    color={this.getBackbackgroundColor()}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}
-                    weatherType={this.props.weather.weatherType}
+                    weatherType={this.getWeatherTypeInfo().name}
                     wind={this.getWind()}
                     humidity={this.getHumidity()}
                     pressure={this.getPressure()}
@@ -349,7 +433,7 @@ export default connect(
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 16:19:00 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 16:39:55 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
