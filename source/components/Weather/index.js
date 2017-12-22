@@ -1,24 +1,24 @@
 import style from './style.css';
 import React from 'react';
 
-import LocationInput from '../LocationInput';
-import Description from '../Description';
+import LocationInputContainer from '../../containers/LocationInput';
+import DescriptionContainer from '../../containers/Description';
 import Tile from '../Tile';
 
 class Weather extends React.Component {
     render() {
         return (
             <div className={style.weatherBlock}>
-                <LocationInput />
-                <Description />
+                <LocationInputContainer />
+                <DescriptionContainer />
                 <Tile
-                    day="amanhã"
-                    temperature="25ºC"
-                    color="darkgoldenrod" />
+                    day={this.props.firstTileDay}
+                    temperature={this.props.firstTileTemperature}
+                    color={this.props.firstTileColor} />
                 <Tile
-                    day="depois de amanhã"
-                    temperature="26ºC"
-                    color="darkgoldenrod" />
+                    day={this.props.secondTileDay}
+                    temperature={this.props.secondTileTemperature}
+                    color={this.props.secondTileColor} />
             </div>
         );
     }

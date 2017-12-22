@@ -18,16 +18,17 @@ class LocationInput extends React.Component {
         };
     }
 
+    selectLocationName(locationName) {
+        this.props.fetchLocationWeatherByName(locationName);
+        this.setState({ value: locationName });
+    }
+
     render() {
         return (
             <div className={style.autocomplete}>
                 <Autocomplete
                     menuStyle={menuStyle}
-                    items={[
-                        { id: 1, label: 'Rio de Janeiro, Rio de Janeiro' },
-                        { id: 2, label: 'São Paulo, São Paulo' },
-                        { id: 3, label: 'Belo Horizonte, Minas Gerais' },
-                    ]}
+                    items={this.props.items}
                     shouldItemRender={
                         (item, value) => item.label
                             .toLowerCase().indexOf(value.toLowerCase()) > -1
@@ -44,7 +45,7 @@ class LocationInput extends React.Component {
                     }
                     value={this.state.value}
                     onChange={(e) => this.setState({ value: e.target.value })}
-                    onSelect={(value) => this.setState({ value })}
+                    onSelect={this.selectLocationName.bind(this)}
                     />
             </div>
         );

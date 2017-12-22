@@ -8,15 +8,16 @@ class Description extends React.Component {
     render() {
         return (
             <div className={style.description}>
-                <DescriptionIcon icon="2"/>
+                <DescriptionIcon
+                    icon={this.props.icon}/>
                 <DescriptionText
                     className={style.descriptionText}
-                    day="Hoje"
-                    temperature="32ºC"
-                    weatherType="Ensolarado"
-                    wind="NO 6.4km/h"
-                    humidity="78%"
-                    pressure="1003hPA"/>
+                    day={this.props.day}
+                    temperature={this.props.temperature}
+                    weatherType={this.props.weatherType}
+                    wind={this.props.wind}
+                    humidity={this.props.humidity}
+                    pressure={this.props.pressure}/>
             </div>
         );
     }

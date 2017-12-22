@@ -17,6 +17,6 @@ function setup() {
 describe('descriptionText', () => {
     it('should build descriptionText component', () => {
         const wrapper = setup();
-        expect(wrapper.find('div')).to.have.length(1);
+        expect(wrapper.find('div')).to.have.length(7);
     });
 });

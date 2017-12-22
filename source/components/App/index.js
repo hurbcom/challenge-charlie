@@ -1,7 +1,7 @@
 import style from './style.css';
 import React from 'react';
 
-import Weather from '../Weather';
+import WeatherContainer from '../../containers/Weather';
 
 class App extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class App extends React.Component {
                 style={{
                     backgroundImage: `url('${this.props.backgroundImage}')`,
                 }}>
-                <Weather />
+                <WeatherContainer />
             </div>
         );
     }
