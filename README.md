@@ -20,7 +20,7 @@
 
 `$ docker run -p 8080:8080 charlie` - Execute a aplicação com o docker
 
-## Principal tecnologia usada [Editado por @matheusrabelo]
+## Principais tecnologias usada [Editado por @matheusrabelo]
 React e Redux
 
 ## Desafio
