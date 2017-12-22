@@ -16,8 +16,12 @@
 
 `$ npm run coverage` - para gerar a descrição da cobertura dos testes na pasta /coverage
 
+`$ docker build -t charlie .` - Build da imagem com o docker
+
+`$ docker run -p 8080:8080 charlie` - Execute a aplicação com o docker
+
 ## Principal tecnologia usada [Editado por @matheusrabelo]
-React
+React e Redux
 
 ## Desafio
 
