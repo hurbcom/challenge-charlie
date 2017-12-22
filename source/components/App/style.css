@@ -1,3 +1,11 @@
-.red {
-    color: red;
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.app {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-color: lightcyan;
+    background-repeat: 'noRepeat';
+    background-size: 'cover';
 }
