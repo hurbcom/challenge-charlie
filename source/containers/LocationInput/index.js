@@ -11,6 +11,7 @@ class LocationContainer extends React.Component {
             { id: 1, label: 'Rio de Janeiro, RJ' },
             { id: 2, label: 'São Paulo, SP' },
             { id: 3, label: 'Belo Horizonte, MG' },
+            { id: 4, label: 'New York, NY' },
         ];
 
         return (

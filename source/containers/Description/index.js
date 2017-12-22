@@ -75,6 +75,7 @@ class DescriptionContainer extends React.Component {
                 <Description
                     icon="2"
                     day="Today"
+                    temperatureFarenheitValue={this.props.weather.temperature}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}

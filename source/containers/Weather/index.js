@@ -19,13 +19,13 @@ class WeatherContainer extends React.Component {
     getFirstTemperature() {
         const temperature =
             R.path(['firstTile', 'high'], this.props.weather);
-        return this.getTemperatureWithUnit(temperature);
+        return temperature;
     }
 
     getSecondTemperature() {
         const temperature =
             R.path(['secondTile', 'high'], this.props.weather);
-        return this.getTemperatureWithUnit(temperature);
+        return temperature;
     }
 
     render() {
@@ -36,11 +36,15 @@ class WeatherContainer extends React.Component {
         return (
             <Weather
                 firstTileDay="Tomorrow"
-                firstTileTemperature={this.getFirstTemperature()}
-                firstTileColor="darkgoldenrod"
+                firstTileTemperature={
+                    this.getTemperatureWithUnit(this.getFirstTemperature())}
+                firstTileTemperatureFarenheitValue={
+                    this.getFirstTemperature()}
                 secondTileDay="After Tomorrow"
-                secondTileTemperature={this.getSecondTemperature()}
-                secondTileColor="darkgoldenrod"
+                secondTileTemperature={
+                    this.getTemperatureWithUnit(this.getSecondTemperature())}
+                secondTileTemperatureFarenheitValue={
+                    this.getSecondTemperature()}
                 changeTemperatureUnit={this.props.actions.changeTemperatureUnit}
                 loading={loading}
             />
