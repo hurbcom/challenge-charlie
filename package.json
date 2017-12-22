@@ -7,8 +7,8 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "eslint": "eslint source/**/*.js",
-    "test": "nyc mocha source/**/*.test.js --require babel-core/register --require ignore-styles --timeout=3000",
-    "coverage": "nyc --reporter=html --reporter=text mocha source/**/*.test.js --require babel-core/register --require ignore-styles --timeout=3000",
+    "test": "nyc mocha './source/**/*.test.js' --require babel-core/register --require ignore-styles --timeout=3000",
+    "coverage": "nyc --reporter=html --reporter=text npm test",
     "prepublish": "npm run eslint"
   },
   "repository": {
