@@ -1,6 +1,6 @@
 .weatherBlock {
     width: 100vw;
-    background-color: lightcyan;
+    background: transparent;
     text-align: center;
 
     display: flex;
