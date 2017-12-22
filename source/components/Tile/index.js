@@ -3,6 +3,9 @@ import React from 'react';
 
 class Tile extends React.Component {
     render() {
+        if (this.props.loading === 'true') {
+            return <div className={style.loadingTile}></div>;
+        }
         return (
             <div className={style.tile}
                 style={{

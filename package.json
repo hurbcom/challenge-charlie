@@ -48,6 +48,7 @@
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
     "nyc": "^11.4.1",
+    "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-autocomplete": "^1.7.2",
     "react-dom": "^16.2.0",

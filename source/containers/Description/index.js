@@ -1,21 +1,81 @@
 import React from 'react';
+import * as R from 'ramda';
 
 import Description from '../../components/Description';
 import { connect } from 'react-redux';
 
 class DescriptionContainer extends React.Component {
+    getTemperature() {
+        return `${this.props.weather.temperature}ºF`;
+    }
+
+    convertDegreesToCardinals(degrees) {
+        const directions = [
+            { from: 348.75, to: 360, name: 'N' },
+            { from: 0, to: 11.25, name: 'N' },
+            { from: 11.25, to: 33.75, name: 'NNE' },
+            { from: 33.75, to: 56.25, name: 'NE' },
+            { from: 56.25, to: 78.75, name: 'ENE' },
+            { from: 78.75, to: 101.25, name: 'E' },
+            { from: 101.25, to: 123.75, name: 'ESE' },
+            { from: 123.75, to: 146.25, name: 'SE' },
+            { from: 146.25, to: 168.75, name: 'SSE' },
+            { from: 168.75, to: 191.25, name: 'S' },
+            { from: 191.25, to: 213.75, name: 'SSW'},
+            { from: 213.75, to: 236.25, name: 'SW'},
+            { from: 236.25, to: 258.75, name: 'WSW'},
+            { from: 258.75, to: 281.25, name: 'W'},
+            { from: 281.25, to: 303.75, name: 'WNW'},
+            { from: 303.75, to: 326.25, name: 'NW'},
+            { from: 326.25, to: 348.75, name: 'NNW'},
+        ];
+
+        return directions.reduce((prev, cur) => {
+            if (degrees >= cur.from && degrees < cur.to) {
+                return cur.name;
+            }
+            return prev;
+        }, 'N');
+    }
+
+    getWind() {
+        const speedMph =
+            R.path(['wind', 'speed'], this.props.weather);
+        const directionDegrees =
+            R.path(['wind', 'direction'], this.props.weather);
+
+        const speed = Math.round(speedMph * 1.60934);
+        const direction = this.convertDegreesToCardinals(directionDegrees);
+        return `${direction} ${speed}km/h`;
+    }
+
+    getHumidity() {
+        const humidity =
+            R.path(['atmosphere', 'humidity'], this.props.weather);
+        return `${humidity}%`;
+    }
+
+    getPressure() {
+        const pressure =
+            R.path(['atmosphere', 'pressure'], this.props.weather);
+        return `${pressure}hPA`;
+    }
+
     render() {
-        return (
-            <Description
-                icon="2"
-                day="Hoje"
-                temperature="32ºC"
-                weatherType="Ensolarado"
-                wind="NO 6.4km/h"
-                humidity="78%"
-                pressure="1003hPA"
-            />
-        );
+        if (this.props.weather.locationName) {
+            return (
+                <Description
+                    icon="2"
+                    day="Today"
+                    temperature={this.getTemperature()}
+                    weatherType={this.props.weather.weatherType}
+                    wind={this.getWind()}
+                    humidity={this.getHumidity()}
+                    pressure={this.getPressure()}
+                />
+            );
+        }
+        return <Description loading="true"/>;
     }
 }
 
