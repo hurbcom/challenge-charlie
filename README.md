@@ -20,9 +20,6 @@
 
 `$ docker run -p 8080:8080 charlie` - Execute a aplicação com o docker
 
-## Principais tecnologias usada [Editado por @matheusrabelo]
-React e Redux
-
 ## Desafio
 
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.
