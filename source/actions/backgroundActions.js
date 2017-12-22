@@ -1,5 +1,4 @@
 import axios from 'axios';
-import toastr from 'toastr';
 
 import * as constants from '../constants';
 
@@ -24,7 +23,7 @@ export const loadBackground = () => {
                 dispatch(loadBackgroundSuccess(backgroundUrl));
             })
             .catch(() => {
-                toastr.error(
+                window.alert(
                     'Ocorreu um erro ao obter a imagem de fundo do Bing');
                 dispatch(loadBackgroundSuccess());
             });

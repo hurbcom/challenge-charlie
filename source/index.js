@@ -1,8 +1,6 @@
 import 'normalize.css';
 import 'babel-polyfill';
-import 'jquery';
 import 'font-awesome/css/font-awesome.min.css';
-import 'toastr/build/toastr.min.css';
 import './index.css';
 
 import React from 'react';

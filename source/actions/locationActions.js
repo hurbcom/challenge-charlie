@@ -1,5 +1,4 @@
 import axios from 'axios';
-import toastr from 'toastr';
 import * as R from 'ramda';
 
 import * as constants from '../constants';
@@ -54,7 +53,7 @@ export const fetchLocationWeatherByName = (name) => {
                 dispatch(fetchLocationWeatherByNameSuccess(weather));
             })
             .catch(() => {
-                toastr.error(
+                window.alert(
                 'Ocorreu um erro ao obter as informações relativas ao clima');
                 dispatch(fetchLocationWeatherByNameSuccess());
             });
@@ -72,7 +71,7 @@ const fetchCurrentLocationWeatherByCoordinates = (position, dispatch) => {
                     weather));
         })
         .catch(() => {
-            toastr.error(
+            window.alert(
                 'Ocorreu um erro ao obter as informações' +
                 'relativas a localização atual');
         });
