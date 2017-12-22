@@ -4,14 +4,14 @@ import * as R from 'ramda';
 
 import * as constants from '../constants';
 
-const getLocationWeatherUrlByName = (name) =>
+export const getLocationWeatherUrlByName = (name) =>
     `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${name}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 
-const fetchLocationWeatherByNameSuccess = (weather = {}) => {
+export const fetchLocationWeatherByNameSuccess = (weather = {}) => {
     return { type: constants.LOAD_LOCATION_WEATHER_SUCCESS, weather };
 };
 
-const buildWeatherState = (response) => {
+export const buildWeatherState = (response) => {
     const channel = R.path(['query', 'results', 'channel'], response);
     const location = R.prop('location', channel);
     const locationName =

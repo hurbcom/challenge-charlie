@@ -10,7 +10,7 @@ const api = axios.create({
     baseURL: `${corsAnyWhere}${bingImageArchiveUrl}`,
 });
 
-const loadBackgroundSuccess = (backgroundUrl = '') => {
+export const loadBackgroundSuccess = (backgroundUrl = '') => {
     return { type: constants.LOAD_BACKGROUND_SUCCESS, backgroundUrl };
 };
 

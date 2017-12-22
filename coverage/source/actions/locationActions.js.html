@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26.67% </span>
+        <span class="strong">76.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/30</span>
+        <span class='fraction'>23/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>3/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">29.63% </span>
+        <span class="strong">77.78% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/27</span>
+        <span class='fraction'>21/27</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -103,31 +103,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -149,26 +149,26 @@ import * as R from 'ramda';
 &nbsp;
 import * as constants from '../constants';
 &nbsp;
-const <span class="fstat-no" title="function not covered" >getLocationWeatherUrlByName = <span class="cstat-no" title="statement not covered" >(</span>name) =&gt;</span>
+export const getLocationWeatherUrlByName = (name) =&gt;
     `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${name}%22)&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 &nbsp;
-const <span class="fstat-no" title="function not covered" >fetchLocationWeatherByNameSuccess = (</span>weather = {}) =&gt; <span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    return { type: constants.LOAD_LOCATION_WEATHER_SUCCESS, weather };</span>
+export const fetchLocationWeatherByNameSuccess = (weather = <span class="branch-1 cbranch-no" title="branch not covered" >{}) =&gt; {</span>
+    return { type: constants.LOAD_LOCATION_WEATHER_SUCCESS, weather };
 };
 &nbsp;
-const <span class="fstat-no" title="function not covered" >buildWeatherState = (</span>response) =&gt; {
-    const channel = <span class="cstat-no" title="statement not covered" >R.path(['query', 'results', 'channel'], response);</span>
-    const location = <span class="cstat-no" title="statement not covered" >R.prop('location', channel);</span>
+export const buildWeatherState = (response) =&gt; {
+    const channel = R.path(['query', 'results', 'channel'], response);
+    const location = R.prop('location', channel);
     const locationName =
-<span class="cstat-no" title="statement not covered" >        location ? `${location.city},${location.region}` : null;</span>
-    const atmosphere = <span class="cstat-no" title="statement not covered" >R.prop('atmosphere', channel);</span>
-    const wind = <span class="cstat-no" title="statement not covered" >R.prop('wind', channel);</span>
-    const weatherType = <span class="cstat-no" title="statement not covered" >R.path(['item', 'condition', 'text'], channel);</span>
-    const temperature = <span class="cstat-no" title="statement not covered" >R.path(['item', 'condition', 'temp'], channel);</span>
-    const forecast = <span class="cstat-no" title="statement not covered" >R.path(['item', 'forecast'], channel) || [];</span>
-    const firstTile = <span class="cstat-no" title="statement not covered" >forecast[1];</span>
-    const secondTile = <span class="cstat-no" title="statement not covered" >forecast[2];</span>
-    const weather = <span class="cstat-no" title="statement not covered" >{</span>
+        location ? `${<span class="branch-0 cbranch-no" title="branch not covered" >location.city},${location.region}` : null;</span>
+    const atmosphere = R.prop('atmosphere', channel);
+    const wind = R.prop('wind', channel);
+    const weatherType = R.path(['item', 'condition', 'text'], channel);
+    const temperature = R.path(['item', 'condition', 'temp'], channel);
+    const forecast = R.path(['item', 'forecast'], channel) || [];
+    const firstTile = forecast[1];
+    const secondTile = forecast[2];
+    const weather = {
         locationName,
         atmosphere,
         wind,
@@ -177,7 +177,7 @@ const <span class="fstat-no" title="function not covered" >buildWeatherState = (
         firstTile,
         secondTile,
     };
-<span class="cstat-no" title="statement not covered" >    return weather;</span>
+    return weather;
 };
 &nbsp;
 export const <span class="fstat-no" title="function not covered" >fetchLocationWeatherByName = (</span>name) =&gt; {
@@ -199,7 +199,7 @@ export const <span class="fstat-no" title="function not covered" >fetchLocationW
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 15:56:15 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 16:08:46 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../prettify.js"></script>
