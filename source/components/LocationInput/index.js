@@ -14,7 +14,7 @@ class LocationInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: 'Localização atual',
         };
     }
 

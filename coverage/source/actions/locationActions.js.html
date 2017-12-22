@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.67% </span>
+        <span class="strong">59.26% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>23/30</span>
+        <span class='fraction'>32/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/8</span>
+        <span class='fraction'>9/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>6/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.78% </span>
+        <span class="strong">59.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/27</span>
+        <span class='fraction'>28/47</span>
       </div>
     </div>
   </div>
@@ -93,12 +93,65 @@
 48
 49
 50
-51</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,6 +195,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
 import toastr from 'toastr';
@@ -152,8 +236,19 @@ import * as constants from '../constants';
 export const getLocationWeatherUrlByName = (name) =&gt;
     `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${name}%22)&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 &nbsp;
+export const getLocationWeatherUrlByCoordinates = (lat, long) =&gt;
+    `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${lat},${long})")&amp;format=json`;
+&nbsp;
 export const fetchLocationWeatherByNameSuccess = (weather = <span class="branch-1 cbranch-no" title="branch not covered" >{}) =&gt; {</span>
     return { type: constants.LOAD_LOCATION_WEATHER_SUCCESS, weather };
+};
+&nbsp;
+export const fetchCurrentLocationWeatherSuccess = (weather = <span class="branch-1 cbranch-no" title="branch not covered" >{}) =&gt; {</span>
+    return { type: constants.LOAD_CURRENT_LOCATION_WEATHER_SUCCESS, weather };
+};
+&nbsp;
+export const fetchCurrentLocationWeatherFail = () =&gt; {
+    return { type: constants.LOAD_CURRENT_LOCATION_WEATHER_FAIL };
 };
 &nbsp;
 export const buildWeatherState = (response) =&gt; {
@@ -193,13 +288,44 @@ export const <span class="fstat-no" title="function not covered" >fetchLocationW
 <span class="cstat-no" title="statement not covered" >                dispatch(fetchLocationWeatherByNameSuccess());</span>
             });
 };
+&nbsp;
+const <span class="fstat-no" title="function not covered" >fetchCurrentLocationWeatherByCoordinates = (</span>position, dispatch) =&gt; {
+    const { coords } = <span class="cstat-no" title="statement not covered" >position;</span>
+    const lat = <span class="cstat-no" title="statement not covered" >coords.latitude;</span>
+    const long = <span class="cstat-no" title="statement not covered" >coords.longitude;</span>
+<span class="cstat-no" title="statement not covered" >    return axios.get(getLocationWeatherUrlByCoordinates(lat, long))</span>
+        .then(<span class="fstat-no" title="function not covered" >({data}) =&gt; <span class="cstat-no" title="statement not covered" ></span>{</span>
+            const weather = <span class="cstat-no" title="statement not covered" >buildWeatherState(data);</span>
+<span class="cstat-no" title="statement not covered" >            dispatch(</span>
+                fetchCurrentLocationWeatherSuccess(
+                    weather));
+        })
+        .catch(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >            toastr.error(</span>
+                'Ocorreu um erro ao obter as informações' +
+                'relativas a localização atual');
+        });
+};
+&nbsp;
+export const <span class="fstat-no" title="function not covered" >fetchCurrentLocationWeather = (</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >    return <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>dispatch) =&gt;</span></span>
+        new Promise(<span class="fstat-no" title="function not covered" >(</span>resolve, reject) =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (navigator.geolocation) {</span>
+<span class="cstat-no" title="statement not covered" >                navigator.geolocation.getCurrentPosition(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>position) =&gt;</span></span>
+                    fetchCurrentLocationWeatherByCoordinates(
+                        position, dispatch));
+            }
+<span class="cstat-no" title="statement not covered" >            dispatch(fetchCurrentLocationWeatherFail());</span>
+        })
+        .catch(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; fetchCurrentLocationWeatherFail());</span></span>
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 17:12:45 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 18:36:02 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../prettify.js"></script>

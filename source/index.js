@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import AppContainer from './containers/App';
 import configureStore from './store';
 import { loadBackground } from './actions/backgroundActions';
+import { fetchCurrentLocationWeather } from './actions/locationActions';
 
 const initialState = {
     temperatureUnit: 'celsius',
@@ -19,6 +20,7 @@ const initialState = {
 
 const store = configureStore(initialState);
 store.dispatch(loadBackground());
+store.dispatch(fetchCurrentLocationWeather());
 
 render(
     <Provider store={store}>

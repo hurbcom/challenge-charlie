@@ -3,7 +3,7 @@
     height: 100vh;
 
     background-color: lightcyan;
-    background-repeat: 'noRepeat';
+    background-repeat: 'no-repeat';
     background-size: 'cover';
 
     display: flex;

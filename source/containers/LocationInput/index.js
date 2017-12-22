@@ -13,10 +13,10 @@ class LocationContainer extends React.Component {
             { id: 3, label: 'Belo Horizonte, MG' },
             { id: 4, label: 'New York, NY' },
         ];
-
         return (
             <LocationInput
                 items={items}
+                locationName={this.props.weather.locationName}
                 fetchLocationWeatherByName={
                     this.props.actions.fetchLocationWeatherByName}
             />
