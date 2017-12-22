@@ -1,6 +1,8 @@
 import style from './style.css';
 import React from 'react';
 
+import Weather from '../Weather';
+
 class App extends React.Component {
     render() {
         return (
@@ -9,7 +11,7 @@ class App extends React.Component {
                 style={{
                     backgroundImage: `url('${this.props.backgroundImage}')`,
                 }}>
-                Hello World
+                <Weather />
             </div>
         );
     }

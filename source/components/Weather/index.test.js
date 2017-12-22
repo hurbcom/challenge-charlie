@@ -7,15 +7,15 @@ import { shallow, configure } from 'enzyme';
 
 configure({ adapter: new Adapter() });
 
-import App from './index.js';
+import Weather from './index.js';
 
 function setup() {
     const props = {};
-    return shallow(<App {...props} />);
+    return shallow(<Weather {...props} />);
 }
 
-describe('App', () => {
-    it('should build app component', () => {
+describe('Weather', () => {
+    it('should build weather component', () => {
         const wrapper = setup();
         expect(wrapper.find('div')).to.have.length(1);
     });
