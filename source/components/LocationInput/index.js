@@ -47,7 +47,13 @@ class LocationInput extends React.Component {
                         </div>
                     }
                     value={this.state.value}
-                    onChange={(e) => this.setState({ value: e.target.value })}
+                    onChange={(e) => {
+                        const { value } = e.target;
+                        this.setState({ value });
+                        if (value && value.length > 2) {
+                            this.props.fetchSuggestion(value);
+                        }
+                    }}
                     onSelect={this.selectLocationName.bind(this)}
                     />
             </div>

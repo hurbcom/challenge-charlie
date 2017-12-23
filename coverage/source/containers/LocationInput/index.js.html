@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.82% </span>
+        <span class="strong">76.47% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/11</span>
+        <span class='fraction'>13/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.78% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/9</span>
+        <span class='fraction'>12/16</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -76,12 +76,29 @@
 31
 32
 33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -91,9 +108,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,6 +119,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,20 +132,25 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 &nbsp;
 import * as locationActions from '../../actions/locationActions';
+import * as suggestionActions from '../../actions/suggestionActions';
+&nbsp;
 import LocationInput from '../../components/LocationInput';
 &nbsp;
 class LocationContainer extends React.Component {
     render() {
-        const items = <span class="cstat-no" title="statement not covered" >[</span>
-            { id: 1, label: 'Rio de Janeiro, RJ' },
-            { id: 2, label: 'São Paulo, SP' },
-            { id: 3, label: 'Belo Horizonte, MG' },
-            { id: 4, label: 'New York, NY' },
-        ];
+        const items = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >        if (this.props.suggestion) {</span>
+<span class="cstat-no" title="statement not covered" >            items.push({</span>
+                id: 1, label: this.props.suggestion,
+            });
+        }
 <span class="cstat-no" title="statement not covered" >        return (</span>
             &lt;LocationInput
                 items={items}
                 locationName={this.props.weather.locationName}
+                suggestion={this.props.suggestion}
+                fetchSuggestion={
+                    this.props.actions.fetchSuggestion}
                 fetchLocationWeatherByName={
                     this.props.actions.fetchLocationWeatherByName}
             /&gt;
@@ -136,10 +159,14 @@ class LocationContainer extends React.Component {
 }
 &nbsp;
 const mapStateToProps = (state, ownProps) =&gt;
-    ({ weather: state.weather });
+    ({ weather: state.weather, suggestion: state.suggestion });
 &nbsp;
-const mapDispatchToProps = (dispatch) =&gt;
-    ({ actions: bindActionCreators(locationActions, dispatch) });
+const mapDispatchToProps = (dispatch) =&gt; {
+    const actions = {};
+    Object.assign(actions, locationActions);
+    Object.assign(actions, suggestionActions);
+    return ({ actions: bindActionCreators(actions, dispatch) });
+};
 &nbsp;
 export default connect(mapStateToProps, mapDispatchToProps)(LocationContainer);
 &nbsp;</pre></td></tr>
@@ -148,7 +175,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(LocationContainer);
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 22 2017 21:01:46 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 00:00:49 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

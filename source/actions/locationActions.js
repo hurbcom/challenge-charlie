@@ -24,8 +24,11 @@ export const fetchCurrentLocationWeatherFail = () => {
 export const buildWeatherState = (response) => {
     const channel = R.path(['query', 'results', 'channel'], response);
     const location = R.prop('location', channel);
-    const locationName =
-        location ? `${location.city},${location.region}` : null;
+    let locationName = undefined;
+    if (location) {
+        const { city, region, country } = location;
+        locationName = `${city},${region} - ${country}`;
+    }
     const atmosphere = R.prop('atmosphere', channel);
     const wind = R.prop('wind', channel);
     const weatherType = R.path(['item', 'condition', 'text'], channel);

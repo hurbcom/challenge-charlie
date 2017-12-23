@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for source/actions/backgroundActions.js</title>
+    <title>Code coverage report for source/actions/suggestionActions.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">source/actions</a> backgroundActions.js
+      <a href="../../index.html">All files</a> / <a href="index.html">source/actions</a> suggestionActions.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/18</span>
+        <span class='fraction'>10/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>3/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.33% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/15</span>
+        <span class='fraction'>9/18</span>
       </div>
     </div>
   </div>
@@ -73,15 +73,17 @@
 28
 29
 30
-31</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+31
+32</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -96,42 +98,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
+import * as R from 'ramda';
 &nbsp;
 import * as constants from '../constants';
 &nbsp;
-const bingImageArchiveUrl = 'https://www.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=pt-BR';
-const corsAnyWhere = 'https://cors-anywhere.herokuapp.com/';
+export const getLocationWeatherUrlByName = (name) =&gt;
+    `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${name}%22)&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 &nbsp;
-const api = axios.create({
-    baseURL: `${corsAnyWhere}${bingImageArchiveUrl}`,
-});
-&nbsp;
-export const loadBackgroundSuccess = (backgroundUrl = <span class="branch-1 cbranch-no" title="branch not covered" >'') =&gt; {</span>
-    return { type: constants.LOAD_BACKGROUND_SUCCESS, backgroundUrl };
+export const fetchLocationNameSuccess = (name) =&gt; {
+    return { type: constants.LOAD_LOCATION_NAME_SUGGESTION_SUCCESS, name };
 };
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >loadBackground = (</span>) =&gt; {
+export const fetchLocationNameFail = () =&gt; {
+    return { type: constants.LOAD_LOCATION_NAME_SUGGESTION_FAIL };
+};
+&nbsp;
+export const <span class="fstat-no" title="function not covered" >fetchSuggestion = (</span>name) =&gt; {
 <span class="cstat-no" title="statement not covered" >    return <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>dispatch) =&gt;</span></span>
-        api.get('/')
-            .then(<span class="fstat-no" title="function not covered" >({data}) =&gt; <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span>{</span></span>
-                const { images } = <span class="cstat-no" title="statement not covered" >data;</span>
-                const [backgroundImage] = images;
-                const <span class="cstat-no" title="statement not covered" >backgroundUrl = `https://www.bing.com${backgroundImage.url}`;</span>
-<span class="cstat-no" title="statement not covered" >                dispatch(loadBackgroundSuccess(backgroundUrl));</span>
+        axios.get(getLocationWeatherUrlByName(name))
+            .then(<span class="fstat-no" title="function not covered" >({data}) =&gt; <span class="cstat-no" title="statement not covered" ></span>{</span>
+                const location = <span class="cstat-no" title="statement not covered" >R.path(</span>
+                    ['query', 'results', 'channel', 'location'], data);
+<span class="cstat-no" title="statement not covered" >                if (location) {</span>
+                    const { city, region, country } = <span class="cstat-no" title="statement not covered" >location;</span>
+                    const name = `${<span class="cstat-no" title="statement not covered" >city},${region} - ${country}`;</span>
+<span class="cstat-no" title="statement not covered" >                    return dispatch(fetchLocationNameSuccess(name));</span>
+                }
+<span class="cstat-no" title="statement not covered" >                fetchLocationNameFail();</span>
             })
-            .catch(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
-<span class="cstat-no" title="statement not covered" >                window.alert(</span>
-                    'Ocorreu um erro ao obter a imagem de fundo do Bing');
-<span class="cstat-no" title="statement not covered" >                dispatch(loadBackgroundSuccess());</span>
-            });
+            .catch(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; dispatch(fetchLocationNameFail()));</span></span>
 };
 &nbsp;</pre></td></tr>
 </table></pre>
