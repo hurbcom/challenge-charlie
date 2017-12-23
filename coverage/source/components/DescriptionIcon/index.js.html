@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>16/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>16/17</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -77,27 +77,51 @@
 32
 33
 34
-35</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,24 +138,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import style from './style.css';
 import React from 'react';
 &nbsp;
-import cloudyIcon from '../../icons/meteocons-icons/SVG/cloudy.svg';
-import mostlyCloudyIcon from
-    '../../icons/meteocons-icons/SVG/mostly-cloudy.svg';
-import rainIcon from '../../icons/meteocons-icons/SVG/rain.svg';
-import sunnyIcon from '../../icons/meteocons-icons/SVG/sunny.svg';
+import icon2 from '../../icons/2.svg';
+import icon6 from '../../icons/6.svg';
+import icon14 from '../../icons/14.svg';
+import icon18 from '../../icons/18.svg';
+import icon23 from '../../icons/23.svg';
+import icon32 from '../../icons/32.svg';
+import icon45 from '../../icons/45.svg';
 &nbsp;
 class DescriptionIcon extends React.Component {
     getIcon() {
-        switch (this.props.icon) {
-<span class="branch-0 cbranch-no" title="branch not covered" >            case 'cloudy':</span>
-<span class="cstat-no" title="statement not covered" >                return cloudyIcon;</span>
-<span class="branch-1 cbranch-no" title="branch not covered" >            case 'mostly-cloudy':</span>
-<span class="cstat-no" title="statement not covered" >                return mostlyCloudyIcon;</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >            case 'rain':</span>
-<span class="cstat-no" title="statement not covered" >                return rainIcon;</span>
-            default:
-                return sunnyIcon;
-        }
+        const { weatherType } = this.props;
+        const weatherTypeIcons = [
+            { icon: icon2, types: [31, 32, 36] },
+            { icon: icon6, types: [24] },
+            { icon: icon14, types: [26, 28, 30, 34, 44] },
+            { icon: icon18,
+              types: [3, 4, 6, 11, 12, 45, 35, 37, 38, 39, 40, 47] },
+            { icon: icon23,
+              types: [5, 7, 8, 9, 10, 13, 14, 15, 16, 41, 42, 43, 46] },
+            { icon: icon32, types: [27, 29, 33] },
+        ];
+&nbsp;
+        const icon = weatherTypeIcons
+            .reduce((prev, curr) =&gt; {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (curr.types.indexOf(weatherType) !== -1) {
+<span class="cstat-no" title="statement not covered" >                    return curr.icon;</span>
+                }
+                return prev;
+            }, undefined);
+        return icon || icon45;
     }
 &nbsp;
     render() {
@@ -151,7 +187,7 @@ export default DescriptionIcon;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 00:00:49 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 04:11:00 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

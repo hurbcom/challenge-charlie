@@ -14,7 +14,7 @@ class DescriptionText extends React.Component {
                     {this.props.temperature}
                 </div>
                 <div className={style.weatherType}>
-                    {this.props.weatherType}
+                    {this.props.weatherTypeName}
                 </div>
                 <div className={style.wind}>
                     Vento: {this.props.wind}

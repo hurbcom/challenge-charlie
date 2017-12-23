@@ -2,7 +2,7 @@ import style from './style.css';
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
 
-import compassIcon from '../../icons/meteocons-icons/SVG/compass.svg';
+import compassIcon from '../../icons/44.svg';
 
 const menuStyle = {
     background: 'rgba(255, 255, 255, 0.9)',

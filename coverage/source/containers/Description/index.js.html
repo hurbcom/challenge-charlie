@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.78% </span>
+        <span class="strong">91.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>39/46</span>
+        <span class='fraction'>44/48</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>11/20</span>
+        <span class='fraction'>12/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.09% </span>
+        <span class="strong">91.3% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>37/44</span>
+        <span class='fraction'>42/46</span>
       </div>
     </div>
   </div>
@@ -171,7 +171,15 @@
 126
 127
 128
-129</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+129
+130
+131
+132
+133
+134
+135
+136
+137</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -243,15 +251,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -370,17 +386,25 @@ class DescriptionContainer extends React.Component {
         return `${pressure}hPA`;
     }
 &nbsp;
-    getWeatherTypeInfo() {
-        switch (this.props.weather.weatherType) {
-<span class="branch-0 cbranch-no" title="branch not covered" >            case 'Mostly Cloudy':</span>
-<span class="cstat-no" title="statement not covered" >                return { icon: 'mostly-cloudy', name: 'Nublado' };</span>
-<span class="branch-1 cbranch-no" title="branch not covered" >            case 'Cloudly':</span>
-<span class="cstat-no" title="statement not covered" >                return { icon: 'cloudy', name: 'Nublado' };</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >            case 'Rain':</span>
-<span class="cstat-no" title="statement not covered" >                return { icon: 'rain', name: 'Chuvoso' };</span>
-            default:
-                return { icon: 'sunny', name: 'Ensolarado' };
-        }
+    getWeatherTypeName() {
+        const { weatherType } = this.props.weather;
+        const mapTypeNameToWeatherType = {
+            'Ensolarado': [31, 32, 36],
+            'Ventanoso': [24],
+            'Nublado': [26, 28, 30, 34, 44],
+            'Nublado (noite)': [27, 29, 33],
+            'Chuvoso': [3, 4, 6, 11, 12, 45, 35, 37, 38, 39, 40, 47],
+            'Neve': [5, 7, 8, 9, 10, 13, 14, 15, 16, 41, 42, 43, 46],
+        };
+&nbsp;
+        return Object.keys(mapTypeNameToWeatherType)
+            .reduce((prev, currKey) =&gt; {
+                const curr = mapTypeNameToWeatherType[currKey];
+                if (curr.indexOf(weatherType) !== -1) {
+                    return `${currKey}`;
+                }
+                return prev;
+            }, `N/A`);
     }
 &nbsp;
     getBackgroundColor() {
@@ -402,20 +426,20 @@ class DescriptionContainer extends React.Component {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.weather.locationName) {
             return (
                 &lt;Description
-                    icon={this.getWeatherTypeInfo().icon}
+                    weatherType={this.props.weather.weatherType}
                     day="Hoje"
                     color={this.getBackgroundColor()}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}
-                    weatherType={this.getWeatherTypeInfo().name}
+                    weatherTypeName={this.getWeatherTypeName()}
                     wind={this.getWind()}
                     humidity={this.getHumidity()}
                     pressure={this.getPressure()}
                 /&gt;
             );
         }
-<span class="cstat-no" title="statement not covered" >        return &lt;Description loading="true"/&gt;;</span>
+<span class="cstat-no" title="statement not covered" >        return &lt;Description loading={true}/&gt;;</span>
     }
 }
 &nbsp;
@@ -433,7 +457,7 @@ export default connect(
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 00:00:49 GMT-0200 (-02)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 04:11:00 GMT-0200 (-02)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

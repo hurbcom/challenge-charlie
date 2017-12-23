@@ -31,9 +31,9 @@ export const buildWeatherState = (response) => {
     }
     const atmosphere = R.prop('atmosphere', channel);
     const wind = R.prop('wind', channel);
-    const weatherType = R.path(['item', 'condition', 'text'], channel);
     const temperature = R.path(['item', 'condition', 'temp'], channel);
     const forecast = R.path(['item', 'forecast'], channel) || [];
+    const weatherType = forecast[0] ? Number(forecast[0].code): undefined;
     const firstTile = forecast[1];
     const secondTile = forecast[2];
     const weather = {

@@ -17,7 +17,7 @@ function setup() {
             temperatureUnit: 'celsius',
             weather: {
                 locationName: 'Rio de Janeiro, RJ',
-                weatherType: 'Cloudy',
+                weatherType: 31,
                 temperature: 25,
                 firstTile: {
                     high: 24,
@@ -76,10 +76,9 @@ describe('descriptionContainer', () => {
     });
 
     it('should getWeatherTypeInfo', () => {
-        const weatherInfo =
-            wrapper.dive().instance().getWeatherTypeInfo();
-        expect(weatherInfo.icon).to.be.equal('sunny');
-        expect(weatherInfo.name).to.be.equal('Ensolarado');
+        const weatherTypeName =
+            wrapper.dive().instance().getWeatherTypeName();
+        expect(weatherTypeName).to.be.equal('Ensolarado');
     });
 
     it('should get background color', () => {

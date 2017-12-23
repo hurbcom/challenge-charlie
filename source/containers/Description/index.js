@@ -69,17 +69,25 @@ class DescriptionContainer extends React.Component {
         return `${pressure}hPA`;
     }
 
-    getWeatherTypeInfo() {
-        switch (this.props.weather.weatherType) {
-            case 'Mostly Cloudy':
-                return { icon: 'mostly-cloudy', name: 'Nublado' };
-            case 'Cloudly':
-                return { icon: 'cloudy', name: 'Nublado' };
-            case 'Rain':
-                return { icon: 'rain', name: 'Chuvoso' };
-            default:
-                return { icon: 'sunny', name: 'Ensolarado' };
-        }
+    getWeatherTypeName() {
+        const { weatherType } = this.props.weather;
+        const mapTypeNameToWeatherType = {
+            'Ensolarado': [31, 32, 36],
+            'Ventanoso': [24],
+            'Nublado': [26, 28, 30, 34, 44],
+            'Nublado (noite)': [27, 29, 33],
+            'Chuvoso': [3, 4, 6, 11, 12, 45, 35, 37, 38, 39, 40, 47],
+            'Neve': [5, 7, 8, 9, 10, 13, 14, 15, 16, 41, 42, 43, 46],
+        };
+
+        return Object.keys(mapTypeNameToWeatherType)
+            .reduce((prev, currKey) => {
+                const curr = mapTypeNameToWeatherType[currKey];
+                if (curr.indexOf(weatherType) !== -1) {
+                    return `${currKey}`;
+                }
+                return prev;
+            }, `N/A`);
     }
 
     getBackgroundColor() {
@@ -101,13 +109,13 @@ class DescriptionContainer extends React.Component {
         if (this.props.weather.locationName) {
             return (
                 <Description
-                    icon={this.getWeatherTypeInfo().icon}
+                    weatherType={this.props.weather.weatherType}
                     day="Hoje"
                     color={this.getBackgroundColor()}
                     temperature={this.getTemperature()}
                     changeTemperatureUnit={
                         this.props.actions.changeTemperatureUnit}
-                    weatherType={this.getWeatherTypeInfo().name}
+                    weatherTypeName={this.getWeatherTypeName()}
                     wind={this.getWind()}
                     humidity={this.getHumidity()}
                     pressure={this.getPressure()}

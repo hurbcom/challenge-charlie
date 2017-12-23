@@ -16,13 +16,13 @@ class Description extends React.Component {
                     backgroundColor: this.props.color,
                 }}>
                 <DescriptionIcon
-                    icon={this.props.icon}/>
+                    weatherType={this.props.weatherType}/>
                 <DescriptionText
                     className={style.descriptionText}
                     day={this.props.day}
                     temperature={this.props.temperature}
                     changeTemperatureUnit={this.props.changeTemperatureUnit}
-                    weatherType={this.props.weatherType}
+                    weatherTypeName={this.props.weatherTypeName}
                     wind={this.props.wind}
                     humidity={this.props.humidity}
                     pressure={this.props.pressure}/>
