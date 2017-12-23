@@ -31,12 +31,21 @@ class WeatherContainer extends React.Component {
     getBackbackgroundColor(temperatureFarenheit) {
         const temperature = (temperatureFarenheit - 32) * 5/9;
         if (temperature > 35) {
-            return this.formatRGB(255, 100, 100);
+            let scale = (45 - temperature) / 10;
+            scale = scale < 0 ? 0 : scale;
+            const redColor = 200 + Math.round(scale * (255-200));
+            return this.formatRGB(redColor, 100, 100);
         }
         if (temperature < 15) {
-            return this.formatRGB(100, 100, 255);
+            let scale = (temperature - 0) / 15;
+            scale = scale < 0 ? 0 : scale;
+            const blueColor = 255 - Math.round(scale * (255-200));
+            return this.formatRGB(100, 100, blueColor);
         }
-        return this.formatRGB(150, 150, 150);
+        const scale = (temperature - 15) / 20;
+        const redColor = 100 + Math.round(scale * 50);
+        const blueColor = 100 - Math.round(scale * 50);
+        return this.formatRGB(redColor, 150, blueColor);
     }
 
     formatRGB(r, g, b) {

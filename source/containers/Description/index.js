@@ -93,12 +93,21 @@ class DescriptionContainer extends React.Component {
     getBackgroundColor() {
         const temperature = (this.props.weather.temperature - 32) * 5/9;
         if (temperature > 35) {
-            return this.formatRGBA(255, 100, 100);
+            let scale = (45 - temperature) / 10;
+            scale = scale < 0 ? 0 : scale;
+            const redColor = 200 + Math.round(scale * (255-200));
+            return this.formatRGBA(redColor, 100, 100);
         }
         if (temperature < 15) {
-            return this.formatRGBA(100, 100, 255);
+            let scale = (temperature - 0) / 15;
+            scale = scale < 0 ? 0 : scale;
+            const blueColor = 255 - Math.round(scale * (255-200));
+            return this.formatRGBA(100, 100, blueColor);
         }
-        return this.formatRGBA(150, 150, 150);
+        const scale = (temperature - 15) / 20;
+        const redColor = 100 + Math.round(scale * 50);
+        const blueColor = 100 - Math.round(scale * 50);
+        return this.formatRGBA(redColor, 150, blueColor);
     }
 
     formatRGBA(r, g, b, a = 0.7) {
