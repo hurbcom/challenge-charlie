@@ -56,9 +56,9 @@ class WeatherContainer extends React.Component {
     }
 
     render() {
-        let loading = 'true';
+        let loading = true;
         if (this.props.weather.locationName) {
-            loading = 'false';
+            loading = false;
         }
         return (
             <Weather

@@ -6,7 +6,7 @@ import DescriptionText from '../DescriptionText';
 
 class Description extends React.Component {
     render() {
-        if (this.props.loading === 'true') {
+        if (this.props.loading) {
             return <div className={style.descriptionLoading}></div>;
         }
         return (

@@ -15,3 +15,17 @@
     padding: 0.5rem;
     height: 1.9rem;
 }
+
+.loading {
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

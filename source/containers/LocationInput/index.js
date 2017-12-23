@@ -15,11 +15,16 @@ class LocationContainer extends React.Component {
                 id: 1, label: this.props.suggestion,
             });
         }
+        let loading = true;
+        if (this.props.weather.locationName) {
+            loading = false;
+        }
         return (
             <LocationInput
                 items={items}
                 locationName={this.props.weather.locationName}
                 suggestion={this.props.suggestion}
+                loading={loading}
                 fetchSuggestion={
                     this.props.actions.fetchSuggestion}
                 fetchLocationWeatherByName={

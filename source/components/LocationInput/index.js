@@ -25,9 +25,13 @@ class LocationInput extends React.Component {
     }
 
     render() {
+        const { loading } = this.props;
+        const compassClass = style.compass + ` ${loading ? style.loading : ''}`;
         return (
             <div className={style.wrapper}>
-                <img src={compassIcon} className={style.compass}/>
+                <img
+                    src={compassIcon}
+                    className={compassClass}/>
                 <Autocomplete
                     className={style.autocomplete}
                     menuStyle={menuStyle}

@@ -114,7 +114,7 @@ class DescriptionContainer extends React.Component {
                 />
             );
         }
-        return <Description loading="true"/>;
+        return <Description loading={true}/>;
     }
 }
 
