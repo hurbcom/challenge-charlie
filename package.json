@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
+    "server": "node server.js",
     "build": "webpack --config webpack.prod.js",
     "eslint": "eslint source/**/*.js",
-    "test": "nyc mocha './source/**/*.test.js' --require babel-core/register --require ignore-styles --timeout=3000",
+    "test": "nyc mocha source/**/*.test.js --require babel-core/register --require ignore-styles --timeout=3000",
     "coverage": "nyc --reporter=html --reporter=text npm test",
     "prepublish": "npm run eslint"
   },
@@ -38,6 +39,7 @@
     "eslint": "^4.13.1",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.5.1",
+    "express": "^4.16.2",
     "file-loader": "^1.1.6",
     "font-awesome": "^4.7.0",
     "html-loader": "^0.5.1",
