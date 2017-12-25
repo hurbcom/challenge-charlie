@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for source/containers/Description/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">source/containers/Description</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.46% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>47/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">59.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>13/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">81.82% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>45/55</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">153x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">144x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import * as R from 'ramda';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+&nbsp;
+import * as temperatureUnitActions from '../../actions/temperatureUnitActions';
+import Description from '../../components/Description';
+&nbsp;
+class DescriptionContainer extends React.Component {
+    getTemperature() {
+        const temperatureFarenheit = this.props.weather.temperature;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.temperatureUnit === 'celsius') {
+            const exactTemperature = (temperatureFarenheit - 32) * 5/9;
+            const temperature = Math.round(exactTemperature * 10) / 10;
+            return `${temperature}ºC`;
+        }
+<span class="cstat-no" title="statement not covered" >        return `${temperatureFarenheit}ºF`;</span>
+    }
+&nbsp;
+    convertDegreesToCardinals(degrees) {
+        const directions = [
+            { from: 348.75, to: 360, name: 'N' },
+            { from: 0, to: 11.25, name: 'N' },
+            { from: 11.25, to: 33.75, name: 'NNE' },
+            { from: 33.75, to: 56.25, name: 'NE' },
+            { from: 56.25, to: 78.75, name: 'ENE' },
+            { from: 78.75, to: 101.25, name: 'E' },
+            { from: 101.25, to: 123.75, name: 'ESE' },
+            { from: 123.75, to: 146.25, name: 'SE' },
+            { from: 146.25, to: 168.75, name: 'SSE' },
+            { from: 168.75, to: 191.25, name: 'S' },
+            { from: 191.25, to: 213.75, name: 'SSW'},
+            { from: 213.75, to: 236.25, name: 'SW'},
+            { from: 236.25, to: 258.75, name: 'WSW'},
+            { from: 258.75, to: 281.25, name: 'W'},
+            { from: 281.25, to: 303.75, name: 'WNW'},
+            { from: 303.75, to: 326.25, name: 'NW'},
+            { from: 326.25, to: 348.75, name: 'NNW'},
+        ];
+&nbsp;
+        return directions.reduce((prev, cur) =&gt; {
+            if (degrees &gt;= cur.from &amp;&amp; degrees &lt; cur.to) {
+                return cur.name;
+            }
+            return prev;
+        }, 'N');
+    }
+&nbsp;
+    getWind() {
+        const speedMph =
+            R.path(['wind', 'speed'], this.props.weather);
+        const directionDegrees =
+            R.path(['wind', 'direction'], this.props.weather);
+&nbsp;
+        const speed = Math.round(speedMph * 1.60934);
+        const direction = this.convertDegreesToCardinals(directionDegrees);
+        return `${direction} ${speed}km/h`;
+    }
+&nbsp;
+    getHumidity() {
+        const humidity =
+            R.path(['atmosphere', 'humidity'], this.props.weather);
+        return `${humidity}%`;
+    }
+&nbsp;
+    getPressure() {
+        const pressure =
+            R.path(['atmosphere', 'pressure'], this.props.weather);
+        return `${pressure}hPA`;
+    }
+&nbsp;
+    getWeatherTypeName() {
+        const { weatherType } = this.props.weather;
+        const mapTypeNameToWeatherType = {
+            'Ensolarado': [31, 32, 36],
+            'Ventanoso': [24],
+            'Nublado': [26, 28, 30, 34, 44],
+            'Nublado (noite)': [27, 29, 33],
+            'Chuvoso': [3, 4, 6, 11, 12, 45, 35, 37, 38, 39, 40, 47],
+            'Neve': [5, 7, 8, 9, 10, 13, 14, 15, 16, 41, 42, 43, 46],
+        };
+&nbsp;
+        return Object.keys(mapTypeNameToWeatherType)
+            .reduce((prev, currKey) =&gt; {
+                const curr = mapTypeNameToWeatherType[currKey];
+                if (curr.indexOf(weatherType) !== -1) {
+                    return `${currKey}`;
+                }
+                return prev;
+            }, `N/A`);
+    }
+&nbsp;
+    getBackgroundColor() {
+        const temperature = (this.props.weather.temperature - 32) * 5/9;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (temperature &gt; 35) {
+            let scale = <span class="cstat-no" title="statement not covered" >(45 - temperature) / 10;</span>
+<span class="cstat-no" title="statement not covered" >            scale = scale &lt; 0 ? 0 : scale;</span>
+            const redColor = <span class="cstat-no" title="statement not covered" >200 + Math.round(scale * (255-200));</span>
+<span class="cstat-no" title="statement not covered" >            return this.formatRGBA(redColor, 100, 100);</span>
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (temperature &lt; 15) {
+            let scale = (temperature - 0) / 15;
+            scale = scale &lt; 0 ? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >scale;</span>
+            const blueColor = 255 - Math.round(scale * (255-200));
+            return this.formatRGBA(100, 100, blueColor);
+        }
+        const scale = <span class="cstat-no" title="statement not covered" >(temperature - 15) / 20;</span>
+        const redColor = <span class="cstat-no" title="statement not covered" >100 + Math.round(scale * 50);</span>
+        const blueColor = <span class="cstat-no" title="statement not covered" >100 - Math.round(scale * 50);</span>
+<span class="cstat-no" title="statement not covered" >        return this.formatRGBA(redColor, 150, blueColor);</span>
+    }
+&nbsp;
+    formatRGBA(r, g, b, a = 0.7) <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >{</span></span>
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+&nbsp;
+    render() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.weather.locationName) {
+            return (
+                &lt;Description
+                    weatherType={this.props.weather.weatherType}
+                    day="Hoje"
+                    color={this.getBackgroundColor()}
+                    temperature={this.getTemperature()}
+                    changeTemperatureUnit={
+                        this.props.actions.changeTemperatureUnit}
+                    weatherTypeName={this.getWeatherTypeName()}
+                    wind={this.getWind()}
+                    humidity={this.getHumidity()}
+                    pressure={this.getPressure()}
+                /&gt;
+            );
+        }
+<span class="cstat-no" title="statement not covered" >        return &lt;Description loading={true}/&gt;;</span>
+    }
+}
+&nbsp;
+const mapStateToProps = (state, ownProps) =&gt;
+    ({ weather: state.weather, temperatureUnit: state.temperatureUnit });
+&nbsp;
+const mapDispatchToProps = (dispatch) =&gt;
+    ({ actions: bindActionCreators(temperatureUnitActions, dispatch) });
+&nbsp;
+export default connect(
+    mapStateToProps, mapDispatchToProps)(DescriptionContainer);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 23 2017 04:31:50 GMT-0200 (-02)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

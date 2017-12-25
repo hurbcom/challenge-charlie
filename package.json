@@ -1,0 +1,71 @@
+{
+  "name": "challenge-charlie-matheusrabelo",
+  "version": "1.0.0",
+  "description": "challenge charlie",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "server": "node server.js",
+    "build": "webpack --config webpack.prod.js",
+    "eslint": "eslint source/**/*.js",
+    "test": "nyc mocha source/**/*.test.js --require babel-core/register --require ignore-styles --timeout=3000",
+    "coverage": "nyc --reporter=html --reporter=text npm test",
+    "prepublish": "npm run eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusrabelo/challenge-charlie.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "matheusfreirerabelo@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheusrabelo/challenge-charlie/issues"
+  },
+  "homepage": "https://github.com/matheusrabelo/challenge-charlie#readme",
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.13.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-react": "^7.5.1",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.6",
+    "font-awesome": "^4.7.0",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "ignore-styles": "^5.0.1",
+    "mocha": "^4.0.1",
+    "node-sass": "^4.7.2",
+    "normalize.css": "^7.0.0",
+    "nyc": "^11.4.1",
+    "ramda": "^0.25.0",
+    "react": "^16.2.0",
+    "react-autocomplete": "^1.7.2",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-mock-store": "^1.3.0",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "styled-components": "^2.3.3",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}

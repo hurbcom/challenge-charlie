@@ -1,0 +1,12 @@
+.app {
+    width: 100vw;
+    min-height: 100vh;
+
+    background-color: lightcyan;
+    background-repeat: 'no-repeat';
+    background-size: 'cover';
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

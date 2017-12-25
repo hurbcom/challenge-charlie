@@ -1,0 +1,25 @@
+.descriptionText {
+    color: white;
+    text-align: left;
+    font-size: 1rem;
+
+    flex-basis: 12rem;
+    display: flex;
+    flex-direction: column;
+
+    margin: 0.5rem auto 3.5rem auto;
+}
+
+.temperature {
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.weatherType {
+    padding-bottom: 0.5rem;
+}
+
+.wind, .humidity, .pressure {
+    font-size: 0.8rem;
+}

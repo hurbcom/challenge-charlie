@@ -1,0 +1,31 @@
+.wrapper {
+    width: 100%;
+    background-color: white;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.autocomplete {
+    width: 100%;
+}
+
+.compass {
+    padding: 0.5rem;
+    height: 1.9rem;
+}
+
+.loading {
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

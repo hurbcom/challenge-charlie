@@ -1,5 +1,27 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
+## Demonstrações [Editado por @matheusrabelo]
+[Projeto](https://matheusrabelo.github.io/challenge-charlie/build/)
+
+[Cobertura dos testes](https://matheusrabelo.github.io/challenge-charlie/coverage/)
+
+## Principais scripts do projeto [Editado por @matheusrabelo]
+`$ npm install` - para instalar todas as dependências
+
+`$ npm run start` - para começar a desenvolver
+
+`$ npm run build` - para gerar o build na pasta /build
+
+`$ npm run test` - para executar os testes
+
+`$ npm run coverage` - para gerar a descrição da cobertura dos testes na pasta /coverage
+
+`$ docker build -t charlie .` - Build da imagem com o docker
+
+`$ docker run -p 8080:8080 charlie` - Execute a aplicação com o docker
+
+## Desafio
+
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.
 
 Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para hoje, amanhã e depois de amanhã, como na imagem de [exemplo](./exemplo.jpg). Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Logo que a página seja carregada, deve ser coletada as coordenadas geográficas da pessoa e carregar a previsão para essa localide. Se a pessoa clicar na temperatura principal, as temperaturas devem ser trocadas de Celcius para Fahrenheit e clicada novamente volta para Celcius.
