@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Text from './components/Text'
+import ForecastViewModel from './models/ForecastViewModel';
 
 class App extends Component {
 
@@ -7,9 +9,10 @@ class App extends Component {
     super()
     this.state = {
       image: null,
-      location: null
+      forecast: null
     }
   }
+
   componentWillMount() {
     this.getBackgroundPage()
 
@@ -27,8 +30,9 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(response => {
+        const teste = new ForecastViewModel(response);
         this.setState({
-          location : response.query.results.channel.location.city
+          forecast: teste
         })
       })
   }
@@ -36,46 +40,60 @@ class App extends Component {
   getBackgroundPage() {
     const url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
     fetch(url)
-        .then(response => response.json())
-        .then(response => {
-            const image = `https://www.bing.com${response.images[0].url}`;
-            this.setState({
-              image : image
-            })
-            
-            return image;
-        });
+      .then(response => response.json())
+      .then(response => {
+          const image = `https://www.bing.com${response.images[0].url}`;
+          this.setState({
+            image: image
+          })
+      });
   }
 
   getForecast() {
     const location_name = this.textInput.value;
-    if(!location_name) {return}
+    if(!location_name) {
+      return
+    }
     const url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${location_name}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 
     fetch(url)
       .then(response => response.json())
       .then(response => {
-          const results = {};
-          const result = response.query.results.channel;
-          results.location = result.location.city;
-          results.temperature = result.item.condition.temp;
-          results.condition = result.item.condition.text;           
-          results.windCurrent = result.wind.speed;
-          results.humidityCurrent = result.atmosphere.humidity;
-          results.pressureCurrent = result.atmosphere.pressure;
-          results.maxTomorrow = result.item.forecast[0].high;
-          results.minTomorrow = result.item.forecast[0].low;
-          results.maxAfterTomorrow = result.item.forecast[1].high;
-          results.minAfterTomorrow = result.item.forecast[1].low;
-        console.log(results)
+        if(!response.query.results) {
+          return
+        }
+        const forecast = new ForecastViewModel(response);
+        this.setState({
+          forecast: forecast
+        })
       })
   }
   render() {
+    let { forecast } = this.state;
     return (
-      <div className="App" style={{background: `url(${this.state.image})`}}>
-         <input type="text" ref={(input) => { this.textInput = input; }}/>
-         <button onClick={this.getForecast.bind(this)}>Search</button>
-          <h1 className="App-title">{this.state.location}</h1>
+      <div className="app" style={{background: `url(${this.state.image})`}}>
+        <div className="main-box">
+          <div className="search">
+            <input 
+              type="text"
+              ref={(input) => { this.textInput = input; }}
+              className="text-input"/>
+            <button 
+              onClick={ this.getForecast.bind(this) }
+              className="button-search">Buscar</button>
+            <Text 
+              className="text-location"
+              text={forecast ? forecast.location : 'Buscando localização atual...'}/>
+          </div>
+          <div className="box-today">
+            <Text 
+              className="text"
+              text={forecast ? forecast.temperature : null}/>
+          </div>
+          <div className="box-tommorrow">
+          </div>
+          <div className="box-after-tommorrow"></div>
+        </div>
       </div>
     );
   }
