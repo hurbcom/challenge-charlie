@@ -2,7 +2,7 @@ export default class ForecastViewModel {
     constructor(response) {
         const item = response.query.results.channel;
         this.location = item.location.city;
-        this.condition = item.item.condition.text;           
+        this.condition = item.item.condition.text;        
         this.windCurrent = item.wind.speed;
         this.humidityCurrent = item.atmosphere.humidity;
         this.pressureCurrent = item.atmosphere.pressure;
@@ -10,6 +10,7 @@ export default class ForecastViewModel {
         this.mediaTomorrow = this.getMediaTemperatures(item.item.forecast[1].high, item.item.forecast[1].low);
         this.mediaAfterTomorrow = this.getMediaTemperatures(item.item.forecast[2].high, item.item.forecast[2].low);
         this.temperatures = this.getTemperatures(item.item.forecast);
+        console.log(response)
     }
 
     getTemperatures(response) {
