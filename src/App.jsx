@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import './app.css';
+import './App.css';
 import Text from './components/Text';
 import ForecastViewModel from './models/ForecastViewModel';
-/*import Forecast from './components/Forecast';*/
+import Forecast from './utils/Utils';
+import loading from './images/loading.gif';
 
 export default class App extends Component {
 
@@ -175,7 +176,11 @@ export default class App extends Component {
         </div>
       </div>
         </div>
-      </div> : null
+      </div> 
+      :  
+        <div className="divImage" >
+          <img src={loading} />
+        </div>
     );
   }
 }
