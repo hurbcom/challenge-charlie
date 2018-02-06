@@ -13,31 +13,31 @@ body {
   background-color: #fff;
 } 
 .temperature-cold-light{
-  background-color: #ADD8E6;
+  background-color: rgb(111, 202, 233);
 } 
 .temperature-cold-medium{
-  background-color: #4169E1;
+  background-color: rgb(64, 103, 218);
 } 
 .temperature-cold-dark{
-  background-color: #0000CD;
+  background-color: rgb(37, 37, 201);
 } 
 .temperature-medium-light{
-  background-color: #F0E68C;
+  background-color: rgb(233, 220, 108);
 } 
 .temperature-medium-medium{
-  background-color: #FFFF00;
+  background-color: rgba(251, 255, 0, 0.87);
 } 
 .temperature-medium-dark{
-  background-color: #FFD700;
+  background-color: rgb(235, 200, 2);
 } 
 .temperature-hot-light{
-  background-color: #FF6347;
+  background-color: rgb(231, 91, 66);
 } 
 .temperature-hot-medium{
-  background-color: #FF0000;
+  background-color: rgb(216, 1, 1);
 } 
 .temperature-hot-dark{
-  background-color: #B22222;
+  background-color: rgb(146, 25, 25);
 } 
 
 .app {
@@ -63,7 +63,7 @@ body {
 .main-box {
   margin: 0 auto;
   box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.5);
-  opacity: 0.8;
+  width: 40%;
 }
 .search {
   background-color: #fff; 
@@ -93,7 +93,7 @@ body {
   color: #000;
 }
 .text {
-  color: #fff;
+  color: #000;
   display: block;
 }
 .forecast {
@@ -102,9 +102,12 @@ body {
   justify-content: flex-end;
 }
 .container {
-    float: left;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
+}
+.container.box-today {
+    display: flex;
+    align-items: center;
 }
 .box-forecast {
   text-align: left;
@@ -114,17 +117,28 @@ body {
   float: left;
 }
 .image-forecast img {
-  height: 100px;
+  height: 20vh;
+}
+.forecast-container {
+  width: 50%;
+  float: left;
+  text-align: justify;
 }
 .temperatures {
-  color: #fff;
+  color: #000;
   cursor: pointer;
   text-align: left;
+  font-weight: bold;
 }
 .image-forecast {
   float: left;
   width: 50%;
 }
-.image-forecast img {
-  height: 25vh;
+.box-today {
+  border-top: 1px solid #cdcdcd;
+  opacity: 0.9;
+}
+.box-tommorrow, .box-after-tommorrow {
+  padding-left: 50%;
+  border-top: 1px solid #cdcdcd;
 }

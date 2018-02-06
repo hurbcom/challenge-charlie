@@ -8,10 +8,10 @@ export default class Utils {
 		if(temperature <= 15 ){
                 if( temperature >= 5 && temperature <= 14 ){
                     return 'temperature-cold-light'
-                }else if( temperature <= 4 && temperature >= 0 ){
-                    return 'temperature-cold-medium'
                 }else if( temperature <= 0 ){
                     return 'temperature-cold-dark'
+                }else if( temperature <= 4 && temperature >= 0 ){
+                    return 'temperature-cold-medium'
                 }
             }else if( temperature >= 16 && temperature <= 35 ){
                 if( temperature >= 16 && temperature <= 20 ){
@@ -178,6 +178,7 @@ export default class Utils {
 			case 'Isolated thundershowers' :
 				return './images/20.svg'
 				break
+			default: return './images/14.svg'
 		}
 	}
 }

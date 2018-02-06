@@ -4,6 +4,7 @@ import Text from './components/Text';
 import ForecastViewModel from './models/ForecastViewModel';
 import Utils from './utils/Utils';
 import loading from './images/loading.gif';
+import BoxForecast from './components/BoxForecast';
 
 export default class App extends Component {
 
@@ -34,7 +35,7 @@ export default class App extends Component {
   successFunction(position) {
     let lat = position.coords.latitude;
     let long = position.coords.longitude;
-    const url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${lat},${long})")&format=json`;
+    let url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${lat},${long})")&format=json`;
     fetch(url)
       .then(response => response.json())
       .then(response => {
@@ -67,7 +68,7 @@ export default class App extends Component {
       return
     }
 
-    const url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${location_name}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
+    let url = `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${location_name}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`;
 
     fetch(url)
       .then(response => response.json())
@@ -88,14 +89,10 @@ export default class App extends Component {
   }
 
   toCelsius(temperature) {
-    return Math.round((parseInt(temperature) - 32) / (9 / 5));
-  }
-  toFarenheit(temperature) {
-    return Math.round((parseInt(temperature) + 32) / (9 / 5));
+    return Math.round(((parseFloat(temperature) - 32) * 5) / 9);
   }
 
   toggleTemperature(temperature) {
-
     if(this.state.isCelsius) {
       let today = this.toCelsius(temperature[0]); 
       let tomorrow = this.toCelsius(temperature[1]);  
@@ -109,9 +106,9 @@ export default class App extends Component {
       })
 
     } else {
-      let today = this.toFarenheit(temperature[0]); 
-      let tomorrow = this.toFarenheit(temperature[1]);  
-      let afterTomorrow = this.toFarenheit(temperature[2]); 
+      let today = this.state.forecast.temperatures[0]; 
+      let tomorrow = this.state.forecast.temperatures[1];  
+      let afterTomorrow = this.state.forecast.temperatures[2]; 
 
       this.setState({
         isCelsius: true,
@@ -140,32 +137,28 @@ export default class App extends Component {
               className="button-search">Buscar</button>
             <Text 
               className="text-location"
-              text={ forecast.location }/>
+              text={ `${forecast.location}, ${forecast.country}` }/>
           </div>
           <div className="forecast">
         <div className={`container box-today ${ Utils.getClassName(this.toCelsius(forecast.temperatures[0])) }`}>
-          <Text 
-            className="box-forecast"
-            text="Hoje"/>
+          <div className="image-forecast">
+            <img src={ `${Utils.getUrlImage(forecast.condition)}` } />
+          </div>
+          <BoxForecast 
+            data={ forecast }
+            celsius={this.state.isCelsius}
+            today={this.state.today}
+            onClick={this.toggleTemperature.bind(this, forecast.temperatures)}/>
 
-          <p 
-            className="temperatures" 
-            onClick={ this.toggleTemperature.bind(this, forecast.temperatures)}>
-            { this.state.isCelsius ? `${this.state.today}ºF ` : `${this.state.today}ºC ` }
-          </p>
-        </div>
-        <div className="image-forecast">
-          <img src={ `${Utils.getUrlImage(forecast.condition)}` } />
         </div>
         <div className={`container box-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[1])) }`}>
-          <Text 
+          <Text
             className="box-forecast"
             text="Amanhã"/>
-          <p 
+          <Text 
             className="temperatures" 
-            onClick={ this.toggleTemperature.bind(this, forecast.temperatures)}>
-            { this.state.isCelsius ? `${this.state.tomorrow}ºF ` : `${this.state.tomorrow}ºC ` }
-          </p>
+            onClick={ this.toggleTemperature.bind(this, forecast.temperatures)}
+            text={ this.state.isCelsius ? `${this.state.tomorrow}ºF ` : `${this.state.tomorrow}ºC ` } />
         </div>
         <div className={`container box-after-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[2])) }`}>
           <Text 
@@ -181,7 +174,7 @@ export default class App extends Component {
         </div>
       </div> 
       :  
-        <div className="divImage" >
+        <div className="divImage">
           <img src={loading} />
         </div>
     );
