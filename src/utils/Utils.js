@@ -4,150 +4,178 @@ export default class Utils {
 
 	}
 
+	static getClassName(temperature) {
+		if(temperature <= 15 ){
+                if( temperature >= 5 && temperature <= 14 ){
+                    return 'temperature-cold-light'
+                }else if( temperature <= 4 && temperature >= 0 ){
+                    return 'temperature-cold-medium'
+                }else if( temperature <= 0 ){
+                    return 'temperature-cold-dark'
+                }
+            }else if( temperature >= 16 && temperature <= 35 ){
+                if( temperature >= 16 && temperature <= 20 ){
+                    return 'temperature-medium-light'
+                }else if( temperature >= 21 && temperature <= 27 ){
+                    return 'temperature-medium-medium'
+                }else if( temperature >= 28 && temperature <= 35 ){
+                    return 'temperature-medium-dark'
+                }
+            }else{
+                if( temperature >= 35 && temperature <= 40 ){
+                    return 'temperature-hot-light'
+                }else if( temperature >= 41 && temperature <= 45 ){
+                    return 'temperature-hot-medium'
+                }else if( temperature > 46 ){
+                    return 'temperature-hot-dark'
+                }
+            }
+	}
+
 	static getUrlImage(condition) {
 		switch (condition) {
-			case 'tornado' :
+			case 'Tornado' :
 				return './images/20.svg'
 				break
-			case 'tropical storm' :
+			case 'Tropical storm' :
 				return './images/20.svg'
 				break
-			case 'hurricane' :
+			case 'Hurricane' :
 				return './images/20.svg'
 				break
-			case 'severe thunderstorms' :
+			case 'Severe thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'thunderstorms' :
+			case 'Thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'mixed rain and snow' :
+			case 'Mixed rain and snow' :
 				return './images/23.svg'
 				break
-			case 'mixed rain and sleet' :
+			case 'Mixed rain and sleet' :
 				return './images/20.svg'
 				break
-			case 'mixed snow and sleet' :
+			case 'Mixed snow and sleet' :
 				return './images/23.svg'
 				break
-			case 'freezing drizzle' :
+			case 'Freezing drizzle' :
 				return './images/23.svg'
 				break
-			case 'drizzle' :
+			case 'Drizzle' :
 				return './images/20.svg'
 				break
-			case 'freezing rain' :
+			case 'Freezing rain' :
 				return './images/20.svg'
 				break
-			case 'showers' :
+			case 'Showers' :
 				return './images/20.svg'
 				break
-			case 'showers' :
+			case 'Showers' :
 				return './images/20.svg'
 				break
-			case 'snow flurries' :
+			case 'Snow flurries' :
 				return './images/23.svg'
 				break
-			case 'light snow showers' :
+			case 'Light snow showers' :
 				return './images/21.svg'
 				break
-			case 'blowing snow' :
+			case 'Blowing snow' :
 				return './images/23.svg'
 				break
-			case 'snow' :
+			case 'Snow' :
 				return './images/21.svg'
 				break
-			case 'hail' :
+			case 'Hail' :
 				return './images/20.svg'
 				break
-			case 'sleet' :
+			case 'Sleet' :
 				return './images/20.svg'
 				break
-			case 'dust' :
+			case 'Dust' :
 				return './images/13.svg'
 				break
-			case 'foggy' :
+			case 'Foggy' :
 				return './images/12.svg'
 				break
-			case 'haze' :
+			case 'Haze' :
 				return './images/12.svg'
 				break
-			case 'smoky' :
+			case 'Smoky' :
 				return './images/13.svg'
 				break
-			case 'blustery' :
+			case 'Blustery' :
 				return './images/20.svg'
 				break
-			case 'windy' :
+			case 'Windy' :
 				return './images/19.svg'
 				break
-			case 'cold' :
+			case 'Cold' :
 				return './images/14.svg'
 				break
-			case 'cloudy' :
+			case 'Cloudy' :
 				return './images/14.svg'
 				break
-			case 'mostly cloudy (night)' :
+			case 'Mostly cloudy (night)' :
 				return './images/41.svg'
 				break
-			case 'mostly cloudy (day)' :
+			case 'Mostly cloudy (day)' :
 				return './images/14.svg'
 				break
-			case 'partly cloudy (night)' :
+			case 'Partly cloudy (night)' :
 				return './images/41.svg'
 				break
-			case 'partly cloudy (day)' :
+			case 'Partly cloudy (day)' :
 				return './images/14.svg'
 				break
-			case 'clear (night)' :
+			case 'Clear (night)' :
 				return './images/19.svg'
 				break
-			case 'sunny' :
+			case 'Sunny' :
 				return './images/2.svg'
 				break
-			case 'fair (night)' :
+			case 'Fair (night)' :
 				return './images/20.svg'
 				break
-			case 'fair (day)' :
+			case 'Fair (day)' :
 				return './images/20.svg'
 				break
-			case 'mixed rain and hail' :
+			case 'Mixed rain and hail' :
 				return './images/20.svg'
 				break
-			case 'hot' :
+			case 'Hot' :
 				return './images/2.svg'
 				break
-			case 'isolated thunderstorms' :
+			case 'Isolated thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'scattered thunderstorms' :
+			case 'Scattered thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'scattered thunderstorms' :
+			case 'Scattered thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'scattered showers' :
+			case 'Scattered showers' :
 				return './images/20.svg'
 				break
-			case 'heavy snow' :
+			case 'Heavy snow' :
 				return './images/23.svg'
 				break
-			case 'scattered snow showers' :
+			case 'Scattered snow showers' :
 				return './images/20.svg'
 				break
-			case 'heavy snow' :
+			case 'Heavy snow' :
 				return './images/23.svg'
 				break
-			case 'partly cloudy' :
+			case 'Partly cloudy' :
 				return './images/5.svg'
 				break
-			case 'thundershowers' :
+			case 'Thundershowers' :
 				return './images/20.svg'
 				break
-			case 'snow showers' :
+			case 'Snow showers' :
 				return './images/23.svg'
 				break
-			case 'isolated thundershowers' :
+			case 'Isolated thundershowers' :
 				return './images/20.svg'
 				break
 		}

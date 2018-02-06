@@ -6,6 +6,40 @@ body {
   font-family: 'Montserrat', sans-serif;
  }
 
+.temperature-color-black{
+  background-color: #000;
+} 
+.temperature-color-white{
+  background-color: #fff;
+} 
+.temperature-cold-light{
+  background-color: #ADD8E6;
+} 
+.temperature-cold-medium{
+  background-color: #4169E1;
+} 
+.temperature-cold-dark{
+  background-color: #0000CD;
+} 
+.temperature-medium-light{
+  background-color: #F0E68C;
+} 
+.temperature-medium-medium{
+  background-color: #FFFF00;
+} 
+.temperature-medium-dark{
+  background-color: #FFD700;
+} 
+.temperature-hot-light{
+  background-color: #FF6347;
+} 
+.temperature-hot-medium{
+  background-color: #FF0000;
+} 
+.temperature-hot-dark{
+  background-color: #B22222;
+} 
+
 .app {
   text-align: center;
   position: absolute;
@@ -28,7 +62,6 @@ body {
 }
 .main-box {
   margin: 0 auto;
-  background-color: orange;
   box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.5);
   opacity: 0.8;
 }
@@ -67,7 +100,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 5%;
 }
 .container {
     float: left;
@@ -88,4 +120,11 @@ body {
   color: #fff;
   cursor: pointer;
   text-align: left;
+}
+.image-forecast {
+  float: left;
+  width: 50%;
+}
+.image-forecast img {
+  height: 25vh;
 }

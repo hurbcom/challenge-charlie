@@ -7,16 +7,14 @@ export default class ForecastViewModel {
         this.humidityCurrent = item.atmosphere.humidity;
         this.pressureCurrent = item.atmosphere.pressure;
         this.tempToday = item.item.condition.temp;
-        this.mediaTomorrow = this.getMediaTemperatures(item.item.forecast[1].high, item.item.forecast[1].low);
-        this.mediaAfterTomorrow = this.getMediaTemperatures(item.item.forecast[2].high, item.item.forecast[2].low);
         this.temperatures = this.getTemperatures(item.item.forecast);
-        console.log(response)
     }
 
     getTemperatures(response) {
         let temperatures = [];
+        
         for (var i = 0; i < 3; i++) {
-            temperatures.push(response[i].high)
+            temperatures.push(Math.round((parseInt(response[i].high) + parseInt(response[i].low)) / 2))
         }
 
         return temperatures;

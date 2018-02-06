@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Text from './components/Text';
 import ForecastViewModel from './models/ForecastViewModel';
-import Forecast from './utils/Utils';
+import Utils from './utils/Utils';
 import loading from './images/loading.gif';
 
 export default class App extends Component {
@@ -125,9 +125,9 @@ export default class App extends Component {
 
   render() {
     let { forecast } = this.state;
-
     return (
       this.state.willMount ?
+
       <div className="app" style={{background: `url(${this.state.image})`}}>
         <div className="main-box">
           <div className="search">
@@ -143,7 +143,7 @@ export default class App extends Component {
               text={ forecast.location }/>
           </div>
           <div className="forecast">
-        <div className="container box-today">
+        <div className={`container box-today ${ Utils.getClassName(this.toCelsius(forecast.temperatures[0])) }`}>
           <Text 
             className="box-forecast"
             text="Hoje"/>
@@ -154,7 +154,10 @@ export default class App extends Component {
             { this.state.isCelsius ? `${this.state.today}ºF ` : `${this.state.today}ºC ` }
           </p>
         </div>
-        <div className="container box-tommorrow">
+        <div className="image-forecast">
+          <img src={ `${Utils.getUrlImage(forecast.condition)}` } />
+        </div>
+        <div className={`container box-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[1])) }`}>
           <Text 
             className="box-forecast"
             text="Amanhã"/>
@@ -164,7 +167,7 @@ export default class App extends Component {
             { this.state.isCelsius ? `${this.state.tomorrow}ºF ` : `${this.state.tomorrow}ºC ` }
           </p>
         </div>
-        <div className="container box-after-tommorrow">
+        <div className={`container box-after-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[2])) }`}>
           <Text 
             className="box-forecast"
             text="Depois de amanhã"/>
