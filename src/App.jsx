@@ -145,7 +145,7 @@ export default class App extends Component {
           <div className="forecast">
         <div className={`container box-today ${ Utils.getClassName(this.toCelsius(forecast.temperatures[0])) }`}>
           <div className="image-forecast">
-            <img src={ `${Utils.getUrlImage(forecast.condition)}` } />
+            <img src={ `${Utils.getUrlImage(forecast.condition.toLowerCase())}` } />
           </div>
           <BoxForecast 
             data={ forecast }
