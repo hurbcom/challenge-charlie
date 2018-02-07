@@ -9,7 +9,6 @@ export default class ForecastViewModel {
         this.pressureCurrent = item.atmosphere.pressure;
         this.tempToday = item.item.condition.temp;
         this.temperatures = this.getTemperatures(item.item.forecast);
-console.log(response)
     }
 
     getTemperatures(response) {
@@ -20,9 +19,5 @@ console.log(response)
         }
 
         return temperatures;
-    }
-
-    getMediaTemperatures(high, low) {
-        return Math.round((parseInt(high) + parseInt(low)) / 2);
     }
 }

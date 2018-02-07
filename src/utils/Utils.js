@@ -107,7 +107,7 @@ export default class Utils {
 				return './images/20.svg'
 				break
 			case 'windy' :
-				return './images/19.svg'
+				return './images/6.svg'
 				break
 			case 'cold' :
 				return './images/14.svg'
@@ -128,7 +128,7 @@ export default class Utils {
 				return './images/14.svg'
 				break
 			case 'clear (night)' :
-				return './images/19.svg'
+				return './images/2.svg'
 				break
 			case 'sunny' :
 				return './images/2.svg'
