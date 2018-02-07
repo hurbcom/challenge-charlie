@@ -3,12 +3,13 @@ export default class ForecastViewModel {
         const item = response.query.results.channel;
         this.location = item.location.city;
         this.country = item.location.country;
-        this.condition = item.item.condition.text;        
+        this.condition = item.item.forecast[0].text;        
         this.windCurrent = item.wind.speed;
         this.humidityCurrent = item.atmosphere.humidity;
         this.pressureCurrent = item.atmosphere.pressure;
         this.tempToday = item.item.condition.temp;
         this.temperatures = this.getTemperatures(item.item.forecast);
+console.log(response)
     }
 
     getTemperatures(response) {
