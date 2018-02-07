@@ -34,151 +34,301 @@ export default class Utils {
 
 	static getUrlImage(condition) {
 		switch (condition) {
-			case 'Tornado' :
+			case 'tornado' :
 				return './images/20.svg'
 				break
-			case 'Tropical storm' :
+			case 'tropical storm' :
 				return './images/20.svg'
 				break
-			case 'Hurricane' :
+			case 'hurricane' :
 				return './images/20.svg'
 				break
-			case 'Severe thunderstorms' :
+			case 'severe thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'Thunderstorms' :
+			case 'thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'Mixed rain and snow' :
+			case 'mixed rain and snow' :
 				return './images/23.svg'
 				break
-			case 'Mixed rain and sleet' :
+			case 'mixed rain and sleet' :
 				return './images/20.svg'
 				break
-			case 'Mixed snow and sleet' :
+			case 'mixed snow and sleet' :
 				return './images/23.svg'
 				break
-			case 'Freezing drizzle' :
+			case 'freezing drizzle' :
 				return './images/23.svg'
 				break
-			case 'Drizzle' :
+			case 'drizzle' :
 				return './images/20.svg'
 				break
-			case 'Freezing rain' :
+			case 'freezing rain' :
 				return './images/20.svg'
 				break
-			case 'Showers' :
+			case 'showers' :
 				return './images/20.svg'
 				break
-			case 'Showers' :
+			case 'showers' :
 				return './images/20.svg'
 				break
-			case 'Snow flurries' :
+			case 'snow flurries' :
 				return './images/23.svg'
 				break
-			case 'Light snow showers' :
+			case 'light snow showers' :
 				return './images/21.svg'
 				break
-			case 'Blowing snow' :
+			case 'blowing snow' :
 				return './images/23.svg'
 				break
-			case 'Snow' :
+			case 'snow' :
 				return './images/21.svg'
 				break
-			case 'Hail' :
+			case 'hail' :
 				return './images/20.svg'
 				break
-			case 'Sleet' :
+			case 'sleet' :
 				return './images/20.svg'
 				break
-			case 'Dust' :
+			case 'dust' :
 				return './images/13.svg'
 				break
-			case 'Foggy' :
+			case 'foggy' :
 				return './images/12.svg'
 				break
-			case 'Haze' :
+			case 'haze' :
 				return './images/12.svg'
 				break
-			case 'Smoky' :
+			case 'smoky' :
 				return './images/13.svg'
 				break
-			case 'Blustery' :
+			case 'blustery' :
 				return './images/20.svg'
 				break
-			case 'Windy' :
+			case 'windy' :
 				return './images/19.svg'
 				break
-			case 'Cold' :
+			case 'cold' :
 				return './images/14.svg'
 				break
-			case 'Cloudy' :
+			case 'cloudy' :
 				return './images/14.svg'
 				break
-			case 'Mostly cloudy (night)' :
+			case 'mostly cloudy (night)' :
 				return './images/41.svg'
 				break
-			case 'Mostly cloudy (day)' :
+			case 'mostly cloudy (day)' :
 				return './images/14.svg'
 				break
-			case 'Partly cloudy (night)' :
+			case 'partly cloudy (night)' :
 				return './images/41.svg'
 				break
-			case 'Partly cloudy (day)' :
+			case 'partly cloudy (day)' :
 				return './images/14.svg'
 				break
-			case 'Clear (night)' :
+			case 'clear (night)' :
 				return './images/19.svg'
 				break
-			case 'Sunny' :
+			case 'sunny' :
 				return './images/2.svg'
 				break
-			case 'Fair (night)' :
+			case 'fair (night)' :
 				return './images/20.svg'
 				break
-			case 'Fair (day)' :
+			case 'fair (day)' :
 				return './images/20.svg'
 				break
-			case 'Mixed rain and hail' :
+			case 'mixed rain and hail' :
 				return './images/20.svg'
 				break
-			case 'Hot' :
+			case 'hot' :
 				return './images/2.svg'
 				break
-			case 'Isolated thunderstorms' :
+			case 'isolated thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'Scattered thunderstorms' :
+			case 'scattered thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'Scattered thunderstorms' :
+			case 'scattered thunderstorms' :
 				return './images/20.svg'
 				break
-			case 'Scattered showers' :
+			case 'scattered showers' :
 				return './images/20.svg'
 				break
-			case 'Heavy snow' :
+			case 'heavy snow' :
 				return './images/23.svg'
 				break
-			case 'Scattered snow showers' :
+			case 'scattered snow showers' :
 				return './images/20.svg'
 				break
-			case 'Heavy snow' :
+			case 'heavy snow' :
 				return './images/23.svg'
 				break
-			case 'Partly cloudy' :
+			case 'partly cloudy' :
 				return './images/5.svg'
 				break
-			case 'Thundershowers' :
+			case 'thundershowers' :
 				return './images/20.svg'
 				break
-			case 'Snow showers' :
+			case 'snow showers' :
 				return './images/23.svg'
 				break
-			case 'Isolated thundershowers' :
+			case 'isolated thundershowers' :
 				return './images/20.svg'
 				break
 			default: return './images/14.svg'
+		}
+	}
+
+	static getCondition(condition) {
+		switch (condition) {
+			case 'tornado' :
+				return 'tornado'
+				break
+			case 'tropical storm' :
+				return 'tempestade tropical'
+				break
+			case 'hurricane' :
+				return 'furacão'
+				break
+			case 'severe thunderstorms' :
+				return 'tempestades severas'
+				break
+			case 'thunderstorms' :
+				return 'trovoadas'
+				break
+			case 'mixed rain and snow' :
+				return 'chuva mista e neve'
+				break
+			case 'mixed rain and sleet' :
+				return 'chuva mista e aguaceiro'
+				break
+			case 'mixed snow and sleet' :
+				return 'neve misturada e granizo'
+				break
+			case 'freezing drizzle' :
+				return 'chuvisco gelado'
+				break
+			case 'drizzle' :
+				return 'chuvisco'
+				break
+			case 'freezing rain' :
+				return 'chuva gelada'
+				break
+			case 'showers' :
+				return 'aguaceiro'
+				break
+			case 'showers' :
+				return 'aguaceiro'
+				break
+			case 'snow flurries' :
+				return 'flocos de neve'
+				break
+			case 'light snow showers' :
+				return 'nevascas leves'
+				break
+			case 'blowing snow' :
+				return 'soprando neve'
+				break
+			case 'snow' :
+				return 'neve'
+				break
+			case 'hail' :
+				return 'granizo'
+				break
+			case 'sleet' :
+				return 'chuva com neve'
+				break
+			case 'dust' :
+				return 'poeira'
+				break
+			case 'foggy' :
+				return 'nebuloso'
+				break
+			case 'haze' :
+				return 'neblina'
+				break
+			case 'smoky' :
+				return 'esfumaçado'
+				break
+			case 'blustery' :
+				return 'tempestuoso'
+				break
+			case 'windy' :
+				return 'ventoso'
+				break
+			case 'cold' :
+				return 'frio'
+				break
+			case 'cloudy' :
+				return 'nublado'
+				break
+			case 'mostly cloudy (night)' :
+				return 'predominantemente nublado'
+				break
+			case 'mostly cloudy (day)' :
+				return 'predominantemente nublado'
+				break
+			case 'partly cloudy (night)' :
+				return 'parcialmente nublado'
+				break
+			case 'partly cloudy (day)' :
+				return 'parcialmente nublado'
+				break
+			case 'clear (night)' :
+				return 'claro'
+				break
+			case 'sunny' :
+				return 'ensolarado'
+				break
+			case 'fair (night)' :
+				return 'claro'
+				break
+			case 'fair (day)' :
+				return 'claro'
+				break
+			case 'mixed rain and hail' :
+				return 'chuva mista e granizo'
+				break
+			case 'hot' :
+				return 'calor'
+				break
+			case 'isolated thunderstorms' :
+				return 'tempestades isoladas'
+				break
+			case 'scattered thunderstorms' :
+				return 'tempestades dispersas'
+				break
+			case 'scattered thunderstorms' :
+				return 'tempestades dispersas'
+				break
+			case 'scattered showers' :
+				return 'chuvas dispersas'
+				break
+			case 'heavy snow' :
+				return 'neve pesada'
+				break
+			case 'scattered snow showers' :
+				return 'nevadas dispersas'
+				break
+			case 'heavy snow' :
+				return 'neve pesada'
+				break
+			case 'partly cloudy' :
+				return 'parcialmente nublado'
+				break
+			case 'thundershowers' :
+				return 'trovoadas'
+				break
+			case 'snow showers' :
+				return 'chuvas de neve'
+				break
+			case 'isolated thundershowers' :
+				return 'trovoadas isoladas'
+				break
+			default: return 'claro'
 		}
 	}
 }

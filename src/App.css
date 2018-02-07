@@ -88,12 +88,13 @@ body {
   border: 1px solid #000;
   cursor: pointer;
   outline: none;
+  background-color: #fff;
 }
 .text-location {
   color: #000;
 }
 .text {
-  color: #000;
+  color: #fff;
   display: block;
 }
 .forecast {
@@ -125,7 +126,6 @@ body {
   text-align: justify;
 }
 .temperatures {
-  color: #000;
   cursor: pointer;
   text-align: left;
   font-weight: bold;
@@ -141,4 +141,10 @@ body {
 .box-tommorrow, .box-after-tommorrow {
   padding-left: 50%;
   border-top: 1px solid #cdcdcd;
+}
+.forecast-title {
+  text-transform: capitalize;
+}
+.white {
+  color: #fff;
 }

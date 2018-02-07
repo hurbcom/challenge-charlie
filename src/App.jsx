@@ -25,13 +25,14 @@ export default class App extends Component {
   componentWillMount() {
     this.fetchBackgroundPage();
 
+    /*verifiry localization*/
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.successFunction.bind(this));
     } else {
       alert('It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.');
     }
   }
-
+  /*fetch actually localization*/
   successFunction(position) {
     let lat = position.coords.latitude;
     let long = position.coords.longitude;
@@ -48,7 +49,7 @@ export default class App extends Component {
         this.toggleTemperature(this.state.forecast.temperatures);
       })
   }
-
+  /*fetch background-image before mount*/
   fetchBackgroundPage() {
     const no_cors = 'https://cors-anywhere.herokuapp.com/';
     const url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
@@ -61,7 +62,7 @@ export default class App extends Component {
           })
       });
   }
-
+  /*fetch localization*/
   fetchForecast() {
     const location_name = this.textInput.value;
     if(!location_name) {
@@ -88,10 +89,12 @@ export default class App extends Component {
       })
   }
 
+  /*get farenheit and transform in celsius*/
   toCelsius(temperature) {
     return Math.round(((parseFloat(temperature) - 32) * 5) / 9);
   }
 
+  /*toggle temperatures*/
   toggleTemperature(temperature) {
     if(this.state.isCelsius) {
       let today = this.toCelsius(temperature[0]); 
@@ -153,19 +156,19 @@ export default class App extends Component {
         </div>
         <div className={`container box-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[1])) }`}>
           <Text
-            className="box-forecast"
+            className="white box-forecast"
             text="Amanhã"/>
           <Text 
-            className="temperatures" 
+            className="white temperatures" 
             onClick={ this.toggleTemperature.bind(this, forecast.temperatures)}
             text={ this.state.isCelsius ? `${this.state.tomorrow}ºF ` : `${this.state.tomorrow}ºC ` } />
         </div>
         <div className={`container box-after-tommorrow ${ Utils.getClassName(this.toCelsius(forecast.temperatures[2])) }`}>
           <Text 
-            className="box-forecast"
+            className="white box-forecast"
             text="Depois de amanhã"/>
           <p 
-            className="temperatures" 
+            className="white temperatures" 
             onClick={ this.toggleTemperature.bind(this, forecast.temperatures)}>
             { this.state.isCelsius ? `${this.state.afterTomorrow}ºF ` : `${this.state.afterTomorrow}ºC ` }
           </p>
