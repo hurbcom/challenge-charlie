@@ -34,7 +34,7 @@ class App extends React.Component {
     //async getWeather() {
         e.preventDefault(); //impedindo de recarregar a tela
         const city = e.target.elements.city.value;
-        const api_call = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22{${city}}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`);
+        const api_call = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22{${city}}%22)and u="c"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&u=c`);
         const data = await api_call.json();
         console.log(data);
         this.setState({
