@@ -26,6 +26,9 @@ class App extends React.Component {
         day2 : { //depois de amanha
             temperature: undefined,
         },
+        latitude: undefined,
+        longitude: undefined,
+        error: undefined,
         
     }
     //todo: colocar isso a parte no codigo para alterar as apis mais facilmente
@@ -54,9 +57,22 @@ class App extends React.Component {
                 (parseInt(data.query.results.channel.item.forecast[2].high) + parseInt(data.query.results.channel.item.forecast[2].low))/2
             }
         })
-        console.log(this.state);
+        //console.log(this.state);
     }
     
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            this.setState({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              error: null,
+            });
+          },
+          (error) => this.setState({ error: error.message }),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+        );
+    }
   render() {
     return (
       <div className="App">
