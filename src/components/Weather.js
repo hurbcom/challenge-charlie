@@ -11,7 +11,10 @@ class Weather extends React.Component{
                 <p>{this.props.day}</p>
             {
                 //https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-                this.props.temperature && <p>Temperatura: {this.showTemperature()} °{this.state.scale} </p> 
+                this.props.temperature && 
+                <span onClick={ (event) => {this.changeTemperatureScale(event)}}>
+                    <p>Temperatura: {this.showTemperature()} °{this.state.scale} </p> 
+                </span>
             }
             {
                 this.props.weather && <p>Clima: {this.props.weather} </p> 
@@ -37,7 +40,15 @@ class Weather extends React.Component{
             let temperatureImperial = this.props.temperature;
             temperatureImperial = parseFloat(temperatureImperial);
             temperatureImperial = (temperatureImperial / 5) * 9 + 32;
-            return temperatureImperial;
+            return parseInt(temperatureImperial);
+        }
+    }
+    changeTemperatureScale(e){
+        e.preventDefault();
+        if(this.state.scale === "C"){
+            this.setState({scale: "F"});
+        } else {
+            this.setState({scale: "C"});
         }
     }
 }
