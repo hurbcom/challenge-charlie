@@ -1,0 +1,15 @@
+html{
+    margin: 0;
+    height: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%; 
+  padding: 0;
+  font-family: sans-serif;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
