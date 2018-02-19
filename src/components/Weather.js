@@ -6,8 +6,10 @@ class Weather extends React.Component{
         scale : "C",
     }
     render(){
+        const newBackgroundColor = this.changeBackgroundColor();
+        const divStyle = {backgroundColor : newBackgroundColor}
         return (
-            <div>
+            <div className = {this.props.className} style = {divStyle}>
                 <p>{this.props.day}</p>
             {
                 //https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
@@ -49,6 +51,22 @@ class Weather extends React.Component{
             this.setState({scale: "F"});
         } else {
             this.setState({scale: "C"});
+        }
+    }
+    /*
+    componentDidUpdate(){
+        changeBackgroundColor();
+    }
+    */
+    changeBackgroundColor(){
+        if(this.props.temperature === "undefined"){ //cinza
+            return "gray";
+        } else if(this.props.temperature < 15){ //tons de azul
+            return "blue";
+        } else if(this.props.temperature > 35){ //tons de vermelho
+            return "red";
+        } else { //tons de amarelo
+            return "yellow";
         }
     }
 }

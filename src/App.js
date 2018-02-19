@@ -2,6 +2,7 @@ import React from 'react';
 //import Api from './api-Yahoo.js' //se quiser mudar a API, pode faze-la aqui.
 import Search from "./components/Search";
 import Weather from "./components/Weather";
+import City from "./components/City";
 
 class App extends React.Component {
     /*
@@ -104,16 +105,19 @@ class App extends React.Component {
         return (
           <div className="App">
             <Search getWeather={this.getWeatherByAddress} />
-            Nome da Cidade: {this.state.city}
+            <City city={this.state.city} />
             <Weather temperature = {this.state.day0.temperature} 
                 weather = {this.state.day0.weather}
                 wind = {this.state.day0.wind}
                 humidity = {this.state.day0.humidity}
                 pression = {this.state.day0.pression}
                 day = "Hoje"
+                className = "weather-primary"
             />
-            <Weather temperature = {this.state.day1.temperature} day= "Amanha" />
-            <Weather temperature = {this.state.day2.temperature} day = "Depois de amanha" />
+            <Weather className="weather-secundary"
+                temperature = {this.state.day1.temperature}
+                day= "Amanha" />
+            <Weather className="weather-secundary" temperature = {this.state.day2.temperature} day = "Depois de amanha" />
           </div>
         );
     }
