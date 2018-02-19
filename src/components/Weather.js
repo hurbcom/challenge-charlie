@@ -40,7 +40,7 @@ class Weather extends React.Component{
             let temperatureImperial = this.props.temperature;
             temperatureImperial = parseFloat(temperatureImperial);
             temperatureImperial = (temperatureImperial / 5) * 9 + 32;
-            return parseInt(temperatureImperial);
+            return parseInt(temperatureImperial,10);
         }
     }
     changeTemperatureScale(e){
