@@ -52,11 +52,16 @@ class App extends React.Component {
     }
     //passa os atributos recebidos da API de clima para o state do component
     setWeatherState(data){
-        this.setState({
-            city : data.query.results.channel.location.city,
+        console.log(data);
+        if (data.ok === false){
+            alert("Houve um erro ao contactar o servidor. Tente novamente mais tarde.");
+        } else if(data.query.results === null){
+            alert("Nao foi encontrado nenhum resutlado para sua pesquisa.");
+        } else {
+            this.setState({
+            city : data.query.results.channel.location.city + "," + data.query.results.channel.location.region,
             day0 : {
                 temperature: data.query.results.channel.item.condition.temp,
-                //weather: data.query.results.channel.item.condition.text,
                 wind: data.query.results.channel.wind.speed,
                 humidity: data.query.results.channel.atmosphere.humidity,
                 pressure: data.query.results.channel.atmosphere.pressure,
@@ -70,6 +75,8 @@ class App extends React.Component {
                 (parseInt(data.query.results.channel.item.forecast[2].high,10) + parseInt(data.query.results.channel.item.forecast[2].low,10))/2
             }
         })
+        }
+        
     }
 
     getWeatherInfo(weatherCode){
@@ -155,8 +162,9 @@ class App extends React.Component {
     //carrega a imagem de background
     //TODO: Colocar isso em uma api a parte, isolar a logica
     async loadBackgroundImage(){
+        const corsProxy = "http://localhost:9090/";
         //se voce tentar acessar a API do bing direto vai se dar mal. No site deles tem um tutorial de como contorar o problema de CORS https://docs.microsoft.com/sl-si/azure/cognitive-services/bing-image-search/bing-image-search-resource-faq
-        const api_call = await fetch("http://localhost:9090/https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=pt-BR");
+        const api_call = await fetch(corsProxy + "https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=pt-BR");
         const data = await api_call.json();
         const imageLink = "https://www.bing.com/" + data.images[0].url;
         document.body.style.backgroundImage = "url('" +imageLink +"')";
