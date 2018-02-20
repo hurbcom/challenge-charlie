@@ -58,11 +58,8 @@ class Weather extends React.Component{
             this.setState({scale: "C"});
         }
     }
-    /*
-    componentDidUpdate(){
-        changeBackgroundColor();
-    }
-    */
+    //representa a variacao de degrade de acordo com a temperatura
+    //o correto seria usar tons ja pre-estabelecidos para cada um dos dias. Essa ideia pode ficar de backup. Talvez de para variar a transparencia
     changeBackgroundColor(){
         const visibility = 0.5;
         const temperature = this.props.temperature;
@@ -71,7 +68,6 @@ class Weather extends React.Component{
         const initialColorValue = 64;
         
         let colorValue = initialColorValue;
-        
         
         if(temperature === "undefined"){ //cinza
             return `rgba(0,0,0,${visibility})`;

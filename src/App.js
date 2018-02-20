@@ -45,7 +45,6 @@ class App extends React.Component {
     }
     //funcao responsavel por pegar as informacoes de 
     getWeatherByGeolocation = async (latitude,longitude) => {
-        console.log("latitude: "+latitude+", longitude:"+longitude);
         const api_call = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${latitude},${longitude})") and u="c"&format=json`);
         const data = await api_call.json();
         this.setWeatherState(data);

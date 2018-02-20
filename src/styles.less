@@ -1,0 +1,68 @@
+html{
+    margin: 0;
+    height: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%; 
+  padding: 0;
+  font-family: sans-serif;
+        
+  /* Centralizando o background */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+  /* centralizando a caixa */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+    display:flex;
+    background-color:rgba(255,255,255,0.5);
+}
+
+.infoBox {
+    padding: 5px;
+    display:flex;
+}
+
+.city {
+    color:gray;
+    height:60px;
+    background-color:rgba(255,255,255,0.8);
+    .infoBox;
+}
+
+.city-info{
+    width: 80%;
+    font-size: 22px;
+}
+
+.city-icon{
+    width: 20%;
+}
+
+.weather{
+    color:white;
+    .infoBox;
+}
+
+.weather-primary {
+    height:150px;
+    .weather;
+}
+
+.weather-secundary {
+    height:70px;
+    .weather;
+}
+.weather-icon{
+    width: 50%;
+}
+.weather-info{
+    width: 50%;
+}
