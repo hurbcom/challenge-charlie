@@ -19,7 +19,7 @@ class App extends React.Component {
             weather:undefined,
             wind:undefined,
             humidity:undefined,
-            pression:undefined
+            pressure:undefined
         },
         day1 : { //amanha
             temperature: undefined,
@@ -58,7 +58,7 @@ class App extends React.Component {
                 weather: data.query.results.channel.item.condition.text,
                 wind: data.query.results.channel.wind.speed,
                 humidity: data.query.results.channel.atmosphere.humidity,
-                pression: data.query.results.channel.atmosphere.pression
+                pressure: data.query.results.channel.atmosphere.pressure
             },
             day1 : { //como nao existe a temperatura media, faz-se uma estimativa
                 temperature: (parseInt(data.query.results.channel.item.forecast[1].high,10) + parseInt(data.query.results.channel.item.forecast[1].low,10))/2
@@ -101,6 +101,8 @@ class App extends React.Component {
     }
             
     render() {
+        console.log(this.state);
+        
         return (
           <div className="App">
             <Search getWeather={this.getWeatherByAddress} />
@@ -109,14 +111,14 @@ class App extends React.Component {
                 weather = {this.state.day0.weather}
                 wind = {this.state.day0.wind}
                 humidity = {this.state.day0.humidity}
-                pression = {this.state.day0.pression}
-                day = "Hoje"
-                className = "weather-primary"
+                pressure = {this.state.day0.pressure}
+                day = "HOJE"
+                className = "weather__day0"
             />
-            <Weather className="weather-secundary"
+            <Weather className="weather__day1"
                 temperature = {this.state.day1.temperature}
-                day= "Amanha" />
-            <Weather className="weather-secundary" temperature = {this.state.day2.temperature} day = "Depois de amanha" />
+                day= "AMANHA" />
+            <Weather className="weather__day2" temperature = {this.state.day2.temperature} day = "DEPOIS DE AMANHA" />
           </div>
         );
     }

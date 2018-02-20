@@ -7,22 +7,21 @@ class Weather extends React.Component{
     }
     render(){
         const newBackgroundColor = this.changeBackgroundColor();
-        const divStyle = {backgroundColor : newBackgroundColor}
         return (
-            <div className = {this.props.className} style = {divStyle}>
+            <div className = {newBackgroundColor}>
                 <div className = "weather-icon">
                 </div>
                 <div className = "weather-info">
-                    <p>{this.props.day}</p>
+                    <h1>{this.props.day}</h1>
                     {
                         //https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
                         this.props.temperature && 
                         <span onClick={ (event) => {this.changeTemperatureScale(event)}}>
-                            <p>Temperatura: {this.showTemperature()} °{this.state.scale} </p> 
+                            <h1>{this.showTemperature()} °{this.state.scale} </h1> 
                         </span>
                     }
                     {
-                        this.props.weather && <p>Clima: {this.props.weather} </p> 
+                        this.props.weather && <div className="weather-info__description"><h1>{this.props.weather} </h1> </div>
                     }
                     {
                         this.props.wind && <p>Vento: {this.props.wind} km/h</p> 
@@ -31,7 +30,7 @@ class Weather extends React.Component{
                         this.props.humidity && <p>Humidade: {this.props.humidity} %</p> 
                     }
                     {
-                        this.props.pression && <p>Pressao: {this.props.pression} mb</p> 
+                        this.props.pressure && <p>Pressão: {this.props.pressure} mb</p> 
                     }
                 </div>
                 
@@ -42,7 +41,7 @@ class Weather extends React.Component{
     //mostra a temperatura em celsius oum fahrenheit
     showTemperature(){
         if(this.state.scale === "C"){
-            return this.props.temperature;
+            return parseInt(this.props.temperature,10);
         } else {
             let temperatureImperial = this.props.temperature;
             temperatureImperial = parseFloat(temperatureImperial);
@@ -61,27 +60,23 @@ class Weather extends React.Component{
     //representa a variacao de degrade de acordo com a temperatura
     //o correto seria usar tons ja pre-estabelecidos para cada um dos dias. Essa ideia pode ficar de backup. Talvez de para variar a transparencia
     changeBackgroundColor(){
-        const visibility = 0.5;
         const temperature = this.props.temperature;
         const coldColorValue = 15;
         const hotColorValue = 35;
-        const initialColorValue = 64;
         
-        let colorValue = initialColorValue;
-        
-        if(temperature === "undefined"){ //cinza
-            return `rgba(0,0,0,${visibility})`;
+        let backgroundColor = this.props.className;
+        if(temperature > coldColorValue && temperature < hotColorValue){ //tons de amarelo
+            backgroundColor += " weather__normalDay";
         } else if(temperature < coldColorValue){ //tons de azul
-            if(temperature > 0){ //so tera degrade se a temperatura for maior que zero
-                colorValue = initialColorValue + (initialColorValue * temperature)/coldColorValue;
-            }
-            return `rgba(0,0,${colorValue},${visibility})`;
+            backgroundColor += " weather__coldDay";
         } else if(temperature > hotColorValue){ //tons de vermelho
-            return `rgba(255,0,0,${visibility})`;
-        } else { //tons de amarelo
-            colorValue = initialColorValue + ( (temperature-coldColorValue) * ( (255 - initialColorValue) / (hotColorValue-coldColorValue) ) );
-            return `rgba(${colorValue},${colorValue},0,${visibility})`;
+            backgroundColor += " weather__hotDay";
+        } else { //tons cinza
+            backgroundColor += " weather__unknown";
         }
+        return backgroundColor;
+        
     }
 }
+
 export default Weather

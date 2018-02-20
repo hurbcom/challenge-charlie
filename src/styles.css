@@ -23,6 +23,13 @@ body {
 .infoBox {
   padding: 5px;
   display: flex;
+  font-size: 10px;
+}
+.infoBox p {
+  margin: 2px;
+}
+.infoBox h1 {
+  margin: 4px;
 }
 .city {
   color: gray;
@@ -30,6 +37,13 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px;
   display: flex;
+  font-size: 10px;
+}
+.city p {
+  margin: 2px;
+}
+.city h1 {
+  margin: 4px;
 }
 .city-info {
   width: 80%;
@@ -40,24 +54,148 @@ body {
 }
 .weather {
   color: white;
+  background-color: rgba(128, 128, 128, 0.8);
   padding: 5px;
   display: flex;
+  font-size: 10px;
+}
+.weather p {
+  margin: 2px;
+}
+.weather h1 {
+  margin: 4px;
+}
+.weather h1 {
+  font-size: 12px;
 }
 .weather-primary {
   height: 150px;
   color: white;
+  background-color: rgba(128, 128, 128, 0.8);
   padding: 5px;
   display: flex;
+  font-size: 10px;
+}
+.weather-primary p {
+  margin: 2px;
+}
+.weather-primary h1 {
+  margin: 4px;
+}
+.weather-primary h1 {
+  font-size: 12px;
 }
 .weather-secundary {
   height: 70px;
   color: white;
+  background-color: rgba(128, 128, 128, 0.8);
   padding: 5px;
   display: flex;
+  font-size: 10px;
+}
+.weather-secundary p {
+  margin: 2px;
+}
+.weather-secundary h1 {
+  margin: 4px;
+}
+.weather-secundary h1 {
+  font-size: 12px;
 }
 .weather-icon {
   width: 50%;
 }
 .weather-info {
   width: 50%;
+}
+.weather-info__description {
+  margin-top: 20px;
+  margin-bottom: 7px;
+}
+.weather__day0 {
+  height: 150px;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.8);
+  padding: 5px;
+  display: flex;
+  font-size: 10px;
+}
+.weather__day0 p {
+  margin: 2px;
+}
+.weather__day0 h1 {
+  margin: 4px;
+}
+.weather__day0 h1 {
+  font-size: 12px;
+}
+.weather__day0.weather__hotDay {
+  background-color: rgba(128, 0, 0, 0.8);
+}
+.weather__day0.weather__coldDay {
+  background-color: rgba(0, 0, 128, 0.8);
+}
+.weather__day0.weather__normalDay {
+  background-color: rgba(128, 128, 0, 0.8);
+}
+.weather__day0.weather__unknown {
+  background-color: rgba(128, 128, 128, 0.8);
+}
+.weather__day1 {
+  height: 70px;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.8);
+  padding: 5px;
+  display: flex;
+  font-size: 10px;
+}
+.weather__day1 p {
+  margin: 2px;
+}
+.weather__day1 h1 {
+  margin: 4px;
+}
+.weather__day1 h1 {
+  font-size: 12px;
+}
+.weather__day1.weather__hotDay {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+.weather__day1.weather__coldDay {
+  background-color: rgba(0, 0, 255, 0.8);
+}
+.weather__day1.weather__normalDay {
+  background-color: rgba(255, 255, 0, 0.8);
+}
+.weather__day1.weather__unknown {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.weather__day2 {
+  height: 70px;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.8);
+  padding: 5px;
+  display: flex;
+  font-size: 10px;
+}
+.weather__day2 p {
+  margin: 2px;
+}
+.weather__day2 h1 {
+  margin: 4px;
+}
+.weather__day2 h1 {
+  font-size: 12px;
+}
+.weather__day2.weather__hotDay {
+  background-color: rgba(64, 0, 0, 0.8);
+}
+.weather__day2.weather__coldDay {
+  background-color: rgba(0, 0, 64, 0.8);
+}
+.weather__day2.weather__normalDay {
+  background-color: rgba(64, 64, 0, 0.8);
+}
+.weather__day2.weather__unknown {
+  background-color: rgba(64, 64, 64, 0.8);
 }
