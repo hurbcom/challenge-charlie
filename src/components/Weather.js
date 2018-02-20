@@ -10,6 +10,7 @@ class Weather extends React.Component{
         return (
             <div className = {newBackgroundColor}>
                 <div className = "weather-icon">
+                    {this.props.icon}
                 </div>
                 <div className = "weather-info">
                     <h1>{this.props.day}</h1>

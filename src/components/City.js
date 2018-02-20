@@ -4,6 +4,7 @@ import React from 'react';
 const City = props => (
     <div className="city">
         <div className="city-icon">
+            {'('}
         </div>
         <div className="city-info">
         {

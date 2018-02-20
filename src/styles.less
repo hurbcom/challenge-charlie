@@ -3,6 +3,26 @@
 @colorIntensity__medium: 128;
 @colorIntensity__low: 64;
 
+
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('meteocons-webfont.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.centralizer {
+    /* Centralizando o background */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+  /* centralizando a caixa */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 html{
     margin: 0;
     height: 100%
@@ -13,16 +33,7 @@ body {
   height: 100%; 
   padding: 0;
   font-family: sans-serif;
-        
-  /* Centralizando o background */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-    
-  /* centralizando a caixa */  
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .centralizer
 }
 
 .search {
@@ -44,9 +55,10 @@ body {
 
 .city {
     color:gray;
-    height:60px;
+    height:35px;
     background-color:rgba(255,255,255,@backgroundOpacity);
     .infoBox;
+    .centralizer;
 }
 
 .city-info{
@@ -56,6 +68,8 @@ body {
 
 .city-icon{
     width: 20%;
+    font-size: 30px;
+    .icon;
 }
 
 .weather{
@@ -81,6 +95,9 @@ body {
 
 .weather-icon{
     width: 50%;
+    font-size: 150px;
+    .icon;
+    .centralizer;
 }
 
 .weather-info{
@@ -140,4 +157,7 @@ body {
     };
 }
 
-// o estilo de acordo com cada faixa de temperatura
+.icon {
+    font-family: 'MeteoconsRegular';
+}
+

@@ -16,10 +16,11 @@ class App extends React.Component {
         city: undefined,
         day0 : { //hoje
             temperature: undefined,
-            weather:undefined,
+            //weather:undefined,
             wind:undefined,
             humidity:undefined,
-            pressure:undefined
+            pressure:undefined,
+            weatherCode:undefined
         },
         day1 : { //amanha
             temperature: undefined,
@@ -55,10 +56,11 @@ class App extends React.Component {
             city : data.query.results.channel.location.city,
             day0 : {
                 temperature: data.query.results.channel.item.condition.temp,
-                weather: data.query.results.channel.item.condition.text,
+                //weather: data.query.results.channel.item.condition.text,
                 wind: data.query.results.channel.wind.speed,
                 humidity: data.query.results.channel.atmosphere.humidity,
-                pressure: data.query.results.channel.atmosphere.pressure
+                pressure: data.query.results.channel.atmosphere.pressure,
+                weatherCode: parseInt(data.query.results.channel.item.condition.code,10),
             },
             day1 : { //como nao existe a temperatura media, faz-se uma estimativa
                 temperature: (parseInt(data.query.results.channel.item.forecast[1].high,10) + parseInt(data.query.results.channel.item.forecast[1].low,10))/2
@@ -68,6 +70,66 @@ class App extends React.Component {
                 (parseInt(data.query.results.channel.item.forecast[2].high,10) + parseInt(data.query.results.channel.item.forecast[2].low,10))/2
             }
         })
+    }
+
+    getWeatherInfo(weatherCode){
+        //https://gist.github.com/ericoporto/c867f7d67c7ced22c7e1
+        const weatherInfo = [];
+        weatherInfo[0] = {'name':  'Tornado', 'icon': 'S'};                      // tornado
+        weatherInfo[1] = {'name': 'Tempestade tropical',  'icon': 'T'};         // tropical storm
+        weatherInfo[2] = {'name': 'Furacão', 'icon': 'S'};                      // hurricane
+        weatherInfo[3] = {'name': 'Tempestade severa', 'icon': 'P'};             // severe thunderstorms
+        weatherInfo[4] = {'name': 'Trovoadas', 'icon': 'O'};                     // thunderstorms            
+        weatherInfo[5] = {'name': 'Chuva e neve',  'icon': 'W'};                  // mixed rain and snow
+        weatherInfo[6] = {'name': 'Chuva e granizo fino', 'icon': 'X'};          // mixed rain and sleet
+        weatherInfo[7] = {'name': 'Neve e granizo fino', 'icon': 'W'};           // mixed snow and sleet
+        weatherInfo[8] = {'name': 'Garoa gélida', 'icon': 'Q'};                  // freezing drizzle
+        weatherInfo[9] = {'name': 'Garoa', 'icon': 'Q'};                         // drizzle
+        weatherInfo[10] = {'name': 'Chuva gélida', 'icon': 'R'};                  // freezing rain
+        weatherInfo[11] = {'name': 'Chuvisco', 'icon': 'Q'};                      // showers
+        weatherInfo[12] = {'name': 'Chuva', 'icon': 'Q'};                         // showers
+        weatherInfo[13] = {'name': 'Neve em flocos finos', 'icon': 'X'};          // snow flurries
+        weatherInfo[14] = {'name': 'Leve precipitação de neve', 'icon': 'U'};     // light snow showers
+        weatherInfo[15] = {'name': 'Ventos com neve', 'icon': 'U'};               // blowing snow
+        weatherInfo[16] = {'name': 'Neve', 'icon': 'U'};                          // snow
+        weatherInfo[17] = {'name': 'Chuva de granizo', 'icon': 'R'};              // hail
+        weatherInfo[18] = {'name': 'Pouco granizo', 'icon': 'X'};                 // sleet
+        weatherInfo[19] = {'name': 'Pó em suspensão', 'icon': 'X'};               // dust
+        weatherInfo[20] = {'name': 'Neblina', 'icon': 'N'};                       // foggy
+        weatherInfo[21] = {'name': 'Névoa seca', 'icon': 'N'};                    // haze
+        weatherInfo[22] = {'name': 'Enfumaçado', 'icon': 'N'};                    // smoky
+        weatherInfo[23] = {'name': 'Vendaval', 'icon': 'F'};                      // blustery
+        weatherInfo[24] = {'name': 'Ventando', 'icon': 'F'};                      // windy
+        weatherInfo[25] = {'name': 'Frio', 'icon': 'G'};                          // cold
+        weatherInfo[26] = {'name': 'Nublado', 'icon': 'N'};                       // cloudy
+        weatherInfo[27] = {'name': 'Muitas nuvens (noite)', 'icon': 'I'};         // mostly cloudy (night)
+        weatherInfo[28] = {'name': 'Muitas nuvens (dia)', 'icon': 'H'};           // mostly cloudy (day)
+        weatherInfo[29] = {'name': 'Parcialmente nublado (noite)', 'icon': 'I'};  // partly cloudy (night)
+        weatherInfo[30] = {'name': 'Parcialmente nublado (dia)', 'icon': 'H'};    // partly cloudy (day)
+        weatherInfo[31] = {'name': 'Céu limpo (noite)', 'icon': 'C'};             // clear (night)
+        weatherInfo[32] = {'name': 'Ensolarado', 'icon': 'B'};                    // sunny
+        weatherInfo[33] = {'name': 'Tempo bom (noite)', 'icon': 'C'};             // fair (night)
+        weatherInfo[34] = {'name': 'Tempo bom (dia)', 'icon': 'B'};               // fair (day)
+        weatherInfo[35] = {'name': 'Chuva e granizo', 'icon': 'R'};               // mixed rain and hail
+        weatherInfo[36] = {'name': 'Quente', 'icon': 'B'};                        // hot
+        weatherInfo[37] = {'name': 'Tempestades isoladas', 'icon': 'O'};          // isolated thunderstorms
+        weatherInfo[38] = {'name': 'Tempestades esparsas', 'icon': 'Z'};          // scattered thunderstorms
+        weatherInfo[39] = {'name': 'Tempestades esparsas', 'icon': 'Z'};          // scattered thunderstorms
+        weatherInfo[40] = {'name': 'Chuvas esparsas', 'icon': 'R'};               // scattered showers
+        weatherInfo[41] = {'name': 'Nevasca', 'icon': 'W'};                       // heavy snow
+        weatherInfo[42] = {'name': 'Tempestades de neve esparsas', 'icon': 'W'};  // scattered snow showers
+        weatherInfo[43] = {'name': 'Nevasca', 'icon': 'W'};                       // heavy snow
+        weatherInfo[44] = {'name': 'Parcialmente nublado', 'icon': 'N'};          // partly cloudy
+        weatherInfo[45] = {'name': 'Chuva com trovoadas', 'icon': 'O'};           // thundershowers
+        weatherInfo[46] = {'name': 'Tempestade de neve', 'icon': 'W'};            // snow showers
+        weatherInfo[47] = {'name': 'Relâmpagos e chuvas isoladas', 'icon': 'O'};  // isolated thundershowers
+        weatherInfo[3200] = {'name': 'Não disponível', 'icon': ''};               // not available
+
+        if(weatherInfo[weatherCode] === undefined){
+            return {'name': undefined, 'icon': undefined};
+        } else {
+            return weatherInfo[weatherCode];
+        }
     }
 
     componentDidMount() {
@@ -100,18 +162,18 @@ class App extends React.Component {
         document.body.style.backgroundImage = "url('" +imageLink +"')";
     }
             
-    render() {
-        console.log(this.state);
-        
+    render() {        
+        const weatherInfo = this.getWeatherInfo(this.state.day0.weatherCode);
         return (
           <div className="App">
             <Search getWeather={this.getWeatherByAddress} />
             <City city={this.state.city} />
             <Weather temperature = {this.state.day0.temperature} 
-                weather = {this.state.day0.weather}
+                weather = {weatherInfo.name}
                 wind = {this.state.day0.wind}
                 humidity = {this.state.day0.humidity}
                 pressure = {this.state.day0.pressure}
+                icon = {weatherInfo.icon}
                 day = "HOJE"
                 className = "weather__day0"
             />
