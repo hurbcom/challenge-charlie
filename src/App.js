@@ -1,17 +1,9 @@
 import React from 'react';
-//import Api from './api-Yahoo.js' //se quiser mudar a API, pode faze-la aqui.
 import Search from "./components/Search";
 import Weather from "./components/Weather";
 import City from "./components/City";
 
 class App extends React.Component {
-    /*
-    constructor(props){
-        console.log("teste");
-        super(props);
-        this.getWeather();
-    }
-    */
     state = {
         city: undefined,
         day0 : { //hoje
@@ -162,9 +154,10 @@ class App extends React.Component {
     //carrega a imagem de background
     //TODO: Colocar isso em uma api a parte, isolar a logica
     async loadBackgroundImage(){
-        const corsProxy = "http://localhost:9090/";
-        //se voce tentar acessar a API do bing direto vai se dar mal. No site deles tem um tutorial de como contorar o problema de CORS https://docs.microsoft.com/sl-si/azure/cognitive-services/bing-image-search/bing-image-search-resource-faq
-        const api_call = await fetch(corsProxy + "https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=pt-BR");
+        //se voce tentar acessar a API do bing direto vai se dar mal. No site deles tem um tutorial de como contorar o problema de CORS https://docs.microsoft.com/sl-si/azure/cognitive-services/bing-image-search/bing-image-search-resource-faq , mas nesse exemplo usaremos um proxy de CORS https://github.com/Rob--W/cors-anywhere/
+        const corsServer = 'https://cors-anywhere.herokuapp.com/';
+        const bingAddress = 'https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=pt-BR'
+        const api_call = await fetch(corsServer + bingAddress);
         const data = await api_call.json();
         const imageLink = "https://www.bing.com/" + data.images[0].url;
         document.body.style.backgroundImage = "url('" +imageLink +"')";
