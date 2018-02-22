@@ -187,8 +187,8 @@ class App extends React.Component {
             />
             <Weather className="weather__day1"
                 temperature = {this.state.day1.temperature}
-                day= "AMANHA" />
-            <Weather className="weather__day2" temperature = {this.state.day2.temperature} day = "DEPOIS DE AMANHA" />
+                day= "AMANHÃ" />
+            <Weather className="weather__day2" temperature = {this.state.day2.temperature} day = "DEPOIS DE AMANHÃ" />
           </div>
         );
     }

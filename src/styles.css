@@ -40,6 +40,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .infoBox p {
   margin: 2px;
@@ -53,6 +54,7 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px;
   font-size: 10px;
+  width: 312px;
   /* Centralizando o background */
   background-position: center;
   background-repeat: no-repeat;
@@ -83,6 +85,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather p {
   margin: 2px;
@@ -100,6 +103,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather-primary p {
   margin: 2px;
@@ -117,6 +121,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather-secundary p {
   margin: 2px;
@@ -154,6 +159,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather__day0 p {
   margin: 2px;
@@ -183,6 +189,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather__day1 p {
   margin: 2px;
@@ -212,6 +219,7 @@ body {
   padding: 5px;
   display: flex;
   font-size: 10px;
+  width: 312px;
 }
 .weather__day2 p {
   margin: 2px;
