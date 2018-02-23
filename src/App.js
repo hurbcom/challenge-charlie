@@ -20,9 +20,13 @@ class App extends React.Component {
         day2 : { //depois de amanha
             temperature: undefined,
         },
-        latitude: undefined,
-        longitude: undefined,
         error: undefined,
+        scale : "C",
+    }
+    
+    constructor(props){
+        super(props);
+        this.changeTemperatureScale = this.changeTemperatureScale.bind(this);
         
     }
     
@@ -44,7 +48,6 @@ class App extends React.Component {
     }
     //passa os atributos recebidos da API de clima para o state do component
     setWeatherState(data){
-        console.log(data);
         if (data.ok === false){
             alert("Houve um erro ao contactar o servidor. Tente novamente mais tarde.");
         } else if(data.query.results === null){
@@ -162,6 +165,17 @@ class App extends React.Component {
         const imageLink = "https://www.bing.com/" + data.images[0].url;
         document.body.style.backgroundImage = "url('" +imageLink +"')";
     }
+        
+        
+    changeTemperatureScale(e){
+        e.preventDefault();
+        if(this.state.scale === "C"){
+            this.setState({scale: "F"});
+        } else {
+            this.setState({scale: "C"});
+        }
+    }
+        
             
     render() {        
         const weatherInfo = this.getWeatherInfo(this.state.day0.weatherCode);
@@ -175,13 +189,20 @@ class App extends React.Component {
                 humidity = {this.state.day0.humidity}
                 pressure = {this.state.day0.pressure}
                 icon = {weatherInfo.icon}
+                scale = {this.state.scale}
+                changeScale = {this.changeTemperatureScale}
                 day = "HOJE"
                 className = "weather__day0"
             />
             <Weather className="weather__day1"
                 temperature = {this.state.day1.temperature}
-                day= "AMANHÃ" />
-            <Weather className="weather__day2" temperature = {this.state.day2.temperature} day = "DEPOIS DE AMANHÃ" />
+                scale = {this.state.scale}
+                day= "AMANHÃ" 
+                />
+            <Weather className="weather__day2"
+                temperature = {this.state.day2.temperature}
+                scale = {this.state.scale}
+                day = "DEPOIS DE AMANHÃ" />
           </div>
         );
     }
