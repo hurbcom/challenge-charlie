@@ -1,0 +1,164 @@
+@backgroundOpacity: 0.8;
+@colorIntensity__high: 255;
+@colorIntensity__medium: 128;
+@colorIntensity__low: 64;
+
+
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('meteocons-webfont.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.centralizer {
+    /* Centralizando o background */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+  /* centralizando a caixa */  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html{
+    margin: 0;
+    height: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%; 
+  padding: 0;
+  font-family: sans-serif;
+  .centralizer
+}
+
+.search {
+    display:flex;
+    margin-bottom: 20px;
+}
+
+.infoBox {
+    padding: 5px;
+    display:flex;
+    font-size: 10px;
+    width: 312px;
+    p {
+        margin: 2px;
+    }
+    h1 {
+        margin:4px;
+    }
+}
+
+.city {
+    color:gray;
+    height:35px;
+    background-color:rgba(255,255,255,@backgroundOpacity);
+    .infoBox;
+    .centralizer;
+}
+
+.city-info{
+    width: 80%;
+    font-size: 22px;
+}
+
+.city-icon{
+    width: 20%;
+    font-size: 30px;
+    .icon;
+}
+
+.weather{
+    color:white;
+    background-color:rgba(128,128,128,0.8); //lembrando que a cor sera alterada assim que uma temperatura for adquirida
+    .infoBox;
+    h1 {
+        font-size: 12px;
+    }
+}
+
+//dia atual
+.weather-primary {
+    height:150px;
+    .weather;
+}
+
+//dia que nao e atual
+.weather-secundary {
+    height:70px;
+    .weather;
+}
+
+.weather-icon{
+    width: 50%;
+    font-size: 150px;
+    .icon;
+    .centralizer;
+}
+
+.weather-info{
+    width: 50%;
+}
+
+.weather-info__description{
+    margin-top:20px;
+    margin-bottom: 7px;
+}
+
+.weather__day0{
+    .weather-primary;
+    &.weather__hotDay{
+         background-color:rgba(@colorIntensity__medium,0,0,@backgroundOpacity);
+    };
+    &.weather__coldDay{
+        background-color:rgba(0,0,@colorIntensity__medium,@backgroundOpacity);
+    };
+    &.weather__normalDay{
+        background-color:rgba(@colorIntensity__medium,@colorIntensity__medium,0,@backgroundOpacity);
+    };
+    &.weather__unknown {
+        background-color:rgba(@colorIntensity__medium,@colorIntensity__medium,@colorIntensity__medium,@backgroundOpacity);
+    };
+}
+
+.weather__day1{
+    .weather-secundary;
+    &.weather__hotDay {
+         background-color:rgba(@colorIntensity__high,0,0,@backgroundOpacity);
+    };
+    &.weather__coldDay {
+        background-color:rgba(0,0,@colorIntensity__high,@backgroundOpacity);
+    };
+    &.weather__normalDay {
+        background-color:rgba(@colorIntensity__high,@colorIntensity__high,0,@backgroundOpacity);
+    };
+    &.weather__unknown {
+        background-color:rgba(@colorIntensity__high,@colorIntensity__high,@colorIntensity__high,@backgroundOpacity);
+    };
+}
+
+.weather__day2{
+    .weather-secundary;
+    &.weather__hotDay {
+         background-color:rgba(@colorIntensity__low,0,0,@backgroundOpacity);
+    };
+    &.weather__coldDay {
+        background-color:rgba(0,0,@colorIntensity__low,@backgroundOpacity);
+    };
+    &.weather__normalDay {
+        background-color:rgba(@colorIntensity__low,@colorIntensity__low,0,@backgroundOpacity);
+    };
+    &.weather__unknown {
+        background-color:rgba(@colorIntensity__low,@colorIntensity__low,@colorIntensity__low,@backgroundOpacity);
+    };
+}
+
+.icon {
+    font-family: 'MeteoconsRegular';
+}
+
