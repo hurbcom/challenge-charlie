@@ -19,4 +19,6 @@ Para testar no docker, não esqueça de apontar a porta do container para 3000 e
 
 Qualquer dúvida pode me contatar via e-mail.
 
-Proposta de melhorias futuras: isolar a lógica das API de imagens e de clima em classes externas
+Proposta de melhorias futuras: 
+    ->isolar a lógica das API de imagens e de clima em classes externas
+    ->automatização de testes
