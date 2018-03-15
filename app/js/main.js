@@ -7,8 +7,10 @@ $(document).ready(function () {
     },
     function(data){
         if (data.query.results) {
-            var image_target = data.query.results.json.images.url;
-            $('.weather_forecast .media').html('<img src="https://www.bing.com' + image_target + '" />');
+            var image_target = data.query.results.json.images.url,
+                copyright = data.query.results.json.images.copyright;
+            console.log(data.query.results.json.images);
+            $('.weather_forecast .media').html('<img src="https://www.bing.com' + image_target + '"  alt="'+copyright+'"/>');
         } else {
             $('.weather_forecast .media').html('<h2>Falha na requisição</h2>');
         }
