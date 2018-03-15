@@ -96,4 +96,20 @@ $(document).ready(function () {
         $('.day_forecast .item').removeClass('active');
         $(this).addClass('active');
     });
+
+    // altera temperatura entre Celsius e farenheight
+    $('.temperature').click(function (e) { 
+        e.preventDefault();
+        var num = $(this).find('.data').text();
+        if($(this).hasClass('ce')){
+            $(this).removeClass('ce').addClass('fe');
+            $(this).find('.data').text(((num * 1.8) + 32).toFixed(0));
+        }
+        else {
+            $(this).removeClass('fe').addClass('ce');
+            $(this).find('.data').text(((num - 32) / 1.8).toFixed(0));
+        }
+
+        
+    });
 });
