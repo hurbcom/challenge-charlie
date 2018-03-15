@@ -3,3 +3,76 @@ block var
 	- var title = "Home";
 	- var bodyClass = "home";
 block content
+	div.weather_forecast
+		.overlay
+		.media
+		.wrapper
+			.box_info
+				a(href="#" class="back") voltar
+				.steps
+					.step.step-1.active
+						h3.title-1 Escolha como desejar pesquisar:
+						.buttons_wrap
+							a(href="" class="btn_secondary" data-type="name") Por nome
+							a(href="" class="btn_secondary" data-type="lat") Pela Latitude e Longitude
+					.step.step-2
+						form(class="form_area request_forecast")
+							h3.title-1 Escolha o local desejado:
+							.form_item.type1
+								label.label
+									input(type="text" class="input_text" placeholder="Por exemplo: Rio de Janeiro, SP ou NY..")
+							.form_item.form_group.type2
+								label.label
+									input(type="text" class="input_text lat" placeholder="Latitude")
+								label.label
+									input(type="text" class="input_text lng" placeholder="Longitude")
+							.form_action
+								button(class="btn_primary submit") Procurar
+					.step.step-3
+						h1.head_title: span Rio de janeiro, rio de janeiro
+						.day_forecast
+							.item.item-1.active
+								i.icon-sol
+								.info
+									p.day Hoje
+									p.temperature.ce
+										span.data
+									p.wind
+										span.tag Vento:
+										span.data
+									p.humidity
+										span.tag Humidade:
+										span.data
+									p.pressure
+										span.tag Pressão:
+										span.data
+							.item.item-2
+								i.icon-chuva
+								.info
+									p.day Amanhã
+									p.temperature.ce
+										span.data
+									p.wind
+										span.tag Vento:
+										span.data
+									p.humidity
+										span.tag Humidade:
+										span.data
+									p.pressure
+										span.tag Pressão:
+										span.data
+							.item.item-3
+								i.icon-nuvem
+								.info
+									p.day Depois de amanhã
+									p.temperature.ce
+										span.data
+									p.wind
+										span.tag Vento:
+										span.data
+									p.humidity
+										span.tag Humidade:
+										span.data
+									p.pressure
+										span.tag Pressão:
+										span.data

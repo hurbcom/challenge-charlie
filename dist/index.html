@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#143a7c">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>Home</title>
+  </head>
+  <body class="home">
+    <main>
+      <div class="weather_forecast">
+        <div class="overlay"></div>
+        <div class="media"></div>
+        <div class="wrapper">
+          <div class="box_info"><a class="back" href="#">voltar</a>
+            <div class="steps">
+              <div class="step step-1 active">
+                <h3 class="title-1">Escolha como desejar pesquisar:</h3>
+                <div class="buttons_wrap"><a class="btn_secondary" href="" data-type="name">Por nome</a><a class="btn_secondary" href="" data-type="lat">Pela Latitude e Longitude</a></div>
+              </div>
+              <div class="step step-2">
+                <form class="form_area request_forecast">
+                  <h3 class="title-1">Escolha o local desejado:</h3>
+                  <div class="form_item type1">
+                    <label class="label">
+                      <input class="input_text" type="text" placeholder="Por exemplo: Rio de Janeiro, SP ou NY..">
+                    </label>
+                  </div>
+                  <div class="form_item form_group type2">
+                    <label class="label">
+                      <input class="input_text lat" type="text" placeholder="Latitude">
+                    </label>
+                    <label class="label">
+                      <input class="input_text lng" type="text" placeholder="Longitude">
+                    </label>
+                  </div>
+                  <div class="form_action">
+                    <button class="btn_primary submit">Procurar</button>
+                  </div>
+                </form>
+              </div>
+              <div class="step step-3">
+                <h1 class="head_title"><span>Rio de janeiro, rio de janeiro</span></h1>
+                <div class="day_forecast">
+                  <div class="item item-1 active"><i class="icon-sol"></i>
+                    <div class="info">
+                      <p class="day">Hoje</p>
+                      <p class="temperature ce"><span class="data"></span></p>
+                      <p class="wind"><span class="tag">Vento:</span><span class="data"></span></p>
+                      <p class="humidity"><span class="tag">Humidade:</span><span class="data"></span></p>
+                      <p class="pressure"><span class="tag">Pressão:</span><span class="data"></span></p>
+                    </div>
+                  </div>
+                  <div class="item item-2"><i class="icon-chuva"></i>
+                    <div class="info">
+                      <p class="day">Amanhã</p>
+                      <p class="temperature ce"><span class="data"></span></p>
+                      <p class="wind"><span class="tag">Vento:</span><span class="data"></span></p>
+                      <p class="humidity"><span class="tag">Humidade:</span><span class="data"></span></p>
+                      <p class="pressure"><span class="tag">Pressão:</span><span class="data"></span></p>
+                    </div>
+                  </div>
+                  <div class="item item-3"><i class="icon-nuvem"></i>
+                    <div class="info">
+                      <p class="day">Depois de amanhã</p>
+                      <p class="temperature ce"><span class="data"></span></p>
+                      <p class="wind"><span class="tag">Vento:</span><span class="data"></span></p>
+                      <p class="humidity"><span class="tag">Humidade:</span><span class="data"></span></p>
+                      <p class="pressure"><span class="tag">Pressão:</span><span class="data"></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
