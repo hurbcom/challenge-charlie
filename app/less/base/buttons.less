@@ -1,0 +1,46 @@
+.btn_primary {
+    background: #FF7900;
+    color: white;
+    border: 0;
+    padding: 10px 25px;
+    font-size: 18px;
+    .responsive(768px, {
+        font-size: 14px;
+    });
+}
+.btn_secondary {
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #143A7C;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url('../images/arrow_hover.png');
+    background-repeat: no-repeat;
+    background-position:-400px center;
+    transition: all 0.3s;
+    overflow: hidden;
+    .responsive(640px, {
+        font-size: 12px;
+    });
+    &:hover {
+        background-position: right center;
+        font-size: 16px;
+        &:after {
+            right: -60px;
+        }
+    }
+    &:after {
+        content: '';
+        background: url('../images/left-arrow.png') no-repeat center;
+        width: 26px;
+        height: 26px;
+        background-size: cover;
+        transform: rotate(180deg);
+        position: relative;
+        transition: all 0.3s;
+        right: 0;
+    }
+}
