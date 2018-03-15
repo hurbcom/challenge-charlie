@@ -1,4 +1,19 @@
 $(document).ready(function () {
+    //bing image request
+    $.getJSON("http://query.yahooapis.com/v1/public/yql",
+    {
+        q: 'select * from json where url="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR"',
+        format: "json"
+    },
+    function(data){
+        if (data.query.results) {
+            var image_target = data.query.results.json.images.url;
+            $('.weather_forecast .media').html('<img src="https://www.bing.com' + image_target + '" />');
+        } else {
+            $('.weather_forecast .media').html('<h2>Falha na requisição</h2>');
+        }
+        
+    });
     //navegação dos steps
     $('.buttons_wrap a, .box_info .back').click(function (e) { 
         e.preventDefault();
