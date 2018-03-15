@@ -1,0 +1,103 @@
+.day_forecast{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    &.disabled {
+        .item {
+            background: grey !important;
+            pointer-events: none;
+            i {
+                display: none;
+            }
+        }
+    }
+    .item {
+        background: #ffff0082;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        color: white;
+        padding: 10px;
+        height: 80px;;
+        transition: all ease-in .3s;
+        cursor: pointer;
+        &.sun {
+            background: #ff200069;
+        }
+        &.cold {
+            background: #00ffff6b;
+        }
+        &.active {
+            height: 100%;
+            cursor: inherit;
+            .info{
+                height: 100%;
+            }
+            p {
+                display: block;
+                &.day {
+                    margin-bottom: 10px;
+                }
+            }
+            i {
+                font-size: 15vh;
+            }
+        }
+        i {
+            font-size: 3vh;
+            transition: all ease-in .3s;
+            margin-right: 20px;
+        }
+        p {
+            display: none;
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            height: 20px;
+            justify-content: center;
+            overflow: hidden;
+            transition: all ease-in .3s;
+            p {
+                font-size: 16px;
+                line-height: 22px;
+                .responsive(640px, {
+                    font-size: 14px;
+                    line-height: 20px;
+                });
+                &.day {
+                    font-size: 20px;
+                    display: flex;
+                    align-items: center;
+                    .responsive(640px, {
+                        font-size: 20px;
+                    });
+                }
+                &.temperature {
+                    font-size: 26px;
+                    margin-bottom: 30px;
+                    cursor: pointer;
+                    &.ce {
+                        &:after {
+                            content: "\e908";
+                            font-family: 'icomoon';
+                            font-size: 30px;
+                            margin-bottom: -10px;
+                            display: inline-block;
+                        }
+                    }
+                    &.fe {
+                        &:after {
+                            content: "\e909";
+                            font-family: 'icomoon';
+                            font-size: 30px;
+                            margin-bottom: -10px;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

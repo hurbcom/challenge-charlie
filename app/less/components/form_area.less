@@ -1,0 +1,37 @@
+.form_area {
+    width: 80%;
+    margin: 0 auto;
+    .form_action {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+    .input_text {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: 1px solid #4d4d4d;
+        .responsive(768px, {
+            font-size: 14px;
+        });
+    }
+    .form_group {
+        display: flex;
+        justify-content: space-between;
+        .responsive(768px, {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+        });
+        .label {
+            width: 48%;
+            .responsive(768px, {
+                width: 100%;
+                margin: 10px auto;
+            });
+        }
+    }
+}

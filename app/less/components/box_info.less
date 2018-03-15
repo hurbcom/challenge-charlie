@@ -1,0 +1,65 @@
+.box_info {
+    width: 40%;
+    min-height: 510px;
+    min-width: 620px;
+    max-width: 768px;
+    display: flex;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    .responsive(768px, {
+        min-width: inherit;
+        width: 90%;
+    });
+    &.focus {
+        .back {
+            left: 10px;
+        }
+    }
+    .back{
+        position: absolute;
+        top: 10px;
+       z-index: 99;
+        font-size: 14px;
+        color: #000;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        left: -300px;
+        transition: all 0.3s;
+        &:before {
+            content: '';
+            background: url('../images/left-arrow_black.png') no-repeat center;
+            width: 26px;
+            height: 26px;
+            background-size: cover;
+            position: relative;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+    }
+    .buttons_wrap{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        .responsive(640px, {
+            width: 260px;
+        });
+        .btn_secondary {
+            &:first-child {
+                border-top-left-radius:  10px;
+                border-top-right-radius:  10px;
+            }
+            &:last-child {
+                border-bottom-left-radius:  10px;
+                border-bottom-right-radius:  10px;
+            }
+        }
+    }
+    > .item{
+        height: 100%;
+        width: 100%;
+        align-self: center;
+    }
+}
