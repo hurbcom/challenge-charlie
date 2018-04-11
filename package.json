@@ -7,12 +7,12 @@
     "build": "npm run start && npm run docker:build && npm run docker:serve",
     "dev": "webpack-dev-server --progress --colors --inline --hot",
     "start": "webpack --progress -p --define process.env.NODE_ENV='\"production\"'",
-    "docker:build": "docker build -t rodrigoribeiro/challenge-uh .",
-    "docker:serve": "docker run --name weather -p 8000:80 -i --rm rodrigoribeiro/challenge-uh",
+    "docker:build": "docker build -t rodrigoribeiro/challenge-hu .",
+    "docker:serve": "docker run --name weather -p 8000:80 -i --rm rodrigoribeiro/challenge-hu",
     "test": "export NODE_ENV=testing && jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Digo Ribeiro",
   "license": "ISC",
   "jest": {
     "globals": {
