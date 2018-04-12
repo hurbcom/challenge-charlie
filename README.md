@@ -34,7 +34,7 @@ $ cd challenge-hu && npm install
 `npm run build`.
 
 ## It was not done
-- Tests
+- Tests Actions and Reducers
 
 ## Stack
 
