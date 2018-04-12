@@ -1,0 +1,142 @@
+.weather-container {
+  width: 40%;
+  margin: 100px auto 0 auto;
+}
+.weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: @color-light;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+.weather-title {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.icon-localization {
+  margin-right: 10px;
+  font-size: 2em;
+}
+.icon-status {
+  font-size: 10em;
+}
+.weather-distance {
+  margin-bottom: 10px;
+}
+.weather-icon-status {
+  margin: 0 auto;
+}
+.weather-week {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  height: 6em;
+}
+.weather-week-info {
+  font-size: 1.3em;
+}
+.weather-week-info,
+.weather-today-info {
+  display: flex;
+  flex-basis: 13rem;
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+}
+.weather-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+.weather-input::-webkit-input-placeholder {
+  color: @color-black;
+}
+.weather-input::-moz-placeholder {
+  color: @color-black;
+}
+.weather-input:-ms-input-placeholder {
+  color: @color-black;
+}
+.weather-input:-moz-placeholder {
+  color: @color-black;
+}
+.temp-light {
+  .weather-today {
+    background: @color-secundary-gradient-light;
+    color: @color-white;
+  }
+  .weather-week {
+    background: @color-secundary-gradient-dark;
+    color: @color-white;
+  }
+  .weather-week:last-child {
+    background: @color-secundary;
+    color: @color-white;
+  }
+}
+.temp-hot {
+  .weather-today {
+    background: @color-primary-gradient-light;
+    color: @color-white;
+  }
+  .weather-week {
+    background: @color-primary-gradient-dark;
+    color: @color-white;
+  }
+  .weather-week:last-child {
+    background: @color-primary;
+    color: @color-white;
+  }
+}
+.temp-normal {
+  .weather-today {
+    background: @color-default-gradient-light;
+    color: @color-white;
+  }
+  .weather-week {
+    background: @color-default-gradient-dark;
+    color: @color-white;
+  }
+  .weather-week:last-child {
+    background: @color-default;
+    color: @color-white;
+  }
+}
+.temp-default {
+  .weather-today {
+    background: @color-default-gradient-light;
+    color: @color-white;
+  }
+  .weather-week {
+    background: @color-default-gradient-dark;
+    color: @color-white;
+  }
+  .weather-week:last-child {
+    background: @color-default;
+    color: @color-white;
+  }
+}
+.temp-not-found {
+  .weather-today {
+    background: @color-dark-gradient-light;
+    color: @color-white;
+  }
+  .weather-week {
+    background: @color-dark-gradient-dark;
+    color: @color-white;
+  }
+  .weather-week:last-child {
+    background: @color-dark;
+    color: @color-white;
+  }
+}
+@media (min-width: 320px) and (max-width: 600px) {
+  .weather-container {
+    width: 100%;
+  }
+}
