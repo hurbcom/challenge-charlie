@@ -13,6 +13,6 @@ describe('WeatherToday', () => {
   });
 
   it('There is the Header WeatherToday', () => {
-    expect(wrapper.length).toBe(1);
+    expect(wrapper).toHaveLength(1);
   });
 });

@@ -13,7 +13,7 @@ describe('Header Component', () => {
   });
 
   it('There is the Header component', () => {
-    expect(wrapper.length).toBe(1);
+    expect(wrapper).toHaveLength(1);
   });
 
   it('Contains title', () => {

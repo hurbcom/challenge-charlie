@@ -13,7 +13,7 @@ describe('WeatherOther', () => {
   });
 
   it('There is the Header WeatherOther', () => {
-    expect(wrapper.length).toBe(1);
+    expect(wrapper).toHaveLength(1);
   });
 
   it('should have .weather-header class', () => {
