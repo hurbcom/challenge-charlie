@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import WeatherOther from './index';
 
 configure({ adapter: new Adapter() });
+
 describe('WeatherOther', () => {
   let wrapper;
 
