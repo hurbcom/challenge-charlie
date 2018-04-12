@@ -5,13 +5,17 @@ import WeatherOther from './index';
 
 configure({ adapter: new Adapter() });
 describe('WeatherOther', () => {
-  it('renderts without crashing', () => {
-    const wrapper = shallow(<WeatherOther />);
+  let wrapper;
+
+  beforeAll(() => {
+    wrapper = shallow(<WeatherOther />);
+  });
+
+  it('There is the Header WeatherOther', () => {
     expect(wrapper.length).toBe(1);
   });
+
   it('should have .weather-header class', () => {
-    const wrapper = shallow(<WeatherOther />);
     expect(wrapper.is('.weather-week')).toBe(true);
-    expect(wrapper.is('.weather-week2')).toBe(false);
   });
 });
