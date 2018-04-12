@@ -20,7 +20,10 @@
     },
     "testMatch": [
       "<rootDir>/**/?(*.)(spec|test).js?(x)"
-    ]
+    ],
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
