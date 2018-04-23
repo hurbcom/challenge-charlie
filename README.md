@@ -38,11 +38,6 @@ Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidad
   $> git clone https://github.com/dougrhishu/challenge-charlie.git
 ```
 
-Para executar o projeto entre no navegador com a URL após os comandos acima `http://localhost/challenge-charlie`
-
-
-
-
 Boa sorte e boa viagem! ;)
 
 <p align="center">
