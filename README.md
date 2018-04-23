@@ -12,32 +12,32 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 
 
 * O uso de `geohash` ou `custom elements` dá ponto extra 🔝‼️ ;)
-## Requisitos
-- Você pode utilizar jQuery mas não pode usar nenhum plugin de jQuery, queremos ver o seu trabalho. Para a folha de estilo, deve ser utilizado LESS.
-- Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-- O código precisa rodar dentro de um container Docker
-- Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-  - git clone $seu-fork
-  - cd $seu-fork
-  - comando para instalar dependências
-  - comando para executar a aplicação
 
+# Resposta ao Desafio Charlie
+Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidade atual em que o usuário que está utilizando a aplicação ou caso o usuário deseje pesquisar na página do microsite. Utilizou-se a linguagem de programação **JavaScript**  para realizar a comunicação com o servidor do **YahooApis**.
 
-## Critério de avaliação
+### Funcionamento:
+- Ao abrir a aplicação é executado o arquivo 'index.html', onde é apresentado o front end para o usuário.
+- Ao Carregar a página é solicitado a captura de informação da sua geolocalização, caso o usuário aceite o script irá buscar a previsão do tempo na API do 'Yahoo' e exibir na tela para o usuário.
+- Para realizar a consulta da previsão do tempo de outra cidade, basta pesquisar o nome na Input e clicar no botão 'PESQUISAR'.
+- Após o usuário clicar no botão uma função que se encontra dentro do arquivo 'js/script.js' é executado onde pega a informação digitada pelo usuário e busca na API do Yahoo.
 
-- **Organização do código**: Separação de módulos, view e model, back-end e front-end
-- **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
-- **Acertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
-- **Legibilidade do código** (incluindo comentários)
-- **Segurança**: Existe alguma vulnerabilidade clara?
-- **Cobertura de testes** (Não esperamos cobertura completa)
-- **Histórico de commits** (estrutura e qualidade)
-- **UX**: A interface é de fácil uso e auto-explicativa
-- **Escolhas técnicas**: A escolha das bibliotecas, banco de dados, arquitetura, etc, é a melhor escolha para a aplicação?
+## EXECUTANDO
+- Pré-requisitos: Apache e PHP '(Por mais que não irá executar nenhum arquivo .php é necessário a instalação devido esta usando LESS na folha de estilo)'
 
-## Dúvidas
+  ```bash
+  $> service cron restart
+  $> cd /var/www/html
+  $> git clone https://github.com/dougrhishu/challenge-charlie.git
+```
+Para executar o projeto entre com a seguinte URL no navegador: `http://localhost/challenge-charlie`
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HotelUrbano/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+# FALHA DA API BING
+- Infelizmente  o site do Bing não liberou a captura de imagem para o localhost, precisa liberar o 'Access-Control-Allow-Origin'.
+
+<p align="center">
+  <img src="img/erro-cross.png" alt="Erro Access-Control-Allow-Origin" />
+</p>
 
 Boa sorte e boa viagem! ;)
 
