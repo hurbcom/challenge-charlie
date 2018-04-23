@@ -14,11 +14,11 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 * O uso de `geohash` ou `custom elements` dá ponto extra 🔝‼️ ;)
 
 # Resposta ao Desafio Charlie
-Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidade atual em que o usuário que está utilizando a aplicação ou caso o usuário deseje pesquisar na página do microsite. Utilizou-se a linguagem de programação **JavaScript**  para realizar a comunicação com o servidor do **YahooApis**.
+- Foi elaborado um microsite responsivo para mostrar a previsão do tempo para o usuário. Utilizou-se a linguagem de programação **JavaScript** para realizar a comunicação com a API do servidor do **YahooApis**.
 
 ### Funcionamento:
 - Ao abrir a aplicação é executado o arquivo **index.html**, onde é apresentado o front end para o usuário.
-- Ao Carregar a página é solicitado a captura de informação da sua geolocalização, caso o usuário aceite o script irá buscar a previsão do tempo na API do **Yahoo** e exibir na tela para o usuário.
+- Ao Carregar a página é solicitada a captura de informação da sua geolocalização, caso o usuário aceite o script irá buscar a previsão do tempo na API do **Yahoo** e exibir na tela para o usuário.
 - Para realizar a consulta da previsão do tempo de outra cidade, basta pesquisar o nome na Input e clicar no botão **PESQUISAR**.
 - Após o usuário clicar no botão uma função que se encontra dentro do arquivo **js/script.js** é executado onde pega a informação digitada pelo usuário e busca na API do Yahoo.
 
