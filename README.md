@@ -22,6 +22,13 @@ Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidad
 - Para realizar a consulta da previsão do tempo de outra cidade, basta pesquisar o nome na Input e clicar no botão **PESQUISAR**.
 - Após o usuário clicar no botão uma função que se encontra dentro do arquivo **js/script.js** é executado onde pega a informação digitada pelo usuário e busca na API do Yahoo.
 
+## FALHA NA API BING
+- Infelizmente o site do Bing não liberou a captura de imagem para o localhost, precisa liberar o 'Access-Control-Allow-Origin'.
+
+<p align="center">
+  <img src="img/erro-cross.png" alt="Erro Access-Control-Allow-Origin" />
+</p>
+
 ### EXECUTANDO
 - Pré-requisitos: Apache e PHP (Por mais que não irá executar nenhum arquivo .php é necessário a instalação devido esta usando LESS na folha de estilo)
 
@@ -34,12 +41,7 @@ Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidad
 Para executar o projeto entre no navegador com a URL após os comandos acima `http://localhost/challenge-charlie`
 
 
-## FALHA NA API BING
-- Infelizmente o site do Bing não liberou a captura de imagem para o localhost, precisa liberar o 'Access-Control-Allow-Origin'.
 
-<p align="center">
-  <img src="img/erro-cross.png" alt="Erro Access-Control-Allow-Origin" />
-</p>
 
 Boa sorte e boa viagem! ;)
 
