@@ -32,9 +32,13 @@ Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidad
 ### EXECUTANDO
 - Pré-requisitos: Apache e PHP (Por mais que não irá executar nenhum arquivo .php é necessário a instalação devido esta usando LESS na folha de estilo)
 
-
-  `$> cd /var/www/html
-  $> git clone https://github.com/dougrhishu/challenge-charlie.git`
-
+`$> cd /var/www/html`
+`$> git clone https://github.com/dougrhishu/challenge-charlie.git`
 
 Para executar o projeto entre no navegador com a URL após os comandos acima `http://localhost/challenge-charlie`
+
+Boa sorte e boa viagem! ;)
+
+<p align="center">
+  <img src="ca.jpg" alt="Challange accepted" />
+</p>
