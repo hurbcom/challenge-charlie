@@ -30,9 +30,9 @@ Foi elaborada um microsite responsivo para mostrar a previsão do tempo na cidad
   $> cd /var/www/html
   $> git clone https://github.com/dougrhishu/challenge-charlie.git
 ```
-Para executar o projeto entre com a seguinte URL no navegador: http://localhost/challenge-charlie
+Para executar o projeto entre no navegador com a URL após os comandos acima `http://localhost/challenge-charlie`
 
-### FALHA NA API BING
+## FALHA NA API BING
 - Infelizmente o site do Bing não liberou a captura de imagem para o localhost, precisa liberar o 'Access-Control-Allow-Origin'.
 
 <p align="center">
