@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Challenge-Charlie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- start include library css -->
+  <link rel="stylesheet/less" type="text/css" href="css/style.less" />
+  <!-- end include library css -->
+  <script src="js/less.js" ></script>
+</head>
+<body>
+  <div class="boxed">
+    <!-- start input end button -->
+    <input type="text" id="local" class="inputText">
+    <input type="button" onclick="pesquisar()" value="PESQUISAR" class="botaoPesquisa">
+    <!-- end  input end button -->
+
+    <!-- start box city and information today-->
+    <div class="box-city">
+      <img src="img/bussola.png" class="sobreImage">
+      <h1 id="nomePesquisado">XXXX</h1>
+    </div>
+    <div class="box-today">
+      <div class="box-left">
+        <img src="img/sun.png">
+      </div>
+      <div class="box-rigth">
+        Hoje
+        <br>
+        <ins id="grausCelsius" onclick="converterGraus()"></ins>
+        <br><br>
+        <ins id="tempo"></ins>
+        <br><br>
+        <smal>
+          Vento: <ins id="Vento"></ins>
+          <br>
+          Humidade: <ins id="Humidade"></ins>
+          <br>
+          Pressão: <ins id="Pressao"></ins>
+        </smal>
+      </div>
+    </div>
+    <!-- end box city and information today -->
+
+    <div class="box">
+      <!-- start box information tomorrow-->
+      <div class="box-tomorrow">
+        <h3>
+          AMANHÃ
+          <br>
+          <ins id="amanha"></ins>
+        </h3>
+      </div>
+      <!-- end box information tomorrow-->
+
+      <!-- start box information after tomorrow-->
+      <div class="box-after-tomorrow">
+        <h3>
+          DEPOIS DE AMANHÃ
+          <br>
+          <ins id="depois"></ins>
+        </h3>
+      </div>
+      <!-- end box information after tomorrow-->
+    </div>
+  </div>
+  <!-- start include library js -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+  <!-- end include library js -->
+</body>
+</html>
