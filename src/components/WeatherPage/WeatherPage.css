@@ -5,14 +5,13 @@
     position: absolute;
 }
 
-.table {
-  display: table;
+.column {
+    float: left;
+    width: 50%;
 }
 
-.row {
-  display: table-row;
-}
-
-.cell {
-  display: table-cell;
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
