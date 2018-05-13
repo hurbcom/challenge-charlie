@@ -1,0 +1,17 @@
+:root {
+    --alpha: 0.5;
+}
+
+.WeatherTomorrow {
+    background-color: rgba(255, 255, 255, var(--alpha));
+    height: 18%;
+    color: white;
+}
+
+#column-1 {
+    text-align: center;
+}
+
+#column-2 h1, h2, h3 {
+    margin: 12px 0px 0px 60px;
+}
