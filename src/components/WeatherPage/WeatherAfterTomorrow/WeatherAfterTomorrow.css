@@ -1,0 +1,17 @@
+:root {
+    --alpha: 0.5;
+}
+
+.WeatherAfterTomorrow {
+    background-color: rgba(255, 255, 255, var(--alpha));
+    height: 18%;
+    color: white;
+}
+
+#after-tomorrow-col-1 {
+    text-align: center;
+}
+
+#after-tomorrow-col-2 * {
+    margin: 0px 0px 0px 60px;
+}

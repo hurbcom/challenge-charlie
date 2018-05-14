@@ -4,6 +4,7 @@ import './WeatherPage.css';
 import WeatherLocation from './WeatherLocation/WeatherLocation';
 import WeatherToday from './WeatherToday/WeatherToday';
 import WeatherTomorrow from './WeatherTomorrow/WeatherTomorrow';
+import WeatherAfterTomorrow from './WeatherAfterTomorrow/WeatherAfterTomorrow';
 
 class WeatherPage extends Component {
     render() {
@@ -11,6 +12,7 @@ class WeatherPage extends Component {
             <WeatherLocation location="Rio de Janeiro, Rio de Janeiro"/>
             <WeatherToday/>
             <WeatherTomorrow/>
+            <WeatherAfterTomorrow/>
         </div>);
     }
 }
