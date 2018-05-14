@@ -6,19 +6,20 @@
 .WeatherLocation p {
     color: gray;
     margin: 0;
-    padding-top: 15px;
-    padding-left: 15px;
+    display: inline-block;
 }
 
 #compass {
     font-size: 59px;
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
 #location {
-    position: relative;
+    position: absolute;
     font-size: 37px;
     padding-left: 25px;
-    bottom: 22%;
+    padding-top: 25px;
     letter-spacing: 3px;
 }
 
