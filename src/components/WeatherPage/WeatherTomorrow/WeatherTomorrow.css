@@ -8,10 +8,10 @@
     color: white;
 }
 
-#column-1 {
+#tomorrow-col-1 {
     text-align: center;
 }
 
-#column-2 h1, h2, h3 {
-    margin: 12px 0px 0px 60px;
+#tomorrow-col-2 * {
+    margin: 0px 0px 0px 60px;
 }

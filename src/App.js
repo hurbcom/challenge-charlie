@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 import LandingPage from './components/LandingPage/LandingPage';
+import WeatherPage from './components/WeatherPage/WeatherPage';
 
 const featuredImage = require('./utils/FeaturedImage');
 
@@ -23,7 +24,7 @@ class App extends Component {
         return (<div className="App" style={{
                 backgroundImage: `url(${this.state.backgroundImage})`
             }}>
-            <LandingPage/>
+            <WeatherPage/>
         </div>);
     }
 }

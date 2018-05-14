@@ -5,10 +5,10 @@ class WeatherToday extends Component {
     render() {
         return (<div className="WeatherToday">
             <div className="row">
-                <div className="column" id="column-1">
+                <div className="column" id="today-1">
                     <span data-icon="B" id="weather-icon"></span>
                 </div>
-                <div className="column" id="column-2">
+                <div className="column" id="today-2">
                     <h2>HOJE</h2>
                     <h2>32°C</h2>
                     <br/>

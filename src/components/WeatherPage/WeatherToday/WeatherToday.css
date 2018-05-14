@@ -12,10 +12,10 @@
     font-size: 310px;
 }
 
-#column-1 {
+#today-1 {
     text-align: center;
 }
 
-#column-2 h1, h2, h3 {
+#today-2 * {
     margin: 12px 0px 0px 60px;
 }

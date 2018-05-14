@@ -3,4 +3,7 @@
     height: 100%;
     position: absolute;
     background-size: cover;
+    /*background-size: 1370px 637px;
+    background-repeat: no-repeat;
+    background-image: url(exemplo.jpg);*/
 }
