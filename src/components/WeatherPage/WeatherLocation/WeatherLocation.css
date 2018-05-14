@@ -1,9 +1,5 @@
-:root {
-    --alpha: 1.0;
-}
-
 .WeatherLocation {
-    background-color: rgba(255, 255, 255, var(--alpha));
+    background-color: rgba(255, 255, 255, 0.95);
     height: 15%;
 }
 
