@@ -3,6 +3,9 @@
     width: 56%;
     height: 100%;
     position: absolute;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 15% 51% 17% 17%;
 }
 
 .column {

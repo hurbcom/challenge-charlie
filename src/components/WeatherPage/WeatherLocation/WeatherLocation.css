@@ -1,6 +1,7 @@
 .WeatherLocation {
     background-color: rgba(255, 255, 255, 0.95);
-    height: 15%;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 .WeatherLocation p {

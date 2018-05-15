@@ -1,7 +1,8 @@
 .WeatherTomorrow {
     background-color: rgba(249, 203, 4, 0.97);
-    height: 17%;
     color: white;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 #tomorrow-col-1 {
