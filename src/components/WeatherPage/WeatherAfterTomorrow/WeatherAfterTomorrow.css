@@ -5,10 +5,8 @@
     grid-column-end: 3;
 }
 
-#after-tomorrow-col-1 {
-    text-align: center;
-}
-
-#after-tomorrow-col-2 * {
-    margin: 10px 0px 0px 60px;
+.WeatherAfterTomorrow * {
+    padding-top: 1%;
+    padding-left: 50%;
+    margin: 0;
 }
