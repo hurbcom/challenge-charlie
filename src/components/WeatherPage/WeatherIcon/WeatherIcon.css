@@ -1,0 +1,17 @@
+.WeatherIcon {
+    background-color: rgba(249, 203, 4, 0.8);
+    color: white;
+}
+
+#weather-icon {
+    font-size: 340px;
+    padding-left: 60px;
+}
+
+#today-1 {
+    text-align: center;
+}
+
+#today-2 * {
+    margin: 12px 0px 0px 60px;
+}
