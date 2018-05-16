@@ -11,17 +11,17 @@
 }
 
 #compass {
-    font-size: 59px;
-    padding-top: 15px;
-    padding-left: 15px;
+    font-size: 4.5vw;
+    padding-top: 1vw;
+    padding-left: 1vw;
 }
 
 #location {
     position: absolute;
-    font-size: 37px;
-    padding-left: 25px;
-    padding-top: 25px;
-    letter-spacing: 3px;
+    font-size: 2.8vw;
+    padding-left: 2vw;
+    padding-top: 2vw;
+    letter-spacing: 0.2vw;
 }
 
 [data-icon]:before {
