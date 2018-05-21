@@ -12,6 +12,7 @@ class WeatherPage extends Component {
         super(props);
     }
     render() {
+      console.log(this.props.data)
         return (<div className="WeatherPage">
             <WeatherLocation location="Rio de Janeiro, Rio de Janeiro"/>
             <WeatherIcon/>
