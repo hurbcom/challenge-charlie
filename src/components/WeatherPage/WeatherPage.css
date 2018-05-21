@@ -8,6 +8,18 @@
     grid-template-rows: 15% 51% 17% 17%;
 }
 
+@media (max-width:600px) {
+  .WeatherPage {
+      left: 8%;
+      width: 86%;
+      height: 100%;
+      position: absolute;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 15% 51% 17% 17%;
+  }
+}
+
 .column {
     float: left;
     width: 50%;
