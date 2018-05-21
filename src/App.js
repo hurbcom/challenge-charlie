@@ -26,13 +26,13 @@ class App extends Component {
             navigator.geolocation.getCurrentPosition(function(position) {
                 weather.get({lat: position.coords.latitude, lon: position.coords.longitude}).then((res) => {
                     const weatherData = {
-                        title: res.query.results.channel.title,
+                        title: res.query.results.channel.title.replace('Yahoo! Weather - ', ''),
                         tomorrow: res.query.results.channel.item.forecast[1],
                         afterTomorrow: res.query.results.channel.item.forecast[2],
                         temperature: res.query.results.channel.item.condition.temp,
                         condition: res.query.results.channel.item.condition.text,
-                        windSpeed: res.query.results.channel.wind.direction,
-                        windDirection: res.query.results.channel.wind.speed,
+                        windSpeed: res.query.results.channel.wind.speed,
+                        windDirection: res.query.results.channel.wind.direction,
                         humidity: res.query.results.channel.atmosphere.humidity,
                         pressure: res.query.results.channel.atmosphere.pressure
                     }

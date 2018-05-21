@@ -12,11 +12,11 @@ class WeatherPage extends Component {
         super(props);
     }
     render() {
-      console.log(this.props.data)
+        console.log(this.props.data)
         return (<div className="WeatherPage">
-            <WeatherLocation location="Rio de Janeiro, Rio de Janeiro"/>
+            <WeatherLocation location={this.props.data.title}/>
             <WeatherIcon/>
-            <WeatherToday/>
+            <WeatherToday temperature={this.props.data.temperature} windSpeed={this.props.data.windSpeed} windDirection={this.props.data.windDirection} humidity={this.props.data.humidity} pressure={this.props.data.pressure}/>
             <WeatherTomorrow/>
             <WeatherAfterTomorrow/>
         </div>);
