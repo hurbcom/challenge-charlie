@@ -8,6 +8,9 @@ import WeatherTomorrow from './WeatherTomorrow/WeatherTomorrow';
 import WeatherAfterTomorrow from './WeatherAfterTomorrow/WeatherAfterTomorrow';
 
 class WeatherPage extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (<div className="WeatherPage">
             <WeatherLocation location="Rio de Janeiro, Rio de Janeiro"/>
