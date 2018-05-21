@@ -1,0 +1,13 @@
+.WeatherTomorrow {
+    background-color: rgba(249, 203, 4, 0.97);
+    color: white;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.WeatherTomorrow * {
+    padding-top: 1%;
+    padding-left: 50%;
+    margin: 0;
+    font-size: 1.8vw;
+}

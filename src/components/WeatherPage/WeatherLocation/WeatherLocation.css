@@ -1,0 +1,30 @@
+.WeatherLocation {
+    background-color: rgba(255, 255, 255, 0.95);
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.WeatherLocation p {
+    color: gray;
+    margin: 0;
+    display: inline-block;
+}
+
+#compass {
+    font-size: 4.5vw;
+    padding-top: 1vw;
+    padding-left: 1vw;
+}
+
+#location {
+    position: absolute;
+    font-size: 2.8vw;
+    padding-left: 2vw;
+    padding-top: 2vw;
+    letter-spacing: 0.2vw;
+}
+
+[data-icon]:before {
+    font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+}

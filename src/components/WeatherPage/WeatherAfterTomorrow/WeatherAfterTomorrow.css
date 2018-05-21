@@ -1,0 +1,13 @@
+.WeatherAfterTomorrow {
+    background-color: rgba(181, 149, 2, 1);
+    color: white;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.WeatherAfterTomorrow * {
+    padding-top: 1%;
+    padding-left: 50%;
+    margin: 0;
+    font-size: 1.8vw;
+}

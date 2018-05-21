@@ -1,0 +1,32 @@
+.WeatherToday {
+    background-color: rgba(249, 203, 4, 0.8);
+    color: white;
+}
+
+.WeatherToday h1 {
+    margin: 0;
+    font-size: 2.5vw;
+}
+
+.WeatherToday h2 {
+    margin: 0;
+    font-size: 1.5vw;
+}
+
+.WeatherToday h3 {
+    margin: 0;
+    font-size: 1.5vw;
+}
+
+.TodayTemperature {
+    padding-top: 1vw;
+    padding-bottom: 2vw;
+}
+
+.TodayStatus h1 {
+    padding-bottom: 1vw;
+}
+
+.TodayStatus h3 {
+    padding-top: 0.2vw;
+}

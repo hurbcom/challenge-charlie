@@ -1,0 +1,9 @@
+.WeatherIcon {
+    background-color: rgba(249, 203, 4, 0.8);
+    color: white;
+    text-align: center;
+}
+
+#weather-icon {
+    font-size: 24vw;
+}
