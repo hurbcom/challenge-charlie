@@ -17,8 +17,8 @@ class WeatherPage extends Component {
             <WeatherLocation location={this.props.data.title}/>
             <WeatherIcon/>
             <WeatherToday temperature={this.props.data.temperature} windSpeed={this.props.data.windSpeed} windDirection={this.props.data.windDirection} humidity={this.props.data.humidity} pressure={this.props.data.pressure}/>
-            <WeatherTomorrow/>
-            <WeatherAfterTomorrow/>
+            <WeatherTomorrow tomorrow={this.props.data.tomorrow}/>
+            <WeatherAfterTomorrow afterTomorrow={this.props.data.afterTomorrow}/>
         </div>);
     }
 }
