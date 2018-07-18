@@ -1,0 +1,190 @@
+.search {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    &__input {
+        width: 40%;
+        margin-right: -3rem;
+        font-size: 1.8rem;
+        margin-left: -1.5rem;
+        border: 0;
+        border-color: #ccc;
+        padding: 1.4rem 1rem;
+        transition: all 0.2s;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+        @media only screen and (max-width: $bp-large) {
+            width: 50%;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            width: 60%;
+        }
+        @media only screen and (max-width: $bp-smallest) {
+            width: 70%;
+        }
+        &:focus {
+            outline: none;
+            width: 45%;
+            @media only screen and (max-width: $bp-large) {
+                width: 60%;
+            }
+            @media only screen and (max-width: $bp-medium) {
+                width: 70%;
+            }
+            @media only screen and (max-width: $bp-smallest) {
+                width: 80%;
+            }
+        }
+    }
+    &__button {
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.error-text {
+    z-index: 10;
+    color: #fff;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.backdrop {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    z-index: 9;
+    &--active {
+        z-index: 9;
+        opacity: 0.6;
+    }
+}
+
+.weather-box {
+    width: 40%;
+    align-self: center;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    color: white;
+    position: relative;
+    @media only screen and (max-width: $bp-large) {
+        width: 50%;
+    }
+    @media only screen and (max-width: $bp-medium) {
+        width: 60%;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+        width: 90%;
+    }
+
+    &__header {
+        box-shadow: 0px 0px 1px #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 1rem;
+        &__group {
+            display: flex;
+            font-weight: 200;
+            justify-content: space-between;
+        }
+    }
+    &__days {
+        margin-top: 1rem;
+        box-shadow: 0px 0px 3px #000;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        &--yellow {
+            background-color: rgba(255, 211, 0, 0.8);
+            box-shadow: 0 0 0 0;
+        }
+        &--blue {
+            background-color: rgba(26, 100, 156, 0.5);
+            box-shadow: 0 0 0 0;
+        }
+        &--red {
+            background-color: rgba(204, 0, 0, 0.5);
+            box-shadow: 0 0 0 0;
+        }
+        & > div {
+            flex: 0 0 50%;
+        }
+    }
+    &__day-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-weight: 200;
+        &__btn {
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+        }
+        &__group {
+            display: flex;
+            align-items: center;
+        }
+        &__temp {
+            font-size: 6rem;
+            position: relative;
+            &::before {
+                position: absolute;
+                font-size: 3rem;
+                content: 'F';
+                color: rgba(0, 0, 0, 0.3);
+                top: -2rem;
+            }
+            &--active {
+                &::before {
+                    content: 'C';
+                }
+            }
+        }
+    }
+    &__day-2 {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.spinner {
+    margin: 10rem auto 0;
+    width: 7rem;
+    text-align: center;
+    z-index: 10;
+    & > div {
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: #fff;
+        border-radius: 100%;
+        display: inline-block;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+}
+
+.spinner .bounce1 {
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}

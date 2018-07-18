@@ -1,0 +1,46 @@
+{
+  "name": "challenge_gotilt",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.10",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "watch:sass": "node-sass-chokidar src/assets/sass/main.scss src/index.css -w",
+    "build:sass": "node-sass-chokidar src/assets/sass/main.scss src/index.css",
+    "devserver": "react-scripts start",
+    "start": "concurrently -k \"npm run devserver\" \"npm run watch:sass\"",
+    "buildserver": "react-scripts build",
+    "build": "concurrently \"npm run build:sass\" \"npm run buildserver\"",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
+    "concurrently": "^3.6.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "node-sass-chokidar": "^1.3.0",
+    "react-test-renderer": "^16.4.1",
+    "redux-mock-store": "^1.5.3"
+  },
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:5000"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ]
+  }
+}
