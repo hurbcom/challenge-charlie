@@ -1,0 +1,24 @@
+{
+  "name": "goTilt",
+  "version": "1.0.0",
+  "description": "Api Challenge GoTilt",
+  "main": "index.js",
+  "author": "Marcus Vinicius",
+  "license": "MIT",
+  "scripts": {
+    "test": "npm run test --prefix client",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2",
+    "nodemon": "^1.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0"
+  }
+}

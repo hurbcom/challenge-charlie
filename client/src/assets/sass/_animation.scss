@@ -1,0 +1,19 @@
+.animate-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    animation-name: animateTop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animateTop {
+    from {
+        opacity: 0;
+        top: 0;
+    }
+    to {
+        opacity: 1;
+        top: 100%;
+    }
+}
