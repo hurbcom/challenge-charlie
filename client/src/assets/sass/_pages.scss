@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  // align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  &__name {
+    text-align: center;
+    font-size: 4rem;
+    z-index: 10;
+    margin: 3rem;
+  }
+}
