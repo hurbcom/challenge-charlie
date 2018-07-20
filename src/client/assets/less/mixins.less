@@ -1,0 +1,34 @@
+.align-self-icone(@valor: " ";) when not (@valor = " ") {
+    align-self: @valor;
+}
+.margin-icone(@valor: " ";) when not (@valor = " ") {
+    margin: @valor;
+}
+.cor-icone(@valor: " ";) when not (@valor = " ") {
+    color: @valor;
+}
+.icone-do-tempo(@font-size-valor; @cor-valor; @align-self-valor; @margin-valor) {
+    font-family: "MeteoconsRegular";
+    font-size: @font-size-valor;
+    .cor-icone(@cor-valor);
+    .align-self-icone(@align-self-valor);
+    .margin-icone(@margin-valor);
+}
+.largura(@valor: " ";) when not (@valor = " ") {
+    width: @valor;
+}
+.altura(@valor: " ";) when not (@valor = " ") {
+    height: @valor;
+}
+.preenchimento-esquerda(@valor: " ";) when not (@valor = " ") {
+    padding-left: @valor;
+}
+.container-condicao-tempo(@largura-valor; @altura-valor; @preenchimento-esquerda-valor) {
+    display: flex;
+    justify-content: space-around;
+    .largura(@largura-valor);
+    .altura(@altura-valor);
+    .preenchimento-esquerda(
+        @preenchimento-esquerda-valor
+    );
+}
