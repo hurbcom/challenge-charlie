@@ -5,7 +5,7 @@ import LocalidadeController from "./LocalidadeController";
 import TempoAmanhaController from "./TempoAmanhaController";
 import TempoDepoisAmanhaController from "./TempoDepoisAmanhaController";
 
-export default class TemporarioController {
+export default class PrevisaoDoTempoController {
     constructor() {
         this.url = "http://localhost:8080/yahoo";
         this.consomeRESTApi = new ConsomeRESTApi();

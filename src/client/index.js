@@ -5,6 +5,6 @@ import PrevisaoDoTempoController from "./controller/PrevisaoDoTempoController";
     const imagemDeFundoController = new ImagemDeFundoController();
     imagemDeFundoController.aplicaImagemDeFundo();
 
-    const PrevisaoDoTempoController = new PrevisaoDoTempoController();
-    PrevisaoDoTempoController.inicio();
+    const previsaoDoTempoController = new PrevisaoDoTempoController();
+    previsaoDoTempoController.inicio();
 })();
