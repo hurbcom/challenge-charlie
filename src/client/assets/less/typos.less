@@ -1,0 +1,22 @@
+@import (css) url('./fonts.css');
+
+@fnt-tamanho-minimo-px: 12px;
+@fnt-tamanho-maximo: 22;
+@fnt-tamanho-minimo: 12;
+@vw-tamanho-minimo-px: 200px;
+@vw-tamanho-maximo: 1259;
+@vw-tamanho-minimo: 200;
+
+:root {
+  font-size: calc(@fnt-tamanho-minimo-px + (@fnt-tamanho-maximo - @fnt-tamanho-minimo) * ((100vw - @vw-tamanho-minimo-px) / (@vw-tamanho-maximo - @vw-tamanho-minimo)));
+}
+.txt-algn-cnt {
+  text-align: center;
+}
+.dados__texto {
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  line-height: 1.3em;
+  margin: 0;
+  padding: 0;
+}
