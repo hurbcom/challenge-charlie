@@ -1,0 +1,9 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 50vw));
+    margin-top: 5vh;
+    height: 90vh;
+    opacity: 0.9;
+    // border-radius: 10px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
