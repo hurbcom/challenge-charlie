@@ -1,0 +1,36 @@
+@import "../common/mixins.scss";
+
+.icone-tempo_pequeno {
+    @include icone-do-tempo(4.54rem, white, center, false);
+}
+
+.previsao_amanha {
+    @include container-condicao-tempo(false, false, false);
+}
+.previsao_depois-amanha {
+    @include container-condicao-tempo(false, false, 25px);
+}
+.azul_secundario {
+    background-color: #2487c9;
+}
+.azul_terceario {
+    background-color: #1c6a9e;
+}
+.vermelho_secundario {
+    background-color: #ae1f2a;
+}
+.vermelho_terceario {
+    background-color: #911a23;
+}
+.amarelo_secundario {
+    background-color: #dcbd00;
+}
+.amarelo_terceario {
+    background-color: #988300;
+}
+.cinza_secundario {
+    background-color: #8d989c;
+}
+.cinza_terceario {
+    background-color: #738084;
+}
