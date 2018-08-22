@@ -5,4 +5,4 @@ config/webpack.config.js
 config/webpack.srv.js
 exemplo.jpg
 src/client/assets/css
-src/client/components
+# src/client/components
