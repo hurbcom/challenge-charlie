@@ -1,0 +1,14 @@
+body {
+    margin: 0%;
+    padding: 0%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
