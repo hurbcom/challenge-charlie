@@ -1,0 +1,16 @@
+@import './fonts.scss';
+@import './mixins.scss';
+
+:root {
+    @include tamanho-fonte();
+}
+.txt-algn-cnt {
+    text-align: center;
+}
+.dados__texto {
+    font-family: "Roboto", sans-serif;
+    color: black;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,49 @@
+@mixin align-self-icone($valor: false) {
+    @if $valor { align-self: $valor }
+}
+@mixin margin-icone($valor: false) {
+    @if $valor { margin: $valor }
+}
+@mixin cor-icone($valor: false) {
+    @if $valor { color: $valor }
+}
+@mixin icone-do-tempo($font-size-valor, $cor-valor, $align-self-valor, $margin-valor) {
+    font-family: "MeteoconsRegular";
+    font-size: $font-size-valor;
+    @include cor-icone($cor-valor);
+    @include align-self-icone($align-self-valor);
+    @include margin-icone($margin-valor);
+}
+@mixin largura($valor: false) {
+    @if $valor { width: $valor }
+}
+@mixin altura($valor: false) {
+    @if $valor { height: $valor }
+}
+@mixin preenchimento-esquerda($valor: false) {
+    @if $valor { padding-left: $valor }
+}
+@mixin container-condicao-tempo($largura-valor, $altura-valor, $preenchimento-esquerda-valor) {
+    display: flex;
+    justify-content: space-around;
+    @include largura($largura-valor);
+    @include altura($altura-valor);
+    @include preenchimento-esquerda($preenchimento-esquerda-valor);
+}
+
+$fnt-tamanho-minimo-px: 12px;
+$fnt-tamanho-maximo: 22;
+$fnt-tamanho-minimo: 12;
+$vw-tamanho-minimo-px: 200px;
+$vw-tamanho-maximo: 1259;
+$vw-tamanho-minimo: 200;
+
+@mixin tamanho-fonte() {
+    font-size: calc(
+        #{$fnt-tamanho-minimo-px} + (#{$fnt-tamanho-maximo} - #{$fnt-tamanho-minimo}) *
+            (
+                (100vw - #{$vw-tamanho-minimo-px}) /
+                (#{$vw-tamanho-maximo} - #{$vw-tamanho-minimo})
+            )
+    )
+}
