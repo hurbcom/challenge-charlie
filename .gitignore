@@ -1,0 +1,8 @@
+node_modules
+*.log
+dist
+config/webpack.config.js
+config/webpack.srv.js
+exemplo.jpg
+src/client/assets/css
+src/client/components
