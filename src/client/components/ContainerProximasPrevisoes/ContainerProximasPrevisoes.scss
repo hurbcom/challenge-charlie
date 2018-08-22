@@ -1,0 +1,6 @@
+.container__proximas-previsoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    width: 100%;
+    height: 40%;
+}
