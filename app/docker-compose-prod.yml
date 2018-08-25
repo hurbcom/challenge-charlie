@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+    app:
+        container_name: hurb-teste-prod
+        build:
+            context: .
+            dockerfile: Dockerfile-prod
+        ports:
+            - '80:80'

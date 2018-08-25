@@ -1,0 +1,32 @@
+Projeto inciado com [Create React App](https://github.com/facebookincubator/create-react-app).
+
+### Requesitos
+
+```
+docker
+docker-compose
+```
+
+# Desenvolvimento
+
+Para constuir e inicializar o container
+
+```
+docker-compose up -d --build
+```
+
+Acessar ambiente de desenvolovimento `localhost:3000`
+
+# Emnulação de Produção
+
+Construir o build o create-react-app em um container para emular produção
+
+```
+docker build -f Dockerfile-prod -t hurb-test-prod .
+```
+
+Executar container emulador da produção
+
+```
+docker run -it -p 80:80 --rm hurb-test-prod
+```
