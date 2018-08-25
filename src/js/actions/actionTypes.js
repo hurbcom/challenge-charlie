@@ -1,0 +1,1 @@
+export const GET_FEATURED_IMAGE = 'GET_FEATURED_IMAGE';
