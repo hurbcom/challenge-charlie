@@ -1,0 +1,11 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css';
+.Wrapper {
+  align-items: center;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+.FormLocations__input {
+  padding: 1rem;
+}

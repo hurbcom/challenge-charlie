@@ -1,9 +1,10 @@
 import React from 'react';
+import FormLocations from './FormLocations';
 import Wrapper from './Wrapper';
 
 const App = () => (
     <Wrapper>
-        <h1>Hello, world!</h1>
+        <FormLocations />
     </Wrapper>
 );
 

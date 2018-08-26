@@ -4,8 +4,11 @@
     "description": "Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.",
     "main": "index.js",
     "scripts": {
+        "build-css": "lessc src/less/style.less public/style.css",
+        "watch-css": "npm run build-css && less-watch-compiler src/less public style.less",
         "server": "node index.js",
-        "start": "PORT=5000 react-scripts start",
+        "start-js": "PORT=5000 react-scripts start",
+        "start": "npm-run-all -p watch-css start-js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -22,7 +25,10 @@
     "dependencies": {
         "cors": "^2.8.4",
         "express": "^4.16.3",
+        "less": "^3.8.1",
+        "less-watch-compiler": "^1.11.3",
         "node-fetch": "^2.2.0",
+        "npm-run-all": "^4.1.3",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-scripts": "^1.1.5"
