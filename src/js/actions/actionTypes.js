@@ -1,1 +1,2 @@
-export const GET_FEATURED_IMAGE = 'GET_FEATURED_IMAGE';
+export const GET_WEATHER = 'GET_WEATHER';
+export const NO_LOCATION = 'NO_LOCATION';

@@ -1,6 +1,11 @@
 const initialState = {
-    urlImage:'',
-    log:0
+    errorLocation:false,
+    weather:{
+        city:'',
+    condition:{},
+    forecast:{}
+    }
+    
 }
 
 export default initialState
