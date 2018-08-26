@@ -1,0 +1,24 @@
+{
+    "name": "challenge-charlie",
+    "version": "1.0.0",
+    "description": "Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.",
+    "main": "index.js",
+    "scripts": {
+        "start": "react-scripts start",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/leandrocunha/challenge-charlie.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/leandrocunha/challenge-charlie/issues"
+    },
+    "homepage": "https://github.com/leandrocunha/challenge-charlie#readme",
+    "dependencies": {
+        "react-scripts": "^1.1.5"
+    }
+}
