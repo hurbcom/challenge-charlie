@@ -19,8 +19,10 @@
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg); }
+    opacity: 0; }
+  50% {
+    opacity: 1; }
   to {
-    transform: rotate(360deg); } }
+    opacity: 0; } }
 
 /*# sourceMappingURL=App.css.map */

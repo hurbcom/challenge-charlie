@@ -1,0 +1,28 @@
+
+
+#smoky,#snow,#rain,#heavy-rain,#heavy-snow,#cold,#mostly-sun,#partly-night,#clean-night,#sun,#wind,#mostly-night,#mostly-sun,#thunder,#several-thunder,#thunder-rain,#snow-rain,#tornado,#hurricane,#foggy{
+    width: 250px;
+}
+
+#floco-grande .st0{
+    stroke-width:1;
+    fill:#000;
+}
+
+#floco-pequeno .st0{
+    stroke-width:1;
+    fill:#000;
+}
+#floco-medio .st0{
+    stroke-width:1;
+    fill:#000;
+}
+.smoky,.st0{
+    fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10;stroke-linecap:round}
+  
+.st1{
+    fill:#000; 
+}
+.st2{fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10;}
+
+.st3{fill:#000;stroke:#000;stroke-width:3;stroke-miterlimit:10;}
