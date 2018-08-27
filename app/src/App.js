@@ -12,11 +12,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        //Utilização do cors.io para contornar o acesso boloquei de CORS
-        let bingUrl =
-            'https://cors.io?https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
-        axios.get(bingUrl).then(res => {
-            let bgImage = 'https://www.bing.com' + res.data.images[0].url;
+        axios.get('https://bingwallpaper.herokuapp.com').then(res => {
+            let bgImage = res.data;
+            console.log(res);
             this.setState({
                 bgBing: bgImage
             });
