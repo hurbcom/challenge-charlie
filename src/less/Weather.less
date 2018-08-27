@@ -17,39 +17,10 @@
         }
 
         &__condition {
-            flex-grow: 0.5;
             padding: 1rem;
             text-align: center;
+            width: 25%;
 
-            &__code {
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                height: 8rem;
-
-                &--23 {
-                    background-image: url('images/19.svg');
-                }
-
-                &--26 {
-                    background-image: url('images/14.svg');
-                }
-
-                &--27 {
-                    background-image: url('images/25.svg');
-                }
-
-                &--29,
-                &--30 {
-                    background-image: url('images/8.svg');
-                }
-
-                &--31,
-                &--32,
-                &--33 {
-                    background-image: url('images/2.svg');
-                }
-            }
             &__text {
                 font-weight: 300;
                 text-transform: uppercase;
@@ -110,7 +81,8 @@
 
     &__brief {
         border: rgba(@black, 0.1) 1px solid;
-        padding: 1rem 1rem 1rem 40%;
+        display: flex;
+        padding: 1rem;
 
         &--cold {
             background-color: rgba(@blue, 0.5);
@@ -124,14 +96,22 @@
             background-color: rgba(@red, 0.5);
         }
 
-        &__label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
+        &__meteocon {
+            width: 25%;
         }
 
-        &__temp {
-            margin: 0.3rem 0;
+        &__info {
+            flex-grow: 1;
+
+            &__label {
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            &__temp {
+                margin: 0.3rem 0;
+            }
         }
     }
 }

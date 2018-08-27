@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import translateTemp from './../utils/translateTemp';
+import Meteocons from './Meteocons';
 
 const WeatherToday = ({
     atmosphere,
@@ -20,14 +21,15 @@ const WeatherToday = ({
         onClick={() => toggleUnit()}
     >
         <div className="Weather__today__condition">
-            <div
+            <Meteocons code={item.condition.code} />
+            {/* <div
                 className={classnames(
                     'Weather__today__condition__code',
                     `Weather__today__condition__code--${
                         item.condition.code
                     }`
                 )}
-            />
+            /> */}
             <p className="Weather__today__condition__text">
                 {item.condition.text}
             </p>

@@ -64,33 +64,9 @@ body {
   background-color: rgba(255, 0, 0, 0.5);
 }
 .Weather__today__condition {
-  flex-grow: 0.5;
   padding: 1rem;
   text-align: center;
-}
-.Weather__today__condition__code {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 8rem;
-}
-.Weather__today__condition__code--23 {
-  background-image: url('images/19.svg');
-}
-.Weather__today__condition__code--26 {
-  background-image: url('images/14.svg');
-}
-.Weather__today__condition__code--27 {
-  background-image: url('images/25.svg');
-}
-.Weather__today__condition__code--29,
-.Weather__today__condition__code--30 {
-  background-image: url('images/8.svg');
-}
-.Weather__today__condition__code--31,
-.Weather__today__condition__code--32,
-.Weather__today__condition__code--33 {
-  background-image: url('images/2.svg');
+  width: 25%;
 }
 .Weather__today__condition__text {
   font-weight: 300;
@@ -139,7 +115,8 @@ body {
 }
 .Weather__brief {
   border: rgba(0, 0, 0, 0.1) 1px solid;
-  padding: 1rem 1rem 1rem 40%;
+  display: flex;
+  padding: 1rem;
 }
 .Weather__brief--cold {
   background-color: rgba(0, 193, 232, 0.5);
@@ -150,11 +127,50 @@ body {
 .Weather__brief--hot {
   background-color: rgba(255, 0, 0, 0.5);
 }
-.Weather__brief__label {
+.Weather__brief__meteocon {
+  width: 25%;
+}
+.Weather__brief__info {
+  flex-grow: 1;
+}
+.Weather__brief__info__label {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
 }
-.Weather__brief__temp {
+.Weather__brief__info__temp {
   margin: 0.3rem 0;
+}
+.Meteocons {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 8rem;
+  text-indent: -500rem;
+}
+.Meteocons--11,
+.Meteocons--12 {
+  background-image: url('images/9.svg');
+}
+.Meteocons--23 {
+  background-image: url('images/19.svg');
+}
+.Meteocons--26 {
+  background-image: url('images/14.svg');
+}
+.Meteocons--27 {
+  background-image: url('images/9.svg');
+}
+.Meteocons--28 {
+  background-image: url('images/25.svg');
+}
+.Meteocons--29,
+.Meteocons--30 {
+  background-image: url('images/8.svg');
+}
+.Meteocons--31,
+.Meteocons--32,
+.Meteocons--33,
+.Meteocons--34 {
+  background-image: url('images/2.svg');
 }
