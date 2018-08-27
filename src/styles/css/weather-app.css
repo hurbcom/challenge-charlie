@@ -46,6 +46,29 @@
     position: relative;
     z-index: 1;
     height: calc(100% - 10em); }
+    .weather-app .main-temp .search-on {
+      position: relative;
+      background-color: white; }
+      .weather-app .main-temp .search-on .close {
+        position: absolute;
+        margin: auto;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        cursor: pointer; }
+    .weather-app .main-temp .search-off {
+      width: 100%;
+      height: 2em;
+      position: absolute;
+      top: 0; }
+      .weather-app .main-temp .search-off .search-icon {
+        color: white;
+        position: absolute;
+        margin: auto;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        cursor: pointer; }
     .weather-app .main-temp:after {
       content: "";
       background-image: linear-gradient(to top, #fbce04, #fcdd4f 10px);

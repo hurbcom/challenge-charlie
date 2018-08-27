@@ -1,5 +1,6 @@
 const initialState = {
     errorLocation:false,
+    searching:false,
     weather:{
         city:'',
     condition:{},

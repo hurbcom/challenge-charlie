@@ -27,6 +27,14 @@ const reducers = (state = initialState, action) => {
                     forecast: {}
                 }
             })
+        case types.IS_SEARCHING:
+            return Object.assign({}, state, {
+                isSearching:true
+            })
+        case types.NOT_SEARCHING:
+            return Object.assign({}, state, {
+                isSearching:false
+            })
         default:
             return state
     }

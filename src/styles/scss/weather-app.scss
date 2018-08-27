@@ -54,6 +54,35 @@
         position: relative;
         z-index: 1;
         height: calc(100% - 10em);
+        .search-on{
+            position: relative;
+            background-color:white;
+            .close{
+                position: absolute;
+                margin: auto;
+                right: 10px;
+                top:0;
+                bottom:0;
+                cursor: pointer;
+            }
+        }
+        .search-off{
+            width: 100%;
+            height: 2em;
+            position: absolute;
+            top:0;
+            .search-icon{
+                color:white;
+                    position: absolute;
+                    margin: auto;
+                    right: 10px;
+                    top:0;
+                    bottom:0;
+                    cursor: pointer;
+                
+            }
+        }
+
         &:after {
             content: "";
             // exemplo degrade
