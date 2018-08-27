@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Weather from './Weather';
+import { coordinates, weather } from './../actions';
+import geolocation from './../utils/geolocation';
 
 class FormLocations extends Component {
     constructor(props) {
@@ -15,29 +17,20 @@ class FormLocations extends Component {
     }
 
     componentDidMount() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                this.showPosition
-            );
-        } else {
-            console.log(
-                'Geolocation is not supported by this browser.'
-            );
-        }
+        geolocation(this.showPosition);
     }
 
     showPosition(position) {
-        fetch(
-            `http://localhost:3000/api/coordinates?lat=${
-                position.coords.latitude
-            }&long=${position.coords.longitude}`
-        )
-            .then(body => body.json(body))
-            .then(res =>
-                this.setState({
-                    location: res.results.channel.location.city,
-                })
-            );
+        const params = {
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+        };
+
+        coordinates(params).then(res =>
+            this.setState({
+                location: res.results.channel.location.city,
+            })
+        );
     }
 
     submit(e) {
@@ -60,18 +53,12 @@ class FormLocations extends Component {
     }
 
     getWeather(params) {
-        fetch(
-            `http://localhost:3000/api/wheater?location=${
-                params.location
-            }&unit=${params.unit}`
-        )
-            .then(body => body.json())
-            .then(res =>
-                this.setState({
-                    unit: params.unit,
-                    weather: { ...res },
-                })
-            );
+        weather(params).then(res =>
+            this.setState({
+                unit: params.unit,
+                weather: { ...res },
+            })
+        );
     }
 
     render() {
