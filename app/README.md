@@ -30,3 +30,7 @@ Executar container emulador da produção
 ```
 docker run -it -p 80:80 --rm hurb-test-prod
 ```
+
+### Anotações
+
+Para a dispensa de desenvolvimento de um bakcend para contorno o CORS ativo das Imagens do BING foi utilizado o serviço de cors proxy cors.io
