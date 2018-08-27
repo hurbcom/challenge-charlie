@@ -1,37 +1,40 @@
 #smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy {
   width: 250px; }
 
+.forecast #smoky, .forecast #snow, .forecast #rain, .forecast #heavy-rain, .forecast #heavy-snow, .forecast #cold, .forecast #mostly-sun, .forecast #partly-night, .forecast #clean-night, .forecast #sun, .forecast #wind, .forecast #mostly-night, .forecast #mostly-sun, .forecast #thunder, .forecast #several-thunder, .forecast #thunder-rain, .forecast #snow-rain, .forecast #tornado, .forecast #hurricane, .forecast #foggy {
+  height: 4.5em; }
+
 #floco-grande .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 #floco-pequeno .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 #floco-medio .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 .smoky, .st0 {
   fill: none;
-  stroke: #000;
-  stroke-width: 3;
+  stroke: #FFF;
+  stroke-width: 5;
   stroke-miterlimit: 10;
   stroke-linecap: round; }
 
 .st1 {
-  fill: #000; }
+  fill: #FFF; }
 
 .st2 {
   fill: none;
-  stroke: #000;
+  stroke: #FFF;
   stroke-width: 3;
   stroke-miterlimit: 10; }
 
 .st3 {
-  fill: #000;
-  stroke: #000;
+  fill: #FFF;
+  stroke: #FFF;
   stroke-width: 3;
   stroke-miterlimit: 10; }
 

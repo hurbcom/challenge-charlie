@@ -4,25 +4,31 @@
     width: 250px;
 }
 
+.forecast{
+    #smoky,#snow,#rain,#heavy-rain,#heavy-snow,#cold,#mostly-sun,#partly-night,#clean-night,#sun,#wind,#mostly-night,#mostly-sun,#thunder,#several-thunder,#thunder-rain,#snow-rain,#tornado,#hurricane,#foggy{
+        height: 4.5em;
+    }
+}
+
 #floco-grande .st0{
     stroke-width:1;
-    fill:#000;
+    fill:#FFF;
 }
 
 #floco-pequeno .st0{
     stroke-width:1;
-    fill:#000;
+    fill:#FFF;
 }
 #floco-medio .st0{
     stroke-width:1;
-    fill:#000;
+    fill:#FFF;
 }
 .smoky,.st0{
-    fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10;stroke-linecap:round}
+    fill:none;stroke:#FFF;stroke-width:5;stroke-miterlimit:10;stroke-linecap:round}
   
 .st1{
-    fill:#000; 
+    fill:#FFF; 
 }
-.st2{fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10;}
+.st2{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 
-.st3{fill:#000;stroke:#000;stroke-width:3;stroke-miterlimit:10;}
+.st3{fill:#FFF;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}

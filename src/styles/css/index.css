@@ -5,7 +5,8 @@ body {
 
 .App {
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+  min-height: 550px; }
 
 @keyframes App-logo-spin {
   from {
@@ -17,38 +18,101 @@ body {
 #smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy {
   width: 250px; }
 
+.forecast #smoky, .forecast #snow, .forecast #rain, .forecast #heavy-rain, .forecast #heavy-snow, .forecast #cold, .forecast #mostly-sun, .forecast #partly-night, .forecast #clean-night, .forecast #sun, .forecast #wind, .forecast #mostly-night, .forecast #mostly-sun, .forecast #thunder, .forecast #several-thunder, .forecast #thunder-rain, .forecast #snow-rain, .forecast #tornado, .forecast #hurricane, .forecast #foggy {
+  height: 4.5em; }
+
 #floco-grande .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 #floco-pequeno .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 #floco-medio .st0 {
   stroke-width: 1;
-  fill: #000; }
+  fill: #FFF; }
 
 .smoky, .st0 {
   fill: none;
-  stroke: #000;
-  stroke-width: 3;
+  stroke: #FFF;
+  stroke-width: 5;
   stroke-miterlimit: 10;
   stroke-linecap: round; }
 
 .st1 {
-  fill: #000; }
+  fill: #FFF; }
 
 .st2 {
   fill: none;
-  stroke: #000;
+  stroke: #FFF;
   stroke-width: 3;
   stroke-miterlimit: 10; }
 
 .st3 {
-  fill: #000;
-  stroke: #000;
+  fill: #FFF;
+  stroke: #FFF;
   stroke-width: 3;
   stroke-miterlimit: 10; }
+
+* {
+  box-sizing: border-box; }
+
+.weather-app {
+  overflow: hidden;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 300px;
+  height: 550px;
+  border-radius: 20px; }
+  .weather-app .forecast {
+    z-index: 1;
+    margin: auto;
+    margin-bottom: 0;
+    height: 5em; }
+    .weather-app .forecast:nth-of-type(2) {
+      position: relative; }
+      .weather-app .forecast:nth-of-type(2):after {
+        content: "";
+        background-image: linear-gradient(to top, #b09003, #fbce04 10px);
+        opacity: 0.9;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1; }
+    .weather-app .forecast:nth-of-type(3) {
+      position: relative; }
+      .weather-app .forecast:nth-of-type(3):after {
+        content: "";
+        background-color: #b09003;
+        opacity: 0.9;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1; }
+  .weather-app .main-temp {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    height: calc(100% - 10em); }
+    .weather-app .main-temp:after {
+      content: "";
+      background-image: linear-gradient(to top, #fbce04, #fcdd4f 10px);
+      opacity: 0.9;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1; }
 
 /*# sourceMappingURL=index.css.map */

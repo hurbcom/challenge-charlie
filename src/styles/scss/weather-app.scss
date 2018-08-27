@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+.weather-app {
+    overflow: hidden;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 550px;
+    border-radius: 20px;
+    .forecast {
+        z-index: 1;
+        margin: auto;
+        margin-bottom: 0;
+        height: 5em;
+        &:nth-of-type(2){
+            position: relative;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #b09003, #fbce04 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        &:nth-of-type(3) {
+            position: relative;
+            &:after {
+                content: "";
+                background-color: #b09003;
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
+    .main-temp {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        height: calc(100% - 10em);
+        &:after {
+            content: "";
+            // exemplo degrade
+            background-image: linear-gradient(to top, #fbce04, #fcdd4f 10px);
+            opacity: 0.9;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    }
+}
