@@ -26,7 +26,9 @@ app.get('/api/wheater', function(req, res) {
         yahooAPI +
             '?format=json&q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' +
             query.location +
-            '")'
+            '") and u="' +
+            query.unit +
+            '"'
     )
         .then(res => res.json())
         .then(body => res.json(body.query));

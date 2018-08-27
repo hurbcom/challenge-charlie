@@ -1,4 +1,26 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css';
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
 .Wrapper {
   align-items: center;
   background-size: cover;
@@ -6,6 +28,133 @@
   height: 100vh;
   justify-content: center;
 }
-.FormLocations__input {
+.FormLocations {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 90%;
+}
+.FormLocations__form {
+  display: flex;
+}
+.FormLocations__form__input {
+  border: none;
+  flex: 1;
+  font-weight: 700;
   padding: 1rem;
+}
+.FormLocations__form__button {
+  background-color: #ff5d00;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 1rem;
+  text-transform: lowercase;
+}
+.Weather__today {
+  cursor: pointer;
+  display: flex;
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+}
+.Weather__today--cold {
+  background-color: rgba(0, 193, 232, 0.5);
+}
+.Weather__today--tropical {
+  background-color: rgba(253, 214, 0, 0.5);
+}
+.Weather__today--hot {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.Weather__today__condition {
+  flex-grow: 0.5;
+  padding: 1rem;
+  text-align: center;
+}
+.Weather__today__condition__code {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 8rem;
+}
+.Weather__today__condition__code--23 {
+  background-image: url('images/19.svg');
+}
+.Weather__today__condition__code--26 {
+  background-image: url('images/14.svg');
+}
+.Weather__today__condition__code--27 {
+  background-image: url('images/25.svg');
+}
+.Weather__today__condition__code--29,
+.Weather__today__condition__code--30 {
+  background-image: url('images/8.svg');
+}
+.Weather__today__condition__code--31,
+.Weather__today__condition__code--32,
+.Weather__today__condition__code--33 {
+  background-image: url('images/2.svg');
+}
+.Weather__today__condition__text {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.Weather__today__info {
+  flex-grow: 1;
+  padding: 1rem;
+}
+.Weather__today__info__date,
+.Weather__today__info__temp {
+  margin: 0;
+}
+.Weather__today__info__date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.Weather__today__info__temp {
+  font-size: 5rem;
+  font-weight: 400;
+  margin: 0.5rem 0;
+}
+.Weather__today__info__temp__wrapper {
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: 3rem;
+  padding-right: 2.5rem;
+}
+.Weather__today__info__temp__wrapper--c {
+  background-image: url('images/46.svg');
+}
+.Weather__today__info__temp__wrapper--f {
+  background-image: url('images/47.svg');
+}
+.Weather__today__info__additionalList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.Weather__today__info__additionalList__item {
+  margin-bottom: 0.3rem;
+}
+.Weather__today__info__additionalList__item:last-of-type {
+  margin-bottom: 0;
+}
+.Weather__brief {
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+  padding: 1rem 1rem 1rem 40%;
+}
+.Weather__brief--cold {
+  background-color: rgba(0, 193, 232, 0.5);
+}
+.Weather__brief--tropical {
+  background-color: rgba(253, 214, 0, 0.5);
+}
+.Weather__brief--hot {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.Weather__brief__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.Weather__brief__temp {
+  margin: 0.3rem 0;
 }

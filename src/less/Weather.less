@@ -1,0 +1,137 @@
+.Weather {
+    &__today {
+        cursor: pointer;
+        display: flex;
+        border: rgba(@black, 0.1) 1px solid;
+
+        &--cold {
+            background-color: rgba(@blue, 0.5);
+        }
+
+        &--tropical {
+            background-color: rgba(@yellow, 0.5);
+        }
+
+        &--hot {
+            background-color: rgba(@red, 0.5);
+        }
+
+        &__condition {
+            flex-grow: 0.5;
+            padding: 1rem;
+            text-align: center;
+
+            &__code {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                height: 8rem;
+
+                &--23 {
+                    background-image: url('images/19.svg');
+                }
+
+                &--26 {
+                    background-image: url('images/14.svg');
+                }
+
+                &--27 {
+                    background-image: url('images/25.svg');
+                }
+
+                &--29,
+                &--30 {
+                    background-image: url('images/8.svg');
+                }
+
+                &--31,
+                &--32,
+                &--33 {
+                    background-image: url('images/2.svg');
+                }
+            }
+            &__text {
+                font-weight: 300;
+                text-transform: uppercase;
+            }
+        }
+
+        &__info {
+            flex-grow: 1;
+            padding: 1rem;
+
+            &__date,
+            &__temp {
+                margin: 0;
+            }
+
+            &__date {
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            &__temp {
+                font-size: 5rem;
+                font-weight: 400;
+                margin: 0.5rem 0;
+
+                &__wrapper {
+                    background-position: top right;
+                    background-repeat: no-repeat;
+                    background-size: 3rem;
+                    padding-right: 2.5rem;
+
+                    &--c {
+                        background-image: url('images/46.svg');
+                    }
+
+                    &--f {
+                        background-image: url('images/47.svg');
+                    }
+                }
+            }
+
+            &__additionalList {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                &__item {
+                    margin-bottom: 0.3rem;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &__brief {
+        border: rgba(@black, 0.1) 1px solid;
+        padding: 1rem 1rem 1rem 40%;
+
+        &--cold {
+            background-color: rgba(@blue, 0.5);
+        }
+
+        &--tropical {
+            background-color: rgba(@yellow, 0.5);
+        }
+
+        &--hot {
+            background-color: rgba(@red, 0.5);
+        }
+
+        &__label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        &__temp {
+            margin: 0.3rem 0;
+        }
+    }
+}
