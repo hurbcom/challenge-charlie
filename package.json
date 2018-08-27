@@ -9,7 +9,7 @@
         "server": "node index.js",
         "start-js": "PORT=5000 react-scripts start",
         "start": "npm-run-all -p watch-css start-js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "react-scripts test --env=jsdom"
     },
     "repository": {
         "type": "git",
