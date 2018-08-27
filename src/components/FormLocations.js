@@ -92,7 +92,7 @@ class FormLocations extends Component {
                         }
                         placeholder="Digite uma cidade"
                         type="text"
-                        value={location}
+                        defaultValue={location}
                     />
                     <button className="FormLocations__form__button">
                         Ok

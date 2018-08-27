@@ -1,8 +1,9 @@
 .Weather {
     &__today {
+        border: rgba(@black, 0.1) 1px solid;
         cursor: pointer;
         display: flex;
-        border: rgba(@black, 0.1) 1px solid;
+        padding: 1rem;
 
         &--cold {
             background-color: rgba(@blue, 0.5);
@@ -17,7 +18,7 @@
         }
 
         &__condition {
-            padding: 1rem;
+            margin: 0 2rem 0 1rem;
             text-align: center;
             width: 25%;
 
@@ -29,7 +30,6 @@
 
         &__info {
             flex-grow: 1;
-            padding: 1rem;
 
             &__date,
             &__temp {
@@ -97,6 +97,7 @@
         }
 
         &__meteocon {
+            margin: 0 2rem 0 1rem;
             width: 25%;
         }
 

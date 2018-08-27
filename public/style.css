@@ -50,9 +50,10 @@ body {
   text-transform: lowercase;
 }
 .Weather__today {
+  border: rgba(0, 0, 0, 0.1) 1px solid;
   cursor: pointer;
   display: flex;
-  border: rgba(0, 0, 0, 0.1) 1px solid;
+  padding: 1rem;
 }
 .Weather__today--cold {
   background-color: rgba(0, 193, 232, 0.5);
@@ -64,7 +65,7 @@ body {
   background-color: rgba(255, 0, 0, 0.5);
 }
 .Weather__today__condition {
-  padding: 1rem;
+  margin: 0 2rem 0 1rem;
   text-align: center;
   width: 25%;
 }
@@ -74,7 +75,6 @@ body {
 }
 .Weather__today__info {
   flex-grow: 1;
-  padding: 1rem;
 }
 .Weather__today__info__date,
 .Weather__today__info__temp {
@@ -128,6 +128,7 @@ body {
   background-color: rgba(255, 0, 0, 0.5);
 }
 .Weather__brief__meteocon {
+  margin: 0 2rem 0 1rem;
   width: 25%;
 }
 .Weather__brief__info {
@@ -147,6 +148,10 @@ body {
   background-size: contain;
   height: 8rem;
   text-indent: -500rem;
+}
+.Meteocons--small {
+  background-size: 50%;
+  height: 6rem;
 }
 .Meteocons--11,
 .Meteocons--12 {

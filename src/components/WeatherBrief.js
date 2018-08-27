@@ -11,7 +11,7 @@ const WeatherBrief = ({ code, high, label, low, unit }) => (
         )}
     >
         <div className="Weather__brief__meteocon">
-            <Meteocons code={code} />
+            <Meteocons code={code} size="small" />
         </div>
         <div className="Weather__brief__info">
             <p className="Weather__brief__info__label">{label}</p>
