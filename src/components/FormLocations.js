@@ -9,8 +9,35 @@ class FormLocations extends Component {
             unit: 'c',
             weather: { count: 0 },
         };
+        this.showPosition = this.showPosition.bind(this);
         this.submit = this.submit.bind(this);
         this.toggleUnit = this.toggleUnit.bind(this);
+    }
+
+    componentDidMount() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                this.showPosition
+            );
+        } else {
+            console.log(
+                'Geolocation is not supported by this browser.'
+            );
+        }
+    }
+
+    showPosition(position) {
+        fetch(
+            `http://localhost:3000/api/coordinates?lat=${
+                position.coords.latitude
+            }&long=${position.coords.longitude}`
+        )
+            .then(body => body.json(body))
+            .then(res =>
+                this.setState({
+                    location: res.results.channel.location.city,
+                })
+            );
     }
 
     submit(e) {
@@ -48,7 +75,7 @@ class FormLocations extends Component {
     }
 
     render() {
-        const { unit, weather } = this.state;
+        const { location, unit, weather } = this.state;
 
         return (
             <div className="FormLocations">
@@ -65,6 +92,7 @@ class FormLocations extends Component {
                         }
                         placeholder="Digite uma cidade"
                         type="text"
+                        value={location}
                     />
                     <button className="FormLocations__form__button">
                         Ok

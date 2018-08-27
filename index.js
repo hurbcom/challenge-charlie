@@ -34,6 +34,20 @@ app.get('/api/wheater', function(req, res) {
         .then(body => res.json(body.query));
 });
 
+app.get('/api/coordinates', function(req, res) {
+    var query = req.query;
+    fetch(
+        yahooAPI +
+            '?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(' +
+            query.lat +
+            ',' +
+            query.long +
+            ')")&format=json'
+    )
+        .then(res => res.json())
+        .then(body => res.json(body.query));
+});
+
 app.listen(3000, function() {
     console.log('listening on port 3000');
 });
