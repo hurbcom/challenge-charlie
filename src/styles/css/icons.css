@@ -1,8 +1,19 @@
 #smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy {
-  width: 250px; }
+  width: 250px;
+  position: absolute;
+  margin: auto;
+  top: 2em;
+  left: 0;
+  right: 0; }
 
 .forecast #smoky, .forecast #snow, .forecast #rain, .forecast #heavy-rain, .forecast #heavy-snow, .forecast #cold, .forecast #mostly-sun, .forecast #partly-night, .forecast #clean-night, .forecast #sun, .forecast #wind, .forecast #mostly-night, .forecast #mostly-sun, .forecast #thunder, .forecast #several-thunder, .forecast #thunder-rain, .forecast #snow-rain, .forecast #tornado, .forecast #hurricane, .forecast #foggy {
-  height: 4.5em; }
+  height: 4em;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 5px;
+  left: 0;
+  right: 0; }
 
 #floco-grande .st0 {
   stroke-width: 1;
