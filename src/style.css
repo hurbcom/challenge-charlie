@@ -150,7 +150,7 @@ body {
   text-indent: -500rem;
 }
 .Meteocons--small {
-  background-size: 50%;
+  background-size: auto 80%;
   height: 6rem;
 }
 .Meteocons--11,
