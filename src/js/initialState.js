@@ -6,6 +6,8 @@ const initialState = {
     weather: {
         city: '',
         condition: {},
+        wind:{},
+        atmosphere:{},
         forecast: {
            amanha:{
             code: "",

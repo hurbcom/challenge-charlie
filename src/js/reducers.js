@@ -10,14 +10,14 @@ const reducers = (state = initialState, action) => {
         
         case types.GET_WEATHER:
 
-            console.log(action.payload.item.forecast);
+            console.log(action.payload);
             return Object.assign({}, state, {
                 findLocation:true,
                 weather: {
                     city: `${action.payload.location.city}/${action.payload.location.region}`,
                     condition: action.payload.item.condition,
-                    wind:action.payload.item.wind,
-                    atmosphere:action.payload.item.wind,
+                    wind:action.payload.wind,
+                    atmosphere:action.payload.atmosphere,
                     forecast:{
                         amanha:action.payload.item.forecast[0],
                         depoisAmanha:action.payload.item.forecast[1]
