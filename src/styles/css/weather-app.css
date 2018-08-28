@@ -3,21 +3,53 @@
 
 .weather-app {
   overflow: hidden;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 300px;
-  min-height: 400px;
-  max-height: 550px;
-  border-radius: 20px; }
+  width: 22em;
+  height: 35em;
+  border-radius: 20px;
+  color: white; }
   .weather-app .forecast {
+    display: flex;
     z-index: 1;
-    margin: auto;
-    margin-bottom: 0;
-    height: 5em; }
+    height: 5em;
+    font-size: 1em; }
+    .weather-app .forecast .temp {
+      cursor: pointer;
+      position: relative;
+      text-align: right;
+      padding-right: 25px;
+      font-size: 1.5em; }
+      .weather-app .forecast .temp .deg {
+        font-size: 1rem;
+        position: absolute;
+        margin: auto;
+        top: 20%; }
+        .weather-app .forecast .temp .deg .celcius, .weather-app .forecast .temp .deg .fahr {
+          opacity: 0.5; }
+        .weather-app .forecast .temp .deg .active {
+          opacity: 1; }
+    .weather-app .forecast .right-forecast {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      margin: auto;
+      right: 0;
+      top: 0;
+      bottom: 10px; }
+    .weather-app .forecast .left-forecast {
+      font-size: 1.5em;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      top: 0;
+      bottom: 10px; }
+    .weather-app .forecast .box {
+      width: 30%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-grow: 1; }
     .weather-app .forecast:nth-of-type(2) {
       position: relative; }
       .weather-app .forecast:nth-of-type(2):after {
@@ -45,11 +77,54 @@
   .weather-app .main-temp {
     position: relative;
     z-index: 1;
-    height: calc(100% - 10em); }
+    height: 25em; }
+    .weather-app .main-temp .bottom-main {
+      position: absolute;
+      margin: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 8em;
+      display: flex; }
+      .weather-app .main-temp .bottom-main .left-bottom {
+        text-align: center;
+        padding-right: 5px;
+        height: 100%;
+        width: 50%; }
+        .weather-app .main-temp .bottom-main .left-bottom .temp {
+          cursor: pointer;
+          position: relative;
+          color: white;
+          text-align: right;
+          padding-right: 25px;
+          font-size: 3em; }
+          .weather-app .main-temp .bottom-main .left-bottom .temp .deg {
+            font-size: 1rem;
+            position: absolute;
+            top: 0; }
+            .weather-app .main-temp .bottom-main .left-bottom .temp .deg .celcius, .weather-app .main-temp .bottom-main .left-bottom .temp .deg .fahr {
+              opacity: 0.5; }
+            .weather-app .main-temp .bottom-main .left-bottom .temp .deg .active {
+              opacity: 1; }
+      .weather-app .main-temp .bottom-main .right-bottom {
+        padding-left: 5px;
+        padding-top: 3em;
+        height: 100%;
+        width: 50%; }
     .weather-app .main-temp .search-on {
       position: relative;
-      background-color: white; }
+      background-color: white;
+      padding: 0 2em; }
       .weather-app .main-temp .search-on .close {
+        color: black;
+        position: absolute;
+        margin: auto;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        cursor: pointer; }
+      .weather-app .main-temp .search-on .search-icon {
+        color: black;
         position: absolute;
         margin: auto;
         right: 10px;

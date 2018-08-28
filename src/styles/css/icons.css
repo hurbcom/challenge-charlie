@@ -1,12 +1,12 @@
-#smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy {
-  width: 250px;
+#smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy, #partly-sun {
+  width: 15em;
   position: absolute;
   margin: auto;
   top: 2em;
   left: 0;
   right: 0; }
 
-.forecast #smoky, .forecast #snow, .forecast #rain, .forecast #heavy-rain, .forecast #heavy-snow, .forecast #cold, .forecast #mostly-sun, .forecast #partly-night, .forecast #clean-night, .forecast #sun, .forecast #wind, .forecast #mostly-night, .forecast #mostly-sun, .forecast #thunder, .forecast #several-thunder, .forecast #thunder-rain, .forecast #snow-rain, .forecast #tornado, .forecast #hurricane, .forecast #foggy {
+.forecast #smoky, .forecast #snow, .forecast #rain, .forecast #heavy-rain, .forecast #heavy-snow, .forecast #cold, .forecast #mostly-sun, .forecast #partly-night, .forecast #clean-night, .forecast #sun, .forecast #wind, .forecast #mostly-night, .forecast #mostly-sun, .forecast #thunder, .forecast #several-thunder, .forecast #thunder-rain, .forecast #snow-rain, .forecast #tornado, .forecast #hurricane, .forecast #foggy, .forecast #partly-sun {
   height: 4em;
   position: absolute;
   margin: auto;
@@ -30,7 +30,7 @@
 .smoky, .st0 {
   fill: none;
   stroke: #FFF;
-  stroke-width: 5;
+  stroke-width: 6;
   stroke-miterlimit: 10;
   stroke-linecap: round; }
 
@@ -46,7 +46,7 @@
 .st3 {
   fill: #FFF;
   stroke: #FFF;
-  stroke-width: 3;
+  stroke-width: 5;
   stroke-miterlimit: 10; }
 
 /*# sourceMappingURL=icons.css.map */

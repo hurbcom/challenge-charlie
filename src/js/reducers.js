@@ -4,18 +4,26 @@ import * as types from './actions/actionTypes'
 
 
 const reducers = (state = initialState, action) => {
+
     switch (action.type) {
+      
+        
         case types.GET_WEATHER:
+
+            console.log(action.payload.item.forecast);
             return Object.assign({}, state, {
+                findLocation:true,
                 weather: {
                     city: `${action.payload.location.city}/${action.payload.location.region}`,
                     condition: action.payload.item.condition,
-                    forecast: {
-                        amanha: action.payload.item.forecast[1],
-                        depoisAmanha: action.payload.item.forecast[2]
+                    forecast:{
+                        amanha:action.payload.item.forecast[0],
+                        depoisAmanha:action.payload.item.forecast[1]
                     }
                 }
-            })
+                
+          })
+
         case types.NO_LOCATION:
         console.log(action.error);
         
@@ -34,6 +42,10 @@ const reducers = (state = initialState, action) => {
         case types.NOT_SEARCHING:
             return Object.assign({}, state, {
                 isSearching:false
+            })
+        case types.CHANGE_DEG:
+            return Object.assign({}, state, {
+                mainDeg:!state.mainDeg
             })
         default:
             return state

@@ -1,6 +1,9 @@
 .App {
   height: 100vh;
   width: 100vw;
-  min-height: 550px; }
+  min-height: 35em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 /*# sourceMappingURL=App.css.map */

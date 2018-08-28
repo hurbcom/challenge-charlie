@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import WeatherApp from './js/components/weather-app/WeatherApp'
+import { bindActionCreators } from 'redux'
+import {getWeather} from './js/actions/location.action'
+import { connect } from 'react-redux'
+import WeatherApp from './js/components/weather-app/WeatherApp';
+
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.getImage()
+  }
+
   render() {
     return (
       <div className="App" style={{backgroundImage:'url(https://source.unsplash.com/daily)',backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
@@ -12,4 +20,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch)=>{
+return{
+  getImage:bindActionCreators(getWeather,dispatch)
+}
+}
+
+export default connect(null,mapDispatchToProps)(App)
