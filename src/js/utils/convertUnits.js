@@ -4,5 +4,7 @@ export const convertUnits = (value,unit) => {
             return Math.floor(value*10/1013.25)/10;
         case 'mph':
             return Math.floor(value*1.6*10)/10;
+        default:
+        return 'error'
     }
 }

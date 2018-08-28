@@ -5,9 +5,6 @@ import { connect } from 'react-redux'
 import {translate} from '../../utils/translate'
 
 class Forecast extends Component {
-  constructor(props){
-    super(props)
-  }
   render() {
 
     return (
@@ -18,7 +15,7 @@ class Forecast extends Component {
         </div>
         <div className="mid-forecast">
          {/* Seleçao de icone ... ver 'src/components/weather-icon' */}
-          <WeatherIcon code={parseInt(this.props.code)} />
+          <WeatherIcon code={parseInt(this.props.code,10)} />
         </div>
         <div className="right-forecast box">
           <div className='temp'>

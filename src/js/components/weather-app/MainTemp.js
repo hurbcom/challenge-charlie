@@ -17,7 +17,7 @@ class MainTemp extends Component {
             ?<div className={`main-temp`}>
             <div className={colorByTemp(this.props.weather.condition.temp)}>
                 <Search />
-                <WeatherIcon code={parseInt(this.props.weather.condition.code)} />
+                <WeatherIcon code={parseInt(this.props.weather.condition.code,10)} />
                 <div className="bottom-main">
                     <div className="left-bottom">
                         <div onClick={this.props.changeDeg} className='temp'>

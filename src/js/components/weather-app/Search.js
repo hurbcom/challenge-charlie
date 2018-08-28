@@ -37,7 +37,7 @@ class Search extends Component {
                 {/* Botao clicado*/}
                 <Collapse in={this.props.isSearching}>
                     <div className="search-on">
-                        <TextField inputProps={{ autoFocus: this.props.isSearching }}  onChange={this.handleChange.bind(this)} inputProps={{
+                        <TextField onChange={this.handleChange.bind(this)} inputProps={{
                             style: { textAlign: "center" }
                         }}
                             fullWidth
