@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import WeatherIcon from '../utils/selectIcon'
 import Search from './Search';
 import { connect } from 'react-redux';
-import {convertCtoF} from '../utils/convertCtoF'
+import {convertCtoF} from '../../utils/convertCtoF'
+import {convertUnits} from '../../utils/convertUnits'
 import {changeDeg} from '../../actions/changeDeg'
 class MainTemp extends Component {
     render() {
@@ -28,13 +29,13 @@ class MainTemp extends Component {
                     </div>
                     <div className="right-bottom">
                         <div>
-                        vento
+                        <span>vento: {convertUnits(this.props.weather.wind.speed,'mph')} km/h</span>
                         </div>
                         <div>
-                        pressao
+                        <span>pressao: {convertUnits(this.props.weather.atmosphere.pressure,'in')} atm</span>
                         </div>
                         <div>
-                        umidade
+                        <span>umidade: {this.props.weather.atmosphere.humidity}%</span>
                         </div>
                     </div>
                 </div>
