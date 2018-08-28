@@ -12,7 +12,7 @@ class WeatherApp extends Component {
             this.props.findLocation
             ? <Zoom in={this.props.findLocation}>
                 <div className="weather-app">
-                    <MainTemp colorByTemp={colorByTemp(this.props.weather.condition.temp)}/>
+                    <MainTemp/>
                     <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} {...this.props.weather.forecast.amanha} />
                     <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} {...this.props.weather.forecast.depoisAmanha} />
                 </div>

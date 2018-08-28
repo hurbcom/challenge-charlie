@@ -245,7 +245,6 @@ body {
       .weather-app .main-temp .bottom-main .right-bottom {
         padding-left: 5px;
         text-align: center;
-        padding-top: 1em;
         height: 100%;
         width: 50%; }
         .weather-app .main-temp .bottom-main .right-bottom .name-condition {
