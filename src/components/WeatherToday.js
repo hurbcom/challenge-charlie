@@ -22,14 +22,6 @@ const WeatherToday = ({
     >
         <div className="Weather__today__condition">
             <Meteocons code={item.condition.code} />
-            {/* <div
-                className={classnames(
-                    'Weather__today__condition__code',
-                    `Weather__today__condition__code--${
-                        item.condition.code
-                    }`
-                )}
-            /> */}
             <p className="Weather__today__condition__text">
                 {item.condition.text}
             </p>
