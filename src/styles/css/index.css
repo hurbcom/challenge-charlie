@@ -11,6 +11,10 @@ body {
   align-items: center;
   justify-content: center; }
 
+@media only screen and (max-width: 550px) {
+  .App {
+    height: 100vh;
+    width: 100vw; } }
 #smoky, #snow, #rain, #heavy-rain, #heavy-snow, #cold, #mostly-sun, #partly-night, #clean-night, #sun, #wind, #mostly-night, #mostly-sun, #thunder, #several-thunder, #thunder-rain, #snow-rain, #tornado, #hurricane, #foggy, #partly-sun {
   width: 15em;
   position: absolute;
@@ -336,6 +340,9 @@ body {
   font-size: 4em;
   animation: load 2s infinite; }
 
+@media only screen and (max-width: 550px) {
+  .weather-app {
+    width: 100%; } }
 @keyframes load {
   from {
     opacity: 0; }

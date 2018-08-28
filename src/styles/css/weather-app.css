@@ -272,6 +272,9 @@
   font-size: 4em;
   animation: load 2s infinite; }
 
+@media only screen and (max-width: 550px) {
+  .weather-app {
+    width: 100%; } }
 @keyframes load {
   from {
     opacity: 0; }

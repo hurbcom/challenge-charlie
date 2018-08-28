@@ -27,12 +27,14 @@ class Search extends Component {
     render() {
         return (
             <div>
+                {/* Quando o botao nao for clicado*/}
                 <div className="search-off">
                     <SearchIcon onClick={this.props.startSearching} className="search-icon" />
                 </div>
+                {/* Botao clicado*/}
                 <Collapse in={this.props.isSearching}>
                     <div className="search-on">
-                        <TextField onChange={this.handleChange.bind(this)} inputProps={{
+                        <TextField inputProps={{ autoFocus: this.props.isSearching }}  onChange={this.handleChange.bind(this)} inputProps={{
                             style: { textAlign: "center" }
                         }}
                             fullWidth
