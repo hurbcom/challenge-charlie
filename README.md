@@ -8,7 +8,7 @@ Para executar:
 - Rode a aplicação: `npm start`
 
 Notas: 
-- O bing não permite mais COR, então foi utilizado o daily picture do unplash.
+- O bing não permite mais COR, então foi utilizado o daily picture do unsplash.
 - O Antigo README pode ser encontrado em README.old.md
 
 
