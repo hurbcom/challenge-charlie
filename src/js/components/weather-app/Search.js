@@ -3,10 +3,12 @@ import Collapse from '@material-ui/core/Collapse'
 import TextField from '@material-ui/core/TextField'
 import Close from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
+import LocationOn from '@material-ui/icons/LocationOn'
 import { connect } from 'react-redux'
 import { startSearching } from '../../actions/searching'
 import { stopSearching, search } from '../../actions/searching'
 import { bindActionCreators } from 'redux';
+import {getWeather} from '../../actions/location.action'
 
 
 class Search extends Component {
@@ -30,6 +32,7 @@ class Search extends Component {
                 {/* Quando o botao nao for clicado*/}
                 <div className="search-off">
                     <SearchIcon onClick={this.props.startSearching} className="search-icon" />
+                    <LocationOn onClick={this.props.getLocation} className="location-icon" />
                 </div>
                 {/* Botao clicado*/}
                 <Collapse in={this.props.isSearching}>
@@ -57,6 +60,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getLocation:bindActionCreators(getWeather,dispatch),
         search:bindActionCreators(search,dispatch),
         stopSearching: function () {
             dispatch(stopSearching())

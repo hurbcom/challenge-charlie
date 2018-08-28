@@ -8,7 +8,7 @@ import WeatherApp from './js/components/weather-app/WeatherApp';
 class App extends Component {
 
   componentDidMount(){
-    this.props.getImage()
+    this.props.getLocation()
   }
 
   render() {
@@ -22,7 +22,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch)=>{
 return{
-  getImage:bindActionCreators(getWeather,dispatch)
+  getLocation:bindActionCreators(getWeather,dispatch)
 }
 }
 

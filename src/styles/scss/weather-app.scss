@@ -265,6 +265,15 @@
             height: 2em;
             position: absolute;
             top:0;
+            .location-icon{
+                color:white;
+                    position: absolute;
+                    margin: auto;
+                    left: 10px;
+                    top:0;
+                    bottom:0;
+                    cursor: pointer; 
+            }
             .search-icon{
                 color:white;
                     position: absolute;

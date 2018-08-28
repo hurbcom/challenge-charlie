@@ -5,6 +5,9 @@ import axios from 'axios';
 export const getWeather = () => {
     return (dispatch) => {
         if (navigator.geolocation) {
+            dispatch({
+                type: types.SEARCHING            
+            })
             axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBTGPzpY3dqkp2sUYNdUsKXDraEGz9gz2g').then(res => console.log(res));
             
             console.log(navigator.geolocation);
