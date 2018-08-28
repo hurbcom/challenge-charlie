@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Weather from './Weather';
 import { coordinates, weather } from './../actions';
 import geolocation from './../utils/geolocation';
+import Form from './Form';
 
 class FormLocations extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class FormLocations extends Component {
             unit: 'c',
             weather: { count: 0 },
         };
+        this.setInput = this.setInput.bind(this);
         this.showPosition = this.showPosition.bind(this);
         this.submit = this.submit.bind(this);
         this.toggleUnit = this.toggleUnit.bind(this);
@@ -18,6 +20,10 @@ class FormLocations extends Component {
 
     componentDidMount() {
         geolocation(this.showPosition);
+    }
+
+    setInput(value) {
+        this.setState({ location: value });
     }
 
     showPosition(position) {
@@ -66,25 +72,11 @@ class FormLocations extends Component {
 
         return (
             <div className="FormLocations">
-                <form
-                    className="FormLocations__form"
+                <Form
+                    location={location}
+                    setInput={this.setInput}
                     onSubmit={this.submit}
-                >
-                    <input
-                        className="FormLocations__form__input"
-                        onChange={e =>
-                            this.setState({
-                                location: e.target.value,
-                            })
-                        }
-                        placeholder="Digite uma cidade"
-                        type="text"
-                        defaultValue={location}
-                    />
-                    <button className="FormLocations__form__button">
-                        Ok
-                    </button>
-                </form>
+                />
                 {weather.count > 0 && (
                     <Weather
                         toggleUnit={this.toggleUnit}
