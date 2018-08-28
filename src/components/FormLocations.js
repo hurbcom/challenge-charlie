@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RemoveAccents from 'remover-acentos';
 import Weather from './Weather';
 import { coordinates, weather } from './../actions';
 import geolocation from './../utils/geolocation';
@@ -72,7 +73,7 @@ class FormLocations extends Component {
         e.preventDefault();
 
         const { location, unit } = this.state;
-        const params = { location, unit };
+        const params = { location: RemoveAccents(location), unit };
 
         this.getWeather(params);
     }
@@ -109,13 +110,14 @@ class FormLocations extends Component {
                     setInput={this.setInput}
                     onSubmit={this.submit}
                 />
-                {weather.count > 0 && (
-                    <Weather
-                        toggleUnit={this.toggleUnit}
-                        unit={unit}
-                        {...weather}
-                    />
-                )}
+                {weather.count > 0 &&
+                    (weather.results.channel.location && (
+                        <Weather
+                            toggleUnit={this.toggleUnit}
+                            unit={unit}
+                            {...weather}
+                        />
+                    ))}
             </div>
         );
     }
