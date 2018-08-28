@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import WeatherIcon from '../utils/selectIcon'
-import {convertCtoF} from '../utils/convertCtoF'
+import WeatherIcon from '../../utils/selectIcon'
+import {convertCtoF} from '../../utils/convertCtoF'
 import { connect } from 'react-redux'
-
+import {translate} from '../../utils/translate'
 
 class Forecast extends Component {
   constructor(props){
     super(props)
   }
   render() {
-    
-    console.log(this.props);
+
     return (
-      <div className='forecast'>
+      !this.props.noLocation
+      ?<div className={`forecast ${this.props.colorByTemp}`}>
         <div className="left-forecast box">
-          <span className="day">{this.props.day}</span>
+          <span className="day">{translate(this.props.day)}</span>
         </div>
         <div className="mid-forecast">
          {/* Seleçao de icone ... ver 'src/components/weather-icon' */}
@@ -27,12 +27,15 @@ class Forecast extends Component {
         </div>
         {this.props.children}
       </div>
+      : <div className='forecast grey-back'></div>
+      
     )
   }
 }
 
 const mapStateToProps = (state)=>{
 return{
+  noLocation: state.noLocation,
   mainDeg: state.mainDeg
 }
 }

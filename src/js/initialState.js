@@ -1,11 +1,16 @@
 const initialState = {
     mainDeg:true,
+    noLocation:false,
     findLocation:false,
     errorLocation: false,
     searching: false,
     weather: {
         city: '',
-        condition: {},
+        condition: {code: "",
+        date: "",
+        temp: "",
+        text: "",
+    },
         wind:{},
         atmosphere:{},
         forecast: {

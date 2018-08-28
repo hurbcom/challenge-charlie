@@ -14,10 +14,17 @@ export const getWeather = () => {
                 console.log(position.coords.longitude);
                 axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json`)
                     .then(res => res.data)
-                    .then(data => dispatch({
+                    .then(data => 
+                    data.query.results == null
+                    ? dispatch({
+                        type: types.NO_LOCATION
+                    })
+                    : dispatch({
                         type: types.GET_WEATHER,
                         payload: data.query.results.channel
-                    }));
+                        
+                    })
+                    );
             }, (error) => {
                 console.log('oh no');
                 switch (error.code) {

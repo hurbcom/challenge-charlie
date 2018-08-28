@@ -12,6 +12,7 @@ const reducers = (state = initialState, action) => {
 
             console.log(action.payload);
             return Object.assign({}, state, {
+                noLocation: false,
                 findLocation:true,
                 weather: {
                     city: `${action.payload.location.city}/${action.payload.location.region}`,
@@ -19,8 +20,8 @@ const reducers = (state = initialState, action) => {
                     wind:action.payload.wind,
                     atmosphere:action.payload.atmosphere,
                     forecast:{
-                        amanha:action.payload.item.forecast[0],
-                        depoisAmanha:action.payload.item.forecast[1]
+                        amanha:action.payload.item.forecast[1],
+                        depoisAmanha:action.payload.item.forecast[2]
                     }
                 }
                 
@@ -28,13 +29,19 @@ const reducers = (state = initialState, action) => {
 
         case types.NO_LOCATION:
         console.log(action.error);
-        
+            
             return Object.assign({}, state, {
+                findLocation:true,
                 noLocation: true,
                 weather: {
-                    city: '',
-                    condition: {},
-                    forecast: {}
+                    city:'',
+                    condition:{} ,
+                    wind:{},
+                    atmosphere:{},
+                    forecast:{
+                        amanha:{},
+                        depoisAmanha:{}
+                    }
                 }
             })
         case types.IS_SEARCHING:

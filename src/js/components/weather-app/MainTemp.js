@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
-import WeatherIcon from '../utils/selectIcon'
+import WeatherIcon from '../../utils/selectIcon'
 import Search from './Search';
 import { connect } from 'react-redux';
 import {convertCtoF} from '../../utils/convertCtoF'
 import {convertUnits} from '../../utils/convertUnits'
 import {changeDeg} from '../../actions/changeDeg'
+import {colorByTemp} from '../../utils/colorByTemp'
+import {translate} from '../../utils/translate'
 class MainTemp extends Component {
     render() {
 
         
         
         return (
-            
-            <div className="main-temp">
+            !this.props.noLocation
+            ?<div className={`main-temp`}>
+            <div className={colorByTemp(this.props.weather.condition.temp)}>
                 <Search />
                 <WeatherIcon code={parseInt(this.props.weather.condition.code)} />
                 <div className="bottom-main">
@@ -23,11 +26,14 @@ class MainTemp extends Component {
                         <div className='city'>
                         {this.props.weather.city}
                         </div>
-                        <div className='name-condition'>
-                        {this.props.weather.condition.text}
+                        <div className='dia'>
+                        Hoje
                         </div>
                     </div>
                     <div className="right-bottom">
+                    <div className='name-condition'>
+                        {translate(this.props.weather.condition.code)}
+                        </div>
                         <div>
                         <span>vento: {convertUnits(this.props.weather.wind.speed,'mph')} km/h</span>
                         </div>
@@ -39,6 +45,15 @@ class MainTemp extends Component {
                         </div>
                     </div>
                 </div>
+                </div>
+            </div>
+            : <div className={`main-temp`}>
+            <div className="grey-back">
+            <Search />
+            <div className="error-message">
+            Nenhuma localidade encontrada, tente de novo
+            </div>
+            </div>
             </div>
         )
     }
@@ -46,6 +61,7 @@ class MainTemp extends Component {
 
 const mapStateToProps = (state)=>{
 return{
+    noLocation: state.noLocation,
     weather:state.weather,
     mainDeg:state.mainDeg
 }

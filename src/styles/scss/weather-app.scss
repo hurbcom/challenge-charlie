@@ -8,6 +8,130 @@
     height: 35em;
     border-radius: 20px;
     color:white;
+    .blue-back{
+        &:nth-of-type(2){
+            position: relative;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #008fb3, #00ccff 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        &:nth-of-type(3) {
+            position: relative;
+            &:after {
+                content: "";
+                background-color: #008fb3;
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
+    .yellow-back{
+        &:nth-of-type(2){
+            position: relative;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #b09003, #fbce04 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        &:nth-of-type(3) {
+            position: relative;
+            &:after {
+                content: "";
+                background-color: #b09003;
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
+    .grey-back{
+        &:nth-of-type(2){
+            position: relative;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #595959, #808080 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        &:nth-of-type(3) {
+            position: relative;
+            &:after {
+                content: "";
+                background-color: #595959;
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
+    .red-back{
+        &:nth-of-type(2){
+            position: relative;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #b32400, #ff3300 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        &:nth-of-type(3) {
+            position: relative;
+            &:after {
+                content: "";
+                background-color: #b32400;
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
     .forecast {
         display: flex;
         z-index: 1;
@@ -59,35 +183,8 @@
             display: flex;
             flex-grow:1;
         }
-        &:nth-of-type(2){
-            position: relative;
-            &:after {
-                content: "";
-                // exemplo degrade
-                background-image: linear-gradient(to top, #b09003, #fbce04 10px);
-                opacity: 0.9;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                position: absolute;
-                z-index: -1;
-            }
-        }
-        &:nth-of-type(3) {
-            position: relative;
-            &:after {
-                content: "";
-                background-color: #b09003;
-                opacity: 0.9;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                position: absolute;
-                z-index: -1;
-            }
-        }
+        
+      
     }
     .main-temp {
         position: relative;
@@ -129,9 +226,14 @@
             }
             .right-bottom{
                 padding-left: 5px;
-                padding-top:3em;
+                text-align: center;
+                padding-top:1em;
                 height: 100%;
                 width: 50%;
+                .name-condition{
+                    font-size: 1.5em;
+                    margin-bottom: 0.2em;
+                }
             }
         }
         .search-on{
@@ -173,18 +275,81 @@
                     cursor: pointer;  
             }
         }
-
-        &:after {
-            content: "";
-            // exemplo degrade
-            background-image: linear-gradient(to top, #fbce04, #fcdd4f 10px);
-            opacity: 0.9;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            position: absolute;
-            z-index: -1;
+        .blue-back{
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #00ccff, #4ddbff 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        .red-back{
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #ff3300, #ff704d 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        .yellow-back{
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #fbce04, #fcdd4f 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        .grey-back{
+            height: 100%;
+            &:after {
+                content: "";
+                // exemplo degrade
+                background-image: linear-gradient(to top, #808080, #a6a6a6 10px);
+                opacity: 0.9;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        .error-message{
+            height: 100%;
+            display: flex;
+            font-size: 2em;
+            align-items: center;
+            text-align: center;
         }
     }
+}
+
+
+.loading{
+    font-size: 4em;
+    animation: load 2s infinite;
+}
+
+@keyframes load {
+    from { opacity: 0;}
+    50% { opacity: 1;}
+    to{opacity: 0;}
 }
