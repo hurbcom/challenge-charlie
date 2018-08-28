@@ -49,6 +49,10 @@ const reducers = (state = initialState, action) => {
             return Object.assign({}, state, {
                 mainDeg:!state.mainDeg
             })
+        case types.SEARCHING:
+            return Object.assign({}, state, {
+                findLocation:false
+            })
         default:
             return state
     }
