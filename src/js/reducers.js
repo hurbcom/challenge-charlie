@@ -16,6 +16,8 @@ const reducers = (state = initialState, action) => {
                 weather: {
                     city: `${action.payload.location.city}/${action.payload.location.region}`,
                     condition: action.payload.item.condition,
+                    wind:action.payload.item.wind,
+                    atmosphere:action.payload.item.wind,
                     forecast:{
                         amanha:action.payload.item.forecast[0],
                         depoisAmanha:action.payload.item.forecast[1]
