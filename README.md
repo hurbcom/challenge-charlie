@@ -14,7 +14,7 @@ $ npm install
 $ node index.js
 ```
 
-3. Por fim, só falta rodar a aplicação do browser e podemos fazer isso rodando o servidor de desenvolvimento ou subindo um servidor estático.
+3. Por fim, só falta rodar a aplicação no browser e podemos fazer isso rodando o servidor de desenvolvimento ou subindo um servidor estático (execute os comandos a seguir em outra janela do terminal para deixar a api rodando :D ).
 
 -   Rodar através do servidor de desenvolvimento, rode:
 
