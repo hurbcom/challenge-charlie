@@ -1,0 +1,118 @@
+.Weather {
+    &__today {
+        border: rgba(@black, 0.1) 1px solid;
+        cursor: pointer;
+        display: flex;
+        padding: 1rem;
+
+        &--cold {
+            background-color: rgba(@blue, 0.5);
+        }
+
+        &--tropical {
+            background-color: rgba(@yellow, 0.5);
+        }
+
+        &--hot {
+            background-color: rgba(@red, 0.5);
+        }
+
+        &__condition {
+            margin: 0 2rem 0 1rem;
+            text-align: center;
+            width: 25%;
+
+            &__text {
+                font-weight: 300;
+                text-transform: uppercase;
+            }
+        }
+
+        &__info {
+            flex-grow: 1;
+
+            &__date,
+            &__temp {
+                margin: 0;
+            }
+
+            &__date {
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            &__temp {
+                font-size: 5rem;
+                font-weight: 400;
+                margin: 0.5rem 0;
+
+                &__wrapper {
+                    background-position: top right;
+                    background-repeat: no-repeat;
+                    background-size: 3rem;
+                    padding-right: 2.5rem;
+
+                    &--c {
+                        background-image: url('images/46.svg');
+                    }
+
+                    &--f {
+                        background-image: url('images/47.svg');
+                    }
+                }
+            }
+
+            &__additionalList {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                &__item {
+                    margin-bottom: 0.3rem;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &__brief {
+        border: rgba(@black, 0.1) 1px solid;
+        display: flex;
+        padding: 1rem;
+
+        &--cold {
+            background-color: rgba(@blue, 0.5);
+        }
+
+        &--tropical {
+            background-color: rgba(@yellow, 0.5);
+        }
+
+        &--hot {
+            background-color: rgba(@red, 0.5);
+        }
+
+        &__meteocon {
+            margin: 0 2rem 0 1rem;
+            width: 25%;
+        }
+
+        &__info {
+            flex-grow: 1;
+
+            &__label {
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            &__temp {
+                margin: 0.3rem 0;
+            }
+        }
+    }
+}
