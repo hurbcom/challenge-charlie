@@ -6,7 +6,8 @@ const initialState = {
     searching: false,
     weather: {
         city: '',
-        condition: {code: "",
+        condition: {
+        code: "",
         date: "",
         temp: "",
         text: "",

@@ -42,7 +42,7 @@ class Search extends Component {
                         }}
                             fullWidth
                             className="search-input" />
-                        <SearchIcon onClick={()=> this.props.search(this.state.input)} className="search-icon" />
+                        <SearchIcon onClick={()=> this.state.input == '' ? '' : this.props.search(this.state.input)} className="search-icon" />
                         <Close onClick={this.props.stopSearching} className="close" />
                     </div>
                 </Collapse>

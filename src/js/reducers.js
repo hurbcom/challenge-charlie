@@ -10,7 +10,6 @@ const reducers = (state = initialState, action) => {
         
         case types.GET_WEATHER:
 
-            console.log(action.payload);
             return Object.assign({}, state, {
                 noLocation: false,
                 findLocation:true,

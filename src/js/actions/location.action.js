@@ -16,7 +16,11 @@ export const getWeather = () => {
                 console.log(position.coords.latitude);
                 console.log(position.coords.longitude);
                 axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json`)
-                    .then(res => res.data)
+                    .then(res => {
+                        console.log(res.data);
+                        
+                        return res.data
+                    })
                     .then(data => 
                     data.query.results == null
                     ? dispatch({
