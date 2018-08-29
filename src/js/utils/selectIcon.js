@@ -86,8 +86,6 @@ const WeatherIcon = ({code})=>{
         case 42:
         case 43:
         return <HeavySnow/>
-        case 37:
-        return <Thunder/>
           default:
           return 'not-ok'
     }
