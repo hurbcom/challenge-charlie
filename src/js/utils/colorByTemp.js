@@ -1,5 +1,5 @@
 export const colorByTemp = (temp)=>{
-    return temp > 86
+    return temp > 95
     ? 'red-back'
     : temp < 59
     ? 'blue-back'

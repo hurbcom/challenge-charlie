@@ -33,6 +33,11 @@ export const search = (local) => {
                 payload: data.query.results.channel
                 
             })
+            )
+            .catch(error => 
+                dispatch({
+                    type: types.NO_LOCATION
+                })
             );
     }
 }

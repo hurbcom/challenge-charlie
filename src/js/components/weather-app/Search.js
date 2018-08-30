@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 import {getWeather} from '../../actions/location.action'
 
 
+
 class Search extends Component {
 
     constructor(props){
@@ -18,6 +19,11 @@ class Search extends Component {
         this.state={
             input:''
         }
+        this.pressEnter=this.pressEnter.bind(this);
+        this.startSearch=this.startSearch.bind(this);
+        this.handleChange=this.handleChange.bind(this);
+        this.stopSearch=this.stopSearch.bind(this);
+
     }
 
     handleChange(e){
@@ -26,24 +32,41 @@ class Search extends Component {
         })
     }
 
+    pressEnter(e){
+            if(e.keyCode == 13){
+                (this.state.input == '')? null : this.props.search(this.state.input);
+                console.log(e.keyCode);     
+            }
+    }
+
+    startSearch(){
+        window.addEventListener("keydown",this.pressEnter);
+        this.props.startSearching()
+        
+    }
+    stopSearch(){
+        window.removeEventListener("keydown",this.pressEnter);
+        this.props.stopSearching()
+    }
+
     render() {
         return (
             <div>
                 {/* Quando o botao nao for clicado*/}
                 <div className="search-off">
-                    <SearchIcon onClick={this.props.startSearching} className="search-icon" />
+                    <SearchIcon onClick={this.startSearch} className="search-icon" />
                     <LocationOn onClick={this.props.getLocation} className="location-icon" />
                 </div>
                 {/* Botao clicado*/}
                 <Collapse in={this.props.isSearching}>
                     <div className="search-on">
-                        <TextField onChange={this.handleChange.bind(this)} inputProps={{
+                        <TextField onChange={this.handleChange} inputProps={{
                             style: { textAlign: "center" }
                         }}
                             fullWidth
                             className="search-input" />
                         <SearchIcon onClick={()=> this.state.input == '' ? '' : this.props.search(this.state.input)} className="search-icon" />
-                        <Close onClick={this.props.stopSearching} className="close" />
+                        <Close onClick={this.stopSearch} className="close" />
                     </div>
                 </Collapse>
 
