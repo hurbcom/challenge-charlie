@@ -23,29 +23,39 @@ class Search extends Component {
         this.startSearch=this.startSearch.bind(this);
         this.handleChange=this.handleChange.bind(this);
         this.stopSearch=this.stopSearch.bind(this);
+        this.search=this.search.bind(this);
 
     }
-
+    // Atualiza o input
     handleChange(e){
         this.setState({
             input:e.target.value
         })
     }
-
+    // reconhecimento do enter para a procura
     pressEnter(e){
             if(e.keyCode == 13){
-                (this.state.input == '')? null : this.props.search(this.state.input);
-                console.log(e.keyCode);     
+                (this.state.input == '') ? null : this.search();
             }
     }
 
+    // Efetivamente realiza a procura
+    search(){
+        this.props.search(this.state.input)
+        this.props.stopSearching()
+    }
+
+    // Abre o mecanismo de busca
     startSearch(){
         window.addEventListener("keydown",this.pressEnter);
-        this.props.startSearching()
-        
+        this.props.startSearching()       
     }
+    // fecha o mecanismo de busca
     stopSearch(){
         window.removeEventListener("keydown",this.pressEnter);
+        this.setState({
+            input:''
+        })
         this.props.stopSearching()
     }
 
@@ -65,7 +75,7 @@ class Search extends Component {
                         }}
                             fullWidth
                             className="search-input" />
-                        <SearchIcon onClick={()=> this.state.input == '' ? '' : this.props.search(this.state.input)} className="search-icon" />
+                        <SearchIcon onClick={()=> this.state.input == '' ? '' : this.search()} className="search-icon" />
                         <Close onClick={this.stopSearch} className="close" />
                     </div>
                 </Collapse>

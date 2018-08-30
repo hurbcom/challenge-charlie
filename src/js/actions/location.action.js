@@ -5,16 +5,15 @@ import axios from 'axios';
 export const getWeather = () => {
     return (dispatch) => {
         if (navigator.geolocation) {
+            // abre o loading e informa que está procurando
             dispatch({
                 type: types.SEARCHING            
-            })
-            axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBTGPzpY3dqkp2sUYNdUsKXDraEGz9gz2g').then(res => console.log(res));
-            
-            console.log(navigator.geolocation);
-            
+            })       
+            //pega a localizaação 
             navigator.geolocation.getCurrentPosition((position) => {
                 console.log(position.coords.latitude);
                 console.log(position.coords.longitude);
+                // axios para requisição do clima
                 axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json`)
                     .then(res => {
                         console.log(res.data);
@@ -34,7 +33,7 @@ export const getWeather = () => {
                         dispatch({
                             type: types.NO_LOCATION
                         })
-                    );;
+                );
             }, (error) => {
                 console.log('oh no');
                 switch (error.code) {
@@ -62,7 +61,11 @@ export const getWeather = () => {
                     default:
                         return 'error'
                 }
-            })
+            },{ maximumAge: 15000,
+                // time out para localização
+                timeout: 20000,
+                enableHighAccuracy: false
+              })
         } else {
 
             dispatch({
