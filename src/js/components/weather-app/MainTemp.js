@@ -11,6 +11,7 @@ class MainTemp extends Component {
     render() {
 
         const conditionLang = this.props.lang === 'en';
+        console.log(this.props.lang);
         
         return (
             !this.props.noLocation

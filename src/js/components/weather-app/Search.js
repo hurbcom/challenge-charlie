@@ -33,17 +33,19 @@ class Search extends Component {
     // Atualiza o input
     handleChange(e){
         this.setState({
-            input:e.target.value
+            input:this.props.lang
         })
     }
     changeLang(e){
+        console.log(this.props.lang);
+        
         e.target.value === 'pt'
         ? this.setState({
             lang:'en'
         },()=>this.props.changeTrans(this.state.lang))
         : this.setState({
             lang:'pt'
-        },()=>  this.props.changeTrans(this.state.lang));
+        },()=>this.props.changeTrans(this.state.lang));
       
 
     }
@@ -107,7 +109,8 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isSearching: state.isSearching
+        isSearching: state.isSearching,
+        lang:state.lang
     }
 }
 

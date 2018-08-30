@@ -61,11 +61,7 @@ export const getWeather = () => {
                     default:
                         return 'error'
                 }
-            },{ maximumAge: 15000,
-                // time out para localização
-                timeout: 20000,
-                enableHighAccuracy: false
-              })
+            })
         } else {
 
             dispatch({

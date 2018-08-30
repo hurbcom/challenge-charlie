@@ -346,7 +346,6 @@ body {
         position: absolute;
         z-index: -1; }
     .weather-app .main-temp .error-message {
-      border: 1px solid red;
       height: 100%;
       display: flex;
       font-size: 2em;
