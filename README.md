@@ -11,7 +11,7 @@ Para executar:
 
 
 Notas: 
-- ATENÇÃO: Todos os commits com 'Pós Pull Request' tem como objetivo manter o código atualizado e funcional, bem como adicionar melhorias e consertar pequenos erros verificados, mesmo sabendo que o pull request já foi feito. O prefixo 'Pós Pull Request' tem como objetivo informar ao avaliador que os seguintes Commits foram feitos depois do Pull Request. Foi feito como boa prática para evitar prática de 'malandragem' e mesmo assim manter um código funcional e atualizado no meu Git. ATENÇÃO!!!!! O commit 'Consertando errors menores de procura', também foi feito após o Pull, e faltou o prefixo por falta de atenção minha.
+- ATENÇÃO: Todos os commits com 'Pós Pull Request' tem como objetivo manter o código atualizado e funcional, bem como adicionar melhorias e consertar pequenos erros verificados, mesmo sabendo que o pull request já foi feito. O prefixo 'Pós Pull Request' tem como objetivo informar ao avaliador que os seguintes Commits foram feitos depois do Pull Request, ficando a critério levar ou não em consideração esses. Foi apenas feito como forma de boa prática para evitar prática de 'malandragem' e mesmo assim manter um código funcional e atualizado no meu Git e portifólio. ATENÇÃO!!!!! O commit 'Consertando errors menores de procura', também foi feito após o Pull, e faltou o prefixo por falta de atenção minha.
 - O bing não permite mais COR, então foi utilizado o daily picture do unsplash.
 - O Antigo README pode ser encontrado em README.old.md
 

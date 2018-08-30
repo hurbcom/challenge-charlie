@@ -20,7 +20,7 @@ class Search extends Component {
         super(props)
         this.state={
             input:'',
-            lang:'pt'
+            lang:this.props.lang
         }
         this.pressEnter=this.pressEnter.bind(this);
         this.startSearch=this.startSearch.bind(this);
@@ -82,7 +82,7 @@ class Search extends Component {
                     <SearchIcon onClick={this.startSearch} className="search-icon" />
                     <div className='switch'>
                     <span>EN</span>
-                    <Switch onClick={this.changeLang}  defaultChecked value={this.state.lang} color="default" />
+                    <Switch onClick={this.changeLang} checked={this.props.lang === 'en' ? false : true}  value={this.props.lang} color="default" />
                     <span>PT</span>
                     </div>
                     <LocationOn onClick={this.props.getLocation} className="location-icon" />

@@ -16,7 +16,7 @@ class MainTemp extends Component {
             !this.props.noLocation
             ?<div className={`main-temp`}>
             <div className={colorByTemp(this.props.weather.condition.temp)}>
-                <Search />
+                <Search lang={this.props.lang}/>
                 <WeatherIcon code={parseInt(this.props.weather.condition.code,10)} />
                 <div className="bottom-main">
                     <div className="left-bottom">
