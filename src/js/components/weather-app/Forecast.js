@@ -11,7 +11,7 @@ class Forecast extends Component {
       !this.props.noLocation
       ?<div className={`forecast ${this.props.colorByTemp}`}>
         <div className="left-forecast box">
-          <span className="day">{translate(this.props.day)}</span>
+          <span className="day">{this.props.lang === 'en' ? this.props.day : translate(this.props.day)}</span>
         </div>
         <div className="mid-forecast">
          {/* Seleçao de icone ... ver 'src/components/weather-icon' */}

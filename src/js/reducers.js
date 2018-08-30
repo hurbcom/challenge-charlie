@@ -59,6 +59,10 @@ const reducers = (state = initialState, action) => {
             return Object.assign({}, state, {
                 findLocation:false
             })
+        case types.CHANGE_TRANS:
+            return Object.assign({}, state, {
+                lang:action.lang
+            })
         default:
             return state
     }

@@ -1,4 +1,5 @@
 const initialState = {
+    lang:'pt',
     mainDeg:true,
     noLocation:false,
     findLocation:false,

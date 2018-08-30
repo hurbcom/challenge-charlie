@@ -13,8 +13,8 @@ class WeatherApp extends Component {
             ? <Zoom in={this.props.findLocation}>
                 <div className="weather-app">
                     <MainTemp/>
-                    <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} {...this.props.weather.forecast.amanha} />
-                    <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} {...this.props.weather.forecast.depoisAmanha} />
+                    <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} lang={this.props.lang} {...this.props.weather.forecast.amanha} />
+                    <Forecast colorByTemp={colorByTemp(this.props.weather.condition.temp)} lang={this.props.lang} {...this.props.weather.forecast.depoisAmanha} />
                 </div>
             </Zoom>
             : <LocationOn style={{fontSize:'5em'}} className='loading'/>
@@ -24,6 +24,7 @@ class WeatherApp extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        lang:state.lang,
         findLocation: state.findLocation,
         weather: state.weather
     }

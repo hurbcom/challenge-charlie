@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Collapse from '@material-ui/core/Collapse'
 import TextField from '@material-ui/core/TextField'
+import Switch from '@material-ui/core/Switch'
 import Close from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
 import LocationOn from '@material-ui/icons/LocationOn'
 import { connect } from 'react-redux'
 import { startSearching } from '../../actions/searching'
 import { stopSearching, search } from '../../actions/searching'
+import { changeTrans } from '../../actions/changeTrans.actions'
 import { bindActionCreators } from 'redux';
 import {getWeather} from '../../actions/location.action'
 
@@ -17,13 +19,15 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state={
-            input:''
+            input:'',
+            lang:'pt'
         }
         this.pressEnter=this.pressEnter.bind(this);
         this.startSearch=this.startSearch.bind(this);
         this.handleChange=this.handleChange.bind(this);
         this.stopSearch=this.stopSearch.bind(this);
         this.search=this.search.bind(this);
+        this.changeLang=this.changeLang.bind(this);
 
     }
     // Atualiza o input
@@ -31,6 +35,17 @@ class Search extends Component {
         this.setState({
             input:e.target.value
         })
+    }
+    changeLang(e){
+        e.target.value === 'pt'
+        ? this.setState({
+            lang:'en'
+        },()=>this.props.changeTrans(this.state.lang))
+        : this.setState({
+            lang:'pt'
+        },()=>  this.props.changeTrans(this.state.lang));
+      
+
     }
     // reconhecimento do enter para a procura
     pressEnter(e){
@@ -65,6 +80,11 @@ class Search extends Component {
                 {/* Quando o botao nao for clicado*/}
                 <div className="search-off">
                     <SearchIcon onClick={this.startSearch} className="search-icon" />
+                    <div className='switch'>
+                    <span>EN</span>
+                    <Switch onClick={this.changeLang}  defaultChecked value={this.state.lang} color="default" />
+                    <span>PT</span>
+                    </div>
                     <LocationOn onClick={this.props.getLocation} className="location-icon" />
                 </div>
                 {/* Botao clicado*/}
@@ -93,6 +113,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        changeTrans:bindActionCreators(changeTrans,dispatch),
         getLocation:bindActionCreators(getWeather,dispatch),
         search:bindActionCreators(search,dispatch),
         stopSearching: function () {

@@ -6,3 +6,4 @@ export const IS_SEARCHING = 'IS_SEARCHING';
 export const NOT_SEARCHING = 'NOT_SEARCHING';
 export const CHANGE_DEG = 'CHANGE_DEG';
 export const SEARCHING = 'SEARCHING';
+export const CHANGE_TRANS = 'CHANGE_TRANS';

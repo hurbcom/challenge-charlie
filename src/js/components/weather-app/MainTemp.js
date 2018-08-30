@@ -10,7 +10,7 @@ import {translate} from '../../utils/translate'
 class MainTemp extends Component {
     render() {
 
-        
+        const conditionLang = this.props.lang === 'en';
         
         return (
             !this.props.noLocation
@@ -27,21 +27,22 @@ class MainTemp extends Component {
                         {this.props.weather.city}
                         </div>
                         <div className='dia'>
-                        Hoje
+                        {conditionLang ? 'Today' : 'Hoje'}
                         </div>
                     </div>
                     <div className="right-bottom">
-                    <div className='name-condition'>
-                        {translate(this.props.weather.condition.code)}
+                        <div className='name-condition'>
+                       {/*Verifica a lingua, se é inglês não traduz. A tradução é feita a partir do codigo pois a filtragem fica mais facil*/} 
+                        {conditionLang ? this.props.weather.condition.text : translate(this.props.weather.condition.code)}
                         </div>
-                        <div>
-                        <span>vento: {convertUnits(this.props.weather.wind.speed,'mph')} km/h</span>
+                        <div id='wind-condition'>
+                        <span>{conditionLang? 'wind' : 'vento'}: {convertUnits(this.props.weather.wind.speed,'mph')} km/h</span>
                         </div>
-                        <div>
-                        <span>pressao: {convertUnits(this.props.weather.atmosphere.pressure,'in')} atm</span>
+                        <div id='pressure-condition'>
+                        <span>{conditionLang? 'pressure' : 'pressão'}: {convertUnits(this.props.weather.atmosphere.pressure,'in')} atm</span>
                         </div>
-                        <div>
-                        <span>umidade: {this.props.weather.atmosphere.humidity}%</span>
+                        <div id='humidity-condition'>
+                        <span>{conditionLang? 'humidity' : 'umidade'}: {this.props.weather.atmosphere.humidity}%</span>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@ class MainTemp extends Component {
             <div className="grey-back">
             <Search />
             <div className="error-message">
-            Nenhuma localidade encontrada, tente de novo
+            {conditionLang ? 'No Locations Found' : 'Nenhuma localidade encontrada, tente de novo'}
             </div>
             </div>
             </div>
@@ -61,6 +62,7 @@ class MainTemp extends Component {
 
 const mapStateToProps = (state)=>{
 return{
+    lang:state.lang,
     noLocation: state.noLocation,
     weather:state.weather,
     mainDeg:state.mainDeg

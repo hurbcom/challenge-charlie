@@ -227,6 +227,14 @@
         top: 0;
         bottom: 0;
         cursor: pointer; }
+      .weather-app .main-temp .search-off .switch {
+        width: 30%;
+        z-index: 0;
+        top: -5px;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0; }
     .weather-app .main-temp .blue-back:after {
       content: "";
       background-image: linear-gradient(to top, #00ccff, #4ddbff 10px);
@@ -270,10 +278,12 @@
         position: absolute;
         z-index: -1; }
     .weather-app .main-temp .error-message {
+      border: 1px solid red;
       height: 100%;
       display: flex;
       font-size: 2em;
       align-items: center;
+      justify-content: center;
       text-align: center; }
 
 .loading {
