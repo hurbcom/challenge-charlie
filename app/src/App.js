@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import _ from 'lodash';
 import SearchBar from './components/SearchBar';
+import WeatherDisplay from './components/WeatherDisplay';
 
 class App extends Component {
     constructor(props) {
@@ -10,8 +11,9 @@ class App extends Component {
         this.state = {
             bgBing: '',
             location: '',
-            results: '',
-            forecast: [],
+            condition: '',
+            tomorrow: '',
+            afterTomorrow: '',
             error: ''
         };
     }
@@ -19,7 +21,6 @@ class App extends Component {
     componentDidMount() {
         axios.get('https://bingwallpaper.herokuapp.com').then(res => {
             let bgImage = res.data;
-            console.log(res);
             this.setState({
                 bgBing: bgImage
             });
@@ -31,12 +32,25 @@ class App extends Component {
         const findLocation = position => {
             let coordinates =
                 position.coords.latitude + ',' + position.coords.longitude;
-            let queryLocation = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${coordinates})")&format=json`;
+            let queryLocation = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places(1) WHERE text="(${coordinates})")&format=json`;
             axios.get(queryLocation).then(resp => {
-                this.setState({
-                    location: resp.data.query.results.channel.location.city,
-                    forecast: resp.data.query.results.channel.item.forecast
-                });
+                if (!resp.data.query.result) {
+                    this.setState({
+                        error: 'Não foi possível receber as informações'
+                    });
+                } else {
+                    this.setState({
+                        location: resp.data.query.results.channel.location.city,
+                        tomorrow:
+                            resp.data.query.results.channel.item.forecast[1]
+                                .high,
+                        afterTomorrow:
+                            resp.data.query.results.channel.item.forecast[2]
+                                .high,
+                        condition:
+                            resp.data.query.results.channel.item.condition
+                    });
+                }
             });
         };
         const errorHandler = error => {
@@ -49,19 +63,36 @@ class App extends Component {
     };
 
     inputHandler = e => {
-        this.setState({ location: e.target.value });
+        this.setState({
+            location: e.target.value,
+            condition: '',
+            tomorrow: '',
+            afterTomorrow: ''
+        });
         this.getByInputLocation();
     };
 
     getByInputLocation = _.debounce(
         () => {
-            let queryLocation = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${
+            let queryLocation = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places(1) WHERE text="(${
                 this.state.location
             }, BR)")&format=json`;
             axios.get(queryLocation).then(resp => {
-                this.setState({
-                    results: resp.data.query.results.channel
-                });
+                if (!resp.data.query.results.channel.item) {
+                    this.setState({ error: 'Não foi possivel localizar' });
+                } else {
+                    this.setState({
+                        error: '',
+                        condition:
+                            resp.data.query.results.channel.item.condition,
+                        tomorrow:
+                            resp.data.query.results.channel.item.forecast[1]
+                                .high,
+                        afterTomorrow:
+                            resp.data.query.results.channel.item.forecast[2]
+                                .high
+                    });
+                }
             });
         },
         1000,
@@ -82,6 +113,11 @@ class App extends Component {
                     <SearchBar
                         location={this.state.location}
                         change={this.inputHandler}
+                    />
+                    <WeatherDisplay
+                        condition={this.state.condition}
+                        tomorrow={this.state.tomorrow}
+                        afterTomorrow={this.state.afterTomorrow}
                     />
                 </div>
             </div>
