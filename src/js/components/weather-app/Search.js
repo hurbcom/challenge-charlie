@@ -11,7 +11,6 @@ import { stopSearching, search } from '../../actions/searching'
 import { changeTrans } from '../../actions/changeTrans.actions'
 import { bindActionCreators } from 'redux';
 import {getWeather} from '../../actions/location.action'
-import $ from 'jquery'
 
 
 
