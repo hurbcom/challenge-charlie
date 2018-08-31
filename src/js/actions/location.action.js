@@ -14,7 +14,7 @@ export const getWeather = () => {
                 console.log(position.coords.latitude);
                 console.log(position.coords.longitude);
                 // axios para requisição do clima
-                axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json`)
+                axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`)
                     .then(res => {
                         console.log(res.data);
                         return res.data
