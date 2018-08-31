@@ -2,6 +2,16 @@
 
 Weather SPA totalmente em português e com icones desenhados por mim, toda e interface é responsiva, incluindo fontes.
 
+Icones:
+<p align="center">
+  <img src="icons-board.jpg" alt="Icons" />
+</p>
+
+Screenshot:
+<p align="center">
+  <img src="screenshot.jpg" alt="Screenshot" />
+</p>
+
 Não quer executar em sua máquina? Sem problemas, aqui está uma demo no Heroku:   https://weatherapp-hotelurbano.herokuapp.com/
 
 Para executar:

@@ -177,7 +177,6 @@ body {
     height: 5em;
     font-size: 1em; }
     .weather-app .forecast .temp {
-      cursor: pointer;
       position: relative;
       text-align: right;
       padding-right: 25px;
