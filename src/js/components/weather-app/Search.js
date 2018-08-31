@@ -37,8 +37,6 @@ class Search extends Component {
         })
     }
     changeLang(e){
-        
-        
         e.target.value === 'pt'
         ? this.setState({
             lang:'en'
@@ -51,14 +49,19 @@ class Search extends Component {
     }
     // reconhecimento do enter para a procura
     pressEnter(e){
-            if(e.keyCode == 13){
-                return (this.state.input == '') ? null : this.search();
+            if(e.keyCode === 13){
+                return (this.state.input === '') ? null : this.search();
             }
     }
 
     // Efetivamente realiza a procura
     search(){
-        this.props.search(this.state.input)
+        const valueInput = this.state.input;
+        this.setState({
+            input:''
+        })
+        this.props.search(valueInput)
+        
         this.stopSearch()
     }
 
@@ -70,9 +73,6 @@ class Search extends Component {
     }
     // fecha o mecanismo de busca
     stopSearch(){
-        this.setState({
-            input:''
-        })
         this.props.stopSearching()
     }
 
@@ -101,7 +101,7 @@ class Search extends Component {
                         }}
                             fullWidth
                             className="search-input" />
-                        <SearchIcon onClick={()=> this.state.input == '' ? '' : this.search()} className="search-icon" />
+                        <SearchIcon onClick={()=> this.state.input === '' ? '' : this.search()} className="search-icon" />
                         <Close onClick={this.stopSearch} className="close" />
                     </div>
                 </Collapse>
