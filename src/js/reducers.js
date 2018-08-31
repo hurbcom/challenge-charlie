@@ -27,7 +27,7 @@ const reducers = (state = initialState, action) => {
           })
 
         case types.NO_LOCATION:
-        console.log(action.error);
+
             
             return Object.assign({}, state, {
                 findLocation:true,

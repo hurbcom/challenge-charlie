@@ -11,7 +11,7 @@ class MainTemp extends Component {
     render() {
 
         const conditionLang = this.props.lang === 'en';
-        console.log(this.props.lang);
+      
         
         return (
             !this.props.noLocation
@@ -51,7 +51,7 @@ class MainTemp extends Component {
             </div>
             : <div className={`main-temp`}>
             <div className="grey-back">
-            <Search />
+            <Search lang={this.props.lang}/>
             <div className="error-message">
             {conditionLang ? 'No Locations Found' : 'Nenhuma localidade encontrada, tente de novo'}
             </div>
