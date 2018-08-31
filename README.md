@@ -1,6 +1,11 @@
-# Desafio Charlie -> Hotel Hurbano
+#English introduction
 
-Weather SPA totalmente em português e com icones desenhados por mim, toda e interface é responsiva, incluindo fontes.
+Please view[README-EN.md](https://github.com/pedrobslisboa/challenge-charlie/blob/master/README-EN.md)
+
+----
+# Desafio Charlie / Hotel Hurbano -> Usando React, Redux
+
+Weather SPA totalmente em português e com icones desenhados por mim, toda e interface é responsiva, incluindo fontes. 
 
 Icones:
 <p align="center">

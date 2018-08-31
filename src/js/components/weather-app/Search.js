@@ -11,6 +11,7 @@ import { stopSearching, search } from '../../actions/searching'
 import { changeTrans } from '../../actions/changeTrans.actions'
 import { bindActionCreators } from 'redux';
 import {getWeather} from '../../actions/location.action'
+import $ from 'jquery'
 
 
 
@@ -37,7 +38,7 @@ class Search extends Component {
         })
     }
     changeLang(e){
-        console.log(this.props.lang);
+        
         
         e.target.value === 'pt'
         ? this.setState({
@@ -52,28 +53,32 @@ class Search extends Component {
     // reconhecimento do enter para a procura
     pressEnter(e){
             if(e.keyCode == 13){
-                (this.state.input == '') ? null : this.search();
+                return (this.state.input == '') ? null : this.search();
             }
     }
 
     // Efetivamente realiza a procura
     search(){
         this.props.search(this.state.input)
-        this.props.stopSearching()
+        this.stopSearch()
     }
 
     // Abre o mecanismo de busca
     startSearch(){
+
         window.addEventListener("keydown",this.pressEnter);
         this.props.startSearching()       
     }
     // fecha o mecanismo de busca
     stopSearch(){
-        window.removeEventListener("keydown",this.pressEnter);
         this.setState({
             input:''
         })
         this.props.stopSearching()
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("keydown",this.pressEnter);
     }
 
     render() {
