@@ -33,7 +33,7 @@ class Search extends Component {
     // Atualiza o input
     handleChange(e){
         this.setState({
-            input:this.props.lang
+            input:e.target.value
         })
     }
     changeLang(e){
