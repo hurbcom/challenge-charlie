@@ -1,4 +1,4 @@
-#English introduction
+# English introduction
 
 Please view[README-EN.md](https://github.com/pedrobslisboa/challenge-charlie/blob/master/README-EN.md)
 
