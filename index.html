@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Previsão do tempo</title>
+</head>
+
+<body id="body">
+    <div id="main">
+        <header id="head">
+            <h1>Previsão do Tempo</h1>
+        </header>
+        <div id="resultados">
+            <div class="result1">
+                <span id="result2">&times;</span>
+                <h2 id="localizacao"></h2>
+            </div>
+
+            <div id="result3">
+                <h3 id="condicao"></h3>
+                <div id="condicao1">
+                    <div class="item1">
+                        <span id="low" class="celsius"></span>
+                        <span id="high" class="celsius"></span>
+                    </div>
+                    <p>Sensação Térmica:<span id="sensation" class="celsius-ext"></span></p>
+                    <p>Ventos:<span id="wind" class="kmh"></span></p>
+                    <p>Umidade:<span id="humidity" class="percent"></span></p>
+                    <div class="img">
+                        <img src="img/logo.png" alt="Logo da one page">
+                    </div>
+                </div>
+            </div>
+            <div id="forecast-separator">
+            </div>
+            <section>
+                <ul id="forecast"></ul>
+            </section>
+        </div>
+        <div id="status"></div>
+        <section id="search">
+            <input id="input-city" type="text" placeholder="Digite a Cidade" maxlength="45">
+        </section>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

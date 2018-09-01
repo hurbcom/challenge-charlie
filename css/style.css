@@ -1,0 +1,283 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgb(255, 128, 0), rgb(255, 203, 64));
+    background: linear-gradient(rgb(0,0,205), rgb(30,144,255));
+    background: linear-gradient(rgb(255,0,0), rgb(250,128,114));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2 {
+    color: #fff;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+#main {
+    margin: 15px auto;
+    padding: 15px 5px;
+}
+
+
+@media screen and (max-width: 320px) {
+    #main {
+        width: 86%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #main {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #main {
+        width: 50%;
+    }
+}
+
+#status {
+    display: none;
+    width: 64px;
+    height: 64px;
+    margin: 10px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#head, section#search {
+    text-align: center;
+}
+
+section#search input#input-city {
+    display: inline-block;
+    width: 75%;
+    margin: 15px 2px;
+    padding: 15px 10px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: white;
+    background-image: url('../images/search-icon.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#result3 {
+    padding-left: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+#result3 .img{
+    display: flex;
+    justify-content: end;   
+    margin-top: -81px;
+    margin-right: -50px;
+}
+
+@media screen and (max-width: 320px) {
+    section#search input#input-city {
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 320px) {
+    hr {
+        margin: 0 -100%;
+    }
+}
+
+
+#resultados {
+    display: none;
+    margin: 20px auto;
+    background-color: rgb(255, 243, 228);
+    box-shadow: 2px 3px 5px rgb(255, 128, 0);
+    box-shadow: 2px 3px 5px rgb(0,0,205);
+    box-shadow: 2px 3px 5px rgb(255,0,0);
+}
+
+@media screen and (max-width: 320px) {
+    #resultados {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #resultados {
+        width: 75%;
+    }
+}
+
+#resultados .result1 {
+    padding-top: 2px;
+    padding-right: 12px;
+    padding-bottom: 2px;
+    padding-left: 30px;
+}
+
+#resultados .result1 h2 {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #393939;
+}
+
+#resultados .result1 span {
+    float: right;
+    color: rgb(255, 128, 0);
+    color: rgb(0,0,205); 
+    color: rgb(255,0,0);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#resultados  span#close-result:hover, #resultados span#result2:focus {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+#result3 {
+    padding-left: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+#result3 .img{
+    display: flex;
+    justify-content: end;   
+    margin-top: -81px;
+    margin-right: -50px;
+}
+
+h3#condition {
+    margin: 0;
+    font-size: 1.7em;
+    font-weight: 700;
+    color: #696969;
+}
+
+@media screen and (max-width: 320px) {
+    h3#condition {
+        font-size: 1.4em;
+    }
+}
+
+#condicao1 {
+    width: 260px;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+
+@media screen and (max-width: 320px) {
+    .item1 {
+        width: 100%;
+    }
+}
+
+
+.item1 p {
+    margin: 0;
+    color: #797979;
+}
+
+.item span {
+    margin-left: 5px;
+    font-weight: 700;
+    color: #484848;
+}
+
+#forecast-separator {
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid rgb(255, 128, 0);
+    border: 1px solid rgb(0,0,205); 
+    border: 1px solid rgb(255,0,0);
+}
+
+
+
+ul#forecast {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+ul#forecast li {
+    display: inline-block;
+    width: 19%;
+    text-align: center;
+}
+
+ul#forecast li header {
+    padding: 0;
+    margin: 0;
+}
+
+ul#forecast li header h4 {
+    margin: 4px 0;
+    font-weight: 700;
+    color: #484848;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 320px) {
+    ul#forecast li header h4 {
+        font-size: 14px;
+    }
+}
+
+ul#forecast li p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+ul#forecast li p span {
+    margin: 0 2px;
+    font-weight: 600;
+    color: rgb(255, 128, 0);
+    color: rgb(0,0,205); 
+    color: rgb(255,0,0);
+    font-size: 12px;
+}
+
+@media screen and (max-width: 320px) {
+    ul#forecast li p span {
+        font-size: 10px;
+    }
+}
+
+
+.celsius::after {
+    content: "°";
+}
+
+.celsius-ext::after {
+    content: "°C";
+}
+
+.kmh::after {
+    content: "km/h";
+}
+
+.percent::after {
+    content: "%";
+}
