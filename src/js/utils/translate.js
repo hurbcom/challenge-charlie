@@ -13,7 +13,7 @@ export const translate = (word) => {
             return 'Sab'
         case 'Sun':
             return 'Dom'
-        case 'Son':
+        case 'Mon':
             return 'Seg'
         case "1":
             return 'Tornado'
