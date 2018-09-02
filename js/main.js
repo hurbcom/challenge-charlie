@@ -1,3 +1,4 @@
+
 function getData(url) {
   return new Promise(function (resolve, reject) {
     const req = new XMLHttpRequest()
@@ -15,7 +16,6 @@ function getData(url) {
       reject("erro de conexão")
 
     }
-
     req.send()
   })
 }
@@ -30,12 +30,10 @@ const url = getData( "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n
 
     console.log(url.img_src)
   }
-}, function (error) { console.log(error) })
+}, function (error) { console.log(error.code) })
 
 var query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22:city%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
-console.log(query) //Mostra os dados da api 
-
-
+console.log(query) //Mostra os dados da api
 
 function $(element) {
     return document.querySelector(element);
@@ -44,7 +42,6 @@ function $(element) {
 /* Transformar graus fahrenheit em celsius para fazer isso subtraia 32 e divida por 1,8. */
 function Celsius(f) {
     return ((f - 32) / 1.8).toFixed(0);
-    
 }
 
 
@@ -63,25 +60,24 @@ function KmhHora(s) {
 function sensacaoTermica(v, t) {
     return (33 + (10 * (v / v) + 10.45 - v) * (t - 33) / 22).toFixed(2);
 }
-// função criada para mostrar a condição do tempo nos proximos 4 dias 
+// função criada para mostrar a condição do tempo nos proximos 4 dias
 function loadJson(city, callback) {
     var req = new XMLHttpRequest();
 
     var url = query.replace(":city", encodeURI(city));
 
     req.onreadystatechange = function () {
-        if (this.readyState == 0) {
+        if (this.readyState == 0) { // Request não inicializada
 
-        } else if (this.readyState == 1) {
-            
+        } else if (this.readyState == 1) { // Conexão estabilizada com o servidor
 
-        } else if (this.readyState == 2) {
+        } else if (this.readyState == 2) { // Request recebida
 
-        } else if (this.readyState == 3) {
+        } else if (this.readyState == 3) { // Processando request
 
-        } else if (this.readyState == 4 && this.status == 200) {
-           
-            callback(city, JSON.parse(this.responseText));
+        } else if (this.readyState == 4 && this.status == 200) { // Request finalizada
+
+            callback(city, JSON.parse(this.responseText)); // Call back devolve os dados pesquisados
         }
     };
 
@@ -90,6 +86,7 @@ function loadJson(city, callback) {
 }
 
 //Função para pegar os resultados das cidades
+var currentWeather;
 function renderCity(city, json) {
     if (json.query.results) {
         $("#resultados").style.display = "block";
@@ -98,9 +95,13 @@ function renderCity(city, json) {
         // variavel criada para guardar os dados do json referente a localizaçao e mostrar no html
         var location = channel.location;
         $("#localizacao").innerHTML = location.city + ", " + location.region + " - " + location.country;
+
          // variavel criada para guardar os dados do json referente a condição do tempo e mostrar no html
         var condition = channel.item.condition;
         $("#condicao").innerHTML = Celsius(condition.temp) + "°C " + condition.text;
+        currentWeather = Celsius(condition.temp);
+        trocar();
+
            // variavel criada para guardar os dados do json referente a condição do tempo no dia e mostrar no html
         var today = channel.item.forecast[0];
         $("#tempoBaixa").innerHTML = Celsius(today.low) + "Min";
@@ -126,7 +127,7 @@ function renderCity(city, json) {
             var p = document.createElement("P");
             var spantempBaixa = document.createElement("SPAN");
             var spantempAlta = document.createElement("SPAN");
-          
+
 
             spantempBaixa.setAttribute("class", "celsius");
             spantempAlta.setAttribute("class", "celsius");
@@ -169,8 +170,21 @@ function init() {
 window.onload = init;
 
 function trocar() {
+    console.log("troca acionado " + currentWeather);
     var cor = document.getElementById('body');
-    if (Celsius >= "35") {
-         cor.style.backgroundColor == "(rgb(255,0,0), rgb(250,128,114)";
+    if (currentWeather <= 15) {
+      cor.style.background = "blue";
+      console.log("< 35 " + currentWeather);
+
+    } else if (currentWeather <= 35) {
+      cor.style.background = "blue";
+      console.log(">= 35 " + currentWeather);
+
+    } else if (currentWeather >= 35) {
+      cor.style.background = "red";
+
     }
 }
+
+
+

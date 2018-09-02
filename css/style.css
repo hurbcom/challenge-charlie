@@ -2,8 +2,6 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(rgb(255, 128, 0), rgb(255, 203, 64));
-    background: linear-gradient(rgb(0,0,205), rgb(30,144,255));
-    background: linear-gradient(rgb(255,0,0), rgb(250,128,114));
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
@@ -94,9 +92,9 @@ section#search input#input-city {
     display: none;
     margin: 20px auto;
     background-color: rgb(255, 243, 228);
-    box-shadow: 2px 3px 5px rgb(255, 128, 0);
-    box-shadow: 2px 3px 5px rgb(0,0,205);
-    box-shadow: 2px 3px 5px rgb(255,0,0);
+    box-shadow: 2px 3px 5px black;
+    box-shadow: 2px 3px 5px black;
+    box-shadow: 2px 3px 5px black;
     max-width: 50%;
 }
 
@@ -127,9 +125,9 @@ section#search input#input-city {
 
 #resultados .result1 span {
     float: right;
-    color: rgb(255, 128, 0);
-    color: rgb(0,0,205); 
-    color: rgb(255,0,0);
+    color: black;
+    color: black; 
+    color: black;
     font-size: 28px;
     font-weight: bold;
 }
@@ -169,9 +167,9 @@ section#search input#input-city {
 #forecast-separator {
     width: 90%;
     margin: 10px auto;
-    border: 1px solid rgb(255, 128, 0);
-    border: 1px solid rgb(0,0,205); 
-    border: 1px solid rgb(255,0,0);
+    border: 1px black;
+    border: 1px solid black; 
+    border: 1px solid black;
 }
 
 
@@ -216,9 +214,9 @@ ul#forecast li p {
 ul#forecast li p span {
     margin: 0 2px;
     font-weight: 600;
-    color: rgb(255, 128, 0);
-    color: rgb(0,0,205); 
-    color: rgb(255,0,0);
+    color: black;
+    color: black; 
+    color: black;
     font-size: 12px;
 }
 
