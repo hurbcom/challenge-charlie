@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "start": "npm install && cors-server 8081",
+    "proxy": "cors-server 8081",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@vue/eslint-config-prettier": "^3.0.1",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.17",
     "vue-material": "^1.0.0-beta-10.2",
