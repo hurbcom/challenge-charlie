@@ -1,5 +1,36 @@
-.App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.App .wrapper {
+  background-position: center;
+  background-size: cover; }
+
+.App .container {
+  margin: 0 auto;
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.App .loader {
+  background-color: #eeeeee85;
+  border-radius: 0;
+  margin: 0 auto;
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.App .weather {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px; }
+
+.App .forecast {
+  text-align: center; }

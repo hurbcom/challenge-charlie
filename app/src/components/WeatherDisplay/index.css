@@ -1,0 +1,27 @@
+.weather-display {
+  padding: 10px;
+  width: 250px; }
+  .weather-display h2 {
+    margin-bottom: 10px; }
+  .weather-display__description {
+    font-size: 18px;
+    line-height: 1.5; }
+    .weather-display__description dt {
+      float: left;
+      margin-right: 10px; }
+    .weather-display__description--temperature {
+      cursor: pointer; }
+
+.unit {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 15px;
+  display: inline-block; }
+
+.celsius-unit {
+  background-image: url("../../icons/SVG/46.svg"); }
+
+.fahrenheit-unit {
+  background-image: url("../../icons/SVG/47.svg"); }

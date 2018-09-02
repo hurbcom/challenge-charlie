@@ -1,0 +1,21 @@
+.error-msg {
+  text-align: center;
+  font-size: 30px;
+  background-color: #f90000ad;
+  padding: 20px; }
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+  border: 3px solid #ffffffb8;
+  border-top-color: #000000bf;
+  border-radius: 50%;
+  animation: rotation .8s ease infinite;
+  display: block;
+  margin: 50px auto; }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
