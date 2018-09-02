@@ -63,7 +63,7 @@ function KmhHora(s) {
 function sensacaoTermica(v, t) {
     return (33 + (10 * (v / v) + 10.45 - v) * (t - 33) / 22).toFixed(2);
 }
-
+// função criada para mostrar a condição do tempo nos proximos 4 dias 
 function loadJson(city, callback) {
     var req = new XMLHttpRequest();
 
@@ -73,14 +73,14 @@ function loadJson(city, callback) {
         if (this.readyState == 0) {
 
         } else if (this.readyState == 1) {
-            $("div#status").style.display = "block";
+            
 
         } else if (this.readyState == 2) {
 
         } else if (this.readyState == 3) {
 
         } else if (this.readyState == 4 && this.status == 200) {
-            $("#status").style.display = "none"; // estiliza a div status através do javascript
+           
             callback(city, JSON.parse(this.responseText));
         }
     };
@@ -89,29 +89,29 @@ function loadJson(city, callback) {
     req.send();
 }
 
-
+//Função para pegar os resultados das cidades
 function renderCity(city, json) {
     if (json.query.results) {
         $("#resultados").style.display = "block";
-
+        // variavel criada para guardar os resultados do json
         var channel = json.query.results.channel;
-
+        // variavel criada para guardar os dados do json referente a localizaçao e mostrar no html
         var location = channel.location;
         $("#localizacao").innerHTML = location.city + ", " + location.region + " - " + location.country;
-
+         // variavel criada para guardar os dados do json referente a condição do tempo e mostrar no html
         var condition = channel.item.condition;
         $("#condicao").innerHTML = Celsius(condition.temp) + "°C " + condition.text;
-
+           // variavel criada para guardar os dados do json referente a condição do tempo no dia e mostrar no html
         var today = channel.item.forecast[0];
-        $("span#low").innerHTML = Celsius(today.low);
-        $("span#high").innerHTML = Celsius(today.high);
-
+        $("#tempoBaixa").innerHTML = Celsius(today.low) + "Min";
+        $("#tempoAlta").innerHTML = Celsius(today.high) + "Max";
+           // variavel criada para guardar os dados do json referente a aos ventos e sensação termica no dia mostrar no html
         var wind = channel.wind;
-        $("span#sensation").innerHTML = sensacaoTermica(MilhasSegundo(wind.speed), Celsius(condition.temp));
-        $("span#wind").innerHTML = KmhHora(wind.speed);
-
+        $("#sensation").innerHTML = sensacaoTermica(MilhasSegundo(wind.speed), Celsius(condition.temp));
+        $("#wind").innerHTML = KmhHora(wind.speed);
+           // variavel criada para guardar os dados do json referente a umidade no dia e mostrar no html
         var atmosphere = channel.atmosphere;
-        $("span#humidity").innerHTML = atmosphere.humidity;
+        $("span#umidade").innerHTML = atmosphere.humidity;
 
         // Resultado da previsão do tempo.
         var ul = $("ul#forecast");
@@ -124,20 +124,20 @@ function renderCity(city, json) {
             var header = document.createElement("HEADER");
             var h4 = document.createElement("H4");
             var p = document.createElement("P");
-            var spanLow = document.createElement("SPAN");
-            var spanHigh = document.createElement("SPAN");
+            var spantempBaixa = document.createElement("SPAN");
+            var spantempAlta = document.createElement("SPAN");
           
 
-            spanLow.setAttribute("class", "celsius");
-            spanHigh.setAttribute("class", "celsius");
+            spantempBaixa.setAttribute("class", "celsius");
+            spantempAlta.setAttribute("class", "celsius");
 
             h4.appendChild(document.createTextNode(channel.item.forecast[index].day));
-            spanLow.appendChild(document.createTextNode(Celsius(channel.item.forecast[index].low)));
-            spanHigh.appendChild(document.createTextNode(Celsius(channel.item.forecast[index].high)));
+            spantempBaixa.appendChild(document.createTextNode(Celsius(channel.item.forecast[index].low)));
+            spantempAlta.appendChild(document.createTextNode(Celsius(channel.item.forecast[index].high)));
 
             header.appendChild(h4);
-            p.appendChild(spanLow);
-            p.appendChild(spanHigh);
+            p.appendChild(spantempBaixa);
+            p.appendChild(spantempAlta);
             li.appendChild(header);
             li.appendChild(p);
             ul.appendChild(li);
@@ -169,8 +169,8 @@ function init() {
 window.onload = init;
 
 function trocar() {
-    var obj = document.getElementById('body');
+    var cor = document.getElementById('body');
     if (Celsius >= "35") {
-        return obj.style.background-color == "(rgb(255,0,0), rgb(250,128,114)";
+         cor.style.backgroundColor == "(rgb(255,0,0), rgb(250,128,114)";
     }
 }
