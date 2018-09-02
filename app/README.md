@@ -6,6 +6,8 @@ Navegar para a pasta `app` e executar o script `npm start`
 
 Caso desejem rodar a execução do SASS usar em conjuto o script `npm run watch-css`
 
+O projeto esta hospedado em https://leanfj-weather.herokuapp.com
+
 ### Anotações
 
 Realizado mudanças no recebimento da imagem pois para ficar a meu controle resolvi construi um serviço backend para a requisição da imagem passando para mim o controle do acesso com CORS. Serviço pode ser acessado via https://bingwallpaper.herokuapp.com que retorna uma string com o endereço da imagem ja formatado.
