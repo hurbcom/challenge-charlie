@@ -37,7 +37,7 @@
 
 // Custom devices
 @mixin rwd($width, $heigth) {
-  @media (min-width: $width+'px') and (max-height: $heigth+'px') {
+  @media (min-width: $width+'px') and (min-height: $heigth+'px') {
     @content;
   }
 }
