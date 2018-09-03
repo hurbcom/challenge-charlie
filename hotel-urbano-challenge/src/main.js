@@ -16,121 +16,121 @@ Vue.filter("toPtBr", function (condition) {
         case "Tornado":
             translated = "Tornado";
             break;
-        case "tropical storm":
+        case "Tropical storm":
             translated = "Temp. Tropical";
             break;
-        case "hurricane":
+        case "Hurricane":
             translated = "Furacão";
             break;
-        case "severe thunderstorms":
+        case "Severe thunderstorms":
             translated = "Temp. Severas";
             break;
-        case "thunderstorms":
+        case "Thunderstorms":
             translated = "Trovoadas";
             break;
-        case "mixed rain and snow":
+        case "Mixed rain and snow":
             translated = "Chuva e Neve";
             break;
-        case "mixed rain and sleet":
+        case "Mixed rain and sleet":
             translated = "Chuva e Granizo";
             break;
-        case "mixed snow and sleet":
+        case "Mixed snow and sleet":
             translated = "Neve e Granizo";
             break;
-        case "freezing drizzle":
+        case "Freezing drizzle":
             translated = "Chuvisco Cong.";
             break;
-        case "drizzle":
+        case "Drizzle":
             translated = "Chuvisco";
             break;
-        case "freezing rain":
+        case "Freezing rain":
             translated = "Chuva Congelante";
             break;
-        case "showers":
+        case "Showers":
             translated = "Chuva Forte";
             break;
-        case "snow flurries":
+        case "Snow flurries":
             translated = "Flocos de Neve";
             break;
-        case "light snow showers":
+        case "Light snow showers":
             translated = "Nevasca Leve";
             break;
-        case "blowing snow":
+        case "Blowing snow":
             translated = "Temp. de Neve";
             break;
-        case "snow":
+        case "Snow":
             translated = "Neve";
             break;
-        case "hail":
+        case "Hail":
             translated = "Granizo";
             break;
-        case "sleet":
+        case "Sleet":
             translated = "Granizo";
             break;
-        case "foggy":
+        case "Foggy":
             translated = "Nebuloso";
             break;
-        case "haze":
+        case "Haze":
             translated = "Neblina";
             break;
-        case "smoky":
+        case "Smoky":
             translated = "Nevoeiro";
             break;
-        case "blustery":
+        case "Blustery":
             translated = "Tempestade";
             break;
-        case "windy":
+        case "Windy":
             translated = "Ventania";
             break;
-        case "cold":
+        case "Cold":
             translated = "Frio";
             break;
-        case "cloudy":
+        case "Cloudy":
             translated = "Nublado";
             break;
-        case "mostly cloudy":
+        case "Mostly cloudy":
             translated = "Pred. Nublado";
             break;
-        case "partly cloudy":
+        case "Partly cloudy":
             translated = "Parc. Nublado";
             break;
-        case "clear":
+        case "Clear":
             translated = "Céu Limpo";
             break;
-        case "sunny":
+        case "Sunny":
             translated = "Ensolarado";
             break;
-        case "fair":
+        case "Fair":
             translated = "Bom";
             break;
-        case "hot":
+        case "Hot":
             translated = "Calor";
             break;
-        case "isolated thunderstorms":
+        case "Isolated thunderstorms":
             translated = "Temp. Isoladas";
             break;
-        case "scattered thunderstorms":
+        case "Scattered thunderstorms":
             translated = "Temp. Dispersas";
             break;
-        case "scattered showers":
+        case "Scattered showers":
             translated = "Chuvas Isoladas";
             break;
-        case "heavy snow":
+        case "Heavy snow":
             translated = "Neve Pesada";
             break;
-        case "thundershowers":
+        case "Thundershowers":
             translated = "Trovoadas";
             break;
-        case "isolated thundershowers":
+        case "Isolated thundershowers":
             translated = "Trov. Isoladas";
             break;
-        case "not available":
+        case "Not available":
             translated = "Não Disponível";
             break;
         default:
             translated = "";
     }
-    return condition;
+    return translated;
 });
 
 new Vue({
