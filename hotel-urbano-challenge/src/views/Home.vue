@@ -2,6 +2,10 @@
     <div class="home">
         <TheWallPaper/>
 
+        <loading :active.sync="isLoading"
+                 :can-cancel="true"
+                 :is-full-page="true"></loading>
+
         <!-- modal de erro caso não consiga obter localização do usuaário -->
         <md-dialog-alert
                 :md-active.sync="errorLocation"
@@ -77,14 +81,18 @@
 <script>
     // @ is an alias to /src
     import TheWallPaper from "@/components/TheWallpaper.vue";
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.min.css';
 
     export default {
         name: "home",
         components: {
-            TheWallPaper
+            TheWallPaper,
+            Loading
         },
         data() {
             return {
+                isLoading: false,
                 isFahreheint: false,
                 celsius: "c",
                 fahreheint: "f",
@@ -95,6 +103,7 @@
             };
         },
         beforeMount() {
+            this.isLoading = true;
             this.getGeolocation();
         },
         methods: {
@@ -123,8 +132,9 @@
                       woeid in (select woeid from geo.places where text='(${lat}, ${long})')&format=json`)
                     .then(res => {
                         this.weather = res.body.query.results.channel;
+                        this.isLoading = false;
                     }, () => {
-                        console.log("erro");
+                        this.isLoading = false;
                     });
             }
         }
