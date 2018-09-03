@@ -18,7 +18,7 @@ Características:
 
 Para rodar o projeto 💻 basta executar o index.html 
 
-Apenas é nessesário executar o index.html. Porém, para simular a query à API do Bing localmente, é necessário instalar uma extensão no navegador. Segue os links para instalação:
+
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.
