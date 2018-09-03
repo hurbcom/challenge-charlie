@@ -32,7 +32,7 @@
                                    @click="getClimate(lat, long, fahreheint)">ºF</p>
                             </div>
                         </div>
-                        <p class="climate">{{weather ? weather.item.condition.text : ''}}</p>
+                        <p class="climate">{{weather ? weather.item.condition.text : '' | toPtBr}}</p>
                         <div class="content-climate">
                             <p>Vento: {{weather ? weather.wind.speed : ''}}{{weather ? weather.units.speed : ''}}</p>
                             <p>Humidade: {{weather ? weather.atmosphere.humidity : ''}}%</p>
