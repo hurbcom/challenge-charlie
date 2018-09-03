@@ -1,16 +1,12 @@
 Renata De Almeida Andrade
 
-
 Tecnologias utilizadas:
 
  HTML 5
 
-
  CSS 3
 
-
  JavaScript
-
 
  Jquery sem nenhum plugin somente seletores
 
@@ -18,10 +14,9 @@ Características:
 
  Mobile First
 
- 
  Responsivo sem nenhum framework
 
-Para rodar o porjeto 💻 basta executar o index.html 
+Para rodar o projeto 💻 basta executar o index.html 
 
 Apenas é nessesário executar o index.html. Porém, para simular a query à API do Bing localmente, é necessário instalar uma extensão no navegador. Segue os links para instalação:
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
