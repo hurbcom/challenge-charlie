@@ -1,14 +1,24 @@
 Renata De Almeida Andrade
+
+
 Tecnologias utilizadas:
 
  HTML 5
+
+
  CSS 3
+
+
  JavaScript
+
+
  Jquery sem nenhum plugin somente seletores
 
 Características:
 
  Mobile First
+
+ 
  Responsivo sem nenhum framework
 
 Para rodar o porjeto 💻 basta executar o index.html 
