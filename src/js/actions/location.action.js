@@ -12,7 +12,7 @@ export const getWeather = () => {
             //pega a localizaação 
             navigator.geolocation.getCurrentPosition((position) => {
                 // axios para requisição do clima
-                axios.get(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text="(${position.coords.latitude},${position.coords.longitude})")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`)
+                axios.get(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(SELECT%20woeid%20FROM%20geo.places%20WHERE%20text="(${position.coords.latitude},${position.coords.longitude})")&format=json`)
                     .then(res => {
        
                         return res.data

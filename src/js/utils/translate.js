@@ -2,7 +2,7 @@ export const translate = (word) => {
     
     switch (word) {
         case 'Tue':
-            return 'Qer';
+            return 'Ter';
         case 'Wed':
             return 'Qua'
         case 'Thu':
