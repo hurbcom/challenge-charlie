@@ -34,11 +34,17 @@
   stroke-miterlimit: 10;
   stroke-linecap: round; }
 
+.st4 {
+  fill: none;
+  stroke: #FFF;
+  stroke-width: 6;
+  stroke-miterlimit: 10; }
+
 .st1 {
   fill: #FFF; }
 
 .st2 {
-  fill: none;
+  fill: #FFF;
   stroke: #FFF;
   stroke-width: 3;
   stroke-miterlimit: 10; }

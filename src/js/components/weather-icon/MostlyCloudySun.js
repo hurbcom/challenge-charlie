@@ -4,7 +4,7 @@ export default class MostlyCloudySun extends Component {
   render() {
     return (
         <svg version="1.1" id="mostly-sun" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style={{enableBackground: 'new 0 0 200 200'}} xmlSpace="preserve">
-        <path id="XMLID_6_" className="st0" d="M149.8,94.8c-12.2,0-23,5.7-29.9,14.6c-2.5-0.8-5.2-1.3-7.9-1.3c-9.6,0-17.9,5.5-22,13.4
+        <path id="XMLID_6_" className="st1" d="M149.8,94.8c-12.2,0-23,5.7-29.9,14.6c-2.5-0.8-5.2-1.3-7.9-1.3c-9.6,0-17.9,5.5-22,13.4
           c-0.9-0.1-1.7-0.1-2.6-0.1c-13.6,0-24.7,11.4-24.7,25c0,13.6,11,25,24.7,25h62.4c21,0,38-17.4,38-38.4S170.7,94.8,149.8,94.8z" />
         <g id="XMLID_3_">
           <path id="XMLID_5_" className="st1" d="M80,28c-0.6,0-1,0.5-1,1v20c0,0.6,0.4,1,1,1c0.6,0,1-0.5,1-1V29C81,28.4,80.6,28,80,28z" />
