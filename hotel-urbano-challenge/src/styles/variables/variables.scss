@@ -1,13 +1,39 @@
+/* ===========================
+//COLORS
+===========================*/
+
 $headerColor: rgba(255, 255, 255, 0.8);
 
-// breakpoints
+// Colors Gradient Default
+$yellowPrimary: rgba(242, 192, 31, 0.9);
+$yellowSecondary: rgba(255, 251, 15, 1);
+$yellowTerciary: rgba(248, 235, 8, 0.9);
+$yellowQuaternary: rgba(245, 228, 5, 1);
+$yellowQuinary: rgba(221, 207, 23, 0.9);
+$gradientDefault: $yellowPrimary 46%,$yellowSecondary 46%,$yellowTerciary 46%,$yellowQuaternary 76%,$yellowQuinary 76%;
+
+// Colors Gradient Blue
+$bluePrimary: rgba(53, 180, 218, 0.9);
+$blueSecondary: rgba(30, 118, 208, 1);
+$blueTerciary: rgba(35, 87, 219, 0.9);
+$blueQuaternary: rgba(45, 59, 224, 1);
+$blueQuinary: rgba(100, 124, 236, 0.9);
+$gradientBlue: $bluePrimary 46%,$blueSecondary 46%, $blueTerciary 46%,$blueQuaternary 76%, $blueQuinary 76%;
+
+// Colors Gradient Red
+$redPrimary: rgba(191, 42, 42, 0.9);
+$redSecondary: rgba(208, 30, 30, 1);
+$redTerciary: rgba(231, 27, 27, 0.9);
+$redQuaternary: rgba(224, 45, 45, 1);
+$redQuinary: rgba(236, 100, 100, 0.9);
+$gradientRed: $redPrimary 46%,$redSecondary 46%, $redTerciary 46%,$redQuaternary 76%, $redQuinary 76%;
+
+/* ===========================
+//BREAKPOINTS
+===========================*/
 
 $screen-xs-min: 320px;
-
 $screen-sm-min: 576px;
-
 $screen-md-min: 768px;
-
 $screen-lg-min: 992px;
-
 $screen-xl-min: 1200px;

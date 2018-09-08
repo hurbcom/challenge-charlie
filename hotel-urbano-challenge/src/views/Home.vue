@@ -12,7 +12,7 @@
                 md-title="Não foi possível obter sua localizacão!"
                 md-content="Your post <strong>Material Design is awesome</strong> has been created."/>
 
-        <md-card>
+        <md-card v-show="!isLoading">
             <md-card-header>
                 <div class="md-title">
                     <img :src="Location | iconWeather" class="icon" alt="Ícone de Localização">
@@ -20,7 +20,7 @@
                 </div>
             </md-card-header>
 
-            <md-card-content class="md-scrollbar">
+            <md-card-content id="content">
                 <img :src="weather ? weather.item.condition.text : '' | iconWeather" class="icon-weather" alt="Ícone Meteorologia">
                 <!--Conteúdo Lateral-->
                 <aside class="aside-content">
@@ -133,10 +133,21 @@
                       woeid in (select woeid from geo.places where text='(${lat}, ${long})')&format=json`)
                     .then(res => {
                         this.weather = res.body.query.results.channel;
-                        this.isLoading = false;
+                        this.setGradient(this.weather.item.condition.temp);
                     }, () => {
                         this.isLoading = false;
                     });
+            },
+            setGradient(temperature) {
+                let temp = parseInt(temperature);
+                let element = document.getElementById("content");
+                if (temp < 15)
+                    element.classList.add("gradient-blue");
+                else if (temp > 35)
+                    element.classList.add("gradient-red");
+                else
+                    element.classList.add("gradient-default");
+                this.isLoading = false;
             }
         }
     };
@@ -144,6 +155,7 @@
 <style scoped lang="scss">
     @import "../styles/variables/variables.scss";
     @import "../styles/mixins/media-queries.scss";
+    @import "../styles/mixins/linear-gradient.scss";
 
     .md-card {
         display: inline-block;
@@ -183,14 +195,16 @@
                 height: 800px;
                 width: 600px;
             }
-            background: linear-gradient(
-            180deg,
-            rgba(242, 192, 31, 0.9) 46%,
-            rgba(255, 251, 15, 1) 46%,
-            rgba(248, 235, 8, 0.9) 46%,
-            rgba(245, 228, 5, 1) 76%,
-            rgba(221, 207, 23, 0.9) 76%
-        );
+        };
+        .gradient-default {
+            @include linear-gradient($gradientDefault);
+        }
+        .gradient-blue {
+            @include linear-gradient($gradientBlue);
+        }
+        .gradient-red {
+            @include linear-gradient($gradientRed);
+        }
             color: #fff;
             font-weight: bold;
             text-align: left;
@@ -353,9 +367,8 @@
                     }
                 }
                 .inactive {
-                    opacity: 0.8;
+                    opacity: 0.7;
                 }
             }
         }
-    }
 </style>

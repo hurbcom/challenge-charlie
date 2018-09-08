@@ -1,0 +1,8 @@
+@import "../variables/variables.scss";
+
+@mixin linear-gradient($gradient) {
+  background: -webkit-linear-gradient(180deg, $gradient);
+  background: -moz-linear-gradient(180deg, $gradient);
+  background: -o-linear-gradient(180deg, $gradient);
+  background: linear-gradient(180deg, $gradient);
+}
