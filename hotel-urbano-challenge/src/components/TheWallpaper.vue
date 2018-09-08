@@ -22,10 +22,8 @@ export default {
         getWallpaper() {
             this.loading = true;
             this.$http
-                .get(
-                    `${BASE_URL}https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`
-                )
-                .then(
+                .get(`${BASE_URL}https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`)
+                 .then(
                     res => {
                         this.background = `http://www.bing.com${
                             res.body.images[0].url

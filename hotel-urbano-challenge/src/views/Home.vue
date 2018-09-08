@@ -15,13 +15,13 @@
         <md-card>
             <md-card-header>
                 <div class="md-title">
-                    <img src="../assets/svg/44.svg" class="icon" alt="Ícone de Localização">
+                    <img :src="Location | iconWeather" class="icon" alt="Ícone de Localização">
                     {{weather ? `${weather.location.city},${weather.location.region}` : ''}}
                 </div>
             </md-card-header>
 
             <md-card-content class="md-scrollbar">
-                <img src="../assets/svg/2.svg" class="icon-weather" alt="Ícone Meteorologia">
+                <img :src="weather ? weather.item.condition.text : '' | iconWeather" class="icon-weather" alt="Ícone Meteorologia">
                 <!--Conteúdo Lateral-->
                 <aside class="aside-content">
                     <!--Primeiro dia-->
@@ -36,7 +36,7 @@
                                    @click="getClimate(lat, long, fahreheint)">ºF</p>
                             </div>
                         </div>
-                        <p class="climate">{{weather ? weather.item.condition.text : '' | toPtBr}}</p>
+                        <p class="climate">{{weather ? weather.item.condition.text : '' | translate}}</p>
                         <div class="content-climate">
                             <p>Vento: {{weather ? weather.wind.speed : ''}}{{weather ? weather.units.speed : ''}}</p>
                             <p>Humidade: {{weather ? weather.atmosphere.humidity : ''}}%</p>
@@ -92,6 +92,7 @@
         },
         data() {
             return {
+                Location: "Location",
                 isLoading: false,
                 isFahreheint: false,
                 celsius: "c",
