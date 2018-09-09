@@ -16,7 +16,11 @@
       md-content="Por favor, ative a localização do navegador e recarregue a página"/>
 
     <!-- card de previsão do tempo -->
-    <forecast-card :lat="lat" :long="long" :loading="isLoading" :weather="weather"></forecast-card>
+    <forecast-card 
+      :lat="lat" 
+      :long="long" 
+      :loading="isLoading" 
+      :weather="weather"/>
 
   </div>
 </template>
@@ -49,7 +53,7 @@ export default {
             isLoading: false,
             lat: "",
             long: "",
-            errorLocation: false,
+            errorLocation: false
         };
     },
     computed: {
@@ -83,16 +87,16 @@ export default {
             }
         },
         getClimate(lat, long) {
-            return api.getClimate(lat, long)
+            return api
+                .getClimate(lat, long)
                 .then(weather => {
                     this.$store.commit("SET_WEATHER", weather);
                 })
                 .catch()
-                .finally(() => this.isLoading = false);
+                .finally(() => (this.isLoading = false));
         }
     }
 };
 </script>
 <style scoped lang="scss">
-
 </style>

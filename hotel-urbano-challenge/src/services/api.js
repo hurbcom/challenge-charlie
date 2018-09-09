@@ -1,15 +1,10 @@
 import axios from "axios";
-import BASE_URL from "../config";
 
 export default {
     getWallpaper() {
-        return axios
-            .get(
-                `${BASE_URL}https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`
-            )
-            .then(response => {
-                return response.data;
-            });
+        return axios.get("/wallpaper").then(response => {
+            return response.data;
+        });
     },
 
     getClimate(lat, long, unit) {

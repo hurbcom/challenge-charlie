@@ -26,6 +26,6 @@ html {
     overflow: hidden;
 }
 .md-dialog {
-  background-color: $dialogColor;
+    background-color: $dialogColor;
 }
 </style>

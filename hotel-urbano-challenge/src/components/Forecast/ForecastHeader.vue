@@ -1,19 +1,19 @@
 <template>
-    <md-card-header class="header">
-      <div class="header__title">
-        <img 
-          :src="'Location' | iconWeather" 
-          class="header__icon"
-          alt="Ícone de Localização">
-        {{location ? location : "Não Disponível"}}
-      </div>
-    </md-card-header>
+  <md-card-header class="header">
+    <div class="header__title">
+      <img 
+        :src="'Location' | iconWeather" 
+        class="header__icon"
+        alt="Ícone de Localização">
+      {{ location ? location : "Não Disponível" }}
+    </div>
+  </md-card-header>
 </template>
 
 <script>
 export default {
     name: "ForecastHeader",
-    props: ['location']
+    props: ["location"]
 };
 </script>
 
