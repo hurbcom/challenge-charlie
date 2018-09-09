@@ -6,6 +6,7 @@
 
 <style lang="scss">
 @import "~normalize.css";
+@import "@/styles/variables/variables.scss";
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body,
@@ -23,5 +24,8 @@ html {
     background-size: cover;
     height: 100%;
     overflow: hidden;
+}
+.md-dialog {
+  background-color: $dialogColor;
 }
 </style>
