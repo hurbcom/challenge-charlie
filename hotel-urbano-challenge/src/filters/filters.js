@@ -1,6 +1,6 @@
 export default {
     filters: {
-        translate: function (value) {
+        translate: function(value) {
             let translated = "";
             switch (value) {
                 case "Tornado":
@@ -119,7 +119,7 @@ export default {
             }
             return translated;
         },
-        iconWeather: function (value) {
+        iconWeather: function(value) {
             let icon = "";
             switch (value) {
                 case "Tornado":
@@ -240,8 +240,10 @@ export default {
         }
     },
     create: function(Vue) {
-        Object.keys(this.filters).forEach(function (filter,k) {
-            Vue.filter(filter, this.filters[filter])
-        }.bind(this))
+        Object.keys(this.filters).forEach(
+            function(filter) {
+                Vue.filter(filter, this.filters[filter]);
+            }.bind(this)
+        );
     }
-}
+};

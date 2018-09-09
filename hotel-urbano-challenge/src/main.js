@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 import Loading from "vue-loading-overlay";
 import VueResource from "vue-resource";
 import VueMaterial from "vue-material";
@@ -17,6 +18,7 @@ filters.create(Vue);
 
 new Vue({
     router,
+    store,
     VueResource,
     Loading,
     render: h => h(App)
