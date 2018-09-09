@@ -5,14 +5,23 @@
 $headerColor: #ffffff;
 $headerFontColor: #a0a0a0;
 $contentColor: #ffffff;
+$dialogColor: #ffffff;
 
 // Colors Gradient Default
+$greyPrimary: rgba(175, 171, 171, 0.9);
+$greySecondary: rgba(15, 15, 15, 1);
+$greyTerciary: rgba(153, 146, 146, 0.9);
+$greyQuaternary: rgba(120, 119, 119, 1);
+$greyQuinary: rgba(89, 87, 87, 0.9);
+$gradientDefault: $greyPrimary 46%,$greySecondary 46%,$greyTerciary 46%,$greyQuaternary 76%,$greyQuinary 76%;
+
+// Colors Gradient Yellow
 $yellowPrimary: rgba(242, 192, 31, 0.9);
 $yellowSecondary: rgba(255, 251, 15, 1);
 $yellowTerciary: rgba(248, 235, 8, 0.9);
 $yellowQuaternary: rgba(245, 228, 5, 1);
 $yellowQuinary: rgba(221, 207, 23, 0.9);
-$gradientDefault: $yellowPrimary 46%,$yellowSecondary 46%,$yellowTerciary 46%,$yellowQuaternary 76%,$yellowQuinary 76%;
+$gradientYellow: $yellowPrimary 46%,$yellowSecondary 46%,$yellowTerciary 46%,$yellowQuaternary 76%,$yellowQuinary 76%;
 
 // Colors Gradient Blue
 $bluePrimary: rgba(53, 180, 218, 0.9);

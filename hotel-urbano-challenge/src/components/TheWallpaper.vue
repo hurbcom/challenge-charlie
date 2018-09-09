@@ -1,7 +1,7 @@
 <template>
   <md-dialog-alert
-          :md-active.sync="errorWallpaper"
-          md-title="Não foi possível carregar o papel de parede!"/>
+    :md-active.sync="errorWallpaper"
+    md-title="Não foi possível carregar o papel de parede!"/>
 </template>
 
 <script>
@@ -19,19 +19,20 @@ export default {
     },
     methods: {
         getWallpaper() {
-            return api.getWallpaper()
+            return api
+                .getWallpaper()
                 .then(wallpaper => {
                     this.setWallpaper(wallpaper);
                 })
-                .catch(error => this.errorWallpaper = true);
+                .catch(() => (this.errorWallpaper = true));
         },
         setWallpaper(wallpaper) {
-            document.getElementById("app").style.backgroundImage = `url(http://www.bing.com${wallpaper.images[0].url})`;
+            document.getElementById(
+                "app"
+            ).style.backgroundImage = `url(http://www.bing.com${
+                wallpaper.images[0].url
+            })`;
         }
     }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-</style>

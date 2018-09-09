@@ -1,0 +1,109 @@
+@import "../variables/variables";
+@import "../mixins/media-queries";
+
+%day {
+  @include xs {
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+  @include rwd(360, 600) {
+    margin-bottom: -5px;
+    font-size: 13px;
+  }
+  @include md {
+    font-size: 25px;
+  }
+  @include lg {
+    margin-bottom: 0;
+    font-size: 25px;
+  }
+  @include rwd(1920, 1080) {
+    font-size: 30px;
+  }
+}
+
+%temperature {
+  @include xs {
+    margin-top: 0;
+    font-size: 16px;
+  }
+  @include md {
+    font-size: 25px;
+    margin-top: 14px;
+  }
+  @include lg {
+    margin-top: 17px;
+    font-size: 25px;
+  }
+  @include rwd(1920, 1080) {
+    font-size: 32px;
+  }
+}
+%climate {
+  @include xs {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  @include md {
+    font-size: 35px;
+    margin-top: 24px;
+  }
+  @include lg {
+    font-size: 35px;
+  }
+}
+%content-climate {
+  @include xs {
+    font-size: 12px;
+    margin-top: -13px;
+  }
+  @include md {
+    font-size: 20px;
+  }
+  @include lg {
+    font-size: 18px;
+  }
+  @include rwd(1920, 1080) {
+    font-size: 20px;
+  }
+  p {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+%degree {
+  @include xs {
+    margin-left: 24px;
+    margin-top: -23px;
+  }
+  @include md {
+    margin-left: 34px;
+  }
+  @include lg {
+    margin-left: 35px;
+    margin-top: -23px;
+  }
+  @include xl {
+    margin-left: 43px;
+  }
+  p {
+    margin-bottom: 0;
+    margin-top: 0;
+    cursor: pointer;
+  }
+}
+
+%fahreheint {
+  @include xs {
+    margin-top: 0;
+  }
+  @include lg {
+    margin-top: 7px;
+  }
+  @include xl {
+    margin-top: 13px;
+  }
+}
+%inactive {
+  opacity: 0.7;
+}
