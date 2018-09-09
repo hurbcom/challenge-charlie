@@ -8,7 +8,7 @@
 import api from "@/services/api";
 
 export default {
-    name: "HelloWorld",
+    name: "TheWallpaper",
     data() {
         return {
             errorWallpaper: false
