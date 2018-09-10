@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm install && cors-server 8081",
-    "proxy": "cors-server 8081",
+    "image": "docker build -t hotel-urbano-challenge .",
+    "start": "docker run -d -p 8080:80 hotel-urbano-challenge",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
