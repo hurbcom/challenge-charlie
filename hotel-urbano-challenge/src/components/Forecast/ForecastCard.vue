@@ -93,7 +93,7 @@ export default {
     .card__content {
         @include xs {
             height: 380px;
-            width: 300px;
+            width: 310px;
         }
         @include md {
             height: 800px;
