@@ -1,0 +1,25 @@
+version: '3'
+services:
+  node:
+    image: node:latest
+    container_name: node
+    volumes:
+      - .:/var/application/current
+    working_dir: /var/application/current
+    networks:
+      - challenge-charlie-network
+    command: yarn start
+    ports:
+      - 3000:3000
+    depends_on:
+      - challenge-charlie-api
+  challenge-charlie-api:
+    image: felippemauricio/challenge-charlie-api:latest
+    container_name: challenge-charlie-api
+    networks:
+      - challenge-charlie-network
+    ports:
+      - 8080:3000
+networks:
+  challenge-charlie-network:
+    driver: bridge
