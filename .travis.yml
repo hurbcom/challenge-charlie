@@ -6,6 +6,7 @@ cache:
 stages:
   - lint
   - docker-hub
+  - deploy-on-heroku
 
 jobs:
   include:
@@ -25,5 +26,18 @@ jobs:
         - docker push felippemauricio/challenge-charlie
         - docker tag felippemauricio/challenge-charlie felippemauricio/challenge-charlie:$TRAVIS_COMMIT
         - docker push felippemauricio/challenge-charlie:$TRAVIS_COMMIT
+      on:
+        branch: master
+
+    - stage: deploy-on-heroku
+      sudo: required
+      provider: heroku
+      services:
+        - docker
+      script:
+        - yarn run build
+        - heroku container:login
+        - heroku container:push web -a challenge-charlie
+        - heroku container:release web -a challenge-charlie
       on:
         branch: master
