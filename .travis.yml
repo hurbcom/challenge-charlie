@@ -5,6 +5,7 @@ cache:
 
 stages:
   - lint
+  - docker-hub
 
 jobs:
   include:
@@ -12,3 +13,17 @@ jobs:
     - stage: lint
       script:
         - yarn run lint
+
+    - stage: docker-hub
+      sudo: required
+      services:
+        - docker
+      script:
+        - yarn run build
+        - docker build -t felippemauricio/challenge-charlie .
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push felippemauricio/challenge-charlie
+        - docker tag felippemauricio/challenge-charlie felippemauricio/challenge-charlie:$TRAVIS_COMMIT
+        - docker push felippemauricio/challenge-charlie:$TRAVIS_COMMIT
+      on:
+        branch: master
