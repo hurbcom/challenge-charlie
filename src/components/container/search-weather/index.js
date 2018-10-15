@@ -5,6 +5,7 @@ import {
   bindActionCreators,
   connect,
   getBingImage,
+  getUnsplashImage,
 } from 'store/actions';
 
 
@@ -12,11 +13,13 @@ class SearchWeather extends Component {
   static propTypes = {
     backgroundImage: string.isRequired,
     getBingImageAction: func.isRequired,
+    getUnsplashImageAction: func.isRequired,
   };
 
   componentDidMount() {
-    const { getBingImageAction } = this.props;
-    getBingImageAction();
+    const { getBingImageAction, getUnsplashImageAction } = this.props;
+    getBingImageAction()
+      .catch(() => getUnsplashImageAction());
   }
 
   render() {
@@ -34,6 +37,7 @@ const mapStateToProps = ({ backgroundImage }) => ({ backgroundImage });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getBingImageAction: getBingImage,
+  getUnsplashImageAction: getUnsplashImage,
 }, dispatch);
 
 
