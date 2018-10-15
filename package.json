@@ -9,6 +9,8 @@
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.4",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.10"
   },
   "devDependencies": {
