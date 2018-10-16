@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
-import Background from 'components/ui/background';
+import Background from 'components/ui/Background';
+import Loading from 'components/ui/Loading';
 import {
   bindActionCreators,
   connect,
   getBingImage,
   getUnsplashImage,
 } from 'store/actions';
+import { Wrapper } from './style';
 
 
 class SearchWeather extends Component {
@@ -26,7 +28,9 @@ class SearchWeather extends Component {
     const { backgroundImage } = this.props;
     return (
       <Background image={backgroundImage}>
-        <p>Olá, estou no SearchWeather</p>
+        <Wrapper>
+          { !backgroundImage && <Loading /> }
+        </Wrapper>
       </Background>
     );
   }
