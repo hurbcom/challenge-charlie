@@ -18,7 +18,7 @@ const ballScaleMultiple = keyframes`
 const LoadingChild = styled.div`
   animation: ${ballScaleMultiple} 1s 0s linear infinite;
   animation-fill-mode: both;
-  background-color: #87CEFA;
+  background-color: ${({ theme }) => theme.colors.lightBlue};
   border-radius: 100%;
   height: inherit;
   position: absolute;
