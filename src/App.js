@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import Store from 'store';
 import Theme from 'theme';
-import SearchWeather from 'components/container/search-weather';
+import SearchWeather from 'components/container/SearchWeather';
 
 
 function App() {
