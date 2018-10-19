@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Input } from 'components/atoms';
+import { Icon, Input } from 'components/atoms';
+import { Wrapper } from './style';
 
 
 class SearchInput extends Component {
@@ -20,14 +21,15 @@ class SearchInput extends Component {
   render() {
     const { valueInput } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
+        <Wrapper>
+          <Icon icon="compass" size="3x" />
           <Input
             value={valueInput}
             onChange={this.handleChangeInput}
           />
-        </form>
-      </div>
+        </Wrapper>
+      </form>
     );
   }
 }

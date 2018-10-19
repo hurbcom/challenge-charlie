@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 
 const Box = styled.div`
-  background-color: white;
+  background-color: red;
   border-radius: none;
   height: 100%;
-  opacity: 0.7;
   overflow: hidden;
   width: 100%;
 
