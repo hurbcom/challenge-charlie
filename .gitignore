@@ -83,7 +83,7 @@ typings/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+# Icon
 
 # Thumbnails
 ._*
@@ -127,7 +127,7 @@ gradle-app.setting
 # General
 
 # Icon must end with two \r
-Icon
+# Icon
 
 
 # Thumbnails
