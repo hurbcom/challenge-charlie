@@ -10,16 +10,8 @@ const Box = styled.div`
 
   @media(min-width: ${({ theme }) => theme.breakpoints.small}) {
     border-radius: 20px;
-    height: 80%;
-    width: 80%;
-  }
-
-  @media(min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 60%;
-  }
-
-  @media(min-width: ${({ theme }) => theme.breakpoints.large}) {
-    width: 40%;
+    height: 35em;
+    width: 22em;
   }
 `;
 
