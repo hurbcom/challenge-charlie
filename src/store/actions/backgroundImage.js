@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LOAD_BING_IMAGE } from 'store/constants';
-import { env } from 'helper';
+import { env } from 'helpers';
 
 
 // ====================================================================

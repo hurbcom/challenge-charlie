@@ -1,5 +1,5 @@
 import { createLogger } from 'redux-logger';
-import { env } from 'helper';
+import { env } from 'helpers';
 
 
 const { NODE_ENV } = env;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
-import Background from 'components/ui/Background';
-import Loading from 'components/ui/Loading';
+import {
+  Background,
+  Loading,
+} from 'components/atoms';
 import {
   bindActionCreators,
   connect,

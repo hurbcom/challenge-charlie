@@ -40,6 +40,7 @@ const LoadingWrapper = styled.div`
   }
 `;
 
+
 export {
   LoadingChild,
   LoadingWrapper,
