@@ -4,8 +4,7 @@ import { Box } from 'components/atoms';
 
 function WeatherBox() {
   return (
-    <Box>
-    </Box>
+    <Box />
   );
 }
 
