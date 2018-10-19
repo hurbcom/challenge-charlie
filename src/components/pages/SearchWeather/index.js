@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
-import {
-  Background,
-  Loading,
-} from 'components/atoms';
+import { Background, Loading } from 'components/atoms';
+import { WeatherBox } from 'components/organisms';
 import {
   bindActionCreators,
   connect,
@@ -32,6 +30,7 @@ class SearchWeather extends Component {
       <Background image={backgroundImage}>
         <Wrapper>
           { !backgroundImage && <Loading /> }
+          { backgroundImage && <WeatherBox /> }
         </Wrapper>
       </Background>
     );

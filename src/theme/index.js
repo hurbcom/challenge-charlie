@@ -1,5 +1,6 @@
 import { injectGlobal } from 'styled-components';
 import reset from 'styled-reset';
+import breakpoints from './breakpoints';
 import colors from './colors';
 
 
@@ -13,5 +14,6 @@ injectGlobal([`
 
 
 export default {
+  breakpoints,
   colors,
 };
