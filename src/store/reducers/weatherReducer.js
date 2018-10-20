@@ -1,7 +1,7 @@
 import { LOAD_WEATHER } from 'store/constants';
 
 
-const initialState = null;
+const initialState = {};
 
 const weatherReducer = (state = initialState, action) => {
   const { type, value = {} } = action;

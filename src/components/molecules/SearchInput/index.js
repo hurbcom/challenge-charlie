@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import { Icon, Input } from 'components/atoms';
 import {
   bindActionCreators,
@@ -12,11 +12,20 @@ import { Wrapper } from './style';
 class SearchInput extends Component {
   static propTypes = {
     getWeatherByValueAction: func.isRequired,
+    location: string,
+  };
+
+  static defaultProps = {
+    location: '',
   };
 
   state = {
     valueInput: '',
   };
+
+  componentWillReceiveProps({ location }) {
+    this.setState({ valueInput: location });
+  }
 
   handleChangeInput = ({ target }) => {
     this.setState({
@@ -47,8 +56,11 @@ class SearchInput extends Component {
   }
 }
 
+const mapStateToProps = ({ weather }) => ({ location: weather.location });
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   getWeatherByValueAction: getWeatherByValue,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(SearchInput);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
