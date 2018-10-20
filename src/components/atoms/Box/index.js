@@ -1,3 +1,1 @@
-import Box from './style';
-
-export default Box;
+export { default } from './style';

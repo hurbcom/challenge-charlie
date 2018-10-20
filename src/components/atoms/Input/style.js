@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const InputBox = styled.input`
+const Input = styled.input`
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
   font-size: 20px;
@@ -11,4 +11,4 @@ const InputBox = styled.input`
 `;
 
 
-export default InputBox;
+export default Input;

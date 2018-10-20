@@ -1,4 +1,1 @@
-import Background from './style';
-
-
-export default Background;
+export { default } from './style';
