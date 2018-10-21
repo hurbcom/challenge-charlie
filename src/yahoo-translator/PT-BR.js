@@ -48,7 +48,7 @@ export default {
       text: 'chuvisco',
       image: 1,
     },
-    12:  {
+    12: {
       text: 'chuva',
       image: 1,
     },

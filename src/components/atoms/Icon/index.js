@@ -1,19 +1,28 @@
 import React from 'react';
-import { string } from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { number, string } from 'prop-types';
+import Img from './style';
+import defaultImage from './images/45.svg';
 
 
-function Icon({ icon, size }) {
-  return <FontAwesomeIcon icon={icon} size={size} />;
+function Icon({ code, height }) {
+  try {
+    return (
+      <Img src={require(`./images/${code}.svg`)} height={height} /> // eslint-disable-line
+    );
+  } catch (_) {
+    return (
+      <Img src={defaultImage} height={height} />
+    );
+  }
 }
 
 Icon.propTypes = {
-  icon: string.isRequired,
-  size: string,
+  code: string.isRequired,
+  height: number,
 };
 
 Icon.defaultProps = {
-  size: null,
+  height: 35,
 };
 
 

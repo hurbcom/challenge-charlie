@@ -45,7 +45,7 @@ class SearchInput extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Wrapper>
-          <Icon icon="compass" size="2x" />
+          <Icon code="44" />
           <Input
             value={valueInput}
             onChange={this.handleChangeInput}
