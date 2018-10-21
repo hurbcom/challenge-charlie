@@ -5,6 +5,7 @@ const Box = styled.div`
   background-color: red;
   border-radius: none;
   height: 100%;
+  opacity: 0.9;
   overflow: hidden;
   width: 100%;
 
