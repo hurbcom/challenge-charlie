@@ -1,14 +1,24 @@
 import React from 'react';
-import { Wrapper } from './style';
+import { string } from 'prop-types';
+import { Box } from 'components/atoms';
 
 
-function MainWeather() {
+function MainWeather({ mainColor, secoundColor }) {
   return (
-    <Wrapper>
+    <Box mainColor={mainColor} secoundColor={secoundColor} height={20}>
       <p>MainWeather</p>
-    </Wrapper>
+    </Box>
   );
 }
+
+MainWeather.propTypes = {
+  mainColor: string.isRequired,
+  secoundColor: string,
+};
+
+MainWeather.defaultProps = {
+  secoundColor: null,
+};
 
 
 export default MainWeather;

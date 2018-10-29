@@ -1,14 +1,24 @@
 import React from 'react';
-import { Wrapper } from './style';
+import { string } from 'prop-types';
+import { Box } from 'components/atoms';
 
 
-function SecondaryWeather() {
+function SecondaryWeather({ mainColor, secoundColor }) {
   return (
-    <Wrapper>
+    <Box mainColor={mainColor} secoundColor={secoundColor} height={5}>
       <p>SecondaryWeather</p>
-    </Wrapper>
+    </Box>
   );
 }
+
+SecondaryWeather.propTypes = {
+  mainColor: string.isRequired,
+  secoundColor: string,
+};
+
+SecondaryWeather.defaultProps = {
+  secoundColor: null,
+};
 
 
 export default SecondaryWeather;
