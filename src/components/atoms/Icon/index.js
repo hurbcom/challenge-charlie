@@ -1,28 +1,27 @@
 import React from 'react';
-import { number, string } from 'prop-types';
-import Img from './style';
-import defaultImage from './images/45.svg';
+import { ThemeProvider } from 'styled-components';
+import { string } from 'prop-types';
+import getTheme from './theme';
+import { Span } from './style';
 
 
-function Icon({ code, height }) {
-  try {
-    return (
-      <Img src={require(`./images/${code}.svg`)} height={height} /> // eslint-disable-line
-    );
-  } catch (_) {
-    return (
-      <Img src={defaultImage} height={height} />
-    );
-  }
+function Icon({ code, color, type }) {
+  return (
+    <ThemeProvider theme={theme => getTheme(theme, type)}>
+      <Span color={color} data-icon={code} />
+    </ThemeProvider>
+  );
 }
 
 Icon.propTypes = {
   code: string.isRequired,
-  height: number,
+  color: string,
+  type: string,
 };
 
 Icon.defaultProps = {
-  height: 35,
+  color: '#FFF',
+  type: 'medium',
 };
 
 
