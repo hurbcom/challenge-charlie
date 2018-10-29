@@ -6,7 +6,7 @@ import {
   connect,
   getWeatherByValue,
 } from 'store/actions';
-import { Wrapper } from './style';
+import { Form, Wrapper } from './style';
 
 
 class SearchInput extends Component {
@@ -43,15 +43,15 @@ class SearchInput extends Component {
   render() {
     const { valueInput } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Wrapper>
+      <Wrapper>
+        <Form onSubmit={this.handleSubmit}>
           <Icon code="44" />
           <Input
             value={valueInput}
             onChange={this.handleChangeInput}
           />
-        </Wrapper>
-      </form>
+        </Form>
+      </Wrapper>
     );
   }
 }

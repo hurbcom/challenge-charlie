@@ -1,15 +1,21 @@
 import styled from 'styled-components';
 
 
-const Wrapper = styled.div`
+const Form = styled.form`
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   flex: 1;
-  padding: 5px 10px;
-  justify-content: space-between;
+  height: inherit;
+  padding: 0 0.5em;
+`;
+
+const Wrapper = styled.div`
+  height: 3em;
 `;
 
 
 export {
+  Form,
   Wrapper,
 };
