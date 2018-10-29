@@ -6,7 +6,7 @@ const Box = styled.div`
   width: 100%;
 
   ${({ mainColor, secoundColor }) => (secoundColor ? css`
-    background-image: linear-gradient(to top, ${secoundColor}, ${mainColor} 10px);
+    background-image: linear-gradient(to top, ${secoundColor}, ${mainColor} 0.5em);
   ` : css`
     background-color: ${mainColor};
   `)}
