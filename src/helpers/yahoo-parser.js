@@ -15,9 +15,15 @@ const getTemperatureByFahrenheit = temp => ({
   F: temp,
 });
 
-const getMainData = ({ code, temp }) => {
+const getHumidity = ({ humidity }) => ({
+  symbol: '%',
+  value: humidity,
+});
+
+const getMainData = (atmosphere, { code, temp }) => {
   const { text: title, image } = ptBr.codes[code];
   return {
+    humidity: getHumidity(atmosphere),
     image,
     temperature: getTemperatureByFahrenheit(temp),
     title,
@@ -45,10 +51,10 @@ const getDays = ({ forecast }) => {
 // ---------------------------------------------------
 
 const parser = ({ query }) => {
-  const { item, location } = query.results.channel;
+  const { atmosphere, item, location } = query.results.channel;
   return {
     location: getLocation(location),
-    today: getMainData(item.condition),
+    today: getMainData(atmosphere, item.condition),
     days: getDays(item),
   };
 };
