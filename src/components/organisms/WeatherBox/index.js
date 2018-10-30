@@ -31,7 +31,7 @@ class WeatherBox extends Component {
   };
 
   renderMainWeather = (light, color) => {
-    const { uiState } = this.props;
+    const { uiState, weather } = this.props;
     switch (uiState) {
       case UI.NO_DATA:
         return (
@@ -44,6 +44,7 @@ class WeatherBox extends Component {
           <MainWeather
             mainColor={light}
             secoundColor={color}
+            weather={weather}
           />
         );
       default:

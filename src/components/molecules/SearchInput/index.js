@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, string } from 'prop-types';
+import { func, instanceOf } from 'prop-types';
 import { Icon, Input } from 'components/atoms';
 import { Form, Wrapper } from './style';
 
@@ -7,11 +7,11 @@ import { Form, Wrapper } from './style';
 class SearchInput extends Component {
   static propTypes = {
     onSubmit: func.isRequired,
-    location: string,
+    location: instanceOf(Object),
   };
 
   static defaultProps = {
-    location: '',
+    location: {},
   };
 
   state = {
@@ -19,7 +19,7 @@ class SearchInput extends Component {
   };
 
   componentWillReceiveProps({ location }) {
-    this.setState({ valueInput: location });
+    this.setState({ valueInput: location.city });
   }
 
   handleChangeInput = ({ target }) => {
