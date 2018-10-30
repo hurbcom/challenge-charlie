@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { withTheme } from 'styled-components';
-import { func, instanceOf } from 'prop-types';
+import { func, instanceOf, string } from 'prop-types';
 import {
   MainWeather,
+  Message,
   SearchInput,
   SecondaryWeather,
 } from 'components/molecules';
@@ -11,6 +12,7 @@ import {
   connect,
   getWeatherByValue,
 } from 'store/actions';
+import { UI } from 'store/constants';
 import { getColor } from 'helpers';
 import { Box } from './style';
 
@@ -18,6 +20,7 @@ import { Box } from './style';
 class WeatherBox extends Component {
   static propTypes = {
     getWeatherByValueAction: func.isRequired,
+    uiState: string.isRequired,
     theme: instanceOf(Object).isRequired,
     weather: instanceOf(Object).isRequired,
   };
@@ -27,6 +30,31 @@ class WeatherBox extends Component {
     getWeatherByValueAction(value);
   };
 
+  renderMainWeather = (light, color) => {
+    const { uiState } = this.props;
+    switch (uiState) {
+      case UI.NO_DATA:
+        return (
+          <Message mainColor={light} secoundColor={color}>
+            Por favor, informe uma localidade.
+          </Message>
+        );
+      case UI.SHOW_WEATHER:
+        return (
+          <MainWeather
+            mainColor={light}
+            secoundColor={color}
+          />
+        );
+      default:
+        return (
+          <Message mainColor={light} secoundColor={color}>
+            Nenhuma região localizada. Por favor, tente novamente.
+          </Message>
+        );
+    }
+  };
+
   render() {
     const { theme, weather } = this.props;
     const { light, color, dark } = getColor(theme);
@@ -34,7 +62,7 @@ class WeatherBox extends Component {
     return (
       <Box>
         <SearchInput onSubmit={this.handleSubmit} location={location} />
-        <MainWeather mainColor={light} secoundColor={color} />
+        { this.renderMainWeather(light, color) }
         <SecondaryWeather mainColor={color} secoundColor={dark} />
         <SecondaryWeather mainColor={dark} />
       </Box>
@@ -42,7 +70,8 @@ class WeatherBox extends Component {
   }
 }
 
-const mapStateToProps = ({ weather }) => ({
+const mapStateToProps = ({ ui, weather }) => ({
+  uiState: ui,
   weather,
 });
 

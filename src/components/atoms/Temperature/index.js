@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { func, number, string } from 'prop-types';
+import {
+  func,
+  number,
+  oneOfType,
+  string,
+} from 'prop-types';
 import { Text } from 'components/atoms';
 import { TemperatureBox } from './style';
 
 
 class Temperature extends Component {
   static propTypes = {
-    children: number.isRequired,
+    children: oneOfType([number, string]).isRequired,
     onClick: func,
     textType: string,
     type: string,
@@ -26,13 +31,11 @@ class Temperature extends Component {
 
   render() {
     const { children, textType, type } = this.props;
+    const symbol = `°${type}`;
     return (
       <TemperatureBox onClick={this.handleClick}>
         <Text type={textType}>{ children }</Text>
-        <Text type="small">
-°
-          {type}
-        </Text>
+        <Text type="small">{symbol}</Text>
       </TemperatureBox>
     );
   }

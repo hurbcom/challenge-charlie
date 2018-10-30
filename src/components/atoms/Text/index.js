@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { string } from 'prop-types';
+import { number, oneOfType, string } from 'prop-types';
 import getTheme from './theme';
 import { P } from './style';
 
@@ -14,7 +14,7 @@ function Text({ children, color, type }) {
 }
 
 Text.propTypes = {
-  children: string.isRequired,
+  children: oneOfType([number, string]).isRequired,
   color: string,
   type: string,
 };

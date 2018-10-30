@@ -7,7 +7,6 @@ const backgroundImageReducer = (state = initialState, action) => {
   const { type } = action;
   switch (type) {
     case UI.NO_DATA:
-    case UI.LOADING_WEATHER:
     case UI.SHOW_WEATHER:
     case UI.UNDEFINED_WEATHER:
       return type;
