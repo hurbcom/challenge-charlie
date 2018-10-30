@@ -1,6 +1,11 @@
 import React from 'react';
 import { string } from 'prop-types';
-import { Box, Icon, Text } from 'components/atoms';
+import {
+  Box,
+  Icon,
+  Temperature,
+  Text,
+} from 'components/atoms';
 import { Wrapper } from './style';
 
 
@@ -10,7 +15,7 @@ function SecondaryWeather({ mainColor, secoundColor }) {
       <Wrapper>
         <Text type="medium">Sáb</Text>
         <Icon code="H" type="medium" />
-        <Text type="medium">35.2</Text>
+        <Temperature textType="medium">32.1</Temperature>
       </Wrapper>
     </Box>
   );

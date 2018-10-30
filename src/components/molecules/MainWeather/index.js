@@ -1,6 +1,11 @@
 import React from 'react';
 import { string } from 'prop-types';
-import { Box, Icon, Text } from 'components/atoms';
+import {
+  Box,
+  Icon,
+  Temperature,
+  Text,
+} from 'components/atoms';
 import {
   DataBox,
   DataLocationBox,
@@ -18,7 +23,7 @@ function MainWeather({ mainColor, secoundColor }) {
         </IconBox>
         <DataBox>
           <DataLocationBox>
-            <Text type="large">24.4</Text>
+            <Temperature>24.2</Temperature>
             <Text type="small">Rio de Janeiro / RJ</Text>
             <Text type="small">Hoje</Text>
           </DataLocationBox>
