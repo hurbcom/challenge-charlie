@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 import { Icon, Input } from 'components/atoms';
-import {
-  bindActionCreators,
-  connect,
-  getWeatherByValue,
-} from 'store/actions';
 import { Form, Wrapper } from './style';
 
 
 class SearchInput extends Component {
   static propTypes = {
-    getWeatherByValueAction: func.isRequired,
+    onSubmit: func.isRequired,
     location: string,
   };
 
@@ -34,10 +29,10 @@ class SearchInput extends Component {
   };
 
   handleSubmit = (event) => {
-    const { getWeatherByValueAction } = this.props;
+    const { onSubmit } = this.props;
     const { valueInput } = this.state;
     event.preventDefault();
-    getWeatherByValueAction(valueInput);
+    onSubmit(valueInput);
   };
 
   render() {
@@ -56,11 +51,5 @@ class SearchInput extends Component {
   }
 }
 
-const mapStateToProps = ({ weather }) => ({ location: weather.location });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getWeatherByValueAction: getWeatherByValue,
-}, dispatch);
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default SearchInput;
