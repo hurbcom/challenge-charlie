@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { undefinedWeather } from 'store/actions';
 import { LOAD_WEATHER } from 'store/constants';
 import { env, urlParser, yahooParser } from 'helpers';
 
@@ -37,5 +38,7 @@ export const getWeatherByValue = value => (dispatch) => {
       } catch (err) {
         throw err;
       }
+    }).catch(() => {
+      dispatch(undefinedWeather());
     });
 };
