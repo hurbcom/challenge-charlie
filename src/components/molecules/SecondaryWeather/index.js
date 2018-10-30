@@ -22,7 +22,7 @@ class SecondaryWeather extends Component {
     day: {},
     onChangeTemperature: null,
     secoundColor: null,
-    selectedTemperature: 'c',
+    selectedTemperature: 'C',
   };
 
   handleChangeTemperature = () => {

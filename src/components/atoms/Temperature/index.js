@@ -20,7 +20,7 @@ class Temperature extends Component {
   static defaultProps = {
     onClick: null,
     textType: 'large',
-    type: 'c',
+    type: 'C',
   };
 
   handleClick = () => {

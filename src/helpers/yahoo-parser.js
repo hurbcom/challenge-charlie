@@ -11,8 +11,8 @@ const getLocation = ({ city, country, region }) => ({
 });
 
 const getTemperatureByFahrenheit = temp => ({
-  c: calcTemperature.convertFahrenheitToCelsius(temp),
-  f: temp,
+  C: calcTemperature.convertFahrenheitToCelsius(temp),
+  F: temp,
 });
 
 const getMainData = ({ code, temp }) => {

@@ -26,7 +26,7 @@ class MainWeather extends Component {
   static defaultProps = {
     onChangeTemperature: null,
     secoundColor: null,
-    selectedTemperature: 'c',
+    selectedTemperature: 'C',
     weather: {},
   };
 

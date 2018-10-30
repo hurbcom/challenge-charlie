@@ -26,12 +26,12 @@ class WeatherBox extends Component {
   };
 
   state = {
-    selectedTemperature: 'c',
+    selectedTemperature: 'C',
   };
 
   handleChangeTemperature = () => {
     this.setState(({ selectedTemperature }) => ({
-      selectedTemperature: selectedTemperature === 'c' ? 'f' : 'c',
+      selectedTemperature: selectedTemperature === 'C' ? 'F' : 'C',
     }));
   };
 
