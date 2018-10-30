@@ -1,11 +1,11 @@
 const themes = {
   small: {
-    fontSize: 0.8,
+    fontSize: 0.9,
     paddingVertical: 0.2,
   },
   medium: {
-    fontSize: 1,
-    paddingVertical: 0.2,
+    fontSize: 1.2,
+    paddingVertical: 0.3,
   },
   large: {
     fontSize: 2.5,

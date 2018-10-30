@@ -11,7 +11,7 @@ import {
 
 function MainWeather({ mainColor, secoundColor }) {
   return (
-    <Box mainColor={mainColor} secoundColor={secoundColor} height={20}>
+    <Box mainColor={mainColor} secoundColor={secoundColor} height={22}>
       <Wrapper>
         <IconBox>
           <Icon code="H" type="large" />
