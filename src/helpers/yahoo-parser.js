@@ -1,4 +1,4 @@
-import { calcTemperature } from 'helpers';
+import { convert } from 'helpers';
 import ptBr from 'yahoo-translator/PT-BR';
 
 
@@ -11,7 +11,7 @@ const getLocation = ({ city, country, region }) => ({
 });
 
 const getTemperatureByFahrenheit = temp => ({
-  C: calcTemperature.convertFahrenheitToCelsius(temp),
+  C: convert.convertFahrenheitToCelsius(temp),
   F: temp,
 });
 
@@ -20,13 +20,19 @@ const getHumidity = ({ humidity }) => ({
   value: humidity,
 });
 
-const getMainData = (atmosphere, { code, temp }) => {
+const getWind = ({ speed }) => ({
+  symbol: 'km/h',
+  value: convert.convertMphToKmh(speed),
+});
+
+const getMainData = (atmosphere, wind, { code, temp }) => {
   const { text: title, image } = ptBr.codes[code];
   return {
     humidity: getHumidity(atmosphere),
     image,
     temperature: getTemperatureByFahrenheit(temp),
     title,
+    wind: getWind(wind),
   };
 };
 
@@ -51,10 +57,15 @@ const getDays = ({ forecast }) => {
 // ---------------------------------------------------
 
 const parser = ({ query }) => {
-  const { atmosphere, item, location } = query.results.channel;
+  const {
+    atmosphere,
+    item,
+    location,
+    wind,
+  } = query.results.channel;
   return {
     location: getLocation(location),
-    today: getMainData(atmosphere, item.condition),
+    today: getMainData(atmosphere, wind, item.condition),
     days: getDays(item),
   };
 };
