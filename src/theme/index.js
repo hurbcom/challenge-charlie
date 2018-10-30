@@ -23,6 +23,12 @@ injectGlobal([`
     font-style: normal;
     font-weight: normal;
   }
+  @font-face {
+    font-family: 'Roboto-Regular';
+    src:  url('assets/fonts/Roboto-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+  }
 `]);
 
 

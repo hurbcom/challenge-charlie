@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Box = styled.div`
   border-radius: 0;
-  opacity: 0.9;
+  opacity: 0.92;
   overflow: hidden;
   width: 100%;
 
