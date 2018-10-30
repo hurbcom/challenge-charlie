@@ -72,9 +72,11 @@ class WeatherBox extends Component {
   render() {
     const { theme, weather } = this.props;
     const { selectedTemperature } = this.state;
-    const { light, color, dark } = getColor(theme);
-    const { location, days = [] } = weather;
+    const { days = [], location, today = {} } = weather;
     const [firstDay, secoundDay] = days;
+    const { temperature = {} } = today;
+    const currentTemperature = temperature.C;
+    const { light, color, dark } = getColor(theme, currentTemperature);
     return (
       <Box>
         <SearchInput onSubmit={this.handleSubmit} location={location} />
