@@ -9,13 +9,22 @@ const getLocation = ({ city, country, region }) => ({
   region: trim(region),
 });
 
-const getMainData = ({ condition }) => {
-  const { code } = condition;
+const getMainData = ({ code, day }) => {
   const { text: title, image } = ptBr.codes[code];
+  const parsedDay = ptBr.week[day];
   return {
-    title,
+    day: parsedDay,
     image,
+    title,
   };
+};
+
+const getDays = ({ forecast }) => {
+  const [, tomorrow, afterTomorrow] = forecast;
+  return [
+    getMainData(tomorrow),
+    getMainData(afterTomorrow),
+  ];
 };
 
 // ---------------------------------------------------
@@ -24,7 +33,8 @@ const parser = ({ query }) => {
   const { item, location } = query.results.channel;
   return {
     location: getLocation(location),
-    today: getMainData(item),
+    today: getMainData(item.condition),
+    days: getDays(item),
   };
 };
 

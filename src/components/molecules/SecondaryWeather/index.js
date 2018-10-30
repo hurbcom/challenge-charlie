@@ -1,5 +1,5 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { instanceOf, string } from 'prop-types';
 import {
   Box,
   Icon,
@@ -9,24 +9,26 @@ import {
 import { Wrapper } from './style';
 
 
-function SecondaryWeather({ mainColor, secoundColor }) {
+function SecondaryWeather({ mainColor, secoundColor, day }) {
   return (
     <Box mainColor={mainColor} secoundColor={secoundColor} height={5}>
       <Wrapper>
-        <Text type="medium">Sáb</Text>
-        <Icon code="H" type="medium" />
-        <Temperature textType="medium">32.1</Temperature>
+        { day.day && <Text type="medium">{day.day}</Text> }
+        { day.image && <Icon code={day.image} type="medium" /> }
+        { day.image && <Temperature textType="medium">32.1</Temperature> }
       </Wrapper>
     </Box>
   );
 }
 
 SecondaryWeather.propTypes = {
+  day: instanceOf(Object),
   mainColor: string.isRequired,
   secoundColor: string,
 };
 
 SecondaryWeather.defaultProps = {
+  day: {},
   secoundColor: null,
 };
 

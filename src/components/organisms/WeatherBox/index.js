@@ -59,13 +59,14 @@ class WeatherBox extends Component {
   render() {
     const { theme, weather } = this.props;
     const { light, color, dark } = getColor(theme);
-    const { location } = weather;
+    const { location, days = [] } = weather;
+    const [firstDay, secoundDay] = days;
     return (
       <Box>
         <SearchInput onSubmit={this.handleSubmit} location={location} />
         { this.renderMainWeather(light, color) }
-        <SecondaryWeather mainColor={color} secoundColor={dark} />
-        <SecondaryWeather mainColor={dark} />
+        <SecondaryWeather mainColor={color} secoundColor={dark} day={firstDay} />
+        <SecondaryWeather mainColor={dark} day={secoundDay} />
       </Box>
     );
   }

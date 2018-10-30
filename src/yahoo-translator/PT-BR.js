@@ -1,4 +1,13 @@
 export default {
+  week: {
+    Sun: 'Dom',
+    Mon: 'Seg',
+    Tue: 'Ter',
+    Wed: 'Qua',
+    Thu: 'Qui',
+    Fri: 'Sex',
+    Sat: 'Sáb',
+  },
   codes: {
     0: {
       text: 'Tornado',
