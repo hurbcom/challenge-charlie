@@ -17,6 +17,8 @@ make install
 
 ## Como rodar o projeto em ambiente de desenvolvimento?
 
+Após rodar o comando a seguir, a aplicação estará disponível em [http://localhost:3000/](http://localhost:3000/).
+
 ```
 make start
 ```
