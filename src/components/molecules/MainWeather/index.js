@@ -44,7 +44,11 @@ class MainWeather extends Component {
       weather,
     } = this.props;
     const { location, today = {} } = weather;
-    const { humidity = {}, wind = {} } = today;
+    const {
+      humidity = {},
+      pressure = {},
+      wind = {},
+    } = today;
     const currentTemperature = today.temperature[selectedTemperature];
     return (
       <Box mainColor={mainColor} secoundColor={secoundColor} height={22}>
@@ -63,7 +67,7 @@ class MainWeather extends Component {
             <DataLocationBox>
               <Text type="medium">{today.title}</Text>
               <Text type="small">{ `Vento: ${wind.value} ${wind.symbol}`}</Text>
-              <Text type="small">Pressão: 0.3atm</Text>
+              <Text type="small">{ `Pressão: ${pressure.value} ${pressure.symbol}` }</Text>
               <Text type="small">{ `Umidade: ${humidity.value}${humidity.symbol}` }</Text>
             </DataLocationBox>
           </DataBox>

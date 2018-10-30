@@ -20,6 +20,11 @@ const getHumidity = ({ humidity }) => ({
   value: humidity,
 });
 
+const getPressure = ({ pressure }) => ({
+  symbol: 'atm',
+  value: convert.convertInToAtm(pressure),
+});
+
 const getWind = ({ speed }) => ({
   symbol: 'km/h',
   value: convert.convertMphToKmh(speed),
@@ -30,6 +35,7 @@ const getMainData = (atmosphere, wind, { code, temp }) => {
   return {
     humidity: getHumidity(atmosphere),
     image,
+    pressure: getPressure(atmosphere),
     temperature: getTemperatureByFahrenheit(temp),
     title,
     wind: getWind(wind),
