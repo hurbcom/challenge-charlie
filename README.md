@@ -38,7 +38,7 @@ docker run -p 8080:3000 felippemauricio/challenge-charlie
 
 A cada versão do código que é mergeada para a `master`, o sistema faz o deploy da aplicação no `Heroku`, usando a imagem docker da aplicação.
 
-Assim, o sistema está disponível no host `https://challenge-charlie.herokuapp.com`;
+Assim, o sistema está disponível em [https://challenge-charlie.herokuapp.com](https://challenge-charlie.herokuapp.com).
 
 
 ## Challange Charlie Api - Bing Api
@@ -49,11 +49,11 @@ Esse novo projeto, adiciona o header necessário para viabilizar o projeto.
 
 ### Docker Hub
 
-Uma imagem `Docker` foi adicionada ao `docker-compose.yml` para facilitar o desenvolvimento. Você pode acessar a imagem docker pelo host: `https://hub.docker.com/r/felippemauricio/challenge-charlie-api/`.
+Uma imagem `Docker` foi adicionada ao `docker-compose.yml` para facilitar o desenvolvimento. Você pode acessar a imagem docker [aqui](https://hub.docker.com/r/felippemauricio/challenge-charlie/).
 
 ### Prod
 
-Em produção, esse projeto está disponibilizado no host `https://challenge-charlie-api.herokuapp.com/` com o seguinte endpoint:
+Em produção, esse projeto está disponibilizado no host [https://challenge-charlie-api.herokuapp.com](https://challenge-charlie-api.herokuapp.com/bing) com o seguinte endpoint:
 
   - get `/bing`.
 
