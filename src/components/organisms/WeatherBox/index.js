@@ -25,6 +25,16 @@ class WeatherBox extends Component {
     weather: instanceOf(Object).isRequired,
   };
 
+  state = {
+    selectedTemperature: 'c',
+  };
+
+  handleChangeTemperature = () => {
+    this.setState(({ selectedTemperature }) => ({
+      selectedTemperature: selectedTemperature === 'c' ? 'f' : 'c',
+    }));
+  };
+
   handleSubmit = (value) => {
     const { getWeatherByValueAction } = this.props;
     getWeatherByValueAction(value);
@@ -32,6 +42,7 @@ class WeatherBox extends Component {
 
   renderMainWeather = (light, color) => {
     const { uiState, weather } = this.props;
+    const { selectedTemperature } = this.state;
     switch (uiState) {
       case UI.NO_DATA:
         return (
@@ -43,7 +54,9 @@ class WeatherBox extends Component {
         return (
           <MainWeather
             mainColor={light}
+            onChangeTemperature={this.handleChangeTemperature}
             secoundColor={color}
+            selectedTemperature={selectedTemperature}
             weather={weather}
           />
         );
@@ -58,6 +71,7 @@ class WeatherBox extends Component {
 
   render() {
     const { theme, weather } = this.props;
+    const { selectedTemperature } = this.state;
     const { light, color, dark } = getColor(theme);
     const { location, days = [] } = weather;
     const [firstDay, secoundDay] = days;
@@ -65,8 +79,19 @@ class WeatherBox extends Component {
       <Box>
         <SearchInput onSubmit={this.handleSubmit} location={location} />
         { this.renderMainWeather(light, color) }
-        <SecondaryWeather mainColor={color} secoundColor={dark} day={firstDay} />
-        <SecondaryWeather mainColor={dark} day={secoundDay} />
+        <SecondaryWeather
+          day={firstDay}
+          mainColor={color}
+          onChangeTemperature={this.handleChangeTemperature}
+          secoundColor={dark}
+          selectedTemperature={selectedTemperature}
+        />
+        <SecondaryWeather
+          day={secoundDay}
+          mainColor={dark}
+          onChangeTemperature={this.handleChangeTemperature}
+          selectedTemperature={selectedTemperature}
+        />
       </Box>
     );
   }

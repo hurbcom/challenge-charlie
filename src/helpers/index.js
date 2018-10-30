@@ -1,3 +1,4 @@
+export { default as calcTemperature } from './calc-temperature';
 export { default as env } from './env';
 export { default as getColor } from './get-color';
 export { default as urlParser } from './url-parser';

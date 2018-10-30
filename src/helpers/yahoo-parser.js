@@ -1,3 +1,4 @@
+import { calcTemperature } from 'helpers';
 import ptBr from 'yahoo-translator/PT-BR';
 
 
@@ -9,21 +10,35 @@ const getLocation = ({ city, country, region }) => ({
   region: trim(region),
 });
 
-const getMainData = ({ code, day }) => {
+const getTemperatureByFahrenheit = temp => ({
+  c: calcTemperature.convertFahrenheitToCelsius(temp),
+  f: temp,
+});
+
+const getMainData = ({ code, temp }) => {
   const { text: title, image } = ptBr.codes[code];
+  return {
+    image,
+    temperature: getTemperatureByFahrenheit(temp),
+    title,
+  };
+};
+
+const getDayData = ({ code, day, high }) => {
+  const { image } = ptBr.codes[code];
   const parsedDay = ptBr.week[day];
   return {
     day: parsedDay,
     image,
-    title,
+    temperature: getTemperatureByFahrenheit(high),
   };
 };
 
 const getDays = ({ forecast }) => {
   const [, tomorrow, afterTomorrow] = forecast;
   return [
-    getMainData(tomorrow),
-    getMainData(afterTomorrow),
+    getDayData(tomorrow),
+    getDayData(afterTomorrow),
   ];
 };
 
