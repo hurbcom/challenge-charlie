@@ -43,24 +43,9 @@ A cada versão do código que é mergeada para a `master`, o sistema faz o deplo
 Assim, o sistema está disponível em [https://challenge-charlie.herokuapp.com](https://challenge-charlie.herokuapp.com).
 
 
-## Challange Charlie Api - Bing Api
-
-Para acessar a imagem do `Bing`, houve a necessidade da criação de um novo projeto, o `challenge-charlie-api`. Isso se deve ao fato que a API do `Bing` não possui o header `Access-Control-Allow-Origin`, o que faz o browser descartar a requisição realizada.
-
-Esse novo projeto, adiciona o header necessário para viabilizar o projeto.
-
-### Docker Hub
-
-Uma imagem `Docker` foi adicionada ao `docker-compose.yml` para facilitar o desenvolvimento. Você pode acessar a imagem docker [aqui](https://hub.docker.com/r/felippemauricio/challenge-charlie/).
-
-### Prod
-
-Em produção, esse projeto está disponibilizado no host [https://challenge-charlie-api.herokuapp.com](https://challenge-charlie-api.herokuapp.com/bing) com o seguinte endpoint:
-
-  - get `/bing`.
-
-
 ## Informações importantes
+
+- Para acessar a imagem do `Bing`, houve a necessidade de levantar um container utilizando `nginx` para realizar um proxy e assim, adicionar o header `Access-Control-Allow-Origin`, para que o browser não descartar-se a requisição realizada. Para mais informações, visualize o arquivo `docker-compose.yml`.
 
 - Em caso de falha na requisição da imagem do Bing, o projeto fará um novo request para a api do **UNSPLASH** a fim de entregar a melhor experiência possível aos usuários;
 

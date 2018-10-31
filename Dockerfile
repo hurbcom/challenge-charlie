@@ -3,7 +3,7 @@ MAINTAINER Felippe Maurício
 
 ENV PORT 8080
 
-COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY docker/challange-charlie/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build /usr/share/nginx/html
 
 EXPOSE $PORT

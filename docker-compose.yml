@@ -15,11 +15,13 @@ services:
       - challenge-charlie-api
   challenge-charlie-api:
     image: felippemauricio/challenge-charlie-api:latest
+    build:
+      context: ./docker/challange-charlie-api/nginx
     container_name: challenge-charlie-api
     networks:
       - challenge-charlie-network
     ports:
-      - 8080:3000
+      - 8080:8080
 networks:
   challenge-charlie-network:
     driver: bridge
