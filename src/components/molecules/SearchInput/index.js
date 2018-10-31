@@ -42,8 +42,9 @@ class SearchInput extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Icon code="(" color="#000" />
           <Input
-            value={valueInput}
             onChange={this.handleChangeInput}
+            placeholder="Informe uma localidade"
+            value={valueInput}
           />
         </Form>
       </Wrapper>
