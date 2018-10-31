@@ -42,3 +42,25 @@ export const getWeatherByValue = value => (dispatch) => {
       dispatch(undefinedWeather());
     });
 };
+
+export const getWeatherByCoords = (latitude, longitude) => (dispatch) => {
+  const {
+    REACT_APP_YAHOO_API_COORDINATES: yahooApi,
+    REACT_APP_YAHOO_API_COORDINATES_TIMEOUT: timeout,
+  } = env;
+  const yahooApiUrl = urlParser({ latitude, longitude }, yahooApi);
+  const configRequest = {
+    timeout: Number(timeout),
+  };
+  return axios.get(yahooApiUrl, configRequest)
+    .then(({ data }) => data)
+    .then((data) => {
+      try {
+        const parsedData = yahooParser(data);
+        dispatch(loadWeather(parsedData));
+        return parsedData;
+      } catch (err) {
+        throw err;
+      }
+    }).catch(() => {});
+};

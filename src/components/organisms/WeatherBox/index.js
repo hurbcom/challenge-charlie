@@ -10,6 +10,7 @@ import {
 import {
   bindActionCreators,
   connect,
+  getCurrentPosition,
   getWeatherByValue,
 } from 'store/actions';
 import { UI } from 'store/constants';
@@ -19,6 +20,7 @@ import { Box } from './style';
 
 class WeatherBox extends Component {
   static propTypes = {
+    getCurrentPositionAction: func.isRequired,
     getWeatherByValueAction: func.isRequired,
     uiState: string.isRequired,
     theme: instanceOf(Object).isRequired,
@@ -28,6 +30,11 @@ class WeatherBox extends Component {
   state = {
     selectedTemperature: 'C',
   };
+
+  componentDidMount() {
+    const { getCurrentPositionAction } = this.props;
+    getCurrentPositionAction();
+  }
 
   handleChangeTemperature = () => {
     this.setState(({ selectedTemperature }) => ({
@@ -105,6 +112,7 @@ const mapStateToProps = ({ ui, weather }) => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  getCurrentPositionAction: getCurrentPosition,
   getWeatherByValueAction: getWeatherByValue,
 }, dispatch);
 
