@@ -33,7 +33,7 @@ make lint
 A cada versão do código que é mergeada para a `master`, o sistema gera uma nova imagem docker via `Travis-CI`. Essa imagem está disponível no `Docker Hub`.
 
 ```
-docker run -p 8080:3000 felippemauricio/challenge-charlie
+docker run -p 8080:8080 felippemauricio/challenge-charlie
 ```
 
 ## Produção
