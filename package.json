@@ -6,8 +6,7 @@
     "start": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
     "publish": "webpack --config webpack.publish.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "mocha src/**/*.test.js --compilers js:@babel/register --timeout=3000"
   },
   "dependencies": {
     "react": "^16.6.1",
@@ -15,14 +14,22 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
+    "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^7.1.2",
+    "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-styles": "^5.0.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.6",
+    "nyc": "^13.1.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
