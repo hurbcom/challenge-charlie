@@ -1,6 +1,7 @@
 
 import * as constants from '../constants/weather';
 import * as weatherApi from '../api/yahoo/weatherApi';
+import * as ramda from 'ramda';
 
 const getWeatherSuccess = (weather = []) =>
   ({ type: constants.WEATHER_FETCH_SUCCESS, weather });
@@ -11,7 +12,12 @@ const getWeatherFail = (weather = []) =>
 export const getWeatherByLocation = (location = '') => {
   return(dispatch) => {
     return weatherApi.getWeatherByLocation(location).then(response => {
-      dispatch(getWeatherSuccess(response));
+      const channel = ramda.path(
+        ['query', 'results', 'channel'], response);
+      if (channel) {
+        return dispatch(getWeatherSuccess(channel));
+      }
+      return dispatch(getWeatherFail());
     }).catch(err => {
       dispatch(getWeatherFail());
     })

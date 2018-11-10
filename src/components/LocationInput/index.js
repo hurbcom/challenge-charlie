@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Autocomplete from 'react-autocomplete';
-import * as weatherActions from '../../actions/weatherActions';
+import * as suggestionActions from '../../actions/suggestionActions';
+import * as wheaterActions from '../../actions/weatherActions';
 
 class LocationInput extends Component {
     constructor(props, context) {
         super(props);
 
         this.state = {
-            location: { city: 'Rio de Janeiro' },
+            suggestion: '',
             value: '',  
         }
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({weather: nextProps.weather});
+        this.setState({suggestion: nextProps.suggestion});
     }
 
     render() {
@@ -24,27 +25,31 @@ class LocationInput extends Component {
             <Autocomplete
                 style={{ width: '100%'}}
                 getItemValue={(item) => item}
-                items={[ ... this.state.location.city]}
+                items={[this.state.suggestion]}
                 renderItem={(item, isHighlighted, index) => 
-                    <div    id="option"
-                            style=
-                            {{ 
-                                background: isHighlighted ? 'var(--manilla)' : 'var(--white-two)',
-                                width: 'auto'
-                            }} 
-                    key={index}>
-                        {item.label}
+                    <div    
+                        className="option"
+                        style=
+                        {{ 
+                            background: isHighlighted ? 'var(--manilla)' : 'var(--white-two)',
+                            width: 'auto'
+                        }} 
+                        key={index}
+                    >
+                        {item}
                     </div>
                 }
                 value={this.state.value}
                 onChange={(e) => {
                     let { value } = e.target;
                     this.setState({value: value}, () => {
-                        this.props.actions.getWeatherByLocation(value);
+                        this.props.actions.getSuggestion(value);
                     });
                 }}
-                onSelect={(val) => 
-                    this.setState({location: val})
+                onSelect={(value) => 
+                    this.setState({value: value}, () => {
+                        this.props.actions.getWeatherByLocation(value);
+                    })
                 }
             />
         </div>
@@ -53,9 +58,9 @@ class LocationInput extends Component {
 }
 
 const mapStateToProps = (state, ownProps) =>
-    ({ location: state.weather.location  });
+    ({ suggestion: state.suggestion  });
 
 const mapDispatchToProps = (dispatch) =>
-    ({ actions: bindActionCreators(weatherActions, dispatch) });
+    ({ actions: bindActionCreators({ ...suggestionActions, ...wheaterActions}, dispatch) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationInput);

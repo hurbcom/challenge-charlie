@@ -13,7 +13,7 @@ class WeatherBoard extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
+    this.setState({weather: nextProps.weather});
   }
 
   componentDidMount(){
@@ -21,13 +21,18 @@ class WeatherBoard extends Component {
   }
 
   render() {
-    return(
-      <div className="weather">
-        <div className="today-result"></div>
-        <div className="tomorrow-result"></div>
-        <div className="after-tomorrow-result"></div>
-      </div>
-    );
+    console.log(this.state);
+    if(Object.keys(this.state.weather).length === 0)
+      return(<div/>);
+    else{
+      return(
+        <div className="weather">
+          <div className="today-result"></div>
+          <div className="tomorrow-result"></div>
+          <div className="after-tomorrow-result"></div>
+        </div>
+      );
+    }
   }
 }
 
