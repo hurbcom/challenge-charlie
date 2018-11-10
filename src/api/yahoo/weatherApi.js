@@ -9,7 +9,10 @@ export const getWeatherByLocation = (location = '') => {
             if(err){
                 reject(err);
             }
-            resolve(body);
+            let { query } = JSON.parse(body);
+            let { results } = query;
+            let { channel } = results;
+            resolve(channel);
         });
     });
 } 
@@ -23,8 +26,10 @@ export const getWeatherByCoordinates = (lat = 0, long = 0) => {
             if(err){
                 reject(err);
             }
-            console.log(body);
-            resolve(body);
+            let { query } = JSON.parse(body);
+            let { results } = query;
+            let { channel } = results;
+            resolve(channel);
         });
     });
 }
