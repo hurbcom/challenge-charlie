@@ -4,18 +4,34 @@ import { bindActionCreators } from 'redux';
 import * as weatherActions from '../../actions/weatherActions';
 
 import Today from './today';
+import OtherDay from './otherDays';
 
 class WeatherBoard extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      weather: {}
+      weather: {},
+      unit: 'F'
     }
+    
+    this.convertForecast = this.convertForecast.bind(this);
+  }
+
+  convertForecast(forecast){
+    if(this.state.unit === 'C'){
+      return { 
+        ... forecast, 
+        high: ((parseInt(forecast.high) - 32)/1.800).toFixed(1), 
+        low: ((parseInt(forecast.low) - 32)/1.800).toFixed(1)
+      };
+    }
+    else
+      return forecast
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({weather: nextProps.weather});
+    this.setState({weather: nextProps.weather, unit: nextProps.unit});
   }
 
   componentDidMount(){
@@ -27,7 +43,6 @@ class WeatherBoard extends Component {
     
 
     if(Object.keys(this.state.weather).length !== 0){
-      console.log(this.state.weather);
 
       let { forecast } = this.state.weather.item;
       let today = forecast[0];
@@ -39,29 +54,9 @@ class WeatherBoard extends Component {
 
       board = (
         <div className="weather">
-          <Today forecast={today} units={units} wind={wind} atmosphere={atmosphere}/>
-          <div className="tomorrow-result">
-            <div>
-              Tomorrow
-            </div>
-            <div>
-            {
-              tomorrow.low + units.temperature +  
-              " ~ " +
-              tomorrow.high + units.temperature
-            } 
-            </div>
-          </div>
-          <div className="after-tomorrow-result">
-          <div>After Tomorrow</div>
-            <div>
-            {
-              afterTomorrow.low + units.temperature +  
-              " ~ " +
-              afterTomorrow.high + units.temperature
-            } 
-            </div>
-          </div>
+          <Today forecast={this.convertForecast(today)} units={units} wind={wind} atmosphere={atmosphere}/>
+          <OtherDay title={"Amanhã"} forecast={this.convertForecast(tomorrow)}/>
+          <OtherDay title={"Depois de Amanhã"}forecast={this.convertForecast(afterTomorrow)}/>
         </div>
       );
     }
@@ -72,7 +67,7 @@ class WeatherBoard extends Component {
 
 
 const mapStateToProps = (state, ownProps) =>
-    ({ weather: state.weather  });
+    ({ weather: state.weather, unit: state.unit  });
 
 const mapDispatchToProps = (dispatch) =>
     ({ actions: bindActionCreators(weatherActions, dispatch) });
