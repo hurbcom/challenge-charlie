@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as weatherActions from '../../actions/weatherActions';
 
+import Today from './today';
+
 class WeatherBoard extends Component {
 
   constructor(props){
@@ -21,18 +23,50 @@ class WeatherBoard extends Component {
   }
 
   render() {
-    console.log(this.state);
-    if(Object.keys(this.state.weather).length === 0)
-      return(<div/>);
-    else{
-      return(
+    var board = (<div/>)
+    
+
+    if(Object.keys(this.state.weather).length !== 0){
+      console.log(this.state.weather);
+
+      let { forecast } = this.state.weather.item;
+      let today = forecast[0];
+      let tomorrow = forecast[1];
+      let afterTomorrow = forecast[2];
+      var { units } = this.state.weather;
+      let { wind } = this.state.weather;
+      let { atmosphere } = this.state.weather;
+
+      board = (
         <div className="weather">
-          <div className="today-result"></div>
-          <div className="tomorrow-result"></div>
-          <div className="after-tomorrow-result"></div>
+          <Today forecast={today} units={units} wind={wind} atmosphere={atmosphere}/>
+          <div className="tomorrow-result">
+            <div>
+              Tomorrow
+            </div>
+            <div>
+            {
+              tomorrow.low + units.temperature +  
+              " ~ " +
+              tomorrow.high + units.temperature
+            } 
+            </div>
+          </div>
+          <div className="after-tomorrow-result">
+          <div>After Tomorrow</div>
+            <div>
+            {
+              afterTomorrow.low + units.temperature +  
+              " ~ " +
+              afterTomorrow.high + units.temperature
+            } 
+            </div>
+          </div>
         </div>
       );
     }
+
+    return board;
   }
 }
 
