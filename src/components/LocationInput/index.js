@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Autocomplete from 'react-autocomplete';
+import * as ramda from 'ramda';
 import * as suggestionActions from '../../actions/suggestionActions';
 import * as wheaterActions from '../../actions/weatherActions';
 
@@ -12,10 +13,17 @@ class LocationInput extends Component {
         this.state = {
             suggestion: '',
             value: '',  
+            weather: {},
         }
     }
 
     componentWillReceiveProps(nextProps){
+        const location = ramda.path(
+            ['location'], nextProps.weather);
+        if (location) {
+            if(this.state.value === '')
+                this.setState({value: location.city + " - " + location.country});
+        }
         this.setState({suggestion: nextProps.suggestion});
     }
 
@@ -57,8 +65,8 @@ class LocationInput extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) =>
-    ({ suggestion: state.suggestion  });
+const mapStateToProps = (state, ownProps) => 
+    ({ suggestion: state.suggestion, weather: state.weather  });
 
 const mapDispatchToProps = (dispatch) =>
     ({ actions: bindActionCreators({ ...suggestionActions, ...wheaterActions}, dispatch) });
