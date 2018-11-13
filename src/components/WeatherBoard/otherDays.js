@@ -8,7 +8,7 @@ class OtherDay extends Component {
         super(props);
         this.state = {
             forecast: {}, 
-            unit: 'F'
+            unit: 'C'
         }
     }
 

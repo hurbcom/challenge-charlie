@@ -27,7 +27,12 @@ export const getWeatherByLocation = (location = '') => {
 export const getWeatherByCoordinates = (lat = 0, long = 0) => {
   return(dispatch) => {
     return weatherApi.getWeatherByCoordinates(lat,long).then(response => {
-      dispatch(getWeatherSuccess(response));
+      const channel = ramda.path(
+        ['query', 'results', 'channel'], response);
+      if (channel) {
+        return dispatch(getWeatherSuccess(channel));
+      }
+      return dispatch(getWeatherFail());
     }).catch(err => {
       dispatch(getWeatherFail());
     })

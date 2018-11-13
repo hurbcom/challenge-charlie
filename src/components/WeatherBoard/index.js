@@ -34,10 +34,6 @@ class WeatherBoard extends Component {
     this.setState({weather: nextProps.weather, unit: nextProps.unit});
   }
 
-  componentDidMount(){
-    this.props.actions.getWeatherByLocation('Rio');
-  }
-
   render() {
     var board = (<div/>)
     

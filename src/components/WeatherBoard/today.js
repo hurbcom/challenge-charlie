@@ -8,7 +8,7 @@ class Today extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            unit: 'F'
+            unit: 'C'
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -82,7 +82,7 @@ class Today extends Component {
 }
 
 const mapStateToProps = (state, ownProps) =>
-    ({ unit: state.unit  });
+    ({ unit: state.unit, weather: state.weather  });
 
 const mapDispatchToProps = (dispatch) =>
     ({ actions: bindActionCreators(unitActions, dispatch) });
