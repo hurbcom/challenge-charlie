@@ -64,8 +64,8 @@ class Icon extends Component {
 
     render() {
         return(
-            <div className="icon">
-                <img className="icon__img"  src={this.getIcon()}/>
+            <div className="image">
+                <img src={this.getIcon()} className="icon"/>
             </div>
         )
     }

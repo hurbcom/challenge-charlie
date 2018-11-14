@@ -50,8 +50,12 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|jpg|svg)$/,
+                test: /\.(png|jpg)$/,
                 loader: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
             },
         ]
     },

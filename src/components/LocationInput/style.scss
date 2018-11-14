@@ -1,6 +1,23 @@
 .location{
     width: 100%;
-    input{
-        width: 100%;
+    margin: auto;
+
+    input {
+        text-align: center;
+        padding: auto;
+        padding-top: 15px;
+        padding-bottom: 15px; 
+        height: 29px; 
+        min-width: 450px;
+        border: none; 
+        box-shadow: none; 
+        border: none; 
+        background-color: transparent; 
+        font-size: 16px;
+        color: var(--charcoal-gray);
+        
+        :focus { 
+            outline: none; 
+        } 
     }
 }

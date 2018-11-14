@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     return(
       <div style={{backgroundImage: 'url(' + this.state.image+ ')'}} className="app">
         <div className='content'>

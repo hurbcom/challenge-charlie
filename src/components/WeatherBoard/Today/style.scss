@@ -12,6 +12,7 @@
     }
 
     &__text{
+        max-width: 115px;
         padding-top: 2px;
         padding-bottom: 10px;
     }
@@ -23,3 +24,6 @@
     }
 }
 
+.option{
+    padding-left: 10px;
+}

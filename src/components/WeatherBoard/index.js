@@ -42,7 +42,6 @@ class WeatherBoard extends Component {
 
     if(Object.keys(this.state.weather).length !== 0){
 
-      console.log(this.state.weather);
       let { forecast } = this.state.weather.item;
       let today = forecast[0];
       let tomorrow = forecast[1];
@@ -67,8 +66,8 @@ class WeatherBoard extends Component {
 
           </div>
           <div className="weather__otherDays__content">
-            <OtherDay title={"Amanhã"} forecast={this.convertForecast(tomorrow)}/>
-            <OtherDay title={"Depois de Amanhã"}forecast={this.convertForecast(afterTomorrow)}/>
+            <OtherDay title={"Tomorrow"} forecast={this.convertForecast(tomorrow)}/>
+            <OtherDay title={"After Tomorrow"}forecast={this.convertForecast(afterTomorrow)}/>
           </div>
         </div>
         </div>

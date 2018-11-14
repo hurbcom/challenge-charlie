@@ -40,8 +40,9 @@ class LocationInput extends Component {
                         className="option"
                         style=
                         {{ 
-                            background: isHighlighted ? 'var(--manilla)' : 'var(--white-two)',
-                            width: 'auto'
+                            background: isHighlighted ? 'var(--white)' : '',
+                            width: 'auto',
+                            color: 'var(--black)'
                         }} 
                         key={index}
                     >
@@ -51,15 +52,14 @@ class LocationInput extends Component {
                 value={this.state.value}
                 onChange={(e) => {
                     let { value } = e.target;
-                    this.setState({value: value}, () => {
-                        this.props.actions.getSuggestion(value);
-                    });
+                    this.props.actions.getSuggestion(value)
+                    this.setState({value: value});
                 }}
-                onSelect={(value) => 
-                    this.setState({value: value}, () => {
-                        this.props.actions.getWeatherByLocation(value);
-                    })
-                }
+                onSelect={(value) => {
+                    
+                    this.props.actions.getWeatherByLocation(value);
+                    this.setState({value: value});
+                }}
             />
         </div>
         );
