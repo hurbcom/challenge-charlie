@@ -9,11 +9,13 @@
     "test": "mocha src/**/*.test.js --compilers js:@babel/register --timeout=3000"
   },
   "dependencies": {
+    "file-loader": "^2.0.0",
     "ramda": "^0.25.0",
     "react": "^16.6.1",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.6.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "url-loader": "^1.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

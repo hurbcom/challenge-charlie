@@ -40,6 +40,7 @@ class WeatherBoard extends Component {
 
     if(Object.keys(this.state.weather).length !== 0){
 
+      console.log(this.state.weather);
       let { forecast } = this.state.weather.item;
       let today = forecast[0];
       let tomorrow = forecast[1];
