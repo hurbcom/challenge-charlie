@@ -1,3 +1,4 @@
+import './style.scss'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -91,11 +92,11 @@ class Today extends Component {
             compass = "NW"
 
             board = (
-            <div className="today-result" onClick={this.handleClick}>
+            <div className="today" onClick={this.handleClick}>
                 <h3 className="__title">
                     Today
                 </h3>
-                <img src={this.getIcon()}>
+                <img id="weather-icon" src={this.getIcon()}>
 
                 </img>
                 <div>

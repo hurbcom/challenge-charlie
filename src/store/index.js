@@ -14,5 +14,4 @@ const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 store.dispatch(locationActions.getThisLocationWeather());
 store.dispatch(imageActions.getBackgroundImage());
 
-
 export default store;

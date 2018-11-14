@@ -1,0 +1,20 @@
+.app{
+    font-size: 1rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
+.content{
+    display: flex;
+    flex-basis: 12rem;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: white;
+    padding-bottom: 2rem;
+}
+

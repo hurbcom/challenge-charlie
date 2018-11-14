@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('../res/fonts/Rubik-Regular.woff2') format('woff2');
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #ffffff;
+    color: var(--white-two);
+}
+
+:root{
+    //Colors
+    --light-blue: #4fc3f7;
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Rubik';
+    text-decoration: none;
+    a{
+        text-decoration: inherit;
+    }
+}
