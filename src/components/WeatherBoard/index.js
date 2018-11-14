@@ -1,10 +1,12 @@
+import './style.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as weatherActions from '../../actions/weatherActions';
 
-import Today from './today';
-import OtherDay from './otherDays';
+import Icon from './Icon';
+import Today from './Today';
+import OtherDay from './OtherDays';
 
 class WeatherBoard extends Component {
 
@@ -51,9 +53,24 @@ class WeatherBoard extends Component {
 
       board = (
         <div className="weather">
-          <Today forecast={this.convertForecast(today)} units={units} wind={wind} atmosphere={atmosphere}/>
-          <OtherDay title={"Amanhã"} forecast={this.convertForecast(tomorrow)}/>
-          <OtherDay title={"Depois de Amanhã"}forecast={this.convertForecast(afterTomorrow)}/>
+        <div className="weather__today">
+          <Icon code={today.code}/>
+          <Today 
+            forecast={this.convertForecast(today)} 
+            units={units} 
+            wind={wind} 
+            atmosphere={atmosphere}
+          />
+        </div>
+        <div className="weather__otherDays">
+          <div className="weather__otherDays__emptySpace">
+
+          </div>
+          <div className="weather__otherDays__content">
+            <OtherDay title={"Amanhã"} forecast={this.convertForecast(tomorrow)}/>
+            <OtherDay title={"Depois de Amanhã"}forecast={this.convertForecast(afterTomorrow)}/>
+          </div>
+        </div>
         </div>
       );
     }

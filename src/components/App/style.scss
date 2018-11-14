@@ -10,10 +10,11 @@
 
 .content{
     display: flex;
+    min-width: 460px;
     flex-basis: 12rem;
     flex-direction: column;
     justify-content: center;
-    text-align: left;
+    margin: auto;
     color: white;
     padding-bottom: 2rem;
 }

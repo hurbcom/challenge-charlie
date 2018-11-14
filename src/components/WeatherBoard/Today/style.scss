@@ -1,0 +1,25 @@
+.today{
+    margin: auto;
+    &__content{
+        display: flex;  
+        padding-top: 25px;      
+    }
+
+    &__title{
+        font-size: 18px;
+        font-weight: 900;
+        padding-top: 10px;
+    }
+
+    &__text{
+        padding-top: 2px;
+        padding-bottom: 10px;
+    }
+
+    &__status{
+        font-size: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+

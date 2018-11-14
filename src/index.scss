@@ -1,13 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
 @font-face {
-    font-family: 'Rubik';
-    src: url('../res/fonts/Rubik-Regular.woff2') format('woff2');
+    font-family: 'Roboto';
+    src: url("https://fonts.googleapis.com/css?family=Roboto");
     font-size: 16px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.5;
     letter-spacing: normal;
-    color: #ffffff;
     color: var(--white-two);
 }
 
@@ -19,7 +20,7 @@
 
 body {
     margin: 0;
-    font-family: 'Rubik';
+    font-family: 'Roboto';
     text-decoration: none;
     a{
         text-decoration: inherit;

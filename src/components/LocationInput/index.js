@@ -1,3 +1,4 @@
+import './style.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -29,7 +30,7 @@ class LocationInput extends Component {
 
     render() {
         return (
-        <div className="location-input">
+        <div className="location">
             <Autocomplete
                 style={{ width: '100%'}}
                 getItemValue={(item) => item}

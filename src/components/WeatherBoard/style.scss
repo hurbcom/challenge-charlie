@@ -1,10 +1,15 @@
-#weather-icon {
-    width: 20%;
-    height: 20%;
-    background-image: none;
-    color: white;
-    
-    #Grid {
-        stroke: none
+.weather{
+    &__today{
+        display: flex;
+    }
+    &__otherDays{
+        display: flex;
+        &__content{
+            margin: auto;
+        }
+        &__emptySpace{
+            width: 255px;
+            margin: auto;
+        }
     }
 }

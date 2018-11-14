@@ -1,3 +1,4 @@
+import './style.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -22,11 +23,11 @@ class OtherDay extends Component {
         let { title } = this.props;
 
         return(
-            <div className="tomorrow-result">
-                <div>
+            <div className="otherDays">
+                <div className="otherDays__title">
                     {title}
                 </div>
-                <div>
+                <div className="otherDays__info">
                 {
                     low + unit +  
                     " ~ " +
