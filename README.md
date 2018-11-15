@@ -1,4 +1,4 @@
-# Desafio Charlie [![Build Status](https://travis-ci.org/felippemauricio/challenge-charlie.svg?branch=master)](https://travis-ci.org/felippemauricio/challenge-charlie) [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/felippemauricio/challenge-charlie "JavaScript The Good Parts") [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/felippemauricio/challenge-charlie)
+# React Weather [![Build Status](https://travis-ci.org/felippemauricio/react-weather.svg?branch=master)](https://travis-ci.org/felippemauricio/react-weather) [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/felippemauricio/react-weather "JavaScript The Good Parts") [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/felippemauricio/react-weather)
 
 Esse projeto consiste em um front desenvolvido em **React** que apresenta dados climáticos dado uma região.
 
