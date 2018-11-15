@@ -1,3 +1,16 @@
+## Main scripts
+`$ npm install` - installing dependencies
+
+`$ npm run start` - start development server
+
+`$ npm run build` - generates build in /build directory
+
+`$ npm run test` - runs tests
+
+`$ docker build -t weatherspa .` - Build docker image
+
+`$ docker run -p 3000:3000 weatherspa` - Run docker
+
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.
