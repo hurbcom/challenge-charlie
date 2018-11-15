@@ -9,14 +9,22 @@
     font-stretch: normal;
     line-height: 1.5;
     letter-spacing: normal;
-    color: var(--white-two);
+    color: white;
 }
 
 :root{
-    //Colors
-    --light-blue: #4fc3f7;
-    --white: #ffffff;
-    --black: #000000;
+    --red: 239, 83, 80;
+    --red-medium: 211, 47, 47;
+    --red-darker: 183, 28, 28;
+    
+    --yellow: 255, 238, 88;
+    --yellow-medium: 251, 192, 45;
+    --yellow-darker: 245, 127, 23;
+    
+    --blue: 41, 182, 246;
+    --blue-medium: 3, 155, 229;
+    --blue-darker: 1, 87, 155;
+
 }
 
 

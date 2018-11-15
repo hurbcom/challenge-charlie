@@ -11,18 +11,18 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      image: ''
+      image: '',
     }
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({image: nextProps.image});
+    this.setState({ image: nextProps.image });
   }
 
   render() {
     return(
       <div style={{backgroundImage: 'url(' + this.state.image+ ')'}} className="app">
-        <div className='content'>
+        <div  className='content'>
           <LocationInput/>
           <WeatherBoard/>
         </div>

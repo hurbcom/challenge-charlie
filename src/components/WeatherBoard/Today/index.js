@@ -41,11 +41,12 @@ class Today extends Component {
 
         var board = (<div/>)
         let {low, high, text} = this.props.forecast;
-        let units = this.props.units;
+        let { unit } = this.state;
+        let { pressure } = this.props.units;
         let wind = this.props.wind;
         let atmosphere = this.props.atmosphere;
 
-        if(Object.keys(this.props.units).length !== 0){
+        if(Object.keys(this.props.forecast).length !== 0){
 
             var compass = "N"
             let windDirection = parseInt(wind.direction);
@@ -74,22 +75,27 @@ class Today extends Component {
                             Today
                         </div>
                         {
-                            low + this.state.unit +  
+                            low + "º" + unit +  
                             " ~ " +
-                            high + this.state.unit
+                            high + "º" + unit
                         }
                         <div className="today__text">
                             { text }
                         </div>
                         <div className="today__status">
                             <div>
-                                { "Wind: " + wind.speed + units.speed + " " + compass}
+                                { 
+                                    "Wind: " + 
+                                    (unit === 'C' ? (1.6 * wind.speed).toFixed(1) + ' kph' :  wind.speed + ' mph') 
+                                    + " " + 
+                                    compass
+                                }
                             </div>
                             <div>
                                 { "Humidity: " + atmosphere.humidity + "%" }
                             </div>
                             <div>
-                                { "Pressure: " + atmosphere.pressure + units.pressure }
+                                { "Pressure: " + atmosphere.pressure + pressure }
                             </div> 
                         </div>
                     </div>

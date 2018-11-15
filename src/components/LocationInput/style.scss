@@ -1,6 +1,15 @@
 .location{
     width: 100%;
     margin: auto;
+    display: flex;
+    background-color: white;
+
+    &__icon{
+        position: absolute; 
+        width: 42px;
+        height: 42px;
+        padding: 10px;
+    }
 
     input {
         text-align: center;
@@ -14,7 +23,7 @@
         border: none; 
         background-color: transparent; 
         font-size: 16px;
-        color: var(--charcoal-gray);
+        color: #414747;
         
         :focus { 
             outline: none; 

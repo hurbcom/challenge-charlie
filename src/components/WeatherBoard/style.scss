@@ -4,12 +4,16 @@
     }
     &__otherDays{
         display: flex;
-        &__content{
-            margin: auto;
+        flex-direction: column;
+        &__tomorrow{
+            width: auto;
+            padding-right: 0;
+            padding-left: 290px;
         }
-        &__emptySpace{
-            width: 180px;
-            margin: auto;
+        &__after{
+            width: auto;
+            padding-right: 0;
+            padding-left: 290px;
         }
     }
 }

@@ -6,6 +6,7 @@ import Autocomplete from 'react-autocomplete';
 import * as ramda from 'ramda';
 import * as suggestionActions from '../../actions/suggestionActions';
 import * as wheaterActions from '../../actions/weatherActions';
+import compass from '../../../assets/icons/44.svg';
 
 class LocationInput extends Component {
     constructor(props, context) {
@@ -31,6 +32,7 @@ class LocationInput extends Component {
     render() {
         return (
         <div className="location">
+            <img src={compass} className="location__icon"/>
             <Autocomplete
                 style={{ width: '100%'}}
                 getItemValue={(item) => item}
@@ -42,7 +44,7 @@ class LocationInput extends Component {
                         {{ 
                             background: isHighlighted ? 'var(--white)' : '',
                             width: 'auto',
-                            color: 'var(--black)'
+                            color: '#414747'
                         }} 
                         key={index}
                     >

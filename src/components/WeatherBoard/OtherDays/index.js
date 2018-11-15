@@ -29,9 +29,9 @@ class OtherDay extends Component {
                 </div>
                 <div className="otherDays__info">
                 {
-                    low + unit +  
+                    low + "º" + unit +  
                     " ~ " +
-                    high + unit
+                    high + "º" + unit
                 } 
                 </div>
             </div>
