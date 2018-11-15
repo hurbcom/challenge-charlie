@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
     "publish": "webpack --config webpack.publish.js",
-    "test": "mocha src/**/*.test.js --compilers js:@babel/register --timeout=3000"
+    "test": "mocha src/**/*.test.js --compilers js:@babel/register --timeout=3000",
+    "server": "node server.js"
   },
   "dependencies": {
     "react": "^16.6.1",
@@ -26,6 +27,7 @@
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.1",
+    "express": "^4.16.4",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "ignore-styles": "^5.0.1",
