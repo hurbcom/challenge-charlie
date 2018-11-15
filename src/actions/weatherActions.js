@@ -3,11 +3,11 @@ import * as constants from '../constants/weather';
 import * as weatherApi from '../api/yahoo/weatherApi';
 import * as ramda from 'ramda';
 
-const getWeatherSuccess = (weather = []) =>
+export const getWeatherSuccess = (weather = []) =>
   ({ type: constants.WEATHER_FETCH_SUCCESS, weather });
 
-const getWeatherFail = (weather = []) =>
-  ({ type: constants.WEATHER_FETCH_FAIL, weather });
+export const getWeatherFail = () =>
+  ({ type: constants.WEATHER_FETCH_FAIL });
 
 export const getWeatherByLocation = (location = '') => {
   return(dispatch) => {

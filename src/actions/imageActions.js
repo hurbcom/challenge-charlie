@@ -2,10 +2,10 @@
 import * as constants from '../constants/image';
 import * as imageApi from '../api/bing/bingApi';
 
-const getImageSuccess = (image = '') =>
+export const getImageSuccess = (image = '') =>
   ({ type: constants.IMAGE_FETCH_SUCCESS, image });
 
-const getImageFail = () =>
+export const getImageFail = () =>
   ({ type: constants.IMAGE_FETCH_FAIL });
 
 export const getBackgroundImage = () => {

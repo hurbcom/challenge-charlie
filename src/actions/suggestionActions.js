@@ -3,10 +3,10 @@ import * as constants from '../constants/suggestion';
 import * as weatherApi from '../api/yahoo/weatherApi';
 import * as ramda from 'ramda';
 
-const getSuggestionSuccess = (suggestion = '') =>
+export const getSuggestionSuccess = (suggestion = '') =>
   ({ type: constants.SUGGESTION_FETCH_SUCCESS, suggestion });
 
-const getSuggestionFail = () =>
+export const getSuggestionFail = () =>
   ({ type: constants.SUGGESTION_FETCH_FAIL });
 
 export const getSuggestion = (location = '') => {
