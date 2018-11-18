@@ -1,7 +1,6 @@
 # Clima atual - React 
 [![Build Status](https://travis-ci.org/felippemauricio/react-weather.svg?branch=master)](https://travis-ci.org/felippemauricio/react-weather) 
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/fd5c63)](https://github.com/airbnb/javascript)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/felippemauricio/react-weather)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/felippemauricio/react-weather/pulls)
 [![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)]()
 [![Developed By](https://img.shields.io/badge/developed%20by-felippemauricio-blue.svg)](https://github.com/felippemauricio)
