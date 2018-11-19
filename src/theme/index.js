@@ -1,11 +1,11 @@
-import { injectGlobal } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import breakpoints from './breakpoints';
 import colors from './colors';
 import fonts from './fonts';
 
 
-injectGlobal([`
+export const GlobalStyle = createGlobalStyle`
   ${reset}
 
   html, body, #root {
@@ -29,7 +29,7 @@ injectGlobal([`
     font-style: normal;
     font-weight: 400;
   }
-`]);
+`;
 
 
 export default {
