@@ -14,12 +14,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
-    font-family: '${fonts.icon}';
+    font-family: '${({ theme }) => theme.fonts.icon}';
     src:  url('assets/fonts/meteocons-webfont.eot');
     src:  url('assets/fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
           url('assets/fonts/meteocons-webfont.woff') format('woff'),
           url('assets/fonts/meteocons-webfont.ttf') format('truetype'),
-          url('assets/fonts/meteocons-webfont.svg#${fonts.icon}') format('svg');
+          url('assets/fonts/meteocons-webfont.svg#${({ theme }) => theme.fonts.icon}') format('svg');
     font-style: normal;
     font-weight: normal;
   }
