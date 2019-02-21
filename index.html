@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Previsão do Tempo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet/less" type="text/css" href="public/assets/css/styles.less" />
+    <script src="public/assets/js/jquery-3.0.0.min.js"></script>
+    <script src="public/assets/js/popper.min.js"></script>
+    <script src="public/assets/js/crypto-js.js"></script>
+    <script src="public/assets/js/main.js"></script>
+    <script src="public/assets/plugins/less/dist/less.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="icon" data-icon="("></span>
+            <span class="location-city"> - </span></span>
+            <ul class="city-menu">
+                <li onClick="getLocation();">Localidade Atual</li>
+                <li onClick="getWeather('São Paulo, SP','','');">São Paulo, Brazil</li>
+                <li onClick="getWeather('London, England','','');">London, United Kingdom</li>
+                <li onClick="getWeather('New York, NY','','');">New York, United States</li>
+                <li onClick="getWeather('Asuncion, Asuncion','','');">Asuncion, Paraguay</li>
+            </ul>
+        </div>   
+        <div class="today-info">
+            <div class="col-1">
+                <span class="icon today-icon" data-icon=")"></span>
+            </div>
+            <div class="col-2">
+                <p>
+                    HOJE<br />
+                    <span class="today"> - </span><span class="temperature-symbol">˚C</span>
+                </p>
+                <p>
+                    <span class="condition"></span>
+                </p>
+                <p>
+                    Vento: <span class="wind-direction"></span> <span class="wind-speed"> - </span> Km/h<br />
+                    Humidade: <span class="humidity"> - </span>%<br />
+                    Pressão: <span class="pressure"> - </span> hpa
+                </p>
+            </div>
+        </div>
+        <div class="tomorrow-info">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-2">
+                <p>AMANHÃ<br />
+                    <span class="tomorrow"> - </span><span class="temperature-symbol">˚C</span>
+                </p>
+            </div>
+        </div>
+        <div class="after-tomorrow-info">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-2">
+                <p>
+                    DEPOIS DE AMANHÃ<br />
+                    <span class="after-tomorrow"> - </span><span class="temperature-symbol">˚C</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
