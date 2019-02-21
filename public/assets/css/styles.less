@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@font-face {
+    font-family: 'MeteoconsRegular';
+    src: url('../fonts/meteocons-webfont.eot');
+    src: url('../fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/meteocons-webfont.woff') format('woff'),
+         url('../fonts/meteocons-webfont.ttf') format('truetype'),
+         url('../fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 100;
+    color: #FFF;
+}
+
+ul {
+    list-style-type: none;
+    position: absolute;
+    width: 100%;
+    background-color: #efebe7;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 55px;
+}
+
+li {
+    border-top: 1px solid #b3b1b1;
+    padding: 10px 0px;
+    margin: 0;
+}
+
+.container {
+    display: block;
+    width: 640px;
+    margin: 0 auto;
+}
+
+.icon:before {
+	font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+    font-size: 1.2em;
+}
+
+.header {
+    position: relative;
+    float: left;
+    width: 96%;
+    background-color: #efebe7;
+    text-align: center;
+    padding: 15px 2%;
+    font-size: 1.5em;
+    color: #8e8a87;
+    cursor: pointer;
+    min-height: 25px;
+    
+    .icon:before {
+        vertical-align: middle;
+    }
+}
+
+.city-menu {
+    display: none;
+}
+
+.today-info {
+    float: left;
+    width: 100%;
+    background-color: rgba(157, 157, 157, 0.6);
+
+    .today,
+    .temperature-symbol {
+        cursor: pointer;
+        font-size: 50px;
+    }
+
+    .icon:before {
+        font-size: 15vw;
+    }
+}
+
+.tomorrow-info {
+    float: left;
+    width: 100%;
+    background-color: rgba(157, 157, 157, 0.8);
+    border-top: 1px solid rgba(157, 157, 157, 0.7);
+    border-bottom: 1px solid rgba(157, 157, 157, 0.7);
+}
+
+.after-tomorrow-info {
+    float: left;
+    width: 100%;
+    background-color: rgba(157, 157, 157, 1);
+}
+
+.col-1 {
+    float: left;
+    text-align: center;
+    vertical-align: top;
+    width: 50%;
+    padding: 5% 0;
+}
+
+.col-2 {
+    float: left;
+    vertical-align: top;
+    padding: 2% 10%;
+    width: 30%;
+}
+
+.condition {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 780px) {
+    .today-info .icon:before {
+        font-size: 17vw;
+    }
+}
+
+@media (max-width: 640px) {
+    .today-info .icon:before {
+        font-size: 22vw;
+    }
+    .container {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .today-info .icon:before {
+        font-size: 28vw;
+    }
+}
+
+@media (max-width: 440px) {
+    .today-info .icon:before {
+        font-size: 40vw;
+    }
+}
