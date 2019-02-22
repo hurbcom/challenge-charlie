@@ -1,4 +1,5 @@
 function getBackgroundImage() {
+    // access PHP API to get image on bing over CORS policies
     $.ajax({
         type: 'GET',
         dataType: 'json',
@@ -13,30 +14,39 @@ function changeBackgroundColor(temperature,id) {
     switch (id) {
         case 'today-info':
             if (temperature <= 15) {
+                // if temperature in celsius is below 15, load a blue background
                 $('.'+id).css('background-color', 'rgba(100, 183, 254, 0.6)');
             } else if (temperature > 15 && temperature <= 35) {
+                // if temperature in celsius is between 15 and 35, load a yellow background
                 $('.'+id).css('background-color', 'rgba(233, 184, 0, 0.6)');
             } else {
+                // if temperature in celsius is over 35, load a red background
                 $('.'+id).css('background-color', 'rgba(196, 48, 48, 0.6)');
             }
         break;
 
         case 'tomorrow-info':
             if (temperature <= 15) {
+                // if temperature in celsius is below 15, load a blue background
                 $('.'+id).css('background-color', 'rgba(100, 183, 254, 0.8)');
             } else if (temperature > 15 && temperature <= 35) {
+                // if temperature in celsius is between 15 and 35, load a yellow background
                 $('.'+id).css('background-color', 'rgba(233, 184, 0, 0.8)');
             } else {
+                // if temperature in celsius is over 35, load a red background
                 $('.'+id).css('background-color', 'rgba(196, 48, 48, 0.8)');
             }
         break;
 
         case 'after-tomorrow-info':
             if (temperature <= 15) {
+                // if temperature in celsius is below 15, load a blue background
                 $('.'+id).css('background-color', 'rgba(100, 183, 254, 1)');
             } else if (temperature > 15 && temperature <= 35) {
+                // if temperature in celsius is between 15 and 35, load a yellow background
                 $('.'+id).css('background-color', 'rgba(233, 184, 0, 1)');
             } else {
+                // if temperature in celsius is over 35, load a red background
                 $('.'+id).css('background-color', 'rgba(196, 48, 48, 1)');
             }
         break;
@@ -44,6 +54,7 @@ function changeBackgroundColor(temperature,id) {
 }
 
 function clearAll() {
+    // while the screen is loading, let's clear the previous data
     $('.today-info').css('background-color', 'rgba(157, 157, 157, 0.6)');
     $('.tomorrow-info').css('background-color', 'rgba(157, 157, 157, 0.8)');
     $('.after-tomorrow-info').css('background-color', 'rgba(157, 157, 157, 1)');
@@ -60,8 +71,10 @@ function clearAll() {
 }
 
 function getLocation() {
+    // execute function to clear previous data
     clearAll();
     if (navigator.geolocation) {
+        // get current user location
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         $('.demo').text("Geolocation is not supported by this browser.");
@@ -69,16 +82,18 @@ function getLocation() {
 }
 
 function showPosition(position) {
+    // execute function to get weather from actual user location
     getWeather('',position.coords.latitude,position.coords.longitude);
 }
 
 function getCondition(val) {
+    // Yahoo conditions in PT-BR
     var conditions = ['Tornado','Tempestade Tropical','Furacão','Tempestade Severas','Trovoadas','Chuva e Neve','Chuva e Granizo Fino','Neve e Granizo Fino','Garoa Gélida','Garoa','Chuva Gélida','Chuvisco','Chuva','Neve em Flocos Finos','Leve Precipitação de Neve','Ventos com Neve','Neve','Chuva de Granizo','Pouco Granizo','Pó em Suspensão','Neblina','Névoa Seca','Enfumaçado','Vendaval','Ventando','Frio','Nublado','Muitas Nuvens','Muitas Nuvens','Parcialmente Nublado','Parcialmente Nublado','Céu Limpo','Ensolarado','Tempo Bom','Tempo Bom','Chuva e granizo','Quente','Tempestades Isoladas','Tempestades Esparsas','Tempestades Esparsas','Chuvas Esparsas','Nevasca','Tempestade de Neve Esparsa','Nevasca','Parcialmente Nublado','Chuva com Trovoadas','Tempestade de Neve','Relâmpagos e Chuvas Isoladas'];
-
     return conditions[val];
 }
 
 function getIconCondition(val) {
+    // this function relates the conditions codes and the meteocons icons
     var codes = new Array();
     codes[0] = ['B',32,34,36];
     codes[1] = ['C',31,33];
@@ -100,6 +115,7 @@ function getIconCondition(val) {
 }
 
 function setWindDirection(val) {
+    // this function relates de angle of the wind direction to cardinal points
     if (val >= 0 && val <= 11.25) {  return 'N';}
     if (val > 11.25 && val <= 33.75) { return 'NNE';}
     if (val > 33.75 && val <= 56.25) { return 'NE';}
@@ -119,29 +135,35 @@ function setWindDirection(val) {
 }
 
 function setWindSpeed(val) {
+    // convert m/s to km/h
     return Math.round(val*3.6);
 }
 
 function setToCelsius(val) {
+    // convert ˚C to ˚F
     var temperature = (val-32) * 5 / 9;
     return Math.round(temperature);
 }
 
 function setToFahrenheit(val) {
+    // convert ˚F to ˚C
     var temperature = val * 9 / 5 + 32;
     return Math.round(temperature);
 }
 
 function getMedTemperature(low,high) {
+    // this function get de lowest and highest temperature and returns an average
     var temperature = (setToCelsius(low)+setToCelsius(high))/2;
     return Math.round(temperature);
 }
 
 function setPressure(val) {
+    // convert to hpa
     return Math.round(val*33.863886666667);
 }
 
 function getWeather(location,latitude,longitude) {
+    // access Yahoo API to get weather infos
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
     var app_id = 'SaDiiC6k';
@@ -189,6 +211,7 @@ function getWeather(location,latitude,longitude) {
     },
     method: 'GET',
     success: function(data){
+        // here we change the HTML elements contents by jQuery
         $('.city-menu').hide();
         $('.location-city').text(data.location.city+', '+data.location.country);
         $('.today').text(setToCelsius(data.current_observation.condition.temperature));
@@ -208,6 +231,7 @@ function getWeather(location,latitude,longitude) {
 }
 
 function changeTemperature() {
+    // this function changes ˚C to ˚F and vice versa
     $('.today').click(function () {
         if ($('.temperature-symbol').first().text() == '˚C') {
             $('.today').text(setToFahrenheit($('.today').text()));
@@ -224,6 +248,7 @@ function changeTemperature() {
 }
 
 function changeLocation() {
+    // this function shows and hides city menu
     $('.header').click(function () {
         if ($('.city-menu').css('display') == 'none') {
             $('.city-menu').show();
@@ -234,8 +259,12 @@ function changeLocation() {
 }
 
 $( document ).ready(function() {
+    // get user location on first load
     getLocation();
+    // activate click button to change temperature
     changeTemperature();
+    // activate click button to change city
     changeLocation();
+    // get Bing image background
     getBackgroundImage();
 });
