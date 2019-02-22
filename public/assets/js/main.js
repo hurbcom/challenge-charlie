@@ -60,6 +60,7 @@ function clearAll() {
 }
 
 function getLocation() {
+    clearAll();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -72,7 +73,7 @@ function showPosition(position) {
 }
 
 function getCondition(val) {
-    var conditions = ['Tornado','Tempestade Tropical','Furacão','Tempestade Severas','Trovoadas','Chuva e Neve','Chuva e Granizo Fino','Neve e Granizo Fino','Garoa Gélida','Garoa','Chuva Gélida','Chuvisco','Chuva','Neve em Flocos Finos','Leve Precipitação de Neve','Ventos com Neve','Neve','Chuva de Granizo','Pouco Granizo','Pó em Suspensão','Neblina','Névoa Seca','Enfumaçado','Vendaval','Ventando','Frio','Nublado','Muitas Nuvens (dia)','Muitas Nuvens (noite)','Parcialmente Nublado (dia)','Parcialmente Nublado (noite)','Céu Limpo (noite)','Ensolarado','Tempo Bom (noite)','Tempo Bom (dia)','Chuva e granizo','Quente','Tempestades Isoladas','Tempestades Esparsas','Tempestades Esparsas','Chuvas Esparsas','Nevasca','Tempestade de Neve Esparsa','Nevasca','Parcialmente Nublado','Chuva com Trovoadas','Tempestade de Neve','Relâmpagos e Chuvas Isoladas'];
+    var conditions = ['Tornado','Tempestade Tropical','Furacão','Tempestade Severas','Trovoadas','Chuva e Neve','Chuva e Granizo Fino','Neve e Granizo Fino','Garoa Gélida','Garoa','Chuva Gélida','Chuvisco','Chuva','Neve em Flocos Finos','Leve Precipitação de Neve','Ventos com Neve','Neve','Chuva de Granizo','Pouco Granizo','Pó em Suspensão','Neblina','Névoa Seca','Enfumaçado','Vendaval','Ventando','Frio','Nublado','Muitas Nuvens','Muitas Nuvens','Parcialmente Nublado','Parcialmente Nublado','Céu Limpo','Ensolarado','Tempo Bom','Tempo Bom','Chuva e granizo','Quente','Tempestades Isoladas','Tempestades Esparsas','Tempestades Esparsas','Chuvas Esparsas','Nevasca','Tempestade de Neve Esparsa','Nevasca','Parcialmente Nublado','Chuva com Trovoadas','Tempestade de Neve','Relâmpagos e Chuvas Isoladas'];
 
     return conditions[val];
 }
@@ -141,7 +142,6 @@ function setPressure(val) {
 }
 
 function getWeather(location,latitude,longitude) {
-    clearAll();
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
     var app_id = 'SaDiiC6k';
@@ -149,6 +149,7 @@ function getWeather(location,latitude,longitude) {
     var consumer_secret = '83c8c74b4d4369c07d0faf49358e67eed86d77ce';
     var concat = '&';
     if (location) {
+        clearAll();
         var query = {'location': location, 'format': 'json'};
     } else if (latitude && longitude) {
         var query = {'lat': latitude, 'lon': longitude, 'format': 'json'};
