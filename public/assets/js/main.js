@@ -61,7 +61,7 @@ function clearAll() {
     $('.location-city').text(' - ');
     $('.today').text(' - ');
     $('.temperature-symbol').text('˚C');
-    $('.today-icon').attr('data-icon', ')');
+    $('.today-icon').attr('data-icon', '');
     $('.condition').text(' - ');
     $('.wind-direction').text(' - ');
     $('.wind-speed').text(' - ');
@@ -74,6 +74,7 @@ function clearAll() {
 function getLocation() {
     // execute function to clear previous data
     clearAll();
+    jQuery(".loader").show();
     if (navigator.geolocation) {
         // get current user location
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -165,6 +166,7 @@ function setPressure(val) {
 
 function getWeather(location,latitude,longitude) {
     // access Yahoo API to get weather infos
+    jQuery(".loader").show();
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
     var app_id = 'SaDiiC6k';
@@ -227,6 +229,7 @@ function getWeather(location,latitude,longitude) {
         changeBackgroundColor(setToCelsius(data.current_observation.condition.temperature),'today-info');
         changeBackgroundColor(getMedTemperature(data.forecasts[0].low,data.forecasts[0].high),'tomorrow-info');
         changeBackgroundColor(getMedTemperature(data.forecasts[1].low,data.forecasts[1].high),'after-tomorrow-info');
+        jQuery(".loader").hide();
     }
     });
 }
@@ -260,6 +263,7 @@ function changeLocation() {
 }
 
 $( document ).ready(function() {
+    jQuery(".loader").show();
     // get user location on first load
     getLocation();
     // activate click button to change temperature
