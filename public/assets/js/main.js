@@ -60,6 +60,7 @@ function clearAll() {
     $('.after-tomorrow-info').css('background-color', 'rgba(157, 157, 157, 1)');
     $('.location-city').text(' - ');
     $('.today').text(' - ');
+    $('.temperature-symbol').text('˚C');
     $('.today-icon').attr('data-icon', ')');
     $('.condition').text(' - ');
     $('.wind-direction').text(' - ');
