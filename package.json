@@ -1,0 +1,30 @@
+{
+    "name": "challange-charlie",
+    "version": "1.0.0",
+    "scripts": {
+        "server": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "test": "vue-cli-service test:unit"
+    },
+    "dependencies": {
+        "vue": "^2.6.6",
+        "vue-router": "^3.0.2",
+        "vuex": "^3.1.0",
+        "axios": "^0.18.0"
+    },
+    "devDependencies": {
+        "@vue/cli-service": "^3.4.1",
+        "@vue/cli-plugin-babel": "^3.4.1",
+        "vue-template-compiler": "^2.6.6"
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
+}
