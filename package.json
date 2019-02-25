@@ -1,0 +1,23 @@
+{
+  "name": "challengecharlie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alessandro Faletti",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-css": "^0.1.0",
+    "gulp-install": "^1.1.0",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-watch-less": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp-install": "^1.1.0"
+  }
+}

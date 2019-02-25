@@ -1,0 +1,20 @@
+<div class="weather">
+  <span class="title">{{vm.title}}</span>
+  <br>
+  <br>
+  <div class="box-search row">
+    <div class="col-9 p-0">
+      <input type="text" class="input-search" g-places-autocomplete ng-model="vm.address" aria-label="search" placeholder="Verifique um endereço">
+    </div>
+    <div class="col-3 p-0">
+      <button class="btn-search" ng-click="vm.getAddress(vm.address.geometry.location)">Pesquisar</button>
+    </div>
+  </div>
+  <br>
+  <a href="" class="location_icon" data-icon="("></a>
+  <div class="result" ng-if="vm.data.status != undefined">
+    <p ng-class="{'notFound': vm.data.status == false}">
+      {{vm.data.data}}
+    </p>
+  </div>
+</div>
