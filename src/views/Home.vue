@@ -2,6 +2,10 @@
 
   <div class="home">
     <wallPaper></wallPaper>
+    <weather
+      :lat="lat"
+      :long="long"
+      :weather="weather"></weather>
   </div>
 </template>
 
@@ -9,17 +13,17 @@
 
 import Mainsite from '@/components/Mainsite.vue';
 import WallPaper from "@/components/Wallpaper.vue";
+import Weather from "@/components/Weather.vue";
 import api from "@/services/api.js";
 
 export default {
     name: "Home",
     components: {
-        Mainsite,
+        Weather,
         WallPaper
     },
     data() {
         return {
-            isLoading: false,
             lat: "",
             long: "",
             errorLocation: false
@@ -31,7 +35,6 @@ export default {
         }
     },
     beforeMount() {
-        this.isLoading = true;
         this.getGeolocation();
     },
     methods: {
@@ -47,12 +50,10 @@ export default {
                     error => {
                         if (error.code === error.PERMISSION_DENIED)
                             this.errorLocation = true;
-                        this.isLoading = false;
                     }
                 );
             } else {
                 this.errorLocation = true;
-                this.isLoading = false;
             }
         },
         getClimate(lat, long) {
@@ -62,7 +63,7 @@ export default {
                     this.$store.commit("SET_WEATHER", weather);
                 })
                 .catch()
-                .finally(() => (this.isLoading = false));
+                .finally();
         }
     }
 };
@@ -77,5 +78,17 @@ body, html {
 
 body {
     background-size: cover;
+}
+
+
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot');
+  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot?#iefix') format('embedded-opentype'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.woff') format('woff'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.ttf') format('truetype'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.svg#MeteoconsRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

@@ -26,7 +26,7 @@ export default new Vuex.Store({
             state.weather.location = `${weather.location.city},${
                 weather.location.region
             }`;
-            state.weather.condition = weather.current_observation.condition;
+            state.weather.condition = weather.current_observation.condition.text;
             state.weather.today = weather.current_observation.temp;
             state.weather.tomorrow = weather.forecasts[1].high;
             state.weather.after = weather.forecasts[2].high;

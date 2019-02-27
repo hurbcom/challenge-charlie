@@ -70,7 +70,7 @@ export default {
     getClimate(lat, long, unit) {
         return axios
             .get(
-                `https://weather-ydn-yql.media.yahoo.com/forecastrss?location=Rio%20de%20Janeiro,Br&format=json&oauth_consumer_key=dj0yJmk9eWt4QjNlbjVVZmJZJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTUy&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1551068575&oauth_nonce=Bxdf4iw7R1X&oauth_version=1.0&oauth_signature=Mpt/aD4ZLxdeqMuejRLNEOuf1NU=`
+                `https://weather-ydn-yql.media.yahoo.com/forecastrss?lat=-22.970722&lon=-43.182365&format=json&oauth_consumer_key=dj0yJmk9eWt4QjNlbjVVZmJZJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTUy&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1551215222&oauth_nonce=NGAFFF6kPf3&oauth_version=1.0&oauth_signature=NEDmBKWgu400hp7Son42eZoPUEI=`
             )
             .then(response => {
                 return response.data;
