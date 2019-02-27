@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('challengecharlie.core', ['ui.router']);
+    .module('challengecharlie.core', ['ui.router', 'geolocation']);
 })();

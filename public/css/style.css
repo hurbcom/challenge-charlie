@@ -7,7 +7,7 @@
 }
 .weather-background {
   height: 100vh;
-  background-color: #c7c7c7;
+  background-color: #eee;
 }
 .weather {
   margin: 0 auto;
@@ -49,28 +49,14 @@
   line-height: 16px;
   text-align: center;
 }
-.weather .box-search {
-  height: 40px;
-  width: 470px;
+.weather .weather-content {
+  width: 650px;
   margin: 0 auto;
-  border: 1px solid #3D7EDB;
 }
-.weather .box-search .input-search {
-  height: 100%;
-  width: 100%;
-  text-indent: 5px;
-  padding-right: 5px;
+.weather .weather-content .btn-weather {
+  color: #8e8a87;
   border: none;
-}
-.weather .box-search .btn-search {
-  height: 38px;
-  width: 100%;
-  background-color: #00B0CA;
-  border: none;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 1.22px;
-  line-height: 24px;
-  text-align: center;
-  text-transform: uppercase;
+  border-radius: 0;
+  font-size: 1.5em;
+  background-color: #efebe7;
 }

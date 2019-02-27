@@ -1,17 +1,26 @@
-<div class="weather">
-  <span class="title">{{vm.title}}</span>
-  <br>
-  <br>
-  <div class="box-search row">
-    <div class="col-9 p-0">
-      <input type="text" class="input-search" g-places-autocomplete ng-model="vm.address" aria-label="search" placeholder="Verifique um endereço">
+<div class="weather p-0">
+  <div class="weather-content row">
+    <div class="col-12 p-0">
+      <button type="button" class="btn btn-weather w-100" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span href="" class="location_icon" data-icon="("></span> Action
+      </button>
+      <div class="dropdown-menu w-100">
+        <a class="dropdown-item" href="#">Action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
     </div>
-    <div class="col-3 p-0">
-      <button class="btn-search" ng-click="vm.getAddress(vm.address.geometry.location)">Pesquisar</button>
+    <div class="col-12 p-0">
+      <div class="">
+
+      </div>
     </div>
   </div>
   <br>
-  <a href="" class="location_icon" data-icon="("></a>
   <div class="result" ng-if="vm.data.status != undefined">
     <p ng-class="{'notFound': vm.data.status == false}">
       {{vm.data.data}}

@@ -18,18 +18,17 @@
 
     return service;
 
+    //Função responsável por capturar a imagem do bing
+    // --Para passar o cors, foi utilizado o endereço cors.io
     function getBackground() {
-
       var url = 'https://cors.io?https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
-
-      $http({
+      return $http({
         method: 'GET',
         url: url
-      }).then(function (response) {
-        console.log(response.data.images[0]);
       });
     }
 
+    //Função responsável por capturar as informações de clima da Weather Yahoo API
     function getWeather(location, lat, long){
       var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
       var method = 'GET';
@@ -37,7 +36,11 @@
       var consumer_key = 'dj0yJmk9ckVJOWQ0OXZ0NzNNJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTA0';
       var consumer_secret = '2b7b356f5c8911422b884ac9ffe7b4e0d29f8ed4';
       var concat = '&';
-      var query = {'location': 'sunnyvale,ca', 'format': 'json'};
+      if (location) {
+        var query = {'location': location, 'format': 'json'};
+      } else if (lat && long) {
+        var query = {'lat': lat, 'lon': long, 'format': 'json'};
+      }
       var oauth = {
         'oauth_consumer_key': consumer_key,
         'oauth_nonce': Math.random().toString(36).substring(2),

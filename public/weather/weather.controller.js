@@ -5,8 +5,8 @@
     .module('challengecharlie')
     .controller('WeatherCtrl', WeatherCtrl);
 
-  WeatherCtrl.$inject = ['$http', '$scope', 'WeatherFactory'];
-  function WeatherCtrl($http, $scope, WeatherFactory) {
+  WeatherCtrl.$inject = ['$http', '$scope', 'WeatherFactory', 'geolocation'];
+  function WeatherCtrl($http, $scope, WeatherFactory, geolocation) {
     var vm = this;
     vm.data = {};
     vm.data.status = undefined;
@@ -16,8 +16,14 @@
     activate();
 
     function activate() {
-      WeatherFactory.getBackground();
-      WeatherFactory.getWeather();
+      WeatherFactory.getBackground().then(function(response){
+        $('.weather-background').css("background-image", "url(http://bing.com"+response.data.images[0].url+")");
+      })
+      // WeatherFactory.getWeather();
+
+      geolocation.getLocation().then(function(data){
+        WeatherFactory.getWeather('',data.coords.latitude,data.coords.longitude);
+      });
     }
 
   }

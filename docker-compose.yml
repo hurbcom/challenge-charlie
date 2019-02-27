@@ -1,0 +1,11 @@
+version: '3'
+ 
+services:
+  weather-service5:
+    build: ./
+    
+    volumes:
+      - ./public:/usr/share/nginx/html
+
+    ports:
+      - "80:80"
