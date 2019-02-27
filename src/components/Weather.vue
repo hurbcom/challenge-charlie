@@ -6,22 +6,22 @@
                 {{weather.condition | iconWeather}}
             </span>
 
-            <span>{{weather.todayC}}</span><span>{{weather.today}}</span>
+            <span>{{weather.todayC}}<span class="icon-font">*</span></span><span>{{weather.today}}<span class="icon-font">+</span></span>
             {{weather.condition | translate}}
-            Vento:{{weather.windDirection}} {{weather.windSpeed}}
-            Humidade:{{weather.humidity}}
-            Pressão: {{weather.pressure}}
+            Vento:{{weather.windDirection}} {{weather.windSpeed}} km/h
+            Humidade:{{weather.humidity}} %
+            Pressão: {{weather.pressure}} hPA
         </div>
         <div class="colors tomorrowC">
             Amanhã
-            <span>{{weather.tomorrowC}}</span>
-            <span>{{weather.tomorrow}}</span>
+            <span>{{weather.tomorrowC}}<span class="icon-font">*</span></span>
+            <span>{{weather.tomorrow}}<span class="icon-font">+</span></span>
         </div>
 
         <div class="colors afterC">
             Depois de amanhã
-            <span>{{weather.afterC}}</span>
-            <span>{{weather.after}}</span>
+            <span>{{weather.afterC}}<span class="icon-font">*</span></span>
+            <span>{{weather.after}}<span class="icon-font">+</span></span>
         </div>
     </main>
 </template>
@@ -75,5 +75,31 @@ export default {
 .afterC.background-yellow {
     background-color: #b79404e8;
 }
+
+.background-red {
+    background-color: #d01e1ead;
+}
+
+.tomorrowC.background-red {
+    background-color: #d01e1ecf;
+}
+
+.afterC.background-red {
+    background-color: #d01e1ee8;
+}
+
+
+.background-blue {
+    background-color: #1e76d0ad;
+}
+
+.tomorrowC.background-blue {
+    background-color: #1e76d0cf;
+}
+
+.afterC.background-blue {
+    background-color: #1e76d0e8;
+}
+
 
 </style>

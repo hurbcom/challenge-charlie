@@ -71,16 +71,16 @@ export default new Vuex.Store({
             state.weather.city = weather.location.city;
             state.weather.region = weather.location.region;
             state.weather.condition = weather.current_observation.condition.text;
-            state.weather.today = `${setRoundVal(weather.current_observation.condition.temperature)}℉`;
-            state.weather.tomorrow = `${setRoundVal(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}℉`;
-            state.weather.after = `${setRoundVal(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}℉`;
-            state.weather.todayC = `${setToCelsius(weather.current_observation.condition.temperature)}℃`;
-            state.weather.tomorrowC = `${setToCelsius(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}℃`;
-            state.weather.afterC = `${setToCelsius(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}℃`;
-            state.weather.windSpeed = `${setWindSpeed(weather.current_observation.wind.speed)}km/h`;
+            state.weather.today = `${setRoundVal(weather.current_observation.condition.temperature)}`;
+            state.weather.tomorrow = `${setRoundVal(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}`;
+            state.weather.after = `${setRoundVal(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}`;
+            state.weather.todayC = `${setToCelsius(weather.current_observation.condition.temperature)}`;
+            state.weather.tomorrowC = `${setToCelsius(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}`;
+            state.weather.afterC = `${setToCelsius(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}`;
+            state.weather.windSpeed = `${setWindSpeed(weather.current_observation.wind.speed)}`;
             state.weather.windDirection = `${setWindDirection(weather.current_observation.wind.direction)}`;
-            state.weather.humidity = `${weather.current_observation.atmosphere.humidity}%`;
-            state.weather.pressure = `${setPressure(weather.current_observation.atmosphere.pressure)}hPA`;
+            state.weather.humidity = weather.current_observation.atmosphere.humidity;
+            state.weather.pressure = `${setPressure(weather.current_observation.atmosphere.pressure)}`;
         }
     }
 });
