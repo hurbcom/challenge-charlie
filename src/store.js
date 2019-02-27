@@ -28,7 +28,7 @@ function setToCelsius(val) {
     return Math.round(temperature);
 }
 
-function getMedTemperature(low, high) {
+function setMedTemperature(low, high) {
     return ((low + high)) / 2;
 }
 
@@ -38,6 +38,10 @@ function setPressure(val) {
 
 function setWindSpeed(val) {
     return Math.round(val * 3.6);
+}
+
+function setRoundVal(val) {
+    return Math.round(val);
 }
 
 
@@ -67,12 +71,12 @@ export default new Vuex.Store({
             state.weather.city = weather.location.city;
             state.weather.region = weather.location.region;
             state.weather.condition = weather.current_observation.condition.text;
-            state.weather.today = `${weather.current_observation.condition.temperature}℉`;
-            state.weather.tomorrow = `${getMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low)}℉`;
-            state.weather.after = `${getMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low)}℉`;
+            state.weather.today = `${setRoundVal(weather.current_observation.condition.temperature)}℉`;
+            state.weather.tomorrow = `${setRoundVal(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}℉`;
+            state.weather.after = `${setRoundVal(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}℉`;
             state.weather.todayC = `${setToCelsius(weather.current_observation.condition.temperature)}℃`;
-            state.weather.tomorrowC = `${setToCelsius(getMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}℃`;
-            state.weather.afterC = `${setToCelsius(getMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}℃`;
+            state.weather.tomorrowC = `${setToCelsius(setMedTemperature(weather.forecasts[1].high , weather.forecasts[1].low))}℃`;
+            state.weather.afterC = `${setToCelsius(setMedTemperature(weather.forecasts[2].high , weather.forecasts[2].low))}℃`;
             state.weather.windSpeed = `${setWindSpeed(weather.current_observation.wind.speed)}km/h`;
             state.weather.windDirection = `${setWindDirection(weather.current_observation.wind.direction)}`;
             state.weather.humidity = `${weather.current_observation.atmosphere.humidity}%`;

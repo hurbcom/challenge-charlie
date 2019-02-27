@@ -71,13 +71,16 @@ export default {
 
 <style >
 
-body, html {
+html {
     width: 100%;
     height: 100%;
 }
 
 body {
     background-size: cover;
+    background-position: 50% 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
 }
 
 
