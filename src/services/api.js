@@ -1,6 +1,4 @@
 import axios from "axios";
-
-import $ from "jquery";
 import * as CryptoJS from 'crypto-js';
 
 
@@ -32,7 +30,23 @@ export default {
         };
 
         let merged = {};
-        $.extend(merged, query, oauth);
+        var extend = function(out) {
+            out = out || {};
+
+            for (var i = 1; i < arguments.length; i++) {
+                if (!arguments[i])
+                    continue;
+
+                for (var key in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(key))
+                        out[key] = arguments[i][key];
+                }
+            }
+
+            return out;
+        };
+
+        extend(merged, query, oauth);
         let merged_arr = Object.keys(merged).sort().map(function(k) {
             return [k + '=' + encodeURIComponent(merged[k])];
         });
@@ -52,7 +66,7 @@ export default {
             headers: { 'Authorization': auth_header, 'Yahoo-App-Id': app_id }
         };
         return axios
-            .get(url + '?' + $.param(query), config)
+            .get(url + '?' + `lat=${query.lat}&lon=${query.lon}&format=${query.format}`, config)
             .then(response => {
                 return response.data;
             });
