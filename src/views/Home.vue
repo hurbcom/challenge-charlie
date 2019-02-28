@@ -78,6 +78,7 @@ html {
 
 body {
     background-size: cover;
+    background-attachment: fixed;
     background-position: 50% 50%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;

@@ -17,8 +17,8 @@
 
             <ul class="wind-list">
                 <li>Vento: {{weather.windDirection}} {{weather.windSpeed}} km/h</li>
-                <li>Humidade:{{weather.humidity}} %</li>
-                <li>Pressão: {{weather.pressure}} hPA</li>
+                <li>Humidade: {{weather.humidity}}%</li>
+                <li>Pressão: {{weather.pressure}}hPA</li>
             </ul>
         </div>
 
@@ -186,6 +186,20 @@ export default {
 .afterC.background-blue {
     background-color: #1e76d0e8;
 }
+@media (min-width: 1076px) {
+    .content {
+        max-width: 35.9em;
+        margin: 0 auto;
+        font-size: 3em;
+    }
 
+    .box-condition.todayC {
+        height: 15em;
+    }
+
+    .box-condition > .icon-font {
+        font-size: 1200%;
+    }
+}
 
 </style>
