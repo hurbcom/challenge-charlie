@@ -45,35 +45,35 @@ export default {
     name: "Weather",
     props: ["weather", "lat", "long"],
     updated() {
-        this.setGradient(this.weather, 'todayC');
-        this.setGradient(this.weather, 'tomorrowC');
-        this.setGradient(this.weather, 'afterC');
+        this.setGradient(this.weather);
     },
     methods: {
-        setGradient(weather, day) {
+        setGradient(weather) {
 
-            let element = document.querySelector(`.colors.${day}`);
+            let element1 = document.querySelector(`.colors.todayC`);
+            let element2 = document.querySelector(`.colors.tomorrowC`);
+            let element3 = document.querySelector(`.colors.afterC`);
 
             let min = 15;
             let max = 35;
 
             if (weather.todayC < min)
-                element.classList.add("background-blue");
+                element1.classList.add("background-blue");
             else if (weather.todayC  > max)
-                element.classList.add("background-red");
-            else element.classList.add("background-yellow");
+                element1.classList.add("background-red");
+            else element1.classList.add("background-yellow");
 
             if (weather.tomorrowC < min)
-                element.classList.add("background-blue");
+                element2.classList.add("background-blue");
             else if (weather.tomorrowC  > max)
-                element.classList.add("background-red");
-            else element.classList.add("background-yellow");
+                element2.classList.add("background-red");
+            else element2.classList.add("background-yellow");
 
             if (weather.afterC < min)
-                element.classList.add("background-blue");
+                element3.classList.add("background-blue");
             else if (weather.afterC  > max)
-                element.classList.add("background-red");
-            else element.classList.add("background-yellow");
+                element3.classList.add("background-red");
+            else element3.classList.add("background-yellow");
 
         },
         convertTemperature() {
