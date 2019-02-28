@@ -2,10 +2,7 @@
 
   <div class="home">
     <wallPaper></wallPaper>
-    <weather
-      :lat="lat"
-      :long="long"
-      :weather="weather"></weather>
+    <weather></weather>
   </div>
 </template>
 
@@ -14,57 +11,13 @@
 import Mainsite from '@/components/Mainsite.vue';
 import WallPaper from "@/components/Wallpaper.vue";
 import Weather from "@/components/Weather.vue";
-import api from "@/services/api.js";
+
 
 export default {
     name: "Home",
     components: {
         Weather,
         WallPaper
-    },
-    data() {
-        return {
-            lat: "",
-            long: "",
-            errorLocation: false
-        };
-    },
-    computed: {
-        weather() {
-            return this.$store.state.weather;
-        }
-    },
-    beforeMount() {
-        this.getGeolocation();
-    },
-    methods: {
-        getGeolocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    position => {
-                        this.lat = position.coords.latitude;
-                        this.long = position.coords.longitude;
-                        this.getClimate(this.lat, this.long);
-                        this.errorLocation = false;
-                    },
-                    error => {
-                        if (error.code === error.PERMISSION_DENIED)
-                            this.errorLocation = true;
-                    }
-                );
-            } else {
-                this.errorLocation = true;
-            }
-        },
-        getClimate(lat, long) {
-            return api
-                .getClimate(lat, long)
-                .then(weather => {
-                    this.$store.commit("SET_WEATHER", weather);
-                })
-                .catch()
-                .finally();
-        }
     }
 };
 </script>

@@ -1,8 +1,12 @@
 <template>
     <main class="content">
 
-        <h1 class="colors"><span class="icon-font">( </span> {{weather.city}}, {{weather.region}}</h1>
-
+        <h1 class="colors" v-on:click="showMenuOtherPlaces()" ><span class="icon-font"  >( </span> {{weather.city}}, {{weather.region}}</h1>
+        <ul class="other-places colors">
+            <li v-on:click="getSaoPauloPosition()">São Paulo, SP</li>
+            <li v-on:click="getVitoriaPosition()">Vitoria, ES</li>
+            <li v-on:click="getBeloHorizontePosition()">Belo Horizonte, MG</li>
+        </ul>
         <div class="box-condition colors todayC">
 
             <span class="icon-font">
@@ -40,14 +44,54 @@
     </main>
 </template>
 <script>
-
+import api from "@/services/api.js";
 export default {
-    name: "Weather",
-    props: ["weather", "lat", "long"],
+    data() {
+        return {
+            lat: "",
+            long: "",
+            errorLocation: false
+        };
+    },
+    computed: {
+        weather() {
+            return this.$store.state.weather;
+        }
+    },
+    beforeMount() {
+        this.getGeolocation();
+    },
     updated() {
         this.setGradient(this.weather);
     },
     methods: {
+        getGeolocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        this.lat = position.coords.latitude;
+                        this.long = position.coords.longitude;
+                        this.getClimate(this.lat, this.long);
+                        this.errorLocation = false;
+                    },
+                    error => {
+                        if (error.code === error.PERMISSION_DENIED)
+                            this.errorLocation = true;
+                    }
+                );
+            } else {
+                this.errorLocation = true;
+            }
+        },
+        getClimate(lat, long) {
+            return api
+                .getClimate(lat, long)
+                .then(weather => {
+                    this.$store.commit("SET_WEATHER", weather);
+                })
+                .catch()
+                .finally();
+        },
         setGradient(weather) {
 
             let element1 = document.querySelector(`.colors.todayC`);
@@ -74,11 +118,28 @@ export default {
             else if (weather.afterC  > max)
                 element3.classList.add("background-red");
             else element3.classList.add("background-yellow");
+            console.log('entrei');
 
         },
         convertTemperature() {
             let element = document.querySelector('.content');
             element.classList.toggle("fahrenheit");
+        },
+        showMenuOtherPlaces() {
+            let element = document.querySelector('.other-places');
+            element.classList.toggle("show");
+        },
+        getSaoPauloPosition() {
+            this.getClimate('-23.533773', '-46.625290');
+            this.showMenuOtherPlaces();
+         },
+        getVitoriaPosition() {
+            this.getClimate('-20.2976', '-40.2958');
+            this.showMenuOtherPlaces();
+        },
+        getBeloHorizontePosition() {
+            this.getClimate('-19.8157', '-43.9542');
+            this.showMenuOtherPlaces();
         }
     }
 };
@@ -107,19 +168,31 @@ export default {
         margin: 0 auto;
         font-size: 3em;
     }
-    h1 {
+    h1, .other-places li {
         margin: 0;
         padding: 0.9em;
         font-size: 1.5em;
         line-height: 1.5em;
+        font-weight: bold;
         text-align: center;
         color: @text-color-default;
         display: flex;
         justify-content: center;
         text-align: center;
+        cursor: pointer;
+        border-bottom: 0.05em solid rgba(0, 0, 0, 0.2);
         .icon-font {
             font-size: 2em;
             margin-right: 0.3em;
+        }
+    }
+    .other-places {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: none;
+        &.show {
+            display: block;
         }
     }
     .icon-font {
