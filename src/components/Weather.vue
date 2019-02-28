@@ -74,11 +74,22 @@ export default {
 @import "../styles/variables.less";
 @import "../styles/mixins/media-queries.less";
 
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot');
+  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot?#iefix') format('embedded-opentype'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.woff') format('woff'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.ttf') format('truetype'),
+  url('https://vinnycl.github.io/statics/fonts/meteocons.svg#MeteoconsRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .content {
-    max-width: 32em;
+    max-width: @grid-value;
     margin: 0 auto;
     @media @desktop {
-        max-width: 35.9em;
+        max-width: @grid-desktop;
         margin: 0 auto;
         font-size: 3em;
     }
@@ -88,7 +99,7 @@ export default {
         font-size: 1.5em;
         line-height: 1.5em;
         text-align: center;
-        color: #8d8a87;
+        color: @text-color-default;
         display: flex;
         justify-content: center;
         text-align: center;
@@ -101,48 +112,48 @@ export default {
         font-family: 'MeteoconsRegular';
     }
     .colors {
-        background-color: #efebe7c2;
+        background-color: @background-color-default;
     }
 
     .background-yellow {
-        background-color: #e3b612ad;
+        background-color: @background-yellow1;
     }
 
     .tomorrowC.background-yellow {
-        background-color: #facc05cf;
+        background-color: @background-yellow2;
     }
 
     .afterC.background-yellow {
-        background-color: #b79404e8;
+        background-color: @background-yellow3;
     }
 
     .background-red {
-        background-color: #d01e1ead;
+        background-color: @background-red1;
     }
 
     .tomorrowC.background-red {
-        background-color: #d41e1ecf;
+        background-color: @background-red2;
     }
 
     .afterC.background-red {
-        background-color: #ea0909e8;
+        background-color: @background-red3;
     }
 
     .background-blue {
-        background-color: #1e76d0ad;
+        background-color: @background-blue1;
     }
 
     .tomorrowC.background-blue {
-        background-color: #1e76d0cf;
+        background-color: @background-blue2;
     }
 
     .afterC.background-blue {
-        background-color: #1e76d0e8;
+        background-color: @background-blue3;
     }
 }
 
 .box-condition {
-    color: #fff;
+    color: @text-color-colored;
     text-shadow: 1px 1px 2px #00000085;
     padding-left: 55%;
     position: relative;

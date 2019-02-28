@@ -84,15 +84,4 @@ body {
     font-size: 10px;
 }
 
-
-@font-face {
-  font-family: 'MeteoconsRegular';
-  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot');
-  src: url('https://vinnycl.github.io/statics/fonts/meteocons.eot?#iefix') format('embedded-opentype'),
-  url('https://vinnycl.github.io/statics/fonts/meteocons.woff') format('woff'),
-  url('https://vinnycl.github.io/statics/fonts/meteocons.ttf') format('truetype'),
-  url('https://vinnycl.github.io/statics/fonts/meteocons.svg#MeteoconsRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 </style>
