@@ -10,8 +10,11 @@
             </span>
 
             <span class="data">Hoje</span>
-            <span class="celsius">{{weather.todayC}}˚C</span>
-            <span class="fahrenheit">{{weather.today}}˚F</span>
+            <span class="converter" v-on:click="convertTemperature()">
+                <span class="celsius">{{weather.todayC}}˚C</span>
+                <span class="fahrenheit">{{weather.today}}˚F</span>
+            </span>
+
             <span class="weather">{{weather.condition | translate}}</span>
 
 
@@ -48,11 +51,8 @@ export default {
     },
     methods: {
         setGradient(weather, day) {
-            console.log(day);
             let dayF = day;
-            console.log(dayF);
             let element = document.querySelector(`.colors.${day}`);
-            console.log(element);
             if (`weather.${day}`) {
                 let temp = parseInt(`weather.${day}`);
                 if (`weather.${day}` === "C" && temp < 15)
@@ -61,6 +61,10 @@ export default {
                     element.classList.add("background-red");
                 else element.classList.add("background-yellow");
             }
+        },
+        convertTemperature() {
+            let element = document.querySelector('.content');
+            element.classList.toggle("fahrenheit");
         }
     }
 };
@@ -94,6 +98,10 @@ export default {
     padding-left: 55%;
     position: relative;
     padding-bottom: 2em;
+}
+
+.box-condition .converter {
+    cursor: pointer;
 }
 
 .box-condition > .icon-font {
