@@ -46,6 +46,7 @@
 <script>
 import api from "@/services/api.js";
 export default {
+    name: 'Weather',
     data() {
         return {
             lat: "",
@@ -118,7 +119,6 @@ export default {
             else if (weather.afterC  > max)
                 element3.classList.add("background-red");
             else element3.classList.add("background-yellow");
-            console.log('entrei');
 
         },
         convertTemperature() {

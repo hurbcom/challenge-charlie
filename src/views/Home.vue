@@ -8,7 +8,6 @@
 
 <script>
 
-import Mainsite from '@/components/Mainsite.vue';
 import WallPaper from "@/components/Wallpaper.vue";
 import Weather from "@/components/Weather.vue";
 
