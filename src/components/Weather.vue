@@ -51,16 +51,30 @@ export default {
     },
     methods: {
         setGradient(weather, day) {
-            let dayF = day;
+
             let element = document.querySelector(`.colors.${day}`);
-            if (`weather.${day}`) {
-                let temp = parseInt(`weather.${day}`);
-                if (`weather.${day}` === "C" && temp < 15)
-                    element.classList.add("background-blue");
-                else if (`weather.${day}` === "C" && temp > 35)
-                    element.classList.add("background-red");
-                else element.classList.add("background-yellow");
-            }
+
+            let min = 15;
+            let max = 35;
+
+            if (weather.todayC < min)
+                element.classList.add("background-blue");
+            else if (weather.todayC  > max)
+                element.classList.add("background-red");
+            else element.classList.add("background-yellow");
+
+            if (weather.tomorrowC < min)
+                element.classList.add("background-blue");
+            else if (weather.tomorrowC  > max)
+                element.classList.add("background-red");
+            else element.classList.add("background-yellow");
+
+            if (weather.afterC < min)
+                element.classList.add("background-blue");
+            else if (weather.afterC  > max)
+                element.classList.add("background-red");
+            else element.classList.add("background-yellow");
+
         },
         convertTemperature() {
             let element = document.querySelector('.content');
