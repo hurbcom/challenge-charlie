@@ -70,26 +70,75 @@ export default {
 };
 </script>
 
-<style >
+<style scoped lang="less">
+@import "../styles/variables.less";
+@import "../styles/mixins/media-queries.less";
+
 .content {
     max-width: 32em;
     margin: 0 auto;
-}
-.content h1 {
-    margin: 0;
-    padding: 0.9em;
-    font-size: 1.5em;
-    line-height: 1.5em;
-    text-align: center;
-    color: #8d8a87;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
+    @media @desktop {
+        max-width: 35.9em;
+        margin: 0 auto;
+        font-size: 3em;
+    }
+    h1 {
+        margin: 0;
+        padding: 0.9em;
+        font-size: 1.5em;
+        line-height: 1.5em;
+        text-align: center;
+        color: #8d8a87;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        .icon-font {
+            font-size: 2em;
+            margin-right: 0.3em;
+        }
+    }
+    .icon-font {
+        font-family: 'MeteoconsRegular';
+    }
+    .colors {
+        background-color: #efebe7c2;
+    }
 
-.content h1 .icon-font {
-    font-size: 2em;
-    margin-right: 0.3em;
+    .background-yellow {
+        background-color: #e3b612ad;
+    }
+
+    .tomorrowC.background-yellow {
+        background-color: #facc05cf;
+    }
+
+    .afterC.background-yellow {
+        background-color: #b79404e8;
+    }
+
+    .background-red {
+        background-color: #d01e1ead;
+    }
+
+    .tomorrowC.background-red {
+        background-color: #d41e1ecf;
+    }
+
+    .afterC.background-red {
+        background-color: #ea0909e8;
+    }
+
+    .background-blue {
+        background-color: #1e76d0ad;
+    }
+
+    .tomorrowC.background-blue {
+        background-color: #1e76d0cf;
+    }
+
+    .afterC.background-blue {
+        background-color: #1e76d0e8;
+    }
 }
 
 .box-condition {
@@ -98,32 +147,50 @@ export default {
     padding-left: 55%;
     position: relative;
     padding-bottom: 2em;
-}
+    @media @desktop {
+        &.todayC {
+            height: 15em;
+        }
+    }
+    .converter {
+        cursor: pointer;
+    }
+    & > .icon-font {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        text-align: center;
+        font-size: 900%;
+        padding-top: 0.2em;
+        @media @desktop {
+            font-size: 1200%;
+        }
+    }
 
-.box-condition .converter {
-    cursor: pointer;
-}
-
-.box-condition > .icon-font {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    font-size: 900%;
-    padding-top: 0.2em;
-}
-
-.box-condition .data {
-    display: block;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    padding-top: 1em;
-}
-
-.box-condition .celsius, .box-condition .fahrenheit {
-    font-size: 1.5em;
+    .data {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        padding-top: 1em;
+    }
+    .celsius, .fahrenheit {
+        font-size: 1.5em;
+    }
+    .weather {
+        display: block;
+        font-size: 1.2em;
+        padding-top: 1em;
+    }
+    .wind-list {
+        list-style: none;
+        padding: 1em 0 0 0;
+        margin: 0;
+        li {
+            padding-top: 0.1em;
+        }
+    }
 }
 
 .content.fahrenheit .box-condition .celsius, .box-condition .fahrenheit {
@@ -132,82 +199,6 @@ export default {
 
 .content.fahrenheit .box-condition .fahrenheit {
     display: block;
-}
-
-.box-condition .weather {
-    display: block;
-    font-size: 1.2em;
-    padding-top: 1em;
-}
-
-.box-condition .wind-list {
-    list-style: none;
-    padding: 1em 0 0 0;
-    margin: 0;
-}
-
-.box-condition .wind-list li {
-    padding-top: 0.1em;
-}
-
-.icon-font {
-    font-family: 'MeteoconsRegular';
-}
-
-.colors {
-    background-color: #efebe7c2;
-}
-
-.background-yellow {
-    background-color: #e3b612ad;
-}
-
-.tomorrowC.background-yellow {
-    background-color: #facc05cf;
-}
-
-.afterC.background-yellow {
-    background-color: #b79404e8;
-}
-
-.background-red {
-    background-color: #d01e1ead;
-}
-
-.tomorrowC.background-red {
-    background-color: #d41e1ecf;
-}
-
-.afterC.background-red {
-    background-color: #ea0909e8;
-}
-
-
-.background-blue {
-    background-color: #1e76d0ad;
-}
-
-.tomorrowC.background-blue {
-    background-color: #1e76d0cf;
-}
-
-.afterC.background-blue {
-    background-color: #1e76d0e8;
-}
-@media (min-width: 1076px) {
-    .content {
-        max-width: 35.9em;
-        margin: 0 auto;
-        font-size: 3em;
-    }
-
-    .box-condition.todayC {
-        height: 15em;
-    }
-
-    .box-condition > .icon-font {
-        font-size: 1200%;
-    }
 }
 
 </style>
