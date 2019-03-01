@@ -21,14 +21,14 @@
     //Função responsável por capturar a imagem do bing
     // --Para passar o cors, foi utilizado o endereço cors.io
     function getBackground() {
-      var url = 'https://cors.io?https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
+      var url = 'https://cors.io/?https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
       return $http({
         method: 'GET',
         url: url
       });
     }
 
-    //Função responsável por capturar as informações de clima da Weather Yahoo API
+    //Função responsável por capturar as informações de clima da Yahoo Weather API
     function getWeather(location, lat, long){
       var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
       var method = 'GET';
@@ -37,9 +37,9 @@
       var consumer_secret = '2b7b356f5c8911422b884ac9ffe7b4e0d29f8ed4';
       var concat = '&';
       if (location) {
-        var query = {'location': location, 'format': 'json'};
+        var query = {'location': location, 'format': 'json', 'u': 'c'};
       } else if (lat && long) {
-        var query = {'lat': lat, 'lon': long, 'format': 'json'};
+        var query = {'lat': lat, 'lon': long, 'format': 'json', 'u': 'c'};
       }
       var oauth = {
         'oauth_consumer_key': consumer_key,
@@ -68,16 +68,13 @@
         return [k + '="' + oauth[k] + '"'];
       }).join(',');
 
-      $http({
+      return $http({
         url: url + '?' + $.param(query),
         headers: {
           'Authorization': auth_header,
           'Yahoo-App-Id': app_id 
         },
         method: 'GET'
-      }).then(function(response){
-        console.log(response);
-        return response;
       });
     }
     

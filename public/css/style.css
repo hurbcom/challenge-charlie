@@ -11,46 +11,21 @@
 }
 .weather {
   margin: 0 auto;
-  width: 600px;
+  width: 650px;
   text-align: center;
   padding-top: 20px;
 }
-.weather .location_icon:before {
+.weather .icons:before {
   font-family: 'MeteoconsRegular';
   content: attr(data-icon);
 }
-.weather .title {
-  color: #252727;
-  font-size: 18px;
-  letter-spacing: -0.23px;
-  line-height: 17px;
-}
-.weather .result {
-  height: 192px;
-  text-align: left;
-  border: 1px solid #e3e4e4;
-  padding: 15px;
-}
-.weather .result .list-title {
-  color: #252727;
-  font-size: 13px;
-  line-height: 16px;
-}
-.weather .result p {
-  color: #252727;
-  font-size: 12px;
-  letter-spacing: 0.21px;
-  line-height: 24px;
-  text-transform: uppercase;
-}
-.weather .result .notFound {
-  color: #BB133E;
-  font-size: 13px;
-  line-height: 16px;
-  text-align: center;
+.weather .today-icon {
+  font-size: 15vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .weather .weather-content {
-  width: 650px;
   margin: 0 auto;
 }
 .weather .weather-content .btn-weather {
@@ -59,4 +34,24 @@
   border-radius: 0;
   font-size: 1.5em;
   background-color: #efebe7;
+}
+.weather .weather-content .weather-info {
+  color: #FFF;
+}
+.weather .weather-content .weather-info .today {
+  height: 260px;
+}
+.weather .weather-content .weather-info .today .info {
+  text-align: left;
+  margin-top: 8%;
+}
+.weather .weather-content .weather-info .today .info .temperature {
+  font-size: 50px;
+}
+@media (max-width: 640px) {
+  .weather {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
 }
