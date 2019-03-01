@@ -23,6 +23,22 @@ Se tudo estiver correto, e não tiver problema com nenhuma dependência o termin
 ```
 http://localhost:XXXX
 ```
+### Docker
+
+Certifique-se que tenha o [Docker](https://www.docker.com/) instalado. E então, construa uma imagem feita no Dockerfile no projeto com o comando:
+```
+docker build -t challenge-charlie .
+```
+
+Depois de criado, basta subir subir o container com o comando:
+```
+docker run -it -p 8080:80 challenge-charlie
+```
+
+Quando estiver tudo certo, basta abrir a url no navegador:
+```
+http://localhost:8080
+```
 
 ## Testes
 Para executar os testes unitários é necessário ter o projeto selecionado em seu termirminal e executar o comando:
