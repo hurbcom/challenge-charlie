@@ -1,5 +1,9 @@
 # Desafio Charlie
 
+O desafio Charlie se consiste em criar uma SPA (single-page application) que demonstra a previsão do tempo para o usuário final dependendo se sua localidade. A previsão e feita em 3 etapas; O dia atual, o próximo dia e o dia depois de amanhã. Com o resultados de algumas temperaturas a faixa muda de cor. Cores vermelhas para temperaturas maiores que 35˚C, azuis para menores que 15˚C e amarelo para os demais. Caso não encontre a cordenada, o padrão é um cinza. O usuário pode alternar de ˚C para ˚F ao clicar na primeira temperatura.
+
+Para a consulta do tempo, foi usada a API do [Yahoo](https://developer.yahoo.com/weather/) para o tempo e [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) para a imagem de fundo.
+
 ## Como rodar o projeto em sua máquina
 
 Para rodar o projeto em sua máquina é necessário ter o [Node](https://nodejs.org) instalado.
@@ -18,4 +22,10 @@ npm run server
 Se tudo estiver correto, e não tiver problema com nenhuma dependência o terminal vai avisar que o serviço está disponível através da URL indicada em seu terminal:
 ```
 http://localhost:XXXX
+```
+
+## Testes
+Para executar os testes unitários é necessário ter o projeto selecionado em seu termirminal e executar o comando:
+```
+npm run test
 ```
