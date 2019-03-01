@@ -1,6 +1,6 @@
 # Desafio Charlie
 
-O desafio Charlie se consiste em criar uma SPA (single-page application) que demonstra a previsão do tempo para o usuário final dependendo se sua localidade. A previsão e feita em 3 etapas; O dia atual, o próximo dia e o dia depois de amanhã. Com o resultados de algumas temperaturas a faixa muda de cor. Cores vermelhas para temperaturas maiores que 35˚C, azuis para menores que 15˚C e amarelo para os demais. Caso não encontre a cordenada, o padrão é um cinza. O usuário pode alternar de ˚C para ˚F ao clicar na primeira temperatura.
+O desafio Charlie se consiste em criar uma SPA (single-page application) que demonstra a previsão do tempo para o usuário final dependendo se sua localidade. A previsão e feita em 3 etapas; O dia atual, o próximo dia e o dia depois de amanhã. Com o resultados de algumas temperaturas a faixa muda de cor. Cores vermelhas para temperaturas maiores que 35˚C, azuis para menores que 15˚C e amarelo para os demais. Caso não encontre a coordenada, o padrão é um cinza. O usuário pode alternar de ˚C para ˚F ao clicar na primeira temperatura.
 
 Para a consulta do tempo, foi usada a API do [Yahoo](https://developer.yahoo.com/weather/) para o tempo e [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) para a imagem de fundo.
 
