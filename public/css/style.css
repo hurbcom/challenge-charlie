@@ -20,10 +20,15 @@
   content: attr(data-icon);
 }
 .weather .today-icon {
-  font-size: 15vw;
+  font-size: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 480px) {
+  .weather .today-icon {
+    font-size: 140px;
+  }
 }
 .weather .weather-content {
   margin: 0 auto;
@@ -38,15 +43,30 @@
 .weather .weather-content .weather-info {
   color: #FFF;
 }
+.weather .weather-content .weather-info .title {
+  text-transform: uppercase;
+}
 .weather .weather-content .weather-info .today {
   height: 260px;
+  background: #c8c8c8;
 }
-.weather .weather-content .weather-info .today .info {
+.weather .weather-content .weather-info .tomorrow {
+  height: 100px;
+  background: #969696;
+}
+.weather .weather-content .weather-info .after-tomorrow {
+  height: 100px;
+  background: #646464;
+}
+.weather .weather-content .weather-info .info {
   text-align: left;
-  margin-top: 8%;
+  padding: 27px;
 }
-.weather .weather-content .weather-info .today .info .temperature {
-  font-size: 50px;
+.weather .weather-content .weather-info .info .temperature {
+  font-size: 20px;
+}
+.weather .weather-content .weather-info .info .condition {
+  font-size: 30px;
 }
 @media (max-width: 640px) {
   .weather {

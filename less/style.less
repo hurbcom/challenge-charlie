@@ -26,10 +26,17 @@
   }
 
   .today-icon{
-    font-size: 15vw;
+    font-size: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+  }
+
+  @media (max-width: 480px) {
+    .today-icon {
+      font-size: 140px;
+    }
   }
 
   .weather-content {
@@ -46,16 +53,35 @@
     .weather-info{
       color: #FFF;
 
+      .title{
+        text-transform: uppercase;
+      }
+
       .today{
         height: 260px;
+        background: rgb(200, 200, 200, 0.5);
+      }
 
-        .info{
-          text-align: left;
-          margin-top: 8%;
+      .tomorrow{
+        height: 100px;
+        background: rgb(150, 150, 150, 0.8);
+      }
 
-          .temperature{
-            font-size: 50px;
-          }
+      .after-tomorrow{
+        height: 100px;
+        background: rgb(100, 100, 100, 1);
+      }
+
+      .info{
+        text-align: left;
+        padding: 27px;
+
+        .temperature{
+          font-size: 20px;
+        }
+
+        .condition{
+          font-size: 30px;
         }
       }
     }

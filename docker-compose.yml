@@ -1,7 +1,7 @@
 version: '3'
  
 services:
-  weather-service5:
+  weather-service:
     build: ./
     
     volumes:

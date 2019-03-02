@@ -51,7 +51,6 @@
 
       var merged = {}; 
       $.extend(merged, query, oauth);
-      // Note the sorting here is required
       var merged_arr = Object.keys(merged).sort().map(function(k) {
         return [k + '=' + encodeURIComponent(merged[k])];
       });
