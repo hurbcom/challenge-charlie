@@ -4,6 +4,7 @@
   "description": "",
   "main": "app/index.html",
   "scripts": {
+    "start": "live-server --entry-file=./public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alessandro Faletti",
