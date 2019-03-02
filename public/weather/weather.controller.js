@@ -8,8 +8,11 @@
   WeatherCtrl.$inject = ['$http', '$scope', 'WeatherFactory', 'geolocation'];
   function WeatherCtrl($http, $scope, WeatherFactory, geolocation) {
     var vm = this;
+    vm.boolTemp = true;
+    vm.tempInfo = "C";
     vm.changeLocation = changeLocation;
     vm.currentLocation = currentLocation;
+    vm.changeTemperature = changeTemperature;
     vm.weatherIcon = "";
 
     activate();
@@ -24,6 +27,22 @@
 
     }
 
+    //Função responsável por trocar a temperatura
+    function changeTemperature(){
+      vm.boolTemp = !vm.boolTemp;
+      if(vm.boolTemp){
+        vm.tempInfo = "C";
+        vm.weatherCondition.current_observation.condition.temperature = parseFloat((((vm.weatherCondition.current_observation.condition.temperature - 32) * 5)/9).toFixed(1));
+        vm.weatherCondition.forecasts[1].high = parseFloat((((vm.weatherCondition.forecasts[1].high - 32) * 5)/9).toFixed(1));
+        vm.weatherCondition.forecasts[2].high = parseFloat((((vm.weatherCondition.forecasts[2].high - 32) * 5)/9).toFixed(1));
+      }else{
+        vm.tempInfo = "F";
+        vm.weatherCondition.current_observation.condition.temperature = 32 + (vm.weatherCondition.current_observation.condition.temperature * 9/5);
+        vm.weatherCondition.forecasts[1].high = 32 + (vm.weatherCondition.forecasts[1].high * 9/5);
+        vm.weatherCondition.forecasts[2].high = 32 + (vm.weatherCondition.forecasts[2].high * 9/5);
+      }
+    }
+
     //Responsável por mudar a localizaçâo
     function changeLocation(value){
       vm.weatherCondition = "";
@@ -36,7 +55,7 @@
       vm.weatherCondition = "";
       setBackgroundGrey();
       geolocation.getLocation().then(function(data){
-        getWeatherCondition('',data.coords.latitude,data.coords.longitude, "C");
+        getWeatherCondition('',data.coords.latitude,data.coords.longitude, vm.tempInfo);
       });
     }
 
@@ -51,6 +70,11 @@
         setBackgroundColor(2, vm.weatherCondition.forecasts[1].high);
         setBackgroundColor(3, vm.weatherCondition.forecasts[2].high);
         vm.windDirection = getWindDirection(vm.weatherCondition.current_observation.wind.direction);
+        if(tempInfo == "F"){
+          vm.weatherCondition.current_observation.condition.temperature = 32 + (vm.weatherCondition.current_observation.condition.temperature * 9/5);
+          vm.weatherCondition.forecasts[1].high = 32 + (vm.weatherCondition.forecasts[1].high * 9/5);
+          vm.weatherCondition.forecasts[2].high = 32 + (vm.weatherCondition.forecasts[2].high * 9/5);
+        }
       });
     }
 

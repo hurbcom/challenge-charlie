@@ -24,7 +24,7 @@
           </div>
           <div class="col-6 info">
               <span class="title">Hoje</span><br>
-              <span class="temperature">{{vm.weatherCondition.current_observation.condition.temperature}}˚{{vm.tempInfo}} </span><br>
+              <span class="temperature" ng-click="vm.changeTemperature()" style="cursor: pointer;">{{vm.weatherCondition.current_observation.condition.temperature}}˚{{vm.tempInfo}} </span><br>
               <span class="condition">{{vm.textCondition}}</span><br>
               <span>Vento: {{vm.windDirection}} {{vm.weatherCondition.current_observation.wind.speed}}km/h</span><br>
               <span>Humidade: {{vm.weatherCondition.current_observation.atmosphere.humidity}}%</span><br>
