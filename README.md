@@ -35,12 +35,31 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 - **UX**: A interface é de fácil uso e auto-explicativa
 - **Escolhas técnicas**: A escolha das bibliotecas, banco de dados, arquitetura, etc, é a melhor escolha para a aplicação?
 
-## Dúvidas
+## Desafio realizado - Requisito opcional
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HotelUrbano/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+- Docker Desktop Instalado
 
-Boa sorte e boa viagem! ;)
+## Instalação - 1 (Simples)
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+- Faça o clone do projeto
+- Execute o comando docker-compose up na dentro da pasta challenge-charlie
+- Acesse http://localhost no seu browser e use o app :)
+
+## Instalação - 2 (Complexa)
+
+- Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
+  - git clone https://github.com/7alerrandro7/challenge-charlie.git
+  - cd challenge-charlie
+  - npm i
+  - cd public
+  - bower i
+  - live-server
+
+## Stack utilizada
+
+- AngularJS
+
+## Desafio
+
+- Para superar as políticas do CORS, foi utilizado o http://cors.io/?<url>
+
