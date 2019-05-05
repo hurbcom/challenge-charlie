@@ -4,9 +4,9 @@ const YahooWeatherClass = require('../services/yahoo-weather');
 const router = express.Router();
 const YahooWeather = new YahooWeatherClass();
 
-router.get('/', async (_, res) => {
+router.get('/', async (req, res) => {
   try {
-    const response = await YahooWeather.getWeather();
+    const response = await YahooWeather.getWeather(req.query);
     res.send(response);
   }
   catch (error) {

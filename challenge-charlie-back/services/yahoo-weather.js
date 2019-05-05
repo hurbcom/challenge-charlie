@@ -7,9 +7,12 @@ class YahooWeather {
     this.request = new OAuth.OAuth(null, null, config.yahoo_weather.consumer_key, config.yahoo_weather.consumer_secret, '1.0', null, 'HMAC-SHA1', null, header);
   }
   
-  getWeather() {
+  getWeather(query) {
+    let queryString = "format=json";
+    Object.keys(query).forEach(key => queryString += `&${key}=${query[key]}`);
+
     return new Promise((resolve, reject) => {
-      this.request.get(`${config.yahoo_weather.url}?location=sunnyvale,ca&format=json`, null, null, (err, data) => {
+      this.request.get(`${config.yahoo_weather.url}?${queryString}`, null, null, (err, data) => {
         if (err) {
           reject(err);
           return;
