@@ -19,6 +19,8 @@ class YahooWeather {
           return;
         }
 
+        data = JSON.parse(data);
+
         const todayForecast = {
           date: "Hoje",
           temperature: {
@@ -26,8 +28,8 @@ class YahooWeather {
           },
           text: weatherHelper.getWeatherCondition(data.current_observation.condition.code),
           wind: {
-            direction: weatherHelper.getCardinalDirection(data.current_observation.direction),
-            speed: data.current_observation.speed
+            direction: weatherHelper.getCardinalDirection(data.current_observation.wind.direction),
+            speed: data.current_observation.wind.speed
           },
           humidity: data.current_observation.atmosphere.humidity,
           pressure: data.current_observation.atmosphere.pressure
@@ -36,17 +38,17 @@ class YahooWeather {
         const tomorrowForecast = {
           date: "Amanhã",
           temperature: {
-            celsius: forecasts[0].high
+            celsius: data.forecasts[0].high
           },
-          text: weatherHelper.getWeatherCondition(forecasts[0].code)
+          text: weatherHelper.getWeatherCondition(data.forecasts[0].code)
         };
         
         const afterTomorrowForecast = {
           date: "Depois de amanhã",
           temperature: {
-            celsius: forecasts[1].high
+            celsius: data.forecasts[1].high
           },
-          text: weatherHelper.getWeatherCondition(forecasts[1].code)
+          text: weatherHelper.getWeatherCondition(data.forecasts[1].code)
         };
 
         resolve([todayForecast, tomorrowForecast, afterTomorrowForecast]);
