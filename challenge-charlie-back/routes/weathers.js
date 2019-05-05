@@ -1,8 +1,8 @@
 const express = require('express');
 const YahooWeatherClass = require('../services/yahoo-weather');
-const YahooWeather = new YahooWeatherClass();
 
 const router = express.Router();
+const YahooWeather = new YahooWeatherClass();
 
 router.get('/', async (_, res) => {
   try {
