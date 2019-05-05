@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
 
-const bingRouter = require('./routes/bing');
+const backgroundsRouter = require('./routes/backgrounds');
 const weathersRouter = require('./routes/weathers');
 
 var app = express();
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/bing', bingRouter);
+app.use('/background', backgroundsRouter);
 app.use('/weather', weathersRouter);
 
 // catch 404 and forward to error handler
