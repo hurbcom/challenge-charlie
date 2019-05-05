@@ -1,5 +1,5 @@
 <div class="card" [class.opened]="weather.isOpened">
-  <div class="background" [class.yellow]="weather.temperature.celsius > 15 && weather.temperature.celsius < 36" [class.red]="weather.temperature.celsius > 35" [class.blue]="weather.temperature.celsius < 15" [ngStyle]="{ 'opacity': weather.opacity }"></div>
+  <div class="background" [class.yellow]="weather.temperature.celsius > 15 && weather.temperature.celsius < 36" [class.red]="weather.temperature.celsius > 35" [class.blue]="weather.temperature.celsius < 15" [ngStyle]="{ 'opacity': opacity }"></div>
   <div class="left">
     <img *ngIf="weather.isOpened">
   </div>
@@ -7,7 +7,6 @@
     <div class="top">
       <span>{{weather.date}}</span>
       <span>{{weather.temperature.celsius | number: '1.0-0'}}°C</span>
-      <span>{{weather.temperature.fahrenheit | number: '1.0-0'}}°F</span>
     </div>
     <span *ngIf="weather.isOpened">{{weather.text}}</span>
     <span *ngIf="weather.wind">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>

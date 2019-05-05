@@ -8,8 +8,9 @@ import { Weather } from '../weather/weather';
   styleUrls: ['./weather.component.less']
 })
 export class WeatherComponent implements OnInit {
+  public opacity: number = 0.5 * Math.random() + 0.4;
+
   @Input() weather: Weather;
-  @Input() opacity: number;
 
   constructor() { }
 
