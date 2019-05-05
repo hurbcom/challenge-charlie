@@ -21,7 +21,7 @@ class YahooWeather {
 
         data = JSON.parse(data);
 
-        const todayForecast = {
+        const todayWeather = {
           date: "Hoje",
           temperature: {
             celsius: data.current_observation.condition.temperature
@@ -35,7 +35,7 @@ class YahooWeather {
           pressure: data.current_observation.atmosphere.pressure
         };
         
-        const tomorrowForecast = {
+        const tomorrowWeather = {
           date: "Amanhã",
           temperature: {
             celsius: data.forecasts[0].high
@@ -43,7 +43,7 @@ class YahooWeather {
           text: weatherHelper.getWeatherCondition(data.forecasts[0].code)
         };
         
-        const afterTomorrowForecast = {
+        const afterTomorrowWeather = {
           date: "Depois de amanhã",
           temperature: {
             celsius: data.forecasts[1].high
@@ -51,7 +51,16 @@ class YahooWeather {
           text: weatherHelper.getWeatherCondition(data.forecasts[1].code)
         };
 
-        resolve([todayForecast, tomorrowForecast, afterTomorrowForecast]);
+        const response = {
+          location: data.location,
+          weathers: [
+            todayWeather,
+            tomorrowWeather,
+            afterTomorrowWeather
+          ]
+        }
+
+        resolve(response);
       });
     });
   }

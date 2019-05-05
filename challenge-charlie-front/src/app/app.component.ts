@@ -18,8 +18,8 @@ export class AppComponent {
       return;
 
     navigator.geolocation.getCurrentPosition(position => {
-      this.weatherService.getWeatherFromCoordinate(position.coords).subscribe(weathers => {
-        this.weathers = weathers;
+      this.weatherService.getWeatherFromCoordinate(position.coords).subscribe(response => {
+        this.weathers = response.weathers;
         this.weathers[0].isOpened = true;
       });
     });
