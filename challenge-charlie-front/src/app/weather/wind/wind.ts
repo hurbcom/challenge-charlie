@@ -1,4 +1,4 @@
 export class Wind {
-  public direction: number;
+  public direction: string;
   public speed: number;
 }
