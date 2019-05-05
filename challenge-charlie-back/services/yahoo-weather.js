@@ -8,7 +8,7 @@ class YahooWeather {
   }
   
   getWeather(query) {
-    let queryString = "format=json";
+    let queryString = "format=json&u=c";
     Object.keys(query).forEach(key => queryString += `&${key}=${query[key]}`);
 
     return new Promise((resolve, reject) => {
