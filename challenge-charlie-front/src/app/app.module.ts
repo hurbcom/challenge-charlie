@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { BingComponent } from './bing/bing.component';
+
+import { BingService } from './bing/bing.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    BingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
