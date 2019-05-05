@@ -1,0 +1,16 @@
+<div class="card" [class.opened]="weather.isOpened">
+  <div class="background" [class.yellow]="weather.celsius < 36 && weather.celsius > 15" [class.red]="weather.celsius > 35" [class.blue]="weather.celsius < 15" [ngStyle]="{ 'opacity': weather.opacity }"></div>
+  <div class="left">
+    <img *ngIf="weather.isOpened">
+  </div>
+  <div class="right">
+    <div class="top">
+      <span>{{weather.date}}</span>
+      <span>{{weather.celsius}}°C</span>
+    </div>
+    <span *ngIf="weather.isOpened">{{weather.text}}</span>
+    <span *ngIf="weather.wind">Vento: {{weather.wind}}</span>
+    <span *ngIf="weather.humidity">Umidade: {{weather.humidity}}%</span>
+    <span *ngIf="weather.pressure">Pressão: {{weather.pressure}}</span>
+  </div>
+</div>

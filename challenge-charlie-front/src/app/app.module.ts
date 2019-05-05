@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { BingComponent } from './bing/bing.component';
 
 import { BingService } from './bing/bing.service';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BingComponent
+    BingComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

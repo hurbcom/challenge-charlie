@@ -1,1 +1,6 @@
 <app-bing></app-bing>
+<div class="full-screen foreground">
+  <div class="weather-content">
+    <app-weather *ngFor="let weather of weathers" [weather]="weather" (click)="openWeather(weather)"></app-weather>
+  </div>
+</div>

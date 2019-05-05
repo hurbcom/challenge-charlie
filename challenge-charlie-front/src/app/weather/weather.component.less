@@ -1,0 +1,49 @@
+:host {
+	.card {
+		position: relative;
+		display: flex;
+		cursor: pointer;
+		transition: height .2s;
+		height: 18%;
+		color: white;
+		.background {
+			z-index: -1;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgb(120, 120, 120);
+		}
+		.yellow {
+			background: rgb(197, 195, 44);
+		}
+		.red {
+			background: rgb(224, 123, 65);
+		}
+		.blue {
+			background: rgb(118, 200, 227);
+		}
+		.left, .right {
+			display: flex;
+			height: 100%;
+		}
+		.left {
+			align-items: center;
+			justify-content: center;
+			width: 55%;
+		}
+		.right {
+			display: flex;
+			flex-direction: column;
+			width: 45%;
+			.top {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	}
+	.opened {
+		height: 49%;
+	}
+}
