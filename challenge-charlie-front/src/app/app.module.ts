@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'
 import { BingComponent } from './bing/bing.component';
-
 import { BingService } from './bing/bing.service';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherService } from './weather/weather.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { WeatherComponent } from './weather/weather.component';
     HttpClientModule
   ],
   providers: [
-    BingService
+    BingService,
+    WeatherService
   ],
   bootstrap: [AppComponent]
 })
