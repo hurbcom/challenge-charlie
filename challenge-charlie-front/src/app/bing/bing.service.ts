@@ -10,7 +10,7 @@ export class BingService {
   constructor(private http: HttpClient) { }
 
   getBackgroundUrl() : Observable<any> {
-    return this.http.get(`${environment.api}/bing/background`);
+    return this.http.get(`${environment.api}/background`);
   }
 
 }
