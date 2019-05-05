@@ -13,7 +13,7 @@ export class WeatherService {
     return this.getWeather(`location=${location}`);
   }
 
-  getWeatherFromLatLon(coords: Coordinates): Observable<any> {
+  getWeatherFromCoordinate(coords: Coordinates): Observable<any> {
     return this.getWeather(`lat=${coords.latitude}&lon=${coords.longitude}`);
   }
 
