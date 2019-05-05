@@ -10,7 +10,7 @@ export class Temperature {
   }
 
   get fahrenheit(): number {
-    return this._celsius * 1.8 + 32;
+    return this.celsius * 1.8 + 32;
   }
 
   set fahrenheit(fahrenheit: number) {
