@@ -1,5 +1,6 @@
 const config = require('config');
 const OAuth = require('oauth');
+const weatherHelper = require('../helpers/weather');
 
 class YahooWeather {
   constructor() {
@@ -18,7 +19,37 @@ class YahooWeather {
           return;
         }
 
-        resolve(data);
+        const todayForecast = {
+          date: "Hoje",
+          temperature: {
+            celsius: data.current_observation.condition.temperature
+          },
+          text: weatherHelper.getWeatherCondition(data.current_observation.condition.code),
+          wind: {
+            direction: weatherHelper.getCardinalDirection(data.current_observation.direction),
+            speed: data.current_observation.speed
+          },
+          humidity: data.current_observation.atmosphere.humidity,
+          pressure: data.current_observation.atmosphere.pressure
+        };
+        
+        const tomorrowForecast = {
+          date: "Amanhã",
+          temperature: {
+            celsius: forecasts[0].high
+          },
+          text: weatherHelper.getWeatherCondition(forecasts[0].code)
+        };
+        
+        const afterTomorrowForecast = {
+          date: "Depois de amanhã",
+          temperature: {
+            celsius: forecasts[1].high
+          },
+          text: weatherHelper.getWeatherCondition(forecasts[1].code)
+        };
+
+        resolve([todayForecast, tomorrowForecast, afterTomorrowForecast]);
       });
     });
   }
