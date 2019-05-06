@@ -5,12 +5,16 @@
   </div>
   <div class="right">
     <div class="top">
-      <span>{{weather.date}}</span>
-      <span>{{weather.temperature.celsius | number: '1.0-0'}}°C</span>
+      <span class="medium-text uppercase">{{weather.date}}</span>
+      <span class="big-text">{{weather.temperature.celsius | number: '1.0-0'}}°C</span>
     </div>
-    <span *ngIf="weather.isOpened">{{weather.text}}</span>
-    <span *ngIf="weather.wind">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
-    <span *ngIf="weather.humidity">Umidade: {{weather.humidity | number: '1.0-0'}}%</span>
-    <span *ngIf="weather.pressure">Pressão: {{weather.pressure | number: '1.0-0'}}hPa</span>
+    <div class="mid">
+      <span class="big-text" *ngIf="weather.isOpened">{{weather.text}}</span>
+    </div>
+    <div class="bottom">
+      <span class="small-text" *ngIf="weather.isOpened && weather.wind">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
+      <span class="small-text" *ngIf="weather.isOpened && weather.humidity">Umidade: {{weather.humidity | number: '1.0-0'}}%</span>
+      <span class="small-text" *ngIf="weather.isOpened && weather.pressure">Pressão: {{weather.pressure | number: '1.0-0'}}hPa</span>
+    </div>
   </div>
 </div>
