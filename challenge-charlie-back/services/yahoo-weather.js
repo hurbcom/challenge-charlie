@@ -23,8 +23,14 @@ class YahooWeather {
 
         const todayWeather = {
           date: "Hoje",
-          temperature: {
+          actualTemperature: {
             celsius: data.current_observation.condition.temperature
+          },
+          minTemperature: {
+            celsius: data.forecasts[0].low
+          },
+          maxTemperature: {
+            celsius: data.forecasts[0].high
           },
           text: weatherHelper.getWeatherCondition(data.current_observation.condition.code),
           wind: {
@@ -37,18 +43,24 @@ class YahooWeather {
         
         const tomorrowWeather = {
           date: "Amanhã",
-          temperature: {
-            celsius: data.forecasts[0].high
+          minTemperature: {
+            celsius: data.forecasts[1].low
           },
-          text: weatherHelper.getWeatherCondition(data.forecasts[0].code)
+          maxTemperature: {
+            celsius: data.forecasts[1].high
+          },
+          text: weatherHelper.getWeatherCondition(data.forecasts[1].code)
         };
         
         const afterTomorrowWeather = {
           date: "Depois de amanhã",
-          temperature: {
-            celsius: data.forecasts[1].high
+          minTemperature: {
+            celsius: data.forecasts[2].low
           },
-          text: weatherHelper.getWeatherCondition(data.forecasts[1].code)
+          maxTemperature: {
+            celsius: data.forecasts[2].high
+          },
+          text: weatherHelper.getWeatherCondition(data.forecasts[2].code)
         };
 
         const response = {
