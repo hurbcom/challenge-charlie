@@ -1,71 +1,105 @@
 :host {
-	.card {
-		position: relative;
-		display: flex;
-		transition: height .2s;
-		height: 18%;
-		color: white;
-		.background {
-			z-index: -1;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
+	.foreground {
+		background: rgba(0, 0, 0, .55);
+
+		.weather-content {
 			height: 100%;
-			background: rgb(120, 120, 120);
-		}
-		.yellow {
-			background: rgb(233, 181, 37);
-		}
-		.red {
-			background: rgb(224, 123, 65);
-		}
-		.blue {
-			background: rgb(118, 200, 227);
-		}
-		.left, .right {
-			display: flex;
-			height: 100%;
-		}
-		.left {
-			align-items: center;
-			justify-content: center;
 			width: 55%;
-		}
-		.right {
-			display: flex;
-			flex-direction: column;
-			width: 45%;
-			.top, .mid, .bottom {
+			margin: auto;
+			
+			.location {
 				display: flex;
-				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 15%;
+				background: rgba(200, 200, 200, .9);
+				.small-icon {
+					width: 60px;
+					height: 60px;
+					margin-right: 2%;
+				}
+				.title {
+					color: #707070;
+					font-weight: 700;
+				}
 			}
-			.top {
-				margin-top: 5%;
-				line-height: 2.4em;
-			}
-			.mid {
-				margin-top: 13%;
-				margin-bottom: 8%;
-			}
-			.bottom {
-				line-height: 2em;
-			}
-			.uppercase {
-				text-transform: uppercase;
+			.card {
+				position: relative;
+				display: flex;
+				transition: height .2s;
+				height: 18%;
+				color: white;
+				
+				.background {
+					z-index: -1;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: rgb(120, 120, 120);
+				}
+				.yellow {
+					background: rgb(233, 181, 37);
+				}
+				.red {
+					background: rgb(224, 123, 65);
+				}
+				.blue {
+					background: rgb(118, 200, 227);
+				}
+				.left, .right {
+					display: flex;
+					height: 100%;
+				}
+				.left {
+					align-items: center;
+					justify-content: center;
+					width: 55%;
+					margin-left: 4%;
+				}
+				.right {
+					display: flex;
+					flex-direction: column;
+					width: 45%;
+					margin-right: 4%;
+					.top, .mid, .bottom {
+						display: flex;
+						flex-direction: column;
+					}
+					.top {
+						margin-top: 5%;
+						line-height: 2.1em;
+						.temperatures {
+							span {
+								margin-right: 8%;
+							}
+						}
+					}
+					.mid {
+						margin-top: 11%;
+						margin-bottom: 8%;
+					}
+					.bottom {
+						line-height: 1.9em;
+					}
+					.uppercase {
+						text-transform: uppercase;
+					}
+				}
 			}
 			.big-text {
-				font-size: 1.75em;
+				font-size: 1.70em;
 			}
 			.medium-text {
-				font-size: 1.4em;
-			}
-			.small-text {
 				font-size: 1.35em;
 			}
+			.small-text {
+				font-size: 1.30em;
+			}
+			.opened {
+				height: 49%;
+			}
 		}
-	}
-	.opened {
-		height: 49%;
 	}
 }

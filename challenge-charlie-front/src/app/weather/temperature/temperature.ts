@@ -1,13 +1,6 @@
 export class Temperature {
-  private _celsius: number;
 
-  get celsius(): number {
-    return this._celsius;
-  }
-
-  set celsius(celsius: number) {
-    this._celsius = celsius;
-  }
+  constructor(public celsius?: number) { }
 
   get fahrenheit(): number {
     return this.celsius * 1.8 + 32;
@@ -16,4 +9,5 @@ export class Temperature {
   set fahrenheit(fahrenheit: number) {
     this.celsius = (fahrenheit - 32) / 1.8;
   }
+
 }

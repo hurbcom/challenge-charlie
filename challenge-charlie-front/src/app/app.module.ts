@@ -7,7 +7,6 @@ import { BackgroundComponent } from './background/background.component';
 import { BackgroundService } from './background/background.service';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherService } from './weather/weather.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,7 @@ import { WeatherService } from './weather/weather.service';
   ],
   providers: [
     BackgroundService,
-    WeatherService
+    WeatherService,
   ],
   bootstrap: [AppComponent]
 })

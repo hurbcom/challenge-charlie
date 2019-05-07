@@ -1,4 +1,7 @@
 export class Wind {
-  public direction: string;
-  public speed: number;
+
+  constructor(
+    public direction?: string,
+    public speed?: number
+  ) { }
 }
