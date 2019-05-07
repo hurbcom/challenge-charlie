@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class BingService {
+export class BackgroundService {
 
   constructor(private http: HttpClient) { }
 

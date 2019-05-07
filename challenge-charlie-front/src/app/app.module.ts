@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component'
-import { BingComponent } from './bing/bing.component';
-import { BingService } from './bing/bing.service';
+import { BackgroundComponent } from './background/background.component';
+import { BackgroundService } from './background/background.service';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherService } from './weather/weather.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BingComponent,
+    BackgroundComponent,
     WeatherComponent
   ],
   imports: [
@@ -19,7 +19,7 @@ import { WeatherService } from './weather/weather.service';
     HttpClientModule
   ],
   providers: [
-    BingService,
+    BackgroundService,
     WeatherService
   ],
   bootstrap: [AppComponent]
