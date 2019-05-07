@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Background } from './background';
 import { BackgroundService } from './background.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { BackgroundService } from './background.service';
   styleUrls: ['./background.component.less']
 })
 export class BackgroundComponent implements OnInit {
-  public background;
+  
+  background: Background;
 
   constructor(private backgroundService: BackgroundService) { }
 
