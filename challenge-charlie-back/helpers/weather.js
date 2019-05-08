@@ -124,7 +124,7 @@ function getWeatherCondition(code) {
       return "Chuva congelante";
     case 11:
     case 12:
-      return "Aguaceiro";
+      return "Chuva";
     case 13:
       return "Rajadas de neve";
     case 14:
