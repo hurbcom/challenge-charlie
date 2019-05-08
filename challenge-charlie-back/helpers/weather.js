@@ -102,7 +102,7 @@ function getWeatherCondition(code) {
       return "Tempestades isoladas";
     case 38:
     case 39:
-      return "Temoestades dispersas";
+      return "Tempestades dispersas";
     case 40:
       return "Aguaceiros espalhados";
     case 41:
