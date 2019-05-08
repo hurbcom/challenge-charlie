@@ -1,0 +1,12 @@
+{
+  "bing": {
+    "domain": "https://www.bing.com",
+    "api": "/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR" 
+  },
+  "yahoo_weather": {
+    "url": "https://weather-ydn-yql.media.yahoo.com/forecastrss",
+    "app_id": "KWTAl05c",
+    "consumer_key": "dj0yJmk9b2lmZzEwTnJycjlIJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThk",
+    "consumer_secret": "a989933ca83ca7b0ccbabe27b02d0b40f02aa1f9"
+  }
+}
