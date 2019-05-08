@@ -35,7 +35,7 @@ export class WeatherService {
   createWeatherInstance(weather: any): Weather {
     return new Weather(
       weather.date,
-      weather.actualTemperature,
+      weather.actualTemperature ? new Temperature(weather.actualTemperature.celsius) : null,
       new Temperature(weather.maxTemperature.celsius),
       new Temperature(weather.minTemperature.celsius),
       weather.text,

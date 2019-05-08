@@ -4,6 +4,8 @@ import { Wind } from './wind/wind';
 export class Weather {
 
   public isOpened: boolean;
+  public averageTemperature: Temperature;
+  public opacity: number;
 
   constructor(
     public date?: string,
@@ -15,17 +17,11 @@ export class Weather {
     public humidity?: number,
     public pressure?: number,
     public icon?: number
-  ) { }
+  ) {
+    if (this.maxTemperature && this.minTemperature)
+      this.averageTemperature = new Temperature((this.maxTemperature.celsius + this.minTemperature.celsius) / 2);
 
-  get averageTemperature(): Temperature {
-    if (!this.maxTemperature || !this.minTemperature)
-      return null;
-      
-    return new Temperature((this.maxTemperature.celsius + this.minTemperature.celsius) / 2);
-  }
-
-  get opacity(): number {
-    return 0.05 * (this.averageTemperature != null ? this.averageTemperature.celsius % 10 : Math.random() * 10) + 0.4;
+    this.opacity = 0.05 * (this.averageTemperature != null ? this.averageTemperature.celsius % 10 : Math.random() * 10) + 0.4;
   }
   
 }

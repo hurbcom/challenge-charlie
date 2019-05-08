@@ -12,6 +12,7 @@
 				justify-content: center;
 				align-items: center;
 				height: 15%;
+				font-size: 1.3em;
 				background: rgba(200, 200, 200, .9);
 				.small-icon {
 					width: 60px;
@@ -58,6 +59,13 @@
 					width: 55%;
 					margin-left: 4%;
 					.icon {
+						cursor: pointer;
+						transition: height .2s;
+						transition: width .2s;
+						width: 5em;
+						height: 5em;
+					}
+					.big {
 						width: 14em;
 						height: 14em;
 					}
@@ -70,36 +78,42 @@
 					.top, .mid, .bottom {
 						display: flex;
 						flex-direction: column;
+						align-items: flex-start;
 					}
 					.top {
 						margin-top: 5%;
 						line-height: 2.1em;
 						.temperatures {
-							span {
-								margin-right: 8%;
-							}
+							display: flex;
+							justify-content: space-between;
+							width: 8.4em;
 						}
 					}
 					.mid {
 						margin-top: 11%;
-						margin-bottom: 8%;
+						margin-bottom: 5%;
 					}
 					.bottom {
-						line-height: 1.9em;
+						line-height: 1.7em;
 					}
 					.uppercase {
 						text-transform: uppercase;
 					}
 				}
 			}
+			.main-temperature {
+				cursor: pointer;
+				font-size: 4em;
+				margin: .4em 0;
+			}
 			.big-text {
-				font-size: 1.70em;
+				font-size: 1.60em;
 			}
 			.medium-text {
-				font-size: 1.35em;
+				font-size: 1.25em;
 			}
 			.small-text {
-				font-size: 1.30em;
+				font-size: 1.20em;
 			}
 			.opened {
 				height: 49%;

@@ -1,27 +1,28 @@
 <div class="full-screen foreground">
   <div class="weather-content">
-    <div class="location">
-      <img *ngIf="location" class="small-icon" src="assets/meteocons-icons/44.svg">
-      <span *ngIf="location" class="big-text title">{{location.toString()}}</span>
+    <div *ngIf="location" class="location">
+      <img class="small-icon" src="assets/meteocons-icons/44.svg">
+      <span class="big-text title">{{location.toString()}}</span>
     </div>
-    <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened" (click)="openWeather(weather)">
+    <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened">
       <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36"
                               [class.red]="weather.averageTemperature.celsius > 35"
                               [class.blue]="weather.averageTemperature.celsius < 15"
                               [ngStyle]="{ 'opacity': weather.opacity }"></div>
       <div class="left">
-        <img *ngIf="weather.isOpened" class="icon" src="assets/meteocons-icons/{{weather.icon}}.svg">
+        <img class="icon" [class.big]="weather.isOpened" src="assets/meteocons-icons/{{weather.icon}}.svg" (click)="openWeather(weather)">
       </div>
       <div class="right">
         <div class="top">
-          <span class="medium-text uppercase">{{weather.date}} - {{weather.actualTemperature.celsius | number: '1.0-0'}}°C</span>
+            <span class="medium-text uppercase">{{weather.date}}</span>
+            <span *ngIf="weather.actualTemperature.celsius && weather.isOpened" class="main-temperature" (click)="changeTemperatureUnit()">{{weather.actualTemperature.toString()}}</span>
           <div class="temperatures">
-            <span *ngIf="weather.maxTemperature" class="big-text">&#8593; {{weather.maxTemperature.celsius | number: '1.0-0'}}°C</span>
-            <span *ngIf="weather.minTemperature" class="big-text">&#8595; {{weather.minTemperature.celsius | number: '1.0-0'}}°C</span>
+            <div class="medium-text">&#8593; {{weather.maxTemperature.toString()}}</div>
+            <div class="medium-text">&#8595; {{weather.minTemperature.toString()}}</div>
           </div>
         </div>
         <div class="mid">
-          <span class="big-text" *ngIf="weather.isOpened">{{weather.text}}</span>
+          <span *ngIf="weather.isOpened" class="big-text">{{weather.text}}</span>
         </div>
         <div class="bottom">
           <span class="small-text" *ngIf="weather.isOpened && weather.wind.direction">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>

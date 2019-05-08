@@ -51,4 +51,12 @@ export class WeatherComponent implements OnInit {
 
     weatherToOpen.isOpened = true;
   }
+
+  changeTemperatureUnit() {
+    this.weathers.forEach(weather => {
+      weather.actualTemperature.changeUnit();
+      weather.maxTemperature.changeUnit();
+      weather.minTemperature.changeUnit();
+    });
+  }
 }
