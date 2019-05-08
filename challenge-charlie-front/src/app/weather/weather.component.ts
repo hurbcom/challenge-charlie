@@ -33,7 +33,7 @@ export class WeatherComponent implements OnInit {
   }
 
   setWeather(response: any) {
-    this.location = `${response.location.city}, ${response.location.region}`;
+    this.location = `${response.location.city},${response.location.region}`;
     this.weathers = response.weathers;
     this.openFirstWeather();
   }
