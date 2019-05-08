@@ -13,7 +13,8 @@ export class Weather {
     public text?: string,
     public wind?: Wind,
     public humidity?: number,
-    public pressure?: number
+    public pressure?: number,
+    public icon?: number
   ) { }
 
   get averageTemperature(): Temperature {

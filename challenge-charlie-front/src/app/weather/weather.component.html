@@ -10,13 +10,12 @@
                               [class.blue]="weather.averageTemperature.celsius < 15"
                               [ngStyle]="{ 'opacity': weather.opacity }"></div>
       <div class="left">
-        <img *ngIf="weather.isOpened">
+        <img *ngIf="weather.isOpened" class="icon" src="assets/meteocons-icons/{{weather.icon}}.svg">
       </div>
       <div class="right">
         <div class="top">
-          <span class="medium-text uppercase">{{weather.date}}</span>
-          <span *ngIf="weather.actualTemperature" class="big-text">{{weather.actualTemperature.celsius | number: '1.0-0'}}°C</span>
-          <div class="temperatures" *ngIf="!weather.actualTemperature">
+          <span class="medium-text uppercase">{{weather.date}} - {{weather.actualTemperature.celsius | number: '1.0-0'}}°C</span>
+          <div class="temperatures">
             <span *ngIf="weather.maxTemperature" class="big-text">&#8593; {{weather.maxTemperature.celsius | number: '1.0-0'}}°C</span>
             <span *ngIf="weather.minTemperature" class="big-text">&#8595; {{weather.minTemperature.celsius | number: '1.0-0'}}°C</span>
           </div>
@@ -25,7 +24,7 @@
           <span class="big-text" *ngIf="weather.isOpened">{{weather.text}}</span>
         </div>
         <div class="bottom">
-          <span class="small-text" *ngIf="weather.isOpened && weather.wind">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
+          <span class="small-text" *ngIf="weather.isOpened && weather.wind.direction">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
           <span class="small-text" *ngIf="weather.isOpened && weather.humidity">Umidade: {{weather.humidity | number: '1.0-0'}}%</span>
           <span class="small-text" *ngIf="weather.isOpened && weather.pressure">Pressão: {{weather.pressure | number: '1.0-0'}}hPa</span>
         </div>

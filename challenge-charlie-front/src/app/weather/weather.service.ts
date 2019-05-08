@@ -41,7 +41,8 @@ export class WeatherService {
       weather.text,
       weather.wind != null ? new Wind(weather.wind.direction, weather.wind.speed) : null,
       weather.humidity,
-      weather.pressure
+      weather.pressure,
+      weather.icon
     );
   }
 
