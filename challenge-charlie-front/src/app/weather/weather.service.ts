@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Weather } from './weather';
-import { Location } from './location/location';
 import { Temperature } from './temperature/temperature';
 import { Wind } from './wind/wind';
 
@@ -26,7 +25,6 @@ export class WeatherService {
   getWeatherFromApi(querystring: string): Observable<any> {
     return this.http.get(`${environment.api}/weather?${querystring}`).pipe(
       map((response: any) => {
-        response.location = new Location(response.location.city, response.location.region);
         response.weathers = response.weathers.map(this.createWeatherInstance);
         return response;
       }));

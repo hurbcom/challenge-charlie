@@ -1,8 +1,8 @@
 <div class="full-screen foreground">
   <div class="weather-content">
-    <div *ngIf="location" class="location">
-      <img class="small-icon" src="assets/meteocons-icons/44.svg">
-      <span class="big-text title">{{location.toString()}}</span>
+    <div *ngIf="weathers" class="location">
+      <img class="compass" src="assets/meteocons-icons/44.svg">
+      <input class="big-text query" placeholder="Digite a localidade..." maxlength="30" [(ngModel)]="location" (keyup)="onKey($event)" spellcheck="false">
     </div>
     <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened">
       <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36"

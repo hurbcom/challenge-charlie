@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Weather } from './weather';
-import { Location } from './location/location';
 import { WeatherService } from './weather.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { WeatherService } from './weather.service';
 })
 export class WeatherComponent implements OnInit {
 
-  location: Location;
+  location: string;
   weathers: Weather[];
 
   constructor(private weatherService: WeatherService) { }
@@ -30,15 +29,24 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeatherFromCoordinate(position: Position) {
-    this.weatherService.getWeatherWithCoordinate(position.coords).subscribe(response => {
-      this.location = response.location;
-      this.weathers = response.weathers;
-      this.openFirstWeather();
-    });
+    this.weatherService.getWeatherWithCoordinate(position.coords).subscribe(response => this.setWeather(response));
+  }
+
+  setWeather(response: any) {
+    this.location = `${response.location.city}, ${response.location.region}`;
+    this.weathers = response.weathers;
+    this.openFirstWeather();
   }
  
   openFirstWeather() {
     this.openWeather(this.weathers[0]);
+  }
+
+  onKey(event: any) {
+    if (event.key != "Enter")
+      return;
+
+    this.weatherService.getWeatherWithLocation(this.location).subscribe(response => this.setWeather(response));
   }
 
   openWeather(weatherToOpen: Weather) {

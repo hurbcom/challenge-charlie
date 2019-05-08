@@ -21,7 +21,7 @@ export class Weather {
     if (this.maxTemperature && this.minTemperature)
       this.averageTemperature = new Temperature((this.maxTemperature.celsius + this.minTemperature.celsius) / 2);
 
-    this.opacity = 0.05 * (this.averageTemperature != null ? this.averageTemperature.celsius % 10 : Math.random() * 10) + 0.4;
+    this.opacity = 0.03 * (this.averageTemperature != null ? this.averageTemperature.celsius % 10 : Math.random() * 10) + 0.6;
   }
   
 }
