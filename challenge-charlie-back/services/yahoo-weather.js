@@ -18,19 +18,23 @@ class YahooWeather {
           reject(err);
           return;
         }
-
-        data = JSON.parse(data);
-
-        const todayWeather = this.filterWeatherInfo(data.forecasts[0], "Hoje", data.current_observation);
-        const tomorrowWeather = this.filterWeatherInfo(data.forecasts[1], "Amanhã");
-        const afterTomorrowWeather = this.filterWeatherInfo(data.forecasts[2], "Depois de amanhã");
-
-        const response = {
-          location: data.location,
-          weathers: [ todayWeather, tomorrowWeather, afterTomorrowWeather ]
+        try {
+          data = JSON.parse(data);
+  
+          const todayWeather = this.filterWeatherInfo(data.forecasts[0], "Hoje", data.current_observation);
+          const tomorrowWeather = this.filterWeatherInfo(data.forecasts[1], "Amanhã");
+          const afterTomorrowWeather = this.filterWeatherInfo(data.forecasts[2], "Depois de amanhã");
+  
+          const response = {
+            location: data.location,
+            weathers: [ todayWeather, tomorrowWeather, afterTomorrowWeather ]
+          }
+  
+          resolve(response);
         }
-
-        resolve(response);
+        catch (err) {
+          reject(err);
+        }
       });
     });
   }
