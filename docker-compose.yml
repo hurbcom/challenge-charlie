@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+ front:
+  build: challenge-charlie-front
+  ports:
+  - "80:80"
+ 
+ back:
+  build: challenge-charlie-back
+  ports:
+  - "3000:3000"
