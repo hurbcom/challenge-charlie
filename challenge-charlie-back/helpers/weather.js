@@ -26,6 +26,76 @@ function getCardinalDirection(degree) {
   return "NO";
 }
 
+function getWeatherConditionIcon(code) {
+  switch (code) {
+    case 31:
+    case 33:
+    case 34:
+    case 32:
+    case 36:
+      return 2;
+    case 25:
+      return 6;
+    case 26:
+    case 27:
+    case 28:
+    case 29:
+    case 30:
+    case 44:
+      return 8;
+    case 19:
+    case 21:
+    case 22:
+      return 12;
+    case 4:
+    case 45:
+      return 15;
+    case 3:
+      return 16;
+    case 9:
+      return 17;
+    case 11:
+    case 12:
+    case 23:
+    case 40:
+      return 18;
+    case 0:
+    case 1:
+    case 2:
+    case 24:
+      return 19;
+    case 5:
+    case 15:
+      return 21;
+    case 14:
+      return 22;
+    case 8:
+    case 10:
+    case 13:
+    case 16:
+    case 20:
+    case 46:
+    case 41:
+    case 43:
+    case 42:
+      return 23;
+    case 6:
+    case 35:
+    case 7:
+    case 17:
+    case 18:
+      return 24;
+    case 37:
+      return 26;
+    case 38:
+    case 39:
+    case 47:
+      return 27;
+    default:
+      return 45;
+  }
+}
+
 function getWeatherCondition(code) {
   switch (code) {
     case 0:
@@ -119,5 +189,6 @@ function getWeatherCondition(code) {
 
 module.exports = {
   getCardinalDirection,
+  getWeatherConditionIcon,
   getWeatherCondition
 }

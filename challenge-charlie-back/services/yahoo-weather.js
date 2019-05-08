@@ -21,60 +21,41 @@ class YahooWeather {
 
         data = JSON.parse(data);
 
-        const todayWeather = {
-          date: "Hoje",
-          actualTemperature: {
-            celsius: data.current_observation.condition.temperature
-          },
-          minTemperature: {
-            celsius: data.forecasts[0].low
-          },
-          maxTemperature: {
-            celsius: data.forecasts[0].high
-          },
-          text: weatherHelper.getWeatherCondition(data.current_observation.condition.code),
-          wind: {
-            direction: weatherHelper.getCardinalDirection(data.current_observation.wind.direction),
-            speed: data.current_observation.wind.speed
-          },
-          humidity: data.current_observation.atmosphere.humidity,
-          pressure: data.current_observation.atmosphere.pressure
-        };
-        
-        const tomorrowWeather = {
-          date: "Amanhã",
-          minTemperature: {
-            celsius: data.forecasts[1].low
-          },
-          maxTemperature: {
-            celsius: data.forecasts[1].high
-          },
-          text: weatherHelper.getWeatherCondition(data.forecasts[1].code)
-        };
-        
-        const afterTomorrowWeather = {
-          date: "Depois de amanhã",
-          minTemperature: {
-            celsius: data.forecasts[2].low
-          },
-          maxTemperature: {
-            celsius: data.forecasts[2].high
-          },
-          text: weatherHelper.getWeatherCondition(data.forecasts[2].code)
-        };
+        const todayWeather = this.filterWeatherInfo(data.forecasts[0], "Hoje", data.current_observation);
+        const tomorrowWeather = this.filterWeatherInfo(data.forecasts[1], "Amanhã");
+        const afterTomorrowWeather = this.filterWeatherInfo(data.forecasts[2], "Depois de amanhã");
 
         const response = {
           location: data.location,
-          weathers: [
-            todayWeather,
-            tomorrowWeather,
-            afterTomorrowWeather
-          ]
+          weathers: [ todayWeather, tomorrowWeather, afterTomorrowWeather ]
         }
 
         resolve(response);
       });
     });
+  }
+
+  filterWeatherInfo(forecast, date, current_observation) {
+    return {
+      date,
+      actualTemperature: {
+        celsius: current_observation != null ? current_observation.condition.temperature : null
+      },
+      minTemperature: {
+        celsius: forecast.low
+      },
+      maxTemperature: {
+        celsius: forecast.high
+      },
+      text: weatherHelper.getWeatherCondition(forecast.code),
+      icon: weatherHelper.getWeatherConditionIcon(forecast.code),
+      wind: {
+        direction: current_observation != null ? weatherHelper.getCardinalDirection(current_observation.wind.direction) : null,
+        speed: current_observation != null ? current_observation.wind.speed : null
+      },
+      humidity: current_observation != null ? current_observation.atmosphere.humidity : null,
+      pressure: current_observation != null ? current_observation.atmosphere.pressure : null
+    }
   }
 }
 
