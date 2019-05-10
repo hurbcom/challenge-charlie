@@ -14,15 +14,15 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  getWeatherWithLocation(location: string): Observable<any> {
-    return this.getWeatherFromApi(`location=${location}`);
+  getWeathersWithLocation(location: string): Observable<any> {
+    return this.getWeathersFromApi(`location=${location}`);
   }
 
-  getWeatherWithCoordinate(coords: Coordinates): Observable<any> {
-    return this.getWeatherFromApi(`lat=${coords.latitude}&lon=${coords.longitude}`);
+  getWeathersWithCoordinate(coords: Coordinates): Observable<any> {
+    return this.getWeathersFromApi(`lat=${coords.latitude}&lon=${coords.longitude}`);
   }
 
-  getWeatherFromApi(querystring: string): Observable<any> {
+  getWeathersFromApi(querystring: string): Observable<any> {
     return this.http.get(`${environment.api}/weather?${querystring}`).pipe(
       map((response: any) => {
         response.weathers = response.weathers.map(this.createWeatherInstance);

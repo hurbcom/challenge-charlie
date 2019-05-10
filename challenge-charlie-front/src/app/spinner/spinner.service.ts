@@ -5,8 +5,6 @@ export class SpinnerService {
 
   _isSpinning: boolean;
 
-  constructor() { }
-
   startSpin() {
     this._isSpinning = true;
   }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
+import { SpinnerService } from '../spinner/spinner.service';
 import { Weather } from './weather';
 import { WeatherService } from './weather.service';
 
@@ -13,7 +16,10 @@ export class WeatherComponent implements OnInit {
   location: string;
   weathers: Weather[];
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(
+    private weatherService: WeatherService,
+    private spinnerService: SpinnerService
+  ) { }
 
   ngOnInit() {
     if (!navigator.geolocation) {
@@ -21,32 +27,15 @@ export class WeatherComponent implements OnInit {
       return;
     }
 
-    navigator.geolocation.getCurrentPosition(position => this.getWeatherFromCoordinate(position));
-  }
-
-  setEmptyWeathers() {
-    this.weathers = [new Weather(), new Weather(), new Weather()];
-  }
-
-  getWeatherFromCoordinate(position: Position) {
-    this.weatherService.getWeatherWithCoordinate(position.coords).subscribe(response => this.setWeather(response));
-  }
-
-  setWeather(response: any) {
-    this.location = `${response.location.city},${response.location.region}`;
-    this.weathers = response.weathers;
-    this.openFirstWeather();
-  }
- 
-  openFirstWeather() {
-    this.openWeather(this.weathers[0]);
+    navigator.geolocation.getCurrentPosition(
+      position => this.getWeathersWithCoordinate(position),
+      () => this.setEmptyWeathers()
+    );
   }
 
   onKey(event: any) {
-    if (event.key != "Enter")
-      return;
-
-    this.weatherService.getWeatherWithLocation(this.location).subscribe(response => this.setWeather(response));
+    if (event.key == "Enter")
+      this.getWeathersWithLocation();
   }
 
   openWeather(weatherToOpen: Weather) {
@@ -66,5 +55,36 @@ export class WeatherComponent implements OnInit {
       weather.maxTemperature.changeUnit();
       weather.minTemperature.changeUnit();
     });
+  }
+
+  private setEmptyWeathers() {
+    this.location = "";
+    //TODO: exibir cards cinzas
+  }
+
+  private getWeathersWithCoordinate(position: Position) {
+    this.getWeathers(this.weatherService.getWeathersWithCoordinate(position.coords));
+  }
+
+  private getWeathersWithLocation() {
+    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Retira caracteres acentuados
+    this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
+  }
+
+  private setWeathers(response: any) {
+    this.location = `${response.location.city},${response.location.region}`;
+    this.weathers = response.weathers;
+    this.openWeather(this.weathers[0]);
+  }
+
+  private getWeathers(observable: Observable<any>) {
+    this.spinnerService.startSpin();
+    observable.subscribe(response => {
+      this.spinnerService.stopSpin();
+      this.setWeathers(response);
+    }, () => {
+      setTimeout(() => alert("Não foram encontradas previsões para a localidade informada."), 100); //Alerta assíncrono
+      this.setEmptyWeathers();
+    }).add(() => this.spinnerService.stopSpin());
   }
 }
