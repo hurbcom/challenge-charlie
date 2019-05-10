@@ -7,13 +7,13 @@
         <i class="material-icons search" (click)="getWeathersWithLocation()">search</i>
       </div>
     </div>
-    <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened">
+    <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened" (click)="openWeather(weather)">
       <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36"
                               [class.red]="weather.averageTemperature.celsius > 35"
                               [class.blue]="weather.averageTemperature.celsius < 15"
                               [ngStyle]="{ 'opacity': weather.opacity }"></div>
       <div class="left">
-        <img class="icon" [class.big]="weather.isOpened" src="assets/meteocons-icons/{{weather.icon}}.svg" (click)="openWeather(weather)">
+        <img class="icon" [class.big]="weather.isOpened" src="assets/meteocons-icons/{{weather.icon}}.svg">
       </div>
       <div class="right">
         <div class="top">
