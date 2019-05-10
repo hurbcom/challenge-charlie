@@ -2,7 +2,10 @@
   <div class="weather-content">
     <div *ngIf="weathers" class="location">
       <img class="compass" src="assets/meteocons-icons/44.svg">
-      <input class="medium-text query" placeholder="Digite a localidade..." maxlength="30" [(ngModel)]="location" (keyup)="onKey($event)" spellcheck="false">
+      <div class="input">
+        <input class="medium-text query" placeholder="Digite a localidade..." maxlength="30" [(ngModel)]="location" (keyup)="onKey($event)" spellcheck="false">
+        <i class="material-icons search" (click)="getWeathersWithLocation()">search</i>
+      </div>
     </div>
     <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened">
       <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36"

@@ -38,6 +38,11 @@ export class WeatherComponent implements OnInit {
       this.getWeathersWithLocation();
   }
 
+  getWeathersWithLocation() {
+    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Remove accents from characters
+    this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
+  }
+
   openWeather(weatherToOpen: Weather) {
     if (weatherToOpen.isOpened)
       return;
@@ -64,11 +69,6 @@ export class WeatherComponent implements OnInit {
 
   private getWeathersWithCoordinate(position: Position) {
     this.getWeathers(this.weatherService.getWeathersWithCoordinate(position.coords));
-  }
-
-  private getWeathersWithLocation() {
-    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Remove accents from characters
-    this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
   }
 
   private setWeathers(response: any) {
