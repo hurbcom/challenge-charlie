@@ -8,20 +8,27 @@ import { BackgroundComponent } from './background/background.component';
 import { BackgroundService } from './background/background.service';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherService } from './weather/weather.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService } from './spinner/spinner.service';
+import { MatProgressSpinnerModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
     BackgroundComponent,
-    WeatherComponent
+    WeatherComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     BackgroundService,
     WeatherService,
+    SpinnerService
   ],
   bootstrap: [AppComponent]
 })
