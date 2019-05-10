@@ -67,7 +67,7 @@ export class WeatherComponent implements OnInit {
   }
 
   private getWeathersWithLocation() {
-    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Retira caracteres acentuados
+    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Remove accents from characters
     this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
   }
 
@@ -83,7 +83,7 @@ export class WeatherComponent implements OnInit {
       this.spinnerService.stopSpin();
       this.setWeathers(response);
     }, () => {
-      setTimeout(() => alert("Não foram encontradas previsões para a localidade informada."), 100); //Alerta assíncrono
+      setTimeout(() => alert("Não foram encontradas previsões para a localidade informada."), 200); //Alert after spinner stops
       this.setEmptyWeathers();
     }).add(() => this.spinnerService.stopSpin());
   }
