@@ -1,3 +1,3 @@
 <app-background></app-background>
 <app-weather></app-weather>
-<app-spinner></app-spinner>
+<app-spinner *ngIf="spinnerService.isSpinning"></app-spinner>
