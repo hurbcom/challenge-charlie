@@ -3,7 +3,6 @@ import { Wind } from './wind/wind';
 
 export class Weather {
 
-  public isOpened: boolean;
   public averageTemperature: Temperature;
   public opacity: number;
 
