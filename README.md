@@ -1,3 +1,14 @@
+## Instalação
+
+```bash
+$ git clone https://github.com/lucascomp/challenge-charlie
+$ cd challenge-charlie
+$ docker-compose up
+```
+Acesse a aplicação através da URL: http://localhost
+
+___
+
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo em determinadas cidades. Basicamente dois estagios: A página de entrada e depois quando alguma localidade é informada.
