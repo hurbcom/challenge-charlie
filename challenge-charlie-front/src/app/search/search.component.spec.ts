@@ -24,4 +24,16 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should normalize location', () => {
+    component.location = "São Paulo";
+    expect(component.normalizedLocation).toBe("Sao Paulo");
+  });
+
+  it('should update location', () => {
+    const locationToUpdate = "Rio de Janeiro";
+    component.location = "São Paulo";
+    component.updateLocation(locationToUpdate);
+    expect(component.location).toBe(locationToUpdate);
+  });
 });

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SpinnerService {
 
-  _isSpinning: boolean;
+  private _isSpinning: boolean;
 
   startSpin() {
     this._isSpinning = true;

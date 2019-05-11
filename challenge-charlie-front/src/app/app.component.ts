@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   private getWeathersWithCoordinate(position: Position) {
-    this.getWeathers(this.weatherService.getWeathersWithCoordinate(position.coords));
+    this.getWeathers(this.weatherService.getWeathersWithCoordinate(position.coords.latitude, position.coords.longitude));
   }
 
   private getWeathers(observable: Observable<any>) {

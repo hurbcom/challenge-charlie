@@ -18,8 +18,8 @@ export class WeatherService {
     return this.getWeathersFromApi(`location=${location}`);
   }
 
-  getWeathersWithCoordinate(coords: Coordinates): Observable<any> {
-    return this.getWeathersFromApi(`lat=${coords.latitude}&lon=${coords.longitude}`);
+  getWeathersWithCoordinate(lat: number, lon: number): Observable<any> {
+    return this.getWeathersFromApi(`lat=${lat}&lon=${lon}`);
   }
 
   getWeathersFromApi(querystring: string): Observable<any> {
