@@ -1,6 +1,6 @@
 <app-background></app-background>
 <div class="full-screen content">
   <app-search (search)="getWeathersWithLocation($event)"></app-search>
-  <app-weather (updateLocation)="updateLocation($event)"></app-weather>
+  <app-weather *ngFor="let weather of weathers" [weather]="weather" [isOpened]="openedWeather == weather" (click)="openWeather(weather)" (changeTemperatureUnit)="changeTemperatureUnit()"></app-weather>
 </div>
 <app-spinner *ngIf="spinnerService.isSpinning"></app-spinner>
