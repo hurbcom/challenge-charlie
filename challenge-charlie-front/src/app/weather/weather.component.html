@@ -1,4 +1,4 @@
-<div class="card" [class.opened]="isOpened">
+<div *ngIf="weather" class="card" [class.opened]="isOpened">
   <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36" [class.red]="weather.averageTemperature.celsius > 35" [class.blue]="weather.averageTemperature.celsius < 15" [ngStyle]="{ 'opacity': weather.opacity }"></div>
   <div class="left">
     <img class="icon" src="assets/meteocons-icons/{{weather.icon}}.svg">
