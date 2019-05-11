@@ -15,6 +15,7 @@ export class WeatherComponent implements OnInit {
 
   location: string;
   weathers: Weather[];
+  openedWeather: Weather;
 
   constructor(
     private weatherService: WeatherService,
@@ -43,15 +44,12 @@ export class WeatherComponent implements OnInit {
     this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
   }
 
-  openWeather(weatherToOpen: Weather) {
-    if (weatherToOpen.isOpened)
-      return;
+  openWeather(weather: Weather) {
+    this.openedWeather = weather;
+  }
 
-    const openedWeather = this.weathers.find(weather => weather.isOpened);
-    if (openedWeather)
-      openedWeather.isOpened = false;
-
-    weatherToOpen.isOpened = true;
+  isOpened(weather: Weather) {
+    return this.openedWeather == weather;
   }
 
   changeTemperatureUnit() {

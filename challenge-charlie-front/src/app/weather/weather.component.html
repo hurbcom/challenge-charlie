@@ -7,30 +7,30 @@
         <i class="material-icons search" (click)="getWeathersWithLocation()">search</i>
       </div>
     </div>
-    <div *ngFor="let weather of weathers" class="card" [class.opened]="weather.isOpened" (click)="openWeather(weather)">
+    <div *ngFor="let weather of weathers" class="card" [class.opened]="isOpened(weather)" (click)="openWeather(weather)">
       <div class="background" [class.yellow]="weather.averageTemperature.celsius > 15 && weather.averageTemperature.celsius < 36"
                               [class.red]="weather.averageTemperature.celsius > 35"
                               [class.blue]="weather.averageTemperature.celsius < 15"
                               [ngStyle]="{ 'opacity': weather.opacity }"></div>
       <div class="left">
-        <img class="icon" [class.big]="weather.isOpened" src="assets/meteocons-icons/{{weather.icon}}.svg">
+        <img class="icon" [class.big]="isOpened(weather)" src="assets/meteocons-icons/{{weather.icon}}.svg">
       </div>
       <div class="right">
         <div class="top">
             <span class="medium-text uppercase">{{weather.date}}</span>
-            <span *ngIf="weather.actualTemperature.celsius && weather.isOpened" class="main-temperature" (click)="changeTemperatureUnit()">{{weather.actualTemperature.toString()}}</span>
+            <span *ngIf="weather.actualTemperature.celsius && isOpened(weather)" class="main-temperature" (click)="changeTemperatureUnit()">{{weather.actualTemperature.toString()}}</span>
           <div class="temperatures">
             <div class="medium-text">&#8593; {{weather.maxTemperature.toString()}}</div>
             <div class="medium-text">&#8595; {{weather.minTemperature.toString()}}</div>
           </div>
         </div>
         <div class="mid">
-          <span *ngIf="weather.isOpened" class="big-text">{{weather.text}}</span>
+          <span *ngIf="isOpened(weather)" class="big-text">{{weather.text}}</span>
         </div>
         <div class="bottom">
-          <span class="small-text" *ngIf="weather.isOpened && weather.wind.direction">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
-          <span class="small-text" *ngIf="weather.isOpened && weather.humidity">Umidade: {{weather.humidity | number: '1.0-0'}}%</span>
-          <span class="small-text" *ngIf="weather.isOpened && weather.pressure">Pressão: {{weather.pressure | number: '1.0-0'}}hPa</span>
+          <span *ngIf="isOpened(weather) && weather.wind.direction" class="small-text">Vento: {{weather.wind.direction}} {{weather.wind.speed | number: '1.0-0'}}km/h</span>
+          <span *ngIf="isOpened(weather) && weather.humidity" class="small-text">Umidade: {{weather.humidity | number: '1.0-0'}}%</span>
+          <span *ngIf="isOpened(weather) && weather.pressure" class="small-text">Pressão: {{weather.pressure | number: '1.0-0'}}hPa</span>
         </div>
       </div>
     </div>
