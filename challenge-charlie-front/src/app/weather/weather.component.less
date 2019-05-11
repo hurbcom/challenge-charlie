@@ -1,139 +1,99 @@
 :host {
-	.foreground {
-		background: rgba(0, 0, 0, .55);
+	display: flex;
+	flex-direction: column;
+  width: 38rem;
 
-		.weather-content {
+	.card {
+		position: relative;
+		display: flex;
+		transition: height .2s;
+		height: 18vh;
+		color: white;
+		
+		.background {
+			z-index: -1;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
 			height: 100%;
+			background: rgb(120, 120, 120);
+		}
+		.yellow {
+			background: rgb(233, 181, 37);
+		}
+		.red {
+			background: rgb(224, 123, 65);
+		}
+		.blue {
+			background: rgb(118, 200, 227);
+		}
+		.left, .right {
+			display: flex;
+			height: 100%;
+		}
+		.left {
+			align-items: center;
+			justify-content: center;
 			width: 55%;
-			margin: auto;
-			
-			.location {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 15%;
-				font-size: 1.3em;
-				background: rgba(200, 200, 200, .9);
-				.compass {
-					width: 60px;
-					height: 60px;
-					margin-right: 2%;
-				}
-				.input {
-					display: flex;
-					justify-content: flex-end;
-					align-items: center;
-					
-					.query {
-						text-align: center;
-						width: 17em;
-						background: none;
-						color: #707070;
-						font-weight: 700;
-						outline: none;
-						border: 0;
-						border-bottom: 2px solid #707070;
-					}
-					.search {
-						color: #707070;
-						cursor: pointer;
-						position: absolute;
-					}
-				}
-			}
-			.card {
-				position: relative;
-				display: flex;
+			margin-left: 4%;
+			.icon {
 				transition: height .2s;
-				height: 18%;
-				color: white;
-				
-				.background {
-					z-index: -1;
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					background: rgb(120, 120, 120);
-				}
-				.yellow {
-					background: rgb(233, 181, 37);
-				}
-				.red {
-					background: rgb(224, 123, 65);
-				}
-				.blue {
-					background: rgb(118, 200, 227);
-				}
-				.left, .right {
-					display: flex;
-					height: 100%;
-				}
-				.left {
-					align-items: center;
-					justify-content: center;
-					width: 55%;
-					margin-left: 4%;
-					.icon {
-						transition: height .2s;
-						transition: width .2s;
-						width: 5em;
-						height: 5em;
-					}
-					.big {
-						width: 14em;
-						height: 14em;
-					}
-				}
-				.right {
-					display: flex;
-					flex-direction: column;
-					width: 45%;
-					margin-right: 4%;
-					.top, .mid, .bottom {
-						display: flex;
-						flex-direction: column;
-						align-items: flex-start;
-					}
-					.top {
-						margin-top: 5%;
-						line-height: 2.1em;
-						.temperatures {
-							display: flex;
-							justify-content: space-between;
-							width: 8.4em;
-						}
-					}
-					.mid {
-						margin-top: 11%;
-						margin-bottom: 5%;
-					}
-					.bottom {
-						line-height: 1.7em;
-					}
-					.uppercase {
-						text-transform: uppercase;
-					}
-				}
+				transition: width .2s;
+				width: 5em;
+				height: 5em;
 			}
-			.main-temperature {
-				cursor: pointer;
-				font-size: 4em;
-				margin: .4em 0;
-			}
-			.big-text {
-				font-size: 1.60em;
-			}
-			.medium-text {
-				font-size: 1.25em;
-			}
-			.small-text {
-				font-size: 1.20em;
-			}
-			.opened {
-				height: 49%;
+			.big {
+				width: 14em;
+				height: 14em;
 			}
 		}
+		.right {
+			display: flex;
+			flex-direction: column;
+			width: 45%;
+			margin-right: 4%;
+			.top, .mid, .bottom {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			.top {
+				margin-top: 5%;
+				line-height: 2.1em;
+				.temperatures {
+					display: flex;
+					justify-content: space-between;
+					width: 8.4em;
+				}
+			}
+			.mid {
+				margin-top: 11%;
+				margin-bottom: 5%;
+			}
+			.bottom {
+				line-height: 1.7em;
+			}
+			.uppercase {
+				text-transform: uppercase;
+			}
+		}
+	}
+	.main-temperature {
+		cursor: pointer;
+		font-size: 4em;
+		margin: .4em 0;
+	}
+	.big-text {
+		font-size: 1.60em;
+	}
+	.medium-text {
+		font-size: 1.25em;
+	}
+	.small-text {
+		font-size: 1.20em;
+	}
+	.opened {
+		height: 49vh;
 	}
 }

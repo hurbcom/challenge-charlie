@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -13,9 +13,10 @@ import { WeatherService } from './weather.service';
 })
 export class WeatherComponent implements OnInit {
 
-  location: string;
   weathers: Weather[];
   openedWeather: Weather;
+
+  @Output() updateLocation = new EventEmitter<string>();
 
   constructor(
     private weatherService: WeatherService,
@@ -32,16 +33,6 @@ export class WeatherComponent implements OnInit {
       position => this.getWeathersWithCoordinate(position),
       () => this.setEmptyWeathers()
     );
-  }
-
-  onKey(event: any) {
-    if (event.key == "Enter")
-      this.getWeathersWithLocation();
-  }
-
-  getWeathersWithLocation() {
-    const normalizedLocation = this.location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Remove accents from characters
-    this.getWeathers(this.weatherService.getWeathersWithLocation(normalizedLocation));
   }
 
   openWeather(weather: Weather) {
@@ -61,7 +52,7 @@ export class WeatherComponent implements OnInit {
   }
 
   private setEmptyWeathers() {
-    this.location = "";
+    this.updateLocation.emit('');
     //TODO: exibir cards cinzas
   }
 
@@ -70,12 +61,12 @@ export class WeatherComponent implements OnInit {
   }
 
   private setWeathers(response: any) {
-    this.location = `${response.location.city},${response.location.region}`;
+    this.updateLocation.emit(`${response.location.city},${response.location.region}`);
     this.weathers = response.weathers;
     this.openWeather(this.weathers[0]);
   }
 
-  private getWeathers(observable: Observable<any>) {
+  getWeathers(observable: Observable<any>) {
     this.spinnerService.startSpin();
     observable.subscribe(response => {
       this.spinnerService.stopSpin();

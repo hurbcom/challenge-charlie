@@ -1,3 +1,6 @@
 <app-background></app-background>
-<app-weather></app-weather>
+<div class="full-screen content">
+  <app-search (search)="getWeathersWithLocation($event)"></app-search>
+  <app-weather (updateLocation)="updateLocation($event)"></app-weather>
+</div>
 <app-spinner *ngIf="spinnerService.isSpinning"></app-spinner>

@@ -11,13 +11,15 @@ import { WeatherService } from './weather/weather.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './spinner/spinner.service';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackgroundComponent,
     WeatherComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
