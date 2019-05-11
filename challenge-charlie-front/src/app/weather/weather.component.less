@@ -1,14 +1,16 @@
 :host {
 	display: flex;
 	flex-direction: column;
-  width: 38rem;
+	width: 38rem;
+	min-width: 400px;
+  max-width: 100vw;
 
 	.card {
 		position: relative;
 		display: flex;
 		color: white;
 		transition: height .2s;
-		height: 18vh;
+		height: 7rem;
 		
 		.background {
 			position: absolute;
@@ -17,83 +19,69 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgb(120, 120, 120);
 		}
+
 		.yellow {
 			background: rgb(233, 181, 37);
 		}
+
 		.red {
 			background: rgb(224, 123, 65);
 		}
+
 		.blue {
 			background: rgb(118, 200, 227);
 		}
+
 		.left, .right {
 			display: flex;
 			height: 100%;
 		}
+
 		.left {
 			align-items: center;
 			justify-content: center;
 			width: 55%;
-			margin-left: 4%;
+
 			.icon {
 				transition: height .2s;
 				transition: width .2s;
-				width: 5rem;
-				height: 5rem;
-			}
-			.big {
-				width: 14rem;
-				height: 14rem;
+				height: 50%;
 			}
 		}
+
 		.right {
 			display: flex;
 			flex-direction: column;
+			justify-content: space-evenly;
 			width: 45%;
-			margin-right: 4%;
+
 			.top, .mid, .bottom {
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
 			}
+
 			.top {
-				margin-top: 5%;
-				line-height: 2.1rem;
-				.temperatures {
+				.temperature {
+					font-size: 3.2em;
+				}
+
+				.forecasts {
 					display: flex;
 					justify-content: space-between;
-					width: 8.4em;
+					width: 7em;
 				}
-			}
-			.mid {
-				margin-top: 11%;
-				margin-bottom: 5%;
-			}
-			.bottom {
-				line-height: 1.7rem;
-			}
-			.uppercase {
-				text-transform: uppercase;
 			}
 		}
 	}
+
 	.main-temperature {
 		cursor: pointer;
-		font-size: 4em;
-		margin: .4rem 0;
+		font-size: 3em;
 	}
-	.big-text {
-		font-size: 1.60em;
-	}
-	.medium-text {
-		font-size: 1.25em;
-	}
-	.small-text {
-		font-size: 1.20em;
-	}
+
 	.opened {
-		height: 49vh;
+		height: 20rem;
 	}
 }

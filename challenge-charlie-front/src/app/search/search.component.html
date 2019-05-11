@@ -1,5 +1,7 @@
-<img class="compass" src="assets/meteocons-icons/44.svg">
-<div class="input">
-  <input class="query" placeholder="Digite a localidade..." maxlength="30" [(ngModel)]="location" (keyup.enter)="search.emit(normalizedLocation)" spellcheck="false">
-  <i class="material-icons search" (click)="search.emit(normalizedLocation)">search</i>
+<div class="content">
+  <img class="compass" src="assets/meteocons-icons/44.svg">
+  <div class="input">
+    <input class="query" placeholder="Digite a localidade..." maxlength="30" [(ngModel)]="location" (keyup.enter)="search.emit(normalizedLocation)" spellcheck="false">
+    <i class="material-icons search" (click)="search.emit(normalizedLocation)">search</i>
+  </div>
 </div>
