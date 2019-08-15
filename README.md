@@ -14,7 +14,7 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 * O uso de `geohash` ou `custom elements` dá ponto extra 🔝‼️ ;)
 ## Requisitos
 - Você pode utilizar jQuery mas não pode usar nenhum plugin de jQuery, queremos ver o seu trabalho. Para a folha de estilo, deve ser utilizado LESS.
-- Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
+- Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_. Caso você tenha algum motivo para não submeter um *pull request*, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
 - O código precisa rodar dentro de um container Docker
 - Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
   - git clone $seu-fork
@@ -38,6 +38,8 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 ## Dúvidas
 
 Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HotelUrbano/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+
+Preferencialmente, faça o desafio usando React.
 
 Boa sorte e boa viagem! ;)
 
