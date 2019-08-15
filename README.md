@@ -37,7 +37,7 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 
 ## Dúvidas
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HotelUrbano/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
 
 Preferencialmente, faça o desafio usando React.
 
