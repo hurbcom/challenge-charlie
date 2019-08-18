@@ -1,13 +1,24 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-image: url('https://images.sonurai.com/CapeWhiteEye_EN-GB6716800133.jpg');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+section.container {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    background-image: linear-gradient(to right top, #eec02038, #eebf1d4f, #efbd1a3d, #efbc1638, #f0ba122b);
+    color: #fff;
+    font-weight: 700;
+}
+
+.localizacao {
+    color: #8d8986;
+    background: #fff;
+    padding: 0 15px;
+}
+
+.temperatura-caixa,
+.amanha,
+.dia-depois-de-amanha {
+    padding: 0 15px;
 }
