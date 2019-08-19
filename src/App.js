@@ -14,6 +14,8 @@ class ConsumeApi extends React.Component {
           var lat = position.coords.latitude;
           var caminhoDescricao = this.refs.descricao;
           var caminhoGrau = this.refs.grau;
+          var grau2 = this.refs.grau2;
+          var grau3 = this.refs.grau3;
           var TemperaturaCaixa = this.refs.TemperaturaCaixa;
           var LocalizacaoTitulo = this.refs.LocalizacaoTitulo;
           var caminhoVento = this.refs.vento;
@@ -87,6 +89,8 @@ class ConsumeApi extends React.Component {
             success: function (data) {
               console.log(data);
               const temperature = data.current_observation.condition.temperature;
+              const temperatureTomorrow = data.forecasts[1].low;
+              const temperatureAfterTomorrow = data.forecasts[2].low;
               const summary = data.current_observation.condition.text;
               const vento = data.current_observation.wind.speed;
               const humidade = data.current_observation.atmosphere.humidity;
@@ -94,6 +98,8 @@ class ConsumeApi extends React.Component {
               const regiao = data.location.city + ', ' + data.location.region;
 
               caminhoGrau.textContent = temperature + 'º';
+              grau2.textContent = temperatureTomorrow + 'º';
+              grau3.textContent = temperatureAfterTomorrow + 'º';
               caminhoDescricao.textContent = summary;
               LocalizacaoTitulo.textContent = regiao;
               caminhoVento.textContent = 'Vento: NO ' + vento + 'km/h';

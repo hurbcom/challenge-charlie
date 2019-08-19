@@ -33,10 +33,22 @@ section.container {
     padding: 0 15px;
 }
 
+p.dia {
+    margin: 5vh, 0 0 0;
+}
+
+.vento {
+    margin-top: 5vh;
+}
+
+.vento p {
+    margin: 0;
+}
+
 h2.grau {
     cursor: pointer;
     display: inline-block;
-    margin-right: 5px;
+    margin: 0 5px 0 0;
 }
 
 span.modo {
@@ -69,8 +81,9 @@ span.modo {
 }
 
 .amanha, .dia-depois-de-amanha {
+    align-self: flex-end;
     display: flex;
     flex-direction: column;
-    align-self: flex-end;
+    line-height: 1;
     width: 62%;
 }
