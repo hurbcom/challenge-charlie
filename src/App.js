@@ -50,6 +50,8 @@ class ConsumeApi extends React.Component {
           }).then(response => {
             if (response.ok) {
               console.log(response.json());
+              const a = document.getElementsByTagName('body');
+              console.log(a);
             }
           })
 
@@ -100,7 +102,7 @@ class ConsumeApi extends React.Component {
 
               let celsius = (temperature - 32) * (5 / 9);
 
-              TemperaturaCaixa.addEventListener('click', () => {
+              caminhoGrau.addEventListener('click', () => {
                 if (temperatureSpan.textContent === 'F') {
                   temperatureSpan.textContent = 'C';
                   caminhoGrau.textContent = Math.floor(celsius) + 'º';
@@ -121,11 +123,10 @@ class ConsumeApi extends React.Component {
     return (
       <section className="container">
         <div className="localizacao">
-          {/* <Image source={} style={} /> */}
-          <h1 className="localizacao-titulo" ref="LocalizacaoTitulo"></h1>
+          <h1 className="localizacao-titulo" data-icon="(" ref="LocalizacaoTitulo"></h1>
         </div>
         <div className="temperatura-caixa" ref="TemperaturaCaixa">
-          <p>Icon</p>
+          <p data-icon="B"></p>
           <div className="grau-section">
             <p className="dia">HOJE</p>
             <h2 className="grau" ref="grau"></h2>
