@@ -9,11 +9,9 @@ class ConsumeApi extends React.Component {
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
-          long = position.coords.longitude;
-          lat = position.coords.latitude;
 
-          var long;
-          var lat;
+          var long = position.coords.longitude;
+          var lat = position.coords.latitude;
           var caminhoDescricao = this.refs.descricao;
           var caminhoGrau = this.refs.grau;
           var TemperaturaCaixa = this.refs.TemperaturaCaixa;
@@ -36,6 +34,24 @@ class ConsumeApi extends React.Component {
             'oauth_timestamp': parseInt(new Date().getTime() / 1000).toString(),
             'oauth_version': '1.0'
           };
+
+          var bing = 'https://cors-anywhere.herokuapp.com/bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
+
+          fetch(bing, {
+            type: 'GET',
+            contentType: 'application/json',
+            responseType: 'application/json',
+            headers: {
+              'Access-Control-Allow-Credentials': true,
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET',
+              'Access-Control-Allow-Headers': 'application/json',
+            },
+          }).then(response => {
+            if (response.ok) {
+              console.log(response.json());
+            }
+          })
 
           console.log(url + 'lat=' + lat + concat + 'lon=' + long);
 
