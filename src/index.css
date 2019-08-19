@@ -11,6 +11,8 @@ section.container {
     background-image: linear-gradient(to right top, #eec02038, #eebf1d4f, #efbd1a3d, #efbc1638, #f0ba122b);
     display: flex;
     flex-direction: column;
+    margin: auto;
+    width: 70%;
 }
 
 .localizacao {
@@ -28,6 +30,7 @@ section.container {
 .temperatura-caixa,
 .amanha,
 .dia-depois-de-amanha {
+    align-items: center;
     align-self: center;
     display: flex;
     padding: 0 15px;

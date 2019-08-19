@@ -18,6 +18,7 @@ class ConsumeApi extends React.Component {
           var grau3 = this.refs.grau3;
           var TemperaturaCaixa = this.refs.TemperaturaCaixa;
           var LocalizacaoTitulo = this.refs.LocalizacaoTitulo;
+          var Icone = this.refs.icone;
           var caminhoVento = this.refs.vento;
           var caminhoHumidade = this.refs.humidade;
           var caminhoPressao = this.refs.pressao;
@@ -105,8 +106,16 @@ class ConsumeApi extends React.Component {
               caminhoVento.textContent = 'Vento: NO ' + vento + 'km/h';
               caminhoHumidade.textContent = 'Humidade: ' + humidade + '%';
               caminhoPressao.textContent = 'Pressão: ' + pressao + 'hPA';
+              LocalizacaoTitulo.setAttribute('data-icon', '(');
 
               let celsius = (temperature - 32) * (5 / 9);
+              if(celsius < 15) {
+                Icone.setAttribute('data-icon', 'Q');
+              } else if (celsius > 15 && celsius < 35) {
+                Icone.setAttribute('data-icon', 'H');
+              } else {
+                Icone.setAttribute('data-icon', 'B');
+              }
 
               caminhoGrau.addEventListener('click', () => {
                 if (temperatureSpan.textContent === 'F') {
@@ -129,10 +138,10 @@ class ConsumeApi extends React.Component {
     return (
       <section className="container">
         <div className="localizacao">
-          <h1 className="localizacao-titulo" data-icon="(" ref="LocalizacaoTitulo"></h1>
+          <h1 className="localizacao-titulo" data-icon="" ref="LocalizacaoTitulo"></h1>
         </div>
         <div className="temperatura-caixa" ref="TemperaturaCaixa">
-          <p data-icon="B"></p>
+          <p data-icon="" ref="icone"></p>
           <div className="grau-section">
             <p className="dia">HOJE</p>
             <h2 className="grau" ref="grau"></h2>
