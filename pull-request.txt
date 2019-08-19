@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 Your name: João Pedro Lopes Canto   
 Your Github homepage: https://github.com/jpcanto
+=======
+Your name: ___
+Your Github homepage: ___
+>>>>>>> c5b3885d24f883cfb538c874fdd192dcd818606b
 
