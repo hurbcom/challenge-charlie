@@ -102,6 +102,7 @@ class ConsumeApi extends React.Component {
               grau2.textContent = temperatureTomorrow + 'º';
               grau3.textContent = temperatureAfterTomorrow + 'º';
               caminhoDescricao.textContent = summary;
+              temperatureSpan.textContent = 'F'; 
               LocalizacaoTitulo.textContent = regiao;
               caminhoVento.textContent = 'Vento: NO ' + vento + 'km/h';
               caminhoHumidade.textContent = 'Humidade: ' + humidade + '%';
@@ -109,7 +110,7 @@ class ConsumeApi extends React.Component {
               LocalizacaoTitulo.setAttribute('data-icon', '(');
 
               let celsius = (temperature - 32) * (5 / 9);
-              if(celsius < 15) {
+              if (celsius < 15) {
                 Icone.setAttribute('data-icon', 'Q');
               } else if (celsius > 15 && celsius < 35) {
                 Icone.setAttribute('data-icon', 'H');
