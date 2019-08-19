@@ -11,7 +11,7 @@ function App() {
       await fetch('https://api.opencagedata.com/geocode/v1/json?q='+pos.coords.latitude+','+pos.coords.longitude+'&key=c63386b4f77e46de817bdf94f552cddf&language=en').then(res => res.json())
       .then((data) => {
         console.log(data.results);
-        setLoc(data.results[0].components.city + ' - ' + data.results[0].components.state );
+        setLoc(data.results[0].components.city + ' - ' + data.results[0].components.state);
       });
     }
     navigator.geolocation.getCurrentPosition(getLocation);
