@@ -1,0 +1,11 @@
+@nice-blue: rgb(212, 52, 52);
+@light-blue: @nice-blue + rgb(212, 52, 52);
+
+.header {
+  color: @nice-blue;
+}
+
+[data-icon]:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+}

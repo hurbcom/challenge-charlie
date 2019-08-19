@@ -1,9 +1,11 @@
 import React from 'react';
-import './style.css'
+import style from './style.less';
+
 const Header = () => {
+  console.log(style.header);
 
   return (<div>
-    <p data-icon="(">oka</p>
+    <p className={style.header} data-icon="(">po</p>
   </div>)
 };
 
