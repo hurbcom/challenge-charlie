@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './style.less';
 
-const Header = () => {
-  console.log(style.header);
+const Header = (location, ...props) => {
+  console.log(location);
 
   return (<div>
-    <p className={style.header} data-icon="(">po</p>
+    <p className={style.header} data-icon="(">{location.location ? location.location : `Não sei seu endereço :(`}</p>
   </div>)
 };
 
