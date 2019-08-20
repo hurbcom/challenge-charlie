@@ -4,6 +4,7 @@ import * as WeatherService from './services/weather.service';
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    this.trocaDeGrau = this.trocaDeGrau.bind(this);
     this.state = {
       localizacao: '',
       icone: '',
@@ -30,12 +31,21 @@ class Main extends React.Component {
     });
   };
 
-  trocaDeGrau() {
+  async trocaDeGrau() {
+    const data = await WeatherService.getWeather();
+    const grauTemp = `${data.current_observation.condition.temperature}`
     if (this.state.modo === 'F') {
-      this.state.modo.setState({
-        modo: 'C'
+      const celsius = (grauTemp - 32) * (5 / 9);
+      const celsiusMath = Math.floor(celsius) + 'º';
+      this.setState({
+        modo: 'C',
+        grau: celsiusMath
+      });
+    } else {
+      this.setState({
+        modo: 'F',
+        grau: `${data.current_observation.condition.temperature}º`
       })
-      // caminhoGrau = Math.floor(celsius) + 'º';
     }
   }
 
