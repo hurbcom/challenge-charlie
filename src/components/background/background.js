@@ -10,7 +10,7 @@ const Background = () => {
   // }
   // request();
   return (<div>
-    oi
+    
   </div>)
 };
 
