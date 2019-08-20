@@ -78,6 +78,10 @@ span.modo {
     margin-right: 15px;
 }
 
+.icone {
+    font-size: 10em;
+}
+
 .temperatura-caixa p[data-icon] {
     font-size: 10em;
     margin: 0;

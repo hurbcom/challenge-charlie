@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "crypto-js": "^3.1.9-1",
-    "jquery": "^3.4.1",
+    "oauth": "^0.9.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
