@@ -1,6 +1,5 @@
 import React, {useMemo, useState} from 'react';
 import './App.css';
-import Background from './components/background/background';
 import Header from './components/header/header';
 import Body from './components/body/body';
 
