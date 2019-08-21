@@ -21,7 +21,6 @@ function App() {
 
   return (
     <div className="App">
-      <Background />
       <Header location={loc}/>
       <Body city={city}/>
     </div>
