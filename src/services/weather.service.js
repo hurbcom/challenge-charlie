@@ -42,7 +42,6 @@ function getWeather() {
                     reject(err);
                 } else {
                     resolve(JSON.parse(data));
-                    console.log(data);
                 }
             }
         );

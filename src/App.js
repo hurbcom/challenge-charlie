@@ -8,6 +8,7 @@ class Main extends React.Component {
     this.changeDegree = this.changeDegree.bind(this);
     this.state = {
       background: '',
+      bgcolor: '',
       localizacao: '',
       icone: '',
       grau: '',
@@ -16,13 +17,16 @@ class Main extends React.Component {
       grau3: '',
       grau3max: '',
       modo: 'F',
-      descricao: '',
+      vento: '',
+      humidade: '',
+      pressao: ''
     };
   }
 
   componentDidMount() {
     this.getWeather();
     this.getBackground();
+    this.changeContentBackground();
   }
 
   async getBackground() {
@@ -36,12 +40,14 @@ class Main extends React.Component {
     const data = await WeatherService.getWeather();
     this.setState({
       localizacao: `${data.location.city}, ${data.location.region}`,
-      icone: 'B',
       grau: `${data.current_observation.condition.temperature}º`,
       grau2: `${data.forecasts[1].low}º`,
       grau2max: `${data.forecasts[1].high}º`,
       grau3: `${data.forecasts[2].low}º`,
       grau3max: `${data.forecasts[2].high}º`,
+      vento: `${data.current_observation.wind.speed}`,
+      humidade: `${data.current_observation.atmosphere.humidity}`,
+      pressao: `${data.current_observation.atmosphere.pressure}`
     });
   };
 
@@ -78,10 +84,32 @@ class Main extends React.Component {
     }
   }
 
+  async changeContentBackground() {
+    const data = await WeatherService.getWeather();
+    const grauTemp = `${data.current_observation.condition.temperature}`;
+    const celsius = Math.floor((grauTemp - 32) * (5 / 9));
+    if (celsius < 15) {
+      this.setState({
+        bgcolor: 'blue',
+        icone: 'N'
+      })
+    } else if (celsius > 15 && celsius < 35) {
+      this.setState({
+        bgcolor: `yellow`,
+        icone: 'H'
+      })
+    } else {
+      this.setState({
+        bgcolor: 'red',
+        icone: 'B'
+      })
+    }
+  }
+
   render() {
     return (
       <section className="main-content" style={{ backgroundImage: `url(${this.state.background})` }}>
-        <div className="container">
+        <div className={`container ${this.state.bgcolor}`}>
           <div className="localizacao">
             <h1 className="localizacao-titulo" data-icon="(">{this.state.localizacao}</h1>
           </div>
@@ -91,7 +119,11 @@ class Main extends React.Component {
               <p className="dia">HOJE</p>
               <h2 className="grau" onClick={this.changeDegree}>{this.state.grau}</h2>
               <span className="modo">{this.state.modo}</span>
-              <div className="descricao">{this.state.descricao}</div>
+              <div className="descricao">
+                <p>Vento: NO {this.state.vento}km/h</p>
+                <p>Humidade: {this.state.humidade}%</p>
+                <p>Pressão: {this.state.pressao}hPA</p>
+              </div>
             </div>
           </div>
           <div className="amanha">
