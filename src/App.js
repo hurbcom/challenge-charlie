@@ -1,11 +1,13 @@
 import React from 'react';
 import * as WeatherService from './services/weather.service';
+import * as BackgroundService from './services/background.service';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.trocaDeGrau = this.trocaDeGrau.bind(this);
     this.state = {
+      background: '',
       localizacao: '',
       icone: '',
       grau: '',
@@ -18,7 +20,16 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.getWeather();
+    this.getBackground();
   }
+
+  async getBackground() {
+    const data = await BackgroundService.getBackground();
+    this.setState({
+      background: `https://www.bing.com/HPImageArchive.aspx?${data.images[0].url}`
+    })
+    console.log(this.state.background);
+  };
 
   async getWeather() {
     const data = await WeatherService.getWeather();
