@@ -26,7 +26,7 @@ class Main extends React.Component {
   async getBackground() {
     const data = await BackgroundService.getBackground();
     this.setState({
-      background: `https://www.bing.com/HPImageArchive.aspx?${data.images[0].url}`
+      background: `https://www.bing.com${data.images[0].url}`
     })
     console.log(this.state.background);
   };
@@ -62,28 +62,30 @@ class Main extends React.Component {
 
   render() {
     return (
-      <section className="container">
-        <div className="localizacao">
-          <h1 className="localizacao-titulo" data-icon="(">{this.state.localizacao}</h1>
-        </div>
-        <div className="temperatura-caixa">
-          <div className="icone" data-icon={this.state.icone}></div>
-          <div className="grau-section">
-            <p className="dia">HOJE</p>
-            <h2 className="grau" onClick={this.trocaDeGrau}>{this.state.grau}</h2>
-            <span className="modo">{this.state.modo}</span>
-            <div className="descricao">{this.state.descricao}</div>
+      <section className="main-content" style={{backgroundImage: `url(${this.state.background})`}}>
+        <div className="container">
+          <div className="localizacao">
+            <h1 className="localizacao-titulo" data-icon="(">{this.state.localizacao}</h1>
           </div>
-        </div>
-        <div className="amanha">
-          <p className="dia">AMANHÃ</p>
-          <h2 className="grau">{this.state.grau2}</h2>
-          <span className="modo">{this.state.modo}</span>
-        </div>
-        <div className="dia-depois-de-amanha">
-          <p className="dia">DEPOIS DE AMANHÃ</p>
-          <h2 className="grau">{this.state.grau3}</h2>
-          <span className="modo">{this.state.modo}</span>
+          <div className="temperatura-caixa">
+            <div className="icone" data-icon={this.state.icone}></div>
+            <div className="grau-section">
+              <p className="dia">HOJE</p>
+              <h2 className="grau" onClick={this.trocaDeGrau}>{this.state.grau}</h2>
+              <span className="modo">{this.state.modo}</span>
+              <div className="descricao">{this.state.descricao}</div>
+            </div>
+          </div>
+          <div className="amanha">
+            <p className="dia">AMANHÃ</p>
+            <h2 className="grau">{this.state.grau2}</h2>
+            <span className="modo">{this.state.modo}</span>
+          </div>
+          <div className="dia-depois-de-amanha">
+            <p className="dia">DEPOIS DE AMANHÃ</p>
+            <h2 className="grau">{this.state.grau3}</h2>
+            <span className="modo">{this.state.modo}</span>
+          </div>
         </div>
       </section>
     );

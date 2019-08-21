@@ -1,9 +1,17 @@
-body {
-    background-image: url('https://images.sonurai.com/CapeWhiteEye_EN-GB6716800133.jpg');
-    background-size: cover;
+html,
+body,
+#root,
+.main-content,
+.container {
+    height: 100%;
 }
 
-section.container {
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
     color: #fff;
     font-family: sans-serif;
     font-weight: 700;
@@ -33,6 +41,7 @@ section.container {
     align-items: center;
     align-self: center;
     display: flex;
+    flex-wrap: wrap;
     padding: 0 15px;
 }
 
@@ -92,5 +101,5 @@ span.modo {
     display: flex;
     flex-direction: column;
     line-height: 1;
-    width: 62%;
+    width: 75%;
 }
