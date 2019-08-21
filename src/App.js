@@ -93,7 +93,7 @@ class Main extends React.Component {
         bgcolor: 'blue',
         icone: 'N'
       })
-    } else if (celsius > 15 && celsius < 35) {
+    } else if (celsius >= 15 && celsius <= 35) {
       this.setState({
         bgcolor: `yellow`,
         icone: 'H'
