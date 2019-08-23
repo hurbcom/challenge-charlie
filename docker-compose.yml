@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  hurb:
+    container_name: hurb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=development
