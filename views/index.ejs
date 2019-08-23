@@ -6,32 +6,18 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <div class="container" id="container">
+    <div class="container" id="container" style="background-image: url(<%=bgImage%>)">
       <div class="main-card location">
         Sorocaba, SP
       </div>
       <div class="main-card current-weather">
-        <div class="main-weather-icon">icon</div>
-        <div class="main-weather-text">
-          <div class="todays-temperature">
-            HOJE:<br />
-            <%= weather.today.temperature %>C
-          </div>
-          <div class="todays-description">
-            <%= weather.today.description %>
-          </div>
-          <div class="todays-details">
-            Vento: <%= weather.today.wind.direction %> <%= weather.today.wind.speed %>km/h<br />
-            Humidade: <%= weather.today.humidity %>%<br />
-            Pressão: <%= weather.today.pressure %>hPA
-          </div>
-        </div>
+        main
       </div>
       <div class="main-card tomorrow">
-        <div class="main-weather-text">Amanhã<br /><%= weather.tomorrow.temperature %>C</div>
+        tomorrow
       </div>
       <div class="main-card after-tomorrow">
-        <div class="main-weather-text">Depois de amanhã<br /><%= weather.dayafter.temperature %>C</div>
+        day after
       </div>
     </div>
   </body>
