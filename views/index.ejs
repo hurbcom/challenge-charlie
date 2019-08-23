@@ -15,26 +15,24 @@
         <div class="main-weather-text">
           <div class="todays-temperature">
             HOJE:<br />
-            32C
+            <%= weather.today.temperature %>C
           </div>
           <div class="todays-description">
-            Ensolarado
+            <%= weather.today.description %>
           </div>
           <div class="todays-details">
-            Vento: NO 6.4km/h<br />
-            Humidade: 78%<br />
-            Pressão: 1003hPA
+            Vento: <%= weather.today.wind.direction %> <%= weather.today.wind.speed %>km/h<br />
+            Humidade: <%= weather.today.humidity %>%<br />
+            Pressão: <%= weather.today.pressure %>hPA
           </div>
         </div>
       </div>
       <div class="main-card tomorrow">
-        <div class="main-weather-text">Amanhã<br />20C</div>
+        <div class="main-weather-text">Amanhã<br /><%= weather.tomorrow.temperature %>C</div>
       </div>
       <div class="main-card after-tomorrow">
-        <div class="main-weather-text">Depois de amanhã<br />20C</div>
+        <div class="main-weather-text">Depois de amanhã<br /><%= weather.dayafter.temperature %>C</div>
       </div>
     </div>
   </body>
-  <!--script src="js/libs/ajax.js"></script>
-  <script src="app-start.js"></script-->
 </html>
