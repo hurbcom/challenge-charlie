@@ -61,16 +61,32 @@ export default class Home extends Component{
     render(){
         return(
             <div className="home" style={{ backgroundImage: "url("+this.state.bg+")" }}>
-                <h1>Home</h1>
-                <GoogleComponent
-                apiKey={API_KEY}
-                language={'en'}
-                country={'country:in|country:us'}
-                coordinates={true}
-                placeholder={'Start typing location'}
-                // locationBoxStyle={'custom-style'}
-                // locationListStyle={'custom-style-list'}
-                onChange={(e) => { this.setState({ place: e }) }} />
+              <div className="container">
+                  <GoogleComponent
+                  apiKey={API_KEY}
+                  language={'en'}
+                  country={'country:in|country:us'}
+                  coordinates={true}
+                  placeholder={'Escolha o lugar'}
+                  // locationBoxStyle={'custom-style'}
+                  // locationListStyle={'custom-style-list'}
+                  onChange={(e) => { this.setState({ place: e }) }} />
+                  <div className="weather today">
+                    <div className="left">
+                      <p className="icon" data-icon="B"></p>
+                    </div>
+                    <div className="right">
+                      <h2>Hoje</h2>
+                      <p>32</p>
+                      <div className="clima">
+                        <h4>Ensolarado</h4>
+                        <p>Vento: <span>NO 6.4 km/h</span></p>
+                        <p>Humidade: <span>78%</span></p>
+                        <p>Pressão: <span>1003 hPA</span></p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
             </div>
         )
     }

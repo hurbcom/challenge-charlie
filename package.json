@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "less": "^3.10.3",
+    "less-watch-compiler": "^1.13.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-google-location": "^1.2.2",
     "react-scripts": "3.1.1"
   },
   "scripts": {
+    "watch-css": "less-watch-compiler src/ ./src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
