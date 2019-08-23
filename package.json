@@ -9,7 +9,7 @@
     "less-watch-compiler": "^1.13.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-google-location": "^1.2.2",
+    "react-places-autocomplete": "^7.2.1",
     "react-scripts": "3.1.1"
   },
   "scripts": {

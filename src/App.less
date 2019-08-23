@@ -29,6 +29,28 @@
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
+    &.yellow{
+      .today{
+        background-color: rgba(255, 255, 0, .4);
+      }
+      .tomorrow{
+        background-color: rgba(199, 146, 6, .8);
+      }
+      .after-tomorrow{
+        background-color: rgb(171, 130, 23);
+      }
+    }
+    &.blue{
+      .today{
+        background-color: rgba(0, 66, 253, 0.4);
+      }
+      .tomorrow{
+        background-color: rgba(40, 76, 173, 0.88);
+      }
+      .after-tomorrow{
+        background-color: rgb(18, 49, 134);
+      }
+    }
     .weather{
       display: flex;
       justify-content: space-between;
