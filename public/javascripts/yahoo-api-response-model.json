@@ -1,0 +1,46 @@
+{
+  "location": {
+    "woeid":2502265,
+    "city":"Sunnyvale",
+    "region":"CA",
+    "country":"United States",
+    "lat":37.371609,
+    "long":-122.038254,
+    "timezone_id":"America/Los_Angeles"
+  },
+  "current_observation": {
+    "wind": {
+      "chill":79,
+      "direction":320,
+      "speed":9.94
+    },
+    "atmosphere": {
+      "humidity":59,
+      "visibility":10.0,
+      "pressure":29.47,
+      "rising":0
+    },
+    "astronomy": {
+      "sunrise":"6:30 am",
+      "sunset":"7:51 pm"
+    },
+    "condition": {
+      "text":"Sunny",
+      "code":32,
+      "temperature":79
+    },
+    "pubDate":1566522000
+  },
+  "forecasts": [
+    {"day":"Thu","date":1566457200,"low":67,"high":86,"text":"Partly Cloudy","code":30},
+    {"day":"Fri","date":1566543600,"low":63,"high":89,"text":"Sunny","code":32},
+    {"day":"Sat","date":1566630000,"low":63,"high":87,"text":"Sunny","code":32},
+    {"day":"Sun","date":1566716400,"low":65,"high":91,"text":"Sunny","code":32},
+    {"day":"Mon","date":1566802800,"low":66,"high":93,"text":"Mostly Sunny","code":34},
+    {"day":"Tue","date":1566889200,"low":65,"high":90,"text":"Mostly Sunny","code":34},
+    {"day":"Wed","date":1566975600,"low":66,"high":86,"text":"Mostly Sunny","code":34},
+    {"day":"Thu","date":1567062000,"low":66,"high":83,"text":"Mostly Sunny","code":34},
+    {"day":"Fri","date":1567148400,"low":65,"high":83,"text":"Mostly Sunny","code":34},
+    {"day":"Sat","date":1567234800,"low":66,"high":87,"text":"Mostly Sunny","code":34}
+  ]
+}
