@@ -12,13 +12,85 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 .App .container {
-  width: 60%;
+  width: 65%;
+  height: 100vh;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 .App .container .weather {
   display: flex;
+  justify-content: space-between;
+  padding: 30px 50px;
+  justify-content: flex-end;
+}
+.App .container .weather.today {
+  height: 50vh;
+}
+.App .container .weather.tomorrow {
+  height: 25vh;
+}
+.App .container .weather.after-tomorrow {
+  height: 25vh;
+}
+.App .container .weather.active .left {
+  width: 50%;
+}
+.App .container .weather.active .left .icon {
+  font-size: 20em;
+  color: #ffffff;
+}
+.App .container .weather.active .right {
+  width: 50%;
+}
+.App .container .weather.active .right h2,
+.App .container .weather.active .right .temp,
+.App .container .weather.active .right .clima-estado,
+.App .container .weather.active .right .infos {
+  font-size: 40px;
+}
+.App .container .weather.active .right .clima {
+  display: block;
+}
+.App .container .weather.active .right h2 {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.App .container .weather.active .right .temp {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.App .container .weather.active .right .clima-estado {
+  text-transform: capitalize;
+  font-size: 45px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.App .container .weather.active .right .infos {
+  font-size: 25px;
+  margin: 5px;
+}
+.App .container .weather .left,
+.App .container .weather .right {
+  width: 50%;
+}
+.App .container .weather .left h2,
+.App .container .weather .right h2,
+.App .container .weather .left .temp,
+.App .container .weather .right .temp,
+.App .container .weather .left .clima-estado,
+.App .container .weather .right .clima-estado,
+.App .container .weather .left .infos,
+.App .container .weather .right .infos {
+  color: #ffffff;
+  font-size: 30px;
+}
+.App .container .weather .left .clima,
+.App .container .weather .right .clima {
+  display: none;
 }
 .home {
   width: 100%;

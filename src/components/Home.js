@@ -5,8 +5,7 @@ import { GoogleComponent } from 'react-google-location';
 const API_KEY = "AIzaSyCVgJY7YKI29gST0kQ6lhXg3MAuJQ-wvjg";
 
 var URLlocation = (lat, long) => "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=c63386b4f77e46de817bdf94f552cddf";
-var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/weather?q=" + place + "&units=metric&APPID=7ba73e0eb8efe773ed08bfd0627f07b8";
-
+var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/forecast?q=" + place + "&APPID=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt&units=metric&cnt=3"
 const URLbackground = "https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
 const URLbackgroundBase = "https://www.bing.com";
 
@@ -20,14 +19,28 @@ export default class Home extends Component{
           temperatura: null,
           pressao: null,
           humidade: null,
-          vento: null
+          vento: null,
+          clima: null,
+          climaDescricao: null,
+          temperaturaAmanha: null,
+          pressaoAmanha: null,
+          humidadeAmanha: null,
+          ventoAmanha: null,
+          climaAmanha: null,
+          climaDescricaoAmanha: null,
+          temperaturaAmanhaDepois: null,
+          pressaoAmanhaDepois: null,
+          humidadeAmanhaDepois: null,
+          ventoAmanhaDepois: null,
+          climaAmanhaDepois: null,
+          climaDescricaoAmanhaDepois: null
         };
       }
 
     componentDidMount(){
         if('geolocation' in navigator){
             // Posicao em movimento
-            const watcher = navigator.geolocation.watchPosition((position) => {
+            navigator.geolocation.watchPosition((position) => {
               const data = axios.get(URLlocation(position.coords.latitude, position.coords.longitude));
               try{
                 data.then((res) => {
@@ -36,10 +49,24 @@ export default class Home extends Component{
                     temp.then((res) => {
                       console.log(res.data)
                       this.setState({
-                        temperatura: res.data.main.temp,
-                        pressao: res.data.main.pressure,
-                        humidade: res.data.main.humidity,
-                        vento: res.data.wind.speed
+                        temperatura: res.data.list[0].main.temp,
+                        pressao: res.data.list[0].main.pressure,
+                        humidade: res.data.list[0].main.humidity,
+                        vento: res.data.list[0].wind.speed,
+                        clima: res.data.list[0].weather[0].main,
+                        climaDescricao: res.data.list[0].weather[0].description,
+                        temperaturaAmanha: res.data.list[1].main.temp,
+                        pressaoAmanha: res.data.list[1].main.pressure,
+                        humidadeAmanha: res.data.list[1].main.humidity,
+                        ventoAmanha: res.data.list[1].wind.speed,
+                        climaAmanha: res.data.list[1].weather[0].main,
+                        climaDescricaoAmanha: res.data.list[1].weather[0].description,
+                        temperaturaAmanhaDepois: res.data.list[2].main.temp,
+                        pressaoAmanhaDepois: res.data.list[2].main.pressure,
+                        humidadeAmanhaDepois: res.data.list[2].main.humidity,
+                        ventoAmanhaDepois: res.data.list[2].wind.speed,
+                        climaAmanhaDepois: res.data.list[2].weather[0].main,
+                        climaDescricaoAmanhaDepois: res.data.list[2].weather[0].description,
                       })
                     })
                   }
@@ -81,20 +108,65 @@ export default class Home extends Component{
                   // locationBoxStyle={'custom-style'}
                   // locationListStyle={'custom-style-list'}
                   onChange={(e) => { this.setState({ place: e }) }} />
-                  <div className="weather today">
+                  <div className="weather today active" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(255, 255, 0, .5	)" : "rgba(112, 128, 144,	.6)"}}>
                     <div className="left">
-                      <p className="icon" data-icon="B"></p>
+                      {
+                        this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                      }
+                      {
+                        this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                      }
                     </div>
                     <div className="right">
                       <h2>Hoje</h2>
-                      <p>{this.state.temperatura ? this.state.temperatura + "ºC" : "--"}</p>
+                      <p className="temp">{this.state.temperatura ? this.state.temperatura + "ºC" : "--"}</p>
                       <div className="clima">
-                        <h4>Ensolarado</h4>
-                        <p>Vento: <span>NO {this.state.vento} km/h</span></p>
-                        <p>Humidade: <span>{this.state.humidade}%</span></p>
-                        <p>Pressão: <span>{this.state.pressao}hPA</span></p>
+                        <h4 className="clima-estado">{this.state.climaDescricao}</h4>
+                        <p className="infos">Vento: <span>NO {this.state.vento} km/h</span></p>
+                        <p className="infos">Humidade: <span>{this.state.humidade}%</span></p>
+                        <p className="infos">Pressão: <span>{this.state.pressao}hPA</span></p>
                       </div>
                     </div>
+                  </div>
+                  <div className="weather tomorrow" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(250, 200, 0, .9	)" : "rgba(112, 128, 144,	.6)"}}>
+                    {/* <div className="left">
+                        {
+                          this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                        }
+                        {
+                          this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                        }
+                      </div> */}
+                      <div className="right">
+                        <h2>Amanhã</h2>
+                        <p className="temp">{this.state.temperaturaAmanha ? this.state.temperaturaAmanha + "ºC" : "--"}</p>
+                        <div className="clima">
+                          <h4 className="clima-estado">{this.state.climaDescricaoAmanha}</h4>
+                          <p className="infos">Vento: <span>NO {this.state.ventoAmanha} km/h</span></p>
+                          <p className="infos">Humidade: <span>{this.state.humidadeAmanha}%</span></p>
+                          <p className="infos">Pressão: <span>{this.state.pressaoAmanha}hPA</span></p>
+                        </div>
+                      </div>
+                  </div>
+                  <div className="weather after-tomorrow" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(255, 160, 0, 1	)" : "rgba(112, 128, 144,	.6)"}}>
+                      {/* <div className="left">
+                        {
+                          this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                        }
+                        {
+                          this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                        }
+                      </div> */}
+                      <div className="right">
+                        <h2>Depois de Amanhã</h2>
+                        <p className="temp">{this.state.temperaturaAmanhaDepois ? this.state.temperaturaAmanhaDepois + "ºC" : "--"}</p>
+                        <div className="clima">
+                          <h4 className="clima-estado">{this.state.climaDescricaoAmanhaDepois}</h4>
+                          <p className="infos">Vento: <span>NO {this.state.ventoAmanhaDepois} km/h</span></p>
+                          <p className="infos">Humidade: <span>{this.state.humidadeAmanhaDepois}%</span></p>
+                          <p className="infos">Pressão: <span>{this.state.pressaoAmanhaDepois}hPA</span></p>
+                        </div>
+                      </div>
                   </div>
               </div>
             </div>
