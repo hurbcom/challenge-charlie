@@ -21,7 +21,6 @@ export function getTemperature(temp){
 }
 
 export function defineTemperatureColor(temp){
-    console.log(temp)
     if(temp < 35 && temp > 15){
         return(
              "yellow"

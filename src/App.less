@@ -55,6 +55,7 @@
       display: flex;
       justify-content: space-between;
       padding: 30px 50px; 
+      cursor: pointer;
       transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       &.today{
         height: 25vh;
@@ -133,6 +134,27 @@
         }
       }
       
+    }
+    .location-search-input{
+      width: 100%;
+      outline: none;
+      box-sizing: border-box;
+      height: 50px;
+      font-size: 40px;
+      border: 0;
+      padding: 40px 0;
+      text-indent: 60px;
+    }
+    .busca{
+      position: relative;
+    }
+    .icon-menu{
+      position: absolute;
+      top: 40px;
+      left: 30px;
+      font-size: 40px;
+      transform: translate(-50%, -50%);
+      opacity: .5;
     }
   }
 }

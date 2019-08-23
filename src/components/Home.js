@@ -7,9 +7,9 @@ import {
   getLatLng,
 } from 'react-places-autocomplete';
 import {defineTemperatureColor} from "../services/temperatura";
+import {defineIcons} from "../services/icons";
+import Loader from "../imgs/loading.gif";
 import $ from "jquery";
-
-const API_KEY = "AIzaSyCVgJY7YKI29gST0kQ6lhXg3MAuJQ-wvjg";
 
 var URLlocation = (lat, long) => "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=c63386b4f77e46de817bdf94f552cddf";
 var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/forecast?q=" + place + "&APPID=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt&units=metric&cnt=3"
@@ -21,6 +21,7 @@ export default class Home extends Component{
     constructor(props) {
         super(props)
         this.state = {
+          loading: true,
           place: null,
           latLng: null,
           bg: null,
@@ -48,7 +49,7 @@ export default class Home extends Component{
     componentDidMount(){
         if('geolocation' in navigator){
             // Posicao em movimento
-            navigator.geolocation.watchPosition((position) => {
+            navigator.geolocation.getCurrentPosition((position) => {
               const data = axios.get(URLlocation(position.coords.latitude, position.coords.longitude));
               try{
                 data.then((res) => {
@@ -57,6 +58,8 @@ export default class Home extends Component{
                     temp.then((res) => {
                       console.log(res.data)
                       this.setState({
+                        loading: false,
+                        place: res.data.city.name,
                         temperatura: res.data.list[0].main.temp,
                         pressao: res.data.list[0].main.pressure,
                         humidade: res.data.list[0].main.humidity,
@@ -108,6 +111,9 @@ export default class Home extends Component{
     };
    
     handleSelect = address => {
+      this.setState({
+        loading: true
+      })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then(latLng => {
@@ -121,6 +127,7 @@ export default class Home extends Component{
                     temp.then((res) => {
                       console.log(res.data)
                       this.setState({
+                        loading: false,
                         temperatura: res.data.list[0].main.temp,
                         pressao: res.data.list[0].main.pressure,
                         humidade: res.data.list[0].main.humidity,
@@ -168,12 +175,14 @@ export default class Home extends Component{
                 onSelect={this.handleSelect}
               >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                  <div>
+                  <div className="busca">
+                    <p className="icon icon-menu" data-icon="("></p>
                     <input
                       {...getInputProps({
-                        placeholder: 'Search Places ...',
-                        className: 'location-search-input',
+                        placeholder: 'Cidade',
+                        className: 'location-search-input'
                       })}
+                      defaultValue={this.state.place}
                     />
                     <div className="autocomplete-dropdown-container">
                       {loading && <div>Loading...</div>}
@@ -200,17 +209,12 @@ export default class Home extends Component{
                   </div>
                 )}
               </PlacesAutocomplete>
+             
                   <div className="weather today active">
                     <div className="left">
                       {
-                        this.state.climaDescricao === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
+                        <p className="icon" data-icon={defineIcons(this.state.climaDescricao)}></p>
                       }
-                      {
-                        this.state.climaDescricao === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
-                      }
-                      {
-                          this.state.climaDescricao === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
-                        }
                     </div>
                     <div className="right">
                       <h2>Hoje</h2>
@@ -225,15 +229,7 @@ export default class Home extends Component{
                   </div>
                   <div className="weather tomorrow">
                     <div className="left">
-                        {
-                          this.state.climaDescricaoAmanha === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
-                        }
-                        {
-                          this.state.climaDescricaoAmanha === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
-                        }
-                        {
-                          this.state.climaDescricaoAmanha === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
-                        }
+                        <p className="icon" data-icon={defineIcons(this.state.climaDescricaoAmanha)}></p>
                       </div>
                       <div className="right">
                         <h2>Amanhã</h2>
@@ -248,15 +244,7 @@ export default class Home extends Component{
                   </div>
                   <div className="weather after-tomorrow">
                       <div className="left">
-                        {
-                          this.state.climaDescricaoAmanhaDepois === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
-                        }
-                        {
-                          this.state.climaDescricaoAmanhaDepois === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
-                        }
-                        {
-                          this.state.climaDescricaoAmanhaDepois === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
-                        }
+                      <p className="icon" data-icon={defineIcons(this.state.climaDescricaoAmanhaDepois)}></p>
                       </div>
                       <div className="right">
                         <h2>Depois de Amanhã</h2>
