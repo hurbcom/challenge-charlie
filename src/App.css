@@ -20,15 +20,17 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 }
 .App .container .weather {
   display: flex;
   justify-content: space-between;
   padding: 30px 50px;
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   justify-content: flex-end;
 }
 .App .container .weather.today {
-  height: 50vh;
+  height: 25vh;
 }
 .App .container .weather.tomorrow {
   height: 25vh;
@@ -36,12 +38,18 @@
 .App .container .weather.after-tomorrow {
   height: 25vh;
 }
+.App .container .weather.active {
+  height: 50vh;
+}
 .App .container .weather.active .left {
   width: 50%;
 }
 .App .container .weather.active .left .icon {
   font-size: 20em;
   color: #ffffff;
+  opacity: 1;
+  height: 100%;
+  transition: 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .App .container .weather.active .right {
   width: 50%;
@@ -72,6 +80,14 @@
 .App .container .weather.active .right .infos {
   font-size: 25px;
   margin: 5px;
+  transition: 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.App .container .weather .icon {
+  font-size: 20em;
+  color: #ffffff;
+  opacity: 0;
+  height: 0;
+  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .App .container .weather .left,
 .App .container .weather .right {
@@ -87,6 +103,7 @@
 .App .container .weather .right .infos {
   color: #ffffff;
   font-size: 30px;
+  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .App .container .weather .left .clima,
 .App .container .weather .right .clima {

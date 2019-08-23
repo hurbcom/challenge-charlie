@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import $ from "jquery";
 import { GoogleComponent } from 'react-google-location';
 
 const API_KEY = "AIzaSyCVgJY7YKI29gST0kQ6lhXg3MAuJQ-wvjg";
@@ -96,6 +97,10 @@ export default class Home extends Component{
     }
 
     render(){
+      $(document).on("click", ".weather", function(){
+        $(".weather").removeClass("active");
+        $(this).addClass("active");
+      })
         return(
             <div className="home" style={{ backgroundImage: "url("+this.state.bg+")" }}>
               <div className="container">
@@ -111,15 +116,18 @@ export default class Home extends Component{
                   <div className="weather today active" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(255, 255, 0, .5	)" : "rgba(112, 128, 144,	.6)"}}>
                     <div className="left">
                       {
-                        this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                        this.state.climaDescricao === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
                       }
                       {
-                        this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                        this.state.climaDescricao === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
                       }
+                      {
+                          this.state.climaDescricao === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
+                        }
                     </div>
                     <div className="right">
                       <h2>Hoje</h2>
-                      <p className="temp">{this.state.temperatura ? this.state.temperatura + "ºC" : "--"}</p>
+                      <p className="temp">{this.state.temperatura ? this.state.temperatura + "ºC" : ""}</p>
                       <div className="clima">
                         <h4 className="clima-estado">{this.state.climaDescricao}</h4>
                         <p className="infos">Vento: <span>NO {this.state.vento} km/h</span></p>
@@ -129,17 +137,20 @@ export default class Home extends Component{
                     </div>
                   </div>
                   <div className="weather tomorrow" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(250, 200, 0, .9	)" : "rgba(112, 128, 144,	.6)"}}>
-                    {/* <div className="left">
+                    <div className="left">
                         {
-                          this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                          this.state.climaDescricaoAmanha === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
                         }
                         {
-                          this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                          this.state.climaDescricaoAmanha === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
                         }
-                      </div> */}
+                        {
+                          this.state.climaDescricaoAmanha === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
+                        }
+                      </div>
                       <div className="right">
                         <h2>Amanhã</h2>
-                        <p className="temp">{this.state.temperaturaAmanha ? this.state.temperaturaAmanha + "ºC" : "--"}</p>
+                        <p className="temp">{this.state.temperaturaAmanha ? this.state.temperaturaAmanha + "ºC" : ""}</p>
                         <div className="clima">
                           <h4 className="clima-estado">{this.state.climaDescricaoAmanha}</h4>
                           <p className="infos">Vento: <span>NO {this.state.ventoAmanha} km/h</span></p>
@@ -149,17 +160,20 @@ export default class Home extends Component{
                       </div>
                   </div>
                   <div className="weather after-tomorrow" style={{backgroundColor: this.state.temperatura > 15 ? "rgba(255, 160, 0, 1	)" : "rgba(112, 128, 144,	.6)"}}>
-                      {/* <div className="left">
+                      <div className="left">
                         {
-                          this.state.clima === "Clouds" ? <p className="icon" data-icon="H"></p> : ""
+                          this.state.climaDescricaoAmanhaDepois === "chuva moderada" ? <p className="icon" data-icon="R"></p> : ""
                         }
                         {
-                          this.state.clima === "Rain" ? <p className="icon" data-icon="Q"></p> : ""
+                          this.state.climaDescricaoAmanhaDepois === "chuva fraca" ? <p className="icon" data-icon="Q"></p> : ""
                         }
-                      </div> */}
+                        {
+                          this.state.climaDescricaoAmanhaDepois === "céu pouco nublado" ? <p className="icon" data-icon="H"></p> : ""
+                        }
+                      </div>
                       <div className="right">
                         <h2>Depois de Amanhã</h2>
-                        <p className="temp">{this.state.temperaturaAmanhaDepois ? this.state.temperaturaAmanhaDepois + "ºC" : "--"}</p>
+                        <p className="temp">{this.state.temperaturaAmanhaDepois ? this.state.temperaturaAmanhaDepois + "ºC" : ""}</p>
                         <div className="clima">
                           <h4 className="clima-estado">{this.state.climaDescricaoAmanhaDepois}</h4>
                           <p className="infos">Vento: <span>NO {this.state.ventoAmanhaDepois} km/h</span></p>

@@ -28,13 +28,14 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    
+    overflow-y: hidden;
     .weather{
       display: flex;
       justify-content: space-between;
       padding: 30px 50px; 
+      transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       &.today{
-        height: 50vh;
+        height: 25vh;
       }
       &.tomorrow{
         height: 25vh;
@@ -43,11 +44,15 @@
         height: 25vh;
       }
       &.active{
+        height: 50vh;
         .left{
           width: 50%;
           .icon{
             font-size: 20em;
             color: #ffffff;
+            opacity: 1;
+            height: 100%;
+            transition: .9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
         }
         .right{
@@ -78,8 +83,16 @@
           .infos{
             font-size: 25px;
             margin: 5px;
+            transition: .9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
         }
+      }
+      .icon{
+        font-size: 20em;
+        color: #ffffff;
+        opacity: 0;
+        height: 0;
+        transition: .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
       justify-content: flex-end;
       .left,
@@ -91,6 +104,7 @@
           .infos{
             color: #ffffff;
             font-size: 30px;
+            transition: .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
         .clima{
           display: none;
