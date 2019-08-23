@@ -1,10 +1,11 @@
 import { createStore } from 'redux';
 
-function reducer() {
+function reducer(state, action) {
+
     return [
         {
             id: '1',
-            background: '',
+            background: 'black',
             bgcolor: '',
             localizacao: '',
             icone: '',
@@ -19,6 +20,10 @@ function reducer() {
             pressao: ''
         }
     ];
+    if (action.type === 'SET_BACKGROUND') {
+        console.log('oi');
+        return { ...state, background: action.background }
+    }
 }
 
 const store = createStore(reducer);
