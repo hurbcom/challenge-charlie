@@ -5,7 +5,7 @@ import { GoogleComponent } from 'react-google-location';
 const API_KEY = "AIzaSyCVgJY7YKI29gST0kQ6lhXg3MAuJQ-wvjg";
 
 var URLlocation = (lat, long) => "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=c63386b4f77e46de817bdf94f552cddf";
-var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/weather?q=" + place + "&APPID=7ba73e0eb8efe773ed08bfd0627f07b8";
+var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/weather?q=" + place + "&units=metric&APPID=7ba73e0eb8efe773ed08bfd0627f07b8";
 
 const URLbackground = "https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
 const URLbackgroundBase = "https://www.bing.com";
@@ -16,7 +16,11 @@ export default class Home extends Component{
         super(props)
         this.state = {
           place: null,
-          bg: null
+          bg: null,
+          temperatura: null,
+          pressao: null,
+          humidade: null,
+          vento: null
         };
       }
 
@@ -31,6 +35,12 @@ export default class Home extends Component{
                   try{
                     temp.then((res) => {
                       console.log(res.data)
+                      this.setState({
+                        temperatura: res.data.main.temp,
+                        pressao: res.data.main.pressure,
+                        humidade: res.data.main.humidity,
+                        vento: res.data.wind.speed
+                      })
                     })
                   }
                   catch{
@@ -77,12 +87,12 @@ export default class Home extends Component{
                     </div>
                     <div className="right">
                       <h2>Hoje</h2>
-                      <p>32</p>
+                      <p>{this.state.temperatura ? this.state.temperatura + "ºC" : "--"}</p>
                       <div className="clima">
                         <h4>Ensolarado</h4>
-                        <p>Vento: <span>NO 6.4 km/h</span></p>
-                        <p>Humidade: <span>78%</span></p>
-                        <p>Pressão: <span>1003 hPA</span></p>
+                        <p>Vento: <span>NO {this.state.vento} km/h</span></p>
+                        <p>Humidade: <span>{this.state.humidade}%</span></p>
+                        <p>Pressão: <span>{this.state.pressao}hPA</span></p>
                       </div>
                     </div>
                   </div>
