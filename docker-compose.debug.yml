@@ -5,7 +5,7 @@ services:
     image: challenge-charlie
     build: .
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
     ports:
       - 3000:3000
       - 9229:9229

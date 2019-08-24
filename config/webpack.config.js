@@ -80,10 +80,12 @@ module.exports = function(webpackEnv) {
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {},
+      },
+      {
+        loader: require.resolve('style-loader')
       },
       {
         loader: require.resolve('css-loader'),
@@ -95,6 +97,7 @@ module.exports = function(webpackEnv) {
           importLoaders: 1,
         },
       },
+      
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in

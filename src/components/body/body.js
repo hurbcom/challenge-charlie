@@ -5,10 +5,11 @@ const Body = (city, ...props) => {
     const getWeather = async () => {
         await fetch('http://api.openweathermap.org/data/2.5/weather?q='+ city.city +'&APPID=7ba73e0eb8efe773ed08bfd0627f07b8').then(res => res.json())
         .then((data) => {
-            return data;
+            console.log(data);
         });
     };
 
+    console.log(getWeather());
   return (
   
   <div className={style.layout}>
