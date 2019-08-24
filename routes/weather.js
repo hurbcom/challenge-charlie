@@ -3,41 +3,50 @@ var router = express.Router();
 
 router.get('/:lat/:lon', function(req, res, next) {
 
-  /*getLocation(
-    (location) => {
-      getWeatherInfo(location, weatherSuccess, weatherError);
-    },
-    weatherError
-  );*/
   let lat = req.params.lat;
   let lon = req.params.lon;
 
-  console.log('latitude - ', lat);
-  console.log('longitude - ', lon);
-
   getWeatherInfo(lat, lon, weatherSuccess, weatherError);
 
-  function weatherSuccess(weather) {
-    weather = JSON.parse(weather);
-    console.log('\n success -> ', weather);
-    let response = {
-      today: {
-        temperature: weather.current_observation.condition.temperature,
-        condition: getCondition(weather.current_observation.condition.code),
-        wind: {
-          direction: degreesToCardinal(weather.current_observation.wind.direction),
-          speed: weather.current_observation.wind.speed
-        },
-        humidity: weather.current_observation.atmosphere.humidity,
-        pressure: weather.current_observation.atmosphere.pressure
-      },
-      tomorrow: {
-        temperature: weather.forecasts[1].high
-      },
-      dayafter: {
-        temperature: weather.forecasts[2].high
+  function weatherSuccess({current_observation, forecasts}) {
+    let response = { today: { wind: {} }, tomorrow: {}, dayafter: {} };
+    if (Object.entries(current_observation).length > 0) {
+      console.log('\n\ncurrent_observation -> ', current_observation);
+      response.today.temperature = current_observation.condition.temperature;
+      response.today.condition = getCondition(current_observation.condition.code);
+      if (Object.entries(current_observation.atmosphere).length > 0) {
+        response.today.humidity = current_observation.atmosphere.humidity;
+        response.today.pressure =  current_observation.atmosphere.pressure;
+      } else {
+        response.today.humidity = '(n/a)';
+        response.today.pressure =  '(n/a)';
       }
-    };
+      if (Object.entries(current_observation.wind).length > 0) {
+        response.today.wind.direction = degreesToCardinal(current_observation.wind.direction);
+        response.today.wind.speed = current_observation.wind.speed;
+      } else {
+        response.today.wind.direction = '(n/a)';
+        response.today.wind.speed =  '(n/a)';
+      }
+    } else {
+      response.today.temperature = '(n/a)';
+      response.today.condition = { icon: ')', description: '(n/a)' };
+      response.today.humidity = '(n/a)';
+      response.today.pressure =  '(n/a)';
+      response.today.wind.direction = '(n/a)';
+      response.today.wind.speed = '(n/a)';
+    }
+    if (forecasts[1] != null) {
+      response.tomorrow.temperature = forecasts[1].high;
+    } else {
+      response.tomorrow.temperature = '(n/a)';
+    }
+    if (forecasts[2] != null) {
+      response.dayafter.temperature = forecasts[2].high;
+    } else {
+      response.dayafter.temperature = '(n/a)';
+    }
+
     res.send(response);
   }  
 
@@ -56,10 +65,6 @@ router.get('/:lat/:lon', function(req, res, next) {
 
   }
 
-  function getLocation(success, error) {
-    success({city: 'sorocaba', region: 'sp'});
-  }
-  
   function getWeatherInfo(latitude, longitude, success, error) {
     let OAuth = require('oauth');
     let request = new OAuth.OAuth(
@@ -82,7 +87,7 @@ router.get('/:lat/:lon', function(req, res, next) {
           error(err);
           return;
         }
-        success(data);
+        success(JSON.parse(data));
       }
     );
   }

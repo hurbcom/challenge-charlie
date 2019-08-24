@@ -41,6 +41,11 @@ function getAddressInfo(latitude, longitude) {
 }
 
 function getWeatherInfo(latitude, longitude) {
+
+    document.getElementById('today').innerHTML = 'loading';
+    document.getElementById('tomorrow').innerHTML = 'loading';
+    document.getElementById('day-after').innerHTML = 'loading';
+
     let ajax = Ajax();
     ajax.get(
         `weather/${latitude}/${longitude}`,
@@ -51,8 +56,23 @@ function getWeatherInfo(latitude, longitude) {
     );
 }
 
-function setCurrentLocation({city, state}) {
-    currLocation = city+', '+state;
+function setCurrentLocation({city, town, village, state, county}) {
+    if (city != null) { 
+        currLocation = city;
+    } else if (town != null) {
+        currLocation = town;
+    } else if (village != null) {
+        currLocation = village;
+    } else {
+        currLocation = '(nome indisponível)'
+    }
+
+    if (state != null) {
+        currLocation += ', '+state;
+    } else if (county != null) {
+        currLocation += ', '+county;
+    }
+
     locationInput.value = currLocation;
     lastvalue = currLocation;
 }
@@ -70,13 +90,29 @@ function startGeolocationInputListeners() {
     function searchNewLocation(desiredLoc) {
         if (desiredLoc != lastvalue) {
             lastvalue = desiredLoc;
-            console.log('desired location -> ', desiredLoc);
+            let ajax = Ajax();
+            ajax.get(
+                `https://nominatim.openstreetmap.org/search?format=json&city=${desiredLoc}&zoom=10&addressdetails=1`,
+                (res) => {
+                    if (res.length > 0) {
+                        setCurrentLocation(res[0].address);
+                        getWeatherInfo(res[0].lat, res[0].lon);
+                        locationInput.focus();
+                        return;
+                    }
+                    document.getElementById('today').innerHTML = 'deu ruim';
+                    document.getElementById('tomorrow').innerHTML = 'deu ruim';
+                    document.getElementById('day-after').innerHTML = 'deu ruim';
+                },
+                (res) => {
+                    console.log('err -> ', res);
+                }
+            );
         }
     }
 }
 
 function populatePage(weatherInfo) {
-    console.log('-> ', weatherInfo)
     populateToday(weatherInfo.today);
     populateTomorrow(weatherInfo.tomorrow);
     populateDayAfter(weatherInfo.dayafter);
