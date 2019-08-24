@@ -8,17 +8,13 @@
   <body>
     <div class="container" id="container" style="background-image: url(<%=bgImage%>)">
       <div class="main-card location">
-        Sorocaba, SP
+        <input id="location" value="" />
       </div>
-      <div class="main-card current-weather">
-        main
-      </div>
-      <div class="main-card tomorrow">
-        tomorrow
-      </div>
-      <div class="main-card after-tomorrow">
-        day after
-      </div>
+      <div class="main-card current-weather" id="today"></div>
+      <div class="main-card tomorrow" id="tomorrow"></div>
+      <div class="main-card after-tomorrow" id="day-after"></div>
     </div>
   </body>
+    <script src="/javascripts/ajax.js"></script>
+    <script src="/javascripts/scripts.js"></script>
 </html>

@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/:lat/:lon', function(req, res, next) {
 
-  getLocation(
+  /*getLocation(
     (location) => {
       getWeatherInfo(location, weatherSuccess, weatherError);
     },
     weatherError
-  );
+  );*/
+  let lat = req.params.lat;
+  let lon = req.params.lon;
+
+  console.log('latitude - ', lat);
+  console.log('longitude - ', lon);
+
+  getWeatherInfo(lat, lon, weatherSuccess, weatherError);
 
   function weatherSuccess(weather) {
     weather = JSON.parse(weather);
@@ -16,7 +23,7 @@ router.get('/', function(req, res, next) {
     let response = {
       today: {
         temperature: weather.current_observation.condition.temperature,
-        description: getCondition(weather.current_observation.condition.code),
+        condition: getCondition(weather.current_observation.condition.code),
         wind: {
           direction: degreesToCardinal(weather.current_observation.wind.direction),
           speed: weather.current_observation.wind.speed
@@ -53,7 +60,7 @@ router.get('/', function(req, res, next) {
     success({city: 'sorocaba', region: 'sp'});
   }
   
-  function getWeatherInfo({city, region}, success, error) {
+  function getWeatherInfo(latitude, longitude, success, error) {
     let OAuth = require('oauth');
     let request = new OAuth.OAuth(
       null,
@@ -67,7 +74,7 @@ router.get('/', function(req, res, next) {
       { 'X-Yahoo-App-Id': 'mef1sQ6s' }
     );
     request.get(
-      `https://weather-ydn-yql.media.yahoo.com/forecastrss?location=${city},${region}&format=json&u=c`,
+      `https://weather-ydn-yql.media.yahoo.com/forecastrss?lat=${latitude}&lon=${longitude}&format=json&u=c`,
       null,
       null,
       function (err, data, result) {
@@ -89,99 +96,99 @@ router.get('/', function(req, res, next) {
   function getCondition(code) {
     switch (code) {
       case 0:
-        return 'Tornado';
+        return { icon: 'F', description: 'Tornado' };
       case 1:
-        return 'Tempestade tropical';
+        return { icon: 'T', description: 'Tempestade tropical' };
       case 2:
-        return 'Furacão';
+        return { icon: 'F', description: 'Furacão' };
       case 3:
-        return 'Tempestade de raios severa';
+        return { icon: 'Z', description: 'Tempestade de raios severa' };
       case 4:
-        return 'Tempestade de raios';
+        return { icon: 'O', description: 'Tempestade de raios' };
       case 5:
-        return 'Neve e chuva';
+        return { icon: 'W', description: 'Neve e chuva' };
       case 6:
-        return 'Granizo e chuva';
+        return { icon: 'X', description: 'Granizo e chuva' };
       case 7:
-        return 'Neve e granizo';
+        return { icon: 'W', description: 'Neve e granizo' };
       case 8:
-        return 'Chuvisco congelante';
+        return { icon: 'R', description: 'Chuvisco congelante' };
       case 9:
-        return 'Chuvisco';
+        return { icon: 'Q', description: 'Chuvisco' };
       case 10:
-        return 'Chuva congelante';
+        return { icon: 'R', description: 'Chuva congelante' };
       case 11:
-        return 'Pancadas de chuva';
+        return { icon: 'T', description: 'Pancadas de chuva' };
       case 12:
-        return 'Chuva';
+        return { icon: 'X', description: 'Chuva' };
       case 13:
-        return 'Flocos de neve'
+        return { icon: 'U', description: 'Flocos de neve' };
       case 14:
-        return 'Pancadas de neve leve';
+        return { icon: 'V', description: 'Pancadas de neve leve' };
       case 15:
-        return 'Neve com vento';
+        return { icon: 'U', description: 'Neve com vento' };
       case 16:
-        return 'Neve';
+        return { icon: 'U', description: 'Neve' };
       case 17:
-        return 'Geada';
+        return { icon: 'V', description: 'Geada' };
       case 18:
-        return 'Chuvisco';
+        return { icon: 'Q', description: 'Chuvisco' };
       case 19:
-        return 'Empoeirado'
+        return { icon: 'M', description: 'Empoeirado' };
       case 20:
-        return 'Neblina';
+        return { icon: 'M', description: 'Neblina' };
       case 21:
-        return 'Serração';
+        return { icon: 'M', description: 'Serração' };
       case 22:
-        return 'Esfumaçado';
+        return { icon: 'M', description: 'Esfumaçado' };
       case 23:
-        return 'Tesmpestuoso';
+        return { icon: 'Z', description: 'Tesmpestuoso' };
       case 24:
-        return 'Ventania';
+        return { icon: 'F', description: 'Ventania' };
       case 25:
-        return 'Frio';
+        return { icon: 'G', description: 'Frio' };
       case 26:
-        return 'Nublado';
+        return { icon: 'Y', description: 'Nublado' };
       case 27:
       case 28:
       case 29:
       case 30:
-        return 'Parcialmente nublado';
+        return { icon: 'H', description: 'Parcialmente nublado' };
       case 31:
-        return 'Céu limpo';
+        return { icon: 'B', description: 'Céu limpo' };
       case 32:
-        return 'Ensolarado';
+        return { icon: 'B', description: 'Ensolarado' };
       case 33:
       case 34:
-        return 'Bom tempo';
+        return { icon: 'B', description: 'Bom tempo' };
       case 35:
-        return 'Chuva com ganizo';
+        return { icon: 'X', description: 'Chuva com ganizo' };
       case 36:
-        return 'Quente';
+        return { icon: 'B', description: 'Quente' };
       case 37:
-        return 'Tempestades de raios isoladas';
+        return { icon: 'P', description: 'Tempestades de raios isoladas' };
       case 38:
-        return 'Tempestades de raios dispersas';
+        return { icon: 'P', description: 'Tempestades de raios dispersas' };
       case 39:
-        return 'Pancadas de chuva dispersas';
+        return { icon: 'T', description: 'Pancadas de chuva dispersas' };
       case 40:
-        return 'Chuva pesada';
+        return { icon: 'W', description: 'Chuva pesada' };
       case 41:
-        return 'Pancadas de neve dispersas';
+        return { icon: 'V', description: 'Pancadas de neve dispersas' };
       case 42:
-        return 'Neve pesada';
+        return { icon: 'W', description: 'Neve pesada' };
       case 43:
-        return 'Nevasca';
+        return { icon: 'W', description: 'Nevasca' };
       case 44:
-        return 'Indisponível';
+        return { icon: '(na)', description: 'Indisponível' };
       case 45:
-        return 'Pancadas de chuva dispersas';
+        return { icon: 'T', description: 'Pancadas de chuva dispersas' };
       case 46:
-        return 'Pancadas de neve dispersas';
+        return { icon: 'V', description: 'Pancadas de neve dispersas' };
       case 47:
-        return 'Tempestades de raios dispersas';
+        return { icon: 'P', description: 'Tempestades de raios dispersas' };
       default:
-        return 'Indisponível';
+        return { icon: '(na)', description: 'Indisponível' };
     }
   }  
   

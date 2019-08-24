@@ -3,7 +3,6 @@ var router = express.Router();
 
 const https = require('https');
 
-
 router.get('/', function(req, res, next) {
 
   getBackgroundImage(
