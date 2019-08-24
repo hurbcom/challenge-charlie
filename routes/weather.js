@@ -11,7 +11,6 @@ router.get('/:lat/:lon', function(req, res, next) {
   function weatherSuccess({current_observation, forecasts}) {
     let response = { today: { wind: {} }, tomorrow: {}, dayafter: {} };
     if (Object.entries(current_observation).length > 0) {
-      console.log('\n\ncurrent_observation -> ', current_observation);
       response.today.temperature = current_observation.condition.temperature;
       response.today.condition = getCondition(current_observation.condition.code);
       if (Object.entries(current_observation.atmosphere).length > 0) {
