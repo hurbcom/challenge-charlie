@@ -15,6 +15,14 @@ function App() {
         setLoc(city+ ', ' + data.results[0].components.state);
       },
     )}
+
+    const getBackground = async (pos) => {
+      await fetch(' https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR').then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      },
+    )}
+    getBackground();
     navigator.geolocation.getCurrentPosition(getLocation);
   },[city]);
 
