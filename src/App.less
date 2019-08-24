@@ -23,7 +23,7 @@
 
 .App{
   .container{
-    width: 65%;
+    max-width: 933px;
     height: @totalHeight;
     margin: 0 auto;
     display: flex;
@@ -51,23 +51,37 @@
         background-color: rgb(18, 49, 134);
       }
     }
+    &.red{
+      .today{
+        background-color: rgba(255, 0, 0, 0.4);
+      }
+      .tomorrow{
+        background-color: rgba(171, 29, 29, 0.82);
+      }
+      .after-tomorrow{
+        background-color: rgb(171, 29, 29);
+      }
+    }
     .weather{
       display: flex;
       justify-content: space-between;
       padding: 30px 50px; 
       cursor: pointer;
-      transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      // transition: 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       &.today{
-        height: 25vh;
+        height: calc(@totalHeight - 80 / 3);
+        transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.tomorrow{
-        height: 25vh;
+        height: calc(@totalHeight - 80 / 3);
+        transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.after-tomorrow{
-        height: 25vh;
+        height: calc(@totalHeight - 80 / 3);
+        transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.active{
-        height: 50vh;
+        height: calc(@totalHeight - 80 / 2);
         .left{
           width: 50%;
           .icon{
@@ -135,6 +149,9 @@
       }
       
     }
+    .weather-components{
+      height: calc(@totalHeight - 80px);
+    }
     .location-search-input{
       width: 100%;
       outline: none;
@@ -155,6 +172,12 @@
       font-size: 40px;
       transform: translate(-50%, -50%);
       opacity: .5;
+    }
+    .loading{
+      text-align: center;
+      font-size: 50px;
+      color: #ffffff;
+      margin-top: 150px;
     }
   }
 }

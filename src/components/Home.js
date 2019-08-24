@@ -7,14 +7,9 @@ import {
   getLatLng,
 } from 'react-places-autocomplete';
 import {defineTemperatureColor} from "../services/temperatura";
-import {defineIcons} from "../services/icons";
-import Loader from "../imgs/loading.gif";
+import {setWeather, setLocation, URLbackground, URLbackgroundBase} from "../services/urls";
+import Weather from "./Weather";
 import $ from "jquery";
-
-var URLlocation = (lat, long) => "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=c63386b4f77e46de817bdf94f552cddf";
-var URLweathermap = (place) => "http://api.openweathermap.org/data/2.5/forecast?q=" + place + "&APPID=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt&units=metric&cnt=3"
-const URLbackground = "https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
-const URLbackgroundBase = "https://www.bing.com";
 
 export default class Home extends Component{
 
@@ -22,7 +17,7 @@ export default class Home extends Component{
         super(props)
         this.state = {
           loading: true,
-          place: null,
+          address: null,
           latLng: null,
           bg: null,
           temperatura: null,
@@ -48,18 +43,20 @@ export default class Home extends Component{
 
     componentDidMount(){
         if('geolocation' in navigator){
-            // Posicao em movimento
+            // Posicao do usuario pelo navegador
             navigator.geolocation.getCurrentPosition((position) => {
-              const data = axios.get(URLlocation(position.coords.latitude, position.coords.longitude));
+              // Nome da cidade pela latitude e longitude
+              const data = setLocation(position.coords.latitude, position.coords.longitude);
               try{
                 data.then((res) => {
-                  const temp = axios.get(URLweathermap(res.data.results[0].components.city))
+                  // Previsão pelo nome da cidade
+                  const temp = setWeather(res.data.results[0].components.city);
                   try{
                     temp.then((res) => {
                       console.log(res.data)
                       this.setState({
                         loading: false,
-                        place: res.data.city.name,
+                        address: res.data.city.name,
                         temperatura: res.data.list[0].main.temp,
                         pressao: res.data.list[0].main.pressure,
                         humidade: res.data.list[0].main.humidity,
@@ -94,6 +91,7 @@ export default class Home extends Component{
             })
           }
 
+          // Setando background da aplicação
           const backGround = axios.get(URLbackground);
           try {
               backGround.then((res) => {
@@ -106,23 +104,29 @@ export default class Home extends Component{
           }
     }
 
+    // Evento de change do input de cidade
     handleChange = address => {
       this.setState({ address });
     };
    
+    // Evento de select do input de cidade
     handleSelect = address => {
       this.setState({
-        loading: true
+        loading: true,
+        address: address
       })
+
+      // Utilizando react-places-autocomplete, com base na API de localização do Google para definir o local selecionado
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then(latLng => {
           this.setState({ latLng: latLng });
-          console.log('Success', latLng)
-          const data = axios.get(URLlocation(this.state.latLng.lat, this.state.latLng.lng));
+          // Nome da cidade pela latitude e longitude
+          const data = setLocation(this.state.latLng.lat, this.state.latLng.lng);
               try{
                 data.then((res) => {
-                  const temp = axios.get(URLweathermap(res.data.results[0].components.city))
+                // Previsão da cidade com base no nome dela
+                  const temp = setWeather(res.data.results[0].components.city)
                   try{
                     temp.then((res) => {
                       console.log(res.data)
@@ -161,7 +165,47 @@ export default class Home extends Component{
         .catch(error => console.error('Error', error));
     };
 
+    // Defini a view enquanto estiver fazendo a requisição da API
+    home(){
+      if(!this.state.loading){
+        return(
+          <div className="weather-components">
+            <Weather
+              dia="hoje"
+              temperatura={this.state.temperatura}
+              vento={this.state.vento}
+              humidade={this.state.humidade}
+              pressao={this.state.pressao}
+              descricao={this.state.climaDescricao}
+              className={"today active"}
+            />
+            <Weather
+              dia="Amanhã"
+              temperatura={this.state.temperaturaAmanha}
+              vento={this.state.ventoAmanha}
+              humidade={this.state.humidadeAmanha}
+              pressao={this.state.pressaoAmanha}
+              descricao={this.state.climaDescricaoAmanha}
+              className={"tomorrow"}
+            />
+            <Weather
+              dia="Depois de Amanhã"
+              temperatura={this.state.temperaturaAmanhaDepois}
+              vento={this.state.ventoAmanhaDepois}
+              humidade={this.state.humidadeAmanhaDepois}
+              pressao={this.state.pressaoAmanhaDepois}
+              descricao={this.state.climaDescricaoAmanhaDepois}
+              className={"after-tomorrow"}
+            />
+          </div>
+        )
+      }else{
+        return <p className="loading">Procurando Previsão {this.state.address}</p>
+      }
+    }
+
     render(){
+      // Define qual componente de temperatura estará aberto ou não
       $(document).on("click", ".weather", function(){
         $(".weather").removeClass("active");
         $(this).addClass("active");
@@ -169,6 +213,7 @@ export default class Home extends Component{
         return(
             <div className="home" style={{ backgroundImage: "url("+this.state.bg+")" }}>
               <div className={`container ${defineTemperatureColor(this.state.temperatura)}`}>
+                {/* Input de autocomplete address */}
               <PlacesAutocomplete
                 value={this.state.address}
                 onChange={this.handleChange}
@@ -209,54 +254,10 @@ export default class Home extends Component{
                   </div>
                 )}
               </PlacesAutocomplete>
-             
-                  <div className="weather today active">
-                    <div className="left">
-                      {
-                        <p className="icon" data-icon={defineIcons(this.state.climaDescricao)}></p>
-                      }
-                    </div>
-                    <div className="right">
-                      <h2>Hoje</h2>
-                      <p className="temp">{this.state.temperatura ? this.state.temperatura + "ºC" : ""}</p>
-                      <div className="clima">
-                        <h4 className="clima-estado">{this.state.climaDescricao}</h4>
-                        <p className="infos">Vento: <span>NO {this.state.vento} km/h</span></p>
-                        <p className="infos">Humidade: <span>{this.state.humidade}%</span></p>
-                        <p className="infos">Pressão: <span>{this.state.pressao}hPA</span></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="weather tomorrow">
-                    <div className="left">
-                        <p className="icon" data-icon={defineIcons(this.state.climaDescricaoAmanha)}></p>
-                      </div>
-                      <div className="right">
-                        <h2>Amanhã</h2>
-                        <p className="temp">{this.state.temperaturaAmanha ? this.state.temperaturaAmanha + "ºC" : ""}</p>
-                        <div className="clima">
-                          <h4 className="clima-estado">{this.state.climaDescricaoAmanha}</h4>
-                          <p className="infos">Vento: <span>NO {this.state.ventoAmanha} km/h</span></p>
-                          <p className="infos">Humidade: <span>{this.state.humidadeAmanha}%</span></p>
-                          <p className="infos">Pressão: <span>{this.state.pressaoAmanha}hPA</span></p>
-                        </div>
-                      </div>
-                  </div>
-                  <div className="weather after-tomorrow">
-                      <div className="left">
-                      <p className="icon" data-icon={defineIcons(this.state.climaDescricaoAmanhaDepois)}></p>
-                      </div>
-                      <div className="right">
-                        <h2>Depois de Amanhã</h2>
-                        <p className="temp">{this.state.temperaturaAmanhaDepois ? this.state.temperaturaAmanhaDepois + "ºC" : ""}</p>
-                        <div className="clima">
-                          <h4 className="clima-estado">{this.state.climaDescricaoAmanhaDepois}</h4>
-                          <p className="infos">Vento: <span>NO {this.state.ventoAmanhaDepois} km/h</span></p>
-                          <p className="infos">Humidade: <span>{this.state.humidadeAmanhaDepois}%</span></p>
-                          <p className="infos">Pressão: <span>{this.state.pressaoAmanhaDepois}hPA</span></p>
-                        </div>
-                      </div>
-                  </div>
+              
+              {/* View */}
+              {this.home()}
+
               </div>
             </div>
         )

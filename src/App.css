@@ -15,7 +15,7 @@
   font-family: 'Roboto', sans-serif;
 }
 .App .container {
-  width: 65%;
+  max-width: 933px;
   height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -40,25 +40,36 @@
 .App .container.blue .after-tomorrow {
   background-color: #123186;
 }
+.App .container.red .today {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+.App .container.red .tomorrow {
+  background-color: rgba(171, 29, 29, 0.82);
+}
+.App .container.red .after-tomorrow {
+  background-color: #ab1d1d;
+}
 .App .container .weather {
   display: flex;
   justify-content: space-between;
   padding: 30px 50px;
   cursor: pointer;
-  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   justify-content: flex-end;
 }
 .App .container .weather.today {
-  height: 25vh;
+  height: calc(100vh - 80 / 3);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .App .container .weather.tomorrow {
-  height: 25vh;
+  height: calc(100vh - 80 / 3);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .App .container .weather.after-tomorrow {
-  height: 25vh;
+  height: calc(100vh - 80 / 3);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .App .container .weather.active {
-  height: 50vh;
+  height: calc(100vh - 80 / 2);
 }
 .App .container .weather.active .left {
   width: 50%;
@@ -128,6 +139,9 @@
 .App .container .weather .right .clima {
   display: none;
 }
+.App .container .weather-components {
+  height: calc(100vh - 80px);
+}
 .App .container .location-search-input {
   width: 100%;
   outline: none;
@@ -148,6 +162,12 @@
   font-size: 40px;
   transform: translate(-50%, -50%);
   opacity: 0.5;
+}
+.App .container .loading {
+  text-align: center;
+  font-size: 50px;
+  color: #ffffff;
+  margin-top: 150px;
 }
 .home {
   width: 100%;
