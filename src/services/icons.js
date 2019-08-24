@@ -19,7 +19,7 @@ export function defineIcons(desc){
             "S"
         )
     }
-    if(desc ==="nuvens quebradas"){
+    if(desc ==="nuvens quebradas" || desc ==="nublado"){
         return(
             "Y"
         )

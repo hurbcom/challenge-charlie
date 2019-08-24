@@ -67,21 +67,17 @@
       justify-content: space-between;
       padding: 30px 50px; 
       cursor: pointer;
-      // transition: 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       &.today{
-        height: calc(@totalHeight - 80 / 3);
         transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.tomorrow{
-        height: calc(@totalHeight - 80 / 3);
         transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.after-tomorrow{
-        height: calc(@totalHeight - 80 / 3);
         transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       &.active{
-        height: calc(@totalHeight - 80 / 2);
         .left{
           width: 50%;
           .icon{
@@ -123,6 +119,7 @@
             transition: .9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
         }
+        cursor: default;
       }
       .icon{
         font-size: 20em;
@@ -142,6 +139,10 @@
             color: #ffffff;
             font-size: 30px;
             transition: .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          .temp{
+            max-width: 70px;
+            cursor: pointer;
           }
         .clima{
           display: none;
@@ -185,4 +186,61 @@
 .home{
   width: 100%;
   height: @totalHeight;
+}
+
+@media screen {
+  @media (max-width: 993px) {
+    .App{
+      .container{
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media screen {
+  @media (max-width: 800px) {
+    .App{
+      .container{
+        .weather{
+          flex-direction: column;
+          height: 100%;
+          .icon{
+            font-size: 5em;
+          }
+          &.active{
+            .left,
+            .right{
+              width: 100%;
+            }
+            .left{
+              .icon{
+                font-size: 5em;
+              }
+            }
+            .right{
+              display: flex;
+              justify-content: space-between;
+              h2{
+                font-size: 30px;
+              }
+              .clima-estado{
+                font-size: 35px;
+              }
+            }
+          }
+          .right{
+            h2{
+              text-transform: capitalize;
+            }
+          }
+        }
+        .weather-components{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
 }

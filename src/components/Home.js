@@ -16,6 +16,7 @@ export default class Home extends Component{
     constructor(props) {
         super(props)
         this.state = {
+          error: false,
           loading: true,
           address: null,
           latLng: null,
@@ -53,8 +54,8 @@ export default class Home extends Component{
                   const temp = setWeather(res.data.results[0].components.city);
                   try{
                     temp.then((res) => {
-                      console.log(res.data)
                       this.setState({
+                        error: false,
                         loading: false,
                         address: res.data.city.name,
                         temperatura: res.data.list[0].main.temp,
@@ -79,15 +80,21 @@ export default class Home extends Component{
                     })
                   }
                   catch{
-                    console.log("error")
+                    this.setState({
+                      error: true
+                    })
                   }
                 })
               }
               catch{
-                console.log("error")
+                this.setState({
+                  error: true
+                })
               }
             }, (error) => {
-              console.log(error)
+              this.setState({
+                error: true
+              })
             })
           }
 
@@ -100,7 +107,9 @@ export default class Home extends Component{
             
           }
           catch{
-              console.log("error")
+            this.setState({
+              error: true
+            })
           }
     }
 
@@ -129,8 +138,8 @@ export default class Home extends Component{
                   const temp = setWeather(res.data.results[0].components.city)
                   try{
                     temp.then((res) => {
-                      console.log(res.data)
                       this.setState({
+                        error: false,
                         loading: false,
                         temperatura: res.data.list[0].main.temp,
                         pressao: res.data.list[0].main.pressure,
@@ -154,53 +163,65 @@ export default class Home extends Component{
                     })
                   }
                   catch{
-                    console.log("error")
+                    this.setState({
+                      error: true
+                    })
                   }
                 })
               }
               catch{
-                console.log("error")
+                this.setState({
+                  error: true
+                })
               }
         })
-        .catch(error => console.error('Error', error));
+        .catch((error) => {
+          this.setState({
+            error: true
+          })
+        });
     };
 
     // Defini a view enquanto estiver fazendo a requisição da API
     home(){
-      if(!this.state.loading){
-        return(
-          <div className="weather-components">
-            <Weather
-              dia="hoje"
-              temperatura={this.state.temperatura}
-              vento={this.state.vento}
-              humidade={this.state.humidade}
-              pressao={this.state.pressao}
-              descricao={this.state.climaDescricao}
-              className={"today active"}
-            />
-            <Weather
-              dia="Amanhã"
-              temperatura={this.state.temperaturaAmanha}
-              vento={this.state.ventoAmanha}
-              humidade={this.state.humidadeAmanha}
-              pressao={this.state.pressaoAmanha}
-              descricao={this.state.climaDescricaoAmanha}
-              className={"tomorrow"}
-            />
-            <Weather
-              dia="Depois de Amanhã"
-              temperatura={this.state.temperaturaAmanhaDepois}
-              vento={this.state.ventoAmanhaDepois}
-              humidade={this.state.humidadeAmanhaDepois}
-              pressao={this.state.pressaoAmanhaDepois}
-              descricao={this.state.climaDescricaoAmanhaDepois}
-              className={"after-tomorrow"}
-            />
-          </div>
-        )
+      if(this.state.error){
+        return <p className="loading">Alguma coisa está errada em {this.state.address}</p>
       }else{
-        return <p className="loading">Procurando Previsão {this.state.address}</p>
+          if(!this.state.loading){
+            return(
+              <div className="weather-components">
+                <Weather
+                  dia="Hoje"
+                  temperatura={this.state.temperatura.toFixed(0)}
+                  vento={this.state.vento}
+                  humidade={this.state.humidade}
+                  pressao={this.state.pressao}
+                  descricao={this.state.climaDescricao}
+                  className={"today active"}
+                />
+                <Weather
+                  dia="Amanhã"
+                  temperatura={this.state.temperaturaAmanha.toFixed(0)}
+                  vento={this.state.ventoAmanha}
+                  humidade={this.state.humidadeAmanha}
+                  pressao={this.state.pressaoAmanha}
+                  descricao={this.state.climaDescricaoAmanha}
+                  className={"tomorrow"}
+                />
+                <Weather
+                  dia="Depois de Amanhã"
+                  temperatura={this.state.temperaturaAmanhaDepois.toFixed(0)}
+                  vento={this.state.ventoAmanhaDepois}
+                  humidade={this.state.humidadeAmanhaDepois}
+                  pressao={this.state.pressaoAmanhaDepois}
+                  descricao={this.state.climaDescricaoAmanhaDepois}
+                  className={"after-tomorrow"}
+                />
+              </div>
+            )
+          }else{
+            return <p className="loading">Procurando Previsão {this.state.address}</p>
+          }
       }
     }
 
@@ -213,7 +234,8 @@ export default class Home extends Component{
         return(
             <div className="home" style={{ backgroundImage: "url("+this.state.bg+")" }}>
               <div className={`container ${defineTemperatureColor(this.state.temperatura)}`}>
-                {/* Input de autocomplete address */}
+              
+              {/* Input de autocomplete address */}
               <PlacesAutocomplete
                 value={this.state.address}
                 onChange={this.handleChange}
