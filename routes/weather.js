@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/:lat/:lon', function(req, res, next) {
+router.get('/:lat/:lon/:unit', function(req, res, next) {
 
   let lat = req.params.lat;
   let lon = req.params.lon;
+  let unit = req.params.unit;
 
   getWeatherInfo(lat, lon, weatherSuccess, weatherError);
 
@@ -78,7 +79,7 @@ router.get('/:lat/:lon', function(req, res, next) {
       { 'X-Yahoo-App-Id': 'mef1sQ6s' }
     );
     request.get(
-      `https://weather-ydn-yql.media.yahoo.com/forecastrss?lat=${latitude}&lon=${longitude}&format=json&u=c`,
+      `https://weather-ydn-yql.media.yahoo.com/forecastrss?lat=${latitude}&lon=${longitude}&u=${unit}&format=json`,
       null,
       null,
       function (err, data, result) {

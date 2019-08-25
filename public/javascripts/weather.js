@@ -4,10 +4,10 @@ function Weather() {
 
     return this;
 
-    function getInfo(latitude, longitude, success, error) {
+    function getInfo(latitude, longitude, unit, success, error) {
         let ajax = Ajax();
         ajax.get(
-            `weather/${latitude}/${longitude}`,
+            `weather/${latitude}/${longitude}/${unit}`,
             success,
             error
         );

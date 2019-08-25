@@ -23,13 +23,13 @@ function Display() {
                 <div class="main-weather-text">
                 <div class="todays-temperature">
                     <strong>HOJE:</strong><br />
-                    ${temperature} C
+                    <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
                 </div>
                 <div class="todays-description">${condition.description}</div>
                 <div class="todays-details">
-                    Vento: ${wind.direction} ${wind.speed} km/h<br />
+                    Vento: ${wind.direction} ${wind.speed} ${(unit.value == 'c') ? 'km/h' : 'mph'}<br />
                     Humidade: ${humidity} %<br />
-                    Pressão: ${pressure} hPA
+                    Pressão: ${pressure} ${(unit.value == 'c') ? 'mbar' : 'inHg'}
                 </div>
             </div>`;
     }
@@ -37,17 +37,26 @@ function Display() {
     function populateTomorrow({temperature}) {
         setBackgroundColor(tomorrow, temperature);
         tomorrow.style.color = getFontColor(temperature);
-        tomorrow.innerHTML = `<div class="main-weather-text"><strong>Amanhã</strong><br />${temperature}C</div>`;
+        tomorrow.innerHTML = `<div class="main-weather-text">
+            <strong>Amanhã</strong><br />
+            <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
+        </div>`;
     }
 
     function populateDayAfter({temperature}) {
         setBackgroundColor(dayAfter, temperature);
         dayAfter.style.color = getFontColor(temperature);
-        dayAfter.innerHTML = `<div class="main-weather-text"><strong>Depois de amanhã</strong><br />${temperature}C</div>`;
+        dayAfter.innerHTML = `<div class="main-weather-text">
+            <strong>Depois de amanhã</strong><br />
+            <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
+        </div>`;
     }
 
     function loading() {
-        let loadingMsg = `<div class="main-weather-loading"><img src="/images/loading.gif" width="5%" /><br />loading</div>`;
+        let loadingMsg = `<div class="main-weather-loading">
+            <img src="/images/loading.gif" width="5%" /><br />
+            loading
+        </div>`;
         today.innerHTML = loadingMsg;
         tomorrow.innerHTML = loadingMsg;
         dayAfter.innerHTML = loadingMsg;
@@ -67,6 +76,7 @@ function Display() {
 
     function setBackgroundColor(el, temp) {
         let transparency = 1;
+        if (unit.value == 'f') temp = Math.floor((temp - 32) * 5 / 9);
         if (temp < -35) {
             setElementBackground(el, `rgb(0, 0, 255, .8)`);
             return;

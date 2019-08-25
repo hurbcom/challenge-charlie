@@ -7,9 +7,6 @@ router.get('/:lat/:lon', function(req, res, next) {
   let lat = req.params.lat;
   let lon = req.params.lon;
 
-  console.log('lat - ', lat);
-  console.log('lon - ', lon);
-
   getGeolocation(
     lat,
     lon,

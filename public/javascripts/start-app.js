@@ -2,6 +2,7 @@ let display = Display();
 let locationInfo = LocationInfo();
 let weather = Weather();
 let searchInput = document.getElementById('location');
+let unit = document.getElementById('unit');
 let currLocation = '';
 let lastLocation = '';
 let attemptedLocation = '';
@@ -10,16 +11,16 @@ init();
 
 function init() {
     locationInfo.getGeolocation(geolocationSuccess, error);
-    startSearchInputListeners();
+    startEventListeners();
 }
 
 function geolocationSuccess({latitude, longitude}) {
     display.loading();
-    weather.getInfo(latitude, longitude, display.populatePage, error);
+    weather.getInfo(latitude, longitude, unit.value, display.populatePage, error);
     locationInfo.getAddressInfo(latitude, longitude, setCurrentLocation, error);
 }
 
-function startSearchInputListeners() {
+function startEventListeners() {
     searchInput.addEventListener('blur', () => { search(searchInput.value) })
     searchInput.addEventListener('keydown', (e) => { if (e.which == 13) searchInput.blur() });
     searchInput.addEventListener('focus', () => { searchInput.value = '' });
@@ -43,7 +44,7 @@ function search(desiredLoc) {
 
 function searchSucess({address, lat, lon}) {
     setCurrentLocation(address);
-    if ((lat) && (lon)) weather.getInfo(lat, lon, display.populatePage, error);
+    if ((lat) && (lon)) weather.getInfo(lat, lon, unit.value, display.populatePage, error);
     else display.loadingError();
 }
 
@@ -63,6 +64,20 @@ function setCurrentLocation({ city, town, village, hamlet, state, county }) {
     attemptedLocation = '';
 }
 
+function toggleUnits() {
+    if (unit.value == 'c') {
+        unit.value = 'f';
+    } else {
+        unit.value = 'c';
+    }
+    search(getCityName());
+}
+
 function error(err) {
     console.log('error - ', err);
+}
+
+function getCityName() {
+    let value = currLocation.split(',');
+    return value[0];
 }
