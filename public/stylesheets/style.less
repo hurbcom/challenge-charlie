@@ -11,7 +11,8 @@
 
 @bg-color: #ccf;
 @main-text-color: #fff;
-@main-text-size: 16px;
+@main-text-size: 17px;
+@search-text-size: 18px;
 @font: Verdana, Geneva, Tahoma, sans-serif;
 @gray-01: rgba(0,0,0,.3);
 @gray-02: rgba(0,0,0,.5);
@@ -30,12 +31,22 @@ body {
 
 input {
   border: 0;
-  width: 100%;
+  width: 98%;
   background-color: #ccc;
-  color: #000;
+  color: #333;
   font-family: @font;
   text-align: center;
-  font-size: @main-text-size;
+  font-size: @search-text-size;
+  padding: 2% 1% 2% 1%;
+  font-weight: bold;
+}
+
+.input-icon {
+  position: absolute;
+  font-family: MeteoconsRegular;
+  font-size: 38px;
+  color: #333;
+  padding: 3px 3px 3px 5px;
 }
 
 .container {
@@ -69,13 +80,13 @@ input {
 }
 
 .main-weather-icon {
-  width: 45%;
+  width: 47%;
   float: left;
-  padding: 3% 1% 1% 2%;
+  padding: 1% 1% 1% 2%;
 }
 
 .main-weather-text {
-  width: 45%;
+  width: 48%;
   float: right;
   text-align: left;
   padding: 1% 1% 1% 1%;
@@ -106,5 +117,5 @@ input {
 
 #weather-icon {
   font-family: MeteoconsRegular;
-  font-size: 600%;
+  font-size: 700%;
 }
