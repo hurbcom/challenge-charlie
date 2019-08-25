@@ -10,13 +10,13 @@
 }
 
 @bg-color: #ccf;
-@main-text-color: #ffc;
+@main-text-color: #fff;
 @main-text-size: 16px;
 @font: Verdana, Geneva, Tahoma, sans-serif;
-@tranparency-01: rgba(0,0,0,.2);
-@tranparency-02: rgba(0,0,0,.3);
-@tranparency-03: rgba(0,0,0,.5);
-@tranparency-04: rgba(0,0,0,.8);
+@gray-01: rgba(0,0,0,.3);
+@gray-02: rgba(0,0,0,.5);
+@gray-03: rgba(0,0,0,.8);
+@min-card-height: 70px;
 
 body {
   background-color: @bg-color;
@@ -50,23 +50,22 @@ input {
 .main-card {
   margin: auto;
   max-width: 600px;
-  background-color: @tranparency-01;
   overflow-y: overlay;
 }
 
 .current-weather {
-  min-height: 140px;
-  background-color: @tranparency-02;
+  min-height: @min-card-height * 2;
+  background-color: @gray-01;
 }
 
 .tomorrow {
-  min-height: 70px;
-  background-color: @tranparency-03;
+  min-height: @min-card-height;
+  background-color: @gray-02;
 }
 
 .after-tomorrow {
-  min-height: 70px;
-  background-color: @tranparency-04;
+  min-height: @min-card-height;
+  background-color: @gray-03;
 }
 
 .main-weather-icon {
