@@ -3,7 +3,8 @@ let locationInfo = LocationInfo();
 let weather = Weather();
 let searchInput = document.getElementById('location');
 let currLocation = '';
-let lastvalue = '';
+let lastLocation = '';
+let attemptedLocation = '';
 
 init();
 
@@ -15,56 +16,51 @@ function init() {
 function geolocationSuccess({latitude, longitude}) {
     display.loading();
     weather.getInfo(latitude, longitude, display.populatePage, error);
-    locationInfo.getAddressInfo(
-        latitude,
-        longitude,
-        (res) => {
-            setCurrentLocation(res.address);
-        },
-        error
-    );
+    locationInfo.getAddressInfo(latitude, longitude, setCurrentLocation, error);
 }
 
 function startGeolocationInputListeners() {
     searchInput.addEventListener('blur', () => { search(searchInput.value) });
-    searchInput.addEventListener('keydown', (e) => { if (e.which == 13) search(searchInput.value) });
-}
-
-function setCurrentLocation({city, town, village, state, county}) {
-    if (city != null) { 
-        currLocation = city;
-    } else if (town != null) {
-        currLocation = town;
-    } else if (village != null) {
-        currLocation = village;
-    } else {
-        currLocation = '(n/a)';
-    }
-    if (state != null) {
-        currLocation += ', '+state;
-    } else if (county != null) {
-        currLocation += ', '+county;
-    }
-    searchInput.value = currLocation;
-    lastvalue = currLocation;
+    searchInput.addEventListener('keydown', (e) => { if (e.which == 13) searchInput.blur() });
+    searchInput.addEventListener('focus', () => { searchInput.value = '' });
 }
 
 function search(desiredLoc) {
-    if (desiredLoc != lastvalue) {
+    if (searchInput.value == '') {
+        searchInput.value = currLocation;
+        return;
+    }
+    if (desiredLoc != lastLocation) {
+        attemptedLocation = desiredLoc;
         display.loading();
         locationInfo.getCityCoords(
             desiredLoc,
-            (res) => {
-                if (res.length > 0) {
-                    setCurrentLocation(res[0].address);
-                    weather.getInfo(res[0].lat, res[0].lon, display.populatePage, error);
-                    return;
-                }
-                display.loadingError();
-            },
+            searchSucess,
             error
         );
     }
+}
+
+function searchSucess({address, lat, lon}) {
+    if (address) setCurrentLocation(address);
+    else setCurrentLocation({ city: null, town: null, village: null, state: null, county: null });
+    if ((lat) && (lon)) weather.getInfo(lat, lon, display.populatePage, error);
+    else display.loadingError();
+}
+
+function setCurrentLocation({ city, town, village, state, county }) {
+    if (city != null) currLocation = city;
+    else if (town != null) currLocation = town;
+    else if (village != null) currLocation = village;
+    else {
+        if (attemptedLocation != '') currLocation = `"${attemptedLocation}" não foi encontrado/a`;
+        else currLocation = 'localização não encontrada';
+    }
+    if (state != null) currLocation += ', '+state;
+    else if (county != null) currLocation += ', '+county;
+    searchInput.value = currLocation;
+    lastLocation = currLocation;
+    attemptedLocation = '';
 }
 
 function error(err) {

@@ -23,7 +23,14 @@ function Display() {
     }
 
     function loadingError() {
-        populateToday({temperature: '(n/a)', humidity: '(n/a)', pressure: '(n/a)', condition: '(n/a)', wind: '(n/a)'});
+        let todayResp = {
+            temperature: '(n/a)',
+            humidity: '(n/a)',
+            pressure: '(n/a)',
+            condition: { icon: ')', description: '(n/a)' },
+            wind: { direction: '(n/a)', speed: '(n/a)' }
+        };
+        populateToday(todayResp);
         populateTomorrow({temperature: '(n/a)'});
         populateDayAfter({temperature: '(n/a)'});
     }

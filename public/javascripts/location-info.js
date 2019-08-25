@@ -17,7 +17,9 @@ function LocationInfo() {
     function getAddressInfo(latitude, longitude, success, error) {
         request(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`,
-            success,
+            (res) => {
+                success(res.address);
+            },
             error
         );
     }
@@ -25,7 +27,9 @@ function LocationInfo() {
     function getCityCoords(city, success, error) {
         request(
             `https://nominatim.openstreetmap.org/search?format=json&city=${city}&zoom=10&addressdetails=1`,
-            success,
+            (res) => {
+                success((res[0]) ? res[0] : { address: null, lat: null, lon: null });
+            },
             error
         );
     }
