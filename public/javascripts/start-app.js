@@ -10,7 +10,7 @@ init();
 
 function init() {
     locationInfo.getGeolocation(geolocationSuccess, error);
-    startGeolocationInputListeners();
+    startSearchInputListeners();
 }
 
 function geolocationSuccess({latitude, longitude}) {
@@ -19,8 +19,8 @@ function geolocationSuccess({latitude, longitude}) {
     locationInfo.getAddressInfo(latitude, longitude, setCurrentLocation, error);
 }
 
-function startGeolocationInputListeners() {
-    searchInput.addEventListener('blur', () => { search(searchInput.value) });
+function startSearchInputListeners() {
+    searchInput.addEventListener('blur', () => { search(searchInput.value) })
     searchInput.addEventListener('keydown', (e) => { if (e.which == 13) searchInput.blur() });
     searchInput.addEventListener('focus', () => { searchInput.value = '' });
 }
@@ -42,8 +42,7 @@ function search(desiredLoc) {
 }
 
 function searchSucess({address, lat, lon}) {
-    if (address) setCurrentLocation(address);
-    else setCurrentLocation({ city: null, town: null, village: null, state: null, county: null });
+    setCurrentLocation(address);
     if ((lat) && (lon)) weather.getInfo(lat, lon, display.populatePage, error);
     else display.loadingError();
 }

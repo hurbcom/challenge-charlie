@@ -28,7 +28,7 @@ function LocationInfo() {
         request(
             `https://nominatim.openstreetmap.org/search?format=json&city=${city}&zoom=10&addressdetails=1`,
             (res) => {
-                success((res[0]) ? res[0] : { address: null, lat: null, lon: null });
+                success((res[0]) ? res[0] : { address: { city: null, town: null, village: null, state: null, county: null }, lat: null, lon: null });
             },
             error
         );
