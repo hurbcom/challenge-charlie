@@ -1,12 +1,11 @@
 import { createStore } from 'redux';
 
-function reducer(state, action) {
-
-    return [
-        {
-            id: '1',
-            background: 'black',
-            bgcolor: '',
+const initialState = [
+    {
+        id: '1',
+        background: 'black',
+        bgcolor: '',
+        temperatura: {
             localizacao: '',
             icone: '',
             grau: '',
@@ -19,11 +18,15 @@ function reducer(state, action) {
             humidade: '',
             pressao: ''
         }
-    ];
-    if (action.type === 'SET_BACKGROUND') {
-        console.log('oi');
-        return { ...state, background: action.background }
     }
+]
+
+function reducer(state = initialState, action) {
+    if (action.type === 'SET_BACKGROUND') {
+        return [{ ...state, background: action.url }]
+    }
+    return state;
+
 }
 
 const store = createStore(reducer);

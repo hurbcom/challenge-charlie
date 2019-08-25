@@ -2,23 +2,31 @@ import React from 'react';
 import * as BackgroundService from './services/background.service';
 import { connect } from 'react-redux';
 
-function setBackground(background) {
-    console.log('teste');
-    return {
-        type: 'SET_BACKGROUND',
-        background
-    }
+function setBackground() {
+    return new Promise(function (res, rej) {
+        res(BackgroundService.getBackground());
+    })
 }
 
+setBackground().then(function (result) {
+    return result;
+}).then(function (result) {
+    console.log(result);
+    return {
+        type: 'SET_BACKGROUND',
+        background: `https://www.bing.com${result.images[0].url}`
+    }
+})
+
 const Container = ({ modules, dispatch }) => (
-    <aside>
+    <div>
         {
             modules.map(module => (
-                <section key={module.id} className="main-content" style={{ backgroundColor: `${module.background}` }}>
+                <section key={module.id} className="main-content" style={{ backgroundImage: `${module.background}` }}>
                     <div className={`container ${module.bgcolor}`}>
                         <div className="localizacao">
                             <h1 className="localizacao-titulo" data-icon="(">{module.localizacao}</h1>
-                            <button onClick={() => dispatch(setBackground('blue'))}>Teste</button>
+                            <button onClick={() => dispatch(setBackground())}>Teste</button>
                         </div>
                         <div className="temperatura-caixa">
                             <div className="icone" data-icon={module.icone}></div>
@@ -47,7 +55,7 @@ const Container = ({ modules, dispatch }) => (
                 </section>
             ))
         }
-    </aside>
+    </div>
 )
 
 export default connect(state => ({ modules: state }))(Container);
