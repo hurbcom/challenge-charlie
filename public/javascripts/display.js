@@ -18,31 +18,31 @@ function Display() {
 
     function populateToday({temperature, humidity, pressure, condition, wind}) {
         setBackgroundColor(today, temperature);
-        today.style.color = setFontColor(temperature);
+        today.style.color = getFontColor(temperature);
         today.innerHTML = `<div class="main-weather-icon" id="weather-icon">${condition.icon}</div>
                 <div class="main-weather-text">
                 <div class="todays-temperature">
                     <strong>HOJE:</strong><br />
-                    ${temperature}C
+                    ${temperature} C
                 </div>
                 <div class="todays-description">${condition.description}</div>
                 <div class="todays-details">
-                    Vento: ${wind.direction} ${wind.speed}km/h<br />
-                    Humidade: ${humidity}%<br />
-                    Pressão: ${pressure}hPA
+                    Vento: ${wind.direction} ${wind.speed} km/h<br />
+                    Humidade: ${humidity} %<br />
+                    Pressão: ${pressure} hPA
                 </div>
             </div>`;
     }
 
     function populateTomorrow({temperature}) {
         setBackgroundColor(tomorrow, temperature);
-        tomorrow.style.color = setFontColor(temperature);
+        tomorrow.style.color = getFontColor(temperature);
         tomorrow.innerHTML = `<div class="main-weather-text"><strong>Amanhã</strong><br />${temperature}C</div>`;
     }
 
     function populateDayAfter({temperature}) {
         setBackgroundColor(dayAfter, temperature);
-        dayAfter.style.color = setFontColor(temperature);
+        dayAfter.style.color = getFontColor(temperature);
         dayAfter.innerHTML = `<div class="main-weather-text"><strong>Depois de amanhã</strong><br />${temperature}C</div>`;
     }
 
@@ -93,15 +93,18 @@ function Display() {
         if (isNaN(temp)) {
             switch (el.id) {
                 case 'today':
-                    setElementBackground(el, `rgb(0, 0, 0, .3)`);
-                    return;
+                    transparency = .3;
+                    break;
                 case 'tomorrow':
-                    setElementBackground(el, `rgb(0, 0, 0, .5)`);
-                    return;
+                    transparency = .5;
+                    break;
                 case 'day-after':
-                    setElementBackground(el, `rgb(0, 0, 0, .8)`);
-                    return;
+                    transparency = .8;
+                    break;
+                default:
+                    transparency = .3;
             }
+            setElementBackground(el, `rgb(0, 0, 0, ${transparency})`);
         }
 
         function setElementBackground(el, bgColor) {
@@ -110,7 +113,7 @@ function Display() {
 
     }
 
-    function setFontColor(temp) {
+    function getFontColor(temp) {
         if (isNaN(temp) ||  temp < 15 || temp > 35) return '#fff';
         return '#000';
     }

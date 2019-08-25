@@ -47,10 +47,11 @@ function searchSucess({address, lat, lon}) {
     else display.loadingError();
 }
 
-function setCurrentLocation({ city, town, village, state, county }) {
+function setCurrentLocation({ city, town, village, hamlet, state, county }) {
     if (city != null) currLocation = city;
     else if (town != null) currLocation = town;
     else if (village != null) currLocation = village;
+    else if (hamlet != null) currLocation = hamlet;
     else {
         if (attemptedLocation != '') currLocation = `"${attemptedLocation}" não foi encontrado/a`;
         else currLocation = 'localização não encontrada';
