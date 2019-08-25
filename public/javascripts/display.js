@@ -1,7 +1,8 @@
 function Display() {
 
     let today = document.getElementById('today');
-    
+    let tomorrow = document.getElementById('tomorrow');
+    let dayAfter = document.getElementById('day-after');
     this.populatePage = populatePage;
     this.loading = loading;
     this.loadingError = loadingError;
@@ -15,15 +16,16 @@ function Display() {
     }
 
     function loading() {
-        today.innerHTML = 'loading';
-        document.getElementById('tomorrow').innerHTML = 'loading';
-        document.getElementById('day-after').innerHTML = 'loading';
+        let loadingMsg = `<div class="main-weather-loading"><img src="/images/loading.gif" width="5%" /><br />loading</div>`;
+        today.innerHTML = loadingMsg;
+        tomorrow.innerHTML = loadingMsg;
+        dayAfter.innerHTML = loadingMsg;
     }
 
     function loadingError() {
-        today.innerHTML = 'deu ruim';
-        document.getElementById('tomorrow').innerHTML = 'deu ruim';
-        document.getElementById('day-after').innerHTML = 'deu ruim';
+        populateToday({temperature: '(n/a)', humidity: '(n/a)', pressure: '(n/a)', condition: '(n/a)', wind: '(n/a)'});
+        populateTomorrow({temperature: '(n/a)'});
+        populateDayAfter({temperature: '(n/a)'});
     }
     
     function populateToday({temperature, humidity, pressure, condition, wind}) {
@@ -43,11 +45,11 @@ function Display() {
     }
     
     function populateTomorrow({temperature}) {
-        document.getElementById('tomorrow').innerHTML = `<div class="main-weather-text">Amanhã<br />${temperature}C</div>`;
+        tomorrow.innerHTML = `<div class="main-weather-text">Amanhã<br />${temperature}C</div>`;
     }
     
     function populateDayAfter({temperature}) {
-        document.getElementById('day-after').innerHTML = `<div class="main-weather-text">Depois de amanhã<br />${temperature}C</div>`;
+        dayAfter.innerHTML = `<div class="main-weather-text">Depois de amanhã<br />${temperature}C</div>`;
     }
     
 }

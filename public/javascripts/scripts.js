@@ -13,13 +13,13 @@ function init() {
 }
 
 function geolocationSuccess({latitude, longitude}) {
+    display.loading();
     weather.getInfo(latitude, longitude, display.populatePage, error);
     locationInfo.getAddressInfo(
         latitude,
         longitude,
         (res) => {
             setCurrentLocation(res.address);
-            searchInput.focus();
         },
         error
     );
@@ -49,20 +49,15 @@ function setCurrentLocation({city, town, village, state, county}) {
     lastvalue = currLocation;
 }
 
-function error(err) {
-    console.log('error - ', err);
-}
-
 function search(desiredLoc) {
     if (desiredLoc != lastvalue) {
-        let ajax = Ajax();
-        ajax.get(
-            `https://nominatim.openstreetmap.org/search?format=json&city=${desiredLoc}&zoom=10&addressdetails=1`,
+        display.loading();
+        locationInfo.getCityCoords(
+            desiredLoc,
             (res) => {
                 if (res.length > 0) {
                     setCurrentLocation(res[0].address);
                     weather.getInfo(res[0].lat, res[0].lon, display.populatePage, error);
-                    searchInput.focus();
                     return;
                 }
                 display.loadingError();
@@ -72,3 +67,6 @@ function search(desiredLoc) {
     }
 }
 
+function error(err) {
+    console.log('error - ', err);
+}

@@ -2,6 +2,7 @@ function LocationInfo() {
 
     this.getGeolocation = getGeolocation;
     this.getAddressInfo = getAddressInfo;
+    this.getCityCoords = getCityCoords;
 
     return this;
 
@@ -14,12 +15,24 @@ function LocationInfo() {
     }
 
     function getAddressInfo(latitude, longitude, success, error) {
-        let ajax = Ajax();
-        ajax.get(
+        request(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`,
             success,
             error
         );
+    }
+
+    function getCityCoords(city, success, error) {
+        request(
+            `https://nominatim.openstreetmap.org/search?format=json&city=${city}&zoom=10&addressdetails=1`,
+            success,
+            error
+        );
+    }
+
+    function request(url, success, error) {
+        let ajax = Ajax();
+        ajax.get(url, success, error);
     }
     
 }

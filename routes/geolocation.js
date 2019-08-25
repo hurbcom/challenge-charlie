@@ -30,7 +30,6 @@ function renderMe(res, bgImage) {
 }
 
 function getGeolocation(lat, lon, success, error) {
-
   let options = {
     method: 'GET',
     hostname: `nominatim.openstreetmap.org`,
