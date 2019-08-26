@@ -1,32 +1,49 @@
 import React from 'react';
 import * as BackgroundService from './services/background.service';
+import store from './store';
 import { connect } from 'react-redux';
 
-function setBackground() {
-    return new Promise(function (res, rej) {
-        res(BackgroundService.getBackground());
-    })
-}
+// function setBackground() {
+//     return new Promise(function (res, rej) {
+//         res(BackgroundService.getBackground());
+//     })
+// }
 
-setBackground().then(function (result) {
-    return result;
-}).then(function (result) {
-    console.log(result);
+// setTimeout(setBackground().then(function (result) {
+//     return result;
+// }).then(function (result) {
+//     console.log(result);
+//     return {
+//         type: 'SET_BACKGROUND',
+//         background: `https://www.bing.com${result.images[0].url}`
+//     }
+// }), 2000);
+
+function backGroundAction(x) {
     return {
         type: 'SET_BACKGROUND',
-        background: `https://www.bing.com${result.images[0].url}`
+        x
     }
-})
+};
+
+function setBackground(x) {
+    return function (dispatch) {
+        return BackgroundService.getBackground().then(
+            resolve => dispatch(backGroundAction(`https://www.bing.com${resolve.images[0].url}`))
+        )
+    }
+};
+
+store.dispatch(setBackground());
 
 const Container = ({ modules, dispatch }) => (
     <div>
         {
             modules.map(module => (
-                <section key={module.id} className="main-content" style={{ backgroundImage: `${module.background}` }}>
+                <section key="1" className="main-content" style={{ backgroundColor: `${module.background}` }}>
                     <div className={`container ${module.bgcolor}`}>
                         <div className="localizacao">
                             <h1 className="localizacao-titulo" data-icon="(">{module.localizacao}</h1>
-                            <button onClick={() => dispatch(setBackground())}>Teste</button>
                         </div>
                         <div className="temperatura-caixa">
                             <div className="icone" data-icon={module.icone}></div>
