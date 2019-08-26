@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import style from "./style.less";
-import { getWindDirection } from '../../utils/utils';
+import { getWindDirection , getWindSpeedInKilometers, getTempColor} from '../../utils/utils';
 
 const Body = (city, ...props) => {
     const [todayWeather, setTodayWeather] = useState();
@@ -22,31 +22,42 @@ const Body = (city, ...props) => {
             });
         });
     },[city.city]);
-
-    console.log(todayWeather);
+    let todayTempColor = "";
+    let tomorrowTempColor = "";
+    let afterTomorrowTempColor = "";
+    if(todayWeather){
+        todayTempColor = getTempColor(todayWeather.main.temp);
+    }
+    if(tomorrowWeather){
+        tomorrowTempColor = getTempColor(tomorrowWeather.main.temp);
+    }
+    if(afterTomorrowWeather){
+        afterTomorrowTempColor = getTempColor(tomorrowWeather.main.temp);
+    }
+    console.log(todayTempColor);
     return (
         <div className={style.layout}>
-            <div className={style.container}>
+            <div className={`container ${todayTempColor}1`}>
                 <div className={style.firstHalf}>
-                    <p data-icon="B" />
+                    <div data-icon="B" />
                 </div>
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Hoje</h3>
                     <p className={style.text}> {todayWeather ? `${todayWeather.main.temp} ºC` : `Buscando`}</p>
                     <h3 className={style.heading}>{todayWeather ? `${todayWeather.weather[0].description}` : `Buscando`}</h3>
-                    <p className={style.text}>Vento: {todayWeather ? `${getWindDirection(todayWeather.wind.deg)} 6.4km` : `Buscando`}</p>
+                    <p className={style.text}>Vento: {todayWeather ? `${getWindDirection(todayWeather.wind.deg)} ${getWindSpeedInKilometers(todayWeather.wind.speed)} km/h` : `Buscando`}</p>
                     <p className={style.text}>Humidade: {todayWeather ? `${todayWeather.main.humidity}%` : `Buscando`}</p>
                     <p className={style.text}>Pressão: {todayWeather ? `${todayWeather.main.pressure} hPA` : `Buscando`}</p>
                 </div>
             </div>
-            <div className={style.secondContainer}>
+            <div className={`${style.secondContainer} ${tomorrowTempColor}2`}>
                 <div className={style.firstHalf} />
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Amanhã</h3>
                     <p className={style.text}> {tomorrowWeather ? `${tomorrowWeather.main.temp} ºC` : `Buscando`}</p>
                 </div>
             </div>
-            <div className={style.thirdContainer}>
+            <div className={`${style.thirdContainer} ${tomorrowTempColor}3`}>
                 <div className={style.firstHalf} />
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Depois de amanhã</h3>

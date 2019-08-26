@@ -1,5 +1,4 @@
 @font-color:#FFFFFFE6;
-@background-color:rgba(95, 93, 93, 0.534);
 
 .layout {
   color: @font-color;
@@ -7,9 +6,14 @@
     font-weight: 400;
     text-transform: uppercase; 
   }
+  p{
+    white-space: nowrap;
+    margin: 0;
+    font-size: 28px;
+  }
 }
 
-.container{
+:global .container{
   align-items: center;
   background-color: #a3a3a399;
   min-height: 400px;
@@ -17,6 +21,8 @@
   width: 100%;
   justify-content: space-between;
 }
+
+
 
 .secondContainer{
   align-items: center;
@@ -31,6 +37,7 @@
   align-items: center;
   min-height: 200px;
   background-color: #a3a3a3F2;
+  opacity: F2;
   display: inline-flex;
   width: 100%;
   justify-content: space-between;
@@ -42,9 +49,6 @@
   display: flex;
   margin-left: 50px;
   justify-content: flex-start;
-  > p{
-    margin: 0;
-  }
 }
 
 .secondHalf{
@@ -58,8 +62,33 @@
   margin: 15px 0px 10px 0px; 
 }
 
-.text{
-  white-space: nowrap;
-  margin: 0;
-  font-size: 28px;
+:global .red-background1{
+  background-color: #ff010199;
+}
+:global .blue-background1{
+  background-color: #0400ff99;
+}
+:global .yellow-background1{
+  background-color: #decf0299;
+}
+
+:global .red-background2{
+  background-color: #ff0101D9;
+}
+:global .blue-background2{
+  background-color: #0400ffD9;
+}
+:global .yellow-background2{
+  
+  background-color: #decf02D9;
+}
+
+:global .red-background3{
+  background-color: #ff0101F2;
+}
+:global .blue-background3{
+  background-color: #0400ffF2;
+}
+:global .yellow-background3{
+  background-color: #decf02f2;
 }
