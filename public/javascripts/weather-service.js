@@ -31,7 +31,6 @@ function WeatherService() {
         today.setPressure(info.pressure);
         today.getWind().setDirection(info.wind.direction);
         today.getWind().setSpeed(info.wind.speed);
-        console.log('today - ', today);
     }
 
     function populateTomorrow(tomorrow, info) {

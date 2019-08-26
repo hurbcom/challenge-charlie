@@ -17,7 +17,10 @@ function LocationService() {
     function getAddressInfo(latitude, longitude, success, error) {
         request(
             `/geolocation/${latitude}/${longitude}`,
-            success,
+            (res) => {
+                populateAddress(res);
+                success(currLocationObj.getAddress());
+            },
             error
         );
     }
@@ -26,7 +29,9 @@ function LocationService() {
         request(
             `/geolocation/${city}`,
             (res) => {
-                success(('address' in res) ? res : { address: { city: null, town: null, village: null, state: null, county: null }, lat: null, lon: null });
+                populateAddress(res.address);
+                populateCoords(res.lat, res.lon);
+                success();
             },
             error
         );
@@ -36,5 +41,18 @@ function LocationService() {
         let http = Http();
         http.get(url, success, error);
     }
+
+    function populateAddress({ city, county, state, town, village, hamlet }) {
+        currLocationObj.getAddress().setCity(city);
+        currLocationObj.getAddress().setCounty(county);
+        currLocationObj.getAddress().setState(state);
+        currLocationObj.getAddress().setTown(town);
+        currLocationObj.getAddress().setVillage(village);
+        currLocationObj.getAddress().setHamlet(hamlet);
+    }
     
+    function populateCoords(lat, lon) {
+        currLocationObj.setLatitude(lat);
+        currLocationObj.setLongitude(lon);
+    }
 }

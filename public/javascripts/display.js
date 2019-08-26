@@ -7,11 +7,11 @@ function Display() {
     this.populatePage = populatePage;
     this.loading = loading;
     this.loadingError = loadingError;
+    this.setCurrentLocation = setCurrentLocation;
 
     return this;
 
     function populatePage(weatherInfo) {
-        console.log('res -> ', weatherInfo.getToday().getWind().getDirection());
         populateToday(weatherInfo.getToday());
         populateTomorrow(weatherInfo.getTomorrow());
         populateDayAfter(weatherInfo.getDayAfter());
@@ -75,6 +75,22 @@ function Display() {
         populateDayAfter({temperature: '(n/a)'});
     }
 
+    function setCurrentLocation(address) {
+        if (address.getCity() != null) currLocation = address.getCity();
+        else if (address.getTown() != null) currLocation = address.getTown();
+        else if (address.getVillage() != null) currLocation = address.getVillage();
+        else if (address.getHamlet() != null) currLocation = address.getHamlet();
+        else {
+            if (attemptedLocation != '') currLocation = `"${attemptedLocation}" não foi encontrado/a`;
+            else currLocation = 'localização não encontrada';
+        }
+        if (address.getState() != null) currLocation += ', '+address.getState();
+        else if (address.getCounty() != null) currLocation += ', '+address.getCounty();
+        searchInput.value = currLocation;
+        lastLocation = currLocation;
+        attemptedLocation = '';
+    }
+ß    
     function setBackgroundColor(el, temp) {
         let transparency = 1;
         if (unit.value == 'f') temp = convertFtoC(temp);

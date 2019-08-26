@@ -6,6 +6,8 @@ let unit = document.getElementById('unit');
 let currLocation = '';
 let lastLocation = '';
 let attemptedLocation = '';
+let currLocationObj = new Place();
+
 
 init();
 
@@ -18,7 +20,7 @@ function init() {
 function geolocationSuccess({latitude, longitude}) {
     display.loading();
     weatherService.getInfo(latitude, longitude, unit.value, display.populatePage, error);
-    locationService.getAddressInfo(latitude, longitude, setCurrentLocation, error);
+    locationService.getAddressInfo(latitude, longitude, display.setCurrentLocation, error);
 }
 
 function startEventListeners() {
@@ -43,26 +45,17 @@ function search(desiredLoc) {
     }
 }
 
-function searchSucess({address, lat, lon}) {
-    setCurrentLocation(address);
-    if ((lat) && (lon)) weatherService.getInfo(lat, lon, unit.value, display.populatePage, error);
+function searchSucess() {
+    display.setCurrentLocation(currLocationObj.getAddress());
+    if ((currLocationObj.getLatitude()) && (currLocationObj.getLongitude()))
+        weatherService.getInfo(
+            currLocationObj.getLatitude(),
+            currLocationObj.getLongitude(),
+            unit.value,
+            display.populatePage,
+            error)
+        ;
     else display.loadingError();
-}
-
-function setCurrentLocation({ city, town, village, hamlet, state, county }) {
-    if (city != null) currLocation = city;
-    else if (town != null) currLocation = town;
-    else if (village != null) currLocation = village;
-    else if (hamlet != null) currLocation = hamlet;
-    else {
-        if (attemptedLocation != '') currLocation = `"${attemptedLocation}" não foi encontrado/a`;
-        else currLocation = 'localização não encontrada';
-    }
-    if (state != null) currLocation += ', '+state;
-    else if (county != null) currLocation += ', '+county;
-    searchInput.value = currLocation;
-    lastLocation = currLocation;
-    attemptedLocation = '';
 }
 
 function toggleUnits() {

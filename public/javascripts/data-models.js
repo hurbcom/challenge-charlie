@@ -22,6 +22,10 @@ function Address() {
     let village = null;
     let state = null;
     let county = null;
+    let hamlet = null;
+
+    this.getHamlet = () => { return hamlet };
+    this.setHamlet = (hm) => { hamlet = hm };
 
     this.getCity = () => { return city };
     this.setCity = (ct) => { city = ct };
