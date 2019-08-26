@@ -64,15 +64,19 @@ function Display() {
     }
 
     function loadingError() {
-        populateToday({
-            temperature: '(n/a)',
-            humidity: '(n/a)',
-            pressure: '(n/a)',
-            condition: { icon: ')', description: '(n/a)' },
-            wind: { direction: '(n/a)', speed: '(n/a)' }
-        });
-        populateTomorrow({temperature: '(n/a)'});
-        populateDayAfter({temperature: '(n/a)'});
+        let weather = new Weather();
+        weather.getToday().setTemperature('(n/a)');
+        weather.getToday().setIcon(')');
+        weather.getToday().setDescription('(n/a)');
+        weather.getToday().setHumidity('(n/a)');
+        weather.getToday().setPressure('(n/a)');
+        weather.getToday().getWind().setDirection('(n/a)');
+        weather.getToday().getWind().setSpeed('(n/a)');
+        weather.getTomorrow().setTemperature('(n/a)');
+        weather.getDayAfter().setTemperature('(n/a)');
+        populateToday(weather.getToday());
+        populateTomorrow(weather.getTomorrow());
+        populateDayAfter(weather.getDayAfter());
     }
 
     function setCurrentLocation(address) {

@@ -13,14 +13,14 @@ init();
 
 function init() {
     display.loading();
-    locationService.getGeolocation(geolocationSuccess, error);
+    locationService.getGeolocation(
+        ({latitude, longitude}) => {
+            weatherService.getInfo(latitude, longitude, unit.value, display.populatePage, error);
+            locationService.getAddressInfo(latitude, longitude, display.setCurrentLocation, error);
+        },
+        error
+    );
     startEventListeners();
-}
-
-function geolocationSuccess({latitude, longitude}) {
-    display.loading();
-    weatherService.getInfo(latitude, longitude, unit.value, display.populatePage, error);
-    locationService.getAddressInfo(latitude, longitude, display.setCurrentLocation, error);
 }
 
 function startEventListeners() {
@@ -47,15 +47,17 @@ function search(desiredLoc) {
 
 function searchSucess() {
     display.setCurrentLocation(currLocationObj.getAddress());
-    if ((currLocationObj.getLatitude()) && (currLocationObj.getLongitude()))
+    if ((currLocationObj.getLatitude()) && (currLocationObj.getLongitude())) {
         weatherService.getInfo(
             currLocationObj.getLatitude(),
             currLocationObj.getLongitude(),
             unit.value,
             display.populatePage,
-            error)
-        ;
-    else display.loadingError();
+            error
+        );
+        return;
+    }
+    display.loadingError();
 }
 
 function toggleUnits() {

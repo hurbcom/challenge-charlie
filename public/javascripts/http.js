@@ -55,14 +55,4 @@ function Http() {
         }
     }
 
-    function populateFormData(params) {
-        let data = new FormData();
-        if (params) {
-            for (let key in params) {
-                data.append(key, params[key]);
-            }
-        }
-        return data;
-    }
-
 }

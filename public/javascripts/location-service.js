@@ -42,13 +42,22 @@ function LocationService() {
         http.get(url, success, error);
     }
 
-    function populateAddress({ city, county, state, town, village, hamlet }) {
-        currLocationObj.getAddress().setCity(city);
-        currLocationObj.getAddress().setCounty(county);
-        currLocationObj.getAddress().setState(state);
-        currLocationObj.getAddress().setTown(town);
-        currLocationObj.getAddress().setVillage(village);
-        currLocationObj.getAddress().setHamlet(hamlet);
+    function populateAddress(address) {
+        if (address) {
+            currLocationObj.getAddress().setCity(address.city);
+            currLocationObj.getAddress().setCounty(address.county);
+            currLocationObj.getAddress().setState(address.state);
+            currLocationObj.getAddress().setTown(address.town);
+            currLocationObj.getAddress().setVillage(address.village);
+            currLocationObj.getAddress().setHamlet(address.hamlet);
+            return;
+        }
+        currLocationObj.getAddress().setCity(null);
+        currLocationObj.getAddress().setCounty(null);
+        currLocationObj.getAddress().setState(null);
+        currLocationObj.getAddress().setTown(null);
+        currLocationObj.getAddress().setVillage(null);
+        currLocationObj.getAddress().setHamlet(null);
     }
     
     function populateCoords(lat, lon) {

@@ -6,10 +6,8 @@ function Place(obj) {
 
     this.getAddress = () => { return address };
     this.setAddress = (addr) => { address = addr };
-
     this.getLatitude = () => { return latitude };
     this.setLatitude = (lat) => { latitude = lat };
-
     this.getLongitude = () => { return longitude };
     this.setLongitude = (lat) => { longitude = lat };
 
@@ -26,19 +24,14 @@ function Address() {
 
     this.getHamlet = () => { return hamlet };
     this.setHamlet = (hm) => { hamlet = hm };
-
     this.getCity = () => { return city };
     this.setCity = (ct) => { city = ct };
-
     this.getTown = () => { return town };
     this.setTown = (tw) => { town = tw };
-
     this.getVillage = () => { return village };
     this.setVillage = (vl) => { village = vl };
-
     this.getState = () => { return state };
     this.setState = (st) => { state = st };
-
     this.getCounty = () => { return county };
     this.setCounty = (cy) => { county = cy };
 
@@ -52,10 +45,8 @@ function Weather() {
 
     this.getToday = () => { return today };
     this.setToday = (td) => { today = td };
-
     this.getTomorrow = () => { return tomorrow };
     this.setTomorrow = (tm) => { tomorrow = tm };
-    
     this.getDayAfter = () => { return dayAfter };
     this.setDayAfter = (da) => { dayAfter = dayAfter };
 
@@ -81,19 +72,14 @@ function Today() {
 
     this.getTemperature = () => { return temperature };
     this.setTemperature = (tmp) => { temperature = tmp };
-
     this.getIcon = () => { return icon };
     this.setIcon = (ic) => { icon = ic };
-
     this.getDescription = () => { return description };
     this.setDescription = (dc) => { description = dc };
-
     this.getHumidity = () => { return humidity };
     this.setHumidity = (hm) => { humidity = hm };
-
     this.getPressure = () => { return pressure };
     this.setPressure = (ps) => { pressure = ps };
-
     this.getWind = () => { return wind };
     this.setWind = (wd) => { wind = wd };
 
