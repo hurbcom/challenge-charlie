@@ -36,6 +36,4 @@ function error(res, err) {
   res.send('Error when trying to retrieve geolocation information.');
 }
 
-//`https://nominatim.openstreetmap.org/search?format=json&city=${city}&zoom=10&addressdetails=1`,
-
 module.exports = router;

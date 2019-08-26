@@ -11,42 +11,9 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
 
   function weatherSuccess({current_observation, forecasts}) {
     let response = { today: { wind: {} }, tomorrow: {}, dayafter: {} };
-    if (Object.entries(current_observation).length > 0) {
-      response.today.temperature = current_observation.condition.temperature;
-      response.today.condition = getCondition(current_observation.condition.code);
-      if (Object.entries(current_observation.atmosphere).length > 0) {
-        response.today.humidity = current_observation.atmosphere.humidity;
-        response.today.pressure =  current_observation.atmosphere.pressure;
-      } else {
-        response.today.humidity = '(n/a)';
-        response.today.pressure =  '(n/a)';
-      }
-      if (Object.entries(current_observation.wind).length > 0) {
-        response.today.wind.direction = degreesToCardinal(current_observation.wind.direction);
-        response.today.wind.speed = current_observation.wind.speed;
-      } else {
-        response.today.wind.direction = '(n/a)';
-        response.today.wind.speed =  '(n/a)';
-      }
-    } else {
-      response.today.temperature = '(n/a)';
-      response.today.condition = { icon: ')', description: '(n/a)' };
-      response.today.humidity = '(n/a)';
-      response.today.pressure =  '(n/a)';
-      response.today.wind.direction = '(n/a)';
-      response.today.wind.speed = '(n/a)';
-    }
-    if (forecasts[1] != null) {
-      response.tomorrow.temperature = forecasts[1].high;
-    } else {
-      response.tomorrow.temperature = '(n/a)';
-    }
-    if (forecasts[2] != null) {
-      response.dayafter.temperature = forecasts[2].high;
-    } else {
-      response.dayafter.temperature = '(n/a)';
-    }
-
+    populateToday(response.today, current_observation);
+    populateTomorrow(response.tomorrow, forecasts[1]);
+    populateDayAfter(response.dayafter, forecasts[2]);
     res.send(response);
   }  
 
@@ -62,7 +29,6 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
         }
       }
     );
-
   }
 
   function getWeatherInfo(latitude, longitude, success, error) {
@@ -91,13 +57,58 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
       }
     );
   }
-  
+
   function degreesToCardinal(num) {
     var val = Math.floor((num / 22.5) + 0.5);
     var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
     return arr[(val % 16)];
   }
-  
+
+  function populateToday(today, current_observation) {
+    if (Object.entries(current_observation).length > 0) {
+      today.temperature = current_observation.condition.temperature;
+      today.condition = getCondition(current_observation.condition.code);
+      if (Object.entries(current_observation.atmosphere).length > 0) {
+        today.humidity = current_observation.atmosphere.humidity;
+        today.pressure =  current_observation.atmosphere.pressure;
+      } else {
+        today.humidity = '(n/a)';
+        today.pressure =  '(n/a)';
+      }
+      if (Object.entries(current_observation.wind).length > 0) {
+        today.wind.direction = degreesToCardinal(current_observation.wind.direction);
+        today.wind.speed = current_observation.wind.speed;
+      } else {
+        today.wind.direction = '(n/a)';
+        today.wind.speed =  '(n/a)';
+      }
+    } else {
+      today.temperature = '(n/a)';
+      today.condition = { icon: ')', description: '(n/a)' };
+      today.humidity = '(n/a)';
+      today.pressure =  '(n/a)';
+      today.wind.direction = '(n/a)';
+      today.wind.speed = '(n/a)';
+    }
+  }
+
+  function populateTomorrow(tomorrow, forecast) {
+    if (forecast != null) {
+      tomorrow.temperature = forecast.high;
+    } else {
+      tomorrow.temperature = '(n/a)';
+    }
+  }
+
+  function populateDayAfter(dayAfter, forecast) {
+    if (forecast != null) {
+      console.log('-> ', forecast);
+      dayAfter.temperature = forecast.high;
+    } else {
+      dayAfter.temperature = '(n/a)';
+    }
+  }
+
   function getCondition(code) {
     switch (code) {
       case 0:
@@ -195,8 +206,8 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
       default:
         return { icon: '(na)', description: 'Indisponível' };
     }
-  }  
-  
+  } 
+
 });
 
 module.exports = router;
