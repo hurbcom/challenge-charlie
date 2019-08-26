@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'MeteoconsRegular';
+    src: url('../../src/utils/fonts/meteocons-font/FONT/Desktop-font/meteocons.otf');
+    src: url('../../src/utils/fonts/meteocons-font/FONT/Font-face/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../src/utils/fonts/meteocons-font/FONT/Font-face/meteocons-webfont.woff') format('woff'),
+         url('../../src/utils/fonts/meteocons-font/FONT/Desktop-font/meteocons.ttf') format('truetype'),
+         url('../../src/utils/fonts/meteocons-font/FONT/Font-face/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'MeteoconsRegular';
+    font-size: 1.5em;
+
+    align-items: center;
+    content: attr(data-icon);
+    margin-right: 15px;
+}
+
+.icone {
+    font-size: 10em;
+}

@@ -6,6 +6,7 @@
     "oauth": "^0.9.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-less-watcher": "^1.1.4",
     "react-redux": "^7.1.0",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
@@ -13,7 +14,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "watch-less": "react-less-watcher -d src/styles/main.less",
+    "start": "react-scripts start&npm run watch-less",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

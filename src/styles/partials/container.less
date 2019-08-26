@@ -1,0 +1,42 @@
+.container {
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 70%;
+
+    &.yellow {
+        background-image: linear-gradient(to right top, #eec020a8, #eebf1da8, #efbd1a94, #efbc16a8, #f0ba12a6);
+        & .amanha {
+            background-image: linear-gradient(to right top, #eec020bf, #eebf1db5, #efbd1aeb, #efbc16db, #f8bc00c2);
+        }
+        & .dia-depois-de-amanha {
+            background-image: linear-gradient(to right top, #413303bf, #8b6e09, #8b6c05eb, #584405db, #5e4805c2);
+        }
+    }
+
+    &.blue {
+        background-image: linear-gradient(to right top, #2320eea8, #391deea8, #1a21ef94, #2916efa8, #1512f0a6);
+        & .amanha {
+            background-image: linear-gradient(to right top, #020bffbf, #261deeb5, #4a00fceb, #1f16efdb, #0008f8c2);
+        }
+        & .dia-depois-de-amanha {
+            background-image: linear-gradient(to right top, #030e41bf, #090d8b, #05058beb, #060558db, #05055ec2);
+        }
+    }
+
+    &.red {
+        background-image: linear-gradient(to right top, #ee6220a8, #ee531da8, #ef1a1a94, #ef1616a8, #f01212a6);
+        & .amanha {
+            background-image: linear-gradient(to right top, #f2331fbf, #ee1d1db5, #fc5100eb, #ef4416db, #f83900c2);
+        }
+        .dia-depois-de-amanha {
+            background-image: linear-gradient(to right top, #410e03bf, #8b1b09, #8b0505eb, #580505db, #5e0505c2);
+        }
+    }
+
+}
