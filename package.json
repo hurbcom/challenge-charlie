@@ -13,6 +13,7 @@
     "http-errors": "~1.6.3",
     "less-middleware": "~2.2.1",
     "morgan": "~1.9.1",
+    "nominatim-geocoder": "^0.1.4",
     "oauth": "^0.9.15"
   }
 }

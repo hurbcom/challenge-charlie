@@ -58,7 +58,7 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
         message: 'Challange Charlie',
         error: {
           status: 666,
-          stack: 'asdasasdads'
+          stack: 'Not possible to load weather information.'
         }
       }
     );

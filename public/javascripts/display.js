@@ -11,44 +11,45 @@ function Display() {
     return this;
 
     function populatePage(weatherInfo) {
-        populateToday(weatherInfo.today);
-        populateTomorrow(weatherInfo.tomorrow);
-        populateDayAfter(weatherInfo.dayafter);
+        console.log('res -> ', weatherInfo.getToday().getWind().getDirection());
+        populateToday(weatherInfo.getToday());
+        populateTomorrow(weatherInfo.getTomorrow());
+        populateDayAfter(weatherInfo.getDayAfter());
     }
 
-    function populateToday({temperature, humidity, pressure, condition, wind}) {
-        setBackgroundColor(today, temperature);
-        today.style.color = getFontColor(temperature);
-        today.innerHTML = `<div class="main-weather-icon" id="weather-icon">${condition.icon}</div>
-                <div class="main-weather-text">
-                <div class="todays-temperature">
-                    <strong>HOJE:</strong><br />
-                    <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
-                </div>
-                <div class="todays-description">${condition.description}</div>
-                <div class="todays-details">
-                    Vento: ${wind.direction} ${wind.speed} ${(unit.value == 'c') ? 'km/h' : 'mph'}<br />
-                    Humidade: ${humidity} %<br />
-                    Pressão: ${pressure} ${(unit.value == 'c') ? 'mbar' : 'inHg'}
-                </div>
-            </div>`;
-    }
-
-    function populateTomorrow({temperature}) {
-        setBackgroundColor(tomorrow, temperature);
-        tomorrow.style.color = getFontColor(temperature);
-        tomorrow.innerHTML = `<div class="main-weather-text">
-            <strong>Amanhã</strong><br />
-            <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
+    function populateToday(info) {
+        setBackgroundColor(today, info.getTemperature());
+        today.style.color = getFontColor(info.getTemperature());
+        today.innerHTML = `<div class="main-weather-icon" id="weather-icon">${info.getIcon()}</div>
+            <div class="main-weather-text">
+            <div class="todays-temperature">
+                <strong>HOJE:</strong><br />
+                <div class="temperature" onclick="toggleUnits()">${info.getTemperature()} ${unit.value.toUpperCase()}</div>
+            </div>
+            <div class="todays-description">${info.getDescription()}</div>
+            <div class="todays-details">
+                Vento: ${info.getWind().getDirection()} ${info.getWind().getSpeed()} ${(unit.value == 'c') ? 'km/h' : 'mph'}<br />
+                Humidade: ${info.getHumidity()} %<br />
+                Pressão: ${info.getPressure()} ${(unit.value == 'c') ? 'mbar' : 'inHg'}
+            </div>
         </div>`;
     }
 
-    function populateDayAfter({temperature}) {
-        setBackgroundColor(dayAfter, temperature);
-        dayAfter.style.color = getFontColor(temperature);
+    function populateTomorrow(info) {
+        setBackgroundColor(tomorrow, info.getTemperature());
+        tomorrow.style.color = getFontColor(info.getTemperature());
+        tomorrow.innerHTML = `<div class="main-weather-text">
+            <strong>Amanhã</strong><br />
+            <div class="temperature" onclick="toggleUnits()">${info.getTemperature()} ${unit.value.toUpperCase()}</div>
+        </div>`;
+    }
+
+    function populateDayAfter(info) {
+        setBackgroundColor(dayAfter, info.getTemperature());
+        dayAfter.style.color = getFontColor(info.getTemperature());
         dayAfter.innerHTML = `<div class="main-weather-text">
             <strong>Depois de amanhã</strong><br />
-            <div class="temperature" onclick="toggleUnits()">${temperature} ${unit.value.toUpperCase()}</div>
+            <div class="temperature" onclick="toggleUnits()">${info.getTemperature()} ${unit.value.toUpperCase()}</div>
         </div>`;
     }
 
@@ -76,7 +77,7 @@ function Display() {
 
     function setBackgroundColor(el, temp) {
         let transparency = 1;
-        if (unit.value == 'f') temp = Math.floor((temp - 32) * 5 / 9);
+        if (unit.value == 'f') temp = convertFtoC(temp);
         if (temp < -35) {
             setElementBackground(el, `rgb(0, 0, 255, .8)`);
             return;
@@ -100,6 +101,11 @@ function Display() {
             setElementBackground(el, `rgb(255, 0, 0, ${transparency})`);
             return;
         }
+        setDefaultBackground(el, temp);
+    }
+
+    function setDefaultBackground(el, temp) {
+        let transparency;
         if (isNaN(temp)) {
             switch (el.id) {
                 case 'today':
@@ -116,15 +122,19 @@ function Display() {
             }
             setElementBackground(el, `rgb(0, 0, 0, ${transparency})`);
         }
+    }
 
-        function setElementBackground(el, bgColor) {
-            el.style.backgroundColor = bgColor;
-        }
-
+    function setElementBackground(el, bgColor) {
+        el.style.backgroundColor = bgColor;
     }
 
     function getFontColor(temp) {
+        if (unit.value == 'f') temp = convertFtoC(temp);
         if (isNaN(temp) ||  temp < 15 || temp > 35) return '#fff';
         return '#000';
+    }
+
+    function convertFtoC(temp) {
+        return Math.floor((temp - 32) * 5 / 9);
     }
 }

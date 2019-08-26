@@ -1,16 +1,14 @@
 /**
-* Ajax Class
+* Http Class
 *
-* @description This class' purpose is to handle ajax requets.
+* @description This class' purpose is to handle https requets.
 * @author Vinas de Andrade <vinas.andrade@gmail.com>
 * @since 2017/08/31
-* @version 1.19.0817
-* @license SaSeed\license.txt
+* @version 1.19.0826
+* @license license.txt
 */
 
-function Ajax() {
-
-    var xhttp = new XMLHttpRequest();
+function Http() {
 
     this.get = get;
     this.post = post;
@@ -36,6 +34,7 @@ function Ajax() {
     }
 
     function handleRequest(type, uri, params, success, error) {
+        let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             handleResponse(this, success, error);
         }
@@ -57,9 +56,9 @@ function Ajax() {
     }
 
     function populateFormData(params) {
-        var data = new FormData();
+        let data = new FormData();
         if (params) {
-            for (var key in params) {
+            for (let key in params) {
                 data.append(key, params[key]);
             }
         }

@@ -1,6 +1,6 @@
 let display = Display();
-let locationInfo = LocationInfo();
-let weather = Weather();
+let locationService = LocationService();
+let weatherService = WeatherService();
 let searchInput = document.getElementById('location');
 let unit = document.getElementById('unit');
 let currLocation = '';
@@ -10,14 +10,15 @@ let attemptedLocation = '';
 init();
 
 function init() {
-    locationInfo.getGeolocation(geolocationSuccess, error);
+    display.loading();
+    locationService.getGeolocation(geolocationSuccess, error);
     startEventListeners();
 }
 
 function geolocationSuccess({latitude, longitude}) {
     display.loading();
-    weather.getInfo(latitude, longitude, unit.value, display.populatePage, error);
-    locationInfo.getAddressInfo(latitude, longitude, setCurrentLocation, error);
+    weatherService.getInfo(latitude, longitude, unit.value, display.populatePage, error);
+    locationService.getAddressInfo(latitude, longitude, setCurrentLocation, error);
 }
 
 function startEventListeners() {
@@ -34,7 +35,7 @@ function search(desiredLoc) {
     if (desiredLoc != lastLocation) {
         attemptedLocation = desiredLoc;
         display.loading();
-        locationInfo.getCityCoords(
+        locationService.getCityCoords(
             desiredLoc,
             searchSucess,
             error
@@ -44,7 +45,7 @@ function search(desiredLoc) {
 
 function searchSucess({address, lat, lon}) {
     setCurrentLocation(address);
-    if ((lat) && (lon)) weather.getInfo(lat, lon, unit.value, display.populatePage, error);
+    if ((lat) && (lon)) weatherService.getInfo(lat, lon, unit.value, display.populatePage, error);
     else display.loadingError();
 }
 
