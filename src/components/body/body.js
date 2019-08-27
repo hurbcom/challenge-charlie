@@ -1,8 +1,12 @@
 import React, { useState, useMemo } from "react";
 import style from "./style.less";
-import { getWindDirection , getWindSpeedInKilometers, getTempColor} from '../../utils/utils';
+import { getWindDirection , getWindSpeedInKilometers, getTempColor, getWeatherIcon} from '../../utils/utils';
 
 const Body = (city, ...props) => {
+    let todayTempColor = "";
+    let weatherIcon = "";
+    let tomorrowTempColor = "";
+    let afterTomorrowTempColor = "";
     const [todayWeather, setTodayWeather] = useState();
     const [tomorrowWeather, setTomorrowWeather] = useState();
     const [afterTomorrowWeather, setAfterTomorrowWeather] = useState();
@@ -22,9 +26,6 @@ const Body = (city, ...props) => {
             });
         });
     },[city.city]);
-    let todayTempColor = "";
-    let tomorrowTempColor = "";
-    let afterTomorrowTempColor = "";
     if(todayWeather){
         todayTempColor = getTempColor(todayWeather.main.temp);
     }
@@ -32,14 +33,17 @@ const Body = (city, ...props) => {
         tomorrowTempColor = getTempColor(tomorrowWeather.main.temp);
     }
     if(afterTomorrowWeather){
-        afterTomorrowTempColor = getTempColor(tomorrowWeather.main.temp);
+        afterTomorrowTempColor = getTempColor(afterTomorrowWeather.main.temp);
     }
-    console.log(todayTempColor);
+    if(todayWeather){
+        weatherIcon = getWeatherIcon(todayWeather.weather[0].id);
+    }
+    console.log(weatherIcon);
     return (
         <div className={style.layout}>
             <div className={`container ${todayTempColor}1`}>
                 <div className={style.firstHalf}>
-                    <div data-icon="B" />
+                    <div data-icon={`${weatherIcon}`} />
                 </div>
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Hoje</h3>
@@ -57,7 +61,7 @@ const Body = (city, ...props) => {
                     <p className={style.text}> {tomorrowWeather ? `${tomorrowWeather.main.temp} ºC` : `Buscando`}</p>
                 </div>
             </div>
-            <div className={`${style.thirdContainer} ${tomorrowTempColor}3`}>
+            <div className={`${style.thirdContainer} ${afterTomorrowTempColor}3`}>
                 <div className={style.firstHalf} />
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Depois de amanhã</h3>
