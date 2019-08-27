@@ -8,7 +8,7 @@ const initialState = [
         bgcolor: '',
         localizacao: '',
         icone: '',
-        grau: 'aaaaaaaaaaaaaaaaaa',
+        grau: '',
         grau2: '',
         grau2max: '',
         grau3: '',
