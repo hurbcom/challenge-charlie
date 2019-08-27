@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import Container from './container';
-import * as WeatherService from './services/weather.service';
-import * as BackgroundService from './services/background.service';
+// import * as WeatherService from './services/weather.service';
+// import * as BackgroundService from './services/background.service';
 
 class Main extends React.Component {
 
@@ -12,13 +12,6 @@ class Main extends React.Component {
   //   this.getBackground();
   //   this.changeContentBackground();
   // }
-
-  // async getBackground() {
-  //   const data = await BackgroundService.getBackground();
-  //   this.setState({
-  //     background: `https://www.bing.com${data.images[0].url}`
-  //   })
-  // };
 
   // async getWeather() {
   //   const data = await WeatherService.getWeather();
