@@ -102,7 +102,6 @@ router.get('/:lat/:lon/:unit', function(req, res, next) {
 
   function populateDayAfter(dayAfter, forecast) {
     if (forecast != null) {
-      console.log('-> ', forecast);
       dayAfter.temperature = forecast.high;
     } else {
       dayAfter.temperature = '(n/a)';

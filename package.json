@@ -2,8 +2,12 @@
   "name": "challenge-charlie",
   "version": "0.0.0",
   "private": true,
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha || true"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,5 +19,10 @@
     "morgan": "~1.9.1",
     "nominatim-geocoder": "^0.1.4",
     "oauth": "^0.9.15"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nock": "^10.0.6"
   }
 }
