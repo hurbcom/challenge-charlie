@@ -19,14 +19,14 @@ O Front-end está todo na pasta `public/javascript`, e está arquitetado da sequ
 
 - **weather-app.js** é o arquivo principal da aplicação. É ele que instancia os serviços e dá início à aplicação
 - **data-models.js** é onde estão declarados os modelos de dados
-- **display** é a camada de view, responsável por popular o html
-- **weather-service** contém os serviços que trazem as informações sobre o tempo
-- **location-service** contém os serviços que trazem as informações sobre a localidade
-- **http** é uma lib que eu criei para facilitar requests http
+- **display.js** é a camada de view, responsável por popular o html
+- **weather-service.js** contém os serviços que trazem as informações sobre o tempo
+- **location-service.js** contém os serviços que trazem as informações sobre a localidade
+- **http.js** é uma lib que eu criei para facilitar requests http
 
 ## Backend
 Temos 3 end-points no backend
-- **geolocation/{latitude}/{longitude}/** que retorna um objeto com as informações da localidade, como cidade, estado e país
+- **geolocation/{latitude}/{longitude}** que retorna um objeto com as informações da localidade, como cidade, estado e país
 - **geolocation/{cidade}** que retorna um objeto com informações da localidade, como coordenadas geográficas, estado e país. 
 - **weather/{latitude}/{longitude}/{unidade}** que retorna a informações do tempo. `{unidade}` refere-se à Celsius ou Fahrenheit.
 
@@ -53,6 +53,6 @@ Para executar a aplicação pela linha de comando:
 ## Dúvidas
 Estou disponível para qualquer dúvida ou sugestão. =)
 
-Vinas
+Vinas - 
 vinas.andrade@gmail.com
 
