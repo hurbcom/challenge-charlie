@@ -1,3 +1,11 @@
+# DEV: João Pedro Lopes Canto
+
+## Scripts
+
+- npm install: instala as dependências necessárias para rodar o projeto em ambiente de desenvolvimento (localhost).
+- npm run watch-less: para verificar alterações do less e gerar o .css
+- npm start: inicia o projeto (tem como dependencia o watch-less, então ao iniciar o projeto ja inicia a task).
+
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro").
