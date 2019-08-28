@@ -23,7 +23,6 @@ export const getTempColor = (temp) => {
 
 
 export const getWeatherIcon = (weatherCode) => {
-    console.log(weatherCode);
     switch(weatherCode){
         case 800: 
             return "B";

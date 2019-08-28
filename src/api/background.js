@@ -5,3 +5,6 @@ export const getBackground = async () => {
       document.body.style.background = `#f3f3f3 url(https://www.bing.com/${data.images[0].url}.png) no-repeat`;
     },
 )}
+
+
+
