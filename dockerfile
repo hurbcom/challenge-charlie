@@ -4,8 +4,6 @@ COPY package*.json ./
 
 RUN yarn
 
-ADD . /app
-
-EXPOSE 3000
+COPY . /app
 
 CMD ["yarn", "start"]

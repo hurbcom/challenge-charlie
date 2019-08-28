@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './reset.less'
-import App from './app'
+import './styles/reset.less'
+import './styles/global.less'
+import { App } from './app'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<App />, document.getElementById('root'))
