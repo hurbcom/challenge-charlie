@@ -46,7 +46,7 @@ const Body = (city, ...props) => {
                 </div>
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Hoje</h3>
-                    <p> {todayWeather ? `${todayWeather.main.temp} ºC` : `Buscando`}</p>
+                    <p> {todayWeather ? `${Math.floor(todayWeather.main.temp)} ºC` : `Buscando`}</p>
                     <h3 className={style.heading}>{todayWeather ? `${todayWeather.weather[0].description}` : `Buscando`}</h3>
                     <p>Vento: {todayWeather ? `${getWindDirection(todayWeather.wind.deg)} ${getWindSpeedInKilometers(todayWeather.wind.speed)} km/h` : `Buscando`}</p>
                     <p>Humidade: {todayWeather ? `${todayWeather.main.humidity}%` : `Buscando`}</p>
@@ -57,14 +57,14 @@ const Body = (city, ...props) => {
                 <div className={style.firstHalf} />
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Amanhã</h3>
-                    <p> {tomorrowWeather ? `${tomorrowWeather.main.temp} ºC` : `Buscando`}</p>
+                    <p> {tomorrowWeather ? `${Math.floor(tomorrowWeather.main.temp)} ºC` : `Buscando`}</p>
                 </div>
             </div>
             <div className={`${style.thirdContainer} ${style.globalContainer} ${afterTomorrowTempColor}3`}>
                 <div className={style.firstHalf} />
                 <div className={style.secondHalf}>
                     <h3 className={style.heading}>Depois de amanhã</h3>
-                    <p> {afterTomorrowWeather ? `${afterTomorrowWeather.main.temp} ºC` : `Buscando`}</p>
+                    <p> {afterTomorrowWeather ? `${Math.floor(afterTomorrowWeather.main.temp)} ºC` : `Buscando`}</p>
                 </div>
             </div>
         </div>
