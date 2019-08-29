@@ -1,3 +1,30 @@
 .app{
+  position: relative;
   height: 100%;
+  #main-content{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  #bg-temperature{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(to top right, rgba(gray, .5), rgba(gray, .1));
+    &.hot{
+      background-image: linear-gradient(to top right, rgba(red, .2), rgba(red, .1));
+    }
+    &.cold{
+      background-image: linear-gradient(to top right, rgba(blue, .2), rgba(blue, .1));
+    }
+    &.normal{
+      background-image: linear-gradient(to top right, rgba(yellow, .2), rgba(yellow, .1));
+    }
+  }
 }

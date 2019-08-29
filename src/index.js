@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+// Import styles
 import './styles/reset.less'
 import './styles/global.less'
+import './styles/fonts/icons.less'
+
 import { App } from './app'
 import * as serviceWorker from './serviceWorker'
 

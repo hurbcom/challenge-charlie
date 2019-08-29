@@ -1,0 +1,21 @@
+@import './theme/colors';
+@import './theme/spacing';
+
+.app-header{
+  padding: extract(@spacing, 2) extract(@spacing, 4);
+  color: @gray;
+  background-color: rgba(@whitish, .9);
+  &,
+  h1{
+    display: flex;
+    align-items: center;
+    padding: extract(@spacing, 3);
+    font-size: 20px;
+    line-height: 1em;
+  }
+  [data-icon]{
+    margin-right: extract(@spacing, 4);
+    margin-bottom: -.07em;
+    font-size: 32px;
+  }
+}

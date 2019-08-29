@@ -11,6 +11,7 @@ export class App extends Component {
   state = {
     todayBackground: null,
     userLocation: null,
+    temperature: '',
   }
 
   componentDidMount () {
@@ -37,16 +38,34 @@ export class App extends Component {
     this.setState({ userLocation })
   }
 
+  getTemperature = (temp) => {
+    let temperature = 'normal'
+
+    if (temp < 15) {
+      temperature = 'cold'
+    } else if (temp > 35) {
+      temperature = 'hot'
+    }
+
+    this.setState({ temperature })
+  }
+
   render () {
-    const { todayBackground, userLocation } = this.state
+    const { todayBackground, userLocation, temperature } = this.state
 
     return (
       <div
         className="app"
         style={{ backgroundImage: `url(${todayBackground})` }}
       >
-        <Header userLocation={userLocation} />
-        <Body city={userLocation && userLocation.city} />
+        <div id="bg-temperature" className={temperature} />
+        <div id="main-content">
+          <Header userLocation={userLocation} />
+          <Body
+            city={userLocation && userLocation.city}
+            setBackground={this.getTemperature}
+          />
+        </div>
       </div>
     )
   }

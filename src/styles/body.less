@@ -1,0 +1,65 @@
+@import './theme/colors';
+@import './theme/spacing';
+
+.app-body{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: white;
+  .row{
+    display: flex;
+    &:nth-child(1){
+      background-color: rgba(@yellow, .8);
+    }
+    &:nth-child(2){
+      background-color: @yellow;
+    }
+    &:nth-child(3){
+      flex-grow: 1;
+      background-color: darken(@yellow, 20%);
+    }
+    .column{
+      display: flex;
+      flex-direction: column;
+      &:nth-child(1) {
+        width: 130px;
+      }
+      &:nth-child(2) {
+        padding-top: extract(@spacing, 4);
+        padding-bottom: extract(@spacing, 6);
+      }
+      [data-icon]{
+        padding: extract(@spacing, 5) 0;
+        margin: -0.11em auto;
+        font-size: 100px;
+      }
+      .additional-info{
+        display: flex;
+        flex-direction: column;
+        margin-top: extract(@spacing, 4);
+      }
+      strong{
+        font-size: 20px;
+        font-weight: 500;
+        &.capitalize{
+          text-transform: capitalize;
+        }
+        &.space-bottom{
+          margin-bottom: extract(@spacing, 3);
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 370px) {
+    .row{
+      .column{
+        &:nth-child(1) {
+          width: 170px;
+        }
+        [data-icon]{
+          font-size: 120px;
+        }
+      }
+    }
+  }
+}

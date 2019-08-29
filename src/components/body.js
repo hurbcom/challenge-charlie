@@ -1,6 +1,10 @@
 import React, { PureComponent, Fragment } from 'react'
 
-import { toCelsius, toFahrenheit } from '../utils/temp-conversor'
+import '../styles/body.less'
+
+import { CelsiusToFahrenheit } from '../utils/temp-convertor'
+import { MSToKM } from '../utils/speed-convertor'
+import { iconsDictionary } from '../utils/icons-dictionary'
 
 import { getWeatherInformation } from '../services/weather-information'
 
@@ -10,10 +14,17 @@ export class Body extends PureComponent {
     isCelsius: true,
   }
 
-  componentDidUpdate (prevProps) {
-    const { props } = this
+  days = ['HOJE', 'AMANHÃ', 'DEPOIS DE AMANHÃ']
+
+  componentDidUpdate (prevProps, prevState) {
+    const { props, state } = this
+
     if (prevProps.city !== props.city) {
       this.setWeatherInformation()
+    }
+
+    if (prevState.weatherInformation !== state.weatherInformation) {
+      this.props.setBackground(state.weatherInformation.list[0].main.temp)
     }
   }
 
@@ -29,15 +40,14 @@ export class Body extends PureComponent {
 
   getTemp (n = 0) {
     const { weatherInformation, isCelsius } = this.state
-    const today = new Date().getDate()
+    const today = new Date(weatherInformation.list[0].dt_txt).getDate()
     for (const item of weatherInformation.list) {
-        const itemDate = new Date(item.dt_txt).getDate()
-      if(itemDate === parseInt(today) + n){
-        console.log(item)
+      const itemDate = new Date(item.dt_txt).getDate()
+      if(itemDate === today + n){
         if (isCelsius) {
-          return toCelsius(item.main.temp)
+          return item.main.temp
         } else {
-          return toFahrenheit(item.main.temp)
+          return CelsiusToFahrenheit(item.main.temp)
         }
       }
     }
@@ -51,28 +61,48 @@ export class Body extends PureComponent {
 
   render () {
     const { weatherInformation } = this.state
+    const todayInfo = weatherInformation && weatherInformation.list[0]
+    console.log(weatherInformation)
     return (
       <div className="app-body">
         {!!weatherInformation && (
           <Fragment>
-            <div
-              className="row"
-              onClick={this.toggleTempType}
-            >
-              {this.todayTemp}
-            </div>
-            <div
-              className="row"
-              onClick={this.toggleTempType}
-            >
-              {this.tomorrowTemp}
-            </div>
-            <div
-              className="row"
-              onClick={this.toggleTempType}
-            >
-              {this.afterTomorrowTemp}
-            </div>
+            {[this.todayTemp, this.tomorrowTemp, this.afterTomorrowTemp].map((temp, i) => {
+              return temp && (
+                <div
+                  className="row"
+                  key={temp}
+                >
+                  <div className="column">
+                    {i === 0 && (
+                      weatherInformation && (
+                        <i
+                          data-icon={iconsDictionary[
+                            todayInfo.weather[0].main
+                          ]}
+                        />
+                      )
+                    )}
+                  </div>
+                  <div className="column">
+                    <strong>{this.days[i]}</strong>
+                    <strong onClick={this.toggleTempType}>
+                      {parseInt(temp)}º{this.state.isCelsius ? 'C' : 'F'}
+                    </strong>
+                    {i === 0 && (
+                      <div className="additional-info">
+                        <strong className="capitalize space-bottom">
+                          {todayInfo.weather[0].description}
+                        </strong>
+                        <span>Vento: {MSToKM(todayInfo.wind.speed)}Km/h</span>
+                        <span>Humidade: {todayInfo.main.humidity}%</span>
+                        <span>Pressão: {todayInfo.main.pressure}hPA</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
           </Fragment>
         )}
       </div>
