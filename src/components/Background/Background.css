@@ -1,0 +1,13 @@
+body, #root {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.backgroundApp {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+/*# sourceMappingURL=Background.css.map */
