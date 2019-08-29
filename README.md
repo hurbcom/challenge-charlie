@@ -20,11 +20,13 @@ O uso de `geohash` ou `custom elements` dá ponto extra 🔝‼️ ;)
 
 ## Requisitos
 
--   Preferencialmente faça em React, mas você poderá também fazer em jQuery mas não pode usar nenhum plugin de jQuery, queremos ver o seu trabalho. Para a folha de estilo, deve ser utilizado LESS.
+-   Preferencialmente faça em React, mas você pode usar outros frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS). Se for usar jQuery, não use plugins de jQuery, queremos ver o seu trabalho.
+-   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
+-   É interessante se sua aplicação estiver pronta para produção. O uso de ferramentas como Webpack, Browserify, Grunt ou Gulp é positivo para a sua avaliação.
 -   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
     -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github e adicione como colaborador o usuário `automator-hurb` e o deixe disponível por pelo menos 30 dias. Ao terminar o desafio nos envie um email avisando do termino.
     -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker
+-   O código precisa rodar dentro de um container Docker.
 -   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
     -   git clone \$seu-fork
     -   cd \$seu-fork
