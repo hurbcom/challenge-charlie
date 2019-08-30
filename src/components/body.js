@@ -52,12 +52,16 @@ export class Body extends PureComponent {
   // Get temps by days, 0 is today, 1 is tomorrow...
   getTemp (n = 0) {
     const { weatherInformation, isCelsius } = this.state
-    const today = new Date(weatherInformation.list[0].dt_txt)
+    const today = new Date()
     const date = new Date(today.setDate(today.getDate() + n))
 
     for (const item of weatherInformation.list) {
-      const itemDate = new Date(item.dt_txt)
-      if (itemDate.getTime() === date.getTime()) {
+      const itemDate = item.dt_txt ? new Date(item.dt_txt) : new Date()
+      if (
+        itemDate.getDate() === date.getDate() &&
+        itemDate.getMonth() === date.getMonth() &&
+        itemDate.getFullYear() === date.getFullYear()
+      ) {
         if (isCelsius) {
           return item.main.temp
         } else {
