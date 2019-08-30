@@ -1,7 +1,7 @@
 const key = '1a8f0d0379b466c874e344f683a4bf12'
 const BASE_URL = 'http://api.openweathermap.org/data/2.5/'
 // Fetch today weather information
-const TODAY_RAW_API_URL = `${BASE_URL}weather?q=__CITY__&lang=pt&APPID=${key}`
+const TODAY_RAW_API_URL = `${BASE_URL}weather?q=__CITY__&units=metric&lang=pt&APPID=${key}`
 // Fetch ahead weather information
 const AHEAD_RAW_API_URL = `${BASE_URL}forecast?q=__CITY__&units=metric&cnt=25&lang=pt&APPID=${key}`
 
