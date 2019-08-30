@@ -4,7 +4,7 @@ import '../styles/header.less'
 
 export class Header extends PureComponent {
   render () {
-    const { userLocation } = this.props
+    const { userLocation, error } = this.props
     return (
       <header className="app-header">
         <h1>
@@ -14,7 +14,13 @@ export class Header extends PureComponent {
               {userLocation.city}, {userLocation.state}
             </Fragment>
           ) : (
-            'Buscando informações...'
+            error ? (
+              <span>
+                Não foi possível carregar as informações :(<br /><br />Atualize a página...
+              </span>
+            ) : (
+              'Buscando localidade...'
+            )
           )}
         </h1>
       </header>

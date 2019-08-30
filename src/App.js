@@ -12,6 +12,7 @@ export class App extends Component {
     todayBackground: null,
     userLocation: null,
     temperature: '',
+    error: false,
   }
 
   componentDidMount () {
@@ -23,22 +24,31 @@ export class App extends Component {
     )
   }
 
+  // Set gradient background by thermal sensation
   async setTodayBackground () {
     const todayBackground = await getTodayBackground()
     this.setState({ todayBackground })
   }
 
+  // Get user location
   setUserLocation = async position => {
     let userLocation
+
     if (position.toString().includes('PositionError')) {
+      // When first alternative fail
       userLocation = await alternativeGetUserLocation()
     } else {
       userLocation = await getUserLocation(position)
     }
-    this.setState({ userLocation })
+
+    if (userLocation) {
+      this.setState({ userLocation })
+    } else {
+      this.setState({ error: true })
+    }
   }
 
-  getTemperature = (temp) => {
+  getThermalSensation = (temp) => {
     let temperature = 'normal'
 
     if (temp < 15) {
@@ -51,7 +61,12 @@ export class App extends Component {
   }
 
   render () {
-    const { todayBackground, userLocation, temperature } = this.state
+    const {
+      todayBackground,
+      userLocation,
+      temperature,
+      error,
+    } = this.state
 
     return (
       <div
@@ -60,10 +75,14 @@ export class App extends Component {
       >
         <div id="bg-temperature" className={temperature} />
         <div id="main-content">
-          <Header userLocation={userLocation} />
+          <Header
+            userLocation={userLocation}
+            error={error}
+          />
           <Body
             city={userLocation && userLocation.city}
-            setBackground={this.getTemperature}
+            setBackground={this.getThermalSensation}
+            error={error}
           />
         </div>
       </div>

@@ -6,6 +6,16 @@
   flex-direction: column;
   flex-grow: 1;
   color: white;
+  .loading{
+    display: flex;
+    align-items: center;
+    padding: extract(@spacing, 4);
+    background-color: @yellow;
+    img{
+      width: 32px;
+      margin-right: extract(@spacing, 4);
+    }
+  }
   .row{
     display: flex;
     &:nth-child(1){

@@ -1,3 +1,4 @@
+// Using "https://cors-anywhere.herokuapp.com" to fool the CORS
 const API_URL = 'https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR'
 const BASE_URL = 'https://www.bing.com'
 

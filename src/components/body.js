@@ -8,42 +8,56 @@ import { iconsDictionary } from '../utils/icons-dictionary'
 
 import { getWeatherInformation } from '../services/weather-information'
 
+import loadingIcon from '../assets/images/loading-icon.svg'
+
 export class Body extends PureComponent {
   state = {
     weatherInformation: null,
     isCelsius: true,
+    isLoading: true,
   }
 
+  // Phrases to show in rows
   days = ['HOJE', 'AMANHÃ', 'DEPOIS DE AMANHÃ']
 
   componentDidUpdate (prevProps, prevState) {
     const { props, state } = this
 
+    // Fetch weather information when find the user location
     if (prevProps.city !== props.city) {
       this.setWeatherInformation()
     }
 
+    // Set gradient background by thermal sensation
     if (prevState.weatherInformation !== state.weatherInformation) {
       this.props.setBackground(state.weatherInformation.list[0].main.temp)
     }
   }
 
-  toggleTempType = () => {
+  toggleTempUnit = () => {
     const { isCelsius } = this.state
     this.setState({ isCelsius: !isCelsius })
   }
 
+
   async setWeatherInformation () {
+    this.setState({ isLoading: true })
     const weatherInformation = await getWeatherInformation(this.props.city)
-    this.setState({ weatherInformation })
+    this.setState({
+      weatherInformation,
+      isLoading: false,
+    })
   }
 
+  // Get temps by days, 0 is today, 1 is tomorrow...
   getTemp (n = 0) {
     const { weatherInformation, isCelsius } = this.state
-    const today = new Date(weatherInformation.list[0].dt_txt).getDate()
+    const today = new Date(weatherInformation.list[0].dt_txt)
+    const date = new Date(today.setDate(today.getDate() + n))
+
     for (const item of weatherInformation.list) {
-      const itemDate = new Date(item.dt_txt).getDate()
-      if(itemDate === today + n){
+      const itemDate = new Date(item.dt_txt)
+      if (itemDate.getTime() === date.getTime()) {
         if (isCelsius) {
           return item.main.temp
         } else {
@@ -59,51 +73,58 @@ export class Body extends PureComponent {
 
   get afterTomorrowTemp () { return this.getTemp(2) }
 
-  render () {
+  // Render rows with temperature infos
+  renderTempInfo = (temp, i) => {
     const { weatherInformation } = this.state
     const todayInfo = weatherInformation && weatherInformation.list[0]
-    console.log(weatherInformation)
-    return (
+    return temp && (
+      <div key={temp} className="row">
+        <div className="column">
+          {(i === 0 && weatherInformation) && (
+            <i data-icon={iconsDictionary[todayInfo.weather[0].main]} />
+          )}
+        </div>
+        <div className="column">
+          <strong>{this.days[i]}</strong>
+          <strong onClick={this.toggleTempUnit}>
+            {parseInt(temp)}º{this.state.isCelsius ? 'C' : 'F'}
+          </strong>
+          {this.renderAdditionalInfo(i, todayInfo)}
+        </div>
+      </div>
+    )
+  }
+
+  // Render wind, humidity and pressure information
+  renderAdditionalInfo = (i, info) => {
+    return i === 0 && (
+      <div className="additional-info">
+        <strong className="capitalize space-bottom">
+          {info.weather[0].description}
+        </strong>
+        <span>Vento: {MSToKM(info.wind.speed)}Km/h</span>
+        <span>Humidade: {info.main.humidity}%</span>
+        <span>Pressão: {info.main.pressure}hPA</span>
+      </div>
+    )
+  }
+
+  render () {
+    const { weatherInformation, isLoading } = this.state
+    const { error } = this.props
+    return !error && (
       <div className="app-body">
         {!!weatherInformation && (
-          <Fragment>
-            {[this.todayTemp, this.tomorrowTemp, this.afterTomorrowTemp].map((temp, i) => {
-              return temp && (
-                <div
-                  className="row"
-                  key={temp}
-                >
-                  <div className="column">
-                    {i === 0 && (
-                      weatherInformation && (
-                        <i
-                          data-icon={iconsDictionary[
-                            todayInfo.weather[0].main
-                          ]}
-                        />
-                      )
-                    )}
-                  </div>
-                  <div className="column">
-                    <strong>{this.days[i]}</strong>
-                    <strong onClick={this.toggleTempType}>
-                      {parseInt(temp)}º{this.state.isCelsius ? 'C' : 'F'}
-                    </strong>
-                    {i === 0 && (
-                      <div className="additional-info">
-                        <strong className="capitalize space-bottom">
-                          {todayInfo.weather[0].description}
-                        </strong>
-                        <span>Vento: {MSToKM(todayInfo.wind.speed)}Km/h</span>
-                        <span>Humidade: {todayInfo.main.humidity}%</span>
-                        <span>Pressão: {todayInfo.main.pressure}hPA</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            })}
-          </Fragment>
+          [this.todayTemp,
+            this.tomorrowTemp,
+            this.afterTomorrowTemp,
+          ].map(this.renderTempInfo)
+        )}
+        {isLoading && (
+          <div className="loading">
+            <img src={loadingIcon} />
+            Buscando informações...
+          </div>
         )}
       </div>
     )
