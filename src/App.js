@@ -1,10 +1,20 @@
 import React from 'react';
 
+//Styles imports
+import { GlobalStyle } from './styles/global';
+import { Wrapper, Container } from './styles/app';
+
+//Page imports
+import Home from './pages/home';
+
 function App() {
   return (
-    <div className="App">
-      Initial Config
-    </div>
+    <Wrapper>
+      <Container>
+        <Home />
+      </Container>
+      <GlobalStyle />
+    </Wrapper>
   );
 }
 
