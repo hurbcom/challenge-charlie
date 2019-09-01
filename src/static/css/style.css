@@ -1,0 +1,40 @@
+/* RESET */
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+/* HTML */
+html {
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    overflow-x: hidden;
+    letter-spacing: 2px;
+    font-family: 'Titillium Web', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #222;
+}
+
+/* LIST */
+ul,li{
+	list-style: none;
+}
+
+/* SELECIONAR */
+::selection {
+    background-color: #838D9A !important;
+    color: #FFF !important;
+}
+
+/* LINKS */
+a{
+    color: #3a967a;
+}
