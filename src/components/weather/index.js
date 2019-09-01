@@ -68,7 +68,7 @@ class Weather extends Component {
           <WeatherInfo show={this.props.isActive}>
             <h1 onClick={this.toggleTemperature}>{this.detectDay(this.props.index)} ({this.state.temperature})</h1>
             <WeatherName weatherName={this.props.weather.icon}/>
-            <h3>Vento: {this.props.weather.windSpeed}</h3>
+            <h3>Vento: {this.props.weather.windSpeed} KM/H</h3>
             <h3>Humidade: {(this.props.weather.humidity * 100).toFixed(0)}%</h3>
             <h3>Pressão: {this.props.weather.windSpeed}</h3>
           </WeatherInfo>

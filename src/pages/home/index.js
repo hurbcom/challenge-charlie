@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 //Style Import
-import { Wrapper, Container } from './style';
+import { Wrapper, Container, Header } from './style';
+import Compass from './../../assets/images/compass-icon.png';
 
 //Libs And Environment Import
 import { requestProxy, baseBingUrl, openCageApiKey, darkSkyApiKey } from './../../environment/env';
@@ -18,8 +19,7 @@ class Home extends Component {
       todayImage: '',
       weatherData: [],
       local: {
-        city: null,
-        estado: null,
+        cityAndState: '',
         lat: 0,
         lng: 0
       },
@@ -54,8 +54,7 @@ class Home extends Component {
       .then(response => {
         this.setState({ local: {
           ...this.state.local,
-          city: response.data.results[0].components.city,
-          estado: response.data.results[0].components.state,
+          cityAndState: response.data.results[0].components.city+', '+response.data.results[0].components.state,
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }});
@@ -86,6 +85,10 @@ class Home extends Component {
     return(
       <Wrapper background={this.state.todayImage}>
         <Container>
+          <Header>
+            <img src={Compass} alt="Compass" />
+            <div>{this.state.local.cityAndState}</div>
+          </Header>
         {this.state.weatherData.map((item, i) => (
             <Weather
               weather={item}

@@ -1,7 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 
+import { device } from './../../styles/devices';
+
 export const Container = styled.div`
-  width: 50%;
+  width: 60%;
+  @media ${device.small} {
+    width: 90%;
+  }
   margin: 10px auto;
   padding: 10px;
   border-radius: 5px;
@@ -11,7 +16,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  animation: ${props => props.animate? activeIn : activeOut} forwards 0.5s;
+  animation: ${props => props.animate? activeIn : activeOut} forwards 0.3s;
 
   div {
     width: 48%;
@@ -22,12 +27,18 @@ export const Container = styled.div`
   }
 
   div:first-child {
+    @media ${device.small} {
+      width: 30%;
+    }
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   div:last-child {
+    @media ${device.small} {
+      width: 66%;
+    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,6 +51,9 @@ export const WeatherInfo = styled.div`
   h1 {
     margin-top: -15px;
     font-size: 25px;
+    @media ${device.small} {
+      font-size: 20px;
+    }
   }
 
   h2 {
@@ -51,6 +65,9 @@ export const WeatherInfo = styled.div`
     font-size: 20px;
     font-weight: 300;
     display: ${props => props.show ? 'block' : 'none'};
+    @media ${device.small} {
+      font-size: 15px;
+    }
   }
 `;
 
