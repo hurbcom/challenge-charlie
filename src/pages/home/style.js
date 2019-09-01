@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   flex: 1;
   height: 100%;
+  overflow: hidden;
   background: url(${props => props.background});
 `;
 

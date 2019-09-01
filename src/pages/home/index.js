@@ -5,7 +5,10 @@ import axios from 'axios';
 import { Wrapper, Container } from './style';
 
 //Libs And Environment Import
-import { requestProxy, baseBingUrl } from './../../environment/env';
+import { requestProxy, baseBingUrl, openCageApiKey, darkSkyApiKey } from './../../environment/env';
+
+//Components Import
+import Weather from './../../components/weather';
 
 class Home extends Component {
   constructor(props) {
@@ -13,6 +16,13 @@ class Home extends Component {
     this.state = {
       activeIndex: 0,
       todayImage: '',
+      weatherData: [],
+      local: {
+        city: null,
+        estado: null,
+        lat: 0,
+        lng: 0
+      },
     }
   }
 
@@ -23,18 +33,68 @@ class Home extends Component {
         const urlImage = `${baseBingUrl}/${res.data.images[0].url}`;
         this.setState({ todayImage: urlImage });
       })
-      .catch(err => console.log('Erro ao recuperar imagem:', err));
+      .catch(err => alert('Erro ao recuperar imagem:', err));
   }
+
+  //To get geolocation user's
+  retrieveUserCordinate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.doReverseGeocodeAndSetCordinate);
+    } else {
+      alert('O suporte a geolocalização não está disponível.')
+    }
+  }
+
+  //Do Reverse Geocode and set geolocation in the state
+  doReverseGeocodeAndSetCordinate = (position) => {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+
+    axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${openCageApiKey}`)
+      .then(response => {
+        this.setState({ local: {
+          ...this.state.local,
+          city: response.data.results[0].components.city,
+          estado: response.data.results[0].components.state,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }});
+        this.retrieveWeatherData();
+      })
+      .catch(err => console.log(err));
+  }
+
+  //Request Weather API
+  retrieveWeatherData() {
+    const {city, estado, lat, lng} = this.state.local;
+    axios.get(`${requestProxy}/https://api.darksky.net/forecast/${darkSkyApiKey}/${lat},${lng}`)
+      .then(response => {
+        const weahterContent = response.data.daily.data.slice(0, 3);
+        this.setState({ weatherData: weahterContent});
+      })
+      .catch(err => console.log('Erro previsão:', err));
+  }
+
+  handleClick = (index) => this.setState({ activeIndex: index });
 
   componentDidMount() {
     this.retrieveBingTodayImage();
+    this.retrieveUserCordinate();
   }
 
   render() {
     return(
       <Wrapper background={this.state.todayImage}>
         <Container>
-          Initial Hoem page
+        {this.state.weatherData.map((item, i) => (
+            <Weather
+              weather={item}
+              key={item.time}
+              index={i}
+              isActive={ this.state.activeIndex===i }
+              onClick={ this.handleClick }
+            />
+          ))}
         </Container>
       </Wrapper>
     );
