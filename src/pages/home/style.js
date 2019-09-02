@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { device } from './../../styles/devices';
 
@@ -6,7 +6,12 @@ export const Wrapper = styled.div`
   flex: 1;
   height: 100%;
   overflow: hidden;
-  background: url(${props => props.background});
+  background: url(${props => props.background}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  animation: ${props => activeIn} forwards 2s;
 `;
 
 export const Container = styled.div`
@@ -14,6 +19,16 @@ export const Container = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
+`;
+
+export const LoadingWrapper = styled.div`
+  width: 40%;
+  margin: 50px auto;
+  text-align: center;
+  color: #92D2E6;
+  @media ${device.small} {
+    width: 90%;
+  }
 `;
 
 export const Header = styled.header`
@@ -43,5 +58,14 @@ export const Header = styled.header`
     margin-left: 20px;
     color: #333;
     font-weight: bold;
+  }
+`;
+
+const activeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 `;
