@@ -19,10 +19,6 @@ yarn start
 
 Para o funcionamento correto da aplicação, você deve habilitar a permissão para geolocalização quando solicitado.
 
-```
-Give examples
-```
-
 ## Dockerizing
 
 Este projeto acompanha um `dockerfile` para maior facilidade no deploy e desenvolvimento.
