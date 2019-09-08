@@ -14,8 +14,8 @@ function tempo(lat,lon,u) {
       'oauth_timestamp': parseInt(new Date().getTime() / 1000).toString(),
       'oauth_version': '1.0'
   };
-  
-  var merged = {}; 
+
+  var merged = {};
   $.extend(merged, query, oauth);
   // Observe que a classificação aqui é obrigatória
   var merged_arr = Object.keys(merged).sort().map(function(k) {
@@ -24,25 +24,25 @@ function tempo(lat,lon,u) {
   var signature_base_str = method
     + concat + encodeURIComponent(url)
     + concat + encodeURIComponent(merged_arr.join(concat));
-  
+
   var composite_key = encodeURIComponent(consumer_secret) + concat;
   var hash = CryptoJS.HmacSHA1(signature_base_str, composite_key);
   var signature = hash.toString(CryptoJS.enc.Base64);
-  
+
   oauth['oauth_signature'] = signature;
   var auth_header = 'OAuth ' + Object.keys(oauth).map(function(k) {
     return [k + '="' + oauth[k] + '"'];
   }).join(',');
-  
+
   $.ajax({
     url: url + '?' + $.param(query),
     headers: {
       'Authorization': auth_header,
-      'X-Yahoo-App-Id': app_id 
+      'X-Yahoo-App-Id': app_id
     },
     method: 'GET',
     success: function(data){
-    
+
     if(u == 'c') { nova_escala = "f"; }
     if(u == 'f') { nova_escala = "c"; }
 
@@ -80,7 +80,7 @@ function tempo(lat,lon,u) {
   });
   }
 
-// Função para pegar Geolocalização  
+// Função para pegar Geolocalização
 function geolocalizacao(escala){
   if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){ // callback de sucesso
@@ -89,15 +89,15 @@ function geolocalizacao(escala){
       $('#primeiro-box').empty();
       $('#segundo-box').empty();
       $('#terceiro-box').empty();
-      
+
       pegar_cidade(position.coords.latitude,position.coords.longitude,escala);
-      
+
       setTimeout(function() {
         tempo(position.coords.latitude,position.coords.longitude,escala);
       }, 1000);
-      
-      
-      }, 
+
+
+      },
       function(error){ // callback de erro
          alert('Erro ao obter localização!');
       });
@@ -108,7 +108,9 @@ function geolocalizacao(escala){
 
   function pegar_cidade(lat,lon){
 
-  $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAj4WSUSBYq2c6IlDYhnGnr33thBsbvHds&latlng='+lat+','+lon, function(data) {
+  var api_google_maps = ''; // Aqui vai o token da API do google maps
+
+  $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?key='+api_google_maps+'&latlng='+lat+','+lon, function(data) {
   $('#box').append('<h1><span class="icon" data-icon="("></span> '+data.results[1].address_components[3].long_name+','+data.results[1].address_components[4].short_name+'</h1>'); // Cidade e Estado
   });
   }
@@ -123,7 +125,7 @@ function geolocalizacao(escala){
       $('body').css('background-image','url('+data.items[0].link+')');
     }
   });
-  return false;		
+  return false;
 
  }
 
@@ -135,7 +137,7 @@ function geolocalizacao(escala){
   }
   if(escala == 'c') {
     temperatura = temp;
-  }  
+  }
 
 
   if(temperatura < 0) {
@@ -143,7 +145,7 @@ function geolocalizacao(escala){
     g = 0;
     b = 43;
   }
-  
+
   if(temperatura > 0 && temperatura <= 15) {
     r = 0;
     g = 0;
@@ -161,7 +163,7 @@ function geolocalizacao(escala){
     g = 0;
     b = 0;
   }
-  
+
   $(box).css('background-color','rgba('+r+','+g+','+b+',0.6)');
 
  }
@@ -315,7 +317,7 @@ function geolocalizacao(escala){
       letra = "Z";
       break;
   }
-  
+
   $(box).find('span').attr('data-icon',letra);
   }
 
