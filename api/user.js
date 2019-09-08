@@ -6,7 +6,7 @@ var router = express.Router();
 const axios = require('axios');
 const API = require('./config');
 
-// Roda para autenticação da sessão para o checkout transparent
+// Processa e coleta informações de tempo baseada na posição geográfica do usuário
 router.post('/infos', async (req, res) => {
 
     // Recupera informações do POST
@@ -41,15 +41,50 @@ router.post('/infos', async (req, res) => {
     const { url } = bingData.data.images[0];
 
     // Pega informações do clima 
-    const weatherData = await axios.get(`${API.openweathermap.endpoint}${state}&APPID=${API.openweathermap.key}`);
+    const weatherData = await axios.get(`${API.openweathermap.endpoint}${state}&units=metric&cnt=16&lang=pt&APPID=${API.openweathermap.key}`);
 
-    console.log( weatherData );
+    // Formata o clima para o retorno correto
+    let responseClimate = {};
+    const keysNames = [ 'today', 'tomorrow', 'after_tomorrow' ];
 
-    // Retorna true
-    /* res.end(JSON.stringify({
-        'error': false,
-        'message': 'Pagamento processado com sucesso!'
-    })); */
+    // Percorre os horários registrados 
+    weatherData.data.list.map( climate => {
+      
+        // Pega o dia para realizar o agrupamento
+        const day = new Date( climate.dt_txt ).getDate(); 
+
+        // Desestrutura objeto para facilitar a manipulação
+        const { temp, humidity, pressure } = climate.main;
+
+        // Previne erro fatal 
+        const curClimate = responseClimate[day] || {};
+
+        // Atualiza valores no Array caso o atual seja maior
+        responseClimate[day] = {
+            temp: ( curClimate.temp > temp ? curClimate.temp : temp ),
+            humidity: ( curClimate.humidity > humidity ? curClimate.humidity : humidity ),
+            pressure: ( curClimate.pressure > pressure ? curClimate.pressure : pressure ),
+            wind_deg: ( curClimate.wind_deg > climate.wind.speed ? curClimate.wind_deg : climate.wind.deg ),
+            wind_speed: ( curClimate.wind_speed > climate.wind.speed ? curClimate.wind_speed : climate.wind.speed )
+        };
+
+    });
+
+    // Renomei as keys do objeto
+    Object.keys(responseClimate).map( ( climate, key ) => {
+        delete Object.assign(responseClimate, {[keysNames[key]]: responseClimate[climate] })[climate]
+    });
+
+    // Retorno do endpoint
+    res.end(JSON.stringify({
+        success: true,
+        data: {
+            state: state,
+            city: city,
+            background: url,
+            climate: responseClimate, 
+        }
+    }));
 
 });
 
