@@ -81,7 +81,7 @@ router.post('/infos', async (req, res) => {
         data: {
             state: state,
             city: city,
-            background: url,
+            background: `https://bing.com${url}`,
             climate: responseClimate, 
         }
     }));
