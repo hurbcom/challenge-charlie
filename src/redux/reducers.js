@@ -1,6 +1,6 @@
 // Import Middleware e Redux
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Import InitialState
 import { initialState } from './store';
@@ -18,6 +18,10 @@ export const reducer = (state = initialState, action) => {
         user_city: action.user_city,
         background: action.background,
         climate: action.climate, 
+      })
+    case actionTypes.USER_AUTHORIZATION:
+      return Object.assign({}, state, {
+        user_authorization: action.user_authorization,
       })
     default:
       return state
