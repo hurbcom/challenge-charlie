@@ -1,0 +1,210 @@
+// importações
+
+@import "../fonts/stylesheet.css";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+
+//variaveis
+
+@font-family: 'Open Sans Condensed', sans-serif;
+@color-primary:#666;
+@color-secondary:#fff;
+@bakcground-topo: rgba(255,255,255,0.9);
+
+
+//elementos
+
+body{
+  font-family: @font-family;
+  background-position:center center; 
+	background-repeat:no-repeat; 
+	background-attachment:fixed; 
+	background-size:cover;    
+	-webkit-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  -moz-background-size: cover;
+  margin: 0px;
+}
+h1{
+  color: @color-primary;
+  background: @bakcground-topo;
+  padding:15px 0 15px 0;
+  text-align: center;
+  width: 100%;
+  margin:0;
+}
+
+// ID'S
+
+#container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center  
+}
+#box {
+  height: 100%;
+  padding:0;
+}
+@media only screen and (max-width: 768px) {
+#box {
+  width: 90%;
+}
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+#box {
+  width: 80%;
+}
+}
+@media only screen and (min-width: 1025px) {
+  #box {
+    width: 60%;
+  }
+}
+#primeiro-box{
+  width:100%;
+}
+#segundo-box{
+  width:100%;
+}
+#terceiro-box{
+  width:100%;
+}
+
+
+//classes primeiro box
+.clearfix:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+.icon:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+}
+.icon-principal{
+  position:relative;
+  width:35%;
+  padding:5%;
+  float:left;
+  text-align: center;
+  padding-top:25pt;
+}
+.temperatura-principal{
+  width:45%;
+  padding:5%;
+  float:right;
+}
+
+.icon-principal span{
+  color: @color-secondary;
+}
+.temperatura-principal h2{
+  margin: 0;
+  color: @color-secondary;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.temperatura-principal h3{
+  margin: 10px 0 10px 0;
+  color: @color-secondary;
+}
+.temperatura-principal p{
+  margin: 0;
+  color: @color-secondary;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .icon-principal span{
+    font-size:35vw;
+  }
+  .temperatura-principal h2{
+    font-size:6vw;
+  }
+  .temperatura-principal h3{
+    font-size:5vw;
+  }
+  .temperatura-principal p{
+    font-size:4.5vw;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .icon-principal span{
+    font-size:22vw;
+  }
+  .temperatura-principal h2{
+    font-size:2.5vw;
+  }
+  .temperatura-principal h3{
+    font-size:2vw;
+  }
+  .temperatura-principal p{
+    font-size:1.7vw;
+  }
+} 
+@media only screen and (min-width: 1025px) {
+  .icon-principal span{
+    font-size:18vw;
+  }
+  .temperatura-principal h2{
+    font-size:2.5vw;
+  }
+  .temperatura-principal h3{
+    font-size:2vw;
+  }
+  .temperatura-principal p{
+    font-size:1.7vw;
+  }
+}
+
+.icon-secundario{
+  position:relative;
+  width:35%;
+  padding:1% 5% 1% 5%;
+  float:left;
+  text-align: center;
+}
+.temperatura-secundaria{
+  width:45%;
+  padding:1% 5% 1% 5%;
+  float:right;
+}
+
+.icon-secundario span{
+  color: @color-secondary;
+}
+.temperatura-secundaria h2{
+  margin: 0;
+  color: @color-secondary;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .icon-secundario span{
+    font-size:12vw;
+  }
+  .temperatura-secundaria h2{
+    font-size:4vw;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .icon-secundario span{
+    font-size:10vw;
+  }
+  .temperatura-secundaria h2{
+    font-size:3vw;
+  }
+} 
+@media only screen and (min-width: 1025px) {
+  .icon-secundario span{
+    font-size:5vw;
+  }
+  .temperatura-secundaria h2{
+    font-size:1.5vw;
+  }
+}
