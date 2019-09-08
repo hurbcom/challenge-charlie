@@ -13,7 +13,7 @@ router.post('/infos', async (req, res) => {
     const { lat, long } = req.body;
 
     // Pega os dados completo da geolocalizaçãodo do usuário com reverse geocode.
-    const geoData = await axios.get(`${API.opencage.endpoint}${lat}+${long}&key=${API.opencage.key}`);
+    const geoData = await axios.get(`${API.opencage.endpoint}${lat}+${long}&key=${process.env.OPENCAGE_KEY}`);
 
     // Verifica se houve algum erro no request
     if( !geoData.data.results ){
@@ -41,7 +41,7 @@ router.post('/infos', async (req, res) => {
     const { url } = bingData.data.images[0];
 
     // Pega informações do clima 
-    const weatherData = await axios.get(`${API.openweathermap.endpoint}${state}&units=metric&cnt=16&lang=pt&APPID=${API.openweathermap.key}`);
+    const weatherData = await axios.get(`${API.openweathermap.endpoint}${state}&units=metric&cnt=16&lang=pt&APPID=${process.env.OPENWEATHERMAP_KEY}`);
 
     // Formata o clima para o retorno correto
     let responseClimate = {};
@@ -79,8 +79,8 @@ router.post('/infos', async (req, res) => {
     res.end(JSON.stringify({
         success: true,
         data: {
-            state: state,
-            city: city,
+            user_state: state,
+            user_city: city,
             background: `https://bing.com${url}`,
             climate: responseClimate, 
         }

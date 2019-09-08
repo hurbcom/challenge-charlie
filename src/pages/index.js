@@ -1,6 +1,13 @@
 // Import React Defaults
 import React, { Component } from 'react';
 
+// Imports Redux Defaults
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// Import Actions Redux
+import { setUserLocation } from '../redux/actions';
+
 // Import Components
 import Page from '../components/template/page';
 
@@ -19,7 +26,7 @@ class Home extends Component {
       const response = await fetch( `/api/user/infos`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           lat: latitude,
@@ -28,8 +35,13 @@ class Home extends Component {
       });
       const userData = await response.json();
 
-      console.log( 'userData', userData );
-      
+      // Recupera informações do fetch
+      const { user_state, user_city, background, climate } = userData.data;
+
+      console.log( climate );
+
+      // Envia atualização para a store
+      this.props.setUserLocation( user_state, user_city, background, climate );
 
     });
   }
@@ -43,4 +55,14 @@ class Home extends Component {
   }
 };
 
-export default Home;
+function mapStateToProps ( state ) {
+  const { user_state, user_city, background, climate } = state;
+  return { user_state, user_city, background, climate }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({ setUserLocation }, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

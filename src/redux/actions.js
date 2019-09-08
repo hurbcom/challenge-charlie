@@ -4,6 +4,12 @@ export const actionTypes = {
 }
 
 // Informações de locatlidade do usuário
-export const getUserLocation = ( userLocation ) => {
-    return { type: actionTypes.USER_LOCATION, userLocation: userLocation }
+export const setUserLocation = ( state, city, background, climate ) => {
+    return { 
+        type: actionTypes.USER_LOCATION,
+        user_state: state,
+        user_city: city,
+        background: background,
+        climate: climate, 
+    }
 }

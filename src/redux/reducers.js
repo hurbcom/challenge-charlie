@@ -13,7 +13,11 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.USER_LOCATION:
       return Object.assign({}, state, {
-        userLocation: action.userLocation,
+        user_location: true,
+        user_state: action.user_state,
+        user_city: action.user_city,
+        background: action.background,
+        climate: action.climate, 
       })
     default:
       return state
