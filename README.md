@@ -16,6 +16,7 @@ SPA desenvolvida para teste de conhecimento no processo seletivo da equipe Hurb.
 - GitFlow
 - Testes unitários
 - Aplicação Isomorfica ( Para SEO )
+- Aplicação sem vulnerabilidade ( NPM )
 
 ## Vamos começar?
 
