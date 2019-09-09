@@ -14,7 +14,7 @@ router.post('/infos', async (req, res) => {
     let city = '';    
 
     // Verifica se no body não existe o estado do usuário
-    if( req.body.user_state !== undefined ){
+    if( !req.body.user_state ){
 
         // Recupera informações do POST
         const { lat, long } = req.body;
@@ -75,6 +75,9 @@ router.post('/infos', async (req, res) => {
         // Atualiza valores no Array caso o atual seja maior
         responseClimate[day] = {
             temp: ( curClimate.temp > temp ? curClimate.temp : temp ),
+            temp_f: ( curClimate.temp > temp ? curClimate.temp_f : ( parseInt( temp ) * 9 / 5 + 32 ) ),
+            temp_tip: ( curClimate.temp > temp ? curClimate.temp_tip : climate.weather[0].description ),
+            temp_icon: ( curClimate.temp > temp ? curClimate.temp_icon : climate.weather[0].icon ),
             humidity: ( curClimate.humidity > humidity ? curClimate.humidity : humidity ),
             pressure: ( curClimate.pressure > pressure ? curClimate.pressure : pressure ),
             wind_deg: ( curClimate.wind_deg > climate.wind.speed ? curClimate.wind_deg : climate.wind.deg ),

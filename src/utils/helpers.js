@@ -36,3 +36,91 @@ export const states = [
     { 'uf': 'SE', 'state': 'Sergipe' },
     { 'uf': 'TO', 'state': 'Tocantins' },
 ];
+
+/*
+* HEX to RGBA
+* Usage: hex2rgba( '#FFFFFF', '0.7' );
+*/
+export const hex2rgba = ( hex, alpha = 1 ) => {
+    const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+    return `rgba(${r},${g},${b},${alpha})`;
+};
+
+/*
+* DEG to DIRECTION COMPASS
+* Usage: degToCompass( '29' );
+*/
+export const degToCompass = ( num ) => {
+    const val = Math.floor((num / 22.5) + 0.5);
+    const arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    return arr[(val % 16)];
+}
+
+/*
+* ALL Days
+*/
+export const days = [
+    'Hoje', 'Amanhã', 'Depois de Amanhã'
+];
+
+/*
+* ALL Icons
+*/
+export const days_icons = {
+    '01d': 'B',
+    '02d': 'H',
+    '03d': 'N',
+    '04d': 'Y',
+    '09d': 'R',
+    '10d': 'R',
+    '11d': '0',
+    '13d': 'U',
+    '50d': 'M',
+    '01n': 'B',
+    '02n': 'H',
+    '03n': 'N',
+    '04n': 'Y',
+    '09n': 'R',
+    '10n': 'R',
+    '11n': '0',
+    '13n': 'U',
+    '50n': 'M',
+};
+
+/*
+* ALL Colors Variant
+*/
+export const days_colors = {
+    yellow: {
+        color1: 'ffb600',
+        color2: 'ffda00',
+        color3: 'b79403',
+    },
+    blue: {
+        color1: '0000FF',
+        color2: '2A52BE',
+        color3: '00009C',
+    },
+    red: {
+        color1: 'E34234',
+        color2: 'CE1620',
+        color3: '800000',
+    }
+};
+
+/*
+* CHECK COLOR BY TEMP
+* Usage: checkColorDay( 29 );
+*/
+export const checkColorDay = ( temp ) => {
+
+    // Define cor padrão
+    let color = 'yellow';
+    
+    // Verifica a temperatura para mudar a cor
+    if( temp < 15 ) color = 'blue';
+    else if ( temp > 35 ) color = 'red';
+
+    // Retorna array de cores 
+    return days_colors[color];
+}
