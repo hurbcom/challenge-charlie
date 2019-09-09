@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "dev": "node server.js",
-    "build": "export NODE_ENV=production && next build ./src"
+    "build": "export NODE_ENV=production && next build ./src",
+    "export": "next export"
   },
   "repository": {
     "type": "git",
