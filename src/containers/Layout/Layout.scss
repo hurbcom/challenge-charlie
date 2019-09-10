@@ -1,5 +1,8 @@
+@import '../../assets/styles/_mixins';
+
 .Container {
-    width: 960px;
-    background-color: grey;
+    width: 600px;
     margin: auto;
+    font: inherit;
+    @include font-test('MeteoconsRegular', '../../assets/fonts/meteocons-webfont')
 }

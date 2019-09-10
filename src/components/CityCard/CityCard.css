@@ -1,100 +1,168 @@
 .CityCardBoxm10 {
   background-color: rgba(92, 10, 112, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxam10 {
   background-color: rgba(92, 10, 112, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox0 {
   background-color: rgba(57, 17, 122, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa0 {
   background-color: rgba(57, 17, 122, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox4 {
   background-color: rgba(19, 17, 122, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa4 {
   background-color: rgba(19, 17, 122, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox9 {
   background-color: rgba(17, 59, 122, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa9 {
   background-color: rgba(17, 59, 122, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox13 {
   background-color: rgba(17, 115, 122, 0.9);
+  font: inherit;
   width: 100%;
-  height: 40px;
+  height: 150px;
 }
 
 .CityCardBoxa13 {
   background-color: rgba(17, 115, 122, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox17 {
   background-color: rgba(7, 109, 87, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa17 {
   background-color: rgba(7, 109, 87, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox20 {
   background-color: rgba(113, 124, 10, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa20 {
   background-color: rgba(113, 124, 10, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox25 {
-  background-color: rgba(199, 147, 6, 0.4);
+  background-color: rgba(199, 147, 6, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa25 {
-  background-color: rgba(199, 147, 6, 0.9);
+  background-color: rgba(199, 147, 6, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox30 {
-  background-color: rgba(255, 255, 0, 0.4);
+  background-color: rgba(255, 255, 0, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa30 {
-  background-color: rgba(255, 255, 0, 0.9);
+  background-color: rgba(255, 255, 0, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox35 {
   background-color: rgba(129, 47, 15, 0.9);
+  font: inherit;
   width: 100%;
-  height: 40px;
+  height: 150px;
 }
 
 .CityCardBoxa35 {
   background-color: rgba(129, 47, 15, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox38 {
   background-color: rgba(148, 18, 13, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa38 {
   background-color: rgba(148, 18, 13, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBox40 {
   background-color: rgba(168, 0, 0, 0.9);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 
 .CityCardBoxa40 {
   background-color: rgba(168, 0, 0, 0.4);
+  font: inherit;
+  width: 100%;
+  height: 150px;
 }
 /*# sourceMappingURL=CityCard.css.map */
