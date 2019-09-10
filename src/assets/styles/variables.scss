@@ -1,0 +1,43 @@
+// projeto com visual muito baseado na transparência dos elementos, faz-se-á interessante lidar com IE8 ou outros browsers
+@mixin opacity($opacity) {
+        opacity: $opacity;
+        $opacity-ie: $opacity * 100;
+        filter: alpha(opacity = $opacity-ie); //IE8
+}
+
+@mixin fontesGeral() {
+        font-family: 'MeteoconsRegular';
+        src: url('../fonts/meteocons-webfont.eot');
+        src: url('../fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/meteocons-webfont.woff') format('woff'), url('../fonts/meteocons-webfont.ttf') format('truetype'), url('../fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+}
+
+@mixin screen($size) {
+    $desktop: "(min-width: 1024px)";
+    $tablet: "(min-width: 768px) and (max-width: 1023px)";
+    $mobile: "(max-width: 767px)";
+    @if $size == desktop {
+      @media only screen and #{$desktop} {
+        @content;
+      }
+    }
+    @else if $size == tablet {
+      @media only screen and #{$tablet} {
+        @content;
+      }
+    }
+    @else if $size == mobile {
+      @media only screen and #{$mobile} {
+        @content;
+      }
+    }
+    @else {
+      @media only screen and #{$size} {
+        @content;
+      }
+    }
+}
+
+
+  // *pendência: Pegar mixin do slide pros componentes que expandem
