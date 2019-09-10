@@ -70,7 +70,7 @@ export const UserState = styled.div`
 export const BoxDays = styled.div`
     width: 100%;
     color: #FFF;
-    height: calc( 100% - 98px );
+    height: calc( 100% - 99px );
 `;
 
 export const BoxSpinner = styled.div`
