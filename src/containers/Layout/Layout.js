@@ -6,7 +6,7 @@ import CityCard from '../../components/CityCard/CityCard'
 
 
 const cCard1 = {dia: 'HOJE', temp: 32, desc: 'Ensolarado', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA' }
-const cCard2 = {dia: 'AMANHÃ', temp: 31, desc: 'Chuvoso', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA' }
+const cCard2 = {dia: 'AMANHÃ', temp: 10, desc: 'Chuvoso', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA' }
 const cCard3 = {dia: 'DEPOIS DE AMANHÃ', temp: 42, desc: 'Parcialmente nublado', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA' }
 
 class Layout extends Component {

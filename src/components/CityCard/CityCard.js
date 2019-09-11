@@ -68,17 +68,17 @@ class CityCard extends Component {
         const containerClass = `CityCardBox${activeOrNot}${tempToBgColor}`
 
         // fim do preparo do nome da classe do Container do CityCard
-
+        // 
 
         return (
             <div onClick={() => this.changeStateHandler()} className={containerClass}>
                 <div className="iconArea">
-                P
+                <div className="onOffIcon">P</div>
                 </div>
                 <div className="contentArea">
                     <div className="contentTitle">
-                            <h1>{this.props.card.dia}<br/>
-                            {this.props.card.temp}</h1>
+                            <h1>{this.props.card.dia}</h1>
+                            <h2>{this.props.card.temp}</h2>
                     </div>
                     <div className="contentDescription">
                             <h1>{this.props.card.desc}</h1>
