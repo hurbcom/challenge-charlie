@@ -12,6 +12,7 @@ class CityCard extends Component {
 
     componentDidMount () {
         this.setState({expanded: this.props.ativo})
+        console.log(this.props)
     }
 
     // 1 - função local de UI pra mudar o state do card expandido pra compactado e versa-vice
@@ -70,9 +71,22 @@ class CityCard extends Component {
 
 
         return (
-            <div className={containerClass}>
-                <button onClick={() => this.changeStateHandler()}>Mudar state</button>
-                QWERTYUIOPASDFGHJKLÇZXCVBNM
+            <div onClick={() => this.changeStateHandler()} className={containerClass}>
+                <div className="iconArea">
+                P
+                </div>
+                <div className="contentArea">
+                    <div className="contentTitle">
+                            <h1>{this.props.card.dia}<br/>
+                            {this.props.card.temp}</h1>
+                    </div>
+                    <div className="contentDescription">
+                            <h1>{this.props.card.desc}</h1>
+                            <h2>Vento: {this.props.card.vento}<br/>
+                            Umidade: {this.props.card.umidade}<br/>
+                            Pressão: {this.props.card.pressao}</h2>
+                    </div>
+                </div>
             </div>
           );
     }
