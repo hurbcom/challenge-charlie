@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACP,KAAK,EAAE,MAAM;EACb,MAAM,EAAE,IAAI;EACZ,MAAM,EAAE,GAAG,CAAC,KAAK,CAAC,wBAAwB;EAC1C,WAAW,EAAE,kBACjB;CAAC",
+    "sources": [
+        "Layout.scss",
+        "../../assets/styles/_mixins.scss"
+    ],
+    "names": [],
+    "file": "Layout.css"
+}

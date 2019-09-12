@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "MeteoconsRegular";
+  src: url("./assets/fonts/meteocons-webfont.eot");
+  src: url("./assets/fonts/meteocons-webfont.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/meteocons-webfont.woff") format("woff"), url("./assets/fonts/meteocons-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "MeteoconsRegular";
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace, "MeteoconsRegular";
+}
+
+input {
+  height: 98.5%;
+  width: 98%;
+  display: block;
+  border: 0;
+  background-color: rgba(238, 238, 238, 0.95);
+  color: #252525;
+  font-size: 56px;
+  font-family: 'Trebuchet MS';
+  font-weight: 600;
+  z-index: 200;
+  padding-left: 18px;
+}
+
+.customWrapper {
+  background-color: rgba(238, 238, 238, 0.808);
+  color: #252525;
+  font-size: 42px;
+  font-family: 'Trebuchet MS';
+  border: 0;
+
+}
+
+.sc-bZQynM {
+  transition: all .7s ease;
+}
