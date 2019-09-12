@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Layout.css';
-import InputSearch from '../../components/InputSearch/InputSearch'
 import CityCard from '../../components/CityCard/CityCard'
+import Header from '../Header/Header';
 
 
 
@@ -22,7 +22,7 @@ class Layout extends Component {
     render() {
         return (
             <div className="Container">
-                <InputSearch />
+                <Header />
                 <CityCard ativo={true} card={cCard1} />
                 <CityCard ativo={false} card={cCard2}/>
                 <CityCard ativo={false} card={cCard3}/>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;EACZ,KAAK,EAAE,OAAO;EACd,gBAAgB,EAAE,yBAAyB;EAC3C,MAAM,EAAE,CAAC;EACT,WAAW,EAAE,kBAAkB;EAC/B,SAAS,EAAE,IAAI;EACf,YAAY,EAAE,IAAI;EAClB,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,KACjB;CAAC",
+    "sources": [
+        "Formbtn.scss"
+    ],
+    "names": [],
+    "file": "Formbtn.css"
+}

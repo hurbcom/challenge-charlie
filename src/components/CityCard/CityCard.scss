@@ -24,20 +24,12 @@
         .onOffIcon {
             display: none;
             transition: all .7s ease;
-            -webkit-transition: all .7s ease;
-            -moz-transition: all .7s ease;
-            -ms-transition: all .7s ease;
-            -o-transition: all .7s ease;
-}
+        }
     }
     .contentDescription {
         display: none;
         transition: all .7s ease;
-        -webkit-transition: all .7s ease;
-        -moz-transition: all .7s ease;
-        -ms-transition: all .7s ease;
-        -o-transition: all .7s ease;
-}
+    }
 }
 
 @mixin expandedCc() {
@@ -47,20 +39,12 @@
         .onOffIcon {
             display: block;
             transition: all .7s ease;
-            -webkit-transition: all .7s ease;
-            -moz-transition: all .7s ease;
-            -ms-transition: all .7s ease;
-            -o-transition: all .7s ease;
-}
+        }
     }
     .contentDescription {
         display: block;
         transition: all .7s ease;
-        -webkit-transition: all .7s ease;
-        -moz-transition: all .7s ease;
-        -ms-transition: all .7s ease;
-        -o-transition: all .7s ease;
-}
+    }
 }
 
 .iconArea {
