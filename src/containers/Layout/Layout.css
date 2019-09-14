@@ -1,5 +1,4 @@
 .Container {
-  width: 1005px;
   min-height: 100vh;
   margin: auto;
   border-left: 2px solid rgba(167, 120, 120, 0.3);
@@ -9,5 +8,25 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .Container {
+    width: 1005px;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+  .Container {
+    min-width: 500px;
+    max-width: 800px;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .Container {
+    max-width: 430px;
+    min-width: 420px;
+  }
 }
 /*# sourceMappingURL=Layout.css.map */

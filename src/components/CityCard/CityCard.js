@@ -79,7 +79,8 @@ class CityCard extends Component {
         return (
             <div onClick={() => this.changeStateHandler()} className={containerClass}>
                 <div className="iconArea">
-                <div className="onOffIcon">{this.props.card.icone}</div>
+''                <div className="onOffIcon">S</div>
+                {/* <div className="onOffIcon">{this.props.card.icone}</div> */}
                 </div>
                 <div className="contentArea">
                     <div className="contentTitle">

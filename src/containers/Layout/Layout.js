@@ -51,10 +51,12 @@ class Layout extends Component {
 
 
     avaliaAmanha = (list) => {
-        const refDataHoje = list[0].charAt(9) + 1
-        const refDataHoje = list[0].charAt(9)
-        const meioDiaOnly = list.filter(item => item.charAt(9) = 2)
-        const refDataHoje = list.filter(item => item.charAt(12) = refDataHoje)
+        // const refDataHoje = list[0].charAt(9) + 1
+        // const refDataHoje = list[0].charAt(9)
+        // const meioDiaOnly = list.filter(item => item.charAt(9) = 2)
+        // const refDataHoje = list.filter(item => item.charAt(12) = refDataHoje)
+
+        //parte ativa
             // 1 - fazer o filter inverso na lista pra elementos char[9] do mesmo dia do dia[0]
             // 2 - fazer filter de ítem que o char[12]
             // 3 - [0] = amanhã, [1] = depois de amanhã
