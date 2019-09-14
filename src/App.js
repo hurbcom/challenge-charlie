@@ -118,7 +118,7 @@ state = {
       myReactApp = 'erro'
     }
     let pepe = '';
-    if (this.state.bingImage) {
+    if (!this.state.loading) {
       pepe = this.state.bingImage
       myReactApp = <Layout />
     }
