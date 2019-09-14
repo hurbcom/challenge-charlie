@@ -2,8 +2,12 @@
 
 .Container {
     width: 1005px;
+    min-height: 100vh;
+    // margin: 0px auto 20% auto;
     margin: auto;
-    border: 2px solid rgba(128, 128, 128, 0.3);
-    font-family: 'MeteoconsRegular'
+    border-left: 2px solid rgba(167, 120, 120, 0.3);
+    border-right: 2px solid rgba(167, 120, 120, 0.3);
+    font-family: 'MeteoconsRegular';
     user-select: none; 
+    // padding-bottom: 20%;
 }

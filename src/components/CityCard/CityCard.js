@@ -54,11 +54,17 @@ class CityCard extends Component {
         }
     }
 
+
+
     render() {
 
         // preparação da classe do container: retorna o containerClass com valor que consta no SASS
+        let tempTwoCases = '';
+        let activeOrNot = '';
+        if (this.props.card) {
 
-        let activeOrNot = ''
+            tempTwoCases = this.props.card.temp.toFixed(0);
+        }
         if (this.state.expanded) {
             activeOrNot = 'a'
         } else {
@@ -73,16 +79,16 @@ class CityCard extends Component {
         return (
             <div onClick={() => this.changeStateHandler()} className={containerClass}>
                 <div className="iconArea">
-                <div className="onOffIcon">P</div>
+                <div className="onOffIcon">{this.props.card.icone}</div>
                 </div>
                 <div className="contentArea">
                     <div className="contentTitle">
                             <h1>{this.props.card.dia}</h1>
-                            <h2>{this.props.card.temp}</h2>
+                            <h2>{tempTwoCases}</h2>
                     </div>
                     <div className="contentDescription">
                             <h1>{this.props.card.desc}</h1>
-                            <h2>Vento: {this.props.card.vento}<br/>
+                            <h2>Vento: {this.props.card.ventodir} {this.props.card.vento}<br/>
                             Umidade: {this.props.card.umidade}<br/>
                             Pressão: {this.props.card.pressao}</h2>
                     </div>

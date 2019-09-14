@@ -10,6 +10,7 @@
     top: 13%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
+    font-family: 'Trebuchet MS';
 }
 
 @media (min-width: 600px) {
