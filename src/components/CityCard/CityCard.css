@@ -1,6 +1,7 @@
 .iconArea {
   height: 100%;
   width: 57.5%;
+  font-size: 360px;
   text-align: center;
   padding-top: 50px;
 }
@@ -41,6 +42,7 @@
 
 .contentDescription h1 {
   font-weight: 100;
+  font-size: 47px;
   font-stretch: condensed;
   margin-bottom: -10px;
 }
@@ -49,57 +51,10 @@
   font-weight: normal;
 }
 
-@media only screen and (min-width: 1024px) {
-  .contentDescription {
-    font-size: 23px;
-  }
-  .contentDescription h1 {
-    font-weight: 100;
-    font-size: 43px;
-  }
-  .contentDescription h2 {
-    font-weight: normal;
-  }
-  .iconArea {
-    font-size: 360px;
-  }
-}
-
-@media only screen and (min-width: 500px) and (max-width: 1023px) {
-  .contentDescription {
-    font-size: 19px;
-  }
-  .contentDescription h1 {
-    font-weight: 100;
-    font-size: 39px;
-  }
-  .contentDescription h2 {
-    font-weight: normal;
-  }
-  .iconArea {
-    font-size: 280px;
-  }
-}
-
-@media only screen and (max-width: 499px) {
-  .contentDescription {
-    font-size: 14px;
-  }
-  .contentDescription h1 {
-    font-weight: 100;
-    font-size: 26px;
-  }
-  .contentDescription h2 {
-    font-weight: normal;
-  }
-  .iconArea {
-    font-size: 220px;
-  }
-}
-
 .CityCardBoxm10 {
   background-color: rgba(92, 10, 112, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -133,6 +88,7 @@
 .CityCardBoxam10 {
   background-color: rgba(92, 10, 112, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -145,6 +101,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -164,6 +121,7 @@
 .CityCardBox0 {
   background-color: rgba(57, 17, 122, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -197,6 +155,7 @@
 .CityCardBoxa0 {
   background-color: rgba(57, 17, 122, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -209,6 +168,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -228,6 +188,7 @@
 .CityCardBox4 {
   background-color: rgba(19, 17, 122, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -261,6 +222,7 @@
 .CityCardBoxa4 {
   background-color: rgba(19, 17, 122, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -273,6 +235,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -292,6 +255,7 @@
 .CityCardBox9 {
   background-color: rgba(17, 59, 122, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -325,6 +289,7 @@
 .CityCardBoxa9 {
   background-color: rgba(17, 59, 122, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -337,6 +302,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -356,6 +322,7 @@
 .CityCardBox13 {
   background-color: rgba(17, 115, 122, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -389,6 +356,7 @@
 .CityCardBoxa13 {
   background-color: rgba(17, 115, 122, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -401,6 +369,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -420,6 +389,7 @@
 .CityCardBox17 {
   background-color: rgba(7, 109, 87, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -453,6 +423,7 @@
 .CityCardBoxa17 {
   background-color: rgba(7, 109, 87, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -465,6 +436,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -484,6 +456,7 @@
 .CityCardBox20 {
   background-color: rgba(113, 124, 10, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -517,6 +490,7 @@
 .CityCardBoxa20 {
   background-color: rgba(113, 124, 10, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -529,6 +503,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -548,6 +523,7 @@
 .CityCardBox25 {
   background-color: rgba(199, 147, 6, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -581,6 +557,7 @@
 .CityCardBoxa25 {
   background-color: rgba(199, 147, 6, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -593,6 +570,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -612,6 +590,7 @@
 .CityCardBox30 {
   background-color: rgba(247, 190, 26, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -645,6 +624,7 @@
 .CityCardBoxa30 {
   background-color: rgba(247, 190, 26, 0.65);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -657,6 +637,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -676,6 +657,7 @@
 .CityCardBox35 {
   background-color: rgba(129, 47, 15, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -709,6 +691,7 @@
 .CityCardBoxa35 {
   background-color: rgba(129, 47, 15, 0.65);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -721,6 +704,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -740,6 +724,7 @@
 .CityCardBox38 {
   background-color: rgba(148, 18, 13, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -773,6 +758,7 @@
 .CityCardBoxa38 {
   background-color: rgba(148, 18, 13, 0.65);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -785,6 +771,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -804,6 +791,7 @@
 .CityCardBox40 {
   background-color: rgba(168, 0, 0, 0.9);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -837,6 +825,7 @@
 .CityCardBoxa40 {
   background-color: rgba(168, 0, 0, 0.6);
   width: 100%;
+  height: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -849,6 +838,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  height: 520px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }

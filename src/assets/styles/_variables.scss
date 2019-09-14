@@ -26,8 +26,8 @@
 
 @mixin screen($size) {
     $desktop: "(min-width: 1024px)";
-    $tablet: "(min-width: 500px) and (max-width: 1023px)";
-    $mobile: "(max-width: 499px)";
+    $tablet: "(min-width: 768px) and (max-width: 1023px)";
+    $mobile: "(max-width: 767px)";
     @if $size == desktop {
       @media only screen and #{$desktop} {
         @content;

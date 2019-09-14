@@ -1,7 +1,7 @@
 @import '../../assets/styles/_mixins';
 
 .Container {
-
+    width: 1005px;
     min-height: 100vh;
     // margin: 0px auto 20% auto;
     margin: auto;
@@ -10,25 +10,4 @@
     font-family: 'MeteoconsRegular';
     user-select: none; 
     // padding-bottom: 20%;
-}
-
-
-@media only screen and (min-width: 1024px) {
-    .Container {
-        width: 1005px;
-    }
-}
-
-@media only screen and (min-width: 500px) and (max-width: 1023px) {
-    .Container {
-        min-width: 500px;
-        max-width: 800px;
-    }
-}
-
-@media only screen and (max-width: 499px) {
-    .Container {
-        max-width: 430px;
-        min-width: 420px;
-    }
 }
