@@ -86,7 +86,10 @@
         }
     }
     .contentTitle {
+        z-index: 200;
         font-size: 19px;
+        background-color: rgba( 255, 255, 255, 0.0004);
+
         h1 {
             font-stretch: condensed;
         }
@@ -119,7 +122,10 @@
         }
     }
     .contentTitle {
+        z-index: 200;
         font-size: 16px;
+        background-color: rgba( 255, 255, 255, 0.0004);
+
         h1 {
             font-stretch: condensed;
         }
@@ -157,7 +163,10 @@
         }
     }
     .contentTitle {
+        z-index: 200;
         font-size: 14px;
+        background-color: rgba( 255, 255, 255, 0.0004);
+
         h2 {
             margin-top: -20px;
             font-weight: 100;
@@ -182,7 +191,8 @@
 
 @media only screen and (max-width: 340px) {
     .contentTitle {
-      
+        z-index: 200;
+        background-color: rgba( 255, 255, 255, 0.0004);
         h1 {
            max-width: 130px;
         }

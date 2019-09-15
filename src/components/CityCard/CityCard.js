@@ -59,36 +59,40 @@ class CityCard extends Component {
     render() {
 
         // preparação da classe do container: retorna o containerClass com valor que consta no SASS
-        let tempTwoCases = '';
+        let finalTemp = '';
         let activeOrNot = '';
-        if (this.props.card) {
-
-            tempTwoCases = this.props.card.temp.toFixed(0);
+        let finalWindSpeed = '';
+        if (this.props.card && this.props.card.metric) {
+            finalTemp = `${this.props.card.tempc.toFixed(0)}ºC`
+            finalWindSpeed = `${this.props.card.ventodir} ${this.props.card.ventom}`
+        } else if ( this.props.card !== null && this.props.card.metric === false ) {
+            finalTemp = `${this.props.card.tempf.toFixed(0)}ºF`
+            finalWindSpeed = `${this.props.card.ventodir} ${this.props.card.ventoi}`
         }
         if (this.state.expanded) {
             activeOrNot = 'a'
         } else {
             activeOrNot = ''
         }
-        const tempToBgColor = this.divClassHandler(this.props.card.temp)
+        const tempToBgColor = this.divClassHandler(this.props.card.tempc)
         const containerClass = `CityCardBox${activeOrNot}${tempToBgColor}`
 
         // fim do preparo do nome da classe do Container do CityCard
-        // 
+        
 
         return (
             <div onClick={() => this.changeStateHandler()} className={containerClass}>
                 <div className="iconArea">
                 <div className="onOffIcon">{this.props.card.icone}</div>
                 </div>
-                <div className="contentArea">
-                    <div className="contentTitle">
+                <div  className="contentArea">
+                    <div onClick={this.props.alterar} className="contentTitle">
                             <h1>{this.props.card.dia}</h1>
-                            <h2>{tempTwoCases}</h2>
+                            <h2>{finalTemp}</h2>
                     </div>
                     <div className="contentDescription">
                             <h1>{this.props.card.desc}</h1>
-                            <h2>Vento: {this.props.card.ventodir} {this.props.card.vento}<br/>
+                            <h2>Vento: {finalWindSpeed}<br/>
                             Umidade: {this.props.card.umidade}<br/>
                             Pressão: {this.props.card.pressao}</h2>
                     </div>
