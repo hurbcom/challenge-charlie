@@ -61,23 +61,12 @@
 
 
 
-.contentTitle {
-    font-size: 19px;
-    h1 {
-        font-stretch: condensed;
-    }
-    h2 {
-        margin-top: -20px;
-        font-size: 52px;
-        font-weight: 100;
-    }
-}
+
 .contentDescription {
     font-size: 23px;
     h1 {
         font-weight: 100; 
         font-stretch: condensed;
-        margin-bottom: -10px;
     }
     h2 {
         font-weight: normal;
@@ -96,6 +85,19 @@
 
         }
     }
+    .contentTitle {
+        font-size: 19px;
+        h1 {
+            font-stretch: condensed;
+        }
+        h2 {
+            
+            margin-top: -20px;
+            font-size: 52px;
+            font-weight: 100;
+            margin-bottom: 0px;
+        }
+    }
     @mixin expandedCc() {
         height: 520px;
     } 
@@ -106,14 +108,26 @@
 
 @media only screen and (min-width: 500px) and (max-width: 1023px) {
     .contentDescription {
-        font-size: 19px;
+        font-size: 14px;
         h1 {
             font-weight: 100; 
-            font-size: 39px;
+            font-size: 29px;
         }
         h2 {
             font-weight: normal;
 
+        }
+    }
+    .contentTitle {
+        font-size: 16px;
+        h1 {
+            font-stretch: condensed;
+        }
+        h2 {
+            margin-top: -20px;
+            font-size: 40px;
+            font-weight: 100;
+            margin-bottom: -15px;
         }
     }
         @mixin expandedCc() {
@@ -123,6 +137,9 @@
     
     .iconArea {
         font-size: 280px;
+    }
+    .onOffIcon {
+        margin-top: -10px;
     }
 }
 
@@ -138,6 +155,15 @@
 
         }
     }
+    .contentTitle {
+        font-size: 14px;
+        h2 {
+            margin-top: -20px;
+            font-weight: 100;
+            font-size: 38px;
+            margin-bottom: -20px;
+        }
+    }
     @mixin expandedCc() {
         height: 340px;
     } 
@@ -145,6 +171,9 @@
     .iconArea {
         font-size: 220px;
 
+    }
+    .onOffIcon {
+        margin-top: -50px;
     }
 }
 

@@ -4,3 +4,29 @@
     display: flex;
     flex-direction: row;
 }
+
+@media only screen and (min-width: 1024px) {
+    .containerHeader {
+        height: 145px;
+    }
+}
+
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+.containerHeader {
+    height: 110px;
+    font-size: 10px;
+}
+}
+
+
+@media only screen and (max-width: 499px) {
+.containerHeader {
+    height: 60px;
+    font-size: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+}

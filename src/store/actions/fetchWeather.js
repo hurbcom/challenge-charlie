@@ -20,7 +20,7 @@ export const finishedLoading = () => {
 export const getPlace = (place) => {
     return async dispatch => {
         try {
-            let res = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&lang=pt_br&APPID=${openWeatherKey}&mode=json`)
+            let res = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&lang=pt_br&APPID=${openWeatherKey}&mode=json`)
             await dispatch(fetchWeather(res))
         } 
         catch (err) {

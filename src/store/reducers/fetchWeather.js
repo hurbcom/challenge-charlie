@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_WEATHER:
             return {
                 ...state,
-                
+                tim: action.tim
             }
         case actionTypes.FINISH_LOADING:
             return {

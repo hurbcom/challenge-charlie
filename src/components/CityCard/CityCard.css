@@ -21,20 +21,6 @@
   font-weight: normal;
 }
 
-.contentTitle {
-  font-size: 19px;
-}
-
-.contentTitle h1 {
-  font-stretch: condensed;
-}
-
-.contentTitle h2 {
-  margin-top: -20px;
-  font-size: 52px;
-  font-weight: 100;
-}
-
 .contentDescription {
   font-size: 23px;
 }
@@ -42,7 +28,6 @@
 .contentDescription h1 {
   font-weight: 100;
   font-stretch: condensed;
-  margin-bottom: -10px;
 }
 
 .contentDescription h2 {
@@ -60,6 +45,18 @@
   .contentDescription h2 {
     font-weight: normal;
   }
+  .contentTitle {
+    font-size: 19px;
+  }
+  .contentTitle h1 {
+    font-stretch: condensed;
+  }
+  .contentTitle h2 {
+    margin-top: -20px;
+    font-size: 52px;
+    font-weight: 100;
+    margin-bottom: 0px;
+  }
   .iconArea {
     font-size: 360px;
   }
@@ -67,17 +64,32 @@
 
 @media only screen and (min-width: 500px) and (max-width: 1023px) {
   .contentDescription {
-    font-size: 19px;
+    font-size: 14px;
   }
   .contentDescription h1 {
     font-weight: 100;
-    font-size: 39px;
+    font-size: 29px;
   }
   .contentDescription h2 {
     font-weight: normal;
   }
+  .contentTitle {
+    font-size: 16px;
+  }
+  .contentTitle h1 {
+    font-stretch: condensed;
+  }
+  .contentTitle h2 {
+    margin-top: -20px;
+    font-size: 40px;
+    font-weight: 100;
+    margin-bottom: -15px;
+  }
   .iconArea {
     font-size: 280px;
+  }
+  .onOffIcon {
+    margin-top: -10px;
   }
 }
 
@@ -92,8 +104,20 @@
   .contentDescription h2 {
     font-weight: normal;
   }
+  .contentTitle {
+    font-size: 14px;
+  }
+  .contentTitle h2 {
+    margin-top: -20px;
+    font-weight: 100;
+    font-size: 38px;
+    margin-bottom: -20px;
+  }
   .iconArea {
     font-size: 220px;
+  }
+  .onOffIcon {
+    margin-top: -50px;
   }
 }
 

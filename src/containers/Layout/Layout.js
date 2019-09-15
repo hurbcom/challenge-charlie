@@ -95,7 +95,7 @@ class Layout extends Component {
                      tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[0].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[0].main.temp).toFixed(2)}°F`,
                      temp: this.avaliaCelsius(this.props.cres.data.list[0].main.temp),
                      desc: this.props.cres.data.list[0].weather[0].description, 
-                     vento: this.avaliaVento(this.props.cres.data.list[0].wind.deg) & this.state.metric ? this.props.cres.data.list[0].wind.speed+"km/h" : this.avaliaMph(this.props.cres.data.list[0].wind.speed)+"mph", 
+                     vento: this.avaliaVento(this.props.cres.data.list[0].wind.deg) & this.state.metric ? this.props.cres.data.list[0].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[0].wind.speed).toFixed(2)+"mph", 
                      ventodir: this.avaliaVento(this.props.cres.data.list[0].wind.deg),
                      umidade: this.props.cres.data.list[0].main.humidity+"%", 
                      pressao: this.props.cres.data.list[0].main.pressure+"hPA" ,
@@ -105,7 +105,7 @@ class Layout extends Component {
                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[8].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[8].main.temp).toFixed(2)}°F`,
                     temp: this.avaliaCelsius(this.props.cres.data.list[8].main.temp),
                     desc: this.props.cres.data.list[8].weather[0].description, 
-                    vento: this.avaliaVento(this.props.cres.data.list[8].wind.deg) + this.state.metric ? this.props.cres.data.list[8].wind.speed+"km/h" : this.avaliaMph(this.props.cres.data.list[8].wind.speed)+"mph", 
+                    vento: this.avaliaVento(this.props.cres.data.list[8].wind.deg) + this.state.metric ? this.props.cres.data.list[8].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[8].wind.speed).toFixed(2)+"mph", 
                     ventodir: this.avaliaVento(this.props.cres.data.list[8].wind.deg),
                     umidade: this.props.cres.data.list[8].main.humidity+"%", 
                     pressao: this.props.cres.data.list[8].main.pressure+"hPA" ,
@@ -116,11 +116,11 @@ class Layout extends Component {
                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[16].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[16].main.temp).toFixed(2)}°F`,
                     temp: this.avaliaCelsius(this.props.cres.data.list[16].main.temp),
                     desc: this.props.cres.data.list[16].weather[0].description, 
-                    vento: this.avaliaVento(this.props.cres.data.list[16].wind.deg) + this.state.metric ? this.props.cres.data.list[16].wind.speed+"km/h" : this.avaliaMph(this.props.cres.data.list[16].wind.speed)+"mph", 
+                    vento: this.avaliaVento(this.props.cres.data.list[16].wind.deg) + this.state.metric ? this.props.cres.data.list[16].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[16].wind.speed).toFixed(2)+"mph", 
                     ventodir: this.avaliaVento(this.props.cres.data.list[16].wind.deg),
                     umidade: this.props.cres.data.list[16].main.humidity+"%", 
                     pressao: this.props.cres.data.list[16].main.pressure+"hPA" ,
-                    icone: this.avaliaIcone(this.props.cres.data.list[0].weather[16].description)
+                    icone: this.avaliaIcone(this.props.cres.data.list[16].weather[0].description)
                     };
         }
         return (

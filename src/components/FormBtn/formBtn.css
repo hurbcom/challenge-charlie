@@ -5,9 +5,32 @@
   background-color: rgba(238, 238, 238, 0.95);
   border: 0;
   font-family: 'MeteoconsRegular';
-  font-size: 90px;
-  padding-left: 10px;
   text-align: center;
-  line-height: 140px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .formBtn {
+    font-size: 90px;
+    padding-left: 10px;
+    line-height: 140px;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+  .formBtn {
+    font-size: 70px;
+    padding-left: 7px;
+    line-height: 110px;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .formBtn {
+    font-size: 35px;
+    padding-left: 3px;
+    line-height: 60px;
+    display: border-box;
+    height: 101%;
+  }
 }
 /*# sourceMappingURL=Formbtn.css.map */

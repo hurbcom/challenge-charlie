@@ -24,7 +24,6 @@ input {
   border: 0;
   background-color: rgba(238, 238, 238, 0.95);
   color: #252525;
-  font-size: 56px;
   font-family: 'Trebuchet MS';
   font-weight: 600;
   z-index: 200;
@@ -34,7 +33,7 @@ input {
 .customWrapper {
   background-color: rgba(238, 238, 238, 0.808);
   color: #252525;
-  font-size: 42px;
+
   font-family: 'Trebuchet MS';
   border: 0;
 
@@ -42,4 +41,33 @@ input {
 
 .sc-bZQynM {
   transition: all .7s ease;
+}
+
+@media only screen and (min-width: 1024px) {
+input {
+  font-size: 56px;
+}
+.customWrapper {
+  font-size: 42px;
+}
+}
+
+
+@media only screen and (min-width: 500px) and (max-width: 1023px) {
+  input {
+    font-size: 40px;
+  }
+  .customWrapper {
+    font-size: 30px;
+  }
+}
+
+
+@media only screen and (max-width: 499px) {
+  input {
+    font-size: 24px;
+  }
+  .customWrapper {
+    font-size: 24px;
+  }
 }
