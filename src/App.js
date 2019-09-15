@@ -131,10 +131,7 @@ state = {
            }}
        className="App">
           {myReactApp}
-          <button onClick={() => console.log(this.state)}>State</button>
-          <button onClick={() => console.log(this.props.cres.data)}>Props</button>
-          <button onClick={() => console.log(this.props.onGetPlace(this.state.activePlace.cityOnly))}>Action</button>
-          <Modal show={this.state.showModal} modalClosed={this.modalSwitchHandler}> {this.state.error ? this.state.error : ''} </Modal>
+         <Modal show={this.state.showModal} modalClosed={this.modalSwitchHandler}> {this.state.error ? this.state.error : ''} </Modal>
       </div>
     );
   }
