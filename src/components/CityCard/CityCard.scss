@@ -138,6 +138,7 @@
     .iconArea {
         font-size: 280px;
     }
+
     .onOffIcon {
         margin-top: -10px;
     }
@@ -169,13 +170,25 @@
     } 
 
     .iconArea {
-        font-size: 220px;
+        font-size: 160px;
 
     }
     .onOffIcon {
-        margin-top: -50px;
+    }
+    .contentArea { 
+        width: 90%;
     }
 }
+
+@media only screen and (max-width: 340px) {
+    .contentTitle {
+      
+        h1 {
+           max-width: 130px;
+        }
+    }
+}
+
 
 .CityCardBoxm10 {
     background-color: rgba(92, 10, 112, 0.9);

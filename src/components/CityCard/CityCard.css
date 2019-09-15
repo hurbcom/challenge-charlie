@@ -114,10 +114,16 @@
     margin-bottom: -20px;
   }
   .iconArea {
-    font-size: 220px;
+    font-size: 160px;
   }
-  .onOffIcon {
-    margin-top: -50px;
+  .contentArea {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .contentTitle h1 {
+    max-width: 130px;
   }
 }
 

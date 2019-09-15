@@ -129,9 +129,8 @@ class Layout extends Component {
                 <CityCard ativo={true} card={obj1} />
                 <CityCard ativo={false} card={obj2}/>
                 <CityCard ativo={false} card={obj3}/>
-                <button onClick={() => console.log(obj1)}>Props</button>
-                <button onClick={() => console.log(this.props)}>Props</button>
-                <br/><br/><br/><br/><br/><br/>
+
+                <br/><br/><br/><br/>
             </div>
           );
     }
