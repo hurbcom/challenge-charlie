@@ -15,7 +15,7 @@ class Layout extends Component {
     // 1 - FUNÇÕES REFINARIA DE DADOS:
 
     avaliaVento = (dadovento) => {
-        if (dadovento === 0 && dadovento < 15 ) {
+        if (dadovento >= 0 && dadovento < 15 ) {
             return 'N'
         } else if (dadovento > 15 && dadovento < 75) {
             return 'NE'
@@ -48,6 +48,11 @@ class Layout extends Component {
         return kmh * 1.6
     }
     
+    alteraMetric = () => {
+        this.setState((prevState) => {
+            return {metric: !prevState.metric};
+        });
+    }
 
 
     avaliaAmanha = (list) => {
@@ -86,47 +91,56 @@ class Layout extends Component {
 
     
     render() {
-        let obj1 = {dia: 'HOJE', temp: 32, desc: 'Ensolarado', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA', tempdado: "32°C" }
-        let obj2 = {dia: 'AMANHÃ', temp: 16, desc: 'Chuvoso', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA', tempdado: "16°C" }
-        let obj3 = {dia: 'DEPOIS DE AMANHÃ', temp: 42, desc: 'Parcialmente nublado', vento: 'NO 6.4km/h', umidade: '18%', pressao: '922hPA', tempdado: "42°C" };
+        let obj1 = {dia: 'HOJE', tempc: 32, icone: 'R', desc: 'nublado', ventodir: 'S', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "32°C", metric: true, }
+        let obj2 = {dia: 'AMANHÃ', tempc: 16, icone: 'Y', desc: 'chuva', ventodir: 'N', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "16°C", metric: true,  }
+        let obj3 = {dia: 'DEPOIS DE AMANHÃ', tempc: 42, icone: 'T', desc: 'chuva leve', ventodir: 'SE', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "42°C", metric: true,  };
 
         if (this.props.cres) {
             obj1 = { dia: 'HOJE',
                      tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[0].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[0].main.temp).toFixed(2)}°F`,
-                     temp: this.avaliaCelsius(this.props.cres.data.list[0].main.temp),
+                     tempc: this.avaliaCelsius(this.props.cres.data.list[0].main.temp),
+                     tempf: this.avaliaFahrenheit(this.props.cres.data.list[0].main.temp),
                      desc: this.props.cres.data.list[0].weather[0].description, 
-                     vento: this.avaliaVento(this.props.cres.data.list[0].wind.deg) & this.state.metric ? this.props.cres.data.list[0].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[0].wind.speed).toFixed(2)+"mph", 
-                     ventodir: this.avaliaVento(this.props.cres.data.list[0].wind.deg),
+                     ventom: `${this.props.cres.data.list[0].wind.speed.toFixed(2)} km/h`,
+                     ventoi: `${this.avaliaMph(this.props.cres.data.list[0].wind.speed).toFixed(2)} mp/h`, 
+                      ventodir: this.avaliaVento(this.props.cres.data.list[0].wind.deg),
                      umidade: this.props.cres.data.list[0].main.humidity+"%", 
-                     pressao: this.props.cres.data.list[0].main.pressure+"hPa" ,
-                     icone: this.avaliaIcone(this.props.cres.data.list[0].weather[0].description)
+                     pressao: `${this.props.cres.data.list[0].main.pressure.toFixed(0)} hPa`,
+                     icone: this.avaliaIcone(this.props.cres.data.list[0].weather[0].description),
+                     metric: this.state.metric
                     };
             obj2 = { dia: 'AMANHÃ',
                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[8].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[8].main.temp).toFixed(2)}°F`,
-                    temp: this.avaliaCelsius(this.props.cres.data.list[8].main.temp),
+                    tempc: this.avaliaCelsius(this.props.cres.data.list[8].main.temp),
+                    tempf: this.avaliaFahrenheit(this.props.cres.data.list[8].main.temp),
                     desc: this.props.cres.data.list[8].weather[0].description, 
-                    vento: this.avaliaVento(this.props.cres.data.list[8].wind.deg) + this.state.metric ? this.props.cres.data.list[8].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[8].wind.speed).toFixed(2)+"mph", 
-                    ventodir: this.avaliaVento(this.props.cres.data.list[8].wind.deg),
+                    ventom: `${this.props.cres.data.list[8].wind.speed.toFixed(2)} km/h`,
+                    ventoi: `${this.avaliaMph(this.props.cres.data.list[8].wind.speed).toFixed(2)} mp/h`, 
+                   ventodir: this.avaliaVento(this.props.cres.data.list[8].wind.deg),
                     umidade: this.props.cres.data.list[8].main.humidity+"%", 
-                    pressao: this.props.cres.data.list[8].main.pressure+"hPa" ,
-                    icone: this.avaliaIcone(this.props.cres.data.list[8].weather[0].description)
+                    pressao: `${this.props.cres.data.list[8].main.pressure.toFixed(0)} hPa`,
+                    icone: this.avaliaIcone(this.props.cres.data.list[8].weather[0].description),
+                    metric: this.state.metric
 
                     };
            obj3 = { dia: 'DEPOIS DE AMANHÃ',
                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[16].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[16].main.temp).toFixed(2)}°F`,
-                    temp: this.avaliaCelsius(this.props.cres.data.list[16].main.temp),
+                    tempc: this.avaliaCelsius(this.props.cres.data.list[16].main.temp),
+                    tempf: this.avaliaFahrenheit(this.props.cres.data.list[16].main.temp),
                     desc: this.props.cres.data.list[16].weather[0].description, 
-                    vento: this.avaliaVento(this.props.cres.data.list[16].wind.deg) + this.state.metric ? this.props.cres.data.list[16].wind.speed.toFixed(2)+"km/h" : this.avaliaMph(this.props.cres.data.list[16].wind.speed).toFixed(2)+"mph", 
+                    ventom: `${this.props.cres.data.list[16].wind.speed.toFixed(2)} km/h`,
+                    ventoi: `${this.avaliaMph(this.props.cres.data.list[16].wind.speed).toFixed(2)} mp/h`, 
                     ventodir: this.avaliaVento(this.props.cres.data.list[16].wind.deg),
                     umidade: this.props.cres.data.list[16].main.humidity+"%", 
-                    pressao: this.props.cres.data.list[16].main.pressure+"hPa" ,
-                    icone: this.avaliaIcone(this.props.cres.data.list[16].weather[0].description)
+                    pressao: `${this.props.cres.data.list[16].main.pressure.toFixed(0)} hPa`,
+                    icone: this.avaliaIcone(this.props.cres.data.list[16].weather[0].description),
+                    metric: this.state.metric
                     };
         }
         return (
             <div className="Container">
                 <Header />
-                <CityCard ativo={true} card={obj1} />
+                <CityCard ativo={true} card={obj1} alterar={() => this.alteraMetric()} />
                 <CityCard ativo={false} card={obj2}/>
                 <CityCard ativo={false} card={obj3}/>
 
