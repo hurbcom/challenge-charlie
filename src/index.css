@@ -63,11 +63,21 @@ input {
 }
 
 
-@media only screen and (max-width: 499px) {
+@media only screen and (min-width: 340px) and (max-width: 499px) {
   input {
     font-size: 24px;
   }
   .customWrapper {
     font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  input {
+    font-size: 14px;
+  }
+  .customWrapper {
+    font-size: 14px;
+    padding-top: 14px;
   }
 }
