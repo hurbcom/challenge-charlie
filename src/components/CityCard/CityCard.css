@@ -75,6 +75,9 @@
   .contentDescription h2 {
     font-weight: normal;
   }
+  .contentArea {
+    margin-left: 7.5%;
+  }
   .contentTitle {
     z-index: 200;
     font-size: 16px;
@@ -134,6 +137,9 @@
   }
   .contentTitle h1 {
     max-width: 130px;
+  }
+  .onOffIcon {
+    font-size: 120px;
   }
 }
 
