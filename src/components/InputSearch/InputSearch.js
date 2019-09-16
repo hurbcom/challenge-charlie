@@ -12,6 +12,14 @@ export class InputSearch extends Component {
         search: "",
         value: "",
     }
+
+    // COMPONENTE REAPROVEITADO DE REACT GOOGLE PLACES SUGGEST:
+    // https://github.com/xuopled/react-google-places-suggest/
+
+     // Poucas alterações foram feitas. Para o exercício tomar a mesma 'cara' da imagem exemplo.jpg do desafio - somente troquei o placeholder para 'Rio de Janeiro - Rio de J...'
+
+    // A partir da linha 90: Redux desta aplicação - que entrega os dados e usa A MESMA função executada pela API do navegador na busca de localização.
+ 
     
     handleInputChange = e => {
         this.setState({search: e.target.value, value: e.target.value})
