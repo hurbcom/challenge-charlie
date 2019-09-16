@@ -91,9 +91,9 @@ class Layout extends Component {
 
     
     render() {
-        let obj1 = {dia: 'HOJE', tempc: 32, icone: 'R', desc: 'nublado', ventodir: 'S', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "32°C", metric: true, }
-        let obj2 = {dia: 'AMANHÃ', tempc: 16, icone: 'Y', desc: 'chuva', ventodir: 'N', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "16°C", metric: true,  }
-        let obj3 = {dia: 'DEPOIS DE AMANHÃ', tempc: 42, icone: 'T', desc: 'chuva leve', ventodir: 'SE', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "42°C", metric: true,  };
+        let obj1 = {dia: 'HOJE', tempc: 32, tempf: 60, icone: 'R', desc: 'nublado', ventodir: 'S', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "32°C", metric: true, }
+        let obj2 = {dia: 'AMANHÃ', tempc: 16, tempf: 80, icone: 'Y', desc: 'chuva', ventodir: 'N', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "16°C", metric: true,  }
+        let obj3 = {dia: 'DEPOIS DE AMANHÃ', tempc: 42, tempf: 90, icone: 'T', desc: 'chuva leve', ventodir: 'SE', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "42°C", metric: true,  };
 
         if (this.props.cres) {
             obj1 = { dia: 'HOJE',
