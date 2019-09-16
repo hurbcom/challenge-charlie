@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Layout.css';
 import CityCard from '../../components/CityCard/CityCard'
 import Header from '../Header/Header';
+
 import { connect } from 'react-redux';
 
 
@@ -9,53 +10,10 @@ import { connect } from 'react-redux';
 class Layout extends Component {
     state = {
         metric: true,
-        hoje: { main: {
-            temp: 299,
-            humidity: 50,
-            pressure: 980
-        },
-        weather: [{
-            description: 'nublado',
-        }],
-        wind: {
-            speed: 2,
-            deg: 15,
-        }
-        },
-        amanha: { main: {
-            temp: 299,
-            humidity: 50,
-            pressure: 980
-        },
-        weather: [{
-            description: 'nublado',
-        }],
-        wind: {
-            speed: 2,
-            deg: 15,
-        }
-        },
-        depoisDeAmanha: { main: {
-            temp: 299,
-            humidity: 50,
-            pressure: 980
-        },
-        weather: [{
-            description: 'nublado',
-        }],
-        wind: {
-            speed: 2,
-            deg: 15,
-        }
-        },
     }
 
-    // 1 - FUNÇÕES REFINARIA DE PROPS RECEBIDAS DO REDUX / DO OPENWEATHER:
+    // 1 - FUNÇÕES REFINARIA DE DADOS:
 
-    async componentDidMount () {
-        await mapStateToProps()
-        await this.avaliaAmanha(this.props.cres.list)
-    }
     avaliaVento = (dadovento) => {
         if (dadovento >= 0 && dadovento < 15 ) {
             return 'N'
@@ -91,11 +49,26 @@ class Layout extends Component {
     }
     
     alteraMetric = () => {
-        console.log(this.props)
-        this.avaliaAmanha(this.props.cres.data.list)
         this.setState((prevState) => {
             return {metric: !prevState.metric};
         });
+    }
+
+
+    avaliaAmanha = (list) => {
+        // const refDataHoje = list[0].charAt(9) + 1
+        // const refDataHoje = list[0].charAt(9)
+        // const meioDiaOnly = list.filter(item => item.charAt(9) = 2)
+        // const refDataHoje = list.filter(item => item.charAt(12) = refDataHoje)
+
+        //parte ativa
+            // 1 - fazer o filter inverso na lista pra elementos char[9] do mesmo dia do dia[0]
+            // 2 - fazer filter de ítem que o char[12]
+            // 3 - [0] = amanhã, [1] = depois de amanhã
+            // tudo isso tem que ser dentro do render pq geram-se dois objetos a partir disso
+            // 4 - lembrar que tem que fazer CELSIUS e fahrenheit dependendo do state
+        "2017-02-16 15:00:00"
+        
     }
 
     avaliaIcone = (avaliado) => {
@@ -116,87 +89,66 @@ class Layout extends Component {
         }
     }
 
-    // 2 - Função para escolher a previsão dos cartões amanhã e depois de amanhã optando pelos horários sempre de meio dia.:
-
-    avaliaAmanha = async (list) => {
-        const digitoDoDiaDeHoje = list[0].dt_txt.charAt(9);
-        console.log(digitoDoDiaDeHoje)
-        const arraySemHoje = list.filter(item => item.dt_txt.charAt(9) !== digitoDoDiaDeHoje)
-        console.log(arraySemHoje)
-        console.log(arraySemHoje[6].dt_txt.charAt(12));
-        const arrayDeObjetosDePrevisaoNaHoraMeioDia = arraySemHoje.filter(filtrado => filtrado.dt_txt.charAt(12) === '2')
-        console.log(arrayDeObjetosDePrevisaoNaHoraMeioDia)
-        const objeto1 = arrayDeObjetosDePrevisaoNaHoraMeioDia[0]
-        console.log('amanha:')
-        console.log(objeto1)
-        const objeto2 = arrayDeObjetosDePrevisaoNaHoraMeioDia[1]
-        await this.setState({hoje: this.props.cres.data.list[0], amanha: objeto1, depoisDeAmanha: objeto2})
-        await console.log(this.state)
-    }
-
-    
-
     
     render() {
-        
+        let obj1 = {dia: 'HOJE', tempc: 32, tempf: 60, icone: 'R', desc: 'nublado', ventodir: 'S', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "32°C", metric: true, }
+        let obj2 = {dia: 'AMANHÃ', tempc: 16, tempf: 80, icone: 'Y', desc: 'chuva', ventodir: 'N', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "16°C", metric: true,  }
+        let obj3 = {dia: 'DEPOIS DE AMANHÃ', tempc: 42, tempf: 90, icone: 'T', desc: 'chuva leve', ventodir: 'SE', ventom: '6.4 km/h', umidade: '18%', pressao: '922hPA', tempdado: "42°C", metric: true,  };
 
-        //No momento em que o Redux entrega props esses objetos recebem dados:
-
-            let obj1 = { dia: 'HOJE',
-                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.state.hoje.main.temp)}°C` : `${this.avaliaFahrenheit(this.state.hoje.main.temp).toFixed(2)}°F`,
-                     tempc: this.avaliaCelsius(this.state.hoje.main.temp),
-                     tempf: this.avaliaFahrenheit(this.state.hoje.main.temp),
-                     desc: this.state.hoje.weather[0].description, 
-                     ventom: `${this.state.hoje.wind.speed.toFixed(2)} km/h`,
-                     ventoi: `${this.avaliaMph(this.state.hoje.wind.speed).toFixed(2)} mp/h`, 
-                      ventodir: this.avaliaVento(this.state.hoje.wind.deg),
-                     umidade: this.state.hoje.main.humidity+"%", 
-                     pressao: `${this.state.hoje.main.pressure.toFixed(0)} hPa`,
-                     icone: this.avaliaIcone(this.state.hoje.weather[0].description),
+        if (this.props.cres) {
+            obj1 = { dia: 'HOJE',
+                     tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[0].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[0].main.temp).toFixed(2)}°F`,
+                     tempc: this.avaliaCelsius(this.props.cres.data.list[0].main.temp),
+                     tempf: this.avaliaFahrenheit(this.props.cres.data.list[0].main.temp),
+                     desc: this.props.cres.data.list[0].weather[0].description, 
+                     ventom: `${this.props.cres.data.list[0].wind.speed.toFixed(2)} km/h`,
+                     ventoi: `${this.avaliaMph(this.props.cres.data.list[0].wind.speed).toFixed(2)} mp/h`, 
+                      ventodir: this.avaliaVento(this.props.cres.data.list[0].wind.deg),
+                     umidade: this.props.cres.data.list[0].main.humidity+"%", 
+                     pressao: `${this.props.cres.data.list[0].main.pressure.toFixed(0)} hPa`,
+                     icone: this.avaliaIcone(this.props.cres.data.list[0].weather[0].description),
                      metric: this.state.metric
                     };
-            let obj2 = { dia: 'AMANHÃ',
-                    tempdado: this.state.metric ? `${this.avaliaCelsius(this.state.amanha.main.temp)}°C` : `${this.avaliaFahrenheit(this.state.amanha.main.temp).toFixed(2)}°F`,
-                    tempc: this.avaliaCelsius(this.state.amanha.main.temp),
-                    tempf: this.avaliaFahrenheit(this.state.amanha.main.temp),
-                    desc: this.state.amanha.weather[0].description, 
-                    ventom: `${this.state.amanha.wind.speed.toFixed(2)} km/h`,
-                    ventoi: `${this.avaliaMph(this.state.amanha.wind.speed).toFixed(2)} mp/h`, 
-                   ventodir: this.avaliaVento(this.state.amanha.wind.deg),
-                    umidade: this.state.amanha.main.humidity+"%", 
-                    pressao: `${this.state.amanha.main.pressure.toFixed(0)} hPa`,
-                    icone: this.avaliaIcone(this.state.amanha.weather[0].description),
+            obj2 = { dia: 'AMANHÃ',
+                    tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[8].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[8].main.temp).toFixed(2)}°F`,
+                    tempc: this.avaliaCelsius(this.props.cres.data.list[8].main.temp),
+                    tempf: this.avaliaFahrenheit(this.props.cres.data.list[8].main.temp),
+                    desc: this.props.cres.data.list[8].weather[0].description, 
+                    ventom: `${this.props.cres.data.list[8].wind.speed.toFixed(2)} km/h`,
+                    ventoi: `${this.avaliaMph(this.props.cres.data.list[8].wind.speed).toFixed(2)} mp/h`, 
+                   ventodir: this.avaliaVento(this.props.cres.data.list[8].wind.deg),
+                    umidade: this.props.cres.data.list[8].main.humidity+"%", 
+                    pressao: `${this.props.cres.data.list[8].main.pressure.toFixed(0)} hPa`,
+                    icone: this.avaliaIcone(this.props.cres.data.list[8].weather[0].description),
                     metric: this.state.metric
 
                     };
-           let obj3 = { dia: 'DEPOIS DE AMANHÃ',
-                    tempdado: this.state.metric ? `${this.avaliaCelsius(this.state.depoisDeAmanha.main.temp)}°C` : `${this.avaliaFahrenheit(this.state.depoisDeAmanha.main.temp).toFixed(2)}°F`,
-                    tempc: this.avaliaCelsius(this.state.depoisDeAmanha.main.temp),
-                    tempf: this.avaliaFahrenheit(this.state.depoisDeAmanha.main.temp),
-                    desc: this.state.depoisDeAmanha.weather[0].description, 
-                    ventom: `${this.state.depoisDeAmanha.wind.speed.toFixed(2)} km/h`,
-                    ventoi: `${this.avaliaMph(this.state.depoisDeAmanha.wind.speed).toFixed(2)} mp/h`, 
-                    ventodir: this.avaliaVento(this.state.depoisDeAmanha.wind.deg),
-                    umidade: this.state.depoisDeAmanha.main.humidity+"%", 
-                    pressao: `${this.state.depoisDeAmanha.main.pressure.toFixed(0)} hPa`,
-                    icone: this.avaliaIcone(this.state.depoisDeAmanha.weather[0].description),
+           obj3 = { dia: 'DEPOIS DE AMANHÃ',
+                    tempdado: this.state.metric ? `${this.avaliaCelsius(this.props.cres.data.list[16].main.temp)}°C` : `${this.avaliaFahrenheit(this.props.cres.data.list[16].main.temp).toFixed(2)}°F`,
+                    tempc: this.avaliaCelsius(this.props.cres.data.list[16].main.temp),
+                    tempf: this.avaliaFahrenheit(this.props.cres.data.list[16].main.temp),
+                    desc: this.props.cres.data.list[16].weather[0].description, 
+                    ventom: `${this.props.cres.data.list[16].wind.speed.toFixed(2)} km/h`,
+                    ventoi: `${this.avaliaMph(this.props.cres.data.list[16].wind.speed).toFixed(2)} mp/h`, 
+                    ventodir: this.avaliaVento(this.props.cres.data.list[16].wind.deg),
+                    umidade: this.props.cres.data.list[16].main.humidity+"%", 
+                    pressao: `${this.props.cres.data.list[16].main.pressure.toFixed(0)} hPa`,
+                    icone: this.avaliaIcone(this.props.cres.data.list[16].weather[0].description),
                     metric: this.state.metric
                     };
-        
+        }
         return (
             <div className="Container">
                 <Header />
                 <CityCard ativo={true} card={obj1} alterar={() => this.alteraMetric()} />
-                <CityCard ativo={false} card={obj2} alterar={() => this.alteraMetric()} />
-                <CityCard ativo={false} card={obj3} alterar={() => this.alteraMetric()} />
+                <CityCard ativo={false} card={obj2}/>
+                <CityCard ativo={false} card={obj3}/>
 
                 <br/><br/><br/><br/>
             </div>
           );
     }
 }
-
-// Recepção de dados do Redux:
 
 const mapStateToProps = state => {
     return {
