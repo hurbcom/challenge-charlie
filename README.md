@@ -26,7 +26,7 @@ npm start
 
 ```
 
-# Passando para o Docker
+**Passando para o Docker:**
 
 ```
 
