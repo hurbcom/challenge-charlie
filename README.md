@@ -1,7 +1,7 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 ## Data de início: 09/09/2019
-README: Work in progress
+## Data de conclusão: 16/09/2019
 
 Microsite responsivo em ReactJS com o atendimento do enunciado (exceto uso do geohash) do Charlie Challenge (inserir link).
 
@@ -25,8 +25,6 @@ https://upbeat-hoover-187941.netlify.com - SPA hosteada no Netlify
 npm start
 
 ```
-
-OBS: ao rodar o **npm run dev**, será aberta automaticamente uma página no seu navegador, apontando para **http://localhost:3000**, caso isso não aconteça, basta acessar a url manualmente.
 
 ## Passando para o Docker
 
