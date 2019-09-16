@@ -12,12 +12,11 @@ class CityCard extends Component {
 
     componentDidMount () {
         this.setState({expanded: this.props.ativo})
-        console.log(this.props)
     }
 
     // 1 - função local de UI pra mudar o state do card expandido pra compactado e versa-vice
 
-    changeStateHandler = () => {
+    changeActiveStateHandler = () => {
         this.setState((prevState) => {
             return {expanded: !prevState.expanded};
         });
@@ -54,11 +53,15 @@ class CityCard extends Component {
         }
     }
 
-
+    changeMetricStateHandler = () => {
+        console.log('oi')
+    }
 
     render() {
 
-        // preparação da classe do container: retorna o containerClass com valor que consta no SASS
+            // Este componente recebe um objeto filtrado em Layout.js. Abaixo a maquiagem dos dados + avaliação se ele recebe comando de se apresentar como
+            // metric ou imperial
+
         let finalTemp = '';
         let activeOrNot = '';
         let finalWindSpeed = '';
@@ -69,6 +72,9 @@ class CityCard extends Component {
             finalTemp = `${this.props.card.tempf.toFixed(0)}ºF`
             finalWindSpeed = `${this.props.card.ventodir} ${this.props.card.ventoi}`
         }
+
+            // preparação da classe do container: retorna o containerClass com valor que consta no SASS
+
         if (this.state.expanded) {
             activeOrNot = 'a'
         } else {
@@ -81,8 +87,9 @@ class CityCard extends Component {
         
 
         return (
-            <div onClick={() => this.changeStateHandler()} className={containerClass}>
-                <div className="iconArea">
+            <div className={containerClass}>
+
+                <div onClick={() => this.changeActiveStateHandler()} className="iconArea">
                 <div className="onOffIcon">{this.props.card.icone}</div>
                 </div>
                 <div  className="contentArea">

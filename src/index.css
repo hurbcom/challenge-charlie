@@ -19,7 +19,7 @@ code {
 
 input {
   height: 100%;
-  width: 98%;
+  width: 95%;
   display: block;
   border: 0;
   background-color: rgba(238, 238, 238, 0.95);
@@ -27,7 +27,7 @@ input {
   font-family: 'Trebuchet MS';
   font-weight: 600;
   z-index: 200;
-  padding: 0px 0px 0px 18px;
+  padding: 0px 0px 0px 5%;
 }
 
 .customWrapper {
