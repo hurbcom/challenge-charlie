@@ -3,7 +3,7 @@ import './Header.css';
 import FormBtn from '../../components/FormBtn/FormBtn';
 import InputSearch from '../../components/InputSearch/InputSearch';
 
-const header = () => (
+export const header = () => (
     <div className="containerHeader">
         <FormBtn/>
         <InputSearch/>
