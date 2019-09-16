@@ -14,7 +14,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace, "MeteoconsRegular";
+    monospace;
 }
 
 input {
@@ -41,11 +41,13 @@ input {
 
 .sc-bZQynM {
   transition: all .7s ease;
+  font-family: 'Trebuchet MS';
 }
 
 @media only screen and (min-width: 1024px) {
 input {
   font-size: 56px;
+  font-family: 'Trebuchet MS';
 }
 .customWrapper {
   font-size: 42px;
@@ -55,7 +57,7 @@ input {
 
 @media only screen and (min-width: 500px) and (max-width: 1023px) {
   input {
-    font-size: 40px;
+    font-size: 30px;
   }
   .customWrapper {
     font-size: 30px;
@@ -65,10 +67,10 @@ input {
 
 @media only screen and (min-width: 340px) and (max-width: 499px) {
   input {
-    font-size: 24px;
+    font-size: 18px;
   }
   .customWrapper {
-    font-size: 24px;
+    font-size: 18px;
   }
 }
 

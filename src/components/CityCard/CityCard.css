@@ -75,6 +75,9 @@
   .contentDescription h2 {
     font-weight: normal;
   }
+  .contentArea {
+    margin-left: 7.5%;
+  }
   .contentTitle {
     z-index: 200;
     font-size: 16px;
@@ -134,6 +137,9 @@
   }
   .contentTitle h1 {
     max-width: 130px;
+  }
+  .onOffIcon {
+    font-size: 120px;
   }
 }
 
@@ -458,7 +464,7 @@
 }
 
 .CityCardBox17 {
-  background-color: rgba(7, 109, 87, 0.9);
+  background-color: rgba(92, 105, 102, 0.6);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -491,7 +497,7 @@
 }
 
 .CityCardBoxa17 {
-  background-color: rgba(7, 109, 87, 0.6);
+  background-color: rgba(92, 105, 102, 0.6);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -522,7 +528,7 @@
 }
 
 .CityCardBox20 {
-  background-color: rgba(113, 124, 10, 0.9);
+  background-color: rgba(117, 122, 70, 0.9);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -555,7 +561,7 @@
 }
 
 .CityCardBoxa20 {
-  background-color: rgba(113, 124, 10, 0.6);
+  background-color: rgba(117, 122, 70, 0.6);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
