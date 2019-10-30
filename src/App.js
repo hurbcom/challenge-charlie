@@ -1,7 +1,15 @@
 import React from 'react';
 
-export default function App() {
+import GlobalStyle from './styles/global';
+import WeatherForecast from './components/WeatherForecast';
+
+function App() {
   return (
-    <div />
+    <>
+      <WeatherForecast />
+      <GlobalStyle />
+    </>
   );
 }
+
+export default App;
