@@ -3,31 +3,31 @@ import React from 'react';
 import { Container, WeatherIcon, WeatherInfo } from './styles';
 import { ReactComponent as Sunny } from './../../icons/sunny.svg';
 
-function TodayWeather() {
+function TodayWeather(props) {
   return (
     <Container>
       <WeatherIcon>
         <Sunny />
       </WeatherIcon>
-      <WeatherInfo>
-        <p>Hoje</p>
-        <p>32ºC</p>
+        <WeatherInfo>
+          <p>Hoje</p>
+          <p>{props.main ? props.main.temp : ''}ºC</p>
 
-        <h2>Ensolarado</h2>
+          <h2>{props.main ? props.weather.main : ''}</h2>
 
-        <p>
-          Vento:
-          <span>NO 6.4km/h</span>
-        </p>
-        <p>
-          Humidade:
-          <span>78%</span>
-        </p>
-        <p>
-          Pressão:
-          <span>1003hPA</span>
-        </p>
-      </WeatherInfo>
+          <p>
+            Vento:
+          <span>NO {props.main ? props.wind.speed : ''}km/h</span>
+          </p>
+          <p>
+            Humidade:
+          <span>{props.main ? props.main.humidity : ''}</span>
+          </p>
+          <p>
+            Pressão:
+          <span>{props.main ? props.main.pressure : ''}hPA</span>
+          </p>
+        </WeatherInfo>
     </Container>
   );
 }
