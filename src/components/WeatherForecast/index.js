@@ -8,6 +8,8 @@ import NextDaysWeather from '../NextDaysWeather';
 import Loading from '../Loading';
 
 const {
+  REACT_APP_CORS_ANYWHERE: corsAnyWhere,
+  REACT_APP_BING_API_URL: bingApiUrl,
   REACT_APP_OPEN_CAGE_API_URL: openCageApiUrl,
   REACT_APP_OPEN_CAGE_API_KEY: openCageApiKey,
   REACT_APP_OPEN_WEATHER_API_URL: openWeatherApiUrl,
@@ -15,14 +17,25 @@ const {
 } = process.env;
 
 function WeatherForecast() {
-  // const [location, setLocation] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
   const [todayWeather, setTodayWeather] = useState();
   const [tomorrowWeather, setTomorrowWeather] = useState("");
   const [afterTomorrowWeather, setAfterTomorrowWeather] = useState("");
 
   useEffect(() => {
-    fetchGeolocation()
+    fetchBingImage();
+    fetchGeolocation();
   }, []);
+
+  const fetchBingImage = () => {
+    axios.get(`${corsAnyWhere}${bingApiUrl}/HPImageArchive.aspx?format=js&idx=0&n=1`)
+      .then(response => {
+        setBackgroundImage(`${bingApiUrl}/${response.data.images[0].url}`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   const fetchGeolocation = () => {
     navigator.geolocation.getCurrentPosition(async function(position) {
@@ -57,8 +70,7 @@ function WeatherForecast() {
     return <Loading />;
   }
   return (
-    <Container>
-      {/* location={location}  */}
+    <Container background={backgroundImage}>
       <LocationInput fetchWeather={fetchWeather.bind(this)} />
       <TodayWeather todayWeather={todayWeather} />
       <NextDaysWeather dayName={"Amanhã"} temperature={tomorrowWeather + `ºC`} />
