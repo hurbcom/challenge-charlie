@@ -9,7 +9,7 @@ function LocationInput(props) {
   const handleSubmit = (evt) => {
     if (evt.key === "Enter") {
       evt.preventDefault();
-      props.getWeather(location);
+      props.fetchWeather(location);
     }
   }
 
