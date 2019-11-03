@@ -11,21 +11,21 @@ function TodayWeather(props) {
       </WeatherIcon>
         <WeatherInfo>
           <p>Hoje</p>
-          <p>{props.main ? props.main.temp : ''}ºC</p>
+          <p>{props.todayWeather.main.temp}ºC</p>
 
-          <h2>{props.main ? props.weather.main : ''}</h2>
+          <h2>{props.todayWeather.weather.main}</h2>
 
           <p>
             Vento:
-          <span>NO {props.main ? props.wind.speed : ''}km/h</span>
+            <span>NO {props.todayWeather.wind.speed}km/h</span>
           </p>
           <p>
             Humidade:
-          <span>{props.main ? props.main.humidity : ''}</span>
+            <span>{props.todayWeather.main.humidity}</span>
           </p>
           <p>
             Pressão:
-          <span>{props.main ? props.main.pressure : ''}hPA</span>
+            <span>{props.todayWeather.main.pressure}hPA</span>
           </p>
         </WeatherInfo>
     </Container>
