@@ -4,7 +4,7 @@ import { Container, WeatherIcon, WeatherInfo } from './styles';
 
 function NextDaysWeather(props) {
   return (
-    <Container>
+    <Container backgroundColor={props.backgroundColor}>
       <WeatherIcon />
       <WeatherInfo>
         <p>{props.dayName}</p>

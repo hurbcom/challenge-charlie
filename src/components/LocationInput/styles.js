@@ -28,7 +28,7 @@ export const Location = styled.div`
     border: none;
     color: #8D8986;
     flex: 1;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
 
     &::placeholder {

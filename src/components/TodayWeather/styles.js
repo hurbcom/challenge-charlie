@@ -11,8 +11,9 @@ export const IconWrapper = styled.div`
   width: 60%;
 
   svg {
-    width: 100%;
     height: 100%;
+    padding: 34px;
+    width: 100%;
 
     path {
       fill: #FFF;
@@ -21,6 +22,29 @@ export const IconWrapper = styled.div`
 `;
 
 export const WeatherInfo = styled.div`
-  padding: 16px 32px;
+  padding: 32px 0;
   width: 40%;
+
+  p {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 24px 0 16px;
+    text-transform: capitalize;
+  }
+
+  div {
+    margin-bottom: 4px;
+    
+    span {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
 `;
