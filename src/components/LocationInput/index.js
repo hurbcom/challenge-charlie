@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Location } from './styles';
 import { ReactComponent as Compass } from './../../icons/compass.svg';
 
 function LocationInput(props) {
   const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    setLocation(props.location)
+  }, []);
 
   const handleSubmit = (evt) => {
     if (evt.key === "Enter") {
@@ -20,8 +24,8 @@ function LocationInput(props) {
       </span>
       <input
         type="text"
+        placeholder="Informe a cidade..."
         value={location}
-        placeholder="Rio de Janeiro, Rio de Janeiro"
         onChange={evt => setLocation(evt.target.value)}
         onKeyPress={handleSubmit}
       />
