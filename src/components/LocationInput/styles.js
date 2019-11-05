@@ -14,8 +14,8 @@ export const Location = styled.div`
     align-self: center;
     
     svg {
-      width: 20px;
-      height: 20px;
+      width: 32px;
+      height: 32px;
 
       path {
         fill: #8D8986;
@@ -26,7 +26,10 @@ export const Location = styled.div`
   input {
     background: #F3EDED;
     border: none;
+    color: #8D8986;
     flex: 1;
+    font-size: 18px;
+    font-weight: 600;
 
     &::placeholder {
       color: #8D8986;
