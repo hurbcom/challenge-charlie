@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { Container, WeatherIcon, WeatherInfo } from './styles';
-import { ReactComponent as Sunny } from './../../icons/sunny.svg';
+import { Container, IconWrapper, WeatherInfo } from './styles';
+import WeatherIcon from '../WeatherIcon';
 
 function TodayWeather(props) {
   return (
-    <Container>
-      <WeatherIcon>
-        <Sunny />
-      </WeatherIcon>
+    <Container backgroundColor={props.backgroundColor}>
+      <IconWrapper>
+        <WeatherIcon weather={props.todayWeather.weather[0]}/>
+      </IconWrapper>
         <WeatherInfo>
           <p>Hoje</p>
           <p>{props.todayWeather.main.temp}ºC</p>

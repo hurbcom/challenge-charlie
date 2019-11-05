@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  background-color: ${props => props.backgroundColor};
+  color: #FFF;
   display: flex;
   width: 100%;
 `;
 
-export const WeatherIcon = styled.div`
+export const IconWrapper = styled.div`
   width: 60%;
 
   svg {
@@ -13,10 +15,9 @@ export const WeatherIcon = styled.div`
     height: 100%;
 
     path {
-      fill: #8D8986;
+      fill: #FFF;
     }
   }
-  /* background: ${props => `${props.icon}`} */
 `;
 
 export const WeatherInfo = styled.div`
