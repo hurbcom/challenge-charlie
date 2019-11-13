@@ -1,24 +1,40 @@
 import React from 'react';
 
-import { Container, IconWrapper, WeatherInfo } from './styles';
+import { Container, IconWrapper, WeatherInfo, WeatherDescription, WeatherDetails } from './styles';
 import WeatherIcon from '../WeatherIcon';
 
 function TodayWeather(props) {
+  const { main, weather, wind } = { ...props.todayWeather };
+
+  const handleClick = (evt) => {
+    evt.preventDefault();
+    props.toggleTemperature();
+  }
+
   return (
     <Container backgroundColor={props.backgroundColor}>
       <IconWrapper>
-        <WeatherIcon weather={props.todayWeather.weather[0]}/>
+        <WeatherIcon weather={weather[0]} />
       </IconWrapper>
-        <WeatherInfo>
-          <p>Hoje</p>
-          <p>{props.todayWeather.main.temp}ºC</p>
+      <WeatherInfo>
+        <p>Hoje</p>
+        <p
+          className="clickable"
+          onClick={handleClick.bind(this)}
+        >
+          {main.temp.toFixed(0)}{props.temperatureScale}
+        </p>
 
-          <h2>{props.todayWeather.weather[0].description}</h2>
+        <WeatherDescription>
+          {weather[0].description}
+        </WeatherDescription>
 
-          <div><span>Vento: NO {props.todayWeather.wind.speed}km/h</span></div>   
-          <div><span>Humidade: {props.todayWeather.main.humidity}%</span></div>
-          <div><span>Pressão: {props.todayWeather.main.pressure}hPA</span></div>
-        </WeatherInfo>
+        <WeatherDetails>
+          <p>Vento: NO {wind.speed}km/h</p>
+          <p>Humidade: {main.humidity}%</p>
+          <p>Pressão: {main.pressure}hPA</p>
+        </WeatherDetails>
+      </WeatherInfo>
     </Container>
   );
 }
