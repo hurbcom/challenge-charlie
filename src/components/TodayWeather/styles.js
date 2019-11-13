@@ -30,21 +30,24 @@ export const WeatherInfo = styled.div`
     font-weight: 400;
     margin-bottom: 4px;
     text-transform: uppercase;
-  }
-  
-  h2 {
-    font-size: 24px;
-    font-weight: 400;
-    margin: 24px 0 16px;
-    text-transform: capitalize;
-  }
 
-  div {
-    margin-bottom: 4px;
-    
-    span {
-      font-size: 16px;
-      font-weight: 400;
+    &.clickable {
+      cursor: pointer;
     }
+  }
+`;
+
+export const WeatherDescription = styled.h2`
+  font-size: 24px;
+  font-weight: 400;
+  margin: 24px 0 16px;
+  text-transform: capitalize;
+`;
+
+export const WeatherDetails = styled.div`
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
   }
 `;

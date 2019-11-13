@@ -20,4 +20,8 @@ export const WeatherInfo = styled.div`
     font-weight: 400;
     text-transform: uppercase;
   }
+
+  .clickable {
+    cursor: pointer;
+  }
 `;
