@@ -59,6 +59,7 @@ function WeatherForecast() {
         setTodayWeather(weather[0]);
         setTomorrowWeather(weather[1].main.temp);
         setAfterTomorrowWeather(weather[2].main.temp);
+        setTemperatureScale("ºC");
         setIsLocationExists(true);
       })
       .catch(error => {
