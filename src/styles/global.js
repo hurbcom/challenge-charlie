@@ -12,8 +12,9 @@ export default createGlobalStyle`
     height: 100%;
   }
   body {
-    font: 14px 'Roboto', sans-serif;
+    background: url(${props => props.background});
     color: #333;
+    font: 14px 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased !important;
   }
 `;
