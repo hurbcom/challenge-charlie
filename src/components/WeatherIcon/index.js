@@ -7,6 +7,7 @@ import { ReactComponent as Cloudy } from './../../icons/cloudy.svg';
 import { ReactComponent as Drizzle } from './../../icons/drizzle.svg';
 import { ReactComponent as Fog } from './../../icons/fog.svg';
 import { ReactComponent as Mist } from './../../icons/mist.svg';
+import { ReactComponent as NotApplicable } from './../../icons/not-applicable.svg';
 import { ReactComponent as PartlyCloudDay } from './../../icons/partly-cloudy-day.svg';
 import { ReactComponent as PartlyCloudNight } from './../../icons/partly-cloudy-night.svg';
 import { ReactComponent as Rain } from './../../icons/rain.svg';
@@ -22,6 +23,10 @@ export default function WeatherIcon(props) {
   }
 
   const fetchIcon = (weather, details) => {
+    if (!props.isLocationExists) {
+      return <NotApplicable />
+    }
+
     switch (weather) {
       case 'Thunderstorm': return <Thunderstorm />
       case 'Drizzle': return <Drizzle />

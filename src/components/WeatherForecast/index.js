@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { Container } from './styles';
+
 import LocationInput from '../LocationInput';
 import TodayWeather from '../TodayWeather';
 import NextDaysWeather from '../NextDaysWeather';
@@ -20,6 +20,7 @@ const {
 function WeatherForecast() {
   const [backgroundColor, setBackgroundColor] = useState("");
   const [location, setLocation] = useState("");
+  const [isLocationExists, setIsLocationExists] = useState(true);
   const [temperatureScale, setTemperatureScale] = useState("ºC");
   const [todayWeather, setTodayWeather] = useState();
   const [tomorrowWeather, setTomorrowWeather] = useState();
@@ -58,9 +59,12 @@ function WeatherForecast() {
         setTodayWeather(weather[0]);
         setTomorrowWeather(weather[1].main.temp);
         setAfterTomorrowWeather(weather[2].main.temp);
+        setIsLocationExists(true);
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.response.data);
+        setBackgroundColor(setWeatherForecastBackgroundColor(false));
+        setIsLocationExists(false);
       });
   }
 
@@ -91,6 +95,7 @@ function WeatherForecast() {
       />
       <TodayWeather
         backgroundColor={backgroundColor.today}
+        isLocationExists={isLocationExists}
         todayWeather={todayWeather}
         temperatureScale={temperatureScale}
         toggleTemperature={toggleTemperature.bind(this)}
@@ -98,6 +103,7 @@ function WeatherForecast() {
       <NextDaysWeather
         backgroundColor={backgroundColor.tomorrow}
         dayName={"Amanhã"}
+        isLocationExists={isLocationExists}
         temperature={tomorrowWeather}
         temperatureScale={temperatureScale}
         toggleTemperature={toggleTemperature.bind(this)}
@@ -105,6 +111,7 @@ function WeatherForecast() {
       <NextDaysWeather
         backgroundColor={backgroundColor.afterTomorrow}
         dayName={"Depois de Amanhã"}
+        isLocationExists={isLocationExists}
         temperature={afterTomorrowWeather}
         temperatureScale={temperatureScale}
         toggleTemperature={toggleTemperature.bind(this)}

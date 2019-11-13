@@ -35,6 +35,11 @@ export const WeatherInfo = styled.div`
       cursor: pointer;
     }
   }
+
+  span {
+    font-size: 22px;
+    font-weight: 400;
+  }
 `;
 
 export const WeatherDescription = styled.h2`

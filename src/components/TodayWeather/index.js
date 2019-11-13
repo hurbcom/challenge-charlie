@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Container, IconWrapper, WeatherInfo, WeatherDescription, WeatherDetails } from './styles';
 import WeatherIcon from '../WeatherIcon';
 
@@ -11,29 +10,44 @@ function TodayWeather(props) {
     props.toggleTemperature();
   }
 
+  const fetchWeatherInformation = () => {
+    if (props.isLocationExists) {
+      return (
+        <>
+          <p className="clickable" onClick={handleClick.bind(this)}>
+            {main.temp.toFixed(0)}{props.temperatureScale}
+          </p>
+
+          <WeatherDescription>
+            {weather[0].description}
+          </WeatherDescription>
+
+          <WeatherDetails>
+            <p>Vento: NO {wind.speed}km/h</p>
+            <p>Humidade: {main.humidity}%</p>
+            <p>Pressão: {main.pressure}hPA</p>
+          </WeatherDetails>
+        </>
+      )
+    }
+    return (
+      <>
+        <span> Localidade não encontrada </span>
+      </>
+    );
+  }
+
   return (
     <Container backgroundColor={props.backgroundColor}>
       <IconWrapper>
-        <WeatherIcon weather={weather[0]} />
+        <WeatherIcon
+          isLocationExists={props.isLocationExists}
+          weather={weather[0]}
+        />
       </IconWrapper>
       <WeatherInfo>
         <p>Hoje</p>
-        <p
-          className="clickable"
-          onClick={handleClick.bind(this)}
-        >
-          {main.temp.toFixed(0)}{props.temperatureScale}
-        </p>
-
-        <WeatherDescription>
-          {weather[0].description}
-        </WeatherDescription>
-
-        <WeatherDetails>
-          <p>Vento: NO {wind.speed}km/h</p>
-          <p>Humidade: {main.humidity}%</p>
-          <p>Pressão: {main.pressure}hPA</p>
-        </WeatherDetails>
+        {fetchWeatherInformation()}
       </WeatherInfo>
     </Container>
   );

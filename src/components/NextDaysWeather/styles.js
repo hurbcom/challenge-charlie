@@ -7,18 +7,20 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const WeatherIcon = styled.div`
-  width: 60%;
-`;
-
 export const WeatherInfo = styled.div`
+  margin-left: 60%;
   padding: 16px 0 32px;
   width: 40%;
 
   p {
     font-size: 18px;
     font-weight: 400;
+    margin-bottom: 4px;
     text-transform: uppercase;
+  }
+
+  span {
+    font-size: 16px;
   }
 
   .clickable {

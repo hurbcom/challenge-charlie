@@ -23,6 +23,10 @@ function setWeatherForecastBackgroundColor(temperature) {
     afterTomorrow: 'rgba(121, 141, 143, .7)'
   }
 
+  if (!temperature) {
+    return locationNotFoundTemperatureGradient
+  }
+
   if (temperature < 15) {
     return lowTemperatureGradient;
   }
@@ -31,11 +35,7 @@ function setWeatherForecastBackgroundColor(temperature) {
     return mildTemperatureGradient;
   }
 
-  if (temperature > 35) {
-    return highTemperatureGradient;
-  }
-
-  return locationNotFoundTemperatureGradient;
+  return highTemperatureGradient;
 }
 
 export default setWeatherForecastBackgroundColor;

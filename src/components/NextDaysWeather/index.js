@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Container, WeatherIcon, WeatherInfo } from './styles';
+import { Container, WeatherInfo } from './styles';
 
 function NextDaysWeather(props) {
 
@@ -9,18 +8,29 @@ function NextDaysWeather(props) {
     props.toggleTemperature();
   }
 
+  const fetchWeatherInformation = () => {
+    if (props.isLocationExists) {
+      return (
+        <>
+          <p className="clickable" onClick={handleClick}>
+            {props.temperature.toFixed(0)}
+            {props.temperatureScale}
+          </p>
+        </>
+      )
+    }
+    return (
+      <>
+        <span> Não encontrada </span>
+      </>
+    );
+  }
+
   return (
     <Container backgroundColor={props.backgroundColor}>
-      <WeatherIcon />
       <WeatherInfo>
         <p>{props.dayName}</p>
-        <p
-          className="clickable"
-          onClick={handleClick}
-        >
-          {props.temperature.toFixed(0)}
-          {props.temperatureScale}
-        </p>
+        {fetchWeatherInformation()}
       </WeatherInfo>
     </Container>
   );
