@@ -8,7 +8,7 @@ function LocationInput(props) {
 
   useEffect(() => {
     setLocation(props.location)
-  }, []);
+  }, [props.location]);
 
   const handleSubmit = (evt) => {
     if (evt.key === "Enter") {
@@ -24,6 +24,7 @@ function LocationInput(props) {
       </span>
       <input
         type="text"
+        aria-label="location-input"
         placeholder="Informe a cidade..."
         value={location}
         onChange={evt => setLocation(evt.target.value)}
