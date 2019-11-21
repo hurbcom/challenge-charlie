@@ -22,37 +22,27 @@ export default function WeatherIcon(props) {
     return date.getHours() >= 6 && date.getHours() <= 18
   }
 
-  const fetchIcon = (weather, details) => {
-    if (!props.isLocationExists) {
-      return <NotApplicable />
+  const fetchCloudsIcon = (details) => {
+    if (details === 'few clouds') {
+      return isDayTime ? <PartlyCloudDay /> : <PartlyCloudNight />
     }
-
-    switch (weather) {
-      case 'Thunderstorm': return <Thunderstorm />
-      case 'Drizzle': return <Drizzle />
-      case 'Rain': {
-        if (details === 'shower rain') {
-          return <ShowerRain />
-        }
-        return <Rain />
-      }
-      case 'Snow': return <Snow />
-      case 'Mist': return <Mist />
-      case 'Fog': return <Fog />
-      case 'Clear': return isDayTime ? <ClearDay /> : <ClearNight />
-      case 'Clouds': {
-        if (details === 'few clouds') {
-          return isDayTime ? <PartlyCloudDay /> : <PartlyCloudNight />
-        }
-        if (details === 'scattered clouds') {
-          return <Cloudy />
-        }
-        return <BrokenClouds />
-      }
-      case 'Squall': return <Wind />
-      default: return;
+    if (details === 'scattered clouds') {
+      return <Cloudy />
     }
+    return <BrokenClouds />
   }
+
+  const fetchIcon = (weather, details) => ({
+    'Thunderstorm': <Thunderstorm />,
+    'Drizzle': <Drizzle />,
+    'Rain': <Rain />,
+    'Snow': <Snow />,
+    'Mist': <Mist />,
+    'Fog': <Fog />,
+    'Clear': isDayTime ? <ClearDay /> : <ClearNight />,
+    'Clouds': fetchCloudsIcon(details),
+    'Squall': <Wind />,
+  }[props.isLocationExists ? weather : <NotApplicable />] || <NotApplicable />)
 
   return (
     <>
