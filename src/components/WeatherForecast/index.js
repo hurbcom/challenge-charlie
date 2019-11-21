@@ -52,21 +52,24 @@ function WeatherForecast() {
     axios.get(`${openWeatherApiUrl}?q=${location}&lang=pt&APPID=${openWeatherApiKey}&units=metric`)
       .then(response => {
         const weather = response.data.list;
-
-        const gradientColor = setWeatherForecastBackgroundColor(weather[0].main.temp);
-        setBackgroundColor(gradientColor);
-
-        setTodayWeather(weather[0]);
-        setTomorrowWeather(weather[1].main.temp);
-        setAfterTomorrowWeather(weather[2].main.temp);
-        setTemperatureScale("ºC");
-        setIsLocationExists(true);
+        setWeatherData(weather);
       })
       .catch(error => {
         console.log(error.response.data);
         setBackgroundColor(setWeatherForecastBackgroundColor(false));
         setIsLocationExists(false);
       });
+  }
+
+  const setWeatherData = (weather) => {
+    const gradientColor = setWeatherForecastBackgroundColor(weather[0].main.temp);
+    setBackgroundColor(gradientColor);
+
+    setTodayWeather(weather[0]);
+    setTomorrowWeather(weather[1].main.temp);
+    setAfterTomorrowWeather(weather[2].main.temp);
+    setTemperatureScale("ºC");
+    setIsLocationExists(true);
   }
 
   const temperatureConvertion = (tempScale, convertCallback) => {
