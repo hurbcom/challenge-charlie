@@ -1,0 +1,25 @@
+.Header {
+  height: 60px;
+  background: rgba(250, 250, 250, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  font-size: 20px;
+  font-family: Ubuntu;
+  font-weight: bold;
+  color: #5a5a5a;
+  height: 60px;
+  background: transparent;
+  border: none;
+  outline: none;
+}

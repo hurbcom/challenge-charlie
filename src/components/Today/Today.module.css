@@ -1,0 +1,16 @@
+.Today {
+  height: 250px;
+  opacity: 0.95;
+  color: white;
+  font-size: 20px;
+  display: flex;
+}
+
+.icon {
+  flex: 6;
+}
+
+.info {
+  flex: 5;
+  margin: 10px;
+}
