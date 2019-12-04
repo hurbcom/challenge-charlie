@@ -28,7 +28,7 @@ export const InputWrapper = styled.div`
         width: 100%;
         margin-left: 15px;
         border: none;
-        font-size: 2em;
+        font-size: 1.8em;
         color: #8c8885;
     }
 `;
