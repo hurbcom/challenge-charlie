@@ -4,9 +4,11 @@ export const Container = styled.div`
     max-width: 600px;
     width: 100%
     height: 100%;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;
 
 export const InputWrapper = styled.div`
@@ -33,32 +35,18 @@ export const InputWrapper = styled.div`
     }
 `;
 
-export const TodayWeather = styled.div`
-    height: 40%;
+export const WeatherDiv = styled.div`
+    height: 25%;
     width: 100%;
-    background: linear-gradient(
-        to top,
-        rgba(226, 184, 19, 0.9),
-        rgba(226, 184, 19, 1)
-    );
-`;
 
-export const TomorowWeather = styled.div`
-    height: 30%;
-    width: 100%;
-    background: linear-gradient(
-        to top,
-        rgba(251, 205, 6, 0.9),
-        rgba(251, 205, 6, 1)
-    );
-`;
-
-export const AfterTomorowWeather = styled.div`
-    height: 30%;
-    width: 100%;
-    background: linear-gradient(
-        to top,
-        rgba(183, 148, 5, 0.9),
-        rgba(183, 148, 5, 1)
-    );
+    &:nth-child(2) {
+        height: 50%;
+        background: rgba(255, 182, 0, 0.9);
+    }
+    &:nth-child(3) {
+        background: rgba(255, 218, 0, 0.9);
+    }
+    &:nth-child(4) {
+        background: rgba(183, 148, 3, 0.9);
+    }
 `;

@@ -1,74 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Roller } from 'react-awesome-spinners';
+import Loader from 'react-loader-spinner';
 import axios from 'axios';
-import {
-    Container,
-    InputWrapper,
-    TodayWeather,
-    TomorowWeather,
-    AfterTomorowWeather,
-} from './styles';
+import { Container, InputWrapper, WeatherDiv } from './styles';
 
 import { ReactComponent as Compass } from '../../assets/icons/44.svg';
 
 export default function Main() {
-    const [loading, setLoading] = useState(false);
-    const [unit, setUnit] = useState('metric');
-    const [location, setLocation] = useState('');
-    const [browserLocation, setBrowserLocation] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [unit, setUnit] = useState('metric');
+  const [location, setLocation] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+  const [weather, setWeather] = useState([]);
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-            const response = await axios.get(
-                `https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude},${coords.longitude}&key=c63386b4f77e46de817bdf94f552cddf&language=en`
-            );
-            setLocation(response.data.results[0].formatted);
-            setBrowserLocation(response.data.results[0]);
-        });
-    }, []);
-
-    function handleInputChange(e) {
-        setLocation(e.target.value);
-    }
-
-    function handleUnit() {
-        if (unit === 'metric') {
-            setUnit('imperial');
-        } else {
-            setUnit('metric');
-        }
-    }
-
-    async function handleLocationSearch() {
-        setLoading(true);
-        const response = await axios.get(
-            `http://api.openweathermap.org/data/2.5/
-            weather?q=${browserLocation.components.state},${browserLocation.components.country}
-            &APPID=7ba73e0eb8efe773ed08bfd0627f07b8
-            &units=${unit}`
+  useEffect(() => {
+    setLoading(true);
+    async function getUserLocation() {
+      await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+        const { data } = await axios.get(
+          `https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude},${coords.longitude}&key=c63386b4f77e46de817bdf94f552cddf&language=pt`
         );
-        console.log(response);
-        setLoading(false);
+        const { state } = data.results[0].components;
+        setLocation(state);
+      });
     }
+    getUserLocation();
+    setLoading(false);
+  }, []);
 
-    return (
-        <Container>
-            <InputWrapper>
-                {loading ? <Roller color="#8c8885" /> : <Compass />}
+  useEffect(() => {
+    async function getWeather() {
+      const { data } = await axios.get(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${location},BR&APPID=7ba73e0eb8efe773ed08bfd0627f07b8&units=${unit}&cnt=16&lang=pt`
+      );
+      const { name, country } = data.city;
+      const { list } = data;
+      setWeather(list);
+      setInputValue(`${name}, ${country}`);
+    }
+    if (location !== null) {
+      getWeather();
+    }
+  }, [location, unit]);
 
-                <input
-                    type="text"
-                    placeholder="Where are you?"
-                    value={location}
-                    onChange={handleInputChange}
-                    onBlur={handleLocationSearch}
-                />
-            </InputWrapper>
-            <TodayWeather onClick={handleUnit}>Hoje</TodayWeather>
-            <TomorowWeather onClick={handleUnit}>Amanhã</TomorowWeather>
-            <AfterTomorowWeather onClick={handleUnit}>
-                Depois de amanhã
-            </AfterTomorowWeather>
-        </Container>
-    );
+  function handleInputChange(e) {
+    setInputValue(e.target.value);
+  }
+
+  function handleInputBlur(e) {
+    setLocation(e.target.value);
+  }
+
+  function handleUnit() {
+    return unit === 'metric' ? setUnit('imperial') : setUnit('metric');
+  }
+
+  return (
+    <Container>
+      <InputWrapper>
+        {loading ? <Loader type="Puff" color="#8c8885" /> : <Compass />}
+        <input
+          type="text"
+          placeholder="Where are you?"
+          value={inputValue}
+          onChange={handleInputChange}
+          onBlur={handleInputBlur}
+        />
+      </InputWrapper>
+      <WeatherDiv onClick={handleUnit}>Hoje</WeatherDiv>
+      <WeatherDiv onClick={handleUnit}>Amanhã</WeatherDiv>
+      <WeatherDiv onClick={handleUnit}>Depois de amanhã</WeatherDiv>
+    </Container>
+  );
 }
