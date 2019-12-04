@@ -12,8 +12,10 @@ import {
 import { ReactComponent as Compass } from '../../assets/icons/44.svg';
 
 export default function Main() {
-    const [location, setLocation] = useState('');
     const [loading, setLoading] = useState(false);
+    const [unit, setUnit] = useState('metric');
+    const [location, setLocation] = useState('');
+    const [browserLocation, setBrowserLocation] = useState('');
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(async ({ coords }) => {
@@ -21,6 +23,7 @@ export default function Main() {
                 `https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude},${coords.longitude}&key=c63386b4f77e46de817bdf94f552cddf&language=en`
             );
             setLocation(response.data.results[0].formatted);
+            setBrowserLocation(response.data.results[0]);
         });
     }, []);
 
@@ -28,8 +31,24 @@ export default function Main() {
         setLocation(e.target.value);
     }
 
-    function handleLocationSearch() {
+    function handleUnit() {
+        if (unit === 'metric') {
+            setUnit('imperial');
+        } else {
+            setUnit('metric');
+        }
+    }
+
+    async function handleLocationSearch() {
         setLoading(true);
+        const response = await axios.get(
+            `http://api.openweathermap.org/data/2.5/
+            weather?q=${browserLocation.components.state},${browserLocation.components.country}
+            &APPID=7ba73e0eb8efe773ed08bfd0627f07b8
+            &units=${unit}`
+        );
+        console.log(response);
+        setLoading(false);
     }
 
     return (
@@ -45,9 +64,11 @@ export default function Main() {
                     onBlur={handleLocationSearch}
                 />
             </InputWrapper>
-            <TodayWeather>Hoje</TodayWeather>
-            <TomorowWeather>Amanhã</TomorowWeather>
-            <AfterTomorowWeather>Depois de amanhã</AfterTomorowWeather>
+            <TodayWeather onClick={handleUnit}>Hoje</TodayWeather>
+            <TomorowWeather onClick={handleUnit}>Amanhã</TomorowWeather>
+            <AfterTomorowWeather onClick={handleUnit}>
+                Depois de amanhã
+            </AfterTomorowWeather>
         </Container>
     );
 }
