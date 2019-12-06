@@ -1,15 +1,10 @@
 import React from 'react';
 import Main from './pages/Main';
 
-import GlobalStyle from './styles/globalStyle';
+import './config/ReactotronConfig';
 
 function App() {
-    return (
-        <>
-            <GlobalStyle />
-            <Main />
-        </>
-    );
+  return <Main />;
 }
 
 export default App;
