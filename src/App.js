@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import './config/ReactotronConfig';
 
 function App() {
-  return <Main />;
+    return <Main />;
 }
 
 export default App;
