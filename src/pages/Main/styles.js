@@ -21,18 +21,6 @@ export const GlobalStyles = createGlobalStyle`
         background-color: #666;
         background-size: cover;
         background-position: center;
-    }
-
-    root: {
-      firstBlue: '#004BFF',
-      secondBlue: '#0040d9',
-      thirdBlue: '#0036d9',
-      firstYellow: '#ffb600',
-      secondYellow: '#d6da00',
-      thirdYellow: '#b79400',
-      firstRed: '#ff0000',
-      secondRed: '#d60000',
-      thirdRed: '#b70000',
     },
 `;
 
@@ -40,7 +28,7 @@ export const Container = styled.div`
     max-width: 600px;
     width: 100%
     height: 100%;
-    padding: 10px 0;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,62 +38,130 @@ export const Container = styled.div`
 `;
 
 export const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  background: #fff;
+  padding: 5px;
+
+  svg {
+    width: 64px;
+    height: 64px;
+    path {
+      fill: #8c8885;
+    }
+  }
+
+  input {
+    height: 64px;
     width: 100%;
-    display: flex;
-    background: #fff;
-    padding: 5px;
+    margin-left: 15px;
+    border: none;
+    font-size: 1.8em;
+    color: #8c8885;
+  }
+`;
 
-    svg {
-        width: 64px;
-        height: 64px;
-        path {
-            fill: #8c8885;
-        }
-    }
-
-    input {
-        height: 64px;
-        width: 100%;
-        margin-left: 15px;
-        border: none;
-        font-size: 1.8em;
-        color: #8c8885;
-    }
+export const WeatherContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 export const WeatherDiv = styled.div`
-    width: 100%;
-    height: 25%;
-    opacity: 0.9;
-    font-size: 1.8em;
-    display: flex;
+  width: 100%;
+  height: 20%;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    &:nth-child(2) {
-        height: 50%;
-        background: #ffb600;
+  div {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+  }
 
-        div {
-            margin: auto 0;
-        }
+  .day {
+    font-size: 1.3em;
+  }
+  .temperature {
+    font-size: 1.3em;
+  }
+  .description {
+    font-size: 1.3em;
+    margin: 5px 0;
+    text-transform: capitalize;
+  }
+  .wind {
+    font-size: 1.1em;
+  }
+  .humidity {
+    font-size: 1.1em;
+  }
+  .pressure {
+    font-size: 1.1em;
+  }
+
+  &:nth-child(1) {
+    height: 60%;
+    background: ${props => {
+      if (props.temp <= 15) return '#004BFF';
+      if (props.temp > 15 && props.temp < 35) return '#ffb600';
+      if (props.temp <= 35) return '#ff0000';
+      return '#ccc';
+    }};
+  }
+  &:nth-child(2) {
+    background: ${props => {
+      if (props.temp <= 15) return '#0040d9';
+      if (props.temp > 15 && props.temp < 35) return '#ffda00';
+      if (props.temp <= 35) return '#d60000';
+      return '#a0a0a0';
+    }};
+  }
+  &:nth-child(3) {
+    background: ${props => {
+      if (props.temp <= 15) return '#0036d9';
+      if (props.temp > 15 && props.temp < 35) return '#b79403';
+      if (props.temp <= 35) return '#b70000';
+      return '#878787';
+    }};
+  }
+
+  @media (min-width: 768px) {
+    & {
+      align-items: inherit;
+      justify-content: inherit;
+      align-items: center;
+      font-size: 22px;
+
+      div {
+        width: 50%;
+        text-align: inherit;
+        margin: 0;
+        margin-left: auto;
 
         .description {
-            text-transform: capitalize;
+          margin: 20px 0;
         }
+      }
+
+      div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &:nth-child(1) {
+        flex-direction: row;
+        width: 100%;
+      }
     }
-    &:nth-child(3) {
-        background: #ffda00;
-    }
-    &:nth-child(4) {
-        background: #b79403;
-    }
+  }
 `;
 
-export const Image = styled.img`
-    width: 300px;
-    height: 300px;
-    margin: auto;
-`;
-export const Content = styled.div`
-    width: 50%;
-    margin-left: auto;
+export const Image = styled.div`
+  width: 150px;
+  height: 150px;
+  background-image: ${props => `url('../src/assets/icons/${props.icon}.svg')`};
 `;
