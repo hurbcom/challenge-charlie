@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "(yarn add concurrently -D) && (concurrently \"yarn\" \"gnome-terminal -- sh -c 'yarn server; exec zsh'\" \"gnome-terminal -- sh -c 'yarn start; exec zsh'\")"
+    "dev": "(yarn add concurrently -D && yarn) && (concurrently \"gnome-terminal -- sh -c 'yarn server; exec zsh'\" \"gnome-terminal -- sh -c 'yarn start; exec zsh'\")"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,7 +40,6 @@
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "babel-plugin-root-import": "^6.4.1",
-    "concurrently": "^5.0.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.4.0",
