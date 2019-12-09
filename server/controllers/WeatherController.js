@@ -71,10 +71,13 @@ function formatWeather(datas, unit) {
 
 export default async function WeatherController(req, res) {
   const { location, unit } = req.query;
+
   const { data } = await api.get(
     `/forecast?q=${location},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
   );
+
   const unusedData = handleUnusedData(data.list);
+
   const formattedWeather = formatWeather(unusedData, unit);
 
   return res.json(formattedWeather);

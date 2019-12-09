@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import '../../assets/fonts/stylesheet.css';
 
 export const GlobalStyles = createGlobalStyle`
     * {
@@ -58,6 +59,7 @@ export const InputWrapper = styled.div`
     border: none;
     font-size: 1.8em;
     color: #8c8885;
+    background: inherit;
   }
 `;
 
@@ -164,4 +166,20 @@ export const Image = styled.div`
   width: 150px;
   height: 150px;
   background-image: ${props => `url('../src/assets/icons/${props.icon}.svg')`};
+`;
+
+export const Meteocons = styled.p`
+  font-family: 'MeteoconsRegular';
+  font-size: 150px;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    & {
+      font-size: 200px;
+    }
+  }
 `;

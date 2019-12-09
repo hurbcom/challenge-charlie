@@ -8,17 +8,15 @@ import {
   InputWrapper,
   WeatherContainer,
   WeatherDiv,
-  Image,
+  Meteocons,
 } from './styles';
 
-import { ReactComponent as Compass } from '../../assets/icons/44.svg';
+import { ReactComponent as Compass } from '../../assets/icons/Compass.svg';
 
 export default function Main() {
-  const [loading, setLoading] = useState(false);
   const [background, setBackground] = useState('');
   const [unit, setUnit] = useState('metric');
-  const [location, setLocation] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  const [location, setLocation] = useState(undefined);
   const [weather, setWeather] = useState(undefined);
 
   useEffect(() => {
@@ -31,17 +29,17 @@ export default function Main() {
       const geo = navigator.geolocation;
       await geo.getCurrentPosition(async position => {
         const { latitude, longitude } = position.coords;
+
         const { data } = await api.get('/geo-location', {
           params: { latitude, longitude },
         });
-        setLocation(`${data.state}, ${data.country}`);
-        setInputValue(`${data.state}, ${data.country}`);
+
+        setLocation(data);
       });
     }
-    setLoading(true);
+
     getBackground();
     getUserLocation();
-    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -49,20 +47,11 @@ export default function Main() {
       const { data } = await api.get('/weather', {
         params: { location, unit },
       });
+
       setWeather(data);
     }
-    setLoading(true);
-    getWeather();
-    setLoading(false);
+    if (location) getWeather();
   }, [location, unit]);
-
-  function handleInputChange(e) {
-    setInputValue(e.target.value);
-  }
-
-  function handleInputBlur(e) {
-    setLocation(e.target.value);
-  }
 
   function handleUnit() {
     return unit === 'metric' ? setUnit('imperial') : setUnit('metric');
@@ -73,19 +62,18 @@ export default function Main() {
       <GlobalStyles background={background} />
       <Container>
         <InputWrapper>
-          {inputValue ? <Compass /> : <Loader type="Puff" color="#8c8885" />}
+          {location ? <Compass /> : <Loader type="Puff" color="#8c8885" />}
           <input
             type="text"
-            placeholder="Where are you?"
-            value={inputValue}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
+            placeholder="Onde você está?"
+            value={location}
+            disabled
           />
         </InputWrapper>
-        {inputValue && weather && !loading ? (
+        {weather ? (
           <WeatherContainer>
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-              <Image icon={weather[0].icon} />
+              <Meteocons>{weather[0].icon}</Meteocons>
               <div>
                 <p className="day">Hoje</p>
                 <p className="temperature">{weather[0].formattedTemp}</p>
