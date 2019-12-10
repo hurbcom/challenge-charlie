@@ -78,7 +78,6 @@ export default function Main() {
         </InputWrapper>
         {weather ? (
           <WeatherContainer>
-            {console.log(weather)}
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
               <Meteocons>{weather[0].formattedIcon}</Meteocons>
               <div>
