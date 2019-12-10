@@ -18,9 +18,10 @@ import { ReactComponent as Compass } from '../../assets/icons/Compass.svg';
 export default function Main() {
   const [background, setBackground] = useState('');
   const [unit, setUnit] = useState('metric');
-  const [isopened, setIsopened] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
   const [brazilStates, setBrazilStates] = useState([]);
   const [location, setLocation] = useState(undefined);
+  const [selectedValue, setSelectedValue] = useState('Default');
   const [weather, setWeather] = useState(undefined);
 
   useEffect(() => {
@@ -74,10 +75,11 @@ export default function Main() {
 
   function handleOpenForm(e) {
     e.preventDefault();
-    setIsopened(!isopened);
+    setIsOpened(!isOpened);
   }
-  function handleFormSubmit(e) {
+  function handleSelect(e) {
     e.preventDefault();
+    setSelectedValue(e.target.value);
   }
 
   return (
@@ -93,11 +95,16 @@ export default function Main() {
             disabled
           />
         </InputWrapper>
-        <SearchForm onSubmit={handleFormSubmit}>
-          {isopened ? (
+        <SearchForm>
+          {isOpened ? (
             <>
-              <select isopened={isopened}>
-                <option selected value={false}>
+              <select
+                isopened={isOpened}
+                value={selectedValue}
+                defaultValue="Default"
+                onChange={handleSelect}
+              >
+                <option value="Default" disabled>
                   Escolha uma localidade
                 </option>
                 {brazilStates.map(data => (
