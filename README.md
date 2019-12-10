@@ -30,15 +30,11 @@ Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para in
 <br/>
 
 features para implementar:
-[] Criar de opção do usuário escoher a localização
+[] Criar de opção do usuário escolher a localização
 [] Criar requisições para o IBGE buscar os estados.
 
 Bugs para corrigir:
 [] falta de tratativa de erro para localização pelo navegador bloqueada.
-[] falta de tratativas de erro para erro nas requisições para o Bing a partir do servidor.
-[] falta de tratativas de erro para erro nas requisições para o OpenCage a partir do servidor.
-[] falta de tratativas de erro para erro nas requisições para o OpenWeather a partir do servidor.
-[] falta de tratativas de erro para erro nas requisições para o IBGE a partir do servidor.
 
 <br/>
 

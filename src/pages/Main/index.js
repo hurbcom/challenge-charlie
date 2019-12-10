@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import { iconModel } from './model';
+import { iconModel } from '../../assets/models';
 import api from '../../services/api';
 
 import {

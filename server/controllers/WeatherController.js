@@ -39,9 +39,9 @@ function formatWeather(datas, unit) {
 
   function formatTemperature(temp) {
     if (unit === 'metric') {
-      return `${temp}ºC`;
+      return `${Math.round(temp, 1)}ºC`;
     }
-    return `${temp}ºF`;
+    return `${Math.round(temp, 1)}ºF`;
   }
 
   function tempImperialToMetric(temp) {
@@ -69,15 +69,15 @@ function formatWeather(datas, unit) {
 }
 
 export default async function WeatherController(req, res) {
-  const { location, unit } = req.query;
-
-  const { data } = await api.get(
-    `/forecast?q=${location},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
-  );
-
-  const unusedData = handleUnusedData(data.list);
-
-  const formattedWeather = formatWeather(unusedData, unit);
-
-  return res.json(formattedWeather);
+  try {
+    const { location, unit } = req.query;
+    const { data } = await api.get(
+      `/forecast?q=${location},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
+    );
+    const unusedData = handleUnusedData(data.list);
+    const formattedWeather = formatWeather(unusedData, unit);
+    return res.json(formattedWeather);
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
 }
