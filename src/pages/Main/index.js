@@ -7,6 +7,7 @@ import {
   GlobalStyles,
   Container,
   InputWrapper,
+  SearchForm,
   WeatherContainer,
   WeatherDiv,
   Meteocons,
@@ -17,6 +18,8 @@ import { ReactComponent as Compass } from '../../assets/icons/Compass.svg';
 export default function Main() {
   const [background, setBackground] = useState('');
   const [unit, setUnit] = useState('metric');
+  const [isopened, setIsopened] = useState(false);
+  const [brazilStates, setBrazilStates] = useState([]);
   const [location, setLocation] = useState(undefined);
   const [weather, setWeather] = useState(undefined);
 
@@ -24,6 +27,11 @@ export default function Main() {
     async function getBackground() {
       const { data } = await api.get('/wallpaper');
       setBackground(data);
+    }
+
+    async function getBrazilStates() {
+      const { data } = await api.get('/states');
+      setBrazilStates(data);
     }
 
     async function getUserLocation() {
@@ -40,6 +48,7 @@ export default function Main() {
     }
 
     getBackground();
+    getBrazilStates();
     getUserLocation();
   }, []);
 
@@ -63,6 +72,14 @@ export default function Main() {
     return unit === 'metric' ? setUnit('imperial') : setUnit('metric');
   }
 
+  function handleOpenForm(e) {
+    e.preventDefault();
+    setIsopened(!isopened);
+  }
+  function handleFormSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
     <>
       <GlobalStyles background={background} />
@@ -76,6 +93,27 @@ export default function Main() {
             disabled
           />
         </InputWrapper>
+        <SearchForm onSubmit={handleFormSubmit}>
+          {isopened ? (
+            <>
+              <select isopened={isopened}>
+                <option selected value={false}>
+                  Escolha uma localidade
+                </option>
+                {brazilStates.map(data => (
+                  <option key={data.id} value={data.state}>
+                    {data.state}
+                  </option>
+                ))}
+              </select>
+              <button type="submit">Procurar</button>
+            </>
+          ) : (
+            <button type="button" onClick={handleOpenForm}>
+              Buscar nova localidade
+            </button>
+          )}
+        </SearchForm>
         {weather ? (
           <WeatherContainer>
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>

@@ -63,6 +63,30 @@ export const InputWrapper = styled.div`
   }
 `;
 
+export const SearchForm = styled.form`
+  position: relative;
+  width: 100%;
+  display: flex;
+
+  select {
+    display: block;
+    width: 100%;
+    background: #fff;
+    color: #8c8885;
+    padding: 5px;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    background: #fff;
+    color: #8c8885;
+    border: 0;
+    padding: 5px;
+  }
+`;
+
 export const WeatherContainer = styled.div`
   width: 100%;
   height: 100%;
