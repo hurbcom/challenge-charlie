@@ -42,7 +42,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "babel-plugin-root-import": "^6.4.1",
-    "concurrently": "^5.0.0",
+    "concurrently": "^5.0.1",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.4.0",

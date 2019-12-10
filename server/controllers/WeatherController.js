@@ -3,7 +3,6 @@
 import { getDay, parseISO } from 'date-fns';
 import 'dotenv/config';
 import api from '../services/ApiOpenWeather';
-import model from '../model/default';
 
 function handleUnusedData(datas) {
   return datas.filter((current, index, array) => {
@@ -55,7 +54,7 @@ function formatWeather(datas, unit) {
     const formattedPressure = `${data.main.pressure}hPa`;
 
     weatherData.push({
-      icon: model.icon[data.weather[0].icon],
+      icon: data.weather[0].icon,
       temp: tempImperialToMetric(data.main.temp),
       formattedTemp: formatTemperature(data.main.temp),
       description: data.weather[0].description,

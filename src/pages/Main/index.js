@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
+import { iconModel } from './model';
 import api from '../../services/api';
 
 import {
@@ -48,7 +49,12 @@ export default function Main() {
         params: { location, unit },
       });
 
-      setWeather(data);
+      const climate = data.map(item => ({
+        ...item,
+        formattedIcon: iconModel[item.icon],
+      }));
+
+      setWeather(climate);
     }
     if (location) getWeather();
   }, [location, unit]);
@@ -72,8 +78,9 @@ export default function Main() {
         </InputWrapper>
         {weather ? (
           <WeatherContainer>
+            {console.log(weather)}
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-              <Meteocons>{weather[0].icon}</Meteocons>
+              <Meteocons>{weather[0].formattedIcon}</Meteocons>
               <div>
                 <p className="day">Hoje</p>
                 <p className="temperature">{weather[0].formattedTemp}</p>
