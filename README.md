@@ -41,7 +41,7 @@ Bugs para corrigir:</br>
 Problemas conhecidos:</br>
 [ ] API do OpenWeather não retorna algumas localidades do Brasil.</br>
 Ex.:localidade Acre, BR não encontra, apenas Acre, IL</br>
-</br>
+
 #### Obrigado pela oportunidade
 
 **Guilherme Moraes**
