@@ -30,11 +30,13 @@ Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para in
 <br/>
 
 features para implementar:
-[] Criar de opção do usuário escolher a localização
-[] Criar requisições para o IBGE buscar os estados.
+[x] Criação de testes unitários.
+[x] Criar de opção do usuário escolher a localização.
+[x] Criar requisições para o IBGE buscar os estados.
 
 Bugs para corrigir:
 [] falta de tratativa de erro para localização pelo navegador bloqueada.
+[] mensagem de erro vindo da API.
 
 <br/>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import { iconModel } from '../../assets/models';
+import { FaArrowDown, FaSearch } from 'react-icons/fa';
+import { iconModel } from '../../assets/models/icons';
 import api from '../../services/api';
 
 import {
@@ -79,7 +80,7 @@ export default function Main() {
   }
   function handleSelect(e) {
     e.preventDefault();
-    setSelectedValue(e.target.value);
+    setLocation(selectedValue);
   }
 
   return (
@@ -95,14 +96,12 @@ export default function Main() {
             disabled
           />
         </InputWrapper>
-        <SearchForm>
+        <SearchForm onSubmit={handleSelect}>
           {isOpened ? (
             <>
               <select
-                isopened={isOpened}
                 value={selectedValue}
-                defaultValue="Default"
-                onChange={handleSelect}
+                onChange={e => setSelectedValue(e.target.value)}
               >
                 <option value="Default" disabled>
                   Escolha uma localidade
@@ -113,17 +112,21 @@ export default function Main() {
                   </option>
                 ))}
               </select>
-              <button type="submit">Procurar</button>
+              <button type="submit">
+                <FaSearch size={30} />
+              </button>
             </>
           ) : (
             <button type="button" onClick={handleOpenForm}>
-              Buscar nova localidade
+              <FaArrowDown size={20} />
             </button>
           )}
         </SearchForm>
         {weather ? (
           <WeatherContainer>
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
+              {console.log(location)}
+              {console.log(weather)}
               <Meteocons>{weather[0].formattedIcon}</Meteocons>
               <div>
                 <p className="day">Hoje</p>

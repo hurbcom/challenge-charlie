@@ -4,6 +4,16 @@ import { getDay, parseISO } from 'date-fns';
 import 'dotenv/config';
 import api from '../services/ApiOpenWeather';
 
+function removeSpecialChar(string) {
+  string = string.replace(/[áàãâä]/g, 'a');
+  string = string.replace(/[éèêë]/g, 'e');
+  string = string.replace(/[í]/g, 'i');
+  string = string.replace(/[óòõôö]/g, 'o');
+  string = string.replace(/[úùûü]/g, 'u');
+  string = string.replace(/[ç]/g, 'c');
+  return string;
+}
+
 function handleUnusedData(datas) {
   return datas.filter((current, index, array) => {
     if (index !== 0) {
@@ -71,8 +81,10 @@ function formatWeather(datas, unit) {
 export default async function WeatherController(req, res) {
   try {
     const { location, unit } = req.query;
+    const formattedLocation = removeSpecialChar(location);
+
     const { data } = await api.get(
-      `/forecast?q=${location},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
+      `/forecast?q=${formattedLocation},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
     );
     const unusedData = handleUnusedData(data.list);
     const formattedWeather = formatWeather(unusedData, unit);
