@@ -14,6 +14,10 @@ To run project
 
 To build project
 
+### `yarn test`
+
+To run tests
+
 ## Running Project with Docker
 
 ### `docker build -t challenge .`
