@@ -4,6 +4,7 @@ import GeoService from '../services/GeoService'
 import ImageService from '../services/ImageService'
 import Weather from '../components/Weather'
 import './styles/main.sass'
+import loading from '../statics/images/loading.svg'
 
 function Home({ location }) {
 
@@ -32,21 +33,38 @@ function Home({ location }) {
             return Promise.resolve(response)
 
         } catch (error) {
-            console.log(error)
+            Promise.reject(error)
         }
     }
 
     const handleChangeInput = async (location) => {
-        setIsLoading(true)
-        const weather = await fetchLocation(location)
+        try {
+            setIsLoading(true)
+            const weather = await fetchLocation(location)
+            if (!weather) {
+                setIsLoading(false)
+                return
+            }
+            setWeather(weather)
+        } catch (error) {
+            console.log(error)
+        }
+
         setIsLoading(false)
-        setWeather(weather)
     }
 
     useEffect(() => {
         fetchWheather(location.state)
     }, [])
 
+
+    if (isLoading) {
+        return (
+            <div className="container-loading">
+                <img className="loading" alt="carregando" src={loading} />
+            </div>
+        )
+    }
 
     return (
         <div

@@ -25,7 +25,7 @@ function Splash({ history }) {
       }
 
     return (
-        <div className="splash-container">
+        <div className="container-loading">
             <img className="loading" alt="carregando" src={loading} />
         </div>
     )

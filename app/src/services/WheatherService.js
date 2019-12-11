@@ -7,7 +7,7 @@ export default class WeatherService {
 
     async getWheather(location) {
         try {
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${this.app_id}`)
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${this.app_id}&units=metric`)
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)

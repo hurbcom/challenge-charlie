@@ -2,15 +2,29 @@
     min-height: 50vh
     background-color: #ffffff
     color: #414141
-    padding: 1em
     width: 50vw
     border-radius: 5px
     box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.19)
     margin: 3em 0
 
-    .content
-        .item
-            border-bottom: 1px solid #000
-            padding: 1em
-            &:last-child
-                border: none
+    .location
+        padding: 1em
+
+    .header
+        padding: 1em
+        display: flex
+        margin-bottom: 1em
+        input
+            height: 30px
+            width: 80%
+            border: 1px solid #000
+        button
+            height: 30px
+            width: 20%
+            background-color: #0c29d0
+            color: #fff
+
+
+@media (max-width: 760px)
+    .weather-container
+        width: 90vw

@@ -3,6 +3,7 @@
     margin: 0
     padding: 0
     font-family: 'Open Sans', sans-serif
+    box-sizing: border-box
 
 html, body, #root
     min-height: 100%
@@ -14,4 +15,7 @@ html, body, #root
 
 .container-home
     height: 100%
+    @include center()
+.container-loading
+    height: 100vh
     @include center()
