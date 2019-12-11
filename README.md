@@ -4,8 +4,9 @@
 
 - Express
 - ReactJS
-- Mobile First
+- Redux
 - Styled-Components
+- Mobile First
 
 ## Como iniciar o projeto?
 

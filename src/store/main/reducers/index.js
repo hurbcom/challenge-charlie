@@ -1,4 +1,8 @@
-export default function main(state = { unit: 'metric' }, action) {
+const INITIAL_STATE = {
+  unit: 'metric',
+};
+
+export default function main(state = INITIAL_STATE, action) {
   switch (action.type) {
     case '@background/ADD_BACKGROUND':
       const { background } = action.payload;
