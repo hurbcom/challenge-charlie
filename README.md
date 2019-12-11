@@ -40,7 +40,18 @@ Bugs para corrigir:</br>
 </br>
 Problemas conhecidos:</br>
 [ ] API do OpenWeather não retorna algumas localidades do Brasil.</br>
-Ex.:localidade Acre, BR não encontra, apenas Acre, IL</br>
+Localidades sem resposta:
+- Rondônia, </br>
+- Acre, </br>
+- Roraima, </br>
+- Pará, </br>
+- Maranhão </br>
+- Piauí </br>
+- Rio Grande do Norte </br>
+- Paraíba </br>
+- Espírito Santo </br>
+- Rio Grande do Sul </br>
+- Mato Grosso do Sul </br>
 
 #### Obrigado pela oportunidade
 
