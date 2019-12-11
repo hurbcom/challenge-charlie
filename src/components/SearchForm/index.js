@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowDown, FaSearch } from 'react-icons/fa';
-import { updateLocation } from '../../store/actions';
-import { Container } from './styles';
+import { updateLocation } from '../../store/main/actions';
+import { FormContainer } from './styles';
 
 export default function SearchForm() {
   const dispatch = useDispatch();
   const { brazilStates } = useSelector(state => state.main);
+
   const [isOpened, setIsOpened] = useState(false);
   const [selectedValue, setSelectedValue] = useState('Default');
 
@@ -20,7 +21,7 @@ export default function SearchForm() {
   }
 
   return (
-    <Container onSubmit={handleSelect}>
+    <FormContainer onSubmit={handleSelect}>
       {isOpened ? (
         <>
           <select
@@ -45,6 +46,6 @@ export default function SearchForm() {
           <FaArrowDown size={20} />
         </button>
       )}
-    </Container>
+    </FormContainer>
   );
 }

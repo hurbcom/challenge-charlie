@@ -7,27 +7,25 @@ import {
   updateBrazilStates,
   updateLocation,
   updateWeather,
-} from '../../store/actions';
+} from '../../store/main/actions';
 
 import { iconModel } from '../../assets/models/icons';
 import api from '../../services/api';
 import Input from '../../components/Input';
 import SearchForm from '../../components/SearchForm';
-import { Container, WeatherContainer, WeatherDiv, Meteocons } from './styles';
+import {
+  GlobalStyles,
+  Container,
+  WeatherContainer,
+  WeatherDiv,
+  Meteocons,
+} from './styles';
 
 export default function Main() {
-  const { location, unit, weather, background } = useSelector(
+  const dispatch = useDispatch();
+  const { background, location, unit, weather } = useSelector(
     state => state.main
   );
-  console.log(location);
-  console.log(unit);
-  console.log(weather);
-  console.log(background);
-
-  const main = useSelector(state => state);
-  console.log(main);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getBackground() {
@@ -80,50 +78,53 @@ export default function Main() {
   }
 
   return (
-    <Container>
-      <Input />
-      <SearchForm />
-      {weather ? (
-        <WeatherContainer>
-          <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-            <Meteocons>{weather[0].formattedIcon}</Meteocons>
-            <div>
-              <p className="day">Hoje</p>
-              <p className="temperature">{weather[0].formattedTemp}</p>
-              <p className="description">{weather[0].description}</p>
-              <p className="wind">
-                Vento: {weather[0].windDirection} {weather[0].windSpeed}
-              </p>
-              <p className="humidity">Humidade: {weather[0].humidity}</p>
-              <p className="pressure">Pressão: {weather[0].pressure}</p>
-            </div>
-          </WeatherDiv>
-          <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-            <div>
-              <p className="day">Amanhã</p>
-              <p className="temperature">{weather[0].formattedTemp}</p>
-            </div>
-          </WeatherDiv>
-          <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-            <div>
-              <p className="day">Depois de amanhã</p>
-              <p className="temperature">{weather[0].formattedTemp}</p>
-            </div>
-          </WeatherDiv>
-        </WeatherContainer>
-      ) : (
-        <WeatherContainer>
-          <WeatherDiv>
-            <Loader type="ThreeDots" color="#8c8885" />
-          </WeatherDiv>
-          <WeatherDiv>
-            <Loader type="ThreeDots" color="#8c8885" />
-          </WeatherDiv>
-          <WeatherDiv>
-            <Loader type="ThreeDots" color="#8c8885" />
-          </WeatherDiv>
-        </WeatherContainer>
-      )}
-    </Container>
+    <>
+      <GlobalStyles background={background} />
+      <Container>
+        <Input />
+        <SearchForm />
+        {weather ? (
+          <WeatherContainer>
+            <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
+              <Meteocons>{weather[0].formattedIcon}</Meteocons>
+              <div>
+                <p className="day">Hoje</p>
+                <p className="temperature">{weather[0].formattedTemp}</p>
+                <p className="description">{weather[0].description}</p>
+                <p className="wind">
+                  Vento: {weather[0].windDirection} {weather[0].windSpeed}
+                </p>
+                <p className="humidity">Humidade: {weather[0].humidity}</p>
+                <p className="pressure">Pressão: {weather[0].pressure}</p>
+              </div>
+            </WeatherDiv>
+            <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
+              <div>
+                <p className="day">Amanhã</p>
+                <p className="temperature">{weather[0].formattedTemp}</p>
+              </div>
+            </WeatherDiv>
+            <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
+              <div>
+                <p className="day">Depois de amanhã</p>
+                <p className="temperature">{weather[0].formattedTemp}</p>
+              </div>
+            </WeatherDiv>
+          </WeatherContainer>
+        ) : (
+          <WeatherContainer>
+            <WeatherDiv>
+              <Loader type="ThreeDots" color="#8c8885" />
+            </WeatherDiv>
+            <WeatherDiv>
+              <Loader type="ThreeDots" color="#8c8885" />
+            </WeatherDiv>
+            <WeatherDiv>
+              <Loader type="ThreeDots" color="#8c8885" />
+            </WeatherDiv>
+          </WeatherContainer>
+        )}
+      </Container>
+    </>
   );
 }
