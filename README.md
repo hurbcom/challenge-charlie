@@ -28,7 +28,7 @@ Caso esteja utilizando sistema **Linux**, utilize o comando `yarn dev`, este com
 </br>
 Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para instalar as dependências do projeto e ao fim da instalação, utilize o comando `yarn server` para iniciar uma instancia do servidor da aplicação, abra um novo terminal, navegue até o caminho do projeto e utilize o comando `yarn start` para iniciar uma instancia do React o irá abrir uma aba do seu navegador padrão com o projeto funcionando.
 </br>
-
+</br>
 Features para implementar:</br>
 [ ] Criação de testes unitários.</br>
 [x] Criar de opção do usuário escolher a localização.</br>
