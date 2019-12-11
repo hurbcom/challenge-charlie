@@ -9,7 +9,7 @@
 
 ## Como iniciar o projeto?
 
-- #### Clone o projeto
+- ### Clone o projeto
 
   `git clone https://github.com/GuiiMoraes/challenge-charlie.git`
 
@@ -19,28 +19,28 @@
 
 ## Instalação de dependências
 
-##### Linux
+### Linux
 
 Caso esteja utilizando sistema **Linux**, utilize o comando `yarn dev`, este comando irá instalar as dependências do projeto e abrir dois terminais GNOME executando o comandos necessários do projeto e abrindo uma aba do seu navegador padrão com a aplicação rodando.
 
-##### Demais sistemas operacionais
+### Demais sistemas operacionais
 
 Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para instalar as dependências do projeto e ao fim da instalação, utilize o comando `yarn server` para iniciar uma instancia do servidor da aplicação, abra um novo terminal, navegue até o caminho do projeto e utilize o comando `yarn start` para iniciar uma instancia do React o irá abrir uma aba do seu navegador padrão com o projeto funcionando.
 
-<br/>
-
-features para implementar:
-[x] Criação de testes unitários.
+Features para implementar:
+[ ] Criação de testes unitários.
 [x] Criar de opção do usuário escolher a localização.
 [x] Criar requisições para o IBGE buscar os estados.
 
 Bugs para corrigir:
-[] falta de tratativa de erro para localização pelo navegador bloqueada.
-[] mensagem de erro vindo da API.
+[ ] falta de tratativa de erro para localização pelo navegador bloqueada.
+[ ] mensagem de erro vindo da API.
 
-<br/>
+Problemas conhecidos:
+[ ] API do OpenWeather não retorna algumas localidades do Brasil.
+Ex.:localidade Acre, BR não encontra, apenas Acre, IL
 
-##### Obrigado pela oportunidade
+#### Obrigado pela oportunidade
 
 **Guilherme Moraes**
 
@@ -48,6 +48,6 @@ Bugs para corrigir:
 - Linkedin: [GuiiMoraes](https://www.linkedin.com/in/guiimoraes/)
 - Discord: GuiiMoraes#6891
 
-  <p  align="center">
-  <img src="https://raw.githubusercontent.com/GuiiMoraes/challenge-charlie/master/cd.jpg" alt="Challange Done" width="350"/>
-  </p>
+<p  align="center">
+<img src="https://raw.githubusercontent.com/GuiiMoraes/challenge-charlie/master/cd.jpg" alt="Challange Done" width="350"/>
+</p>

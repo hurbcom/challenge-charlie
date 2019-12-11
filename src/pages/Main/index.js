@@ -125,8 +125,6 @@ export default function Main() {
         {weather ? (
           <WeatherContainer>
             <WeatherDiv onClick={handleUnit} temp={weather[0].temp}>
-              {console.log(location)}
-              {console.log(weather)}
               <Meteocons>{weather[0].formattedIcon}</Meteocons>
               <div>
                 <p className="day">Hoje</p>
