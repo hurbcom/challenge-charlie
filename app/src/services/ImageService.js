@@ -1,13 +1,10 @@
 import axios from 'axios'
 
 export default class ImageService {
-    constructor() {
-        this.app_id = 'c63386b4f77e46de817bdf94f552cddf'
-    }
 
-    async getLocation(lat, long) {
+    async getImage() {
         try {
-            const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=${this.app_id}`)
+            const response = await axios.get(`https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`, {mode: 'cors'})
             return Promise.resolve(response.data)
         } catch (error) {
             return Promise.reject(error)
