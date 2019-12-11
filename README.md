@@ -22,24 +22,26 @@
 ### Linux
 
 Caso esteja utilizando sistema **Linux**, utilize o comando `yarn dev`, este comando irá instalar as dependências do projeto e abrir dois terminais GNOME executando o comandos necessários do projeto e abrindo uma aba do seu navegador padrão com a aplicação rodando.
+</br>
 
-### Demais sistemas operacionais
-
+### Demais sistemas operacionais</br>
+</br>
 Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para instalar as dependências do projeto e ao fim da instalação, utilize o comando `yarn server` para iniciar uma instancia do servidor da aplicação, abra um novo terminal, navegue até o caminho do projeto e utilize o comando `yarn start` para iniciar uma instancia do React o irá abrir uma aba do seu navegador padrão com o projeto funcionando.
+</br>
 
-Features para implementar:
-[ ] Criação de testes unitários.
-[x] Criar de opção do usuário escolher a localização.
-[x] Criar requisições para o IBGE buscar os estados.
-
-Bugs para corrigir:
-[ ] falta de tratativa de erro para localização pelo navegador bloqueada.
-[ ] mensagem de erro vindo da API.
-
-Problemas conhecidos:
-[ ] API do OpenWeather não retorna algumas localidades do Brasil.
-Ex.:localidade Acre, BR não encontra, apenas Acre, IL
-
+Features para implementar:</br>
+[ ] Criação de testes unitários.</br>
+[x] Criar de opção do usuário escolher a localização.</br>
+[x] Criar requisições para o IBGE buscar os estados.</br>
+</br>
+Bugs para corrigir:</br>
+[ ] falta de tratativa de erro para localização pelo navegador bloqueada.</br>
+[ ] mensagem de erro vindo da API.</br>
+</br>
+Problemas conhecidos:</br>
+[ ] API do OpenWeather não retorna algumas localidades do Brasil.</br>
+Ex.:localidade Acre, BR não encontra, apenas Acre, IL</br>
+</br>
 #### Obrigado pela oportunidade
 
 **Guilherme Moraes**
