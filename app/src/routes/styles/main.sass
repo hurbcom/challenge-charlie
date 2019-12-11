@@ -5,9 +5,13 @@
     font-family: 'Open Sans', sans-serif
 
 html, body, #root
-    height: 100%
+    min-height: 100%
 
 @mixin center() 
     display: flex
     align-items: center
     justify-content: center
+
+.container-home
+    height: 100%
+    @include center()
