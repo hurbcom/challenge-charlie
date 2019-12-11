@@ -38,9 +38,10 @@ Features para implementar:</br>
 Bugs para corrigir:</br>
 [ ] falta de tratativa de erro para localização pelo navegador bloqueada.</br>
 [ ] mensagem de erro vindo da API.</br>
+[ ] mensagem para escolher a localidade.</br>
 </br>
 Problemas conhecidos:</br>
-[ ] API do OpenWeather não retorna algumas localidades do Brasil.</br>
+API do OpenWeather não retorna algumas localidades do Brasil.</br>
 Localidades sem resposta:
 - Rondônia, </br>
 - Acre, </br>
