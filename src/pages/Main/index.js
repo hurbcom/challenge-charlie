@@ -1,31 +1,33 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Loader from 'react-loader-spinner';
 import {
   addBackground,
   updateUnit,
-  updateIsOpened,
   updateBrazilStates,
   updateLocation,
-  updateSelectedValue,
   updateWeather,
-} from '../../store/module/main/actions';
+} from '../../store/actions';
 
 import { iconModel } from '../../assets/models/icons';
 import api from '../../services/api';
-
-import {
-  Container,
-  SearchForm,
-  WeatherContainer,
-  WeatherDiv,
-  Meteocons,
-} from './styles';
+import Input from '../../components/Input';
+import SearchForm from '../../components/SearchForm';
+import { Container, WeatherContainer, WeatherDiv, Meteocons } from './styles';
 
 export default function Main() {
-  const states = useSelector(state => state);
+  const { location, unit, weather, background } = useSelector(
+    state => state.main
+  );
+  console.log(location);
+  console.log(unit);
+  console.log(weather);
+  console.log(background);
+
+  const main = useSelector(state => state);
+  console.log(main);
+
   const dispatch = useDispatch();
-  console.log(states);
 
   useEffect(() => {
     async function getBackground() {
@@ -69,7 +71,7 @@ export default function Main() {
       dispatch(updateWeather(climate));
     }
     if (location) getWeather();
-  }, [dispatch]);
+  }, [dispatch, location, unit]);
 
   function handleUnit() {
     return unit === 'metric'

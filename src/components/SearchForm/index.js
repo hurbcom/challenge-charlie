@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowDown, FaSearch } from 'react-icons/fa';
-
+import { updateLocation } from '../../store/actions';
 import { Container } from './styles';
 
 export default function SearchForm() {
-  const { isOpened, selectedValue, brazilStates } = useSelector(
-    state => state.main
-  );
+  const dispatch = useDispatch();
+  const { brazilStates } = useSelector(state => state.main);
+  const [isOpened, setIsOpened] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('Default');
 
   function handleOpenForm(e) {
     e.preventDefault();
@@ -15,7 +16,7 @@ export default function SearchForm() {
   }
   function handleSelect(e) {
     e.preventDefault();
-    setLocation(selectedValue);
+    dispatch(updateLocation(selectedValue));
   }
 
   return (
