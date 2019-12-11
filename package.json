@@ -19,14 +19,20 @@
   },
   "scripts": {
     "server": "nodemon server/server.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "dev": "(yarn add concurrently -D && yarn) && (concurrently \"gnome-terminal -- sh -c 'yarn server; exec zsh'\" \"gnome-terminal -- sh -c 'yarn start; exec zsh'\")"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "jest": {
+    "testMatch": [
+      "**/src/__tests__/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/react/cleanup-after-each",
+      "@testing-library/jest-dom/extend-expect"
+    ]
   },
   "browserslist": {
     "production": [
@@ -41,6 +47,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.3",
+    "@types/jest": "^24.0.23",
     "babel-eslint": "^10.0.3",
     "babel-plugin-root-import": "^6.4.1",
     "concurrently": "^5.0.1",
@@ -55,6 +64,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^2.0.1",
     "prettier": "^1.18.2",
+    "react-app-rewired": "^2.1.5",
     "sequelize-cli": "^5.5.1",
     "sucrase": "^3.10.1"
   }
