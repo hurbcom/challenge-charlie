@@ -6,12 +6,13 @@ import './index.sass'
 
 function Weather({
     weather,
-    onSearch
+    onSearch,
+    onchangeTemperature,
+    isCelsius
 }) {
 
     const [location, setLocation] = useState('')
-    const [days, setDays] = useState([])
-    const [isCelsius, setIsCelsius] = useState(true)
+    const [days, setDays] = useState(weather.list)
 
     const handleDays = () => {
         const { list } = weather
@@ -19,21 +20,6 @@ function Weather({
             return moment(item.dt_txt).isBefore(moment().add(2, 'days'))
         })
         setDays(filteredDays)
-    }
-
-    const onchangeTemperature = () => {
-        const filteredDays = days.map((item) => ({
-            ...item,
-            main: {
-                ...item.main,
-                temp: isCelsius ? celciusToFarenheit(item.main.temp) : farenheitToCelcius(item.main.temp),
-                temp_max: isCelsius ? celciusToFarenheit(item.main.temp_max) : farenheitToCelcius(item.main.temp_max),
-                temp_min: isCelsius ? celciusToFarenheit(item.main.temp_min) : farenheitToCelcius(item.main.temp_min)
-            }
-        }))
-
-        setDays(filteredDays)
-        setIsCelsius(!isCelsius)
     }
 
     useEffect(() => {
@@ -52,7 +38,7 @@ function Weather({
                 <button onClick={() => location && onSearch(location)}>Search</button>
             </div>
             <div className="location">
-                <h1>{weather.city.name}</h1>
+                <h1>{weather.city.name}, {weather.city.country}</h1>
             </div>
             <div className="content">
                 {days.length > 0 && days.map((item, index) => (

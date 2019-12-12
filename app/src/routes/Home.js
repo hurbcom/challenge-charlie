@@ -11,6 +11,8 @@ function Home({ location }) {
     const [image, setImage] = useState('')
     const [weather, setWeather] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [isCelsius, setIsCelcius] = useState(true)
+    const [currentLocation, setCurrentLocation] = useState(null)
 
     const fetchWheather = async ({ latitude, longitude }) => {
         setIsLoading(true)
@@ -20,6 +22,7 @@ function Home({ location }) {
             const image = await new ImageService().getImage()
             setWeather(weather)
             setImage(image)
+            setCurrentLocation(results[0].components.city)
         } catch (error) {
             console.log(error)
         }
@@ -27,9 +30,9 @@ function Home({ location }) {
         setIsLoading(false)
     }
 
-    const fetchLocation = async (location) => {
+    const fetchLocation = async (location, units = 'metric') => {
         try {
-            const response = await new WheatherService().getWheather(location)
+            const response = await new WheatherService().getWheather(location, units)
             return Promise.resolve(response)
 
         } catch (error) {
@@ -37,10 +40,11 @@ function Home({ location }) {
         }
     }
 
-    const handleChangeInput = async (location) => {
+    const handleChange = async (location, units='metric') => {
         try {
             setIsLoading(true)
-            const weather = await fetchLocation(location)
+            setCurrentLocation(location)
+            const weather = await fetchLocation(location, units)
             if (!weather) {
                 setIsLoading(false)
                 return
@@ -53,20 +57,25 @@ function Home({ location }) {
         setIsLoading(false)
     }
 
+    const onchangeTemperature = () => {
+        handleChange(currentLocation, isCelsius ? 'imperial': 'metric')
+        setIsCelcius(!isCelsius)
+    }
+
     useEffect(() => {
         fetchWheather(location.state)
     }, [])
 
-
-    if (isLoading) {
-        return (
-            <div className="container-loading">
-                <img className="loading" alt="carregando" src={loading} />
-            </div>
-        )
-    }
-
     return (
+        <>
+        {isLoading && (
+            <div className="container-loading">
+                <div>
+                    <img className="loading" alt="carregando" src={loading} />
+                    <p>Searching location...</p>
+                </div>
+            </div>
+        )}
         <div
             className="container-home"
             style={{
@@ -76,13 +85,16 @@ function Home({ location }) {
                 backgroundAttachment: 'fixed'
             }}
         >
-            {!isLoading && weather && (
+            {weather && (
                 <Weather
                     weather={weather}
-                    onSearch={handleChangeInput}
+                    onSearch={handleChange}
+                    onchangeTemperature={onchangeTemperature}
+                    isCelsius={isCelsius}
                 />
             )}
         </div>
+        </>
     )
 }
 
