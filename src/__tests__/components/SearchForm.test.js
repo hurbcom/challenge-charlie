@@ -6,7 +6,7 @@ import SearchForm from '../../components/SearchForm';
 
 jest.mock('react-redux');
 
-describe('SearchForm componnet', () => {
+describe('SearchForm component', () => {
   it('should be able to open the search box clicking in the open button', () => {
     useSelector.mockImplementation(cb =>
       cb({
