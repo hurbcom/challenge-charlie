@@ -31,14 +31,15 @@ Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para in
 </br>
 </br>
 Features para implementar:</br>
-[ ] Criação de testes unitários.</br>
+[x] Criação de testes unitários.</br>
+[ ] Melhorar a cobertura de testes unitários.</br>
 [x] Criar de opção do usuário escolher a localização.</br>
 [x] Criar requisições para o IBGE buscar os estados.</br>
 </br>
 Bugs para corrigir:</br>
-[ ] falta de tratativa de erro para localização pelo navegador bloqueada.</br>
-[ ] mensagem de erro vindo da API.</br>
-[ ] mensagem para escolher a localidade.</br>
+[ ] Falta de tratativa de erro para localização pelo navegador bloqueada.</br>
+[ ] Mensagem de erro vindo da API.</br>
+[ ] Mensagem para escolher a localidade.</br>
 </br>
 Problemas conhecidos:</br>
 API do OpenWeather não retorna algumas localidades do Brasil.</br>
