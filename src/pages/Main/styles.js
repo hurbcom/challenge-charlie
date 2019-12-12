@@ -29,13 +29,19 @@ export const Container = styled.div`
     max-width: 600px;
     width: 100%
     height: 100%;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #fff;
+
+    @media (min-width: 768px) {
+    & {
+      padding: 10px;
+    }
+  }
 `;
 
 export const WeatherContainer = styled.div`
@@ -107,6 +113,11 @@ export const WeatherDiv = styled.div`
 
   @media (min-width: 768px) {
     & {
+      font-size: 26px;
+    }
+  }
+  @media (min-width: 1025px) {
+    & {
       align-items: inherit;
       justify-content: inherit;
       align-items: center;
@@ -145,16 +156,22 @@ export const Image = styled.div`
 
 export const Meteocons = styled.p`
   font-family: 'MeteoconsRegular';
-  font-size: 150px;
+  font-size: 100px;
   width: 50%;
   align-items: center;
   justify-content: center;
   display: flex;
   margin: auto;
 
+  @media (min-width: 375px) {
+    & {
+      font-size: 150px;
+    }
+  }
+
   @media (min-width: 768px) {
     & {
-      font-size: 200px;
+      font-size: 250px;
     }
   }
 `;
