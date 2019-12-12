@@ -1,7 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
-import timeout from 'connect-timeout';
 import routes from './routes';
 
 class App {
@@ -13,7 +12,6 @@ class App {
 
   middlewares() {
     this.server.use(cors());
-    this.server.use(timeout('5s'));
     this.server.use(express.json());
   }
 

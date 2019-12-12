@@ -9,7 +9,7 @@ export default async function WeatherController(req, res) {
   const formattedLocation = formatSpecialChar(location);
 
   const { data } = await api.get(
-    `/forecast?q=${formattedLocation},BR&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
+    `/forecast?q=${formattedLocation},${formattedLocation}&APPID=${process.env.APPID}&units=${unit}&cnt=17&lang=pt`
   );
 
   if (!data) {

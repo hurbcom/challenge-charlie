@@ -26,24 +26,37 @@ Caso esteja utilizando sistema **Linux**, utilize o comando `yarn dev`, este com
 </br>
 
 ### Demais sistemas operacionais</br>
+
 </br>
 Caso esteja utilizando sistema **não Linux**, utilize o comando `yarn`, para instalar as dependências do projeto e ao fim da instalação, utilize o comando `yarn server` para iniciar uma instancia do servidor da aplicação, abra um novo terminal, navegue até o caminho do projeto e utilize o comando `yarn start` para iniciar uma instancia do React o irá abrir uma aba do seu navegador padrão com o projeto funcionando.
 </br>
-</br>
-Features para implementar:</br>
+
+### Funcionalidades</br>
+
+Existem duas formas de buscar localidades na aplicação:
+
+- A primeira é digitando no input logo no topo da aplicação e tirando o focus, a requisição irá buscar on blur
+- A segunda é clicando no botão de seta para baixo, este irá abrir um campo de select para você escolher qual localidade do Brasil quer buscar
+
+### Features para implementar:</br>
+
 [x] Criação de testes unitários.</br>
 [ ] Melhorar a cobertura de testes unitários.</br>
 [x] Criar de opção do usuário escolher a localização.</br>
 [x] Criar requisições para o IBGE buscar os estados.</br>
-</br>
-Bugs para corrigir:</br>
+
+### Bugs para corrigir:</br>
+
 [ ] Falta de tratativa de erro para localização pelo navegador bloqueada.</br>
 [ ] Mensagem de erro vindo da API.</br>
 [ ] Mensagem para escolher a localidade.</br>
-</br>
-Problemas conhecidos:</br>
-API do OpenWeather não retorna algumas localidades do Brasil.</br>
+
+### Problemas conhecidos:</br>
+
+API do OpenWeather não retorna algumas localidades do Brasil. As localidades abaixo que estão funcionando, são de outros locais</br>
+Ex.: Para a localidade do Acre, retorna Acre. IL
 Localidades sem resposta:
+
 - Rondônia, </br>
 - Acre, </br>
 - Roraima, </br>

@@ -7,7 +7,7 @@ import Input from '../../components/Input';
 jest.mock('react-redux');
 
 describe('Input component', () => {
-  it('should be able to open the search box clicking in the open button', () => {
+  it('should have the property type with value text', () => {
     useSelector.mockImplementation(cb =>
       cb({
         main: {
@@ -18,6 +18,9 @@ describe('Input component', () => {
 
     const { getByPlaceholderText } = render(<Input />);
 
-    expect(getByPlaceholderText('Onde você está?')).toHaveProperty('disabled');
+    expect(getByPlaceholderText('Onde você está?')).toHaveProperty(
+      'type',
+      'text'
+    );
   });
 });
