@@ -32,10 +32,14 @@
   },
   "jest": {
     "testMatch": [
-      "**/src/__tests__/**/*.test.js"
+      "**/src/__tests__/components/**/*.test.js",
+      "!**/__tests__/coverage/**"
     ],
+    "collectCoverageFrom": [
+      "!**/coverage/**"
+    ],
+    "coverageDirectory": "src/__tests__/coverage",
     "setupFilesAfterEnv": [
-      "@testing-library/react/cleanup-after-each",
       "@testing-library/jest-dom/extend-expect"
     ]
   },
@@ -58,6 +62,8 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-root-import": "^6.4.1",
     "concurrently": "^5.0.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.4.0",

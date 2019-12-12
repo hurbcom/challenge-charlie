@@ -21,12 +21,13 @@ export default function SearchForm() {
   }
 
   return (
-    <FormContainer onSubmit={handleSelect}>
+    <FormContainer onSubmit={handleSelect} data-testid="search-form">
       {isOpened ? (
         <>
           <select
             value={selectedValue}
             onChange={e => setSelectedValue(e.target.value)}
+            data-testid="select-element"
           >
             <option value="Default" disabled>
               Escolha uma localidade
@@ -42,7 +43,11 @@ export default function SearchForm() {
           </button>
         </>
       ) : (
-        <button type="button" onClick={handleOpenForm}>
+        <button
+          type="button"
+          onClick={handleOpenForm}
+          data-testid="open-button"
+        >
           <FaArrowDown size={20} />
         </button>
       )}
