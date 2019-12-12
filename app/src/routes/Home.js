@@ -43,12 +43,12 @@ function Home({ location }) {
     const handleChange = async (location, units='metric') => {
         try {
             setIsLoading(true)
-            setCurrentLocation(location)
             const weather = await fetchLocation(location, units)
             if (!weather) {
                 setIsLoading(false)
                 return
             }
+            setCurrentLocation(location)
             setWeather(weather)
         } catch (error) {
             console.log(error)
