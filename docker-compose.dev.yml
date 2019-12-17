@@ -1,12 +1,7 @@
 version: '3'
 
 services:
-    redis:
-        image: redis:5.0.7-alpine
-        container_name: cache
-        expose:
-            - 6379
-    rr-proxy_dev:
+    charlie_challenge_dev:
         build:
             context: .
             args:
