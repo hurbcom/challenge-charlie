@@ -2,10 +2,16 @@ import React, { createContext, useReducer } from 'react'
 
 const weatherReducer = (state, action) => {
     switch (action.type) {
-        case 'CHECK_WEATHER':
-            console.log(action.city, state)
-            state.city = action.city
-            return state
+        case 'LOAD_START':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'LOAD_COMPLETE':
+            return {
+                ...state,
+                loading: false
+            }
         default:
             return state
     }
@@ -15,7 +21,9 @@ export const WeatherContext = createContext()
 
 const WeatherContextProvider = props => {
     const [data, dispatch] = useReducer(weatherReducer, {
-      city: ''
+        loading: false,
+        errorMessage: '',
+        wheaterData: {}
     })
 
     return (
