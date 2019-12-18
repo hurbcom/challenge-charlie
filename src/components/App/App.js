@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import css from './App.module.css';
+import BingImage from '../../utils/BingImage.util';
 
-import Weather from '../Weather/Weather'
+import Weather from '../Weather/Weather';
 
 function App() {
-  const bgimage = useState('https://www.bing.com/th?id=OHR.PhoenixAirport_ROW1600879885_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp')[0]
+
+  const [bgImage, setBgImage] = useState('');
+
+  const init = async () => {
+    try {
+      const i = await BingImage.get();
+      setBgImage(i);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => { init() });
 
   return (
-    <div className={css.App} style={{ 'background-image': `url(${bgimage})` }}>
+    <div className={css.App} style={{ 'backgroundImage': `url(${bgImage})` }}>
       <Weather />
     </div>
   );

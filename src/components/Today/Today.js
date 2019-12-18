@@ -3,7 +3,7 @@ import css from './Today.module.css';
 
 function Today(props) {
   return (
-    <div className={css.Today} style={{ 'background-color': props.color }}>
+    <div className={css.Today} style={{ 'backgroundColor': props.color }}>
       <div className={css.icon}></div>
       <div className={css.info}>
         <p>Hoje</p>
