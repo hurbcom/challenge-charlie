@@ -12,6 +12,17 @@ const weatherReducer = (state, action) => {
                 ...state,
                 loading: false
             }
+        case 'WEATHER_DATA_LOAD_COMPLETE':
+            return {
+                ...state,
+                wheaterData: action.data,
+                loading: false
+            }
+        case 'CHANGE_DEGREE_METRIC':
+            return {
+                ...state,
+                currentDegreeMetric: action.data,
+            }
         default:
             return state
     }
@@ -23,7 +34,8 @@ const WeatherContextProvider = props => {
     const [data, dispatch] = useReducer(weatherReducer, {
         loading: false,
         errorMessage: '',
-        wheaterData: {}
+        wheaterData: {},
+        currentDegreeMetric: 'celsius' // celsius or fahrenheit
     })
 
     return (
