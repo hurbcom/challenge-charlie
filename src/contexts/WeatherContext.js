@@ -12,16 +12,20 @@ const weatherReducer = (state, action) => {
                 ...state,
                 loading: false
             }
+        case 'SET_BACKGROUND_IMAGE':
+            return {
+                ...state,
+                backgroundData: action.data
+            }
         case 'WEATHER_DATA_LOAD_COMPLETE':
             return {
                 ...state,
-                wheaterData: action.data,
-                loading: false
+                wheaterData: action.data
             }
         case 'CHANGE_DEGREE_METRIC':
             return {
                 ...state,
-                currentDegreeMetric: action.data,
+                currentDegreeMetric: action.data
             }
         default:
             return state
@@ -35,7 +39,8 @@ const WeatherContextProvider = props => {
         loading: false,
         errorMessage: '',
         wheaterData: {},
-        currentDegreeMetric: 'celsius' // celsius or fahrenheit
+        currentDegreeMetric: 'celsius', // celsius or fahrenheit
+        backgroundData: {}
     })
 
     return (

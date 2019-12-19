@@ -1,6 +1,15 @@
 import axios from 'axios'
 import config from '../config'
 
+export const getBackgroundImage = async () => {
+  const reqImage = await axios.get(config.bingApiUrl, { headers: {'X-Requested-With': 'Charllie Chalenge by Tobias Viana'}})
+
+  return {
+    url: 'https://bing.com' + reqImage.data.images[0].url,
+    copyright: reqImage.data.images[0].copyright 
+  }
+}
+
 export const getLocation = () => {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(
@@ -28,11 +37,19 @@ export const getWeatherInfo = async (city, country_code) => {
     const cityInfoParam = `${city},${country_code}`
     const reqWeather = await axios.get(config.openWeatherApiUrl + cityInfoParam)
     const currentDate = getDateString()
-    let today, tomorrow, afterTomorrow
+    let today,
+        tomorrow,
+        afterTomorrow,
+        weatherDescription,
+        weatherIcon,
+        humidity,
+        pressure,
+        windDirection,
+        windSpeed
 
-    reqWeather.data.list.map(v => {
-        if (!today) {
-            today = v.dt_txt.indexOf(currentDate.today) > -1 && v
+    reqWeather.data.list.map((v, i) => {
+        if (!today && i === 0) {
+            today = v
         }
         if (!tomorrow) {
             tomorrow = v.dt_txt.indexOf(currentDate.tomorrow) > -1 && v
@@ -43,7 +60,28 @@ export const getWeatherInfo = async (city, country_code) => {
         }
     })
 
-    return { city, country_code, today, tomorrow, afterTomorrow }
+    weatherDescription = today.weather[0].main
+    weatherIcon = today.weather[0].icon
+
+    windDirection = degreeToCompassCard(today.wind.deg)
+    windSpeed = today.wind.speed
+
+    humidity = today.main.humidity
+    pressure = today.main.pressure
+
+    return {
+        city,
+        country_code,
+        today,
+        tomorrow,
+        afterTomorrow,
+        weatherDescription,
+        weatherIcon,
+        humidity,
+        pressure,
+        windDirection,
+        windSpeed
+    }
 }
 
 export const getDateString = () => {
@@ -76,6 +114,54 @@ export const getDateString = () => {
     }
 }
 
-export const toCelsius = deg => Math.floor(deg - 273.15)
+export const degreeToCompassCard = deg => {
+    let index = Math.floor(deg / 22.5)
+    index = index > 15 ? 0 : index
+    const options = [
+        'N',
+        'NNE',
+        'NE',
+        'ENE',
+        'E',
+        'ESE',
+        'SE',
+        'SSE',
+        'S',
+        'SSW',
+        'SW',
+        'WSW',
+        'W',
+        'WNW',
+        'NW',
+        'NNW'
+    ]
 
+    return options[index]
+}
+
+export const weatherTranslateDescription = (m) => {
+  const options = {
+    'Thunderstorm': 'Tempestade',
+    'Drizzle' : 'Chuvisco',
+    'Rain': 'Chuva',
+    'Snow': 'Neve',
+    'Mist': 'Nevoeiro',
+    'Smoke': 'Fumaça',
+    'Haze': 'Neblina',
+    'Dust': 'Poeira',
+    'Fog': 'Névoa',
+    'Sand': 'Tempestande de areia',
+    'Ash': 'Cinza vulcânica',
+    'Squall': 'Rajadas de vento',
+    'Tornado': 'Tornado',
+    'Clear': 'Céu limpo',
+    'Clouds': 'Nuvens'
+  }
+
+  return options[m]
+}
+
+export const toCelsius = deg => Math.floor(deg - 273.15)
 export const toFahrenheit = deg => Math.floor((deg * 9) / 5 - 459.67)
+export const toKMH = spd => Number(spd * 3.6).toFixed(1) + 'km/h'
+export const toMPH = spd => Number(spd / 0.44704).toFixed(1) + 'mph'

@@ -1,0 +1,34 @@
+
+/* 
+Colors 
+
+azul 1 => #4bbff9 (75,191,249)
+azul 2 => #447fe5 (68,127,229)
+azul 3 => #293dce (41,61,206)
+
+amarelo 1 => #fdf542 (253,245,66)
+amarelo 2 => #fbd808 (251,216,8)
+amarelo 3 => #ff9005 (255,144,5)
+
+vermelho 1 => #ff6e6e (255,110,110)
+vermelho 2 => #ff4141 (255,65,65)
+vermelho 3 => #ff1818 (255,24,24)
+
+*/
+
+.image_container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+}
+
+.image_container_copyright {
+  position: fixed;
+  width: 30%;
+  bottom: 20px;
+  right: 20px;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  text-align: right;
+}
