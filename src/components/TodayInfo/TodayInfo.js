@@ -41,6 +41,13 @@ const TodayInfo = () => {
         dispatch({ type: 'CHANGE_DEGREE_METRIC', data: newMetric })
     }
 
+    const getWeatherDescription = m => {
+        return weatherTranslateDescription(m).text
+    }
+    const getWeatherIcon = m => {
+        return weatherTranslateDescription(m).icon
+    }
+
     useEffect(() => {
         init()
     }, [])
@@ -48,7 +55,11 @@ const TodayInfo = () => {
     return data.wheaterData.today ? (
         <Row className='today_info_container'>
             <Column className='icon_wrapper'>
-                <span>ICON</span>
+                <span className='icon'>
+                    {getWeatherIcon(
+                        data.wheaterData.today.weather[0].main
+                    )}
+                    </span>
             </Column>
             <Column className='content_wrapper' onClick={changeDegreeMetric}>
                 <span className='day'>Hoje</span>
@@ -56,8 +67,8 @@ const TodayInfo = () => {
                     {getDegree(data.wheaterData.today.main.temp)}&deg;
                 </span>
                 <span className='weather_description'>
-                    {weatherTranslateDescription(
-                        data.wheaterData.weatherDescription
+                    {getWeatherDescription(
+                        data.wheaterData.today.weather[0].main
                     )}
                 </span>
                 <span className='wind_speed'>

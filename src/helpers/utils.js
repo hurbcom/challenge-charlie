@@ -141,23 +141,23 @@ export const degreeToCompassCard = deg => {
 
 export const weatherTranslateDescription = (m) => {
   const options = {
-    'Thunderstorm': 'Tempestade',
-    'Drizzle' : 'Chuvisco',
-    'Rain': 'Chuva',
-    'Snow': 'Neve',
-    'Mist': 'Nevoeiro',
-    'Smoke': 'Fumaça',
-    'Haze': 'Neblina',
-    'Dust': 'Poeira',
-    'Fog': 'Névoa',
-    'Sand': 'Tempestande de areia',
-    'Ash': 'Cinza vulcânica',
-    'Squall': 'Rajadas de vento',
-    'Tornado': 'Tornado',
-    'Clear': 'Céu limpo',
-    'Clouds': 'Nuvens'
+    'Thunderstorm': { text: 'Tempestade', icon: 'Z' },
+    'Drizzle' : { text: 'Chuvisco', icon: 'Q' },
+    'Rain': { text: 'Chuva', icon: 'R' },
+    'Snow': { text: 'Neve', icon: 'W' },
+    'Mist': { text: 'Nevoeiro', icon: 'M' },
+    'Smoke': { text: 'Fumaça', icon: 'M' },
+    'Haze': { text: 'Neblina', icon: 'M' },
+    'Dust': { text: 'Poeira', icon: 'M' },
+    'Fog': { text: 'Névoa', icon: 'M' },
+    'Sand': { text: 'Tempestande de areia', icon: 'M' },
+    'Ash': { text: 'Cinza vulcânica', icon: 'M' },
+    'Squall': { text: 'Rajadas de vento', icon: 'M' },
+    'Tornado': { text: 'Tornado', icon: 'M' },
+    'Clear': { text: 'Céu limpo', icon: 'B' },
+    'Clouds': { text: 'Nuvens', icon: 'Y' }
   }
-
+  console.log('>>>>>', m)
   return options[m]
 }
 
