@@ -26,7 +26,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.scss', '.js']
+        extensions: ['.js']
     },
     plugins: [
         new HtmlWebPackPlugin({
