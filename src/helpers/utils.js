@@ -2,12 +2,14 @@ import axios from 'axios'
 import config from '../config'
 
 export const getBackgroundImage = async () => {
-  const reqImage = await axios.get(config.bingApiUrl, { headers: {'X-Requested-With': 'Charllie Chalenge by Tobias Viana'}})
+    const reqImage = await axios.get(config.bingApiUrl, {
+        headers: { 'X-Requested-With': 'Charllie Chalenge by Tobias Viana' }
+    })
 
-  return {
-    url: 'https://bing.com' + reqImage.data.images[0].url,
-    copyright: reqImage.data.images[0].copyright 
-  }
+    return {
+        url: 'https://bing.com' + reqImage.data.images[0].url,
+        copyright: reqImage.data.images[0].copyright
+    }
 }
 
 export const getLocation = () => {
@@ -139,26 +141,40 @@ export const degreeToCompassCard = deg => {
     return options[index]
 }
 
-export const weatherTranslateDescription = (m) => {
-  const options = {
-    'Thunderstorm': { text: 'Tempestade', icon: 'Z' },
-    'Drizzle' : { text: 'Chuvisco', icon: 'Q' },
-    'Rain': { text: 'Chuva', icon: 'R' },
-    'Snow': { text: 'Neve', icon: 'W' },
-    'Mist': { text: 'Nevoeiro', icon: 'M' },
-    'Smoke': { text: 'Fumaça', icon: 'M' },
-    'Haze': { text: 'Neblina', icon: 'M' },
-    'Dust': { text: 'Poeira', icon: 'M' },
-    'Fog': { text: 'Névoa', icon: 'M' },
-    'Sand': { text: 'Tempestande de areia', icon: 'M' },
-    'Ash': { text: 'Cinza vulcânica', icon: 'M' },
-    'Squall': { text: 'Rajadas de vento', icon: 'M' },
-    'Tornado': { text: 'Tornado', icon: 'M' },
-    'Clear': { text: 'Céu limpo', icon: 'B' },
-    'Clouds': { text: 'Nuvens', icon: 'Y' }
-  }
-  console.log('>>>>>', m)
-  return options[m]
+export const weatherTranslateDescription = m => {
+    const options = {
+        Thunderstorm: { text: 'Tempestade', icon: 'Z' },
+        Drizzle: { text: 'Chuvisco', icon: 'Q' },
+        Rain: { text: 'Chuva', icon: 'R' },
+        Snow: { text: 'Neve', icon: 'W' },
+        Mist: { text: 'Nevoeiro', icon: 'M' },
+        Smoke: { text: 'Fumaça', icon: 'M' },
+        Haze: { text: 'Neblina', icon: 'M' },
+        Dust: { text: 'Poeira', icon: 'M' },
+        Fog: { text: 'Névoa', icon: 'M' },
+        Sand: { text: 'Tempestande de areia', icon: 'M' },
+        Ash: { text: 'Cinza vulcânica', icon: 'M' },
+        Squall: { text: 'Rajadas de vento', icon: 'M' },
+        Tornado: { text: 'Tornado', icon: 'M' },
+        Clear: { text: 'Céu limpo', icon: 'B' },
+        Clouds: { text: 'Nuvens', icon: 'Y' }
+    }
+
+    return options[m]
+}
+
+export const getCurrentTheme = t => {
+    if (t > 35) return 'warm'
+
+    if (t < 15) return 'cold'
+
+    return 'default'
+}
+
+export const getDegree = (deg, data) => {
+    return data.currentDegreeMetric === 'celsius'
+        ? toCelsius(deg)
+        : toFahrenheit(deg)
 }
 
 export const toCelsius = deg => Math.floor(deg - 273.15)

@@ -1,0 +1,16 @@
+@function rem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+$azul1: rgba(75, 191, 249, 0.7);
+$azul2: rgba(68, 127, 229, 0.7);
+$azul3: rgba(41, 61, 206, 0.7);
+
+$amarelo1: rgba(255, 207, 26, 0.7);
+$amarelo2: rgba(255, 206, 0, 0.9);
+$amarelo3: rgba(181, 149, 2, 0.95);
+
+$vermelho1: rgba(255, 110, 110, 0.7);
+$vermelho2: rgba(255, 65, 65, 0.7);
+$vermelho3: rgba(255, 24, 24, 0.7);

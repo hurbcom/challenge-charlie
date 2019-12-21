@@ -1,0 +1,83 @@
+.today_info_container {
+  background-color: $amarelo1;
+  height          : 60%;
+  transition      : background-color 0.3s linear;
+
+  &.cold {
+    background-color: $azul1;
+  }
+
+  &.warm {
+    background-color: $vermelho1;
+  }
+
+  .loading_text {
+    font-size     : rem(16px);
+    color         : rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-weight   : 600;
+    margin        : rem(20px) auto;
+  }
+
+  .icon_wrapper {
+    width          : 50%;
+    font-size      : rem(200px);
+    justify-content: center;
+    align-items    : center;
+  }
+
+  .content_wrapper {
+    width          : 50%;
+    font-family    : 'Open Sans';
+    justify-content: center;
+    font-size      : rem(24px);
+
+    .day,
+    .degrees {
+      font-size     : rem(40px);
+      font-weight   : 700;
+      text-transform: uppercase;
+    }
+
+    .degrees {
+      margin-bottom: rem(16px);
+    }
+
+    .weather_description {
+      font-size    : rem(40px);
+      margin-bottom: rem(16px);
+    }
+  }
+
+}
+
+@media (max-width: 425px) {
+
+  .today_info_container {
+
+    .icon_wrapper {
+      width    : 45%;
+      font-size: 120px;
+    }
+
+    .content_wrapper {
+      width    : 55%;
+      font-size: rem(18px);
+
+      .day,
+      .degrees {
+        font-size: rem(20px);
+      }
+
+      .degrees {
+        margin-bottom: rem(12px);
+      }
+
+      .weather_description {
+        font-size    : rem(20px);
+        margin-bottom: rem(12px);
+      }
+    }
+
+  }
+}

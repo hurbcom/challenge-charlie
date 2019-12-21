@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react'
+import { toCelsius, getCurrentTheme } from '../helpers/utils'
 
 const weatherReducer = (state, action) => {
     switch (action.type) {
@@ -20,7 +21,8 @@ const weatherReducer = (state, action) => {
         case 'WEATHER_DATA_LOAD_COMPLETE':
             return {
                 ...state,
-                wheaterData: action.data
+                wheaterData: action.data,
+                currentTheme: getCurrentTheme(toCelsius(action.data.today.main.temp))
             }
         case 'CHANGE_DEGREE_METRIC':
             return {
@@ -40,6 +42,7 @@ const WeatherContextProvider = props => {
         errorMessage: '',
         wheaterData: {},
         currentDegreeMetric: 'celsius', // celsius or fahrenheit
+        currentTheme: '', // 'default', 'warm' or 'cold'
         backgroundData: {}
     })
 

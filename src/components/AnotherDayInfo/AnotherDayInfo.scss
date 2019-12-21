@@ -1,0 +1,42 @@
+.another_day_info_container {
+  height         : 20%;
+  padding-left   : 50%;
+  font-size      : rem(32px);
+  justify-content: center;
+  text-transform : uppercase;
+  font-weight    : 600;
+  transition     : background-color 0.3s linear;
+
+
+  &.tomorrow {
+    background-color: $amarelo2;
+
+    &.cold {
+      background-color: $azul2;
+    }
+
+    &.warm {
+      background-color: $vermelho2;
+    }
+  }
+
+  &.afterTomorrow {
+    background-color: $amarelo3;
+
+    &.cold {
+      background-color: $azul3;
+    }
+
+    &.warm {
+      background-color: $vermelho3;
+    }
+  }
+}
+
+
+@media (max-width: 425px) {
+  .another_day_info_container {
+    padding-left: 45%;
+    font-size   : rem(20px);
+  }
+}
