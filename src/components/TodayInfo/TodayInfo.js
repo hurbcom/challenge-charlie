@@ -17,11 +17,11 @@ const TodayInfo = () => {
 
     const init = async e => {
         const pos = await getLocation()
-        const wheater = await getWeatherInfoFromCoords(
+        const weather = await getWeatherInfoFromCoords(
             pos.coords.latitude,
             pos.coords.longitude
         )
-        dispatch({ type: 'WEATHER_DATA_LOAD_COMPLETE', data: wheater })
+        dispatch({ type: 'WEATHER_DATA_LOAD_COMPLETE', data: weather })
     }
 
     const getWindSpeed = spd => {

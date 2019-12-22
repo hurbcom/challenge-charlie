@@ -25,6 +25,27 @@ export const getLocation = () => {
     })
 }
 
+export const getInfoFromCityName = async city => {
+    const reqCityInfo = await axios.get(config.openCageApiUrl + city)
+    let output = []
+    let checkDuplicate = []
+
+    reqCityInfo.data.results.map(v => {
+        const c = v.components.city
+        const cc = String(v.components.country_code).toUpperCase()
+
+        if (c && checkDuplicate.indexOf(c) === -1) {
+          output.push({
+              city: c,
+              country_code: cc
+          })
+          checkDuplicate.push(c)
+        }
+    })
+
+    return output
+}
+
 export const getWeatherInfoFromCoords = async (lat, long) => {
     const coordsParam = `${lat},${long}`
     const reqCityInfo = await axios.get(config.openCageApiUrl + coordsParam)
