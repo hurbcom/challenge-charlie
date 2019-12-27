@@ -12,6 +12,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start:docker": "docker run -it -v %cd%:/app -v /app/node_modules -p 3001:3000 --rm sample:dev",
+    "build:docker": "docker build -t sample:dev .",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
   },
