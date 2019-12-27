@@ -12,7 +12,7 @@ function NextDaysWeather(props) {
     if (props.isLocationExists) {
       return (
         <>
-          <p className="clickable" onClick={handleClick}>
+          <p data-testid="temperature" className="clickable" onClick={handleClick}>
             {props.temperature.toFixed(0)}
             {props.temperatureScale}
           </p>
@@ -21,7 +21,7 @@ function NextDaysWeather(props) {
     }
     return (
       <>
-        <span> Não encontrada </span>
+        <span data-testid="not-found">Não encontrada</span>
       </>
     );
   }
@@ -29,7 +29,7 @@ function NextDaysWeather(props) {
   return (
     <Container backgroundColor={props.backgroundColor}>
       <WeatherInfo>
-        <p>{props.dayName}</p>
+        <p data-testid="dayname">{props.dayName}</p>
         {fetchWeatherInformation()}
       </WeatherInfo>
     </Container>
