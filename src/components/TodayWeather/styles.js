@@ -5,6 +5,10 @@ export const Container = styled.div`
   color: #FFF;
   display: flex;
   width: 100%;
+
+  @media (max-width: 840px) {
+   display: block;
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -17,6 +21,16 @@ export const IconWrapper = styled.div`
 
     path {
       fill: #FFF;
+    }
+  }
+
+  @media (max-width: 840px) {
+    width: 100%;
+
+    svg {
+      display: block;
+      margin: 0 auto;
+      width: 80%;
     }
   }
 `;
@@ -39,6 +53,12 @@ export const WeatherInfo = styled.div`
   span {
     font-size: 22px;
     font-weight: 400;
+  }
+
+  @media (max-width: 840px) {
+    padding: 16px 0;
+    text-align: center;
+    width: 100%;
   }
 `;
 

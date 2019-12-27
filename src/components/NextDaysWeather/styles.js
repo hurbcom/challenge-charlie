@@ -26,4 +26,11 @@ export const WeatherInfo = styled.div`
   .clickable {
     cursor: pointer;
   }
+
+  @media (max-width: 840px) {
+    margin-left: 0%;
+    padding: 16px 0;
+    text-align: center;
+    width: 100%;
+  }
 `;
