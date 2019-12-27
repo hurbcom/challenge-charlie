@@ -32,10 +32,14 @@ export default function WeatherIcon(props) {
     return <BrokenClouds />
   }
 
+  const fetchRainIcon = (details) => {
+    return details === 'shower rain' ? <ShowerRain /> : <Rain />
+  }
+
   const fetchIcon = (weather, details) => ({
     'Thunderstorm': <Thunderstorm />,
     'Drizzle': <Drizzle />,
-    'Rain': <Rain />,
+    'Rain': fetchRainIcon(details),
     'Snow': <Snow />,
     'Mist': <Mist />,
     'Fog': <Fog />,
