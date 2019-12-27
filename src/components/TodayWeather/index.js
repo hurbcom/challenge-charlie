@@ -14,25 +14,25 @@ function TodayWeather(props) {
     if (props.isLocationExists) {
       return (
         <>
-          <p className="clickable" onClick={handleClick.bind(this)}>
+          <p data-testid="temperature-scale" className="clickable" onClick={handleClick.bind(this)}>
             {main.temp.toFixed(0)}{props.temperatureScale}
           </p>
 
-          <WeatherDescription>
+          <WeatherDescription data-testid="temperature-description">
             {weather[0].description}
           </WeatherDescription>
 
           <WeatherDetails>
-            <p>Vento: NO {wind.speed}km/h</p>
-            <p>Humidade: {main.humidity}%</p>
-            <p>Pressão: {main.pressure}hPA</p>
+            <p data-testid="wind">Vento: NO {wind.speed}km/h</p>
+            <p data-testid="humidity">Humidade: {main.humidity}%</p>
+            <p data-testid="pressure">Pressão: {main.pressure}hPA</p>
           </WeatherDetails>
         </>
       )
     }
     return (
       <>
-        <span> Localidade não encontrada </span>
+        <span data-testid="not-found"> Localidade não encontrada </span>
       </>
     );
   }
