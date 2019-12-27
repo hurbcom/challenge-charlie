@@ -5,11 +5,13 @@
   align-items: center;
 }
 
-.icon {
+.iconWrapper {
   width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #5a5a5a;
+  font-size: 30px;
 }
 
 .input {

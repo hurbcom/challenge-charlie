@@ -6,7 +6,9 @@ export default ({ location, onSearch }) => {
 
   return (
     <div className={css.Header}>
-      <div className={css.icon}>@</div>
+      <div className={css.iconWrapper}>
+        <span className="icon" data-type="("></span>
+      </div>
       <input
         className={css.input}
         type="text" value={city}

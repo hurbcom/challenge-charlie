@@ -1,7 +1,7 @@
 .App {
   background: #ddd;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100%;
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: center;

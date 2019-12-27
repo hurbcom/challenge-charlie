@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import css from './App.module.css';
 import BingImage from '../../utils/BingImage.util';
+import OpenWeather from '../../utils/OpenWeather.util';
 
 import Weather from '../Weather/Weather';
 
@@ -8,36 +9,31 @@ export default () => {
 
   const [bgImage, setBgImage] = useState('');
   const [unit, setUnit] = useState('c');
-  const [weather, setWeather] = useState({
-    today: { temp: 'c' },
-    tomorrow: { temp: 'c' },
-    after: { temp: 'c' }
-  });
+  const [location, setLocation] = useState('Rio de Janeiro');
+  const [weather, setWeather] = useState({});
 
-  const init = async () => {
-    try {
-      const i = await BingImage.get();
-      setBgImage(i);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleSearch = (search) => {
+  const handleSearch = async (search) => {
     console.log('pesquisa:', search);
+    setLocation(search);
+    console.log(search && await OpenWeather.getResults(search));
   };
 
   const handleUnit = () => {
     const u = unit === 'c' ? 'f' : 'c';
     setUnit(u);
-    setWeather({
-      today: { temp: u },
-      tomorrow: { temp: u },
-      after: { temp: u }
-    });
   };
 
-  useEffect(() => { init() });
+  useEffect(() => {
+    (async () => {
+      try {
+        const [i, w] = await Promise.all([BingImage.get(), OpenWeather.getResults(location)]);
+        setBgImage(i);
+        setWeather(w);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, [location]);
 
   return (
     <div className={css.App} style={{ backgroundImage: `url(${bgImage})` }}>
