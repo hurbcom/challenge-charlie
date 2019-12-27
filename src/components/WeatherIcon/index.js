@@ -49,8 +49,8 @@ export default function WeatherIcon(props) {
   }[props.isLocationExists ? weather : <NotApplicable />] || <NotApplicable />)
 
   return (
-    <>
+    <div data-testid="weatherIcon">
       {fetchIcon(props.weather.main, props.weather.description)}
-    </>
+    </div>
   );
 }
