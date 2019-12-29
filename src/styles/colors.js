@@ -1,5 +1,6 @@
 export default {
     yellow: "yellow",
     red: "red",
-    blue: "blue"
+    blue: "blue",
+    gray: "gray"
 };

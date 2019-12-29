@@ -2,7 +2,12 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { getDirection, getWeatherIcon } from "../../utils/weather";
+import {
+    getDirection,
+    getWeatherIcon,
+    getWeatherColor,
+    getTranslatedWeather
+} from "../../utils/weather";
 
 const Container = styled.div`
     display: grid;
@@ -10,6 +15,13 @@ const Container = styled.div`
     grid-gap: 20px;
 
     align-content: center;
+
+    background-color: ${props => getWeatherColor(props.temp)};
+`;
+
+const Image = styled.img`
+    width: 300px;
+    margin: 50px;
 `;
 
 export default ({
@@ -21,24 +33,22 @@ export default ({
     main
 }) => {
     return (
-        <Container>
+        <Container temp={temp_max}>
             <div>
                 {main === undefined ? (
                     "--"
                 ) : (
-                    <img
+                    <Image
                         src={getWeatherIcon(main)}
                         alt="ícone para a condição climática"
                     />
                 )}
             </div>
             <div>
+                <h1>Hoje</h1>
+                <p>{temp_max} ºC</p>
+                <h1>{getTranslatedWeather(main)}</h1>
                 <p>
-                    <h1>Hoje</h1>
-                    {temp_max} ºC
-                </p>
-                <p>
-                    <h1>Ensolarado</h1>
                     Vento: {getDirection(deg)} {speed} Kmph
                     <br />
                     Humidade: {humidity} %

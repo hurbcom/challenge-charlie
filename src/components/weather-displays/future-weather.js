@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-const Container = styled.div``;
+import { getWeatherColor } from "../../utils/weather";
 
 const Wrapper = styled.div`
     display: grid;
@@ -10,11 +10,15 @@ const Wrapper = styled.div`
     grid-gap: 20px;
 
     align-content: center;
+
+    color: #fff;
+
+    background-color: ${props => props.color};
 `;
 
 export default ({ day, temperature = "--" }) => {
     return (
-        <Wrapper>
+        <Wrapper color={getWeatherColor(temperature)}>
             <div></div>
             <div>
                 <h1>{day}</h1>

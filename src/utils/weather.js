@@ -1,3 +1,5 @@
+import colors from "../styles/colors";
+
 var directions = [
     "Norte",
     "Nordeste",
@@ -14,7 +16,12 @@ export const getDirection = heading => {
     return directions[index] || "--";
 };
 
-export const getWeatherColor = temperature => {};
+export const getWeatherColor = temperature => {
+    if (temperature < 15) return colors["blue"];
+    else if (temperature >= 15 && temperature <= 35) return colors["yellow"];
+    else if (temperature > 35) return colors["red"];
+    else return colors["gray"];
+};
 
 export const getWeatherIcon = weather => {
     const icons = {
@@ -29,4 +36,15 @@ export const getWeatherIcon = weather => {
     return weather === undefined ? "--" : icons[weather.toLowerCase()];
 };
 
-// export icons = ['clear', 'clouds', 'thunderstorm', 'snow', 'rain', 'drizzle'];
+export const getTranslatedWeather = weather => {
+    const weathers = {
+        clear: "Ensolarado",
+        clouds: "Nuvens",
+        thunderstorm: "Tempestade",
+        snow: "Neve",
+        rain: "Chuva",
+        drizzle: "Chuvisco"
+    };
+
+    return weather === undefined ? "--" : weathers[weather.toLowerCase()];
+};
