@@ -7,6 +7,6 @@ export default {
 
   fahrenheitToCelsius(fahrenheit) {
     return fahrenheit;
-  }
+  },
 
-}
+};

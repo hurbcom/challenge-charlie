@@ -7,13 +7,15 @@ export default ({ location, onSearch }) => {
   return (
     <div className={css.Header}>
       <div className={css.iconWrapper}>
-        <span className="icon" data-type="("></span>
+        <span className="icon" data-type="(" />
       </div>
       <input
         className={css.input}
-        type="text" value={city}
+        type="text"
+        value={city}
         onChange={(e) => setCity(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && onSearch(city)} />
+        onKeyPress={(e) => e.key === 'Enter' && onSearch(city)}
+      />
     </div>
   );
-}
+};
