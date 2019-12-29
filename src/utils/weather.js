@@ -14,4 +14,19 @@ export const getDirection = heading => {
     return directions[index] || "--";
 };
 
-export const getColor = temperature => {};
+export const getWeatherColor = temperature => {};
+
+export const getWeatherIcon = weather => {
+    const icons = {
+        clear: require("../assets/icons/clear.svg"),
+        clouds: require("../assets/icons/clouds.svg"),
+        thunderstorm: require("../assets/icons/thunderstorm.svg"),
+        snow: require("../assets/icons/snow.svg"),
+        rain: require("../assets/icons/rain.svg"),
+        drizzle: require("../assets/icons/drizzle.svg")
+    };
+
+    return weather === undefined ? "--" : icons[weather.toLowerCase()];
+};
+
+// export icons = ['clear', 'clouds', 'thunderstorm', 'snow', 'rain', 'drizzle'];

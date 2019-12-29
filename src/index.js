@@ -12,7 +12,11 @@ import CurrentWeather from "./components/weather-displays/current-weather";
 
 const App = () => {
     const [city, setCity] = useState("Campos dos Goytacazes, BR");
-    const [weather, setWeather] = useState({ main: {}, weather: {}, wind: {} });
+    const [weather, setWeather] = useState({
+        main: {},
+        weather: [{}],
+        wind: {}
+    });
     const [forecast, setForecast] = useState();
 
     useEffect(() => {
@@ -27,7 +31,11 @@ const App = () => {
             <BingBackground />
             <Layout>
                 <Input />
-                <CurrentWeather {...weather.main} {...weather.wind} />
+                <CurrentWeather
+                    {...weather.main}
+                    {...weather.wind}
+                    {...weather.weather[0]}
+                />
             </Layout>
         </>
     );

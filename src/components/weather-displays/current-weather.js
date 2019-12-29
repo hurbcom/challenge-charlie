@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { getDirection } from "../../utils/weather";
+import { getDirection, getWeatherIcon } from "../../utils/weather";
 
 const Container = styled.div`
     display: grid;
@@ -17,11 +17,21 @@ export default ({
     humidity = "--",
     pressure = "--",
     speed = "--",
-    deg
+    deg,
+    main
 }) => {
     return (
         <Container>
-            <div></div>
+            <div>
+                {main === undefined ? (
+                    "--"
+                ) : (
+                    <img
+                        src={getWeatherIcon(main)}
+                        alt="ícone para a condição climática"
+                    />
+                )}
+            </div>
             <div>
                 <p>
                     <h1>Hoje</h1>
