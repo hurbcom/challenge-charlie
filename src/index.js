@@ -9,6 +9,7 @@ import Layout from "./styles/layout";
 import Input from "./components/input";
 import BingBackground from "./components/bing-background";
 import CurrentWeather from "./components/weather-displays/current-weather";
+import Forecast from "./components/weather-displays/future-weather";
 
 const App = () => {
     const [city, setCity] = useState("Campos dos Goytacazes, BR");
@@ -17,7 +18,10 @@ const App = () => {
         weather: [{}],
         wind: {}
     });
-    const [forecast, setForecast] = useState();
+    const [forecast, setForecast] = useState({
+        tomorrow: "--",
+        dayAfterTomorrow: "--"
+    });
 
     useEffect(() => {
         fetchWeather(city).then(response => setWeather(response.data));
@@ -35,6 +39,11 @@ const App = () => {
                     {...weather.main}
                     {...weather.wind}
                     {...weather.weather[0]}
+                />
+                <Forecast day="Amanhã" temperature={forecast.tomorrow} />
+                <Forecast
+                    day="Depois de amanhã"
+                    temperature={forecast.dayAfterTomorrow}
                 />
             </Layout>
         </>
