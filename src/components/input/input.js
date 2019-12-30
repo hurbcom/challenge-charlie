@@ -47,6 +47,10 @@ export default ({ setLocation }) => {
         getUserLocation();
     }, []);
 
+    useEffect(() => {
+        validateTypedCity(value);
+    }, [value]);
+
     const getUserLocation = async () => {
         try {
             const coords = await getCurrentLocation();
@@ -58,6 +62,16 @@ export default ({ setLocation }) => {
 
             setValue(cityName);
             setLocation(coords);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const validateTypedCity = async value => {
+        try {
+            if (value.length < 3) return;
+            const newCoords = await cityNameToCoordinates(value);
+            if (newCoords !== null) setLocation(newCoords);
         } catch (error) {
             console.error(error);
         }

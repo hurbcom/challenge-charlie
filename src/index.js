@@ -12,31 +12,32 @@ import CurrentWeather from "./components/weather-displays/current-weather";
 import Forecast from "./components/weather-displays/future-weather";
 
 const App = () => {
-    const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
+    const [location, setLocation] = useState({ lat: 0, lng: 0 });
     const [weather, setWeather] = useState({
         main: {},
         weather: [{}],
         wind: {}
     });
+
     const [forecast, setForecast] = useState({
         tomorrow: "--",
         dayAfterTomorrow: "--"
     });
 
     useEffect(() => {
-        fetchWeather(location.latitude, location.longitude).then(response =>
+        fetchWeather(location.lat, location.lng).then(response =>
             setWeather(response.data)
         );
-        fetchForecast(location.latitude, location.longitude).then(response =>
+        fetchForecast(location.lat, location.lng).then(response =>
             setForecast(reduceForecast(response.data))
         );
-    }, []);
+    }, [location]);
 
     return (
         <>
             <BingBackground />
             <Layout>
-                <Input {...setLocation} />
+                <Input setLocation={setLocation} />
                 <CurrentWeather
                     {...weather.main}
                     {...weather.wind}
