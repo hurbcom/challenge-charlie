@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import axios from "axios";
-
 import styled from "styled-components";
 import { fetchBingImage } from "../services/bingImage";
 
@@ -13,7 +11,7 @@ const Background = styled.div`
     left: 0;
 `;
 
-export default ({ currentColor }) => {
+export default () => {
     const [bingHomepageImage, setImage] = useState();
 
     useEffect(() => {
