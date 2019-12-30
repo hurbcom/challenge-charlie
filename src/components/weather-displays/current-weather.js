@@ -13,15 +13,24 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-
     align-content: center;
     color: #ffffff;
-
+    font-size: 25px;
     background-color: ${props => getWeatherColor(props.temp, "normal", 0.6)};
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 30px;
+
+        font-weight: bold;
+        & + p {
+            margin-top: 10px;
+        }
+    }
 `;
 
 const Image = styled.img`
-    width: 300px;
+    width: 260px;
     margin: 50px;
 `;
 
@@ -46,9 +55,9 @@ export default ({
                 )}
             </div>
             <div>
-                <h1>Hoje</h1>
+                <h2>Hoje</h2>
                 <p>{temp_max} ºC</p>
-                <h1>{getTranslatedWeather(main)}</h1>
+                <h2>{getTranslatedWeather(main)}</h2>
                 <p>
                     Vento: {getDirection(deg)} {speed} Kmph
                     <br />

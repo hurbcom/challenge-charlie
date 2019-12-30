@@ -14,6 +14,17 @@ const Wrapper = styled.div`
     color: #fff;
 
     background-color: ${props => props.color};
+
+    font-size: 25px;
+    h2 {
+        margin-bottom: 10px;
+        font-size: 30px;
+
+        font-weight: bold;
+        & + p {
+            margin-top: 10px;
+        }
+    }
 `;
 
 export default ({ day, temperature = "--", tone, alpha }) => {
@@ -21,7 +32,7 @@ export default ({ day, temperature = "--", tone, alpha }) => {
         <Wrapper color={getWeatherColor(temperature, tone, alpha)}>
             <div></div>
             <div>
-                <h1>{day}</h1>
+                <h2>{day}</h2>
                 <p>{temperature} ºC</p>
             </div>
         </Wrapper>

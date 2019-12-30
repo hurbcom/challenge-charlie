@@ -17,8 +17,8 @@ const Wrapper = styled.div`
         content: url(${require("../../assets/icons/compass.svg")});
         display: block;
         position: absolute;
-        height: 50px;
-        width: 50px;
+        height: 70px;
+        width: 70px;
 
         top: 50%;
         left: 20px;
@@ -32,12 +32,12 @@ const Input = styled.input`
     width: 100%;
     outline: none;
     padding: 20px;
-    padding-left: 90px;
+    padding-left: 110px;
     box-sizing: border-box;
     border: none;
     color: ${colors["gray"]["normal"]};
     font-weight: bold;
-    font-size: 30px;
+    font-size: 40px;
     background-color: rgba(255, 255, 255, 0.7);
 `;
 
