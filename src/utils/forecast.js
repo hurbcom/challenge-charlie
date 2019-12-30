@@ -1,5 +1,5 @@
 export const compareDates = date => {
-    const today = new Date();
+    const today = new Date(Date.now());
     today.setHours(0, 0, 0, 0);
     date.setHours(0, 0, 0, 0);
 
@@ -15,7 +15,7 @@ export const compareDates = date => {
 export const reduceForecast = forecast => {
     return forecast.list.reduce(
         (prevForecast, currentItem) => {
-            const date = new Date(currentItem.dt_txt.split(" ")[0]);
+            const date = new Date(currentItem.dt_txt);
             const comparedDate = compareDates(date);
 
             if (comparedDate === "other") return prevForecast;

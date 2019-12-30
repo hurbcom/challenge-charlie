@@ -12,7 +12,8 @@ var directions = [
 ];
 
 export const getDirection = heading => {
-    const index = Math.round(heading / 8 / 5, 625);
+    const index =
+        Math.round(((heading %= 360) < 0 ? heading + 360 : heading) / 45) % 8;
     return directions[index] || "--";
 };
 
@@ -29,6 +30,7 @@ export const getWeatherIcon = weather => {
         clouds: require("../assets/icons/clouds.svg"),
         thunderstorm: require("../assets/icons/thunderstorm.svg"),
         snow: require("../assets/icons/snow.svg"),
+        mist: require("../assets/icons/snow.svg"),
         rain: require("../assets/icons/rain.svg"),
         drizzle: require("../assets/icons/drizzle.svg")
     };
@@ -42,9 +44,16 @@ export const getTranslatedWeather = weather => {
         clouds: "Nuvens",
         thunderstorm: "Tempestade",
         snow: "Neve",
+        mist: "Nevoeiro",
         rain: "Chuva",
         drizzle: "Chuvisco"
     };
 
-    return weather === undefined ? "--" : weathers[weather.toLowerCase()];
+    return weather === undefined ||
+        weathers[weather.toLowerCase()] === undefined
+        ? "--"
+        : weathers[weather.toLowerCase()];
 };
+
+export const toFahrenheit = temperature_in_celsius =>
+    temperature_in_celsius * (9 / 5) + 32;
