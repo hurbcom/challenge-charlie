@@ -6,7 +6,7 @@ import { fetchForecast, fetchWeather } from "./services/weather";
 import { reduceForecast } from "./utils/forecast";
 
 import Layout from "./styles/layout";
-import Input from "./components/input/input";
+import LocationInput from "./components/input/location-input";
 import BingBackground from "./components/bing-background";
 import CurrentWeather from "./components/weather-displays/current-weather";
 import Forecast from "./components/weather-displays/future-weather";
@@ -37,7 +37,7 @@ const App = () => {
         <>
             <BingBackground />
             <Layout>
-                <Input setLocation={setLocation} />
+                <LocationInput setLocation={setLocation} />
                 <CurrentWeather
                     {...weather.main}
                     {...weather.wind}
