@@ -6,13 +6,13 @@ import { fetchForecast, fetchWeather } from "./services/weather";
 import { reduceForecast } from "./utils/forecast";
 
 import Layout from "./styles/layout";
-import Input from "./components/input";
+import Input from "./components/input/input";
 import BingBackground from "./components/bing-background";
 import CurrentWeather from "./components/weather-displays/current-weather";
 import Forecast from "./components/weather-displays/future-weather";
 
 const App = () => {
-    const [city, setCity] = useState("Campos dos Goytacazes, BR");
+    const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
     const [weather, setWeather] = useState({
         main: {},
         weather: [{}],
@@ -24,8 +24,10 @@ const App = () => {
     });
 
     useEffect(() => {
-        fetchWeather(city).then(response => setWeather(response.data));
-        fetchForecast(city).then(response =>
+        fetchWeather(location.latitude, location.longitude).then(response =>
+            setWeather(response.data)
+        );
+        fetchForecast(location.latitude, location.longitude).then(response =>
             setForecast(reduceForecast(response.data))
         );
     }, []);
@@ -34,7 +36,7 @@ const App = () => {
         <>
             <BingBackground />
             <Layout>
-                <Input />
+                <Input {...setLocation} />
                 <CurrentWeather
                     {...weather.main}
                     {...weather.wind}

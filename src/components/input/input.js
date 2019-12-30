@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
 import colors from "../../styles/colors";
+
+import {
+    getCurrentLocation,
+    coordinatesToCityName,
+    cityNameToCoordinates
+} from "../../services/location";
 
 const Wrapper = styled.div`
     position: relative;
@@ -36,6 +42,26 @@ const Input = styled.input`
 
 export default ({ setLocation }) => {
     const [value, setValue] = useState("");
+
+    useEffect(() => {
+        getUserLocation();
+    }, []);
+
+    const getUserLocation = async () => {
+        try {
+            const coords = await getCurrentLocation();
+
+            const cityName = await coordinatesToCityName(
+                coords.latitude,
+                coords.longitude
+            );
+
+            setValue(cityName);
+            setLocation(coords);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <Wrapper>

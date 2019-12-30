@@ -6,19 +6,21 @@ const params = {
     lang: "pt"
 };
 
-export const fetchWeather = city => {
+export const fetchWeather = (lat, lon) => {
     return axios.get("http://api.openweathermap.org/data/2.5/weather", {
         params: {
-            q: city,
+            lat,
+            lon,
             ...params
         }
     });
 };
 
-export const fetchForecast = city => {
+export const fetchForecast = (lat, lon) => {
     return axios.get("http://api.openweathermap.org/data/2.5/forecast", {
         params: {
-            q: city,
+            lat,
+            lon,
             ...params
         }
     });
