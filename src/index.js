@@ -18,6 +18,7 @@ const App = () => {
         weather: [{}],
         wind: {}
     });
+    const [unit, setUnit] = useState("C");
 
     const [forecast, setForecast] = useState({
         tomorrow: "--",
@@ -33,6 +34,10 @@ const App = () => {
         );
     }, [location]);
 
+    const toggleUnit = () => {
+        setUnit(unit === "C" ? "F" : "C");
+    };
+
     return (
         <>
             <BingBackground />
@@ -42,18 +47,24 @@ const App = () => {
                     {...weather.main}
                     {...weather.wind}
                     {...weather.weather[0]}
+                    unit={unit}
+                    toggleUnit={toggleUnit}
                 />
                 <Forecast
                     day="Amanhã"
                     temperature={forecast.tomorrow}
                     tone="darker"
                     alpha={0.8}
+                    unit={unit}
+                    toggleUnit={toggleUnit}
                 />
                 <Forecast
                     day="Depois de amanhã"
                     temperature={forecast.dayAfterTomorrow}
                     tone="darkest"
                     alpha={0.95}
+                    unit={unit}
+                    toggleUnit={toggleUnit}
                 />
             </Layout>
         </>

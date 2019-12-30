@@ -6,7 +6,8 @@ import {
     getDirection,
     getWeatherIcon,
     getWeatherColor,
-    getTranslatedWeather
+    getTranslatedWeather,
+    toFahrenheit
 } from "../../utils/weather";
 
 const Container = styled.div`
@@ -40,7 +41,9 @@ export default ({
     pressure = "--",
     speed = "--",
     deg,
-    main
+    main,
+    unit,
+    toggleUnit
 }) => {
     return (
         <Container temp={temp_max}>
@@ -56,7 +59,12 @@ export default ({
             </div>
             <div>
                 <h2>Hoje</h2>
-                <p>{temp_max} ºC</p>
+                <p>
+                    <div onClick={toggleUnit}>
+                        {unit === "F" ? toFahrenheit(temp_max) : temp_max} º
+                        {unit}
+                    </div>
+                </p>
                 <h2>{getTranslatedWeather(main)}</h2>
                 <p>
                     Vento: {getDirection(deg)} {speed} Kmph
