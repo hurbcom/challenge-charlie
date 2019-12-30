@@ -43,10 +43,17 @@ const App = () => {
                     {...weather.wind}
                     {...weather.weather[0]}
                 />
-                <Forecast day="Amanhã" temperature={forecast.tomorrow} />
+                <Forecast
+                    day="Amanhã"
+                    temperature={forecast.tomorrow}
+                    tone="darker"
+                    alpha={0.8}
+                />
                 <Forecast
                     day="Depois de amanhã"
                     temperature={forecast.dayAfterTomorrow}
+                    tone="darkest"
+                    alpha={0.95}
                 />
             </Layout>
         </>

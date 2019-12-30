@@ -16,9 +16,9 @@ const Wrapper = styled.div`
     background-color: ${props => props.color};
 `;
 
-export default ({ day, temperature = "--" }) => {
+export default ({ day, temperature = "--", tone, alpha }) => {
     return (
-        <Wrapper color={getWeatherColor(temperature)}>
+        <Wrapper color={getWeatherColor(temperature, tone, alpha)}>
             <div></div>
             <div>
                 <h1>{day}</h1>

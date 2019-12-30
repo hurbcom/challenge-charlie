@@ -35,9 +35,10 @@ const Input = styled.input`
     padding-left: 90px;
     box-sizing: border-box;
     border: none;
-    color: ${colors["gray"]};
+    color: ${colors["gray"]["normal"]};
     font-weight: bold;
     font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.7);
 `;
 
 export default ({ setLocation }) => {

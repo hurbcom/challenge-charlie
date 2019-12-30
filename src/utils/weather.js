@@ -17,11 +17,19 @@ export const getDirection = heading => {
     return directions[index] || "--";
 };
 
-export const getWeatherColor = temperature => {
-    if (temperature < 15) return colors["blue"];
-    else if (temperature >= 15 && temperature <= 35) return colors["yellow"];
-    else if (temperature > 35) return colors["red"];
-    else return colors["gray"];
+export const getWeatherColor = (temperature, tone = "normal", alpha = 1) => {
+    function getOpacityInHex(alpha) {
+        return Math.floor(alpha * 255)
+            .toString(16)
+            .padStart(2, "0");
+    }
+
+    if (temperature < 15) return colors["blue"][tone] + getOpacityInHex(alpha);
+    else if (temperature >= 15 && temperature <= 35)
+        return colors["yellow"][tone] + getOpacityInHex(alpha);
+    else if (temperature > 35)
+        return colors["red"][tone] + getOpacityInHex(alpha);
+    else return colors["gray"][tone] + getOpacityInHex(alpha);
 };
 
 export const getWeatherIcon = weather => {

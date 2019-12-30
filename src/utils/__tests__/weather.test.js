@@ -55,13 +55,25 @@ describe("Get direction", () => {
 
 describe("Get weather color", () => {
     it("should return the right color", () => {
-        expect(getWeatherColor(10)).toBe(colors["blue"]);
-        expect(getWeatherColor(30)).toBe(colors["yellow"]);
-        expect(getWeatherColor(50)).toBe(colors["red"]);
+        expect(getWeatherColor(10)).toBe(colors["blue"]["normal"] + "ff");
+        expect(getWeatherColor(30)).toBe(colors["yellow"]["normal"] + "ff");
+        expect(getWeatherColor(50)).toBe(colors["red"]["normal"] + "ff");
+    });
+
+    it("should return the right color with tone", () => {
+        expect(getWeatherColor(10, "darkest")).toBe(
+            colors["blue"]["darkest"] + "ff"
+        );
+    });
+
+    it("should return the color with opacity", () => {
+        expect(getWeatherColor(10, "normal", 0.5)).toBe(
+            colors["blue"]["normal"] + "7f"
+        );
     });
 
     it("returns gray when the temperature is undefined", () => {
-        expect(getWeatherColor()).toBe(colors["gray"]);
+        expect(getWeatherColor()).toBe(colors["gray"]["normal"] + "ff");
     });
 });
 

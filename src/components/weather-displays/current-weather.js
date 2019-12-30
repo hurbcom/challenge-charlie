@@ -15,8 +15,9 @@ const Container = styled.div`
     grid-gap: 20px;
 
     align-content: center;
+    color: #ffffff;
 
-    background-color: ${props => getWeatherColor(props.temp)};
+    background-color: ${props => getWeatherColor(props.temp, "normal", 0.6)};
 `;
 
 const Image = styled.img`
