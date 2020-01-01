@@ -1,8 +1,12 @@
+import axios from "axios";
+
 import {
     getCurrentLocation,
     cityNameToCoordinates,
     coordinatesToCityName
 } from "../location";
+
+jest.mock("axios");
 
 describe("getting the current location", () => {
     const original_geolocation = navigator.geolocation;
@@ -18,6 +22,32 @@ describe("getting the current location", () => {
                 })
             )
         )
+    };
+
+    const mocked_city_name_response = {
+        results: [
+            {
+                components: {
+                    city: "Campos dos Goytacazes",
+                    state: "Rio de Janeiro"
+                }
+            }
+        ]
+    };
+
+    const mocked_city_location_response = {
+        results: [
+            {
+                geometry: {
+                    lat: 52,
+                    lng: 13
+                }
+            }
+        ]
+    };
+
+    const mocked_no_city_found_response = {
+        results: []
     };
 
     beforeAll(() => {
@@ -38,23 +68,32 @@ describe("getting the current location", () => {
     });
 
     it("Should get return the city coordinates", () => {
+        axios.get.mockImplementationOnce(() =>
+            Promise.resolve({ data: mocked_city_location_response })
+        );
         return cityNameToCoordinates("Moabit, Berlin").then(coords =>
             expect(coords).toStrictEqual({
-                lat: 52.5301017,
-                lng: 13.3425422
+                lat: 52,
+                lng: 13
             })
         );
     });
 
     it("Should get return null when no city is found", () => {
+        axios.get.mockImplementationOnce(() =>
+            Promise.resolve({ data: mocked_no_city_found_response })
+        );
         return cityNameToCoordinates("heusheuheuhhsue").then(coords =>
             expect(coords).toBe(null)
         );
     });
 
     it("Should get return the city name", () => {
+        axios.get.mockImplementationOnce(() =>
+            Promise.resolve({ data: mocked_city_name_response })
+        );
         return coordinatesToCityName(52.5301017, 13.3425422).then(name =>
-            expect(name).toBe("Berlin, Berlin")
+            expect(name).toBe("Campos dos Goytacazes, Rio de Janeiro")
         );
     });
 });
