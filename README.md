@@ -18,6 +18,18 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/
 
 O uso de `geohash` dá ponto extra 🔝‼️ ;)
 
+## Como rodar
+
+Para rodar basta executar:
+
+### `npm install && npm start`
+
+## Como testar
+
+Para testar basta executar:
+
+### `npm test`
+
 ## Requisitos
 
 -   Preferencialmente faça em React, mas você pode usar outros frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS). Se for usar jQuery, não use plugins de jQuery, queremos ver o seu trabalho.
