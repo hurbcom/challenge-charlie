@@ -40,10 +40,10 @@ export default ({
     humidity = "--",
     pressure = "--",
     speed = "--",
-    deg,
-    main,
-    unit,
-    toggleUnit
+    deg = "--",
+    main = "--",
+    unit = "C",
+    toggleUnit = () => {}
 }) => {
     return (
         <Container temp={temp_max}>
@@ -60,18 +60,20 @@ export default ({
             <div>
                 <h2>Hoje</h2>
                 <p>
-                    <div onClick={toggleUnit}>
+                    <span className="temperature" onClick={toggleUnit}>
                         {unit === "F" ? toFahrenheit(temp_max) : temp_max} º
                         {unit}
-                    </div>
+                    </span>
                 </p>
                 <h2>{getTranslatedWeather(main)}</h2>
                 <p>
-                    Vento: {getDirection(deg)} {speed} Kmph
+                    <span className="wind">
+                        Vento: {getDirection(deg)} {speed} Kmph
+                    </span>
                     <br />
-                    Humidade: {humidity} %
+                    <span className="humidity">Humidade: {humidity} %</span>
                     <br />
-                    Pressão: {pressure} hPA
+                    <span className="pressure">Pressão: {pressure} hPA</span>
                 </p>
             </div>
         </Container>

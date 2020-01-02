@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forecast display matches snapshot 1`] = `
+<div
+  className="sc-bdVaJa eYGOmH"
+  color="#FFEB3Bff"
+>
+  <div />
+  <div>
+    <h2>
+      Amanhã
+    </h2>
+    <p>
+      <span
+        className="temperature"
+      >
+        30
+         
+        º
+        C
+      </span>
+    </p>
+  </div>
+</div>
+`;

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`weather display matches snapshot 1`] = `
+<div
+  className="sc-bdVaJa gAhrVP"
+>
+  <div>
+    <img
+      alt="ícone para a condição climática"
+      className="sc-bwzfXH fzlwxk"
+      src={
+        Object {
+          "ReactComponent": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          },
+          "__esModule": true,
+          "default": "clear.svg",
+        }
+      }
+    />
+  </div>
+  <div>
+    <h2>
+      Hoje
+    </h2>
+    <p>
+      <span
+        className="temperature"
+        onClick={[Function]}
+      >
+        30
+         º
+        C
+      </span>
+    </p>
+    <h2>
+      Ensolarado
+    </h2>
+    <p>
+      <span
+        className="wind"
+      >
+        Vento: 
+        Leste
+         
+        12
+         Kmph
+      </span>
+      <br />
+      <span
+        className="humidity"
+      >
+        Humidade: 
+        78
+         %
+      </span>
+      <br />
+      <span
+        className="pressure"
+      >
+        Pressão: 
+        1003
+         hPA
+      </span>
+    </p>
+  </div>
+</div>
+`;

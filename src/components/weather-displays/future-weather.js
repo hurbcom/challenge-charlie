@@ -31,10 +31,10 @@ export default ({ day, temperature = "--", tone, alpha, unit, toggleUnit }) => {
             <div>
                 <h2>{day}</h2>
                 <p>
-                    <div onClick={toggleUnit}>
+                    <span className="temperature" onClick={toggleUnit}>
                         {unit === "F" ? toFahrenheit(temperature) : temperature}{" "}
                         º{unit}
-                    </div>
+                    </span>
                 </p>
             </div>
         </Wrapper>
