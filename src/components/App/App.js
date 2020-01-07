@@ -7,7 +7,7 @@ import Weather from '../Weather/Weather';
 
 export default () => {
   const [bgImage, setBgImage] = useState('');
-  const [unit, setUnit] = useState('c');
+  const [units, setUnits] = useState('metric');
   const [location, setLocation] = useState('Rio de Janeiro');
   const [weather, setWeather] = useState({});
 
@@ -17,9 +17,8 @@ export default () => {
     console.log(search && await OpenWeather.getResults(search));
   };
 
-  const handleUnit = () => {
-    const u = unit === 'c' ? 'f' : 'c';
-    setUnit(u);
+  const handleUnits = () => {
+    setUnits(units === 'metric' ? 'imperial' : 'metric');
   };
 
   useEffect(() => {
@@ -36,38 +35,17 @@ export default () => {
   useEffect(() => {
     (async () => {
       try {
-        const [w] = await Promise.all([OpenWeather.getResults(location)]);
+        const [w] = await Promise.all([OpenWeather.getResults(location, units)]);
         setWeather(w);
       } catch (e) {
         console.log(e);
       }
     })();
-  }, [location]);
+  }, [location, units]);
 
   return (
-    <div
-      className={
-      css.App
-    }
-      style={
-      {
-        backgroundImage: `url(${bgImage})`,
-      }
-    }
-    >
-      <Weather
-        weather={
-      weather
-    }
-        onSearch={
-      handleSearch
-    }
-        onUnit={
-      handleUnit
-    }
-      />
-      {' '}
-
+    <div className={css.App} style={{ backgroundImage: `url(${bgImage})` }}>
+      <Weather weather={weather} onSearch={handleSearch} onUnit={handleUnits} />
     </div>
   );
 };

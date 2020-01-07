@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export default {
 
-  async getWeather(location) {
+  async getWeather(location, units) {
     try {
       const owm = 'http://api.openweathermap.org';
-      const l = '/data/2.5/weather?lang=pt&units=metric&q=';
+      const l = `/data/2.5/weather?lang=pt&units=${units}&q=`;
       const id = '&APPID=7ba73e0eb8efe773ed08bfd0627f07b8';
       const res = await axios.get(owm + l + location + id);
       return res.data;
@@ -15,10 +15,10 @@ export default {
     }
   },
 
-  async getForecast(location) {
+  async getForecast(location, units) {
     try {
       const owm = 'http://api.openweathermap.org';
-      const l = '/data/2.5/forecast?lang=pt&units=metric&cnt=40&q=';
+      const l = `/data/2.5/forecast?lang=pt&units=${units}&cnt=40&q=`;
       const id = '&APPID=7ba73e0eb8efe773ed08bfd0627f07b8';
       const res = await axios.get(owm + l + location + id);
       return res.data;
@@ -27,8 +27,13 @@ export default {
     }
   },
 
-  mpsToKmph(mps) {
-    return (mps * 3.6).toFixed(2);
+  tempFix(temp, units) {
+    return [temp.toFixed(1), (units === 'metric' ? 'ºC' : 'ºF')];
+  },
+
+  windFix(speed, units) {
+    if (units === 'metric') return [(speed * 3.6).toFixed(1), 'Km/h'];
+    return [speed.toFixed(1), 'mph'];
   },
 
   degToCardinal(deg) {
@@ -50,13 +55,13 @@ export default {
     return 'N';
   },
 
-  async getResults(location) {
-    const [weather] = await Promise.all([this.getWeather(location), this.getForecast(location)]);
+  async getResults(location, units = 'metric') {
+    const [weather] = await Promise.all([this.getWeather(location, units), this.getForecast(location, units)]);
     const today = {
-      temperature: weather.main && weather.main.temp,
+      temperature: weather.main && this.tempFix(weather.main.temp, units),
       description: weather.weather && weather.weather[0] && weather.weather[0].description,
       windDeg: weather.wind && this.degToCardinal(weather.wind.deg),
-      windSpeed: weather.wind && this.mpsToKmph(weather.wind.speed),
+      windSpeed: weather.wind && this.windFix(weather.wind.speed, units),
       humidity: weather.main && weather.main.humidity,
       pressure: weather.main && weather.main.pressure,
     };
