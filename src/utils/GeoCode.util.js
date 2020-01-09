@@ -10,7 +10,7 @@ export default {
 
   get() {
     return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(this.success(resolve), this.error(reject))
+      n.geolocation.getCurrentPosition(this.success(resolve), this.error(reject))
     })
   },
 

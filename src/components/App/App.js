@@ -15,7 +15,6 @@ export default () => {
   const [weather, setWeather] = useState({});
 
   const handleSearch = async (s) => {
-    console.log('pesquisa:', s);
     setSearch(s);
   };
 
@@ -27,9 +26,7 @@ export default () => {
     (async () => {
       try {
         const [i, c] = await Promise.all([BingImage.get(), GeoCode.get()]);
-        console.log(c.latitude, c.longitude);
         const l = await OpenCage.convert(c.latitude, c.longitude);
-        console.log(l.city);
         setSearch(l.city);
         setBgImage(i);
       } catch (e) {
@@ -43,7 +40,6 @@ export default () => {
       if (search === '') return;
       try {
         const [l, w] = await OpenWeather.getResults(search, units);
-        console.log("h", l, w)
         setLocation(l);
         setWeather(w);
       } catch (e) {

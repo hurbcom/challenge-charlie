@@ -35,8 +35,6 @@ export default {
     const max = (arr) => arr.reduce((prev, curr) => prev.main.temp > curr.main.temp ? prev : curr);
     const list1 = forecast.slice(1, 9);
     const list2 = forecast.slice(9);
-    console.log("lists", list1, list2);
-
     return [max(list1), max(list2)];
   },
 
@@ -59,8 +57,7 @@ export default {
       const res = await axios.get(api + query + id);
       return res.data;
     } catch (e) {
-      console.log(e);
-      return 0;
+      return e;
     }
   },
 
@@ -68,13 +65,12 @@ export default {
     const weatherQuery = `/data/2.5/weather?lang=pt&q=${search}&units=${units}`;
     const forecastQuery = `/data/2.5/forecast?lang=pt&cnt=17&q=${search}&units=${units}`;
     const [weather, forecast] = await Promise.all([this.getWeather(weatherQuery), this.getWeather(forecastQuery)]);
-    if (!weather || !forecast) return;
+    if (weather instanceof Error) return;
     const fc = this.filterForecast(forecast.list);
     const location = weather.name + ', ' + (weather.sys && weather.sys.country);
     const today = this.genWeather(weather, units);
     const tomorrow = this.genWeather(fc[0], units);
     const afterTomorrow = this.genWeather(fc[1], units);
-    console.log(location, weather, forecast);
     return [location, { today, tomorrow, afterTomorrow }];
   },
 

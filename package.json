@@ -29,6 +29,9 @@
       "react/jsx-one-expression-per-line": 0
     }
   },
+  "jest": {
+    "browser": true
+  },
   "browserslist": [
     ">1%",
     "last 1 version and >0.5%"
