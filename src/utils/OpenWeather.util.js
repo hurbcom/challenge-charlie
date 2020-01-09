@@ -3,30 +3,6 @@ import axios from 'axios';
 
 export default {
 
-  async getWeather(location, units) {
-    try {
-      const owm = 'http://api.openweathermap.org';
-      const l = `/data/2.5/weather?lang=pt&units=${units}&q=`;
-      const id = '&APPID=7ba73e0eb8efe773ed08bfd0627f07b8';
-      const res = await axios.get(owm + l + location + id);
-      return res.data;
-    } catch (e) {
-      return e;
-    }
-  },
-
-  async getForecast(location, units) {
-    try {
-      const owm = 'http://api.openweathermap.org';
-      const l = `/data/2.5/forecast?lang=pt&units=${units}&cnt=40&q=`;
-      const id = '&APPID=7ba73e0eb8efe773ed08bfd0627f07b8';
-      const res = await axios.get(owm + l + location + id);
-      return res.data;
-    } catch (e) {
-      return e;
-    }
-  },
-
   tempFix(temp, units) {
     return [temp.toFixed(1), (units === 'metric' ? 'ºC' : 'ºF')];
   },
@@ -55,34 +31,51 @@ export default {
     return 'N';
   },
 
-  async getResults(location, units = 'metric') {
-    const [weather] = await Promise.all([this.getWeather(location, units), this.getForecast(location, units)]);
-    const today = {
+  filterForecast(forecast) {
+    const max = (arr) => arr.reduce((prev, curr) => prev.main.temp > curr.main.temp ? prev : curr);
+    const list1 = forecast.slice(1, 9);
+    const list2 = forecast.slice(9);
+    console.log("lists", list1, list2);
+
+    return [max(list1), max(list2)];
+  },
+
+  genWeather(weather, units) {
+    return {
       temperature: weather.main && this.tempFix(weather.main.temp, units),
       description: weather.weather && weather.weather[0] && weather.weather[0].description,
+      condCode: weather.weather && weather.weather[0] && weather.weather[0].id,
       windDeg: weather.wind && this.degToCardinal(weather.wind.deg),
       windSpeed: weather.wind && this.windFix(weather.wind.speed, units),
       humidity: weather.main && weather.main.humidity,
       pressure: weather.main && weather.main.pressure,
     };
-    const tomorrow = {
-      temperature: weather.main && weather.main.temp,
-      description: weather.weather && weather.weather[0] && weather.weather[0].description,
-      windDeg: weather.wind && weather.wind.deg,
-      windSpeed: weather.wind && weather.wind.speed,
-      humidity: weather.main && weather.main.humidity,
-      pressure: weather.main && weather.main.pressure,
-    };
-    const afterTomorrow = {
-      temperature: weather.main && weather.main.temp,
-      description: weather.weather && weather.weather[0] && weather.weather[0].description,
-      windDeg: weather.wind && weather.wind.deg,
-      windSpeed: weather.wind && weather.wind.speed,
-      humidity: weather.main && weather.main.humidity,
-      pressure: weather.main && weather.main.pressure,
-    };
+  },
 
-    return { today, tomorrow, afterTomorrow };
+  async getWeather(query) {
+    try {
+      const api = 'http://api.openweathermap.org';
+      const id = '&APPID=7ba73e0eb8efe773ed08bfd0627f07b8';
+      const res = await axios.get(api + query + id);
+      return res.data;
+    } catch (e) {
+      console.log(e);
+      return 0;
+    }
+  },
+
+  async getResults(search, units = 'metric') {
+    const weatherQuery = `/data/2.5/weather?lang=pt&q=${search}&units=${units}`;
+    const forecastQuery = `/data/2.5/forecast?lang=pt&cnt=17&q=${search}&units=${units}`;
+    const [weather, forecast] = await Promise.all([this.getWeather(weatherQuery), this.getWeather(forecastQuery)]);
+    if (!weather || !forecast) return;
+    const fc = this.filterForecast(forecast.list);
+    const location = weather.name + ', ' + (weather.sys && weather.sys.country);
+    const today = this.genWeather(weather, units);
+    const tomorrow = this.genWeather(fc[0], units);
+    const afterTomorrow = this.genWeather(fc[1], units);
+    console.log(location, weather, forecast);
+    return [location, { today, tomorrow, afterTomorrow }];
   },
 
 };
