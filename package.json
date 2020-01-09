@@ -30,7 +30,9 @@
     }
   },
   "jest": {
-    "browser": true
+    "extraGlobals": [
+      "navigator"
+    ]
   },
   "browserslist": [
     ">1%",

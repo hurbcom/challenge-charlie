@@ -17,6 +17,7 @@ it('converts temperatures to colors', () => {
   expect(toColor([100, 'ºF'])).toBe('rgba(185,38,79,0.9)');
 });
 
+
 it('converts conditions to icons', () => {
   expect(toIcon(200)).toBe('0');
   expect(toIcon(300)).toBe('R');
