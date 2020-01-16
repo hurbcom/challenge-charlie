@@ -16,6 +16,8 @@ Para converter latitude e longitude em uma localidade utilize o [OpenCage](https
 
 Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
 
+O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perder pontos do contrário.
+
 ## Requisitos
 
 -   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
