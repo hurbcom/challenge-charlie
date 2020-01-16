@@ -1,6 +1,6 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-Construa um microsite responsivo em SPA (_single-page application_) para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto, deve ser um `input`, aonde o usuário possa trocar a localidade. Com a mudança da localidade, deve ser carregada as informações de previsão do tempo referentes a nova localidade.
+Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto, deve ser um `input`, aonde o usuário possa trocar a localidade. Com a mudança da localidade, deve ser carregada as informações de previsão do tempo referentes a nova localidade.
 
 Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então ser descobrir o nome da cidade via _reverse geocode_.
 
