@@ -34,15 +34,16 @@ Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
 
 ## Critério de avaliação
 
--   **Organização do código**: Separação de módulos, view e model, back-end e front-end
+-   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
+-   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
 -   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
 -   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** (incluindo comentários)
+-   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
 -   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** (Não esperamos cobertura completa)
--   **Histórico de commits** (estrutura e qualidade)
--   **UX**: A interface é de fácil uso e auto-explicativa
--   **Escolhas técnicas**: A escolha das bibliotecas, banco de dados, arquitetura, etc, é a melhor escolha para a aplicação?
+-   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
+-   **Histórico de commits** Qualidade e estrutura dos commits.
+-   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
+-   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
 
 ## Dúvidas
 
