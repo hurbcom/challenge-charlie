@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    challenge-charlie:
+        build:
+            context: ./
+            args:
+                NODE_ENV: production
+        volumes:
+            - .:/usr/src/hurb
+            - /usr/src/hurb/node_modules
+        ports:
+            - 80:80
