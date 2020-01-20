@@ -6,23 +6,15 @@ export default class OpenWeatherService {
     this.key = config.openWeatherKey;
   }
   
-  async findWeather(queryText, units='metric') {
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${queryText}&units=${units}&APPID=${this.key}`;
-      const response = await axios.get(url);
-      return Promise.resolve(response.data);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  findWeather(queryText) {
+    //@TODO fazer tratamento de erros
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${queryText}&units=metric&APPID=${this.key}`;
+    return axios.get(url).then(response => response.data);
   }
 
-  async getWeatherByCoord(latitude, longitude) {
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&APPID=${this.key}`;
-      const response = await axios.get(url);
-      return Promise.resolve(response.data);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  getWeatherByCoord(latitude, longitude) {
+    //@TODO fazer tratamento de erros
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&APPID=${this.key}`;
+    return axios.get(url).then(response => response.data);
   }
 }

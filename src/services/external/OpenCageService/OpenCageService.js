@@ -6,23 +6,15 @@ export default class OpenCageService {
     this.key = config.openCageKey;
   }
 
-  async findLocationByName(locationName) {
-    try {
-      const url = `https://api.opencagedata.com/geocode/v1/json?language=pt-BR&q=${locationName}&key=${this.key}`;
-      const response = await axios.get(url);
-      return Promise.resolve(response.data);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  findLocationByName(locationName) {
+    //@TODO fazer tratamento de erros
+    const url = `https://api.opencagedata.com/geocode/v1/json?language=pt-BR&q=${locationName}&key=${this.key}`;
+    return axios.get(url).then(response => response.data);
   }
 
-  async getLocation(latitude, longitude) {
-    try {
-      const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${this.key}`;
-      const response = await axios.get(url);
-      return Promise.resolve(response.data);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  getLocation(latitude, longitude) {
+    //@TODO fazer tratamento de erros
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${this.key}`;
+    return axios.get(url).then(response => response.data);
   }
 }

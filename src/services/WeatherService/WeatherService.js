@@ -5,7 +5,7 @@ export default class WeatherService  {
     this.openWeatherService = new OpenWeatherService();
   }
   
-  async getWeatherByCoord(latitude, longitude) {
+  getWeatherByCoord(latitude, longitude) {
     return this.openWeatherService.getWeatherByCoord(latitude, longitude);
   }
 }

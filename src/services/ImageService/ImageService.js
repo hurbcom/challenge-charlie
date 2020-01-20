@@ -5,7 +5,7 @@ export default class ImageService {
     this.bingService = new BingService();
   }
 
-  async getUrl() {
+  getUrl() {
     return this.bingService.getImageUrl();
   }
 }

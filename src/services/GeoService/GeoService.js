@@ -5,7 +5,7 @@ export default class GeoService {
     this.openCageService = new OpenCageService();
   }
 
-  async getCurrentLocation() {
+  getCurrentLocation() {
     return this.getCurrentCoords().then(({ latitude, longitude }) => {
       return this.openCageService
         .getLocation(latitude, longitude)
@@ -14,16 +14,15 @@ export default class GeoService {
     });
   }
 
-  async findLocationByName(locationName) {
+  findLocationByName(locationName) {
     return this.openCageService
       .findLocationByName(locationName)
       .then(data => this.normalizeResults(data.results));
   }
 
-  async getCurrentCoords() {
+  getCurrentCoords() {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) return reject("unavailable");
-
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           resolve(coords);
@@ -38,10 +37,6 @@ export default class GeoService {
   normalizeResults(results) {
     return results.map(locationData => {
       return {
-        location: locationData.components.location,
-        countryCode: String(locationData.components.country_code).toUpperCase(),
-        stateCode: String(locationData.components.state_code).toUpperCase(),
-        type: locationData.components._type,
         formatted: locationData.formatted,
         lat: locationData.geometry.lat,
         lng: locationData.geometry.lng
