@@ -17,10 +17,10 @@ OBS: Para saber mais sobre as funcionalidades solicitadas, basta acessar esse [l
 - ### Modo Produção:
   ```
   cd $pasta-da-aplicacao
-  docker-compose build --no-cache
-  docker-compose up -d
+  docker build -t challenge-charlie-bruno-marques .
+  docker run -p 8080:80 challenge-charlie-bruno-marques
   ```
-  Depois é só acessar `http://localhost`
+  Depois é só acessar `http://localhost:8080`
 
 - ### Modo Desenvolvimento:
   ```
@@ -29,3 +29,10 @@ OBS: Para saber mais sobre as funcionalidades solicitadas, basta acessar esse [l
   npm run start
   ```
   Depois é só acessar `http://localhost:3000`
+
+- ### Modo Teste:
+  ```
+  cd $pasta-da-aplicacao
+  npm i
+  npm run test
+  ```
