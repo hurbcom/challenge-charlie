@@ -1,11 +1,11 @@
 import { getThemeByTemp } from './weatherTheme';
-import ClearIcon from '../../assets/icons/weather/clear.svg';
-import ThunderstormIcon from '../../assets/icons/weather/thunderstorm.svg';
-import SnowIcon from '../../assets/icons/weather/snow.svg';
-import CloudsIcon from '../../assets/icons/weather/clouds.svg';
-import DrizzleIcon from '../../assets/icons/weather/drizzle.svg';
-import MistIcon from '../../assets/icons/weather/mist.svg';
-import RainIcon from '../../assets/icons/weather/rain.svg';
+import ClearIcon from '../assets/icons/weather/clear.svg';
+import ThunderstormIcon from '../assets/icons/weather/thunderstorm.svg';
+import SnowIcon from '../assets/icons/weather/snow.svg';
+import CloudsIcon from '../assets/icons/weather/clouds.svg';
+import DrizzleIcon from '../assets/icons/weather/drizzle.svg';
+import MistIcon from '../assets/icons/weather/mist.svg';
+import RainIcon from '../assets/icons/weather/rain.svg';
 
 
 const weathers = {
