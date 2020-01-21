@@ -1,58 +1,77 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
+# Desafio Hurb - Charlie
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+Aplicação web que apresenta a previsão do tempo para o um determinado local selecionado pelo usuário.
 
- Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
+## Funcionalidades
 
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
+Apresentar a previsão de tempo para hoje, amanhã e depois de amanhã de uma cidade que pode ser escolhida através de um input que existe no topo da aplicação. Você precisa digitar a cidade e escolher uma das opções que aparecem logo abaixo.
 
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+A temperatura apresentada deve ser modificada entre celsius e fahrenheit quando clicada.
 
-A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+As cores e o ícone devem ser apresentados conforme a previsão do tempo.
 
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+OBS: Para saber mais sobre as funcionalidades solicitadas, basta acessar esse [link](https://github.com/hurbcom/challenge-charlie).
 
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+## Tecnologias utilizadas
 
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+- [ReactJS](https://pt-br.reactjs.org/)
+- [Axios](https://github.com/axios/axios#axios)
+- [Lodash](https://lodash.com/)
+- [Docker](https://www.docker.com/)
 
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
+## Para iniciar a aplicação
 
-## Requisitos
+- ### Modo Produção:
+  ```
+  cd $pasta-da-aplicacao
+  docker build -t challenge-charlie-bruno-marques .
+  docker run -p 8080:80 challenge-charlie-bruno-marques
+  ```
+  Depois é só acessar `http://localhost:8080`
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+- ### Modo Desenvolvimento:
+  ```
+  cd $pasta-da-aplicacao
+  npm i
+  npm run start
+  ```
+  Depois é só acessar `http://localhost:3000`
 
-## Critério de avaliação
+- ### Modo Teste:
+  ```
+  cd $pasta-da-aplicacao
+  npm i
+  npm run test
+  ```
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
 
-## Dúvidas
+## Melhorias pendentes
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+- Aumentar cobertura de teste da aplicação
+- Tratar melhor os possíveis erros das API'S externas
+- Fazer uma busca mais precisa/inteligente das localidades
 
-Boa sorte e boa viagem! ;)
+## Problemas conhecidos
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+- O firefox do ubuntu solicita a permissão para pegar a localização do usuário mas recusa a promise após a aceitação
+
+
+## Decisões técnicas
+
+### Contexts
+
+Criei dois contextos para concentrar a lógica de negócio da aplicação. O contexto WeatherContext permite controlar os estados das previsões gerais da localidade e a medida de temperatura atual da aplicação. Já o contexto WeatherDayContext permite controlar os estados da previsão de um dia específico. Essa separação visa dividir as reponsabilidades funcionais da aplicação.
+
+### Views
+
+Optei por separar os componentes que possuem a camada de visualização mais complexa entre dois scripts. Por exemplo, o script DayInfoView.js possui diversos fragmentos da view separados para facilitar e reaproveitamento dos mesmos. Além disso, fica mais fácil mudar a camada de visualização de um componente utilizando o mesmo "controller".
+
+### Outras
+
+Contemplei criar componentes específicos para exibição das informações de um dia específico (Ex: TodayWeather, TomorrowWeather, AfterTomorrowWeather). Porém, desisti dessa ideia pois complicaria um pouco a revisão do código pela equipe do Hurb e sei que a aplicação não crescerá de tamanho. Mas vale salientar que essa seria uma decisão tomada por mim caso não fosse um challenge, pois dessa forma eu estaria possibilitando o reaproveitamento do componente com mais facilidade e estarei concentrando a responsabilidade de saber montar o componente no próprio componente nomeado.
+
+## Contato
+
+- LinkedIn: [@brunosm231](https://www.linkedin.com/in/brunosm231/)
+- GitHub: [@brunosm231](https://github.com/brunosm231)
+- Skype: [@brunosm231](https://join.skype.com/invite/sP8fcRaSPUG9)
