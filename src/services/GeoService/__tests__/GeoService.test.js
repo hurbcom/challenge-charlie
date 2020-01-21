@@ -24,7 +24,7 @@ describe("GeoService", () => {
     };
 
     it("should return 2 locations", () => {
-      expect(new GeoService().normalizeResults([mockedLocation1, mockedLocation2]).length).toBe(2);
+      expect(new GeoService().normalizeResults([mockedLocation1, mockedLocation2])).toHaveLength(2);
     });
 
     it("should return location in valid schema", () => {
