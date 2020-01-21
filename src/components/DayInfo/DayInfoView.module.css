@@ -1,0 +1,60 @@
+.infoBox{
+  width: 40%;
+  text-align: left;
+  margin-bottom: 30px;
+}
+.infoBox p{
+  margin: 0.3rem 0rem;
+  font-size: 2rem;
+}
+.infoBox h1{    
+  font-size: 3rem;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+}
+
+.basicInfo {
+  min-height: 130px;
+}
+.temperature {
+  cursor: pointer;
+}
+.complexInfo {
+  min-height: 130px;
+}
+
+.iconBox{
+  width: 60%;
+  text-align: center;
+}
+.icon{
+  margin: 30px;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+    /* flex-direction: column;
+  /* flex-direction: row; */
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+    
+  .iconBox{
+    width: 100%;
+  }
+  .infoBox{
+    width: 80%;
+  }
+  .icon{
+    max-height: 150px;
+  }
+}
