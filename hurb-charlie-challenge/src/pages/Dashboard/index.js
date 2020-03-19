@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import api from '../../services/api';
-
+import openGateApi from '../../services/openGateApi';
 import { Container } from './styles';
 
 export default function Dashboard() {
-    const [location, setLocation] = useState(null);
+    const [userCoords, setUserCoords] = useState(null);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             ({ coords: { latitude, longitude } }) => {
-                setLocation({ latitude, longitude });
+                setUserCoords({
+                    region: { latitude, longitude },
+                    location: {
+                        country: null,
+                        state: null,
+                        city: null,
+                        formattedAddress: null
+                    }
+                });
             },
             () => {
                 toast.error('Você precisa autorizar a localização no brownser');
@@ -25,18 +32,21 @@ export default function Dashboard() {
     }, []);
 
     async function getCoordsData() {
-        const { latitude, longitude } = location;
-        const response = await api.get('/json', {
+        const { latitude, longitude } = userCoords.region;
+        const response = await openGateApi.get('/json', {
             params: {
-                q: (latitude, longitude),
+                q: `${latitude} ${longitude}`,
                 key: 'c63386b4f77e46de817bdf94f552cddf'
             }
         });
-
-        console.tron.log(response.data);
+        userCoords.location.country =
+            response.data.results[0].components.country;
+        userCoords.location.city = response.data.results[0].components.city;
+        userCoords.location.state = response.data.results[0].components.state;
+        userCoords.location.formattedAddress =
+            response.data.results[0].components.formatted;
     }
-
-    if (location) {
+    if (userCoords) {
         getCoordsData();
     }
 
