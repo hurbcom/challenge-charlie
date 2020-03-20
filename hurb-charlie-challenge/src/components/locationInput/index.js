@@ -47,10 +47,8 @@ export default function AvatarInput() {
             }
         );
     }, [loading]);
-
-    console.tron.log(locationData);
     return (
-        <Container background="#7159c1">
+        <Container>
             <img src={RadarIconInput} alt="Radar" />
             <input
                 placeholder={

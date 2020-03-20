@@ -25,7 +25,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 14px 'Roboto', sans-serif;
+    font: 18px 'Roboto', sans-serif;
   }
 
   a {
@@ -35,9 +35,4 @@ export default createGlobalStyle`
   li {
     list-style: none;
   }
-
-  button {
-    cursor: pointer;
-  }
-
 `;
