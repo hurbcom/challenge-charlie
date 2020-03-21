@@ -46,7 +46,11 @@ export default function AvatarInput() {
         setLocationInputText(e);
     }
     function handleSubmitButton(location) {
-        dispatch(WeatherActions.WeatherDataUpdate(location));
+        if (location) {
+            dispatch(WeatherActions.WeatherDataUpdate(location));
+        } else {
+            toast.error('Você precisa inserir a localidade corretamente');
+        }
     }
 
     return (

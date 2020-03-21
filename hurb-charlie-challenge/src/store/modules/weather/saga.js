@@ -16,7 +16,22 @@ export function* WeatherDataRequestWithCityName({ payload }) {
     }
 }
 
+export function* WeatherDataUpdateWithCityName({ payload }) {
+    try {
+        console.tron.log(payload);
+        const response = yield openWeatherApi.get('', {
+            params: {
+                q: `${payload.location}`,
+                appid: '7ba73e0eb8efe773ed08bfd0627f07b8'
+            }
+        });
+        yield put(WeatherDataSucess(response.data));
+    } catch (err) {
+        yield put(WeatherDatafailure());
+    }
+}
+
 export default all([
     takeLatest('@weather/REQUEST', WeatherDataRequestWithCityName),
-    takeLatest('@weather/UPDATE', WeatherDataRequestWithCityName)
+    takeLatest('@weather/UPDATE', WeatherDataUpdateWithCityName)
 ]);
