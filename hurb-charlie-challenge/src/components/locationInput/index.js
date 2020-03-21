@@ -1,17 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Container } from './styles';
 import RadarIconInput from '../../assets/meteocons-icons/SVG/44.svg';
-import openGateApi from '../../services/openGateApi';
+import * as LocationActions from '../../store/modules/location/actions';
 
 export default function AvatarInput() {
-    const [, setUserCoords] = useState({
+    const [userCoords, setUserCoords] = useState({
         region: { latitude: null, longitude: null }
     });
-    const [locationData, setLocationData] = useState({
-        location: { city: null, longitude: null }
-    });
-    const [loading, setLoading] = useState(false);
+    const [loadingCoords, setLoadingCoords] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -19,26 +20,17 @@ export default function AvatarInput() {
                 setUserCoords({
                     region: { latitude, longitude }
                 });
-                setLoading(true);
-                async function getCoordsData() {
-                    const response = await openGateApi.get('/json', {
-                        params: {
-                            q: `${latitude} ${longitude}`,
-                            key: 'c63386b4f77e46de817bdf94f552cddf'
-                        }
-                    });
-                    setLocationData({
-                        location: {
-                            city: response.data.results[0].components.city,
-                            state: response.data.results[0].components.state
-                        }
-                    });
+                setLoadingCoords(true);
+                if (loadingCoords) {
+                    dispatch(
+                        LocationActions.LocationDataRequest(userCoords.region)
+                    );
                 }
-
-                if (loading) getCoordsData();
             },
             () => {
-                toast.error('Você precisa autorizar a localização no brownser');
+                toast.error(
+                    'Não foi possivel detectar sua localização, verifique sua KEY ou a permissão do browser'
+                );
             },
             {
                 timeout: 2000,
@@ -46,19 +38,12 @@ export default function AvatarInput() {
                 maximumAge: 1000
             }
         );
-    }, [loading]);
+    }, [dispatch, loadingCoords]);
+
     return (
         <Container>
             <img src={RadarIconInput} alt="Radar" />
-            <input
-                placeholder={
-                    locationData.location.city
-                        ? `
-            ${locationData.location.city}, ${locationData.location.state}
-            `
-                        : 'Não foi possivel achar sua localização'
-                }
-            />
+            <input placeholder="Não foi possivel achar sua localização" />
         </Container>
     );
 }
