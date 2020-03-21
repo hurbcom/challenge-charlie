@@ -2,12 +2,14 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-    height: 80px;
     background: #d8d8d8;
     display: flex;
     align-items: center;
-    width: 600px;
+    align-self: center;
     border-radius: 4px;
+    flex: 0.2;
+    width: 40%;
+
     input {
         background: #d8d8d8;
         border: 0;
@@ -15,6 +17,7 @@ export const Container = styled.div`
         color: #6e6e6e;
         height: 50px;
         margin-left: 20px;
+        width: 300px;
 
         &::placeholder {
             text-decoration-color: #6e6e6e;
@@ -30,7 +33,7 @@ export const Container = styled.div`
     }
 
     button {
-        background: #d8d8d8;
+        background: #7159c1;
         color: #fff;
         border: 0;
         border-radius: 4px;

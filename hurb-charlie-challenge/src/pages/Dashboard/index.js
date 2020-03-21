@@ -9,11 +9,9 @@ import WeatherMinDetails from '../../components/WeatherMinDetails';
 export default function Dashboard() {
     return (
         <Container>
-            <span>
-                <Locationinput />
-                <WeatherDetails />
-                <WeatherMinDetails />
-            </span>
+            <Locationinput />
+            <WeatherDetails />
+            <WeatherMinDetails />
         </Container>
     );
 }

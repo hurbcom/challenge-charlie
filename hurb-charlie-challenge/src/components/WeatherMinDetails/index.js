@@ -20,9 +20,11 @@ export default function WeatherMinDetails() {
             </span>
             <br />
             <span>
-                {weatherData.list[8].main.temp
-                    ? weatherData.list[8].main.temp
-                    : 'Carregando...'}
+                <strong>
+                    {weatherData.list[8].main.temp
+                        ? weatherData.list[8].main.temp
+                        : 'Carregando...'}
+                </strong>
             </span>
             <br />
             <span>
@@ -37,9 +39,11 @@ export default function WeatherMinDetails() {
             </span>
             <br />
             <span>
-                {weatherData.list[16].main.temp
-                    ? weatherData.list[16].main.temp
-                    : 'Carregando...'}
+                <strong>
+                    {weatherData.list[16].main.temp
+                        ? weatherData.list[16].main.temp
+                        : 'Carregando...'}
+                </strong>
             </span>
         </Container>
     );

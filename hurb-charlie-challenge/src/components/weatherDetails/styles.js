@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    align-items: center;
-    position: absolute;
-    height: 500px;
+    flex: 0.5;
+    width: 40%;
+
     > div {
+        border-radius: 4px;
+        justify-content: space-between;
         display: flex;
         align-items: center;
         background: yellow;
+        height: 320px;
         > div {
-            width: 300px;
+            width: 200px;
         }
     }
 
     img {
         width: 100px;
         height: 100px;
-    }
-
-    span {
-        text-decoration: bold;
     }
 `;
