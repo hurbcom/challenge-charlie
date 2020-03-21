@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Container } from './styles';
 import RadarIconInput from '../../assets/meteocons-icons/SVG/44.svg';
@@ -11,8 +11,8 @@ export default function AvatarInput() {
         region: { latitude: null, longitude: null }
     });
     const [loadingCoords, setLoadingCoords] = useState(false);
-
     const dispatch = useDispatch();
+    const { locationData } = useSelector(state => state.location.data);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -43,7 +43,13 @@ export default function AvatarInput() {
     return (
         <Container>
             <img src={RadarIconInput} alt="Radar" />
-            <input placeholder="Não foi possivel achar sua localização" />
+            <input
+                placeholder={
+                    locationData
+                        ? `${locationData.results[0].components.city}, ${locationData.results[0].components.state}`
+                        : 'Carregando...'
+                }
+            />
         </Container>
     );
 }

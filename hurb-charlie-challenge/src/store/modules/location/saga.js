@@ -12,7 +12,7 @@ export function* GetLocationDataWithCoords({ payload }) {
                 key: 'c63386b4f77e46de817bdf94f552cddf'
             }
         });
-        yield put(LocationDataSucess(response.data.results[0]));
+        yield put(LocationDataSucess(response.data));
     } catch (err) {
         toast.error('Erro ao Localizar');
         yield put(LocationDatafailure());

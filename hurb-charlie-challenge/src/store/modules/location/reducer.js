@@ -10,8 +10,7 @@ export default function location(state = INITIAL_STATE, action) {
             case '@location/REQUEST':
                 break;
             case '@location/SUCESS':
-                draft.state = action.payload.components.state;
-                draft.city = action.payload.components.city;
+                draft.data = action.payload;
                 break;
             case '@location/FAILURE':
                 break;
