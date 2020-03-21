@@ -1,20 +1,20 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-    location: null
+    weather: null
 };
 
-export default function location(state = INITIAL_STATE, action) {
+export default function weather(state = INITIAL_STATE, action) {
     return produce(state, draft => {
         switch (action.type) {
-            case '@location/REQUEST':
+            case '@weather/REQUEST':
                 break;
-            case '@location/SUCESS':
+            case '@weather/SUCESS':
                 draft.data = action.payload;
                 break;
-            case '@location/FAILURE':
+            case '@weather/FAILURE':
                 break;
-            case '@location/UPDATE':
+            case '@weather/UPDATE':
                 break;
             default:
         }

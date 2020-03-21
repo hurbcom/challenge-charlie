@@ -13,6 +13,7 @@ export default function AvatarInput() {
     const [loadingCoords, setLoadingCoords] = useState(false);
     const dispatch = useDispatch();
     const { locationData } = useSelector(state => state.location.data);
+    const [teste, setTeste] = useState();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -40,6 +41,11 @@ export default function AvatarInput() {
         );
     }, [dispatch, loadingCoords]);
 
+    function handleChangeLocation(e) {
+        setTeste(e);
+        console.tron.log(teste);
+    }
+
     return (
         <Container>
             <img src={RadarIconInput} alt="Radar" />
@@ -49,6 +55,7 @@ export default function AvatarInput() {
                         ? `${locationData.results[0].components.city}, ${locationData.results[0].components.state}`
                         : 'Carregando...'
                 }
+                onChange={e => handleChangeLocation(e.target.value)}
             />
         </Container>
     );

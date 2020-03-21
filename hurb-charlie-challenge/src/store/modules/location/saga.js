@@ -2,6 +2,7 @@ import { takeLatest, all, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import openGateApi from '../../../services/openGateApi';
 import { LocationDataSucess, LocationDatafailure } from './actions';
+import { WeatherDataRequest } from '../weather/actions';
 
 export function* GetLocationDataWithCoords({ payload }) {
     try {
@@ -13,8 +14,9 @@ export function* GetLocationDataWithCoords({ payload }) {
             }
         });
         yield put(LocationDataSucess(response.data));
+        yield put(WeatherDataRequest(response.data));
     } catch (err) {
-        toast.error('Erro ao Localizar');
+        toast.error('Erro ao Localizar a Região');
         yield put(LocationDatafailure());
     }
 }

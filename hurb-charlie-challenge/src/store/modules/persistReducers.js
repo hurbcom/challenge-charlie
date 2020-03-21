@@ -6,7 +6,7 @@ export default reducers => {
         {
             key: 'hurb-challenge-charlie',
             storage,
-            whitelist: ['location']
+            whitelist: ['location', 'weather']
         },
         reducers
     );

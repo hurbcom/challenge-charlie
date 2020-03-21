@@ -1,41 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { fromUnixTime, format } from 'date-fns';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { format, fromUnixTime } from 'date-fns';
 import WeatherIcon from '../../assets/meteocons-icons/SVG/2.svg';
-import openWeatherApi from '../../services/openWeatherApi';
 import { Container } from './styles';
-import WeatherMinDetails from '../WeatherMinDetails';
 
 export default function WeatherDetails() {
-    const [weatherData, setWeatherData] = useState(null);
-
-    async function getWeatherData(latitudeCoords, longitudeCoords) {
-        const response = await openWeatherApi.get('', {
-            params: {
-                lat: latitudeCoords,
-                lon: longitudeCoords,
-                appid: '7ba73e0eb8efe773ed08bfd0627f07b8',
-                location: null
-            }
-        });
-
-        setWeatherData(response.data);
-    }
-
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            ({ coords: { latitude, longitude } }) => {
-                if (latitude && longitude) {
-                    getWeatherData(latitude, longitude);
-                }
-            },
-            () => {},
-            {
-                timeout: 2000,
-                enableHighAccuracy: true,
-                maximumAge: 1000
-            }
-        );
-    }, []);
+    const weatherData = useSelector(state => state.weather.data.weatherData);
 
     return (
         <Container>
@@ -45,53 +15,50 @@ export default function WeatherDetails() {
                 </div>
                 <div>
                     <span>
-                        {weatherData
-                            ? `${format(
+                        {weatherData.list[0]
+                            ? format(
                                   fromUnixTime(weatherData.list[0].dt),
-                                  'MM/dd/yyyy'
-                              )}`
+                                  "do 'de' MMMM yyyy"
+                              )
                             : 'Carregando...'}
                     </span>
                     <br />
                     <span>
-                        {weatherData
-                            ? `${weatherData.list[0].main.temp}°`
+                        {weatherData.list[0].weather[0].main
+                            ? weatherData.list[0].weather[0].main
+                            : 'Carregando...'}
+                    </span>
+                    <br />
+                    <br />
+                    <span>
+                        {weatherData.list[0].main.temp
+                            ? weatherData.list[0].main.temp
                             : 'Carregando...'}
                     </span>
                     <br />
                     <span>
-                        {weatherData
-                            ? `${weatherData.list[0].weather[0].main}`
+                        Vento: NO
+                        {weatherData.list[0].wind.speed
+                            ? ` ${weatherData.list[0].wind.speed}`
+                            : 'Carregando...'}
+                        km/h
+                    </span>
+                    <br />
+                    <span>
+                        Humidade:
+                        {weatherData.list[0].main.humidity
+                            ? ` ${weatherData.list[0].main.humidity}%`
                             : 'Carregando...'}
                     </span>
                     <br />
                     <span>
-                        {weatherData
-                            ? `Vento: NO ${weatherData.list[0].wind.speed}`
-                            : 'Carregando...'}
-                    </span>
-                    <br />
-                    <span>
-                        {weatherData
-                            ? `Humidade: ${weatherData.list[0].main.humidity}`
-                            : 'Carregando...'}
-                    </span>
-                    <br />
-                    <span>
-                        {weatherData
-                            ? `Pressão: ${weatherData.list[0].main.pressure}`
+                        Pressão:
+                        {weatherData.list[0].main.pressure
+                            ? ` ${weatherData.list[0].main.pressure}hPA`
                             : 'Carregando...'}
                     </span>
                 </div>
             </div>
-            <WeatherMinDetails
-                day={weatherData ? weatherData.list[8].dt : null}
-                tempDay={weatherData ? weatherData.list[8].main.temp : null}
-            />
-            <WeatherMinDetails
-                day={weatherData ? weatherData.list[16].dt : null}
-                tempDay={weatherData ? weatherData.list[16].main.temp : null}
-            />
         </Container>
     );
 }

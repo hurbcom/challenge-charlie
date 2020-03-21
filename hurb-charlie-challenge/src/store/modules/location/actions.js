@@ -5,6 +5,13 @@ export function LocationDataRequest(coordinates) {
     };
 }
 
+export function LocationDataUpdate(locationData) {
+    return {
+        type: '@location/UPDATE',
+        payload: { locationData }
+    };
+}
+
 export function LocationDataSucess(locationData) {
     return {
         type: '@location/SUCESS',
