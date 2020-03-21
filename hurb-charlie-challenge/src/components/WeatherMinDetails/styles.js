@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     background: green;
-    flex: 0.3;
+    flex: 0.2;
     width: 40%;
     text-align: right;
 
@@ -10,7 +10,6 @@ export const Container = styled.div`
         margin-right: 30px;
         margin-top: 50px;
     }
-
     strong {
         padding: 70px;
         top: 50px;

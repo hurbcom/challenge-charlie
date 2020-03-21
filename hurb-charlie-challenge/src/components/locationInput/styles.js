@@ -7,7 +7,7 @@ export const Container = styled.div`
     align-items: center;
     align-self: center;
     border-radius: 4px;
-    flex: 0.2;
+    flex: 0.15;
     width: 40%;
 
     input {

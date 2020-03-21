@@ -14,6 +14,11 @@ export default function weather(state = INITIAL_STATE, action) {
                 break;
             case '@weather/FAILURE':
                 break;
+            case '@weather/CHANGE_TEMPERATURE_REQUEST':
+                break;
+            case '@weather/CHANGE_TEMPERATURE_SUCESS':
+                console.tron.log(action);
+                break;
             case '@weather/UPDATE':
                 break;
             default:

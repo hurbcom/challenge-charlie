@@ -19,17 +19,10 @@ export default function WeatherMinDetails() {
                 </strong>
             </span>
             <br />
-            <span>
-                <strong>
-                    {weatherData.list[8].main.temp
-                        ? weatherData.list[8].main.temp
-                        : 'Carregando...'}
-                </strong>
-            </span>
             <br />
             <span>
                 <strong>
-                    {weatherData.list[16]
+                    {weatherData.list[8]
                         ? format(
                               fromUnixTime(weatherData.list[16].dt),
                               "do 'de' MMMM yyyy"
@@ -38,13 +31,7 @@ export default function WeatherMinDetails() {
                 </strong>
             </span>
             <br />
-            <span>
-                <strong>
-                    {weatherData.list[16].main.temp
-                        ? weatherData.list[16].main.temp
-                        : 'Carregando...'}
-                </strong>
-            </span>
+            <br />
         </Container>
     );
 }

@@ -5,6 +5,20 @@ export function WeatherDataRequest(location) {
     };
 }
 
+export function WeatherChangeTemperatureRequest(temperature) {
+    return {
+        type: '@weather/CHANGE_TEMPERATURE_REQUEST',
+        payload: { temperature }
+    };
+}
+
+export function WeatherChangeTemperatureSucess(temperature) {
+    return {
+        type: '@weather/CHANGE_TEMPERATURE_SUCESS',
+        payload: { temperature }
+    };
+}
+
 export function WeatherDataUpdate(location) {
     return {
         type: '@weather/UPDATE',

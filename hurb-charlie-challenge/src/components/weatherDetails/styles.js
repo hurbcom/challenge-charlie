@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    flex: 0.5;
+    flex: 0.65;
     width: 40%;
 
     > div {
@@ -10,14 +10,16 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         background: yellow;
-        height: 320px;
+        height: 410px;
         > div {
             width: 200px;
         }
     }
-
+    button {
+        border: none;
+        background: none;
+    }
     img {
-        width: 100px;
-        height: 100px;
+        width: 150%;
     }
 `;

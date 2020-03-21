@@ -1,12 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { format, fromUnixTime } from 'date-fns';
+import { trunc } from 'math';
 import WeatherIcon from '../../assets/meteocons-icons/SVG/2.svg';
+import * as WeatherActions from '../../store/modules/weather/actions';
+
 import { Container } from './styles';
 
 export default function WeatherDetails() {
     const weatherData = useSelector(state => state.weather.data.weatherData);
+    const temperature = useSelector(state => state.weather.data.weatherData);
 
+    const dispatch = useDispatch();
+
+    function handleChangeTemp(temp) {
+        dispatch(WeatherActions.WeatherChangeTemperatureRequest(temp));
+    }
     return (
         <Container>
             <div>
@@ -30,11 +39,12 @@ export default function WeatherDetails() {
                     </span>
                     <br />
                     <br />
-                    <span>
-                        {weatherData.list[0].main.temp
-                            ? weatherData.list[0].main.temp
-                            : 'Carregando...'}
-                    </span>
+                    <button
+                        type="button"
+                        onClick={() => handleChangeTemp(temperature)}
+                    >
+                        {trunc(temperature)} °
+                    </button>
                     <br />
                     <span>
                         Vento: NO

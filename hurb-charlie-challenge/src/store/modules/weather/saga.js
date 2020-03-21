@@ -1,6 +1,10 @@
 import { takeLatest, all, put } from 'redux-saga/effects';
 import openWeatherApi from '../../../services/openWeatherApi';
-import { WeatherDataSucess, WeatherDatafailure } from './actions';
+import {
+    WeatherDataSucess,
+    WeatherDatafailure,
+    WeatherChangeTemperatureSucess
+} from './actions';
 
 export function* WeatherDataRequestWithCityName({ payload }) {
     try {
@@ -31,7 +35,15 @@ export function* WeatherDataUpdateWithCityName({ payload }) {
     }
 }
 
+export function* WeatherChangeTemperature({ payload }) {
+    if (payload > 100) payload -= 273;
+    if (payload < 100) payload += 273;
+
+    yield put(WeatherChangeTemperatureSucess(payload));
+}
+
 export default all([
     takeLatest('@weather/REQUEST', WeatherDataRequestWithCityName),
-    takeLatest('@weather/UPDATE', WeatherDataUpdateWithCityName)
+    takeLatest('@weather/UPDATE', WeatherDataUpdateWithCityName),
+    takeLatest('@weather/CHANGE_TEMPERATURE_REQUEST', WeatherChangeTemperature)
 ]);
