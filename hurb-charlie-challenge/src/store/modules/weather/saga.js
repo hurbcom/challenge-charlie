@@ -6,7 +6,7 @@ export function* WeatherDataRequestWithCityName({ payload }) {
     try {
         const response = yield openWeatherApi.get('', {
             params: {
-                q: `${payload.location.results[0].components.city}, ${payload.location.results[0].components.state_code}, ${payload.location.results[0].components.country_code}`,
+                q: `${payload.location.results[0].components.city}`,
                 appid: '7ba73e0eb8efe773ed08bfd0627f07b8'
             }
         });
@@ -17,5 +17,6 @@ export function* WeatherDataRequestWithCityName({ payload }) {
 }
 
 export default all([
-    takeLatest('@weather/REQUEST', WeatherDataRequestWithCityName)
+    takeLatest('@weather/REQUEST', WeatherDataRequestWithCityName),
+    takeLatest('@weather/UPDATE', WeatherDataRequestWithCityName)
 ]);

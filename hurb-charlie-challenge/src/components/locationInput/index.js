@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Container } from './styles';
 import RadarIconInput from '../../assets/meteocons-icons/SVG/44.svg';
 import * as LocationActions from '../../store/modules/location/actions';
+import * as WeatherActions from '../../store/modules/weather/actions';
 
 export default function AvatarInput() {
     const [userCoords, setUserCoords] = useState({
@@ -13,7 +14,7 @@ export default function AvatarInput() {
     const [loadingCoords, setLoadingCoords] = useState(false);
     const dispatch = useDispatch();
     const { locationData } = useSelector(state => state.location.data);
-    const [teste, setTeste] = useState();
+    const [locationInputText, setLocationInputText] = useState();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -42,8 +43,10 @@ export default function AvatarInput() {
     }, [dispatch, loadingCoords]);
 
     function handleChangeLocation(e) {
-        setTeste(e);
-        console.tron.log(teste);
+        setLocationInputText(e);
+    }
+    function handleSubmitButton(location) {
+        dispatch(WeatherActions.WeatherDataUpdate(location));
     }
 
     return (
@@ -57,6 +60,12 @@ export default function AvatarInput() {
                 }
                 onChange={e => handleChangeLocation(e.target.value)}
             />
+            <button
+                type="button"
+                onClick={() => handleSubmitButton(locationInputText)}
+            >
+                Trocar Localidade
+            </button>
         </Container>
     );
 }
