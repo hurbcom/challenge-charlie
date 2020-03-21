@@ -2,21 +2,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     align-items: center;
-    display: flex;
     position: absolute;
-    flex-direction: column;
+    height: 500px;
     > div {
         display: flex;
         align-items: center;
         background: yellow;
-
         > div {
-            justify-content: space-between;
-            width: 200px;
+            width: 300px;
         }
-    }
-
-    div {
     }
 
     img {

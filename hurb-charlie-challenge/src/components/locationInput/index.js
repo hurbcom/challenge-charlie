@@ -49,7 +49,7 @@ export default function AvatarInput() {
         if (location) {
             dispatch(WeatherActions.WeatherDataUpdate(location));
         } else {
-            toast.error('Você precisa inserir a localidade corretamente');
+            toast.error('Você precisa inserir a localidade');
         }
     }
 
@@ -68,7 +68,7 @@ export default function AvatarInput() {
                 type="button"
                 onClick={() => handleSubmitButton(locationInputText)}
             >
-                Trocar Localidade
+                Trocar
             </button>
         </Container>
     );
