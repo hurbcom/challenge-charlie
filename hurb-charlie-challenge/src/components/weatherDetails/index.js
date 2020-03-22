@@ -30,7 +30,7 @@ export default function WeatherDetails() {
         if ((temp > 35 && temp < 333) || (temp > 288 && temp < 318)) {
             return '#DF0101';
         }
-        return 'gray';
+        return '#585858';
     }
 
     backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);

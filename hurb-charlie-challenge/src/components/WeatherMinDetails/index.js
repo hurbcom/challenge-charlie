@@ -20,15 +20,15 @@ export default function WeatherMinDetails() {
 
     function handleBackgroundColor(temp) {
         if (temp < 15 || (temp > 180 && temp < 288)) {
-            return 'blue';
+            return '#013ADF';
         }
         if ((temp > 15 && temp < 35) || (temp > 288 && temp < 318)) {
-            return 'yellow';
+            return '#D7DF01';
         }
         if ((temp > 35 && temp < 333) || (temp > 288 && temp < 318)) {
-            return 'red';
+            return '#DF0101';
         }
-        return 'gray';
+        return '#585858';
     }
 
     backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
