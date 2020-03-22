@@ -9,12 +9,14 @@ import { Container } from './styles';
 
 export default function WeatherDetails() {
     const weatherData = useSelector(state => state.weather.data.weatherData);
-    const temperature = useSelector(state => state.weather.data.weatherData);
+    const temperature = useSelector(
+        state => state.weather.data.weatherData.list[0].main.temp
+    );
 
     const dispatch = useDispatch();
 
-    function handleChangeTemp(temp) {
-        dispatch(WeatherActions.WeatherChangeTemperatureRequest(temp));
+    function handleChangeTemp() {
+        dispatch(WeatherActions.WeatherChangeTemperatureRequest(weatherData));
     }
     return (
         <Container>
@@ -27,7 +29,7 @@ export default function WeatherDetails() {
                         {weatherData.list[0]
                             ? format(
                                   fromUnixTime(weatherData.list[0].dt),
-                                  "do 'de' MMMM yyyy"
+                                  'd MMMM yyyy'
                               )
                             : 'Carregando...'}
                     </span>
@@ -41,7 +43,7 @@ export default function WeatherDetails() {
                     <br />
                     <button
                         type="button"
-                        onClick={() => handleChangeTemp(temperature)}
+                        onClick={() => handleChangeTemp(weatherData)}
                     >
                         {trunc(temperature)} °
                     </button>

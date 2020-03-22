@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { fromUnixTime, format } from 'date-fns';
+import { trunc } from 'math';
 import { Container } from './styles';
 
 export default function WeatherMinDetails() {
@@ -13,22 +14,30 @@ export default function WeatherMinDetails() {
                     {weatherData.list[8]
                         ? format(
                               fromUnixTime(weatherData.list[8].dt),
-                              "do 'de' MMMM yyyy"
+                              'd MMMM yyyy'
                           )
                         : 'Carregando...'}
                 </strong>
+                <br />
+                <button type="button">
+                    {trunc(weatherData.list[8].main.temp)} °
+                </button>
             </span>
             <br />
             <br />
             <span>
                 <strong>
-                    {weatherData.list[8]
+                    {weatherData.list[16]
                         ? format(
                               fromUnixTime(weatherData.list[16].dt),
-                              "do 'de' MMMM yyyy"
+                              'd MMMM yyyy'
                           )
                         : 'Carregando...'}
                 </strong>
+                <br />
+                <button type="button">
+                    {trunc(weatherData.list[16].main.temp)} °
+                </button>
             </span>
             <br />
             <br />

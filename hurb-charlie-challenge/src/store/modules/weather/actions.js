@@ -5,10 +5,10 @@ export function WeatherDataRequest(location) {
     };
 }
 
-export function WeatherChangeTemperatureRequest(temperature) {
+export function WeatherChangeTemperatureRequest(weatherData) {
     return {
         type: '@weather/CHANGE_TEMPERATURE_REQUEST',
-        payload: { temperature }
+        payload: { weatherData }
     };
 }
 

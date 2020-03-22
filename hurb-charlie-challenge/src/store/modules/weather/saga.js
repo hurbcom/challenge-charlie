@@ -36,10 +36,29 @@ export function* WeatherDataUpdateWithCityName({ payload }) {
 }
 
 export function* WeatherChangeTemperature({ payload }) {
-    if (payload > 100) payload -= 273;
-    if (payload < 100) payload += 273;
+    if (payload.weatherData.list[0].main.temp > 100) {
+        const today = payload.weatherData.list[0].main.temp - 273;
+        const nextDay = payload.weatherData.list[8].main.temp - 273;
+        const nextNextDay = payload.weatherData.list[16].main.temp - 273;
+        const dashboardTemperatures = {
+            today,
+            nextDay,
+            nextNextDay
+        };
+        yield put(WeatherChangeTemperatureSucess(dashboardTemperatures));
+    }
 
-    yield put(WeatherChangeTemperatureSucess(payload));
+    if (payload.weatherData.list[0].main.temp < 100) {
+        const today = payload.weatherData.list[0].main.temp + 273;
+        const nextDay = payload.weatherData.list[8].main.temp + 273;
+        const nextNextDay = payload.weatherData.list[16].main.temp + 273;
+        const dashboardTemperatures = {
+            today,
+            nextDay,
+            nextNextDay
+        };
+        yield put(WeatherChangeTemperatureSucess(dashboardTemperatures));
+    }
 }
 
 export default all([
