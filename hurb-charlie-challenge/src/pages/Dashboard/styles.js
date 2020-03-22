@@ -5,4 +5,5 @@ export const Container = styled.div`
     align-items: center;
     display: flex;
     height: 100%;
+    background-image: url('https://www.bing.com/th?id=OHR.LoughriggTarn_ROW7313566705_1920x1080.jpg');
 `;

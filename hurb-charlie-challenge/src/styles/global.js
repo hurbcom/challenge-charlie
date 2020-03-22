@@ -27,12 +27,4 @@ export default createGlobalStyle`
   body, input, button {
     font: 18px 'Roboto', sans-serif;
   }
-
-  a {
-    text-decoration: none;
-  }
-
-  li {
-    list-style: none;
-  }
 `;

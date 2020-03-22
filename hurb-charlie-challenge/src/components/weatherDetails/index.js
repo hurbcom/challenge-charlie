@@ -9,6 +9,7 @@ import { Container } from './styles';
 
 export default function WeatherDetails() {
     const weatherData = useSelector(state => state.weather.data.weatherData);
+    let backgroundColor = 'gray';
     const temperature = useSelector(
         state => state.weather.data.weatherData.list[0].main.temp
     );
@@ -18,56 +19,80 @@ export default function WeatherDetails() {
     function handleChangeTemp() {
         dispatch(WeatherActions.WeatherChangeTemperatureRequest(weatherData));
     }
+
+    function handleBackgroundColor(temp) {
+        if (temp < 15 || (temp > 180 && temp < 288)) {
+            return 'blue';
+        }
+        if ((temp > 15 && temp < 35) || (temp > 288 && temp < 318)) {
+            return 'yellow';
+        }
+        if ((temp > 35 && temp < 333) || (temp > 288 && temp < 318)) {
+            return 'red';
+        }
+        return 'gray';
+    }
+
+    backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
     return (
-        <Container>
+        <Container background={backgroundColor}>
             <div>
-                <div>
-                    <img src={WeatherIcon} alt="" />
-                </div>
+                <img src={WeatherIcon} alt="" />
                 <div>
                     <span>
-                        {weatherData.list[0]
-                            ? format(
-                                  fromUnixTime(weatherData.list[0].dt),
-                                  'd MMMM yyyy'
-                              )
-                            : 'Carregando...'}
+                        <strong>
+                            {weatherData.list[0]
+                                ? format(
+                                      fromUnixTime(weatherData.list[0].dt),
+                                      'd MMMM yyyy'
+                                  )
+                                : 'Carregando...'}
+                        </strong>
                     </span>
                     <br />
                     <span>
-                        {weatherData.list[0].weather[0].main
-                            ? weatherData.list[0].weather[0].main
-                            : 'Carregando...'}
+                        <strong>
+                            {weatherData.list[0].weather[0].main
+                                ? weatherData.list[0].weather[0].main
+                                : 'Carregando...'}
+                        </strong>
                     </span>
+                    <br />
                     <br />
                     <br />
                     <button
                         type="button"
                         onClick={() => handleChangeTemp(weatherData)}
                     >
-                        {trunc(temperature)} °
+                        <strong>{trunc(temperature)} °</strong>
                     </button>
                     <br />
                     <span>
-                        Vento: NO
-                        {weatherData.list[0].wind.speed
-                            ? ` ${weatherData.list[0].wind.speed}`
-                            : 'Carregando...'}
-                        km/h
+                        <strong>
+                            Vento: NO
+                            {weatherData.list[0].wind.speed
+                                ? ` ${weatherData.list[0].wind.speed}`
+                                : 'Carregando...'}
+                            km/h
+                        </strong>
                     </span>
                     <br />
                     <span>
-                        Humidade:
-                        {weatherData.list[0].main.humidity
-                            ? ` ${weatherData.list[0].main.humidity}%`
-                            : 'Carregando...'}
+                        <strong>
+                            Humidade:
+                            {weatherData.list[0].main.humidity
+                                ? ` ${weatherData.list[0].main.humidity}%`
+                                : 'Carregando...'}
+                        </strong>
                     </span>
                     <br />
                     <span>
-                        Pressão:
-                        {weatherData.list[0].main.pressure
-                            ? ` ${weatherData.list[0].main.pressure}hPA`
-                            : 'Carregando...'}
+                        <strong>
+                            Pressão:
+                            {weatherData.list[0].main.pressure
+                                ? ` ${weatherData.list[0].main.pressure}hPA`
+                                : 'Carregando...'}
+                        </strong>
                     </span>
                 </div>
             </div>

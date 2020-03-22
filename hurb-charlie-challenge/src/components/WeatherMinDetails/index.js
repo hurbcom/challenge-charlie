@@ -1,46 +1,78 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fromUnixTime, format } from 'date-fns';
 import { trunc } from 'math';
-import { Container } from './styles';
+import * as WeatherActions from '../../store/modules/weather/actions';
+import { Container, Content } from './styles';
 
 export default function WeatherMinDetails() {
     const weatherData = useSelector(state => state.weather.data.weatherData);
+    let backgroundColor = 'gray';
+    const temperature = useSelector(
+        state => state.weather.data.weatherData.list[0].main.temp
+    );
+
+    const dispatch = useDispatch();
+
+    function handleChangeTemp() {
+        dispatch(WeatherActions.WeatherChangeTemperatureRequest(weatherData));
+    }
+
+    function handleBackgroundColor(temp) {
+        if (temp < 15 || (temp > 180 && temp < 288)) {
+            return 'blue';
+        }
+        if ((temp > 15 && temp < 35) || (temp > 288 && temp < 318)) {
+            return 'yellow';
+        }
+        if ((temp > 35 && temp < 333) || (temp > 288 && temp < 318)) {
+            return 'red';
+        }
+        return 'gray';
+    }
+
+    backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
 
     return (
         <Container>
-            <span>
-                <strong>
-                    {weatherData.list[8]
-                        ? format(
-                              fromUnixTime(weatherData.list[8].dt),
-                              'd MMMM yyyy'
-                          )
-                        : 'Carregando...'}
-                </strong>
-                <br />
-                <button type="button">
-                    {trunc(weatherData.list[8].main.temp)} °
-                </button>
-            </span>
-            <br />
-            <br />
-            <span>
-                <strong>
-                    {weatherData.list[16]
-                        ? format(
-                              fromUnixTime(weatherData.list[16].dt),
-                              'd MMMM yyyy'
-                          )
-                        : 'Carregando...'}
-                </strong>
-                <br />
-                <button type="button">
-                    {trunc(weatherData.list[16].main.temp)} °
-                </button>
-            </span>
-            <br />
-            <br />
+            <Content background={backgroundColor} opacity={0.9}>
+                <div>
+                    <strong>
+                        {weatherData.list[8]
+                            ? format(
+                                  fromUnixTime(weatherData.list[8].dt),
+                                  'd MMMM yyyy'
+                              )
+                            : 'Carregando...'}
+                    </strong>
+                    <br />
+                    <button
+                        type="button"
+                        onClick={() => handleChangeTemp(weatherData)}
+                    >
+                        <strong>{trunc(temperature)} °</strong>
+                    </button>
+                </div>
+            </Content>
+            <Content background={backgroundColor} opacity={0.95}>
+                <div>
+                    <strong>
+                        {weatherData.list[16]
+                            ? format(
+                                  fromUnixTime(weatherData.list[16].dt),
+                                  'd MMMM yyyy'
+                              )
+                            : 'Carregando...'}
+                    </strong>
+                    <br />
+                    <button
+                        type="button"
+                        onClick={() => handleChangeTemp(weatherData)}
+                    >
+                        <strong>{trunc(temperature)} °</strong>
+                    </button>
+                </div>
+            </Content>
         </Container>
     );
 }
