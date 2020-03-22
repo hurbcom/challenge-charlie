@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { opacify } from 'polished';
 
 export const Container = styled.div`
     flex: 0.6;
