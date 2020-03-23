@@ -5,7 +5,6 @@ export const Container = styled.div`
     width: 40%;
     opacity: 0.85;
     background: ${props => props.background};
-
     > div {
         border-radius: 4px;
         justify-content: space-between;
