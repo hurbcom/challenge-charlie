@@ -4,6 +4,7 @@ import { format, fromUnixTime } from 'date-fns';
 import { trunc } from 'math';
 import * as WeatherActions from '../../store/modules/weather/actions';
 import getIcon from '../../util/weatherIcons';
+import handleEnglishToPortuguese from '../../util/translate';
 import { Container, ImageIcon } from './styles';
 
 export default function WeatherDetails() {
@@ -32,8 +33,12 @@ export default function WeatherDetails() {
         return '#585858';
     }
 
+    const weatherName = handleEnglishToPortuguese(
+        weatherData.list[0].weather[0].main
+    );
     const weatherIcon = getIcon(weatherData.list[0].weather[0].main);
-    console.tron.log(weatherIcon);
+
+    console.tron.log(weatherName);
 
     backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
     return (
@@ -55,7 +60,7 @@ export default function WeatherDetails() {
                     <span>
                         <strong>
                             {weatherData.list[0].weather[0].main
-                                ? weatherData.list[0].weather[0].main
+                                ? weatherName.portugueseName
                                 : 'Carregando...'}
                         </strong>
                     </span>

@@ -1,5 +1,5 @@
 import Clear from '../../assets/meteocons-icons/SVG/clear.svg';
-import ThunderTempest from '../../assets/meteocons-icons/SVG/thunderTempest.svg';
+import Thunderstorm from '../../assets/meteocons-icons/SVG/thunderTempest.svg';
 import Snow from '../../assets/meteocons-icons/SVG/snow.svg';
 import Rain from '../../assets/meteocons-icons/SVG/rain.svg';
 import Drizzle from '../../assets/meteocons-icons/SVG/drizzle.svg';
@@ -11,7 +11,7 @@ const weathers = [
     { name: 'Snow', icon: Snow },
     { name: 'Drizzle', icon: Drizzle },
     { name: 'Clouds', icon: Clouds },
-    { name: 'ThunderTempest', icon: ThunderTempest }
+    { name: 'Thunderstorm', icon: Thunderstorm }
 ];
 
 export default function getIcon(IconName) {
