@@ -20,8 +20,6 @@ export default function Dashboard() {
     }
 
     getBingImgOfDay();
-    console.tron.log(backgroundBingImg);
-
     return (
         <Container background={backgroundBingImg}>
             <Locationinput />

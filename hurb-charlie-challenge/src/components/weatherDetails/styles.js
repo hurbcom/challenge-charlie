@@ -29,3 +29,5 @@ export const Container = styled.div`
         color: rgb(250, 250, 250);
     }
 `;
+
+export const ImageIcon = styled.img``;

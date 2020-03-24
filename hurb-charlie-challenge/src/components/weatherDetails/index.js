@@ -2,10 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { format, fromUnixTime } from 'date-fns';
 import { trunc } from 'math';
-import WeatherIcon from '../../assets/meteocons-icons/SVG/2.svg';
 import * as WeatherActions from '../../store/modules/weather/actions';
-
-import { Container } from './styles';
+import getIcon from '../../util/weatherIcons';
+import { Container, ImageIcon } from './styles';
 
 export default function WeatherDetails() {
     const weatherData = useSelector(state => state.weather.data.weatherData);
@@ -33,11 +32,14 @@ export default function WeatherDetails() {
         return '#585858';
     }
 
+    const weatherIcon = getIcon(weatherData.list[0].weather[0].main);
+    console.tron.log(weatherIcon);
+
     backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
     return (
         <Container background={backgroundColor}>
             <div>
-                <img src={WeatherIcon} alt="" />
+                <ImageIcon src={weatherIcon.icon} alt="" />
                 <div>
                     <span>
                         <strong>
