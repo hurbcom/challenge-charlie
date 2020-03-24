@@ -38,8 +38,6 @@ export default function WeatherDetails() {
     );
     const weatherIcon = getIcon(weatherData.list[0].weather[0].main);
 
-    console.tron.log(weatherName);
-
     backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
     return (
         <Container background={backgroundColor}>

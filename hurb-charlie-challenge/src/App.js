@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import './config/ReactotronConfig';
