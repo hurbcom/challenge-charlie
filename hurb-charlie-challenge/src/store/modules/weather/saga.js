@@ -22,7 +22,6 @@ export function* WeatherDataRequestWithCityName({ payload }) {
 
 export function* WeatherDataUpdateWithCityName({ payload }) {
     try {
-        console.tron.log(payload);
         const response = yield openWeatherApi.get('', {
             params: {
                 q: `${payload.location}`,

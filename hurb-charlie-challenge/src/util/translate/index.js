@@ -8,8 +8,8 @@ const weatherPortugueseNames = [
 ];
 
 export default function handleEnglishToPortuguese(englishName) {
-    const weatherPortugueseName = weatherPortugueseNames.find(
+    const weatherName = weatherPortugueseNames.find(
         element => element.englishName === englishName
     );
-    return weatherPortugueseName;
+    return weatherName.portugueseName;
 }

@@ -13,7 +13,7 @@ export default function AvatarInput() {
     });
     const [loadingCoords, setLoadingCoords] = useState(false);
     const dispatch = useDispatch();
-    const { locationData } = useSelector(state => state.location.data);
+    const { data } = useSelector(state => state.location);
     const [locationInputText, setLocationInputText] = useState();
 
     useEffect(() => {
@@ -58,8 +58,8 @@ export default function AvatarInput() {
             <img src={RadarIconInput} alt="Radar" />
             <input
                 placeholder={
-                    locationData
-                        ? `${locationData.results[0].components.city}, ${locationData.results[0].components.state}`
+                    data
+                        ? `${data.locationData.results[0].components.city}, ${data.locationData.results[0].components.state}`
                         : 'Carregando...'
                 }
                 onChange={e => handleChangeLocation(e.target.value)}

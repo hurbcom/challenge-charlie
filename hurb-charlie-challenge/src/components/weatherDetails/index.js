@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { format, fromUnixTime } from 'date-fns';
 import { trunc } from 'math';
@@ -8,24 +8,22 @@ import handleEnglishToPortuguese from '../../util/translate';
 import { Container, ImageIcon } from './styles';
 
 export default function WeatherDetails() {
-    const weatherData = useSelector(state => state.weather.data.weatherData);
-    let backgroundColor = 'gray';
-    const temperature = useSelector(
-        state => state.weather.data.weatherData.list[0].main.temp
-    );
-
+    const { data } = useSelector(state => state.weather);
+    const [temperature, setTemperature] = useState(null);
+    const [wind, setWind] = useState(null);
+    const [weather, setWeather] = useState(null);
+    const [humidity, setHumidity] = useState(null);
+    const [pressure, setPressure] = useState(null);
+    const [icon, setIcon] = useState(null);
+    const [backgroundColor, setBackgroundColor] = useState(null);
     const dispatch = useDispatch();
-
-    function handleChangeTemp() {
-        dispatch(WeatherActions.WeatherChangeTemperatureRequest(weatherData));
-    }
 
     function handleBackgroundColor(temp) {
         if (temp < 15 || (temp > 180 && temp < 288)) {
             return '#013ADF';
         }
         if ((temp > 15 && temp < 35) || (temp > 288 && temp < 318)) {
-            return '#D7DF01';
+            return '#ffcc00';
         }
         if ((temp > 35 && temp < 333) || (temp > 288 && temp < 318)) {
             return '#DF0101';
@@ -33,51 +31,62 @@ export default function WeatherDetails() {
         return '#585858';
     }
 
-    const weatherName = handleEnglishToPortuguese(
-        weatherData.list[0].weather[0].main
-    );
-    const weatherIcon = getIcon(weatherData.list[0].weather[0].main);
+    function handleChangeTemp(temp) {
+        dispatch(WeatherActions.WeatherChangeTemperatureRequest(temp));
+    }
 
-    backgroundColor = handleBackgroundColor(weatherData.list[8].main.temp);
+    useEffect(() => {
+        if (data) {
+            setTemperature(data.weatherData.list[0].main.temp);
+            setWind(data.weatherData.list[0].wind.speed);
+            setWeather(
+                handleEnglishToPortuguese(
+                    data.weatherData.list[0].weather[0].main
+                )
+            );
+            setHumidity(data.weatherData.list[0].main.humidity);
+            setPressure(data.weatherData.list[0].main.pressure);
+            setIcon(getIcon(weather));
+            setBackgroundColor(handleBackgroundColor(temperature));
+        }
+    }, [data, wind, weather, humidity, pressure, icon, temperature]);
+
     return (
         <Container background={backgroundColor}>
             <div>
-                <ImageIcon src={weatherIcon.icon} alt="" />
+                <ImageIcon src={icon} alt="" />
                 <div>
                     <span>
                         <strong>
-                            {weatherData.list[0]
+                            {data
                                 ? format(
-                                      fromUnixTime(weatherData.list[0].dt),
+                                      fromUnixTime(data.weatherData.list[0].dt),
                                       'd MMMM yyyy'
                                   )
                                 : 'Carregando...'}
                         </strong>
                     </span>
                     <br />
-                    <span>
-                        <strong>
-                            {weatherData.list[0].weather[0].main
-                                ? weatherName.portugueseName
-                                : 'Carregando...'}
-                        </strong>
-                    </span>
-                    <br />
-                    <br />
-                    <br />
                     <button
                         type="button"
-                        onClick={() => handleChangeTemp(weatherData)}
+                        onClick={() => handleChangeTemp(data.weatherData)}
                     >
                         <strong>{trunc(temperature)} °</strong>
                     </button>
                     <br />
+                    <br />
+
+                    <span>
+                        <strong>
+                            {weather ? `${weather}` : 'Carregando...'}
+                        </strong>
+                    </span>
+                    <br />
+                    <br />
                     <span>
                         <strong>
                             Vento: NO
-                            {weatherData.list[0].wind.speed
-                                ? ` ${weatherData.list[0].wind.speed}`
-                                : 'Carregando...'}
+                            {wind ? ` ${wind}` : 'Carregando...'}
                             km/h
                         </strong>
                     </span>
@@ -85,18 +94,14 @@ export default function WeatherDetails() {
                     <span>
                         <strong>
                             Humidade:
-                            {weatherData.list[0].main.humidity
-                                ? ` ${weatherData.list[0].main.humidity}%`
-                                : 'Carregando...'}
+                            {humidity ? ` ${humidity}%` : 'Carregando...'}
                         </strong>
                     </span>
                     <br />
                     <span>
                         <strong>
                             Pressão:
-                            {weatherData.list[0].main.pressure
-                                ? ` ${weatherData.list[0].main.pressure}hPA`
-                                : 'Carregando...'}
+                            {pressure ? ` ${pressure}hPA` : 'Carregando...'}
                         </strong>
                     </span>
                 </div>
