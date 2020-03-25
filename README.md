@@ -30,18 +30,19 @@ Amarela para temperaturas médias, azul para temperaturas baixas, vermelho para 
 ## Requisitos
 
 -Production stage
-
+'''
   cd $pasta-da-aplicacao
   docker build -t charlie-challenge -f dockerfile .
-  docker run -p 3000:80 challenge-charlie
-
-  http://localhost:3000
+  docker run -p 3001:80 charlie-challenge
+'''
+  http://localhost:3001
 
 -Dev stage
+'''
   cd $pasta-da-aplicacao
   yarn
   yarn start
-
+'''
 ## Decisões técnicas
 
 -Components:
