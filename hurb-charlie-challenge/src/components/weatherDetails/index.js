@@ -15,7 +15,7 @@ export default function WeatherDetails() {
     const [humidity, setHumidity] = useState(null);
     const [pressure, setPressure] = useState(null);
     const [icon, setIcon] = useState(null);
-    const [backgroundColor, setBackgroundColor] = useState(null);
+    const [backgroundColor, setBackgroundColor] = useState('gray');
     const dispatch = useDispatch();
 
     function handleBackgroundColor(temp) {

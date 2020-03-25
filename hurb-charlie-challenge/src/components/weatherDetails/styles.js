@@ -20,6 +20,7 @@ export const Container = styled.div`
     button {
         border: none;
         background: none;
+        cursor: pointer;
     }
     img {
         margin-top: 40px;

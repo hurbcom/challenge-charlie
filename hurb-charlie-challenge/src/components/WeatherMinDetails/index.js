@@ -13,8 +13,10 @@ export default function WeatherMinDetails() {
     );
     const [dateTomorrow, setDateTomorrow] = useState(null);
     const [dateNextTomorrow, setDateNextTomorrow] = useState(null);
-    const [backgroundTomorrow, setBackgroundTomorrow] = useState(null);
-    const [backgroundNextTomorrow, setBackgroundNextTomorrow] = useState(null);
+    const [backgroundTomorrow, setBackgroundTomorrow] = useState('gray');
+    const [backgroundNextTomorrow, setBackgroundNextTomorrow] = useState(
+        'gray'
+    );
     const dispatch = useDispatch();
 
     function handleBackgroundColor(temp) {
