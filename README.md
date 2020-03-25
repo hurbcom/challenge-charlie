@@ -6,12 +6,13 @@ usuário ou da localidade do usuário.
 ## funcionalidade
 
 -Apresentar o previsão do clima(Vento, humidade, temperatura, pressão) da localidade do usuário ou da localidade escolhida pelo usuário.
--Apresentar a temperatura em celcius ou kelvin
+-Apresentar a Previsão de temperatura de Hoje, Amanhã e depois de amanhã.
+-Apresentar a temperatura em celcius ou kelvin.
 -As cores do background de cada componente, estão relacionadas com a temperatura da localidade.
 Amarela para temperaturas médias, azul para temperaturas baixas, vermelho para temperaturas altas.
--A imagem de background da pagina, é retirada da pagina inicial do Bing atráves da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
--Para consultar o clima, foi utilizado a api do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8).
--A localidade do usuário foi obtida do navegador.
+-A imagem de background da pagina, é retirada da pagina inicial do Bing atráves da [BingApi].
+-Para consultar o clima, foi utilizado a api do [OpenWeather].
+-A latitude e longitude do usuário foi obtida do navegador e foi obtido o nome da localide utilizando o [OpenCage]
 
 
 ## Tecnologias utilizadas

@@ -7,6 +7,8 @@ import WeatherDetails from '../../components/weatherDetails';
 import WeatherMinDetails from '../../components/WeatherMinDetails';
 import bingApi from '../../services/bingApi';
 
+/* Pagina home da aplicação, onde é renderizado todos os componentes do desafio */
+
 export default function Dashboard() {
     const [backgroundBingImg, setbackgroundBingImg] = useState('');
 

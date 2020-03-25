@@ -7,7 +7,7 @@ import RadarIconInput from '../../assets/meteocons-icons/SVG/44.svg';
 import * as LocationActions from '../../store/modules/location/actions';
 import * as WeatherActions from '../../store/modules/weather/actions';
 
-export default function AvatarInput() {
+export default function LocationInput() {
     const [userCoords, setUserCoords] = useState({
         region: { latitude: null, longitude: null }
     });

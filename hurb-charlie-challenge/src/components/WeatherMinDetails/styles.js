@@ -13,7 +13,6 @@ export const Container = styled.div`
         margin-right: 80px;
         border: none;
         background: none;
-        cursor: pointer;
     }
 
     strong {
