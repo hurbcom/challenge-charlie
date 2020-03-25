@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { Container } from './styles';
 
-import Locationinput from '../../components/LocationInput';
-import WeatherDetails from '../../components/WeatherDetails';
+import Locationinput from '../../components/locationInput';
+import WeatherDetails from '../../components/weatherDetails';
 import WeatherMinDetails from '../../components/WeatherMinDetails';
 import bingApi from '../../services/bingApi';
 
