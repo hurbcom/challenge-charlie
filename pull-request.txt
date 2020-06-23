@@ -1,3 +1,6 @@
 Your name: Higor Martins da Silva
 Your Github homepage: https://github.com/higorhms
 Original challenge URL: https://github.com/higorhms/challenge-charlie
+
+Repo with commit history (automator-hurb is added): https://github.com/higorhms/hurb-challenge-charlie
+
