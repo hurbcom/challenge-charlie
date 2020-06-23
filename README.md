@@ -1,3 +1,77 @@
+<h1 align="center">
+    <img alt="Hurb" src="https://storage.googleapis.com/wp-press/2020/04/595a3d86-logo-hurb-branca-bg-azul.jpg" width="200px"/>
+</h1>
+
+<h3 align="center">
+  🚀 Desafio Front End - Hurb
+</h3>
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/higormartinsdasilva/" target="_blank">
+    <img alt="Made by Higor Martins" src="https://img.shields.io/badge/made%20by-Higor_martins-%2304D361?style=for-the-badge">
+  </a>
+</p>
+
+## 🔖 Layout
+  - [CLIQUE AQUI PARA TESTAR](https://higorhms-hurb-challenge-charlie.netlify.app/)
+
+<h1 align="center" >
+  <a target="_blank" href="https://higorhms-hurb-challenge-charlie.netlify.app/">
+      <img src="https://user-images.githubusercontent.com/44821959/85301236-f6a2d680-b47d-11ea-8eb4-527c56684234.gif" width="600" alt="web-example"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="https://user-images.githubusercontent.com/44821959/85301416-3073dd00-b47e-11ea-8f2a-097965d0cb47.gif" width="200" alt="web-example"/>
+  </a>
+</h1>
+
+## 🚀 Tests Coverage
+<h1 align="center" >
+  <a target="_blank" href="https://higorhms-hurb-challenge-charlie.netlify.app/">
+      <img src="https://user-images.githubusercontent.com/44821959/85298788-e2110f00-b47a-11ea-9b2c-cb6f48d42438.png" width="600" alt="web-example"/>
+  </a>
+</h1>
+
+## 🚀 Observações
+
+1) Os dados do input devem ser inseridos no formato CITY, STATE, porém, Adicionei mensagens de Erro quando o local inserido não for um local valido.
+2) Optei pela utilização do pacote React-Icons para os icones.
+3) Segui o layout porém implementando melhorias como destacar o Input.
+4) Adicionei o preview dos proximos dias podendo ser clicado para as informações completas
+5) Optei por deixar 1 console.log que lista os dados recebidos da API do OpenWeather, para facilitar a verificação da integridade dos dados.
+
+## :gear: Instalando o projeto
+
+- Instalar o NodeJS.
+- Baixe ou clone esse projeto.
+- Se você estiver utilizando o Yarn como gerenciador de pacotes.
+  - Rode o comando `yarn` para instalar todas as dependências necessárias.
+  - Rode `yarn start` para iniciar o Metro Bundler.
+- Se você estiver utilizando o NPM como gerenciador de pacotes.
+  - Rode o comando `npm install` para instalar todas as dependências necessárias.
+  - Rode `npm start` para iniciar o Metro Bundler.
+- Depois dessas instruções você verá a aplicação rodando no endereço: http://localhost:3000.
+
+## :gear: Gerando o Coverage de Testes
+
+- Se você estiver utilizando o Yarn como gerenciador de pacotes.
+  - Rode o comando `yarn test:coverage` para gerar o coverage de testes do projeto.
+- Se você estiver utilizando o NPM como gerenciador de pacotes.
+  - Rode o comando `npm test:coverage` para gerar o coverage de testes do projeto.
+- Depois dessas instruções você verá a pasta Coverage gerada, basta acessar o index.html.
+
+## 🚀 Technologies
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [React JS](https://reactjs.org/docs/context.html)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [Axios](https://github.com/axios/axios)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled Components](https://styled-components.com/)
+- [Polished](https://polished.js.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
 Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
