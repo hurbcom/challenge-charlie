@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-.main-bg {
+.container {
+    max-width: 1075px;
     width: 100%;
-    height: 100%;
+    margin: 0 auto;
 }
