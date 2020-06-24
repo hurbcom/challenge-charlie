@@ -1,11 +1,8 @@
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   module: {
-    entry: './src/index.js',
-    output: {
-        path: __dirname + '/dist',
-        filename: 'build.js',
-    },
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -13,10 +10,18 @@ module.exports = {
           loader: "babel-loader"
         }
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      },
       {  
         test: /\.css$/,  
         use: ['style-loader', 'css-loader']  
-      },      
+      },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
@@ -24,12 +29,17 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'assets/fonts/'
+              outputPath: 'src/assets/fonts/'
             }
           }
         ]
       }
     ]
   },
-  watch: true,
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };

@@ -1,12 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import regeneratorRuntime from "regenerator-runtime";
-import styled from 'styled-components'
-
-const BackgroundImg = styled.div`
-    width: 100%;
-    height: 100%;
-`;
-
+import { BackgroundImg } from './BackgroundStyles';
 
 class Background extends Component {
 
@@ -14,7 +8,7 @@ class Background extends Component {
         image: null,
     };
 
-    async componentDidMount() {
+    componentDidMount = async () => {
         const url = "https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR";
         const response = await fetch(url);
         const data = await response.json();
