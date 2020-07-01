@@ -24,7 +24,7 @@ class Temperature extends Component {
           afterTomorrowWindSpeed: null, 
           afterTomorrowHumidity: null, 
           afterTomorrowPressure: null, 
-        //   toggleOn: false,
+          toggleUnit: false,
 
       };
     }
@@ -45,19 +45,19 @@ class Temperature extends Component {
                     todayTemp: Math.round(data.daily[0].temp.day),
                     todayDescription: data.daily[0].weather[0].description,
                     todayWindDeg: data.daily[0].wind_deg,
-                    todayWindSpeed: data.daily[0].wind_speed,
+                    todayWindSpeed: (data.daily[0].wind_speed).toFixed(1),
                     todayHumidity: data.daily[0].humidity,
                     todayPressure: data.daily[0].pressure,
                     tomorrowTemp: Math.round(data.daily[1].temp.day),
                     tomorrowDescription: data.daily[1].weather[0].description,
                     tomorrowWindDeg: data.daily[1].wind_deg,
-                    tomorrowWindSpeed: data.daily[1].wind_speed,
+                    tomorrowWindSpeed: (data.daily[1].wind_speed).toFixed(1),
                     tomorrowHumidity: data.daily[1].humidity,
                     tomorrowPressure: data.daily[1].pressure,
                     afterTomorrowTemp: Math.round(data.daily[2].temp.day),
                     afterTomorrowDescription: data.daily[2].weather[0].description,
                     afterTomorrowWindDeg: data.daily[2].wind_deg,
-                    afterTomorrowWindSpeed: data.daily[2].wind_speed,
+                    afterTomorrowWindSpeed: (data.daily[2].wind_speed).toFixed(1),
                     afterTomorrowHumidity: data.daily[2].humidity,
                     afterTomorrowPressure: data.daily[2].pressure,
                 });
@@ -66,24 +66,23 @@ class Temperature extends Component {
     }
 
     //Converte a temperatura de Celsius para Fahrenheit e vice-versa
-    // convertTemperature() {
-    //     this.setState(prevState => ({
-    //         toggleOn: !prevState.toggleOn
-    //     }));
-    //     console.log(this.state.toggleOn);
-    // }
+    convertTemperature = () => {
+        this.setState(prevState => ({
+            toggleUnit: !prevState.toggleUnit
+        }));        
+    }
 
 
     render() {
       return (
         <TemperatureStyles>
-          <div className="temp-container">
-            <div className="temperature" onClick={this.convertTemperature}>
+          <div className="temp-container" onClick={this.convertTemperature}>
+            <div className="temperature">
                 <div className="icon" data-icon="B"></div>
                 <div>
                     <div className="info">
                         <h2>Hoje</h2>
-                        <p>{this.state.todayTemp} &deg;C</p>                                      
+                        <p>{this.state.toggleUnit ? Math.round((this.state.todayTemp * 1.8) + 32) + '°F' : this.state.todayTemp + '°C' }</p>                                      
                     </div>
                     <div className="info details">
                         <h3>{this.state.todayDescription}</h3>
@@ -93,12 +92,12 @@ class Temperature extends Component {
                     </div> 
                 </div>
             </div>
-            <div className="temperature" onClick={this.convertTemperature}>
+            <div className="temperature">
                 <div className="icon" data-icon="B"></div>
                 <div>
                     <div className="info">
                         <h2>Amanhã</h2>
-                        <p>{this.state.tomorrowTemp} &deg;C</p>                                      
+                        <p>{this.state.toggleUnit ? Math.round((this.state.tomorrowTemp * 1.8) + 32) + '°F' : this.state.tomorrowTemp + '°C' }</p>                        
                     </div>
                     <div className="info details">
                         <h3>{this.state.tomorrowDescription}</h3>
@@ -108,12 +107,12 @@ class Temperature extends Component {
                     </div>
                 </div> 
             </div>
-            <div className="temperature" onClick={this.convertTemperature}>
+            <div className="temperature">
                 <div className="icon" data-icon="B"></div>
                 <div>
                     <div className="info">
                         <h2>Depois de amanhã</h2>
-                        <p>{this.state.afterTomorrowTemp} &deg;C</p>                                      
+                        <p>{this.state.toggleUnit ? Math.round((this.state.afterTomorrowTemp * 1.8) + 32) + '°F' : this.state.afterTomorrowTemp + '°C' }</p>                                                
                     </div>
                     <div className="info details">
                         <h3>{this.state.afterTomorrowDescription}</h3>
