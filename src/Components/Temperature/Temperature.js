@@ -25,6 +25,9 @@ class Temperature extends Component {
           afterTomorrowHumidity: null, 
           afterTomorrowPressure: null, 
           toggleUnit: false,
+          todayIcon: null,
+          tomorrowIcon: null,
+          afterTomorrowIcon: null,
 
       };
     }
@@ -61,8 +64,94 @@ class Temperature extends Component {
                     afterTomorrowHumidity: data.daily[2].humidity,
                     afterTomorrowPressure: data.daily[2].pressure,
                 });
+
+                if((this.state.todayDescription).includes("chuva")){
+                    this.setState({ 
+                        todayIcon: "R",                
+                    });
+                }else if((this.state.todayDescription).includes("nuvens")){
+                    this.setState({ 
+                        todayIcon: "Y",                
+                    });
+                }else if((this.state.todayDescription).includes("sol")){
+                    this.setState({ 
+                        todayIcon: "B",                
+                    });
+                }
+
+                if((this.state.tomorrowDescription).includes("chuva")){
+                    this.setState({ 
+                        tomorrowIcon: "R",                
+                    });
+                }else if((this.state.tomorrowDescription).includes("nuvens")){
+                    this.setState({ 
+                        tomorrowIcon: "Y",                
+                    });
+                }else if((this.state.tomorrowDescription).includes("sol")){
+                    this.setState({ 
+                        tomorrowIcon: "B",                
+                    });
+                }
+
+                if((this.state.afterTomorrowDescription).includes("chuva")){
+                    this.setState({ 
+                        afterTomorrowIcon: "R",                
+                    });
+                }else if((this.state.afterTomorrowDescription).includes("nuvens")){
+                    this.setState({ 
+                        afterTomorrowIcon: "Y",                
+                    });
+                }else if((this.state.afterTomorrowDescription).includes("sol")){
+                    this.setState({ 
+                        afterTomorrowIcon: "B",                
+                    });
+                }
+
+                if(this.state.todayTemp > 35){
+                    this.setState({ 
+                        todayBg: "linear-gradient(to right,rgba(100,0,0,.9) 0%,rgba(150,0,0,.9) 100%)",                
+                    });
+                }else if(this.state.todayTemp < 15){
+                    this.setState({ 
+                        todayBg: "linear-gradient(to right,rgba(0,0,100,.9) 0%,rgba(0,0,150,.9) 100%)",                
+                    });
+                }else{
+                    this.setState({ 
+                        todayBg: "linear-gradient(to right, rgba(170, 140, 12, 0.9) 0%, rgba(190, 160, 18, 0.9) 100%)",                
+                    });
+                }
+
+                if(this.state.tomorrowTemp > 35){
+                    this.setState({ 
+                        tomorrowBg: "linear-gradient(to right,rgba(80,0,0,.9) 0%,rgba(130,0,0,.9) 100%)",                
+                    });
+                }else if(this.state.tomorrowTemp < 15){
+                    this.setState({ 
+                        tomorrowBg: "linear-gradient(to right,rgba(0,0,80,.9) 0%,rgba(0,0,130,.9) 100%)",                
+                    });
+                }else{
+                    this.setState({ 
+                        tomorrowBg: "linear-gradient(to right, rgba(190, 170, 12, 0.9) 0%, rgba(200, 190, 18, 0.9) 100%)",                
+                    });
+                }
+
+                if(this.state.afterTomorrowTemp > 35){
+                    this.setState({ 
+                        afterTomorrowBg: "linear-gradient(to right,rgba(60,0,0,.9) 0%,rgba(110,0,0,.9) 100%)",                
+                    });
+                }else if(this.state.afterTomorrowTemp < 15){
+                    this.setState({ 
+                        afterTomorrowBg: "linear-gradient(to right,rgba(0,0,60,.9) 0%,rgba(0,0,110,.9) 100%)",                
+                    });
+                }else{
+                    this.setState({ 
+                        afterTomorrowBg: "linear-gradient(to right,rgba(220,170,12,.9) 0%,rgba(226,180,18,.9) 100%)",                
+                    });
+                }
+                
             });
         } 
+        
     }
 
     //Converte a temperatura de Celsius para Fahrenheit e vice-versa
@@ -72,13 +161,12 @@ class Temperature extends Component {
         }));        
     }
 
-
     render() {
       return (
         <TemperatureStyles>
           <div className="temp-container" onClick={this.convertTemperature}>
-            <div className="temperature">
-                <div className="icon" data-icon="B"></div>
+            <div className="temperature" style={{background: this.state.todayBg}}>
+                <div className="icon" data-icon={this.state.todayIcon}></div>
                 <div>
                     <div className="info">
                         <h2>Hoje</h2>
@@ -92,8 +180,8 @@ class Temperature extends Component {
                     </div> 
                 </div>
             </div>
-            <div className="temperature">
-                <div className="icon" data-icon="B"></div>
+            <div className="temperature" style={{background: this.state.tomorrowBg}}>
+                <div className="icon" data-icon={this.state.tomorrowIcon}></div>
                 <div>
                     <div className="info">
                         <h2>Amanhã</h2>
@@ -107,8 +195,8 @@ class Temperature extends Component {
                     </div>
                 </div> 
             </div>
-            <div className="temperature">
-                <div className="icon" data-icon="B"></div>
+            <div className="temperature" style={{background: this.state.afterTomorrowBg}}>
+                <div className="icon" data-icon={this.state.afterTomorrowIcon}></div>
                 <div>
                     <div className="info">
                         <h2>Depois de amanhã</h2>

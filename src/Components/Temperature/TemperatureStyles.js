@@ -14,7 +14,7 @@ export const TemperatureStyles = styled.div`
             align-items: center;
             position: relative;
             .icon{
-                font-size: 450px;
+                font-size: 300px;
                 position: absolute;
                 left: 70px;
                 top: 50%;
@@ -52,7 +52,7 @@ export const TemperatureStyles = styled.div`
                 display: none;
             }
             &:hover{
-                padding-bottom: 140px;
+                padding-bottom: 125px;
                 .details,
                 .icon{
                     display:block;
