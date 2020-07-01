@@ -49,15 +49,15 @@ class LocationSearchInput extends React.Component {
     render() {
       return (        
         <PlacesAutocomplete
-          value={this.state.suburb + ', ' + this.state.city}
+          value={this.state.address}
           onChange={this.handleChange}
-          onSelect={this.handleSelect}
+          onSelect={this.handleSelect}          
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
               <input
                 {...getInputProps({
-                  placeholder: 'Insira uma localização',
+                  placeholder: this.state.suburb + ', ' + this.state.city,
                   className: 'location-search-input',
                 })}
               />
@@ -68,8 +68,8 @@ class LocationSearchInput extends React.Component {
                     ? 'suggestion-item--active'
                     : 'suggestion-item';
                   const style = suggestion.active
-                    ? { backgroundColor: '#fafafa', cursor: 'pointer', fontFamily: 'Arial', padding: '15px', }
-                    : { backgroundColor: '#ffffff', cursor: 'pointer', fontFamily: 'Arial', padding: '15px', };
+                    ? { backgroundColor: '#fafafa', cursor: 'pointer', fontFamily: 'Arial', padding: '15px', position: 'relative', zIndex: '2' }
+                    : { backgroundColor: '#ffffff', cursor: 'pointer', fontFamily: 'Arial', padding: '15px', position: 'relative', zIndex: '2' };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {

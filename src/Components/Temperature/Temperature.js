@@ -24,6 +24,7 @@ class Temperature extends Component {
           afterTomorrowWindSpeed: null, 
           afterTomorrowHumidity: null, 
           afterTomorrowPressure: null, 
+        //   toggleOn: false,
 
       };
     }
@@ -64,45 +65,62 @@ class Temperature extends Component {
         } 
     }
 
+    //Converte a temperatura de Celsius para Fahrenheit e vice-versa
+    // convertTemperature() {
+    //     this.setState(prevState => ({
+    //         toggleOn: !prevState.toggleOn
+    //     }));
+    //     console.log(this.state.toggleOn);
+    // }
+
 
     render() {
       return (
         <TemperatureStyles>
           <div className="temp-container">
             <div className="temperature" onClick={this.convertTemperature}>
-                <div className="info">
-                    <h2>Hoje</h2>
-                    <p>{this.state.todayTemp}</p>                                      
+                <div className="icon" data-icon="B"></div>
+                <div>
+                    <div className="info">
+                        <h2>Hoje</h2>
+                        <p>{this.state.todayTemp} &deg;C</p>                                      
+                    </div>
+                    <div className="info details">
+                        <h3>{this.state.todayDescription}</h3>
+                        <p>Vento: {this.state.todayWindDeg} Graus {this.state.todayWindSpeed}km/h</p>
+                        <p>Humidade: {this.state.todayHumidity}%</p>
+                        <p>Pressão: {this.state.todayPressure}hPA</p>
+                    </div> 
                 </div>
-                <div className="info details">
-                    <h3>{this.state.todayDescription}</h3>
-                    <p>Vento: {this.state.todayWindDeg} Graus {this.state.todayWindSpeed}km/h</p>
-                    <p>Humidade: {this.state.todayHumidity}%</p>
-                    <p>Pressão: {this.state.todayPressure}hPA</p>
+            </div>
+            <div className="temperature" onClick={this.convertTemperature}>
+                <div className="icon" data-icon="B"></div>
+                <div>
+                    <div className="info">
+                        <h2>Amanhã</h2>
+                        <p>{this.state.tomorrowTemp} &deg;C</p>                                      
+                    </div>
+                    <div className="info details">
+                        <h3>{this.state.tomorrowDescription}</h3>
+                        <p>Vento: {this.state.tomorrowWindDeg} Graus {this.state.tomorrowWindSpeed}km/h</p>
+                        <p>Humidade: {this.state.tomorrowHumidity}%</p>
+                        <p>Pressão: {this.state.tomorrowPressure}hPA</p>
+                    </div>
                 </div> 
             </div>
             <div className="temperature" onClick={this.convertTemperature}>
-                <div className="info">
-                    <h2>Amanhã</h2>
-                    <p>{this.state.tomorrowTemp} &deg;C</p>                                      
-                </div>
-                <div className="info details">
-                    <h3>{this.state.tomorrowDescription}</h3>
-                    <p>Vento: {this.state.tomorrowWindDeg} Graus {this.state.tomorrowWindSpeed}km/h</p>
-                    <p>Humidade: {this.state.tomorrowHumidity}%</p>
-                    <p>Pressão: {this.state.tomorrowPressure}hPA</p>
-                </div> 
-            </div>
-            <div className="temperature" onClick={this.convertTemperature}>
-                <div className="info">
-                    <h2>Depois de amanhã</h2>
-                    <p>{this.state.afterTomorrowTemp} &deg;C</p>                                      
-                </div>
-                <div className="info details">
-                    <h3>{this.state.afterTomorrowDescription}</h3>
-                    <p>Vento: {this.state.afterTomorrowWindDeg} Graus {this.state.afterTomorrowWindSpeed}km/h</p>
-                    <p>Humidade: {this.state.afterTomorrowHumidity}%</p>
-                    <p>Pressão: {this.state.afterTomorrowPressure}hPA</p>
+                <div className="icon" data-icon="B"></div>
+                <div>
+                    <div className="info">
+                        <h2>Depois de amanhã</h2>
+                        <p>{this.state.afterTomorrowTemp} &deg;C</p>                                      
+                    </div>
+                    <div className="info details">
+                        <h3>{this.state.afterTomorrowDescription}</h3>
+                        <p>Vento: {this.state.afterTomorrowWindDeg} Graus {this.state.afterTomorrowWindSpeed}km/h</p>
+                        <p>Humidade: {this.state.afterTomorrowHumidity}%</p>
+                        <p>Pressão: {this.state.afterTomorrowPressure}hPA</p>
+                    </div>
                 </div> 
             </div>
           </div>        

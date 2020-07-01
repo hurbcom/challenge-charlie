@@ -6,13 +6,20 @@ export const TemperatureStyles = styled.div`
     }
     .temp-container{
         width: 100%;
-        
         color: #fff;
         .temperature{
-            padding: 18px 85px 70px;
+            padding: 18px 85px 70px;        
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            .icon{
+                font-size: 300px;
+                position: absolute;
+                left: 70px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
             &:nth-child(1){
                 background: linear-gradient(to right, rgba(40,40,40,.9) 0%, rgba(70,70,70,.9) 100%);
             }
@@ -33,15 +40,20 @@ export const TemperatureStyles = styled.div`
                     line-height: 100%;
                     font-size: 32px;
                 }
+                h3{
+                    text-transform: capitalize;
+                }
                 p{
                     font-size: 28px;
                 }
             }
-            .details{
+            .details,
+            .icon{
                 display: none;
             }
             &:hover{
-                .details{
+                .details,
+                .icon{
                     display:block;
                 }
             }
