@@ -83,16 +83,25 @@ const WeatherReport: React.FC = () => {
       return;
     }
     setIsLoading(1);
-    api
-      .get(
-        `https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${config.openCageApiKey}`,
-      )
-      .then((response) => {
-        setCoordinates(response.data.results[0].geometry);
-      })
-      .finally(() => {
-        setIsLoading(undefined);
-      });
+    try {
+      api
+        .get(
+          `https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${config.openCageApiKey}`,
+        )
+        .then((response) => {
+          if (response.data.results.length <= 0) {
+            setIsLoading(undefined);
+            return;
+          }
+
+          setCoordinates(response.data.results[0].geometry);
+        })
+        .finally(() => {
+          setIsLoading(undefined);
+        });
+    } catch (err) {
+      throw new Error(err);
+    }
   }, [address]);
 
   /*
