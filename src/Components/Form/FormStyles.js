@@ -28,6 +28,7 @@ export const FormStyles = styled.form`
       font-size: 50px;
       font-weight: 700;
       outline: none;
+      box-shadow: 1px 1px 2px 2px #0000002b;
     }
   }
 `;

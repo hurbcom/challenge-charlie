@@ -34,10 +34,12 @@
         "@babel/preset-react": "^7.10.1",
         "babel-loader": "^8.1.0",
         "babel-preset-react": "^6.24.1",
+        "dotenv": "^8.2.0",
         "html-loader": "^1.1.0",
         "html-webpack-plugin": "^4.3.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-places-autocomplete": "^7.2.1",
         "styled-components": "^5.1.1",
         "url-loader": "^4.1.0"
     }

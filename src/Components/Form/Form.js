@@ -1,38 +1,16 @@
 import React, { Component } from "react";
 import { FormStyles } from './FormStyles';
+import LocationSearchInput from "../LocationSearchInput";
 
 class Form extends Component {
-
-  constructor() {
-    super();
-
-    this.state = {
-      value: ""
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    const { value } = event.target;
-    this.setState(() => {
-      return {
-        value
-      };
-    });
-  }
 
   render() {
     return (
       <FormStyles>        
-        <label htmlFor="busca">
+        <label>
           <div className="icon" data-icon="("></div>
-          <input
-            type="search"
-            value={this.state.value}
-            onChange={this.handleChange}
-            id="busca"
-          />
+          <LocationSearchInput>
+          </LocationSearchInput>
         </label>
       </FormStyles>
     );

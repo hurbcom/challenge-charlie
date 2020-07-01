@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import regeneratorRuntime from "regenerator-runtime";
 import { BackgroundImg } from './BackgroundStyles';
 
 class Background extends Component {
