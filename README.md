@@ -19,6 +19,7 @@ Para iniciar o projeto em um container Docker:
 ## Observações e mudanças
 
 - Adicionado um autocomplete de nomes de cidades e locais
+- A busca é inteligente o suficiente para entregar o local correto se o nome da cidade for escrito de maneira um pouco errada
 - Ao invés de importar os ícones SVG de uma pasta. resolvi utilizar o React-Icons, por ser prático.
 
 
