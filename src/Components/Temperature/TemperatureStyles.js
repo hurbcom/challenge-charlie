@@ -8,13 +8,13 @@ export const TemperatureStyles = styled.div`
         width: 100%;
         color: #fff;
         .temperature{
-            padding: 18px 85px 70px;        
+            padding: 25px 85px 60px;        
             display: flex;
             justify-content: flex-end;
             align-items: center;
             position: relative;
             .icon{
-                font-size: 300px;
+                font-size: 450px;
                 position: absolute;
                 left: 70px;
                 top: 50%;
@@ -36,7 +36,7 @@ export const TemperatureStyles = styled.div`
                     margin-top: 55px;
                 }
                 h2,h3{
-                    margin-bottom: 25px;
+                    margin-bottom: 20px;
                     line-height: 100%;
                     font-size: 32px;
                 }
@@ -52,15 +52,14 @@ export const TemperatureStyles = styled.div`
                 display: none;
             }
             &:hover{
+                padding-bottom: 140px;
                 .details,
                 .icon{
                     display:block;
                 }
             }
             
-        }
-        
-        
+        }                
     }
    
 `;

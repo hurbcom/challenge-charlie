@@ -38,23 +38,23 @@ class Temperature extends Component {
                 const apiOpenWeather = 'https://api.openweathermap.org/data/2.5/onecall';
                 const keyOpenWeather = '7ba73e0eb8efe773ed08bfd0627f07b8';
                 const weatherUrl = apiOpenWeather + '?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&%20exclude=hourly,minutely' + '&appid=' + keyOpenWeather + '&lang=pt&units=metric&cnt=3';
-                console.log(weatherUrl);
+                
                 const response = await fetch(weatherUrl);
                 const data = await response.json();
                 this.setState({ 
-                    todayTemp: data.daily[0].temp.day,
+                    todayTemp: Math.round(data.daily[0].temp.day),
                     todayDescription: data.daily[0].weather[0].description,
                     todayWindDeg: data.daily[0].wind_deg,
                     todayWindSpeed: data.daily[0].wind_speed,
                     todayHumidity: data.daily[0].humidity,
                     todayPressure: data.daily[0].pressure,
-                    tomorrowTemp: data.daily[1].temp.day,
+                    tomorrowTemp: Math.round(data.daily[1].temp.day),
                     tomorrowDescription: data.daily[1].weather[0].description,
                     tomorrowWindDeg: data.daily[1].wind_deg,
                     tomorrowWindSpeed: data.daily[1].wind_speed,
                     tomorrowHumidity: data.daily[1].humidity,
                     tomorrowPressure: data.daily[1].pressure,
-                    afterTomorrowTemp: data.daily[2].temp.day,
+                    afterTomorrowTemp: Math.round(data.daily[2].temp.day),
                     afterTomorrowDescription: data.daily[2].weather[0].description,
                     afterTomorrowWindDeg: data.daily[2].wind_deg,
                     afterTomorrowWindSpeed: data.daily[2].wind_speed,
