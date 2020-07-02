@@ -65,6 +65,7 @@ class Temperature extends Component {
                     afterTomorrowPressure: data.daily[2].pressure,
                 });
 
+                //Colocando os ícones de acordo com a descrição do clima
                 if((this.state.todayDescription).includes("chuva")){
                     this.setState({ 
                         todayIcon: "R",                
@@ -107,6 +108,8 @@ class Temperature extends Component {
                     });
                 }
 
+
+                //Trocando cor de fundo dos blocos de clima de acordo com a temperatura
                 if(this.state.todayTemp > 35){
                     this.setState({ 
                         todayBg: "linear-gradient(to right,rgba(100,0,0,.9) 0%,rgba(150,0,0,.9) 100%)",                
