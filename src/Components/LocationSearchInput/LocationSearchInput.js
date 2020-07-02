@@ -31,7 +31,7 @@ class LocationSearchInput extends React.Component {
           navigator.geolocation.getCurrentPosition(async(position) => {
               
               const apiOpenCage = 'https://api.opencagedata.com/geocode/v1/json?q=';                
-              const keyOpenCage = 'c63386b4f77e46de817bdf94f552cddf';
+              const keyOpenCage = '58099450258d4cb88d2735230fda2313';
               const locationUrl = apiOpenCage + position.coords.latitude + '%2C' + position.coords.longitude + '&key=' + keyOpenCage;                               
               const response = await fetch(locationUrl);
               const data = await response.json();

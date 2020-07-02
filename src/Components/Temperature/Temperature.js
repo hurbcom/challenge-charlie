@@ -69,11 +69,11 @@ class Temperature extends Component {
                     this.setState({ 
                         todayIcon: "R",                
                     });
-                }else if((this.state.todayDescription).includes("nuvens")){
+                }else if((this.state.todayDescription).includes("nuvens") || (this.state.todayDescription).includes("nublado")){
                     this.setState({ 
                         todayIcon: "Y",                
                     });
-                }else if((this.state.todayDescription).includes("sol")){
+                }else if((this.state.todayDescription).includes("sol") || (this.state.todayDescription).includes("limpo")){
                     this.setState({ 
                         todayIcon: "B",                
                     });
@@ -83,11 +83,11 @@ class Temperature extends Component {
                     this.setState({ 
                         tomorrowIcon: "R",                
                     });
-                }else if((this.state.tomorrowDescription).includes("nuvens")){
+                }else if((this.state.tomorrowDescription).includes("nuvens") || (this.state.tomorrowDescription).includes("nublado")){
                     this.setState({ 
                         tomorrowIcon: "Y",                
                     });
-                }else if((this.state.tomorrowDescription).includes("sol")){
+                }else if((this.state.tomorrowDescription).includes("sol") || (this.state.tomorrowDescription).includes("limpo")){
                     this.setState({ 
                         tomorrowIcon: "B",                
                     });
@@ -97,11 +97,11 @@ class Temperature extends Component {
                     this.setState({ 
                         afterTomorrowIcon: "R",                
                     });
-                }else if((this.state.afterTomorrowDescription).includes("nuvens")){
+                }else if((this.state.afterTomorrowDescription).includes("nuvens") || (this.state.afterTomorrowDescription).includes("nublado")){
                     this.setState({ 
                         afterTomorrowIcon: "Y",                
                     });
-                }else if((this.state.afterTomorrowDescription).includes("sol")){
+                }else if((this.state.afterTomorrowDescription).includes("sol") || (this.state.afterTomorrowDescription).includes("limpo")){
                     this.setState({ 
                         afterTomorrowIcon: "B",                
                     });
@@ -164,13 +164,13 @@ class Temperature extends Component {
     render() {
       return (
         <TemperatureStyles>
-          <div className="temp-container" onClick={this.convertTemperature}>
+          <div className="temp-container">
             <div className="temperature" style={{background: this.state.todayBg}}>
                 <div className="icon" data-icon={this.state.todayIcon}></div>
                 <div>
                     <div className="info">
                         <h2>Hoje</h2>
-                        <p>{this.state.toggleUnit ? Math.round((this.state.todayTemp * 1.8) + 32) + '°F' : this.state.todayTemp + '°C' }</p>                                      
+                        <p onClick={this.convertTemperature}>{this.state.toggleUnit ? Math.round((this.state.todayTemp * 1.8) + 32) + '°F' : this.state.todayTemp + '°C' }</p>                                      
                     </div>
                     <div className="info details">
                         <h3>{this.state.todayDescription}</h3>
@@ -185,7 +185,7 @@ class Temperature extends Component {
                 <div>
                     <div className="info">
                         <h2>Amanhã</h2>
-                        <p>{this.state.toggleUnit ? Math.round((this.state.tomorrowTemp * 1.8) + 32) + '°F' : this.state.tomorrowTemp + '°C' }</p>                        
+                        <p onClick={this.convertTemperature}>{this.state.toggleUnit ? Math.round((this.state.tomorrowTemp * 1.8) + 32) + '°F' : this.state.tomorrowTemp + '°C' }</p>                        
                     </div>
                     <div className="info details">
                         <h3>{this.state.tomorrowDescription}</h3>
@@ -200,7 +200,7 @@ class Temperature extends Component {
                 <div>
                     <div className="info">
                         <h2>Depois de amanhã</h2>
-                        <p>{this.state.toggleUnit ? Math.round((this.state.afterTomorrowTemp * 1.8) + 32) + '°F' : this.state.afterTomorrowTemp + '°C' }</p>                                                
+                        <p onClick={this.convertTemperature}>{this.state.toggleUnit ? Math.round((this.state.afterTomorrowTemp * 1.8) + 32) + '°F' : this.state.afterTomorrowTemp + '°C' }</p>                                                
                     </div>
                     <div className="info details">
                         <h3>{this.state.afterTomorrowDescription}</h3>
