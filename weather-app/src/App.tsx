@@ -1,7 +1,9 @@
 import React from 'react';
 
+import Main from './pages/Main';
+
 const App: React.FC = () => {
-  return <p>Hello World</p>;
+  return <Main />;
 };
 
 export default App;
