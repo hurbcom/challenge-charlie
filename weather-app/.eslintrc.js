@@ -29,6 +29,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "no-unused-expressions": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
