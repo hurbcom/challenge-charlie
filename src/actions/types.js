@@ -1,0 +1,1 @@
+export const FETCH_BACKGROUND = "FETCH_BACKGROUND";
