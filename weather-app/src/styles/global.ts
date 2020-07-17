@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import '../assets/meteocons-font/stylesheet.css';
 
 export default createGlobalStyle`
   * {
