@@ -4,17 +4,23 @@ import React, {
   useState,
   useCallback,
   useContext,
+  useMemo,
 } from 'react';
 
 interface Coords {
   latitude: number;
   longitude: number;
 }
+interface IGeolocationContext {
+  coords: Coords | null;
+}
 
-const GeolocationContext = createContext<Coords>({} as Coords);
+const GeolocationContext = createContext<IGeolocationContext>(
+  {} as IGeolocationContext,
+);
 
 const GeolocationProvider: React.FC = ({ children }) => {
-  const [coords, setCoords] = useState<Coords>({} as Coords);
+  const [positionCoords, setPositionCoords] = useState<Coords>({} as Coords);
 
   const getCoordsErrorCallback = useCallback(error => {
     switch (error.code) {
@@ -42,18 +48,26 @@ const GeolocationProvider: React.FC = ({ children }) => {
     }
 
     navigator.geolocation.getCurrentPosition(position => {
-      setCoords(position.coords);
+      setPositionCoords(position.coords);
     }, getCoordsErrorCallback);
   }, [getCoordsErrorCallback]);
 
+  const coords = useMemo(() => {
+    if (typeof positionCoords.latitude !== undefined) {
+      return positionCoords;
+    }
+
+    return null;
+  }, [positionCoords]);
+
   return (
-    <GeolocationContext.Provider value={coords}>
+    <GeolocationContext.Provider value={{ coords }}>
       {children}
     </GeolocationContext.Provider>
   );
 };
 
-function useGeolocation(): Coords {
+function useGeolocation(): IGeolocationContext {
   const context = useContext(GeolocationContext);
 
   if (!context) {
