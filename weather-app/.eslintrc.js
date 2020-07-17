@@ -30,6 +30,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "no-unused-expressions": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "no-alert": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
