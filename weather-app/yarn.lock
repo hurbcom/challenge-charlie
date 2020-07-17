@@ -10412,6 +10412,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+swr-sync-storage@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/swr-sync-storage/-/swr-sync-storage-1.0.1.tgz#be4a1408d0e9c030619d936c48ac5b28fccc14b1"
+  integrity sha512-PJBVn+e9rTQUiN3/iQebQeEK0E+GgBcaeLrvy9f8R/jZ+OScfGUorYC1hLiH4KOqq8l3jruQlBnxrKZ1Zt6P0g==
+
 swr@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/swr/-/swr-0.2.3.tgz#e0fb260d27f12fafa2388312083368f45127480d"
