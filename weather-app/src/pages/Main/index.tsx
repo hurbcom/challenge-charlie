@@ -8,26 +8,47 @@ import { useGeolocation } from '../../hooks/geolocation';
 
 const fetcher = (url: string) => fetch(url).then(r => r.json());
 
+const openCageApiKey = '02a10adc6b0f40e2904f6e4db1dd50d9 ';
+const openWeatherMap = '7ba73e0eb8efe773ed08bfd0627f07b8';
+
+interface Coords {
+  latitude: number;
+  longitude: number;
+}
+
 const Main: React.FC = () => {
-  const [defaultLocation, setDefaultLocation] = useState('');
-  const coords = useGeolocation();
+  const [ableToSearch, setAbleToSearch] = useState(false);
+  const [location, setLocation] = useState('');
+  const [coords, setCoords] = useState<Coords | null>(null);
+
+  const { coords: defaultCoords } = useGeolocation();
 
   const { data: defaultLocationData } = useSWR(
     () =>
-      typeof coords.latitude !== 'undefined'
-        ? `https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude},${coords.longitude}&key=c63386b4f77e46de817bdf94f552cddf&language=en`
+      defaultCoords?.latitude !== undefined
+        ? `https://api.opencagedata.com/geocode/v1/json?q=${defaultCoords?.latitude},${defaultCoords?.longitude}&key=${openCageApiKey}`
         : null,
     fetcher,
+    { errorRetryCount: 10 },
+  );
+
+  const { data: weather, error } = useSWR(
+    () =>
+      ableToSearch && coords?.latitude !== undefined
+        ? `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric`
+        : null,
+    fetcher,
+    { errorRetryCount: 10 },
   );
 
   useEffect(() => {
-    if (defaultLocationData) {
+    if (defaultLocationData && defaultLocationData.results.length) {
       const [result] = defaultLocationData.results;
-      setDefaultLocation(
-        `${result.components.city}, ${result.components.state}`,
-      );
+      setLocation(`${result?.components.city}, ${result?.components.state}`);
+      setCoords(defaultCoords);
+      setAbleToSearch(true);
     }
-  }, [defaultLocationData]);
+  }, [defaultLocationData, defaultCoords]);
 
   return (
     <>
@@ -38,7 +59,8 @@ const Main: React.FC = () => {
             <input
               type="text"
               placeholder="Digite aqui sua localização"
-              defaultValue={defaultLocation}
+              value={location}
+              onChange={e => setLocation(e.target.value)}
             />
           </InputContainer>
         </WeatherContainer>
