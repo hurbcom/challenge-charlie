@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import useSWR from 'swr';
 
 import BackgroundImage from '../../components/BackgroundImage';
@@ -14,7 +14,10 @@ import {
 } from './styles';
 
 import { useGeolocation } from '../../hooks/geolocation';
-import { degreesToDirection } from '../../util/converter';
+import {
+  degreesToDirection,
+  convertCelsiusToFahrenheit,
+} from '../../util/converter';
 
 const fetcher = (url: string) => fetch(url).then(r => r.json());
 
@@ -28,6 +31,7 @@ interface Coords {
 
 const Main: React.FC = () => {
   const [ableToSearch, setAbleToSearch] = useState(false);
+  const [showAsFahrenheit, setShowAsFahrenheit] = useState(false);
   const [location, setLocation] = useState('');
   const [coords, setCoords] = useState<Coords | null>(null);
 
@@ -55,7 +59,8 @@ const Main: React.FC = () => {
     if (weatherData) {
       const { current, daily } = weatherData;
       return {
-        temp: Math.floor(current.temp),
+        celsiusDegree: Math.floor(current.temp),
+        fahrenheitDegree: Math.floor(convertCelsiusToFahrenheit(current.temp)),
         pressure: current.pressure,
         windDirection: degreesToDirection(current.wind_deg),
         windSpeed: (current.wind_speed * 3.6).toFixed(1),
@@ -63,11 +68,17 @@ const Main: React.FC = () => {
         description: current.weather[0].description,
         icon: current.weather[0].icon,
         tomorrow: {
-          temp: Math.floor(daily[1].temp.day),
+          celsiusDegree: Math.floor(daily[1].temp.day),
+          fahrenheitDegree: Math.floor(
+            convertCelsiusToFahrenheit(daily[1].temp.day),
+          ),
         },
 
         afterTomorrow: {
-          temp: Math.floor(daily[2].temp.day),
+          celsiusDegree: Math.floor(daily[2].temp.day),
+          fahrenheitDegree: Math.floor(
+            convertCelsiusToFahrenheit(daily[2].temp.day),
+          ),
         },
       };
     }
@@ -77,10 +88,10 @@ const Main: React.FC = () => {
 
   const weatherStatus = useMemo(() => {
     if (weather) {
-      if (weather.temp < 15) {
+      if (weather.celsiusDegree < 15) {
         return 'cold';
       }
-      if (weather.temp >= 15) {
+      if (weather.celsiusDegree >= 15) {
         return 'hot';
       }
 
@@ -89,6 +100,7 @@ const Main: React.FC = () => {
 
     return 'cold';
   }, [weather]);
+
   useEffect(() => {
     if (defaultLocationData && defaultLocationData.results.length) {
       const [result] = defaultLocationData.results;
@@ -97,6 +109,10 @@ const Main: React.FC = () => {
       setAbleToSearch(true);
     }
   }, [defaultLocationData, defaultCoords]);
+
+  const toggleShowDegreeMode = useCallback(() => {
+    setShowAsFahrenheit(mode => !mode);
+  }, []);
 
   return (
     <>
@@ -115,10 +131,12 @@ const Main: React.FC = () => {
           <WeatherToday>
             <Icon symbol={weather?.icon} />
             <WeatherDetails>
-              <strong>
+              <strong onClick={toggleShowDegreeMode}>
                 HOJE
                 <br />
-                {`${weather?.temp}°C`}
+                {showAsFahrenheit
+                  ? `${weather?.fahrenheitDegree}°F`
+                  : `${weather?.celsiusDegree}°C`}
               </strong>
 
               <strong>{weather?.description}</strong>
@@ -135,20 +153,24 @@ const Main: React.FC = () => {
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong>
+              <strong onClick={toggleShowDegreeMode}>
                 AMANHÃ
                 <br />
-                {`${weather?.tomorrow.temp}°C`}
+                {showAsFahrenheit
+                  ? `${weather?.tomorrow.fahrenheitDegree}°F`
+                  : `${weather?.tomorrow.celsiusDegree}°C`}
               </strong>
             </WeatherDetails>
           </WeatherNextDay>
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong>
+              <strong onClick={toggleShowDegreeMode}>
                 DEPOIS DE AMANHÃ
                 <br />
-                {`${weather?.afterTomorrow.temp}°C`}
+                {showAsFahrenheit
+                  ? `${weather?.afterTomorrow.fahrenheitDegree}°F`
+                  : `${weather?.afterTomorrow.celsiusDegree}°C`}
               </strong>
             </WeatherDetails>
           </WeatherNextDay>

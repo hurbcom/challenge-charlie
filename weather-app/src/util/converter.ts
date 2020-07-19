@@ -4,4 +4,8 @@ function degreesToDirection(degrees: number): string {
   return directions[val % 8];
 }
 
-export { degreesToDirection };
+function convertCelsiusToFahrenheit(degrees: number): number {
+  return (degrees * 9) / 5 + 32;
+}
+
+export { degreesToDirection, convertCelsiusToFahrenheit };

@@ -30,6 +30,8 @@ module.exports = {
     "import/no-unresolved": "off",
     "no-unused-expressions": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "no-alert": "off",
     "import/extensions": [
       "error",

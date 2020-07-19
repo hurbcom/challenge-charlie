@@ -127,6 +127,7 @@ export const WeatherDetails = styled.div`
 
     &:first-child {
       margin-bottom: 2.4rem;
+      cursor: pointer;
     }
 
     &:nth-child(2) {
