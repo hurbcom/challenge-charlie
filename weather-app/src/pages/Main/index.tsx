@@ -131,7 +131,10 @@ const Main: React.FC = () => {
           <WeatherToday>
             <Icon symbol={weather?.icon} />
             <WeatherDetails>
-              <strong onClick={toggleShowDegreeMode}>
+              <strong
+                onClick={toggleShowDegreeMode}
+                title="Clique para mudar o modo de exibição"
+              >
                 HOJE
                 <br />
                 {showAsFahrenheit
@@ -153,7 +156,10 @@ const Main: React.FC = () => {
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong onClick={toggleShowDegreeMode}>
+              <strong
+                onClick={toggleShowDegreeMode}
+                title="Clique para mudar o modo de exibição"
+              >
                 AMANHÃ
                 <br />
                 {showAsFahrenheit
@@ -165,7 +171,10 @@ const Main: React.FC = () => {
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong onClick={toggleShowDegreeMode}>
+              <strong
+                onClick={toggleShowDegreeMode}
+                title="Clique para mudar o modo de exibição"
+              >
                 DEPOIS DE AMANHÃ
                 <br />
                 {showAsFahrenheit
