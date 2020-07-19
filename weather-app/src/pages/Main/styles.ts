@@ -131,6 +131,7 @@ export const WeatherDetails = styled.div`
 
     &:nth-child(2) {
       margin-bottom: 1.6rem;
+      text-transform: capitalize;
     }
   }
 
