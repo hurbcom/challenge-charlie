@@ -55,7 +55,7 @@ const Main: React.FC = () => {
     if (weatherData) {
       const { current, daily } = weatherData;
       return {
-        temp: current.temp,
+        temp: Math.floor(current.temp),
         pressure: current.pressure,
         windDirection: degreesToDirection(current.wind_deg),
         windSpeed: (current.wind_speed * 3.6).toFixed(1),
@@ -63,11 +63,11 @@ const Main: React.FC = () => {
         description: current.weather[0].description,
         icon: current.weather[0].icon,
         tomorrow: {
-          temp: daily[1].temp.day,
+          temp: Math.floor(daily[1].temp.day),
         },
 
         afterTomorrow: {
-          temp: daily[2].temp.day,
+          temp: Math.floor(daily[2].temp.day),
         },
       };
     }
