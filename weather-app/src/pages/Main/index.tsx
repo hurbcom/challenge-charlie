@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import useSWR from 'swr';
 
 import BackgroundImage from '../../components/BackgroundImage';
+import Icon from '../../components/Icon';
 
 import {
   Container,
@@ -60,6 +61,7 @@ const Main: React.FC = () => {
         windSpeed: (current.wind_speed * 3.6).toFixed(1),
         humidity: current.humidity,
         description: current.weather[0].description,
+        icon: current.weather[0].icon,
         tomorrow: {
           temp: daily[1].temp.day,
         },
@@ -101,7 +103,7 @@ const Main: React.FC = () => {
       <Container>
         <WeatherContainer className={weatherStatus}>
           <InputContainer>
-            <span data-icon="(" />
+            <Icon symbol="compass" />
             <input
               type="text"
               placeholder="Digite aqui sua localização"
@@ -111,7 +113,7 @@ const Main: React.FC = () => {
           </InputContainer>
 
           <WeatherToday>
-            <span data-icon="B" />
+            <Icon symbol={weather?.icon} />
             <WeatherDetails>
               <strong>
                 HOJE
