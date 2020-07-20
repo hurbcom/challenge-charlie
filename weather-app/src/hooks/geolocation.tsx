@@ -24,26 +24,18 @@ const GeolocationProvider: React.FC = ({ children }) => {
 
   const getCoordsErrorCallback = useCallback(error => {
     switch (error.code) {
-      case 0:
-        window.alert('Não foi possível obter sua localização');
-        break;
-      case 1:
-        window.alert('Não é possível prosseguir sem permissão de localização');
-        break;
       case 2:
       case 3:
-      default:
         window.alert(
           'Não foi possível determinar sua localização, tente novamente em alguns instantes',
         );
+        break;
+      default:
     }
   }, []);
 
   useEffect(() => {
     if (!('geolocation' in navigator)) {
-      window.alert(
-        'Sinto muito, mas seu navegador não suporta serviços de geolocalização',
-      );
       return;
     }
 
