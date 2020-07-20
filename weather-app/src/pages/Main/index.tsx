@@ -12,6 +12,7 @@ import {
   WeatherToday,
   WeatherDetails,
   WeatherNextDay,
+  WeatherNotFound,
 } from './styles';
 
 import { useRequest } from '../../hooks/useRequest';
@@ -36,6 +37,7 @@ const Main: React.FC = () => {
   const [location, setLocation] = useState('');
   const [coords, setCoords] = useState<Coords | null>(null);
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const { coords: defaultCoords } = useGeolocation();
 
@@ -89,7 +91,7 @@ const Main: React.FC = () => {
   }, [weatherData]);
 
   const weatherStatus = useMemo(() => {
-    if (weather) {
+    if (weather && !notFound) {
       if (weather.celsiusDegree < 15) {
         return 'cold';
       }
@@ -101,7 +103,7 @@ const Main: React.FC = () => {
     }
 
     return 'default';
-  }, [weather]);
+  }, [weather, notFound]);
 
   useEffect(() => {
     if (defaultLocationData && defaultLocationData.results.length) {
@@ -121,11 +123,6 @@ const Main: React.FC = () => {
         setLoading(true);
         event.preventDefault();
 
-        if (!location) {
-          window.alert('Digite o nome da cidade para pesquisar');
-          return;
-        }
-
         const { results } = await fetch(
           `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}`,
         ).then(r => r.json());
@@ -142,8 +139,9 @@ const Main: React.FC = () => {
           latitude: result.geometry.lat,
           longitude: result.geometry.lng,
         });
+        setNotFound(false);
       } catch {
-        // TODO
+        setNotFound(true);
       } finally {
         setLoading(false);
       }
@@ -165,50 +163,64 @@ const Main: React.FC = () => {
             />
           </Form>
 
-          <WeatherToday>
-            <Icon symbol={weather?.icon} />
-            <WeatherDetails>
-              <Temperature
-                day="HOJE"
-                toggleCallback={toggleShowTemperatureMode}
-                showAsFahrenheit={showAsFahrenheit}
-                celsius={weather?.celsiusDegree}
-                fahrenheit={weather?.fahrenheitDegree}
-              />
+          {weather && !notFound ? (
+            <>
+              <WeatherToday>
+                <Icon symbol={weather?.icon} />
+                <WeatherDetails>
+                  <Temperature
+                    day="HOJE"
+                    toggleCallback={toggleShowTemperatureMode}
+                    showAsFahrenheit={showAsFahrenheit}
+                    celsius={weather?.celsiusDegree}
+                    fahrenheit={weather?.fahrenheitDegree}
+                  />
 
-              <WeatherInformation
-                description={weather?.description}
-                windDirection={weather?.windDirection}
-                windSpeed={weather?.windSpeed}
-                humidity={weather?.humidity}
-                pressure={weather?.pressure}
-              />
-            </WeatherDetails>
-          </WeatherToday>
+                  <WeatherInformation
+                    description={weather?.description}
+                    windDirection={weather?.windDirection}
+                    windSpeed={weather?.windSpeed}
+                    humidity={weather?.humidity}
+                    pressure={weather?.pressure}
+                  />
+                </WeatherDetails>
+              </WeatherToday>
 
-          <WeatherNextDay>
-            <WeatherDetails>
-              <Temperature
-                day="AMANHÃ"
-                toggleCallback={toggleShowTemperatureMode}
-                showAsFahrenheit={showAsFahrenheit}
-                celsius={weather?.tomorrow.celsiusDegree}
-                fahrenheit={weather?.tomorrow.fahrenheitDegree}
-              />
-            </WeatherDetails>
-          </WeatherNextDay>
+              <WeatherNextDay>
+                <WeatherDetails>
+                  <Temperature
+                    day="AMANHÃ"
+                    toggleCallback={toggleShowTemperatureMode}
+                    showAsFahrenheit={showAsFahrenheit}
+                    celsius={weather?.tomorrow.celsiusDegree}
+                    fahrenheit={weather?.tomorrow.fahrenheitDegree}
+                  />
+                </WeatherDetails>
+              </WeatherNextDay>
 
-          <WeatherNextDay>
-            <WeatherDetails>
-              <Temperature
-                day="DEPOIS DE AMANHÃ"
-                toggleCallback={toggleShowTemperatureMode}
-                showAsFahrenheit={showAsFahrenheit}
-                celsius={weather?.afterTomorrow.celsiusDegree}
-                fahrenheit={weather?.afterTomorrow.fahrenheitDegree}
-              />
-            </WeatherDetails>
-          </WeatherNextDay>
+              <WeatherNextDay>
+                <WeatherDetails>
+                  <Temperature
+                    day="DEPOIS DE AMANHÃ"
+                    toggleCallback={toggleShowTemperatureMode}
+                    showAsFahrenheit={showAsFahrenheit}
+                    celsius={weather?.afterTomorrow.celsiusDegree}
+                    fahrenheit={weather?.afterTomorrow.fahrenheitDegree}
+                  />
+                </WeatherDetails>
+              </WeatherNextDay>
+            </>
+          ) : (
+            <WeatherNotFound>
+              <p>
+                <b>Ops!</b>
+                <br />
+                Não conseguimos trazer as informações que você queria. Mas não
+                se preocupe, você pode tentar novamente. Pesquise por uma
+                cidade.
+              </p>
+            </WeatherNotFound>
+          )}
         </WeatherContainer>
       </Container>
       <BackgroundImage />

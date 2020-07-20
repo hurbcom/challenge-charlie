@@ -44,6 +44,7 @@ export const Container = styled.div`
 export const WeatherContainer = styled.div`
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 560px;
   animation: ${weatherContainerAppear} 300ms backwards;
@@ -326,4 +327,15 @@ export const WeatherDetails = styled.div`
 export const WeatherNextDay = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+export const WeatherNotFound = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 1.6rem;
+
+  font-size: 1.6rem;
+  text-align: center;
 `;
