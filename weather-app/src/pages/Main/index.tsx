@@ -98,7 +98,7 @@ const Main: React.FC = () => {
       return 'too-hot';
     }
 
-    return 'cold';
+    return 'default';
   }, [weather]);
 
   useEffect(() => {

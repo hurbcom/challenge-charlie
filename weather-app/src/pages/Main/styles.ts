@@ -54,6 +54,20 @@ export const WeatherContainer = styled.div`
     color: #fff;
   }
 
+  &.default {
+    > div:nth-child(2) {
+      background: #616161f2;
+    }
+
+    > div:nth-child(3) {
+      background: #575757f5;
+    }
+
+    > div:nth-child(4) {
+      background: #4d4d4dfa;
+    }
+  }
+
   &.cold {
     > div:nth-child(2) {
       background: #1858b5f2;
