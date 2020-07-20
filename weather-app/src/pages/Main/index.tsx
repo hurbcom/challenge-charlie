@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import BackgroundImage from '../../components/BackgroundImage';
 import Icon from '../../components/Icon';
+import Temperature from '../../components/Temperature';
 
 import {
   Container,
@@ -166,16 +167,13 @@ const Main: React.FC = () => {
           <WeatherToday>
             <Icon symbol={weather?.icon} />
             <WeatherDetails>
-              <strong
-                onClick={toggleShowTemperatureMode}
-                title="Clique para mudar o modo de exibição"
-              >
-                HOJE
-                <br />
-                {showAsFahrenheit
-                  ? `${weather?.fahrenheitDegree}°F`
-                  : `${weather?.celsiusDegree}°C`}
-              </strong>
+              <Temperature
+                day="HOJE"
+                toggleCallback={toggleShowTemperatureMode}
+                showAsFahrenheit={showAsFahrenheit}
+                celsius={weather?.celsiusDegree}
+                fahrenheit={weather?.fahrenheitDegree}
+              />
 
               <strong>{weather?.description}</strong>
 
@@ -191,31 +189,25 @@ const Main: React.FC = () => {
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong
-                onClick={toggleShowTemperatureMode}
-                title="Clique para mudar o modo de exibição"
-              >
-                AMANHÃ
-                <br />
-                {showAsFahrenheit
-                  ? `${weather?.tomorrow.fahrenheitDegree}°F`
-                  : `${weather?.tomorrow.celsiusDegree}°C`}
-              </strong>
+              <Temperature
+                day="AMANHÃ"
+                toggleCallback={toggleShowTemperatureMode}
+                showAsFahrenheit={showAsFahrenheit}
+                celsius={weather?.tomorrow.celsiusDegree}
+                fahrenheit={weather?.tomorrow.fahrenheitDegree}
+              />
             </WeatherDetails>
           </WeatherNextDay>
 
           <WeatherNextDay>
             <WeatherDetails>
-              <strong
-                onClick={toggleShowTemperatureMode}
-                title="Clique para mudar o modo de exibição"
-              >
-                DEPOIS DE AMANHÃ
-                <br />
-                {showAsFahrenheit
-                  ? `${weather?.afterTomorrow.fahrenheitDegree}°F`
-                  : `${weather?.afterTomorrow.celsiusDegree}°C`}
-              </strong>
+              <Temperature
+                day="DEPOIS DE AMANHÃ"
+                toggleCallback={toggleShowTemperatureMode}
+                showAsFahrenheit={showAsFahrenheit}
+                celsius={weather?.afterTomorrow.celsiusDegree}
+                fahrenheit={weather?.afterTomorrow.fahrenheitDegree}
+              />
             </WeatherDetails>
           </WeatherNextDay>
         </WeatherContainer>
