@@ -109,7 +109,7 @@ const Main: React.FC = () => {
     }
   }, [defaultLocationData, defaultCoords]);
 
-  const toggleShowDegreeMode = useCallback(() => {
+  const toggleShowTemperatureMode = useCallback(() => {
     setShowAsFahrenheit(mode => !mode);
   }, []);
 
@@ -167,7 +167,7 @@ const Main: React.FC = () => {
             <Icon symbol={weather?.icon} />
             <WeatherDetails>
               <strong
-                onClick={toggleShowDegreeMode}
+                onClick={toggleShowTemperatureMode}
                 title="Clique para mudar o modo de exibição"
               >
                 HOJE
@@ -192,7 +192,7 @@ const Main: React.FC = () => {
           <WeatherNextDay>
             <WeatherDetails>
               <strong
-                onClick={toggleShowDegreeMode}
+                onClick={toggleShowTemperatureMode}
                 title="Clique para mudar o modo de exibição"
               >
                 AMANHÃ
@@ -207,7 +207,7 @@ const Main: React.FC = () => {
           <WeatherNextDay>
             <WeatherDetails>
               <strong
-                onClick={toggleShowDegreeMode}
+                onClick={toggleShowTemperatureMode}
                 title="Clique para mudar o modo de exibição"
               >
                 DEPOIS DE AMANHÃ
