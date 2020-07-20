@@ -1,14 +1,16 @@
 import React from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 import { fetchBackground } from "../../actions";
+import Weather from "../Weather";
+
 import { GlobalStyle } from "../../styles/global";
 import { Fonts } from "../../styles/fonts";
 import * as S from "./styles";
 
 class App extends React.Component {
   componentDidMount() {
-		this.props.fetchBackground();
+    this.props.fetchBackground();
   }
 
   render() {
@@ -17,18 +19,19 @@ class App extends React.Component {
         <GlobalStyle />
         <Fonts />
         <S.App backgroundUrl={this.props.backgroundUrl}>
+          <Weather />
         </S.App>
       </>
     );
   }
-};
-
-const mapStateToProps = (state) => {
-	return {
-		backgroundUrl: state.background.url
-	}
 }
 
+const mapStateToProps = (state) => {
+  return {
+    backgroundUrl: state.background.url,
+  };
+};
+
 export default connect(mapStateToProps, {
-  fetchBackground
+  fetchBackground,
 })(App);

@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
   }
 
