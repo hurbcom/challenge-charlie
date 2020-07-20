@@ -1,17 +1,12 @@
 import React, { useMemo } from 'react';
-import useSWR from 'swr';
 
 import { Image } from './styles';
 
-const fetcher = (url: string) => fetch(url).then(r => r.json());
+import { useRequest } from '../../hooks/useRequest';
 
 const BackgroundImage: React.FC = () => {
-  const {
-    data: backgroundImageData,
-  } = useSWR(
+  const { data: backgroundImageData } = useRequest(
     'https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR',
-    fetcher,
-    { errorRetryCount: 10 },
   );
 
   const backgroundImageURL = useMemo(() => {
