@@ -111,41 +111,9 @@ export const WeatherContainer = styled.div`
   }
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #fff;
-  padding: 1.6rem;
-
-  span,
-  input {
-    color: #424242;
-  }
-
-  span {
-    font-size: 4rem;
-    line-height: 4rem;
-    height: 4rem;
-  }
-
-  input {
-    flex: 1;
-    font-size: 3.2rem;
-    line-height: 3.2rem;
-    width: calc(100% - 4rem);
-    padding-left: 1.6rem;
-    font-weight: bold;
-
-    &::placeholder {
-      color: #bdbdbd;
-    }
-  }
-`;
-
 export const Spinner = styled.div`
-  width: 4rem;
-  height: 4rem;
+  /* width: 4rem;
+  height: 4rem; */
   position: relative;
   animation: ${spinnerAppear} 500ms backwards;
 
@@ -169,6 +137,92 @@ export const Spinner = styled.div`
     border-top-color: transparent;
     border-bottom-color: transparent;
     animation: ${rotate} 800ms linear infinite;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  padding: 1.6rem;
+
+  span,
+  input {
+    color: #424242;
+  }
+
+  div {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  span {
+    font-size: 4rem;
+    line-height: 4rem;
+    height: 4rem;
+  }
+
+  input {
+    flex: 1;
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+    width: calc(100% - 4rem);
+    padding-left: 1.6rem;
+    font-weight: bold;
+
+    &::placeholder {
+      color: #bdbdbd;
+    }
+  }
+
+  @media (max-width: 600px) {
+    span {
+      font-size: 3rem;
+      line-height: 3rem;
+      height: 3rem;
+    }
+    div {
+      height: 3rem;
+      width: 3rem;
+    }
+    input {
+      font-size: 2.8rem;
+      line-height: 3.2rem;
+      width: calc(100% - 3rem);
+      padding-left: 0.8rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    span {
+      font-size: 2.4rem;
+      line-height: 2.4rem;
+      height: 2.4rem;
+    }
+
+    div {
+      height: 2.4rem;
+      width: 2.4rem;
+    }
+
+    input {
+      font-size: 2.4rem;
+      line-height: 2.4rem;
+      width: calc(100% - 2.4rem);
+    }
+  }
+
+  @media (max-width: 470px) {
+    input {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    input {
+      font-size: 1.8rem;
+    }
   }
 `;
 
