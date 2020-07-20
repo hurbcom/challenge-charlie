@@ -16,17 +16,13 @@ const WeatherInformation: React.FC<WeatherInformationProps> = ({
   pressure,
 }) => {
   return (
-    <>
+    <div>
       <strong>{description}</strong>
 
-      <p>
-        {`Vento: ${windDirection} ${windSpeed}km/h`}
-        <br />
-        {`Humidade: ${humidity}%`}
-        <br />
-        {`Pressão: ${pressure}hPA`}
-      </p>
-    </>
+      <p>{`Vento: ${windDirection} ${windSpeed}km/h`}</p>
+      <p>{`Humidade: ${humidity}%`}</p>
+      <p>{`Pressão: ${pressure}hPA`}</p>
+    </div>
   );
 };
 

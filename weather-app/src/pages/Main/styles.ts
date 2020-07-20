@@ -126,13 +126,13 @@ export const Spinner = styled.div`
     right: 0;
     bottom: 0;
     background: transparent;
-    border: 0.5em solid #42424220;
+    border: 0.4em solid #42424220;
     border-radius: 100%;
   }
 
   &:after {
     border-radius: 100%;
-    border: 0.5em solid #424242;
+    border: 0.4em solid #424242;
     border-left-color: transparent;
     border-top-color: transparent;
     border-bottom-color: transparent;
@@ -238,6 +238,24 @@ export const WeatherToday = styled.div`
     place-content: center;
     padding: 2.4rem 0;
   }
+
+  @media (max-width: 600px) {
+    > span {
+      width: 50%;
+      font-size: 20rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.8rem 0;
+    flex-direction: column;
+    align-items: center;
+
+    > span {
+      font-size: 10rem;
+      padding: 0.8rem 0 0 0;
+    }
+  }
 `;
 
 export const WeatherDetails = styled.div`
@@ -258,8 +276,13 @@ export const WeatherDetails = styled.div`
       margin-bottom: 2.4rem;
       cursor: pointer;
     }
+  }
 
-    &:nth-child(2) {
+  div {
+    display: flex;
+    flex-direction: column;
+
+    strong {
       margin-bottom: 1.6rem;
       text-transform: capitalize;
     }
@@ -268,6 +291,35 @@ export const WeatherDetails = styled.div`
   p {
     font-size: 1.8rem;
     line-height: 2.4rem;
+  }
+
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.6rem;
+
+    strong {
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+      margin-bottom: 0 !important;
+    }
+
+    div {
+      flex: 1;
+      align-items: flex-end;
+      text-align: left;
+
+      strong {
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        font-weight: 400;
+      }
+    }
   }
 `;
 
