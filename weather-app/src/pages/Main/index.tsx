@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import BackgroundImage from '../../components/BackgroundImage';
 import Icon from '../../components/Icon';
 import Temperature from '../../components/Temperature';
+import WeatherInformation from '../../components/WeatherInformation';
 
 import {
   Container,
@@ -175,15 +176,13 @@ const Main: React.FC = () => {
                 fahrenheit={weather?.fahrenheitDegree}
               />
 
-              <strong>{weather?.description}</strong>
-
-              <p>
-                {`Vento: ${weather?.windDirection} ${weather?.windSpeed}km/h`}
-                <br />
-                {`Humidade: ${weather?.humidity}%`}
-                <br />
-                {`Pressão: ${weather?.pressure}hPA`}
-              </p>
+              <WeatherInformation
+                description={weather?.description}
+                windDirection={weather?.windDirection}
+                windSpeed={weather?.windSpeed}
+                humidity={weather?.humidity}
+                pressure={weather?.pressure}
+              />
             </WeatherDetails>
           </WeatherToday>
 
