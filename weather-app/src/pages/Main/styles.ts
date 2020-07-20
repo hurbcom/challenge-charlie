@@ -1,4 +1,20 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+`;
+
+const spinnerAppear = keyframes`
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   height: 100%;
@@ -66,7 +82,7 @@ export const WeatherContainer = styled.div`
   }
 `;
 
-export const InputContainer = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -98,6 +114,35 @@ export const InputContainer = styled.div`
   }
 `;
 
+export const Spinner = styled.div`
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  animation: ${spinnerAppear} 500ms backwards;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    border: 0.5em solid #42424220;
+    border-radius: 100%;
+  }
+
+  &:after {
+    border-radius: 100%;
+    border: 0.5em solid #424242;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: ${rotate} 800ms linear infinite;
+  }
+`;
+
 export const WeatherToday = styled.div`
   display: flex;
   flex-direction: row;
@@ -108,6 +153,7 @@ export const WeatherToday = styled.div`
     font-size: 25rem;
     display: flex;
     place-content: center;
+    padding: 2.4rem 0;
   }
 `;
 

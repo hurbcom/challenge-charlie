@@ -1,25 +1,25 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import useSWR from 'swr';
-
 import BackgroundImage from '../../components/BackgroundImage';
 import Icon from '../../components/Icon';
 
 import {
   Container,
   WeatherContainer,
-  InputContainer,
+  Form,
+  Spinner,
   WeatherToday,
   WeatherDetails,
   WeatherNextDay,
 } from './styles';
 
+import { useRequest } from '../../hooks/useRequest';
+
 import { useGeolocation } from '../../hooks/geolocation';
+
 import {
   degreesToDirection,
   convertCelsiusToFahrenheit,
 } from '../../util/converter';
-
-const fetcher = (url: string) => fetch(url).then(r => r.json());
 
 const openCageApiKey = '02a10adc6b0f40e2904f6e4db1dd50d9 ';
 const openWeatherMap = '7ba73e0eb8efe773ed08bfd0627f07b8';
@@ -30,29 +30,29 @@ interface Coords {
 }
 
 const Main: React.FC = () => {
-  const [ableToSearch, setAbleToSearch] = useState(false);
   const [showAsFahrenheit, setShowAsFahrenheit] = useState(false);
   const [location, setLocation] = useState('');
   const [coords, setCoords] = useState<Coords | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const { coords: defaultCoords } = useGeolocation();
 
-  const { data: defaultLocationData } = useSWR(
+  const { data: defaultLocationData } = useRequest(
     () =>
       defaultCoords?.latitude !== undefined
         ? `https://api.opencagedata.com/geocode/v1/json?q=${defaultCoords?.latitude},${defaultCoords?.longitude}&key=${openCageApiKey}`
         : null,
-    fetcher,
-    { errorRetryCount: 10 },
+    {
+      revalidateOnMount: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    },
   );
 
-  const { data: weatherData } = useSWR(
-    () =>
-      ableToSearch && coords?.latitude !== undefined
-        ? `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric&lang=pt_br`
-        : null,
-    fetcher,
-    { errorRetryCount: 10 },
+  const { data: weatherData, isValidating } = useRequest(() =>
+    coords?.latitude !== undefined
+      ? `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric&lang=pt_br`
+      : null,
   );
 
   const weather = useMemo(() => {
@@ -106,7 +106,6 @@ const Main: React.FC = () => {
       const [result] = defaultLocationData.results;
       setLocation(`${result?.components.city}, ${result?.components.state}`);
       setCoords(defaultCoords);
-      setAbleToSearch(true);
     }
   }, [defaultLocationData, defaultCoords]);
 
@@ -114,19 +113,55 @@ const Main: React.FC = () => {
     setShowAsFahrenheit(mode => !mode);
   }, []);
 
+  const handleFormSubmit = useCallback(
+    async event => {
+      try {
+        setLoading(true);
+        event.preventDefault();
+
+        if (!location) {
+          window.alert('Digite o nome da cidade para pesquisar');
+          return;
+        }
+
+        const { results } = await fetch(
+          `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}`,
+        ).then(r => r.json());
+
+        const [result] = results;
+
+        if (result.components.city && result.components.state) {
+          setLocation(`${result.components.city}, ${result.components.state}`);
+        } else {
+          setLocation(`${result.formatted}`);
+        }
+
+        setCoords({
+          latitude: result.geometry.lat,
+          longitude: result.geometry.lng,
+        });
+      } catch {
+        // TODO
+      } finally {
+        setLoading(false);
+      }
+    },
+    [location],
+  );
+
   return (
     <>
       <Container>
         <WeatherContainer className={weatherStatus}>
-          <InputContainer>
-            <Icon symbol="compass" />
+          <Form onSubmit={handleFormSubmit}>
+            {isValidating || loading ? <Spinner /> : <Icon symbol="compass" />}
             <input
               type="text"
               placeholder="Digite aqui sua localização"
               value={location}
               onChange={e => setLocation(e.target.value)}
             />
-          </InputContainer>
+          </Form>
 
           <WeatherToday>
             <Icon symbol={weather?.icon} />
