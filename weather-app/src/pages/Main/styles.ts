@@ -16,6 +16,20 @@ const spinnerAppear = keyframes`
   }
 `;
 
+const weatherContainerAppear = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 export const Container = styled.div`
   height: 100%;
   width: 100%;
@@ -32,6 +46,7 @@ export const WeatherContainer = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 560px;
+  animation: ${weatherContainerAppear} 300ms backwards;
 
   > div:nth-child(2),
   > div:nth-child(3),
