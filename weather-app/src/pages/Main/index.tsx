@@ -55,7 +55,7 @@ const Main: React.FC = () => {
 
   const { data: weatherData, isValidating } = useRequest(() =>
     coords?.latitude !== undefined
-      ? `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric&lang=pt_br`
+      ? `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric&lang=pt_br`
       : null,
   );
 
