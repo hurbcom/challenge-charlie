@@ -153,7 +153,7 @@ const Main: React.FC = () => {
     <>
       <Container>
         <WeatherContainer className={weatherStatus}>
-          <Form onSubmit={handleFormSubmit}>
+          <Form onSubmit={handleFormSubmit} data-testid="form">
             {isValidating || loading ? <Spinner /> : <Icon symbol="compass" />}
             <input
               type="text"

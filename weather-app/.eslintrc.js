@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2020: true,
+    jest: true,
   },
   extends: [
     "plugin:react/recommended",
@@ -33,6 +34,7 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "no-alert": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
