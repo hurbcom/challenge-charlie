@@ -130,6 +130,9 @@ const Main: React.FC = () => {
           longitude: result.geometry.lng,
         });
 
+        if (document.activeElement?.tagName === 'INPUT')
+          (document.activeElement as HTMLInputElement)?.blur();
+
         setNotFound(false);
       } catch {
         setNotFound(true);
