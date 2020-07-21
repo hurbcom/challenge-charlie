@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchBackground } from "../../actions";
 import Weather from "../Weather";
+import { ScaleStore } from "../../contexts/ScaleContext";
 
 import { GlobalStyle } from "../../styles/global";
 import { Fonts } from "../../styles/fonts";
@@ -19,7 +20,9 @@ class App extends React.Component {
         <GlobalStyle />
         <Fonts />
         <S.App backgroundUrl={this.props.backgroundUrl}>
-          <Weather />
+          <ScaleStore>
+            <Weather />
+          </ScaleStore>
         </S.App>
       </>
     );

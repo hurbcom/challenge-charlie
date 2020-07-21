@@ -31,12 +31,13 @@ export const Container = styled.section`
   }
 
   h1 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 2rem;
+    line-height: 1.2;
     text-transform: uppercase;
 
     > span {
-      font-size: 40px;
+      font-size: 2.5rem;
+      cursor: pointer;
     }
   }
 `;
