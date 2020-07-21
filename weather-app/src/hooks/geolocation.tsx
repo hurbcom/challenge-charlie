@@ -7,12 +7,12 @@ import React, {
   useMemo,
 } from 'react';
 
-interface Coords {
-  latitude: number;
-  longitude: number;
+export interface Coords {
+  latitude: number | null;
+  longitude: number | null;
 }
 interface IGeolocationContext {
-  coords: Coords | null;
+  coords: Coords;
 }
 
 const GeolocationContext = createContext<IGeolocationContext>(
@@ -49,7 +49,7 @@ const GeolocationProvider: React.FC = ({ children }) => {
       return positionCoords;
     }
 
-    return null;
+    return { latitude: null, longitude: null };
   }, [positionCoords]);
 
   return (

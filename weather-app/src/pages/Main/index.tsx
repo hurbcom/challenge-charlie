@@ -17,44 +17,49 @@ import {
 
 import { useRequest } from '../../hooks/useRequest';
 
-import { useGeolocation } from '../../hooks/geolocation';
+import { useGeolocation, Coords } from '../../hooks/geolocation';
 
 import {
   degreesToDirection,
   convertCelsiusToFahrenheit,
 } from '../../util/converter';
 
+import { getWeatherStatus } from '../../util/weatherStatus';
+
 const openCageApiKey = '02a10adc6b0f40e2904f6e4db1dd50d9 ';
 const openWeatherMap = '7ba73e0eb8efe773ed08bfd0627f07b8';
-
-interface Coords {
-  latitude: number;
-  longitude: number;
-}
 
 const Main: React.FC = () => {
   const [showAsFahrenheit, setShowAsFahrenheit] = useState(false);
   const [location, setLocation] = useState('');
-  const [coords, setCoords] = useState<Coords | null>(null);
+  const [coords, setCoords] = useState<Coords>({
+    latitude: null,
+    longitude: null,
+  });
+
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
   const { coords: defaultCoords } = useGeolocation();
 
-  const { data: defaultLocationData } = useRequest(
-    () =>
-      defaultCoords?.latitude !== undefined
-        ? `https://api.opencagedata.com/geocode/v1/json?q=${defaultCoords?.latitude},${defaultCoords?.longitude}&key=${openCageApiKey}`
-        : null,
-    {
-      revalidateOnMount: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    },
-  );
+  useEffect(() => {
+    async function loadData() {
+      setCoords(defaultCoords);
+      const { results } = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${defaultCoords.latitude},${defaultCoords.longitude}&key=${openCageApiKey}`,
+      ).then(r => r.json());
+
+      const [result] = results;
+      setLocation(`${result?.components.city}, ${result?.components.state}`);
+    }
+
+    if (defaultCoords?.latitude) {
+      loadData();
+    }
+  }, [defaultCoords]);
 
   const { data: weatherData, isValidating } = useRequest(() =>
-    coords?.latitude !== undefined
+    coords.latitude !== null
       ? `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${openWeatherMap}&units=metric&lang=pt_br`
       : null,
   );
@@ -92,26 +97,11 @@ const Main: React.FC = () => {
 
   const weatherStatus = useMemo(() => {
     if (weather && !notFound) {
-      if (weather.celsiusDegree < 15) {
-        return 'cold';
-      }
-      if (weather.celsiusDegree >= 15) {
-        return 'hot';
-      }
-
-      return 'too-hot';
+      return getWeatherStatus(weather.celsiusDegree);
     }
 
     return 'default';
   }, [weather, notFound]);
-
-  useEffect(() => {
-    if (defaultLocationData && defaultLocationData.results.length) {
-      const [result] = defaultLocationData.results;
-      setLocation(`${result?.components.city}, ${result?.components.state}`);
-      setCoords(defaultCoords);
-    }
-  }, [defaultLocationData, defaultCoords]);
 
   const toggleShowTemperatureMode = useCallback(() => {
     setShowAsFahrenheit(mode => !mode);
@@ -139,6 +129,7 @@ const Main: React.FC = () => {
           latitude: result.geometry.lat,
           longitude: result.geometry.lng,
         });
+
         setNotFound(false);
       } catch {
         setNotFound(true);
