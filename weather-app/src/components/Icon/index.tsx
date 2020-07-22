@@ -73,11 +73,11 @@ const icons = {
     icon: 'G',
     description: 'Neve',
   },
-  '14d': {
+  '50d': {
     icon: 'M',
     description: 'Névoa',
   },
-  '14n': {
+  '50n': {
     icon: 'M',
     description: 'Névoa',
   },
