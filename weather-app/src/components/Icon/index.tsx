@@ -89,7 +89,6 @@ interface IconProps {
 }
 
 const Icon: React.FC<IconProps> = ({ symbol = '01d', description }) => {
-  console.log({ symbol });
   return (
     <span
       data-icon={icons[symbol].icon}
