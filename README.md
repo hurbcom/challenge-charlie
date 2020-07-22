@@ -11,7 +11,9 @@
 
 ### 📜 Sobre
 
-Este é um microsite responsivo feito em ReactJS como parte de um desafio de front-end, chamado Desafio Charlie. A proposta desse pequeno site é exibir para o usuário as informações sobre como está o tempo em sua localidade (desde que o usuário tenha permitido o acesso a sua localização) ou qualquer outra. É exibido em tela informações sobre o exato momento pesquisado e para os próximos 2 dias.
+Este é um microsite responsivo feito em ReactJS como parte de um desafio de front-end, chamado Desafio Charlie. A proposta desse pequeno site é exibir para o usuário as informações sobre como está o clima em sua localidade (desde que o usuário tenha permitido o acesso a sua localização) ou qualquer outra. É exibido em tela informações sobre o clima no momento pesquisado e a previsão para os próximos 2 dias.
+
+Este repositório está sincronizado com o Netlify. Então o deploy é feito automaticamente a todo commit feito na branch master. E com isso você pode ter acesso acesso a este projeto <a href="https://heuristic-stonebraker-cc47a9.netlify.app/">clicando aqui</a>.
 
 ### 🚦 Requisitos
 
