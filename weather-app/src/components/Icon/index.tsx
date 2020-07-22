@@ -73,11 +73,11 @@ const icons = {
     icon: 'G',
     description: 'Neve',
   },
-  '14d': {
+  '50d': {
     icon: 'M',
     description: 'Névoa',
   },
-  '14n': {
+  '50n': {
     icon: 'M',
     description: 'Névoa',
   },
@@ -89,6 +89,7 @@ interface IconProps {
 }
 
 const Icon: React.FC<IconProps> = ({ symbol = '01d', description }) => {
+  console.log({ symbol });
   return (
     <span
       data-icon={icons[symbol].icon}
