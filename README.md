@@ -1,58 +1,36 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
+<h2 align="center">
+  <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" />
+  Desafio Charlie
+</h2>
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+<h1 align="center">
+  <img src="./.github/mk_yellow.png" height="400">
+  <img src="./.github/mk_blue.png" height="400">
+</h1>
 
- Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
 
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
+#### 📜 Sobre
 
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+Este é um microsite responsivo feito em ReactJS como parte de um desafio de front-end, chamado Desafio Charlie. A proposta desse pequeno site é exibir para o usuário as informações sobre como está o tempo em sua localidade (desde que o usuário tenha permitido o acesso a sua localização) ou qualquer outra. É exibido em tela informações sobre o exato momento pesquisado e para os próximos 2 dias.
 
-A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+#### 🚦 Requisitos
+`:TODO:`
 
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+#### :airplane: Rodando a aplicação
+`:TODO:`
 
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+#### 🧰 Escolhas Técnicas
 
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+**Create React App** - Foi utilizado esta ferramenta para tirar dos ombros do desenvolvedor o tempo gasto com configuração de webpack e etc, restando mais tempo para ser gasto com o desenvolvimento da aplicação em sí.
 
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
+**TypeScript** - A decisão de usar TypeScript foi para, em ambiente de desenvolvimento, ter mais clareza do que está sendo feito passado como argumento, retorno e etc. Isto reduz as chances de usar uma variável, função ou componente de forma errada. Além de claro, trazer uma inteligência maior para o editor de texto (Visual Studio Code no caso).
 
-## Requisitos
+**ESLint e Prettier** - Estas ferramentas foram escolhidas para que em ambiente de desenvolvimento o código esteja organizado e padronizado sempre da mesma maneira (2 espaços, camelcase e etc.).
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+**SWR** - A escolha de usar SWR foi para o usuário ter uma experiência de navegação melhor. O SWR é uma biblioteca que faz um cache das requisições em memória (e em storage aliado coma biblioteca **swr-sync-storage**). Assim, os dados que já foram vistos antes vem de forma quase instantânea e os novos dados vem logo em seguida substituindo-os. O principal motivo para o uso dessa biblioteca foi para a imagem de fundo que demorava para carregar pois não é uma imagem fixa e nem local.
 
-## Critério de avaliação
-
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
-
-## Dúvidas
-
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
-
-Boa sorte e boa viagem! ;)
+<hr/>
 
 <p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
+    com 💜 Luiz Gustavo
 </p>
