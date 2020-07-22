@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  app:
+    stdin_open: true # -i
+    tty: true # -t
+    container_name: weather
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true

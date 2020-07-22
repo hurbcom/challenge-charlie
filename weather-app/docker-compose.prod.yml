@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  weather-prod:
+    container_name: weather-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '1337:80'
