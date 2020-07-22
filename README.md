@@ -9,17 +9,17 @@
 </h1>
 
 
-#### 📜 Sobre
+### 📜 Sobre
 
 Este é um microsite responsivo feito em ReactJS como parte de um desafio de front-end, chamado Desafio Charlie. A proposta desse pequeno site é exibir para o usuário as informações sobre como está o tempo em sua localidade (desde que o usuário tenha permitido o acesso a sua localização) ou qualquer outra. É exibido em tela informações sobre o exato momento pesquisado e para os próximos 2 dias.
 
-#### 🚦 Requisitos
+### 🚦 Requisitos
 `:TODO:`
 
-#### :airplane: Rodando a aplicação
+### :airplane: Rodando a aplicação
 `:TODO:`
 
-#### 🧰 Escolhas Técnicas
+### 🧰 Escolhas Técnicas
 
 **Create React App** - Foi utilizado esta ferramenta para tirar dos ombros do desenvolvedor o tempo gasto com configuração de webpack e etc, restando mais tempo para ser gasto com o desenvolvimento da aplicação em sí.
 
