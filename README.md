@@ -19,6 +19,11 @@ Este é um microsite responsivo feito em ReactJS como parte de um desafio de fro
 ### :airplane: Rodando a aplicação
 `:TODO:`
 
+
+### ❗ Vulnerabilidades Encontradas
+
+A principal vulnerabilidade encontrada foi a exposição de chaves de acesso as APIs de geolocalização e clima no front-end.
+
 ### 🧰 Escolhas Técnicas
 
 **Create React App** - Foi utilizado esta ferramenta para tirar dos ombros do desenvolvedor o tempo gasto com configuração de webpack e etc, restando mais tempo para ser gasto com o desenvolvimento da aplicação em sí.
