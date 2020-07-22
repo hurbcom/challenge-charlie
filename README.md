@@ -27,7 +27,7 @@ Este é um microsite responsivo feito em ReactJS como parte de um desafio de fro
 
 **ESLint e Prettier** - Estas ferramentas foram escolhidas para que em ambiente de desenvolvimento o código esteja organizado e padronizado sempre da mesma maneira (2 espaços, camelcase e etc.).
 
-**SWR** - A escolha de usar SWR foi para o usuário ter uma experiência de navegação melhor. O SWR é uma biblioteca que faz um cache das requisições em memória (e em storage aliado coma biblioteca **swr-sync-storage**). Assim, os dados que já foram vistos antes vem de forma quase instantânea e os novos dados vem logo em seguida substituindo-os. O principal motivo para o uso dessa biblioteca foi para a imagem de fundo que demorava para carregar pois não é uma imagem fixa e nem local.
+**SWR** - A escolha de usar SWR foi para o usuário ter uma experiência de navegação melhor. O SWR é uma biblioteca que faz um cache das requisições em memória (e em storage aliado com a biblioteca **swr-sync-storage**). Assim, os dados que já foram vistos antes vem de forma quase instantânea e os novos dados vem logo em seguida substituindo-os. O principal motivo para o uso dessa biblioteca foi para a imagem de fundo que demorava para carregar pois não é uma imagem fixa e nem local.
 
 <hr/>
 
