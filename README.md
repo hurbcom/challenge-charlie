@@ -33,8 +33,8 @@ A seguir estão os passos necessários para baixar e executar a aplicação
 $ git clone https://github.com/GustavoBlaze/challenge-charlie
 
 # Entrando na pasta do projeto
-cd challenge-charlie
-cd weather-app
+$ cd challenge-charlie
+$ cd weather-app
 ```
 
 Executando com Docker
