@@ -40,3 +40,19 @@ body, html {
 .align-i-center {
   align-items: center;
 }
+
+.align-c-center {
+  align-content: center;
+}
+
+.align-s-center {
+  align-self: center;
+}
+
+.just-c-center {
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
