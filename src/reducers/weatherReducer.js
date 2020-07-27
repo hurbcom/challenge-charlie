@@ -7,15 +7,15 @@ const INITIAL_STATE = {
   today: null,
   tomorrow: null,
   after: null,
-  errorMessage: ""
+  error: false
 };
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case FETCH_WEATHER:
-      return { ...state, ...action.payload };
+      return { ...action.payload, error: false };
     case FETCH_WEATHER_FAIL:
-        return { ...state, errorMessage: action.payload };
+        return { ...INITIAL_STATE, error: true };
 		default:
 			return state;
 	}

@@ -3,13 +3,7 @@ import {
   FETCH_LOCATION_FAIL
 } from "../actions/types";
 
-const INITIAL_STATE = {
-  city: null,
-  country: null,
-  state: null,
-  suburb: null,
-  errorMessage: ""
-};
+const INITIAL_STATE = {};
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {

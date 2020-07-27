@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-// import { reducer as formReducer } from "redux-form";
+import { reducer as formReducer } from "redux-form";
 import backgroundReducer from "./backgroundReducer";
 import coordinatesReducer from "./coordinatesReducer";
 import locationReducer from "./locationReducer";
@@ -10,4 +10,5 @@ export default combineReducers({
   coordinates: coordinatesReducer,
   location: locationReducer,
   weather: weatherReducer,
+  form: formReducer,
 });

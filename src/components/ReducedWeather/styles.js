@@ -1,10 +1,23 @@
 import styled from "styled-components";
+import { media } from "../../styles/media-queries";
 
 export const Container = styled.section`
+  background: #a0a3a5;
   display: flex;
   height: 18vh;
   padding: 20px 0 0 50%;
   width: 100%;
+
+  ${media.mobile`
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    text-align: center;
+  `}
+
+  &:nth-child(odd) {
+    background: #8c8f91;
+  }
 
   &.sunny {
     background-color: #ce3625;

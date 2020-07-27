@@ -7,6 +7,7 @@ import {
   FETCH_CURRENT_POSITION_FAIL,
   FETCH_LOCATION,
   FETCH_WEATHER,
+  FETCH_WEATHER_FAIL,
 } from "./types";
 // TODO: FETCH_WEATHER_FAIL, FETCH_LOCATION_FAIL
 import { weatherPerDay } from "../utils";
@@ -45,16 +46,20 @@ export const fetchLocation = (latitude, longitude) => async dispatch => {
 }
 
 export const fetchWeather = (location) => async dispatch => {
-  const { data } = await openWeather.get(`/forecast?q=${location}&cnt=3&appid=7ba73e0eb8efe773ed08bfd0627f07b8`);
-  const { list } = data;
+  const param = (typeof location === "object") ? location.location : location;
+  try {
+    const { data } = await openWeather.get(`/forecast?q=${param}&cnt=3&appid=7ba73e0eb8efe773ed08bfd0627f07b8`);
+    const { list } = data;
+    const weathersList = list.map(weatherPerDay);
 
-  const weathersList = list.map(weatherPerDay);
+    const weathers = Object.fromEntries(new Map([
+      ["today", weathersList[0]],
+      ["tomorrow", weathersList[1]],
+      ["after", weathersList[2]],
+    ]));
 
-  const weathers = Object.fromEntries(new Map([
-		["today", weathersList[0]],
-    ["tomorrow", weathersList[1]],
-    ["after", weathersList[2]],
-  ]));
-
-	dispatch({ type: FETCH_WEATHER, payload: weathers });
+    dispatch({ type: FETCH_WEATHER, payload: weathers });
+  } catch (error) {
+    dispatch({ type: FETCH_WEATHER_FAIL });
+  }
 }
