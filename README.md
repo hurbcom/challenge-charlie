@@ -1,5 +1,19 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
+# Instalação
+
+Para iniciar a aplicação, execute os seguintes comandos:
+
+`npm install` - para instalação das dependências
+
+`npm start` - para executar como ambiente de desenvolvimento
+
+`docker build -t challenge-charlie .` - para _build_ da imagem docker
+
+`docker run -p 8080:8080 challenge-charlie` - para executar através do _container_ como ambiente de produção
+
+# O desafio
+
 Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
 
  Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
@@ -46,13 +60,3 @@ O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melh
 -   **Histórico de commits** Qualidade e estrutura dos commits.
 -   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
 -   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
-
-## Dúvidas
-
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
-
-Boa sorte e boa viagem! ;)
-
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
