@@ -1,0 +1,19 @@
+p {
+  margin: 0;
+  color: var(--color-white);
+  font-size: 1.6em;
+  line-height: 1.2em;
+  user-select: none;
+
+  &.small {
+    font-size: var(--font-small);
+  }
+
+  &.medium {
+    font-size: var(--font-medium);
+  }
+
+  &.large {
+    font-size: var(--font-large);
+  }
+}

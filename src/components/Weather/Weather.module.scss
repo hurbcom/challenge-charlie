@@ -1,0 +1,12 @@
+.weather {
+  display: inherit;
+  flex-direction: column;
+  flex: 2;
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .description {
+    padding: 0;
+  }
+}

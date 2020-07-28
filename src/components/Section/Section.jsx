@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Weather from 'components/Weather/Weather'
 import WeatherConditionIcon from 'components/WeatherConditionIcon/WeatherConditionIcon'
 import styles from './Section.module.scss'
 
-const Section = ({ weather, ...rest }) => (
+const Section = ({ day, weather, ...rest }) => (
   <section className={styles.section}>
     {weather ? (
       <>
         {weather.descriptionId && (
           <WeatherConditionIcon descriptionId={weather.descriptionId} {...rest} />
         )}
+
+        <Weather day={day} weather={weather} />
       </>
     ) : null}
   </section>

@@ -1,0 +1,26 @@
+h1 {
+  color: var(--color-white);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  user-select: none;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.small {
+    font-size: var(--font-small);
+  }
+
+  &.medium {
+    font-size: var(--font-medium);
+  }
+
+  &.large {
+    font-size: var(--font-large);
+  }
+}
