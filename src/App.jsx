@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from 'components/Header/Header'
 import Layout from 'components/Layout/Layout'
+import WeatherSection from 'components/WeatherSection/WeatherSection'
 import useGeolocation from 'hooks/useGeolocation'
 import useGeolocationConverter from 'hooks/useGelocationConverter'
 
 const App = () => {
   const locationCoordinates = useGeolocation()
-  const { city, state } = useGeolocationConverter(locationCoordinates)
+  const { city, state, sunRise, sunSet } = useGeolocationConverter(locationCoordinates)
 
   return (
     <main
@@ -18,6 +19,8 @@ const App = () => {
     >
       <Layout>
         <Header city={city} state={state} />
+
+        <WeatherSection city={city} sunRise={sunRise} sunSet={sunSet} />
       </Layout>
     </main>
   )
