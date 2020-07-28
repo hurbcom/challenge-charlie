@@ -1,0 +1,6 @@
+.layout {
+  min-height: calc(100vh - var(--spacing-default));
+  margin: 0 auto;
+  padding-top: var(--spacing-default);
+  width: var(--layout-width);
+}
