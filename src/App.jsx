@@ -9,7 +9,13 @@ const App = () => {
   const { city, state } = useGeolocationConverter(locationCoordinates)
 
   return (
-    <main>
+    <main
+      style={{
+        backgroundImage:
+          'url("https://www.bing.com/th?id=OHR.WheatCastilla_ROW1945841583_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp")',
+        backgroundSize: 'cover',
+      }}
+    >
       <Layout>
         <Header city={city} state={state} />
       </Layout>
