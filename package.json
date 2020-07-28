@@ -1,0 +1,62 @@
+{
+  "name": "hurb-challenge-charlie",
+  "version": "1.0.0",
+  "description": "Hurb Challenge Charlie - Weather App",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weather",
+    "app",
+    "hurb",
+    "challenge",
+    "charlie"
+  ],
+  "author": {
+    "email": "gabriel.pireda@gmail.com",
+    "name": "Gabriel Pireda"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@svgr/webpack": "^5.4.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.20.5",
+    "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "prop-types": "^15.7.2",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,css,scss}": [
+      "npx eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
