@@ -1,16 +1,19 @@
 import React from 'react'
+import Header from 'components/Header/Header'
 import Layout from 'components/Layout/Layout'
 import useGeolocation from 'hooks/useGeolocation'
 import useGeolocationConverter from 'hooks/useGelocationConverter'
 
 const App = () => {
   const locationCoordinates = useGeolocation()
-  useGeolocationConverter(locationCoordinates)
+  const { city, state } = useGeolocationConverter(locationCoordinates)
 
   return (
-    <Layout>
-      <main>App</main>
-    </Layout>
+    <main>
+      <Layout>
+        <Header city={city} state={state} />
+      </Layout>
+    </main>
   )
 }
 

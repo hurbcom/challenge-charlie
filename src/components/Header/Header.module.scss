@@ -1,0 +1,23 @@
+.header {
+  align-items: center;
+  background: var(--color-gray-light);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-default);
+
+  label {
+    display: inherit;
+
+    svg {
+      path {
+        fill: var(--color-gray);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    flex-direction: row;
+  }
+}

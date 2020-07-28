@@ -1,0 +1,25 @@
+.input {
+  background: inherit;
+  border: none;
+  color: var(--color-gray);
+  font-family: Roboto;
+  font-size: var(--font-medium);
+  font-weight: 700;
+  height: 100%;
+  margin-top: var(--spacing-small);
+  outline: none;
+  text-align: center;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--color-gray);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    font-size: var(--font-large);
+    margin: 0 0 0 var(--spacing-small);
+    text-align: left;
+  }
+}
