@@ -1,3 +1,5 @@
+@import 'styles/mobile';
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -6,4 +8,8 @@ body {
 
 html {
   font-family: Roboto, sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  @import 'styles/desktop';
 }
