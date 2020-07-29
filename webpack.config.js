@@ -56,6 +56,7 @@ module.exports = {
       helpers: path.resolve(__dirname, 'src/helpers'),
       icons: path.resolve(__dirname, 'src/icons'),
       services: path.resolve(__dirname, 'src/services'),
+      utils: path.resolve(__dirname, 'src/utils'),
     },
     extensions: ['.js', '.jsx'],
   },
