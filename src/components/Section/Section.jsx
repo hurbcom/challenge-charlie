@@ -8,10 +8,7 @@ const Section = ({ day, weather, ...rest }) => (
   <section className={styles.section}>
     {weather ? (
       <>
-        {weather.descriptionId && (
-          <WeatherConditionIcon descriptionId={weather.descriptionId} {...rest} />
-        )}
-
+        <WeatherConditionIcon descriptionId={weather.descriptionId} {...rest} />
         <Weather day={day} weather={weather} />
       </>
     ) : null}

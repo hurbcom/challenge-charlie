@@ -4,11 +4,13 @@ import { mapConditionToIcon } from 'helpers'
 import styles from './WeatherConditionIcon.module.scss'
 
 const WeatherConditionIcon = ({ descriptionId, sunRise, sunSet }) => (
-  <div className={styles.icon}>{mapConditionToIcon(descriptionId, sunRise, sunSet)}</div>
+  <div className={styles.icon}>
+    {descriptionId && mapConditionToIcon(descriptionId, sunRise, sunSet)}
+  </div>
 )
 
 WeatherConditionIcon.propTypes = {
-  descriptionId: PropTypes.number.isRequired,
+  descriptionId: PropTypes.number,
   sunRise: PropTypes.number,
   sunSet: PropTypes.number,
 }
