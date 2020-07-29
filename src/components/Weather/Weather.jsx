@@ -6,7 +6,7 @@ import styles from './Weather.module.scss'
 
 const Weather = ({ day, weather }) => (
   <div className={styles.weather}>
-    <MainWeather day={day} temperature={Math.round(weather.temperature)} />
+    <MainWeather day={day} temperature={weather.temperature} />
 
     {weather.description && (
       <WeatherDetails
