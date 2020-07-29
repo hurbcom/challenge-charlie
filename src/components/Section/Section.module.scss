@@ -2,12 +2,21 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  max-height: 220px;
-  padding: 20px 0;
+  padding: var(--spacing-default) 0;
+
+  &::first-of-type {
+    margin-top: var(--spacing-large);
+  }
+
+  &:not(::first-of-type) {
+    margin-top: var(--spacing-default);
+  }
 }
 
 @media screen and (min-width: 768px) {
   .section {
+    margin: 0;
+    max-height: 220px;
     flex-direction: row;
   }
 }
