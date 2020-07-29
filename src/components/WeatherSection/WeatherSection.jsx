@@ -4,11 +4,20 @@ import PropTypes from 'prop-types'
 import useWeather from 'hooks/useWeather'
 
 const WeatherSection = ({ city, ...rest }) => {
-  const { weather } = useWeather({ city })
+  const { forecasts, weather } = useWeather({ city })
 
   return (
     <>
       <Section day='Hoje' weather={weather} {...rest} />
+
+      {forecasts?.map((currentForecast, index) => (
+        <Section
+          day={currentForecast.day}
+          key={`${currentForecast.temperature}-${index}`}
+          weather={currentForecast}
+          {...rest}
+        />
+      ))}
     </>
   )
 }
