@@ -3,26 +3,31 @@ import { Grid } from '@material-ui/core';
 
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
 
-export default () => (
-  <div style={{ backgroundColor: 'rgba(255, 247, 0, 0.8)' }}>
-    <Grid container direction="row">
-      <Grid item sm={6} className="align-s-center text-center">
-        <WbSunnyOutlinedIcon style={{ fontSize: '6em', color: '#fff' }} />
-      </Grid>
-      <Grid item sm={6}>
-        <div className="weather-info">
-          <div style={{ marginBottom: '20px' }}>
-            <h4 style={{ textTransform: 'uppercase' }}>Hoje</h4>
-            <p>32ºC</p>
+import { checkColorTemperature } from '../../../utils/weatherColor';
+
+export default ({ convertUnits, currentWeather, unitSelected }) => {
+
+  return (
+    <div style={{ backgroundColor: checkColorTemperature(currentWeather.temp) }}>
+      <Grid container direction="row">
+        <Grid item sm={6} className="align-s-center text-center">
+          <WbSunnyOutlinedIcon style={{ fontSize: '6em', color: '#fff' }} />
+        </Grid>
+        <Grid item sm={6}>
+          <div className="weather-info">
+            <div style={{ marginBottom: '20px' }}>
+              <h4 style={{ textTransform: 'uppercase' }}>Hoje</h4>
+              <p onClick={() => convertUnits()}>{currentWeather.temp} º{unitSelected}</p>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: '5px', textTransform: 'capitalize' }}>{currentWeather.mood}</h4>
+              <p>Vento: NO {currentWeather.windSpeed}km/h</p>
+              <p>Humidade: {currentWeather.humidity}%</p>
+              <p>Vento: {currentWeather.pressure}hPA</p>
+            </div>
           </div>
-          <div>
-            <h4 style={{ marginBottom: '5px' }}>Ensolarado</h4>
-            <p>Vento: NO 6.4km/h</p>
-            <p>Humidade: 78%</p>
-            <p>Vento: 100 3hPA</p>
-          </div>
-        </div>
+        </Grid>
       </Grid>
-    </Grid>
-  </div>
-)
+    </div>
+  )
+}

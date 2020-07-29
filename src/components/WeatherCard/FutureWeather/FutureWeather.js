@@ -4,17 +4,19 @@ import {
   Grid
 } from '@material-ui/core';
 
-export default () => (
+import { checkColorTemperature } from '../../../utils/weatherColor';
+
+export default ({ tomorrow, dayAfter, convertUnits, unitSelected }) => (
   <div>
     <Grid container direction="column">
       <div className="future-weather-info">
-        <div style={{ backgroundColor: 'rgba(255, 247, 0, 0.8)' }} >
+        <div style={{ backgroundColor: checkColorTemperature(tomorrow.temp) }} onClick={() => convertUnits()}>
           <h4 className="future-weather-day">Amanhã</h4>
-          <p>25ºC</p>
+          <p>{tomorrow.temp} º{unitSelected}</p>
         </div>
-        <div style={{ backgroundColor: 'rgba(255, 0, 0, 0.8)' }}>
+        <div style={{ backgroundColor: checkColorTemperature(dayAfter.temp) }} onClick={() => convertUnits()}>
           <h4 className="future-weather-day">Depois de Amanhã</h4>
-          <p>25ºC</p>
+          <p>{dayAfter.temp} º{unitSelected}</p>
         </div>
       </div>
     </Grid>

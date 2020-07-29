@@ -4,7 +4,7 @@ import WeatherCard from '../../components/WeatherCard';
 import BackgroundImage from '../../components/BackgroundImage/BackgroundImage';
 
 const Home = () => {
-  const [bgImg, setBgImg] = React.useState();
+  const [bgImg, setBgImg] = React.useState(null);
 
   React.useEffect(() => {
     getBingImg();
