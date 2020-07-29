@@ -1,25 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Text from 'components/Text/Text'
 import Title from 'components/Title/Title'
-
-const conversionFactor = 9 / 5
-const offset = 32
+import useTemperatureFormatter from 'hooks/useTemperatureFormatter'
 
 const MainWeather = ({ day, temperature }) => {
-  const [temperatureUnit, setTemperatureUnit] = useState('c')
-
-  const computedTemperatureValue =
-    temperatureUnit === 'f' ? conversionFactor * temperature + offset : temperature
-
-  const formattedTemperature = `${computedTemperatureValue} º${temperatureUnit.toUpperCase()}`
+  const { formattedTemperature, handleTemperatureUnitToggle } = useTemperatureFormatter(temperature)
 
   return (
     <>
       <Title uppercase>{day}</Title>
-      <Text onClick={() => setTemperatureUnit(temperatureUnit === 'c' ? 'f' : 'c')}>
-        {formattedTemperature}
-      </Text>
+      <Text onClick={handleTemperatureUnitToggle}>{formattedTemperature}</Text>
     </>
   )
 }
