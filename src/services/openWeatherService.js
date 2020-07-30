@@ -36,8 +36,6 @@ export function OpenWeatherService({ city }) {
     return client(`${OPEN_WEATHER_API_URL}/forecast${queryString}`).then(({ list }) => {
       const currentDate = new Date()
 
-      console.log(list)
-
       const filtered = list
         .filter(({ dt_txt }) => dt_txt.includes(hoursMinutesAndSecondsStartOfDay)) // get avg_temp from every included hour
         .map(({ dt_txt, main }) => {
