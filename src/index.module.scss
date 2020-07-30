@@ -12,6 +12,14 @@ html {
   font-family: Roboto, sans-serif;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 426px) and (max-width: 767px) {
+  @import 'styles/tablet';
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  @import 'styles/laptop';
+}
+
+@media screen and (min-width: 1024px) {
   @import 'styles/desktop';
 }
