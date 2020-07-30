@@ -13,6 +13,7 @@ const Weather = ({ day, weather }) => (
         description={weather.description}
         humidity={weather.humidity}
         pressure={weather.pressure}
+        windDegrees={weather.wind.degrees}
         windSpeed={weather.wind.speed}
       />
     )}
