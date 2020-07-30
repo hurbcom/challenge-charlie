@@ -2,6 +2,14 @@ import { client } from 'utils/client'
 
 const { OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL } = process.env
 
+const hoursMinutesAndSecondsStartOfDay = '00:00:00'
+const dayInMilliSeconds = 1000 * 60 * 60 * 24
+
+const mapDifferenceBetweenDaysToPlainText = {
+  1: 'Amanhã',
+  2: 'Depois de amanhã',
+}
+
 export function OpenWeatherService({ city }) {
   const language = navigator.language.replace(/-/g, '_')
   const queryString = `?q=${city}&APPID=${OPEN_WEATHER_API_KEY}&lang=${language}&units=metric`
@@ -26,19 +34,18 @@ export function OpenWeatherService({ city }) {
 
   this.getForecasts = function (limitOfDays = 2) {
     return client(`${OPEN_WEATHER_API_URL}/forecast${queryString}`).then(({ list }) => {
-      const currentDate = new Date().getDate()
+      const currentDate = new Date()
+
+      console.log(list)
 
       const filtered = list
-        .filter(({ dt_txt }) => dt_txt.includes('00:00:00')) // get avg_temp from every included hour
+        .filter(({ dt_txt }) => dt_txt.includes(hoursMinutesAndSecondsStartOfDay)) // get avg_temp from every included hour
         .map(({ dt_txt, main }) => {
-          const forecastDate = new Date(dt_txt).getDate()
-          const mapDifferenceToPlainText = {
-            1: 'Amanhã',
-            2: 'Depois de amanhã',
-          }
+          const forecastDate = new Date(dt_txt)
+          const differenceBetweenDays = Math.ceil((forecastDate - currentDate) / dayInMilliSeconds)
 
           return {
-            day: mapDifferenceToPlainText[forecastDate - currentDate],
+            day: mapDifferenceBetweenDaysToPlainText[differenceBetweenDays],
             temperature: main.temp,
           }
         })
