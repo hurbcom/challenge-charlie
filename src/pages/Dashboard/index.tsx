@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 // import bingAPI from '../../services/bingAPI';
@@ -14,40 +14,136 @@ import {
     Weather,
 } from './styles';
 
+interface IDayProps {
+    temp: {
+        day: number;
+    },
+    weather: [
+        {
+            description: string;
+            icon: string;
+        }
+    ],
+    pressure: number;
+    humidity: number;
+    speed: number;
+}
+
+interface IListDaysProps {
+    list: [
+        IDayProps,
+        IDayProps,
+        IDayProps
+    ]
+}
+
 const Dashboard: React.FC = () => {
+    // const [loading, setLoading] = useState<boolean>(false);
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
     const [state, setState] = useState<string>('');
     const [city, setCity] = useState<string>('');
+    const [today, setToday] = useState<IDayProps>({
+        temp: {
+            day: 0
+        },
+        weather: [
+            {
+                description: '',
+                icon: '',
+            }
+        ],
+        pressure: 0,
+        humidity: 0,
+        speed: 0,
+    } as IDayProps);
+    const [tomorrow, setTomorrow] =  useState<IDayProps>({
+        temp: {
+            day: 0
+        },
+        weather: [
+            {
+                description: '',
+                icon: '',
+            }
+        ],
+        pressure: 0,
+        humidity: 0,
+        speed: 0,
+    } as IDayProps);
+    const [afterTomorrow, setAfterTomorrow] =  useState<IDayProps>({
+        temp: {
+            day: 0
+        },
+        weather: [
+            {
+                description: '',
+                icon: '',
+            }
+        ],
+        pressure: 0,
+        humidity: 0,
+        speed: 0,
+    } as IDayProps);
 
     const key = 'c63386b4f77e46de817bdf94f552cddf';
+    const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
-            setLatitude(lat);
-            setLongitude(lon);
+            if(lat && lon) {
+                setLatitude(lat);
+                setLongitude(lon);
+            }
         });
-    }, [latitude, longitude]);
 
-    useEffect(() => {
         const geoAPI = axios.create({
-            baseURL: `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${key}&language=en`,
+            baseURL: `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${key}&language=pt_br`,
         });
 
         async function loadLocation(): Promise<void> {
-            await geoAPI.get('/results').then(response => {
+            await geoAPI.get('/').then(response => {
                 const state = response.data.results[0].components.state;
                 const city = response.data.results[0].components.city;
 
-                setState(state);
-                setCity(city);
+                if(state && city) {
+                    setState(state);
+                    setCity(city);
+                }
             });
         }
         loadLocation();
-    }, [latitude, longitude, state, city]);
+    }, [latitude, longitude]);
+
+    useEffect(() => {
+        const formattedCity = city.replace(/\s/g, '+').trim();
+
+        const weatherAPI = axios.create({
+            baseURL: `http://api.openweathermap.org/data/2.5/`,
+        });
+
+        async function loadWeather(): Promise<void> {
+            await weatherAPI
+                .get<IListDaysProps>(
+                    `/forecast/daily?q=${formattedCity}&APPID=${appid}&cnt=3&units=metric&lang=pt_br`
+                )
+                .then(response => {
+                    setToday(response.data.list[0]);
+
+                    setTomorrow(response.data.list[1]);
+
+                    setAfterTomorrow(response.data.list[2]);
+                });
+        }
+
+        if(formattedCity) {
+            loadWeather();
+        }
+
+    }, [city]);
 
     return (
         <Container>
@@ -60,34 +156,34 @@ const Dashboard: React.FC = () => {
                 </Location>
 
                 <Days>
-                    <Today celcius={22}>
+                    <Today celsius={today.temp.day}>
                         <i className="icon-sun"></i>
 
                         <Weather>
                             <time>Hoje</time>
-                            <span>22 C</span>
+                            <span>{today.temp.day} °C</span>
 
-                            <p>Ensolarado</p>
+                            <p>{today.weather[0].description}</p>
 
                             <div>
-                                <p>Vento:</p>
-                                <p>Humidade:</p>
-                                <p>Pressão:</p>
+                                <p>Vento: {today.speed} km/h</p>
+                                <p>Humidade: {today.humidity}%</p>
+                                <p>Pressão: {today.pressure}hPA</p>
                             </div>
                         </Weather>
                     </Today>
 
-                    <Tomorrow celcius={22}>
+                    <Tomorrow celsius={22}>
                         <Weather>
                             <time>Amanhã</time>
-                            <span>22 C</span>
+                            <span>{tomorrow.temp.day} °C</span>
                         </Weather>
                     </Tomorrow>
 
-                    <AfterTomorrow celcius={22}>
+                    <AfterTomorrow celsius={22}>
                         <Weather>
                             <time>Depois de Amanhã</time>
-                            <span>22 C</span>
+                            <span>{afterTomorrow.temp.day} °C</span>
                         </Weather>
                     </AfterTomorrow>
                 </Days>

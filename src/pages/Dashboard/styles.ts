@@ -3,8 +3,8 @@ import { shade } from 'polished';
 
 import backgroundImg from '../../assets/elefante.jpg';
 
-interface WeatherDayProps {
-    celcius: number;
+interface IWeatherDayProps {
+    celsius: number;
 }
 
 export const Container = styled.div`
@@ -61,51 +61,51 @@ export const Days = styled.div`
         display: flex;
         justify-content: flex-end;
 
-        i {
+        > i {
             font-size: 200px;
             flex: 1;
         }
     }
 `;
 
-export const Today = styled.section<WeatherDayProps>`
-    ${props => props.celcius < 15 && css`
+export const Today = styled.section<IWeatherDayProps>`
+    ${props => props.celsius < 15 && css`
         background: linear-gradient(90deg, rgba(4, 123, 249, .7) 0%, rgba(4, 123, 249, .7) 100%);
     `}
 
-    ${props => props.celcius > 35 && css`
+    ${props => props.celsius > 35 && css`
         background: linear-gradient(90deg, rgba(249, 4, 4, .7) 0%, rgba(249, 4, 4, .7) 100%);
     `}
 
-    ${props => props.celcius >= 15 && props.celcius <= 35 && css`
+    ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: linear-gradient(90deg, rgba(250, 204, 5, .7) 0%, rgba(250, 204, 5, .7) 100%);
     `}
 `;
 
-export const Tomorrow = styled.section<WeatherDayProps>`
-    ${props => props.celcius < 15 && css`
+export const Tomorrow = styled.section<IWeatherDayProps>`
+    ${props => props.celsius < 15 && css`
         background: linear-gradient(90deg, rgba(4, 123, 249, .9) 0%, rgba(4, 123, 249, .9) 100%);
     `}
 
-    ${props => props.celcius > 35 && css`
+    ${props => props.celsius > 35 && css`
     background: linear-gradient(90deg, rgba(249, 4, 4, .9) 0%, rgba(249, 4, 4, .9) 100%);
     `}
 
-    ${props => props.celcius >= 15 && props.celcius <= 35 && css`
+    ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: linear-gradient(90deg, rgba(250, 204, 5, .9) 0%, rgba(250, 204, 5, .9) 100%);
     `}
 `;
 
-export const AfterTomorrow = styled.section<WeatherDayProps>`
-    ${props => props.celcius < 15 && css`
+export const AfterTomorrow = styled.section<IWeatherDayProps>`
+    ${props => props.celsius < 15 && css`
         background: ${shade(.25, '#047BF9')};
     `}
 
-    ${props => props.celcius > 35 && css`
+    ${props => props.celsius > 35 && css`
         background: ${shade(.25, '#F90404')};
     `}
 
-    ${props => props.celcius >= 15 && props.celcius <= 35 && css`
+    ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: ${shade(.25, '#FACC05')};
     `}
 `;
