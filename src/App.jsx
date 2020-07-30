@@ -7,18 +7,18 @@ import useGeolocationConverter from 'hooks/useGelocationConverter'
 
 const App = () => {
   const locationCoordinates = useGeolocation()
-  const { city, state, sunRise, sunSet } = useGeolocationConverter(locationCoordinates)
+  const { city, setNewCity, sunRise, sunSet } = useGeolocationConverter(locationCoordinates)
 
   return (
     <main
       style={{
         backgroundImage:
-          'url("https://www.bing.com/th?id=OHR.WheatCastilla_ROW1945841583_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp")',
+          'url("https://www.bing.com/th?id=OHR.HamerkopHunting_ROW2118192727_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp")',
         backgroundSize: 'cover',
       }}
     >
       <Layout>
-        <Header city={city} state={state} />
+        <Header city={city} onCityChanged={setNewCity} />
 
         <WeatherSection city={city} sunRise={sunRise} sunSet={sunSet} />
       </Layout>

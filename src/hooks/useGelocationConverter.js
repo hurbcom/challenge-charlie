@@ -4,6 +4,7 @@ import { OpenCagedService } from 'services/openCagedService'
 
 function useGeolocationConverter({ latitude, longitude }) {
   const [locale, setLocale] = useState()
+  const [newCity, setNewCity] = useState('')
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -17,9 +18,9 @@ function useGeolocationConverter({ latitude, longitude }) {
   }, [latitude, longitude])
 
   return {
-    city: locale?.city,
+    city: newCity || locale?.city,
     setLocale,
-    state: locale?.state,
+    setNewCity,
     sunRise: locale?.sunRise,
     sunSet: locale?.sunSet,
   }

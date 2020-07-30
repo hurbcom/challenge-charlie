@@ -7,6 +7,9 @@ function useWeather({ city }) {
 
   useEffect(() => {
     if (city) {
+      setForecasts(null)
+      setWeather(null)
+
       const openWeatherServiceInstance = new OpenWeatherService({ city })
 
       openWeatherServiceInstance.getWeather().then(setWeather)

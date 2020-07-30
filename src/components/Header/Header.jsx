@@ -5,10 +5,8 @@ import Compass from 'icons/compass.svg'
 import useInput from 'hooks/useInput'
 import styles from './Header.module.scss'
 
-const Header = ({ city, state }) => {
-  const { text, setText } = useInput()
-
-  const placeholder = city && state ? `${city}, ${state}` : ''
+const Header = ({ city, onCityChanged }) => {
+  const { handleSubmit, text, setText } = useInput(onCityChanged)
 
   return (
     <header className={styles.header}>
@@ -16,13 +14,14 @@ const Header = ({ city, state }) => {
         <Compass />
       </label>
 
-      <Input onChange={setText} placeholder={placeholder} text={text} />
+      <Input onChange={setText} onSubmit={handleSubmit} placeholder={city} text={text} />
     </header>
   )
 }
 
 Header.propTypes = {
   city: PropTypes.string,
+  onCityChanged: PropTypes.func.isRequired,
   state: PropTypes.string,
 }
 

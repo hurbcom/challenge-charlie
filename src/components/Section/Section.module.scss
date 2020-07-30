@@ -8,6 +8,12 @@ $opacityNinety: 0.9;
   justify-content: space-around;
   padding: var(--spacing-default) 0;
 
+  &.no-results {
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+
   &::first-of-type {
     margin-top: var(--spacing-large);
   }
@@ -70,5 +76,9 @@ $opacityNinety: 0.9;
     flex-direction: row;
     margin: 0;
     max-height: 220px;
+
+    &.no-results {
+      min-height: 220px;
+    }
   }
 }
