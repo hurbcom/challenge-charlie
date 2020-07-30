@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, CardContent } from '@material-ui/core';
+import { Card, CardContent, CircularProgress } from '@material-ui/core';
 
 import FutureWeather from './FutureWeather/FutureWeather';
 import TodayWeather from './TodayWeather/TodayWeather';
+import LoadingBackground from '../utils/LoadingBackground';
 
 import { openCageKey, openWeatherKey } from '../../config/apiKeys';
 
@@ -10,8 +11,9 @@ import { convertCelsiusFahrenheit } from '../../utils/unitConvertion';
 import { convertWindDeg } from '../../utils/compassConvertion';
 
 export default () => {
-  const [location, setLocation] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
 
+  const [location, setLocation] = React.useState(null);
   const [weatherData, setWeatherData] = React.useState(null);
   const [unitSelected, setUnitSelected] = React.useState('C');
 
@@ -24,6 +26,8 @@ export default () => {
   }, []);
 
   const getCoords = (position) => {
+    setLoading(true);
+
     const coords = {
       lat: position.coords.latitude,
       lon: position.coords.longitude
@@ -39,14 +43,17 @@ export default () => {
       .then(data => {
         const location = data.results[0].components;
         setLocation(location);
-      }).catch(err => console.log(err));
+      }).catch(err => {
+        console.log(err);
+        alert('Ocorreu um erro. Tente novamente.');
+        setLoading(false);
+      });
   }
 
   const getWeather = async ({ lat, lon }) => {
     await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${openWeatherKey}&lang=pt_br&units=metric`)
       .then(res => res.json())
       .then(data => {
-        console.log('data', data)
         const weatherDataObj = {
           current: {
             temp: data.current.temp.toFixed(),
@@ -62,7 +69,12 @@ export default () => {
         };
 
         setWeatherData(weatherDataObj);
-      }).catch(err => console.log(err));
+        setLoading(false);
+      }).catch(err => {
+        console.log(err);
+        alert('Ocorreu um erro. Tente novamente.');
+        setLoading(false);
+      });
   }
 
   const convertUnits = () => {
@@ -79,8 +91,10 @@ export default () => {
 
   return (
     <>
-      {weatherData && location &&
-        <div className="d-flex flex-center h-100">
+      <div className="d-flex flex-center h-100">
+        {loading && <LoadingBackground />}
+
+        {!loading &&
           <Card style={{ width: '40%', backgroundColor: 'transparent' }}>
             <CardContent style={{ padding: 0, }}>
               <div className="card-title">
@@ -106,8 +120,8 @@ export default () => {
               />
             </CardContent>
           </Card>
-        </div>
-      }
+        }
+      </div>
     </>
   );
 }
