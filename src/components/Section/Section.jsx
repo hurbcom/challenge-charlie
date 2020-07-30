@@ -4,8 +4,8 @@ import Weather from 'components/Weather/Weather'
 import WeatherConditionIcon from 'components/WeatherConditionIcon/WeatherConditionIcon'
 import styles from './Section.module.scss'
 
-const Section = ({ day, weather, ...rest }) => (
-  <section className={styles.section}>
+const Section = ({ day = 'Hoje', temperatureBasedClassName, weather, ...rest }) => (
+  <section className={`${styles.section} ${styles[temperatureBasedClassName]}`}>
     {weather ? (
       <>
         <WeatherConditionIcon descriptionId={weather.descriptionId} {...rest} />
@@ -17,6 +17,7 @@ const Section = ({ day, weather, ...rest }) => (
 
 Section.propTypes = {
   day: PropTypes.string,
+  temperatureBasedClassName: PropTypes.string.isRequired,
   weather: PropTypes.object,
 }
 

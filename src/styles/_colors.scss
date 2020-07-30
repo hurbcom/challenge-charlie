@@ -1,5 +1,28 @@
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 :root {
   --color-gray: #8d8986;
   --color-gray-light: #f4efe9;
+  --color-gray-dark: #616161;
+  --color-gray-rgb: #{hexToRGB(#f4efe9)};
+  --color-gray-dark-rgb: #{hexToRGB(#616161)};
+
+  --color-blue: #2196f3;
+  --color-blue-dark: #0d47a1;
+  --color-blue-rgb: #{hexToRGB(#2196f3)};
+  --color-blue-dark-rgb: #{hexToRGB(#0d47a1)};
+
+  --color-red: #f44336;
+  --color-red-dark: #b71c1c;
+  --color-red-rgb: #{hexToRGB(#f44336)};
+  --color-red-dark-rgb: #{hexToRGB(#b71c1c)};
+
+  --color-yellow: #fcce07;
+  --color-yellow-dark: #b69404;
+  --color-yellow-rgb: #{hexToRGB(#fcce07)};
+  --color-yellow-dark-rgb: #{hexToRGB(#b69404)};
+
   --color-white: #ffffff;
 }
