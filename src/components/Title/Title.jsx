@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './Title.module.scss'
 
 const Title = ({ children, uppercase, size = 'medium' }) => (
-  <h1 className={`${styles[size]} ${styles[uppercase]}`}>{children}</h1>
+  <h1 className={`${styles[size]} ${uppercase ? styles.uppercase : ''}`}>{children}</h1>
 )
 
 Title.propTypes = {
