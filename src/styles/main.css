@@ -6,16 +6,28 @@
 }
 
 .card-title {
-  background-color: rgba(240, 235, 232, 1);
-  padding: 15px 10px;
   display: flex;
   align-items: center;
+  background-color: rgba(240, 235, 232, 1);
+  padding: 15px 10px;
+  font-family: 'Roboto Medium';
+  font-size: 18px;
+  color: rgba(142, 138, 135, 1);
 }
 
 .weather-info {
-  line-height: 20px;
+  line-height: 18px;
+  font-family: 'Roboto Medium';
+  color: '#fff';
 }
 
-.future-weather-day {
+.future-weather-temp {
+  text-align: center;
   text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+.icon:before {
+  font-family: 'MeteoconsRegular';
+  content: attr(data-icon);
 }

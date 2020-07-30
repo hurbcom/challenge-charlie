@@ -1,27 +1,29 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-
-import { checkColorTemperature } from '../../../utils/weatherColor';
+import { checkColorTemperature, checkMoodIcon } from '../../../utils/weatherConditionsStyle';
 
 export default ({ convertUnits, currentWeather, unitSelected }) => {
 
   return (
-    <div style={{ backgroundColor: checkColorTemperature(currentWeather.temp) }}>
+    <div style={{ backgroundColor: checkColorTemperature(currentWeather.temp), paddingBottom: '30px', paddingTop: '10px' }}>
       <Grid container direction="row">
-        <Grid item sm={6} className="align-s-center text-center">
-          <WbSunnyOutlinedIcon style={{ fontSize: '6em', color: '#fff' }} />
+        <Grid item md={6} xs={12} className="align-s-center text-center">
+          <span
+            style={{ fontSize: '6em', color: '#fff' }}
+            className="icon"
+            data-icon={checkMoodIcon(currentWeather.condition)}
+          />
         </Grid>
-        <Grid item sm={6}>
+        <Grid item md={6} xs={12}>
           <div className="weather-info">
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ textTransform: 'uppercase' }}>Hoje</h4>
+            <div style={{ marginBottom: '20px', color: '#fff', textAlign: 'center' }}>
+              <h4 style={{ textTransform: 'uppercase', fontFamily: 'Roboto Bold' }}>Hoje</h4>
               <p onClick={() => convertUnits()}>{currentWeather.temp} º{unitSelected}</p>
             </div>
-            <div>
-              <h4 style={{ marginBottom: '5px', textTransform: 'capitalize' }}>{currentWeather.mood}</h4>
-              <p>Vento: NO {currentWeather.windSpeed}km/h</p>
+            <div style={{ color: '#fff', textAlign: 'center' }}>
+              <h4 style={{ marginBottom: '5px', textTransform: 'capitalize', fontFamily: 'Roboto Bold' }}>{currentWeather.conditionDescription}</h4>
+              <p>Vento: {currentWeather.windDirection} {currentWeather.windSpeed}km/h</p>
               <p>Humidade: {currentWeather.humidity}%</p>
               <p>Vento: {currentWeather.pressure}hPA</p>
             </div>

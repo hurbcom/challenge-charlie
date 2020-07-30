@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent } from '@material-ui/core';
-import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 
 import FutureWeather from './FutureWeather/FutureWeather';
 import TodayWeather from './TodayWeather/TodayWeather';
@@ -8,6 +7,7 @@ import TodayWeather from './TodayWeather/TodayWeather';
 import { openCageKey, openWeatherKey } from '../../config/apiKeys';
 
 import { convertCelsiusFahrenheit } from '../../utils/unitConvertion';
+import { convertWindDeg } from '../../utils/compassConvertion';
 
 export default () => {
   const [location, setLocation] = React.useState(null);
@@ -52,12 +52,13 @@ export default () => {
             temp: data.current.temp.toFixed(),
             humidity: data.current.humidity,
             pressure: data.current.pressure,
-            windSpeed: data.wind_speed,
-            windDeg: data.wind_deg,
-            mood: data.current.weather[0].description
+            windSpeed: data.current.wind_speed,
+            windDirection: convertWindDeg(data.current.wind_deg),
+            conditionDescription: data.current.weather[0].description,
+            condition: data.current.weather[0].main
           },
-          tomorrow: { temp: data.daily[1].temp.day.toFixed() },
-          dayAfter: { temp: data.daily[2].temp.day.toFixed() }
+          tomorrow: { temp: data.daily[1].temp.day.toFixed(), condition: data.daily[1].weather[0].main },
+          dayAfter: { temp: data.daily[2].temp.day.toFixed(), condition: data.daily[2].weather[0].main }
         };
 
         setWeatherData(weatherDataObj);
@@ -68,8 +69,8 @@ export default () => {
     const convertedWeatherData = {
       ...weatherData,
       current: { ...weatherData.current, temp: convertCelsiusFahrenheit(weatherData.current.temp, unitSelected) },
-      tomorrow: { temp: convertCelsiusFahrenheit(weatherData.tomorrow.temp, unitSelected) },
-      dayAfter: { temp: convertCelsiusFahrenheit(weatherData.dayAfter.temp, unitSelected) },
+      tomorrow: { ...weatherData.tomorrow, temp: convertCelsiusFahrenheit(weatherData.tomorrow.temp, unitSelected) },
+      dayAfter: { ...weatherData.dayAfter, temp: convertCelsiusFahrenheit(weatherData.dayAfter.temp, unitSelected) },
     };
 
     setUnitSelected(unitSelected === 'C' ? 'F' : 'C');
@@ -80,10 +81,14 @@ export default () => {
     <>
       {weatherData && location &&
         <div className="d-flex flex-center h-100">
-          <Card style={{ width: '50%', backgroundColor: 'transparent' }}>
+          <Card style={{ width: '40%', backgroundColor: 'transparent' }}>
             <CardContent style={{ padding: 0, }}>
               <div className="card-title">
-                <ExploreOutlinedIcon size="small" style={{ color: 'rgba(142, 138, 135, 1)' }} />
+                <span
+                  style={{ fontSize: '1.2em' }}
+                  className="icon"
+                  data-icon="("
+                />
                 <p style={{ paddingLeft: '10px' }}> {location.city}, {location.state}</p>
               </div>
 
