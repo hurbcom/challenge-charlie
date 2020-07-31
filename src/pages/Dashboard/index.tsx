@@ -3,6 +3,8 @@ import axios from 'axios';
 
 // import bingAPI from '../../services/bingAPI';
 
+import InitializeIDayProps from './utils/InitializeIDayProps';
+
 import {
     Container,
     Content,
@@ -43,48 +45,15 @@ const Dashboard: React.FC = () => {
     const [longitude, setLongitude] = useState<number>(0);
     const [state, setState] = useState<string>('');
     const [city, setCity] = useState<string>('');
-    const [today, setToday] = useState<IDayProps>({
-        temp: {
-            day: 0
-        },
-        weather: [
-            {
-                description: '',
-                icon: '',
-            }
-        ],
-        pressure: 0,
-        humidity: 0,
-        speed: 0,
-    } as IDayProps);
-    const [tomorrow, setTomorrow] =  useState<IDayProps>({
-        temp: {
-            day: 0
-        },
-        weather: [
-            {
-                description: '',
-                icon: '',
-            }
-        ],
-        pressure: 0,
-        humidity: 0,
-        speed: 0,
-    } as IDayProps);
-    const [afterTomorrow, setAfterTomorrow] =  useState<IDayProps>({
-        temp: {
-            day: 0
-        },
-        weather: [
-            {
-                description: '',
-                icon: '',
-            }
-        ],
-        pressure: 0,
-        humidity: 0,
-        speed: 0,
-    } as IDayProps);
+    const [today, setToday] = useState<IDayProps>(
+        InitializeIDayProps as IDayProps
+    );
+    const [tomorrow, setTomorrow] =  useState<IDayProps>(
+        InitializeIDayProps as IDayProps
+    );
+    const [afterTomorrow, setAfterTomorrow] =  useState<IDayProps>(
+        InitializeIDayProps as IDayProps
+    );
 
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
