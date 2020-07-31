@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import axios from 'axios';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import { FiMap } from 'react-icons/fi';
 
 // import bingAPI from '../../services/bingAPI';
 
 import InitializeIDayProps from './utils/InitializeIDayProps';
 
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
 import {
     Container,
+    Header,
     Content,
     Location,
     Days,
@@ -39,8 +46,15 @@ interface IListDaysProps {
     ]
 }
 
+interface SearchFormData {
+    city: string;
+}
+
 const Dashboard: React.FC = () => {
+    const formRef = useRef<FormHandles>(null);
+
     // const [loading, setLoading] = useState<boolean>(false);
+    // const [image, setImage] = useState<string>('');
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
     const [state, setState] = useState<string>('');
@@ -48,10 +62,10 @@ const Dashboard: React.FC = () => {
     const [today, setToday] = useState<IDayProps>(
         InitializeIDayProps as IDayProps
     );
-    const [tomorrow, setTomorrow] =  useState<IDayProps>(
+    const [tomorrow, setTomorrow] = useState<IDayProps>(
         InitializeIDayProps as IDayProps
     );
-    const [afterTomorrow, setAfterTomorrow] =  useState<IDayProps>(
+    const [afterTomorrow, setAfterTomorrow] = useState<IDayProps>(
         InitializeIDayProps as IDayProps
     );
     const [icon, setIcon] = useState<string>('icon-');
@@ -104,7 +118,7 @@ const Dashboard: React.FC = () => {
                     const today = response.data.list[0];
                     setToday(today);
 
-                    setIcon(icon.concat(today.weather[0].icon));
+                    setIcon(icon => icon.concat(today.weather[0].icon));
 
                     setTomorrow(response.data.list[1]);
 
@@ -117,8 +131,35 @@ const Dashboard: React.FC = () => {
         }
     }, [city]);
 
+    const handleSubmitCity = useCallback((data: SearchFormData) => {
+        console.log(data.city);
+    }, []);
+
     return (
         <Container>
+            <Header>
+                <main>
+                    <img
+                        src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg"
+                        alt="HU"
+                        width="50"
+                    />
+
+                    <Form ref={formRef} onSubmit={handleSubmitCity}>
+                        <Input
+                            name="city"
+                            icon={FiMap}
+                            type="text"
+                            placeholder="Cidade"
+                        />
+
+                        <Button type="submit">
+                            Buscar
+                        </Button>
+                    </Form>
+                </main>
+            </Header>
+
             <Content>
                 <Location>
                     <i className="icon-compass"></i>

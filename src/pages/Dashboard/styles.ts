@@ -12,16 +12,45 @@ export const Container = styled.div`
     background: linear-gradient(90deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 100%), url(${backgroundImg});
     background-position: center;
     background-repeat: no-repeat;
-    background-position: cover;
+    background-size: cover;
     width: 100%;
     height: 100vh;
+    position: relative;
+`;
+
+export const Header = styled.header`
+    width: 100%;
+    height: 64px;
+    background: var(--white-color);
+    box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.35);
+    margin-bottom: 32px;
+
+    main {
+        max-width: 1200px;
+        padding: 0 15px;
+        height: 100%;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+
+        > img {
+            margin-right: 24px;
+        }
+
+        form {
+            display: flex;
+        }
+    }
 `;
 
 export const Content = styled.main`
     max-width: 768px;
     width: 100%;
-    height: 100%;
-    margin: 0 auto;
+    position: absolute;
+    top: calc(50% + 32px);
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     display: flex;
     flex-direction: column;
@@ -30,21 +59,20 @@ export const Content = styled.main`
 export const Location = styled.div`
     background: #F2EDEA;
     padding: 16px 12px;
-    box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.35);
 
     display: flex;
     align-items: center;
 
     p {
         color: var(--grey-color);
-        font-size: 45px;
+        font-size: 32px;
         font-weight: 700;
         margin-left: 12px;
     }
 
     i {
         color: var(--grey-color);
-        font-size: 45px;
+        font-size: 32px;
     }
 `;
 
@@ -56,14 +84,14 @@ export const Days = styled.div`
 
     section {
         flex: 1;
-        padding: 16px 40px 32px;
+        padding: 16px 34px 32px;
         color: var(--white-color);
 
         display: flex;
         justify-content: flex-end;
 
         > i {
-            font-size: 200px;
+            font-size: 170px;
             flex: 1;
         }
     }
@@ -128,17 +156,19 @@ export const Weather = styled.div`
     flex-direction: column;
 
     width: 360px;
-    font-size: 32px;
 
     time {
+        font-size: 20px;
         text-transform: uppercase;
     }
 
     > p {
         margin: 18px 0 12px;
+        text-transform: capitalize;
+        font-size: 22px;
     }
 
     > div {
-        font-size: 24px;
+        font-size: 18px;
     }
 `;

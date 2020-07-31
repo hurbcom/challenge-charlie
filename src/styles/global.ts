@@ -5,6 +5,8 @@ export default createGlobalStyle`
         --white-color: #fafafa;
         --black-color: #333;
         --grey-color: #837F7E;
+
+        --hu-color: #083D7D;
     }
 
     * {
