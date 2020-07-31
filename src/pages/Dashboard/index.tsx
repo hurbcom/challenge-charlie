@@ -54,6 +54,7 @@ const Dashboard: React.FC = () => {
     const [afterTomorrow, setAfterTomorrow] =  useState<IDayProps>(
         InitializeIDayProps as IDayProps
     );
+    const [icon, setIcon] = useState<string>('icon-');
 
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
@@ -100,7 +101,10 @@ const Dashboard: React.FC = () => {
                     `/forecast/daily?q=${formattedCity}&APPID=${appid}&cnt=3&units=metric&lang=pt_br`
                 )
                 .then(response => {
-                    setToday(response.data.list[0]);
+                    const today = response.data.list[0];
+                    setToday(today);
+
+                    setIcon(icon.concat(today.weather[0].icon));
 
                     setTomorrow(response.data.list[1]);
 
@@ -111,7 +115,6 @@ const Dashboard: React.FC = () => {
         if(formattedCity) {
             loadWeather();
         }
-
     }, [city]);
 
     return (
@@ -125,8 +128,8 @@ const Dashboard: React.FC = () => {
                 </Location>
 
                 <Days>
-                    <Today celsius={today.temp.day}>
-                        <i className="icon-sun"></i>
+                    <Today celsius={today.temp.day} city={city}>
+                        <i className={icon}></i>
 
                         <Weather>
                             <time>Hoje</time>
@@ -142,14 +145,14 @@ const Dashboard: React.FC = () => {
                         </Weather>
                     </Today>
 
-                    <Tomorrow celsius={22}>
+                    <Tomorrow celsius={tomorrow.temp.day} city={city}>
                         <Weather>
                             <time>Amanhã</time>
                             <span>{tomorrow.temp.day} °C</span>
                         </Weather>
                     </Tomorrow>
 
-                    <AfterTomorrow celsius={22}>
+                    <AfterTomorrow celsius={afterTomorrow.temp.day} city={city}>
                         <Weather>
                             <time>Depois de Amanhã</time>
                             <span>{afterTomorrow.temp.day} °C</span>

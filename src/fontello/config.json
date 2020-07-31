@@ -26,7 +26,7 @@
     },
     {
       "uid": "f4c428e42b86673278e98e6f2e0a8cd2",
-      "css": "clouds-flash",
+      "css": "11d",
       "code": 59395,
       "src": "meteocons"
     },
@@ -134,7 +134,7 @@
     },
     {
       "uid": "d577552bb94bdeb53e6517873481aeea",
-      "css": "rain",
+      "css": "10d",
       "code": 59413,
       "src": "meteocons"
     },
@@ -146,13 +146,13 @@
     },
     {
       "uid": "9cd3e294ca3ad3dda66bc5a804021c46",
-      "css": "cloud-sun",
+      "css": "02d",
       "code": 59415,
       "src": "meteocons"
     },
     {
       "uid": "2440f961b415837c6bf30424a6711708",
-      "css": "cloud-moon",
+      "css": "02n",
       "code": 59416,
       "src": "meteocons"
     },
@@ -182,7 +182,7 @@
     },
     {
       "uid": "17463471d0f132cee16835507ea51ecf",
-      "css": "cloud",
+      "css": "03d",
       "code": 59421,
       "src": "meteocons"
     },
@@ -200,7 +200,7 @@
     },
     {
       "uid": "f59875f40cbc5ad1b04775cd96feabf1",
-      "css": "drizzle",
+      "css": "09d",
       "code": 59424,
       "src": "meteocons"
     },
@@ -218,13 +218,13 @@
     },
     {
       "uid": "95fb2e5fdd1ea7e4a420b6ed330e6b08",
-      "css": "sun",
+      "css": "01d",
       "code": 59427,
       "src": "meteocons"
     },
     {
       "uid": "34e68aa8fbf61f02a748043ccf448a3b",
-      "css": "moon",
+      "css": "01n",
       "code": 59428,
       "src": "meteocons"
     },
@@ -236,7 +236,7 @@
     },
     {
       "uid": "a555120b3743d482efcc3058733d3fd9",
-      "css": "mist",
+      "css": "50d",
       "code": 59430,
       "src": "meteocons"
     },
@@ -254,7 +254,7 @@
     },
     {
       "uid": "127ed05f3c024a9c73487f18cf3d530d",
-      "css": "snow",
+      "css": "13d",
       "code": 59433,
       "src": "meteocons"
     },
@@ -278,7 +278,7 @@
     },
     {
       "uid": "b215adc51ca2aa37e7bbe244d1fa52cc",
-      "css": "clouds",
+      "css": "04d",
       "code": 59437,
       "src": "meteocons"
     }

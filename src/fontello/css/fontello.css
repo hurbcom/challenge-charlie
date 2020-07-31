@@ -19,42 +19,42 @@
   }
 }
 */
- 
+
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: never;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
+
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
- 
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
+
 .icon-windy-rain-inv:before { content: '\e800'; } /* '' */
 .icon-snow-inv:before { content: '\e801'; } /* '' */
 .icon-snow-heavy-inv:before { content: '\e802'; } /* '' */
@@ -76,28 +76,28 @@
 .icon-cloud-flash-inv:before { content: '\e812'; } /* '' */
 .icon-drizzle-inv:before { content: '\e813'; } /* '' */
 .icon-windy:before { content: '\e814'; } /* '' */
-.icon-rain:before { content: '\e815'; } /* '' */
+.icon-10d:before { content: '\e815'; } /* '' */
 .icon-snowflake:before { content: '\e816'; } /* '' */
-.icon-cloud-sun:before { content: '\e817'; } /* '' */
-.icon-cloud-moon:before { content: '\e818'; } /* '' */
+.icon-02d:before { content: '\e817'; } /* '' */
+.icon-02n:before { content: '\e818'; } /* '' */
 .icon-fog-sun:before { content: '\e819'; } /* '' */
 .icon-fog-moon:before { content: '\e81a'; } /* '' */
 .icon-fog-cloud:before { content: '\e81b'; } /* '' */
 .icon-fog:before { content: '\e81c'; } /* '' */
-.icon-cloud:before { content: '\e81d'; } /* '' */
-.icon-cloud-flash:before { content: '\e81e'; } /* '' */
+.icon-03d:before { content: '\e81d'; } /* '' */
+.icon-11d:before { content: '\e81e'; } /* '' */
 .icon-cloud-flash-alt:before { content: '\e81f'; } /* '' */
-.icon-drizzle:before { content: '\e820'; } /* '' */
+.icon-09d:before { content: '\e820'; } /* '' */
 .icon-windy-inv:before { content: '\e821'; } /* '' */
 .icon-sunrise:before { content: '\e822'; } /* '' */
-.icon-sun:before { content: '\e823'; } /* '' */
-.icon-moon:before { content: '\e824'; } /* '' */
+.icon-01d:before { content: '\e823'; } /* '' */
+.icon-01n:before { content: '\e824'; } /* '' */
 .icon-eclipse:before { content: '\e825'; } /* '' */
-.icon-mist:before { content: '\e826'; } /* '' */
+.icon-50d:before { content: '\e826'; } /* '' */
 .icon-wind:before { content: '\e827'; } /* '' */
 .icon-windy-rain:before { content: '\e828'; } /* '' */
-.icon-snow:before { content: '\e829'; } /* '' */
+.icon-13d:before { content: '\e829'; } /* '' */
 .icon-snow-alt:before { content: '\e82a'; } /* '' */
 .icon-snow-heavy:before { content: '\e82b'; } /* '' */
 .icon-hail:before { content: '\e82c'; } /* '' */
-.icon-clouds:before { content: '\e82d'; } /* '' */
+.icon-04d:before { content: '\e82d'; } /* '' */

@@ -5,6 +5,7 @@ import backgroundImg from '../../assets/elefante.jpg';
 
 interface IWeatherDayProps {
     celsius: number;
+    city: string;
 }
 
 export const Container = styled.div`
@@ -80,6 +81,10 @@ export const Today = styled.section<IWeatherDayProps>`
     ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: linear-gradient(90deg, rgba(250, 204, 5, .7) 0%, rgba(250, 204, 5, .7) 100%);
     `}
+
+    ${props => props.city === '' && css`
+        background: linear-gradient(90deg, rgba(131, 127, 126, .7) 0%, rgba(131, 127, 126, .7) 100%);
+    `}
 `;
 
 export const Tomorrow = styled.section<IWeatherDayProps>`
@@ -94,6 +99,10 @@ export const Tomorrow = styled.section<IWeatherDayProps>`
     ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: linear-gradient(90deg, rgba(250, 204, 5, .9) 0%, rgba(250, 204, 5, .9) 100%);
     `}
+
+    ${props => props.city === '' && css`
+        background: linear-gradient(90deg, rgba(131, 127, 126, .9) 0%, rgba(131, 127, 126, .9) 100%);
+    `}
 `;
 
 export const AfterTomorrow = styled.section<IWeatherDayProps>`
@@ -107,6 +116,10 @@ export const AfterTomorrow = styled.section<IWeatherDayProps>`
 
     ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: ${shade(.25, '#FACC05')};
+    `}
+
+    ${props => props.city === '' && css`
+        background: ${shade(.25, '#837F7E')};
     `}
 `;
 

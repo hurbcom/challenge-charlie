@@ -1,6 +1,6 @@
 export default {
     temp: {
-        day: 0
+        day: 0,
     },
     weather: [
         {
