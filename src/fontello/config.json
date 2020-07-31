@@ -31,6 +31,12 @@
       "src": "meteocons"
     },
     {
+        "uid": "f4c428e42b86673278e98e6f2e0a8cd2",
+        "css": "11n",
+        "code": 59395,
+        "src": "meteocons"
+      },
+    {
       "uid": "ab5c31256cdd1f6b2d6de7202936f5a1",
       "css": "hail-inv",
       "code": 59396,
@@ -139,6 +145,12 @@
       "src": "meteocons"
     },
     {
+        "uid": "d577552bb94bdeb53e6517873481aeea",
+        "css": "10n",
+        "code": 59413,
+        "src": "meteocons"
+      },
+    {
       "uid": "d0c325468a74095e565664bec2623aa3",
       "css": "snowflake",
       "code": 59414,
@@ -187,6 +199,12 @@
       "src": "meteocons"
     },
     {
+        "uid": "17463471d0f132cee16835507ea51ecf",
+        "css": "03n",
+        "code": 59421,
+        "src": "meteocons"
+      },
+    {
       "uid": "cc1179bd34dcbe7bf80785075af60d37",
       "css": "cloud-flash",
       "code": 59422,
@@ -204,6 +222,12 @@
       "code": 59424,
       "src": "meteocons"
     },
+    {
+        "uid": "f59875f40cbc5ad1b04775cd96feabf1",
+        "css": "09n",
+        "code": 59424,
+        "src": "meteocons"
+      },
     {
       "uid": "be6c21cbc48e60a39e80f8b2c33e360e",
       "css": "windy-inv",
@@ -241,6 +265,12 @@
       "src": "meteocons"
     },
     {
+        "uid": "a555120b3743d482efcc3058733d3fd9",
+        "css": "50n",
+        "code": 59430,
+        "src": "meteocons"
+      },
+    {
       "uid": "2efb5347832a09ae69de043f897ec4b9",
       "css": "wind",
       "code": 59431,
@@ -258,6 +288,12 @@
       "code": 59433,
       "src": "meteocons"
     },
+    {
+        "uid": "127ed05f3c024a9c73487f18cf3d530d",
+        "css": "13n",
+        "code": 59433,
+        "src": "meteocons"
+      },
     {
       "uid": "02bb2eaa1515b8fc954abbaf80212739",
       "css": "snow-alt",
@@ -281,6 +317,12 @@
       "css": "04d",
       "code": 59437,
       "src": "meteocons"
-    }
+    },
+    {
+        "uid": "b215adc51ca2aa37e7bbe244d1fa52cc",
+        "css": "04n",
+        "code": 59437,
+        "src": "meteocons"
+      }
   ]
 }

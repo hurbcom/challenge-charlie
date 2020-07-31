@@ -76,7 +76,7 @@
 .icon-cloud-flash-inv:before { content: '\e812'; } /* '' */
 .icon-drizzle-inv:before { content: '\e813'; } /* '' */
 .icon-windy:before { content: '\e814'; } /* '' */
-.icon-10d:before { content: '\e815'; } /* '' */
+.icon-10d:before, .icon-10n:before { content: '\e815'; } /* '' */
 .icon-snowflake:before { content: '\e816'; } /* '' */
 .icon-02d:before { content: '\e817'; } /* '' */
 .icon-02n:before { content: '\e818'; } /* '' */
@@ -84,20 +84,20 @@
 .icon-fog-moon:before { content: '\e81a'; } /* '' */
 .icon-fog-cloud:before { content: '\e81b'; } /* '' */
 .icon-fog:before { content: '\e81c'; } /* '' */
-.icon-03d:before { content: '\e81d'; } /* '' */
-.icon-11d:before { content: '\e81e'; } /* '' */
+.icon-03d:before, .icon-03n:before { content: '\e81d'; } /* '' */
+.icon-11d:before, .icon-11n:before { content: '\e81e'; } /* '' */
 .icon-cloud-flash-alt:before { content: '\e81f'; } /* '' */
-.icon-09d:before { content: '\e820'; } /* '' */
+.icon-09d:before, .icon-09n:before { content: '\e820'; } /* '' */
 .icon-windy-inv:before { content: '\e821'; } /* '' */
 .icon-sunrise:before { content: '\e822'; } /* '' */
 .icon-01d:before { content: '\e823'; } /* '' */
 .icon-01n:before { content: '\e824'; } /* '' */
 .icon-eclipse:before { content: '\e825'; } /* '' */
-.icon-50d:before { content: '\e826'; } /* '' */
+.icon-50d:before, .icon-50n:before { content: '\e826'; } /* '' */
 .icon-wind:before { content: '\e827'; } /* '' */
 .icon-windy-rain:before { content: '\e828'; } /* '' */
-.icon-13d:before { content: '\e829'; } /* '' */
+.icon-13d:before, .icon-13n:before { content: '\e829'; } /* '' */
 .icon-snow-alt:before { content: '\e82a'; } /* '' */
 .icon-snow-heavy:before { content: '\e82b'; } /* '' */
 .icon-hail:before { content: '\e82c'; } /* '' */
-.icon-04d:before { content: '\e82d'; } /* '' */
+.icon-04d:before, .icon-04n:before { content: '\e82d'; } /* '' */
