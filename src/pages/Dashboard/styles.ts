@@ -23,16 +23,23 @@ export const Header = styled.header`
     height: 64px;
     background: var(--white-color);
     box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.35);
-    margin-bottom: 32px;
+
+    @media (max-width: 575px) {
+        height: auto;
+    }
 
     main {
         max-width: 1200px;
-        padding: 0 15px;
+        padding: 10px 15px;
         height: 100%;
         margin: 0 auto;
 
         display: flex;
         align-items: center;
+
+        @media (max-width: 575px) {
+            align-items: flex-start;
+        }
 
         > img {
             margin-right: 24px;
@@ -40,6 +47,25 @@ export const Header = styled.header`
 
         form {
             display: flex;
+
+            @media (max-width: 575px) {
+                flex-direction: column;
+            }
+
+            div:nth-child(2) {
+                @media (max-width: 575px) {
+                    margin: 0;
+                    margin-top: 8px;
+                }
+            }
+
+            button {
+                @media (max-width: 575px) {
+                    margin: 0;
+                    margin-top: 8px;
+                    width: 100%;
+                }
+            }
         }
     }
 `;
@@ -54,6 +80,14 @@ export const Content = styled.main`
 
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 575px) {
+        position: relative;
+        transform: translate(0);
+        top: 0;
+        left: 0;
+        margin-top: 32px;
+    }
 `;
 
 export const Location = styled.div`
@@ -68,11 +102,23 @@ export const Location = styled.div`
         font-size: 32px;
         font-weight: 700;
         margin-left: 12px;
+
+        @media (max-width: 767px) {
+            font-size: 24px;
+        }
+
+        @media (max-width: 575px) {
+            font-size: 21px;
+        }
     }
 
     i {
         color: var(--grey-color);
         font-size: 32px;
+
+        @media (max-width: 767px) {
+            font-size: 24px;
+        }
     }
 `;
 
@@ -93,6 +139,10 @@ export const Days = styled.div`
         > i {
             font-size: 170px;
             flex: 1;
+
+            @media (max-width: 767px) {
+                font-size: 100px;
+            }
         }
     }
 `;
@@ -160,15 +210,27 @@ export const Weather = styled.div`
     time {
         font-size: 20px;
         text-transform: uppercase;
+
+        @media (max-width: 767px) {
+            font-size: 18px;
+        }
     }
 
     > p {
         margin: 18px 0 12px;
         text-transform: capitalize;
         font-size: 22px;
+
+        @media (max-width: 767px) {
+            font-size: 20px;
+        }
     }
 
     > div {
         font-size: 18px;
+
+        @media (max-width: 767px) {
+            font-size: 16px;
+        }
     }
 `;
