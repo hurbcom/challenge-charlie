@@ -138,6 +138,14 @@ const Dashboard: React.FC = () => {
                         const formattedIcon = icon.substring(0, 5); // icon-
                         setIcon(formattedIcon);
 
+                        // Force the initial temp unity to be Celsius
+                        if(isFahrenheit) {
+                            setTempUnity('°C');
+
+                            setIsCelsius(!isCelsius);
+                            setIsFahrenheit(!isFahrenheit);
+                        }
+
                         setIsSearch(false);
                     }
 
