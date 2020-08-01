@@ -7,7 +7,7 @@ export const Container = styled.button`
     border: 0;
     padding: 10px;
     height: 44px;
-    width: 100%;
+    width: 200px;
     color: var(--white-color);
     font-weight: 500;
     margin-left: 8px;
@@ -37,10 +37,10 @@ export const Loading = styled.div`
 
     @keyframes spinner {
         0% {
-        transform: rotate(0deg);
+            transform: rotate(0deg);
         }
         100% {
-        transform: rotate(360deg);
+            transform: rotate(360deg);
         }
     }
 `;

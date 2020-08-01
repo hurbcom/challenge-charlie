@@ -24,6 +24,10 @@ export const Container = styled.div<ContainerProps>`
         color: var(--hu-color);
     `}
 
+    & + div {
+        margin-left: 8px;
+    }
+
     input {
         color: var(--black-color);
         background: transparent;

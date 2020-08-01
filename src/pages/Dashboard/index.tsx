@@ -47,16 +47,16 @@ interface IListDaysProps {
 }
 
 interface SearchFormData {
+    state: string;
     city: string;
 }
 
 const Dashboard: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
 
-    // const [loading, setLoading] = useState<boolean>(false);
     // const [image, setImage] = useState<string>('');
-    const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
+    const [latitude, setLatitude] = useState<number>(0);
     const [state, setState] = useState<string>('');
     const [city, setCity] = useState<string>('');
     const [today, setToday] = useState<IDayProps>(
@@ -69,18 +69,19 @@ const Dashboard: React.FC = () => {
         InitializeIDayProps as IDayProps
     );
     const [icon, setIcon] = useState<string>('icon-');
+    const [isSearch, setIsSearch] = useState<boolean>(false);
 
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
             const lon = position.coords.longitude;
+            const lat = position.coords.latitude;
 
             if(lat && lon) {
-                setLatitude(lat);
                 setLongitude(lon);
+                setLatitude(lat);
             }
         });
 
@@ -118,6 +119,14 @@ const Dashboard: React.FC = () => {
                     const today = response.data.list[0];
                     setToday(today);
 
+                    // Quando é feito uma busca pela cidade
+                    if(isSearch) {
+                        const formattedIcon = icon.substring(0, 5);
+                        setIcon(formattedIcon);
+
+                        setIsSearch(false);
+                    }
+
                     setIcon(icon => icon.concat(today.weather[0].icon));
 
                     setTomorrow(response.data.list[1]);
@@ -132,7 +141,12 @@ const Dashboard: React.FC = () => {
     }, [city]);
 
     const handleSubmitCity = useCallback((data: SearchFormData) => {
-        console.log(data.city);
+        setIsSearch(true);
+
+        const { state, city } = data;
+
+        setState(state);
+        setCity(city);
     }, []);
 
     return (
@@ -147,13 +161,20 @@ const Dashboard: React.FC = () => {
 
                     <Form ref={formRef} onSubmit={handleSubmitCity}>
                         <Input
+                            name="state"
+                            icon={FiMap}
+                            type="text"
+                            placeholder="Estado"
+                        />
+
+                        <Input
                             name="city"
                             icon={FiMap}
                             type="text"
                             placeholder="Cidade"
                         />
 
-                        <Button type="submit">
+                        <Button type="submit" loading={isSearch}>
                             Buscar
                         </Button>
                     </Form>
