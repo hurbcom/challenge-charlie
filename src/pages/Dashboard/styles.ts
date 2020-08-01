@@ -160,6 +160,7 @@ export const Today = styled.section<IWeatherDayProps>`
         background: linear-gradient(90deg, rgba(250, 204, 5, .7) 0%, rgba(250, 204, 5, .7) 100%);
     `}
 
+    /* Empty city search */
     ${props => props.city === '' && css`
         background: linear-gradient(90deg, rgba(131, 127, 126, .7) 0%, rgba(131, 127, 126, .7) 100%);
     `}
@@ -171,13 +172,14 @@ export const Tomorrow = styled.section<IWeatherDayProps>`
     `}
 
     ${props => props.celsius > 35 && css`
-    background: linear-gradient(90deg, rgba(249, 4, 4, .9) 0%, rgba(249, 4, 4, .9) 100%);
+        background: linear-gradient(90deg, rgba(249, 4, 4, .9) 0%, rgba(249, 4, 4, .9) 100%);
     `}
 
     ${props => props.celsius >= 15 && props.celsius <= 35 && css`
         background: linear-gradient(90deg, rgba(250, 204, 5, .9) 0%, rgba(250, 204, 5, .9) 100%);
     `}
 
+    /* Empty city search */
     ${props => props.city === '' && css`
         background: linear-gradient(90deg, rgba(131, 127, 126, .9) 0%, rgba(131, 127, 126, .9) 100%);
     `}
@@ -196,6 +198,7 @@ export const AfterTomorrow = styled.section<IWeatherDayProps>`
         background: ${shade(.25, '#FACC05')};
     `}
 
+    /* Empty city search */
     ${props => props.city === '' && css`
         background: ${shade(.25, '#837F7E')};
     `}
@@ -214,6 +217,10 @@ export const Weather = styled.div`
         @media (max-width: 767px) {
             font-size: 18px;
         }
+    }
+
+    span {
+        cursor: pointer;
     }
 
     > p {

@@ -70,6 +70,17 @@ const Dashboard: React.FC = () => {
     );
     const [icon, setIcon] = useState<string>('icon-');
     const [isSearch, setIsSearch] = useState<boolean>(false);
+    const [isCelsius, setIsCelsius] = useState<boolean>(true);
+    const [isFahrenheit, setIsFahrenheit] = useState<boolean>(false);
+    const [tempUnity, setTempUnity] = useState<string>('°C');
+
+    // To serve as a reference to css
+    const [tempCelsiusToday, setTempCelsiusToday] = useState<number>(0);
+    const [tempCelsiusTomorrow, setTempCelsiusTomorrow] = useState<number>(0);
+    const [
+        tempCelsiusAfterTomorrow,
+        setTempCelsiusAfterTomorrow
+    ] = useState<number>(0);
 
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
@@ -104,6 +115,7 @@ const Dashboard: React.FC = () => {
     }, [latitude, longitude]);
 
     useEffect(() => {
+        // Treat the city by removing spaces
         const formattedCity = city.replace(/\s/g, '+').trim();
 
         const weatherAPI = axios.create({
@@ -118,20 +130,27 @@ const Dashboard: React.FC = () => {
                 .then(response => {
                     const today = response.data.list[0];
                     setToday(today);
+                    setTempCelsiusToday(today.temp.day);
 
-                    // Quando é feito uma busca pela cidade
+                    // If a city search is made
                     if(isSearch) {
-                        const formattedIcon = icon.substring(0, 5);
+                        // Treat the icon by removing the previous value
+                        const formattedIcon = icon.substring(0, 5); // icon-
                         setIcon(formattedIcon);
 
                         setIsSearch(false);
                     }
 
+                    // Join 'icon-' with icon that comes from the api response
                     setIcon(icon => icon.concat(today.weather[0].icon));
 
                     setTomorrow(response.data.list[1]);
+                    setTempCelsiusTomorrow(response.data.list[1].temp.day);
 
                     setAfterTomorrow(response.data.list[2]);
+                    setTempCelsiusAfterTomorrow(
+                        response.data.list[2].temp.day
+                    );
                 });
         }
 
@@ -148,6 +167,42 @@ const Dashboard: React.FC = () => {
         setState(state);
         setCity(city);
     }, []);
+
+    const handleClickTemp = useCallback(() => {
+        // Conversions
+        if(isCelsius) {
+            const celsiusToday = today.temp.day;
+            today.temp.day = (Math.round(((celsiusToday * 9/5) + 32) * 100) / 100);
+
+            const celsiusTomorrow = tomorrow.temp.day;
+            tomorrow.temp.day = (Math.round(((celsiusTomorrow * 9/5) + 32) * 100) / 100);
+
+            const celsiusAfterTomorrow = afterTomorrow.temp.day;
+            afterTomorrow.temp.day = (Math.round(((celsiusAfterTomorrow * 9/5) + 32) * 100) / 100);
+
+            setTempUnity('°F');
+        } else {
+            const fahrenheitToday = today.temp.day;
+            today.temp.day = (Math.round((fahrenheitToday - 32) * 5/9 * 100) / 100);
+
+            const fahrenheitTomorrow = tomorrow.temp.day;
+            tomorrow.temp.day = (Math.round((fahrenheitTomorrow - 32) * 5/9 * 100) / 100);
+
+            const fahrenheitAfterTomorrow = afterTomorrow.temp.day;
+            afterTomorrow.temp.day = (Math.round((fahrenheitAfterTomorrow - 32) * 5/9 * 100) / 100);
+
+            setTempUnity('°C');
+        }
+
+        setIsCelsius(!isCelsius);
+        setIsFahrenheit(!isFahrenheit);
+    }, [
+        today.temp.day,
+        tomorrow.temp.day,
+        afterTomorrow.temp.day,
+        isCelsius,
+        isFahrenheit
+    ]);
 
     return (
         <Container>
@@ -190,12 +245,17 @@ const Dashboard: React.FC = () => {
                 </Location>
 
                 <Days>
-                    <Today celsius={today.temp.day} city={city}>
+                    <Today
+                        celsius={tempCelsiusToday}
+                        city={city}
+                    >
                         <i className={icon}></i>
 
                         <Weather>
                             <time>Hoje</time>
-                            <span>{today.temp.day} °C</span>
+                            <span onClick={handleClickTemp}>
+                                {today.temp.day} {tempUnity}
+                            </span>
 
                             <p>{today.weather[0].description}</p>
 
@@ -207,17 +267,27 @@ const Dashboard: React.FC = () => {
                         </Weather>
                     </Today>
 
-                    <Tomorrow celsius={tomorrow.temp.day} city={city}>
+                    <Tomorrow
+                        celsius={tempCelsiusTomorrow}
+                        city={city}
+                    >
                         <Weather>
                             <time>Amanhã</time>
-                            <span>{tomorrow.temp.day} °C</span>
+                            <span onClick={handleClickTemp}>
+                                {tomorrow.temp.day} {tempUnity}
+                            </span>
                         </Weather>
                     </Tomorrow>
 
-                    <AfterTomorrow celsius={afterTomorrow.temp.day} city={city}>
+                    <AfterTomorrow
+                        celsius={tempCelsiusAfterTomorrow}
+                        city={city}
+                    >
                         <Weather>
                             <time>Depois de Amanhã</time>
-                            <span>{afterTomorrow.temp.day} °C</span>
+                            <span onClick={handleClickTemp}>
+                                {afterTomorrow.temp.day} {tempUnity}
+                            </span>
                         </Weather>
                     </AfterTomorrow>
                 </Days>

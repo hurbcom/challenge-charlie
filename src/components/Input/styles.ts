@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
-interface ContainerProps {
+interface IContainerProps {
     isFocused: boolean;
     isFilled: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<IContainerProps>`
     background-color: #E1E1E1;
     color: var(--black-color);
     border-radius: 8px;
@@ -41,6 +41,6 @@ export const Container = styled.div<ContainerProps>`
     }
 
     svg {
-          margin-right: 16px;
+        margin-right: 16px;
     }
 `;
