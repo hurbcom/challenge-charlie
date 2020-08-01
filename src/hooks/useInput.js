@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const enterKeyCode = 13
 
-function useInput(onCityChanged) {
-  const [text, setText] = useState('')
+function useInput(initialText = '', onCityChanged) {
+  const [text, setText] = useState(initialText)
+
+  useEffect(() => {
+    setText(initialText)
+  }, [initialText])
 
   function handleSubmit({ keyCode }) {
     if (keyCode === enterKeyCode) {
