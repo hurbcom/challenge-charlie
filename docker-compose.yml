@@ -4,6 +4,7 @@ services:
 
   sample:
     container_name: charlies
+    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
