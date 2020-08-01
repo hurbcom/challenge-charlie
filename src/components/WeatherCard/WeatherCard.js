@@ -29,6 +29,7 @@ export default () => {
     }
   }, []);
 
+  // Initial position from browser
   const getInitialCoords = (position) => {
     setInitialLoading(true);
 
@@ -86,6 +87,7 @@ export default () => {
       });
   }
 
+  // Toggle Celsius or Fahrenheit
   const convertUnits = () => {
     const convertedWeatherData = {
       ...weatherData,
@@ -120,20 +122,19 @@ export default () => {
 
                 {loadingCity && <CircularProgress size={20} style={{ marginLeft: '5px' }} />}
               </div>
-              <>
-                <TodayWeather
-                  currentWeather={weatherData.current}
-                  unitSelected={unitSelected}
-                  convertUnits={convertUnits}
-                />
 
-                <FutureWeather
-                  tomorrow={weatherData.tomorrow}
-                  dayAfter={weatherData.dayAfter}
-                  unitSelected={unitSelected}
-                  convertUnits={convertUnits}
-                />
-              </>
+              <TodayWeather
+                currentWeather={weatherData.current}
+                unitSelected={unitSelected}
+                convertUnits={convertUnits}
+              />
+
+              <FutureWeather
+                tomorrow={weatherData.tomorrow}
+                dayAfter={weatherData.dayAfter}
+                unitSelected={unitSelected}
+                convertUnits={convertUnits}
+              />
             </CardContent>
           </Card>
         }
