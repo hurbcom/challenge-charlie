@@ -5,53 +5,60 @@ import FutureWeather from './FutureWeather/FutureWeather';
 import TodayWeather from './TodayWeather/TodayWeather';
 import LoadingBackground from '../utils/LoadingBackground';
 
+import LocationSearchInput from '../LocationSearchInput';
+
 import { openCageKey, openWeatherKey } from '../../config/apiKeys';
 
 import { convertCelsiusFahrenheit } from '../../utils/unitConvertion';
 import { convertWindDeg } from '../../utils/compassConvertion';
 
 export default () => {
-  const [loading, setLoading] = React.useState(true);
+  const [initialLoading, setInitialLoading] = React.useState(true);
+  const [loadingCity, setLoadingCity] = React.useState(false);
 
-  const [location, setLocation] = React.useState(null);
   const [weatherData, setWeatherData] = React.useState(null);
   const [unitSelected, setUnitSelected] = React.useState('C');
 
+  const [initialCity, setInitialCity] = React.useState('');
+
   React.useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoords);
+      navigator.geolocation.getCurrentPosition(getInitialCoords);
     } else {
       alert('Não foi possível verificar sua localização. Por favor, atualize seu navegador.');
     }
   }, []);
 
-  const getCoords = (position) => {
-    setLoading(true);
+  const getInitialCoords = (position) => {
+    setInitialLoading(true);
 
     const coords = {
       lat: position.coords.latitude,
-      lon: position.coords.longitude
+      lng: position.coords.longitude
     };
 
     getCityName(coords);
     getWeather(coords);
   }
 
-  const getCityName = async ({ lat, lon }) => {
-    await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${openCageKey}`)
+  const getCityName = async ({ lat, lng }) => {
+    await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${openCageKey}`)
       .then(res => res.json())
       .then(data => {
         const location = data.results[0].components;
-        setLocation(location);
+
+        setInitialCity(`${location.city}, ${location.state_code}, ${location.state}`);
       }).catch(err => {
         console.log(err);
         alert('Ocorreu um erro. Tente novamente.');
-        setLoading(false);
+        setInitialLoading(false);
       });
   }
 
-  const getWeather = async ({ lat, lon }) => {
-    await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${openWeatherKey}&lang=pt_br&units=metric`)
+  const getWeather = async ({ lat, lng }) => {
+    setLoadingCity(true);
+
+    await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherKey}&lang=pt_br&units=metric`)
       .then(res => res.json())
       .then(data => {
         const weatherDataObj = {
@@ -69,11 +76,13 @@ export default () => {
         };
 
         setWeatherData(weatherDataObj);
-        setLoading(false);
+        setInitialLoading(false);
+        setLoadingCity(false);
       }).catch(err => {
         console.log(err);
         alert('Ocorreu um erro. Tente novamente.');
-        setLoading(false);
+        setInitialLoading(false);
+        setLoadingCity(false);
       });
   }
 
@@ -92,32 +101,39 @@ export default () => {
   return (
     <>
       <div className="d-flex flex-center h-100">
-        {loading && <LoadingBackground />}
+        {initialLoading && <LoadingBackground />}
 
-        {!loading &&
-          <Card style={{ width: '40%', backgroundColor: 'transparent' }}>
+        {!initialLoading &&
+          <Card style={{ backgroundColor: 'transparent' }}>
             <CardContent style={{ padding: 0, }}>
               <div className="card-title">
                 <span
-                  style={{ fontSize: '1.2em' }}
+                  style={{ fontSize: '1.2em', marginRight: '5px' }}
                   className="icon"
                   data-icon="("
                 />
-                <p style={{ paddingLeft: '10px' }}> {location.city}, {location.state}</p>
+
+                <LocationSearchInput
+                  getWeather={getWeather}
+                  initialCity={initialCity}
+                />
+
+                {loadingCity && <CircularProgress size={20} style={{ marginLeft: '5px' }} />}
               </div>
+              <>
+                <TodayWeather
+                  currentWeather={weatherData.current}
+                  unitSelected={unitSelected}
+                  convertUnits={convertUnits}
+                />
 
-              <TodayWeather
-                currentWeather={weatherData.current}
-                unitSelected={unitSelected}
-                convertUnits={convertUnits}
-              />
-
-              <FutureWeather
-                tomorrow={weatherData.tomorrow}
-                dayAfter={weatherData.dayAfter}
-                unitSelected={unitSelected}
-                convertUnits={convertUnits}
-              />
+                <FutureWeather
+                  tomorrow={weatherData.tomorrow}
+                  dayAfter={weatherData.dayAfter}
+                  unitSelected={unitSelected}
+                  convertUnits={convertUnits}
+                />
+              </>
             </CardContent>
           </Card>
         }
