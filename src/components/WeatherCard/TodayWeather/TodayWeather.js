@@ -6,7 +6,7 @@ import { checkColorTemperature, checkMoodIcon } from '../../../utils/weatherCond
 export default ({ convertUnits, currentWeather, unitSelected }) => {
 
   return (
-    <div style={{ backgroundColor: checkColorTemperature(currentWeather.temp), paddingBottom: '30px', paddingTop: '10px' }}>
+    <div style={{ backgroundColor: checkColorTemperature(currentWeather.temp, unitSelected), paddingBottom: '30px', paddingTop: '10px' }}>
       <Grid container direction="row">
         <Grid item md={6} xs={12} className="align-s-center text-center">
           <span

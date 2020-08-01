@@ -10,7 +10,7 @@ export default ({ tomorrow, dayAfter, convertUnits, unitSelected }) => (
   <div className="future-weather-info">
     <Grid container direction="column">
       <Grid item>
-        <div className="future-weather-temp" style={{ backgroundColor: checkColorTemperature(tomorrow.temp), color: '#fff', textTransform: 'uppercase', fontWeight: '600', paddingBottom: '20px' }} onClick={() => convertUnits()}>
+        <div className="future-weather-temp" style={{ backgroundColor: checkColorTemperature(tomorrow.temp, unitSelected), color: '#fff', textTransform: 'uppercase', fontWeight: '600', paddingBottom: '20px' }} onClick={() => convertUnits()}>
           <Grid container direction="row">
             <Grid item md={6} xs={12} style={{ marginBottom: '5px' }}>
               <h4>Amanhã</h4>
@@ -27,7 +27,7 @@ export default ({ tomorrow, dayAfter, convertUnits, unitSelected }) => (
         </div>
       </Grid>
       <Grid item>
-        <div className="future-weather-temp" style={{ backgroundColor: checkColorTemperature(dayAfter.temp), color: '#fff', textTransform: 'uppercase', fontWeight: '600' }} onClick={() => convertUnits()}>
+        <div className="future-weather-temp" style={{ backgroundColor: checkColorTemperature(dayAfter.temp, unitSelected), color: '#fff', textTransform: 'uppercase', fontWeight: '600' }} onClick={() => convertUnits()}>
           <Grid container direction="row">
             <Grid item md={6} xs={12} style={{ marginBottom: '5px' }}>
               <h4>Depois de Amanhã</h4>
