@@ -2,12 +2,12 @@ import { client } from 'utils/client'
 
 const { OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL } = process.env
 
-const hoursMinutesAndSecondsStartOfDay = '00:00:00'
-const dayInMilliSeconds = 1000 * 60 * 60 * 24
+const hoursMinutesAndSecondsAtNoon = '12:00:00'
+const dayDurationInMilliSeconds = 1000 * 60 * 60 * 24
 
 const mapDifferenceBetweenDaysToPlainText = {
-  1: 'Amanhã',
-  2: 'Depois de amanhã',
+  1: 'Tomorrow',
+  2: 'After tomorrow',
 }
 
 export function OpenWeatherService({ city }) {
@@ -32,15 +32,17 @@ export function OpenWeatherService({ city }) {
     })
   }
 
-  this.getForecasts = function (limitOfDays = 2) {
+  this.getForecasts = function (limitOfDays) {
     return client(`${OPEN_WEATHER_API_URL}/forecast${queryString}`).then(({ list }) => {
       const currentDate = new Date()
 
       const filtered = list
-        .filter(({ dt_txt }) => dt_txt.includes(hoursMinutesAndSecondsStartOfDay)) // get avg_temp from every included hour
+        .filter(({ dt_txt }) => dt_txt.includes(hoursMinutesAndSecondsAtNoon))
         .map(({ dt_txt, main }) => {
           const forecastDate = new Date(dt_txt)
-          const differenceBetweenDays = Math.ceil((forecastDate - currentDate) / dayInMilliSeconds)
+          const differenceBetweenDays = Math.ceil(
+            (forecastDate - currentDate) / dayDurationInMilliSeconds,
+          )
 
           return {
             day: mapDifferenceBetweenDaysToPlainText[differenceBetweenDays],

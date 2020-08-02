@@ -5,13 +5,18 @@ import useWeather from 'hooks/useWeather'
 import { mapTemperatureToClassNames } from 'helpers'
 
 const WeatherSection = ({ city, ...rest }) => {
-  const { forecasts, weather } = useWeather({ city })
+  const { error, forecasts, weather } = useWeather({ city })
 
   const classNames = mapTemperatureToClassNames(weather?.temperature)
 
   return (
     <>
-      <Section temperatureBasedClassName={classNames[0]} weather={weather} {...rest} />
+      <Section
+        error={error}
+        temperatureBasedClassName={classNames[0]}
+        weather={weather}
+        {...rest}
+      />
 
       {forecasts?.map((currentForecast, index) => (
         <Section

@@ -5,6 +5,10 @@ p {
   line-height: 1.2em;
   user-select: none;
 
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
   &.small {
     font-size: var(--font-small);
   }
