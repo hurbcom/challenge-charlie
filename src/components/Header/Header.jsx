@@ -12,7 +12,7 @@ const Header = ({ city, disabled, onCityChanged }) => {
   const placeholder = disabled ? '' : text || i18n('Type in the location name')
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-testid='input-header'>
       <label htmlFor='locale-input'>
         <Compass />
       </label>
