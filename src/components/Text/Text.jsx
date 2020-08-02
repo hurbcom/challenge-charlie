@@ -9,7 +9,7 @@ const Text = ({ children, onClick = () => {}, size = 'normal' }) => (
 )
 
 Text.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 }

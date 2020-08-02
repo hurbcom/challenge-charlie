@@ -7,7 +7,7 @@ const Title = ({ children, uppercase, size = 'medium' }) => (
 )
 
 Title.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   uppercase: PropTypes.bool,
 }
