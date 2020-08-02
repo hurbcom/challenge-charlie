@@ -1,0 +1,53 @@
+$opacityLow: 0.6;
+$opacityMedium: 0.8;
+$opacityHigh: 0.9;
+
+.section {
+  &.cold {
+    background: rgba(var(--color-blue-rgb), $opacityMedium);
+
+    &-light {
+      background: rgba(var(--color-blue-rgb), $opacityLow);
+    }
+
+    &-dark {
+      background: rgba(var(--color-blue-dark-rgb), $opacityHigh);
+    }
+  }
+
+  &.normal {
+    background: rgba(var(--color-yellow-rgb), $opacityMedium);
+
+    &-light {
+      background: rgba(var(--color-yellow-rgb), $opacityLow);
+    }
+
+    &-dark {
+      background: rgba(var(--color-yellow-dark-rgb), $opacityHigh);
+    }
+  }
+
+  &.hot {
+    background: rgba(var(--color-red-rgb), $opacityMedium);
+
+    &-light {
+      background: rgba(var(--color-red-rgb), $opacityLow);
+    }
+
+    &-dark {
+      background: rgba(var(--color-red-dark-rgb), $opacityHigh);
+    }
+  }
+
+  &.unset {
+    background: rgba(var(--color-gray-rgb), $opacityMedium);
+
+    &-light {
+      background: rgba(var(--color-gray-rgb), $opacityLow);
+    }
+
+    &-dark {
+      background: rgba(var(--color-gray-dark-rgb), $opacityHigh);
+    }
+  }
+}
