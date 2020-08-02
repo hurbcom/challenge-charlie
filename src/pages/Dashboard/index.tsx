@@ -94,11 +94,27 @@ const Dashboard: React.FC = () => {
         setTempCelsiusAfterTomorrow
     ] = useState<number>(0);
 
+    // keys to APIs
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
 
+    // When call api to load geolocation
+    const loadLocation = useCallback(async (
+        geoAPI: AxiosInstance
+    ): Promise<void> => {
+        await geoAPI.get('/').then(response => {
+            const state = response.data.results[0].components.state;
+            const city = response.data.results[0].components.city;
+
+            if(state && city) {
+                setState(state);
+                setCity(city);
+            }
+        });
+    }, []);
+
     // When call api to load the weather
-    const loadWeather = useCallback(async(
+    const loadWeather = useCallback(async (
         city: string,
         weatherAPI: AxiosInstance
     ): Promise<void> => {
@@ -194,7 +210,7 @@ const Dashboard: React.FC = () => {
         isFahrenheit
     ]);
 
-    // When latitude or longitude change
+    // When latitude or longitude change - init application
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const lon = position.coords.longitude;
@@ -210,19 +226,8 @@ const Dashboard: React.FC = () => {
             baseURL: `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${key}&language=pt_br`,
         });
 
-        async function loadLocation(): Promise<void> {
-            await geoAPI.get('/').then(response => {
-                const state = response.data.results[0].components.state;
-                const city = response.data.results[0].components.city;
-
-                if(state && city) {
-                    setState(state);
-                    setCity(city);
-                }
-            });
-        }
-        loadLocation();
-    }, [latitude, longitude]);
+        loadLocation(geoAPI);
+    }, [latitude, longitude, loadLocation]);
 
     // When city changes
     useEffect(() => {
