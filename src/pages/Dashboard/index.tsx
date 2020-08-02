@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import { useTranslation } from 'react-i18next';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiMap } from 'react-icons/fi';
 
 // import bingAPI from '../../services/bingAPI';
+import weatherAPI from '../../services/weatherAPI';
 
 import InitializeIDayProps from './utils/InitializeIDayProps';
+
+import brazilianFlag from '../../assets/bra.svg';
+import USAFlag from '../../assets/usa.svg';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -39,6 +44,9 @@ interface IDayProps {
 }
 
 interface IListDaysProps {
+    city: {
+        name: string;
+    },
     list: [
         IDayProps,
         IDayProps,
@@ -52,6 +60,8 @@ interface SearchFormData {
 }
 
 const Dashboard: React.FC = () => {
+    const { t, i18n } = useTranslation();
+
     const formRef = useRef<FormHandles>(null);
 
     // const [image, setImage] = useState<string>('');
@@ -72,7 +82,9 @@ const Dashboard: React.FC = () => {
     const [isSearch, setIsSearch] = useState<boolean>(false);
     const [isCelsius, setIsCelsius] = useState<boolean>(true);
     const [isFahrenheit, setIsFahrenheit] = useState<boolean>(false);
-    const [tempUnity, setTempUnity] = useState<string>('°C');
+    const [language, setLanguage] = useState<string>('pt_br');
+    const [units, setUnits] = useState<string>('metric');
+    const [tempUnit, setTempUnit] = useState<string>('°C');
 
     // To serve as a reference to css
     const [tempCelsiusToday, setTempCelsiusToday] = useState<number>(0);
@@ -85,6 +97,104 @@ const Dashboard: React.FC = () => {
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
 
+    // When call api to load the weather
+    const loadWeather = useCallback(async(
+        city: string,
+        weatherAPI: AxiosInstance
+    ): Promise<void> => {
+        await weatherAPI
+            .get<IListDaysProps>(
+                `/forecast/daily?q=${city}&APPID=${appid}&cnt=3&units=${units}&lang=${language}`
+            )
+            .then(response => {
+                const today = response.data.list[0];
+                setToday(today);
+                setTempCelsiusToday(today.temp.day);
+
+                // If a city search is made
+                if(isSearch) {
+                    // Treat the icon by removing the previous value
+                    const formattedIcon = icon.substring(0, 5); // icon-
+                    setIcon(formattedIcon);
+
+                    if(isFahrenheit) {
+                        // Force the initial temp unit to be Celsius
+                        setTempUnit('°C');
+
+                        setIsCelsius(true);
+                        setIsFahrenheit(false);
+                    }
+
+                    // setCity(response.data.city.name);
+
+                    setIsSearch(false);
+                }
+
+                // Join 'icon-' with icon that comes from the api response
+                setIcon(icon => icon.concat(today.weather[0].icon));
+
+                setTomorrow(response.data.list[1]);
+                setTempCelsiusTomorrow(response.data.list[1].temp.day);
+
+                setAfterTomorrow(response.data.list[2]);
+                setTempCelsiusAfterTomorrow(
+                    response.data.list[2].temp.day
+                );
+            });
+    }, [city]);
+
+    const handleChangeLanguage = useCallback((lng: string) => {
+        i18n.changeLanguage(lng);
+
+        setLanguage(lng);
+    }, [i18n]);
+
+    const handleSubmitCity = useCallback((data: SearchFormData) => {
+        setIsSearch(true);
+
+        const { state, city } = data;
+
+        setState(state);
+        setCity(city);
+    }, []);
+
+    const handleClickTemp = useCallback(() => {
+        // Conversions
+        if(isCelsius) {
+            const celsiusToday = today.temp.day;
+            today.temp.day = (Math.round(((celsiusToday * 9/5) + 32) * 100) / 100);
+
+            const celsiusTomorrow = tomorrow.temp.day;
+            tomorrow.temp.day = (Math.round(((celsiusTomorrow * 9/5) + 32) * 100) / 100);
+
+            const celsiusAfterTomorrow = afterTomorrow.temp.day;
+            afterTomorrow.temp.day = (Math.round(((celsiusAfterTomorrow * 9/5) + 32) * 100) / 100);
+
+            setTempUnit('°F');
+        } else {
+            const fahrenheitToday = today.temp.day;
+            today.temp.day = (Math.round((fahrenheitToday - 32) * 5/9 * 100) / 100);
+
+            const fahrenheitTomorrow = tomorrow.temp.day;
+            tomorrow.temp.day = (Math.round((fahrenheitTomorrow - 32) * 5/9 * 100) / 100);
+
+            const fahrenheitAfterTomorrow = afterTomorrow.temp.day;
+            afterTomorrow.temp.day = (Math.round((fahrenheitAfterTomorrow - 32) * 5/9 * 100) / 100);
+
+            setTempUnit('°C');
+        }
+
+        setIsCelsius(!isCelsius);
+        setIsFahrenheit(!isFahrenheit);
+    }, [
+        today.temp.day,
+        tomorrow.temp.day,
+        afterTomorrow.temp.day,
+        isCelsius,
+        isFahrenheit
+    ]);
+
+    // When latitude or longitude change
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const lon = position.coords.longitude;
@@ -114,133 +224,64 @@ const Dashboard: React.FC = () => {
         loadLocation();
     }, [latitude, longitude]);
 
+    // When city changes
     useEffect(() => {
         // Treat the city by removing spaces
         const formattedCity = city.replace(/\s/g, '+').trim();
 
-        const weatherAPI = axios.create({
-            baseURL: `http://api.openweathermap.org/data/2.5/`,
-        });
-
-        async function loadWeather(): Promise<void> {
-            await weatherAPI
-                .get<IListDaysProps>(
-                    `/forecast/daily?q=${formattedCity}&APPID=${appid}&cnt=3&units=metric&lang=pt_br`
-                )
-                .then(response => {
-                    const today = response.data.list[0];
-                    setToday(today);
-                    setTempCelsiusToday(today.temp.day);
-
-                    // If a city search is made
-                    if(isSearch) {
-                        // Treat the icon by removing the previous value
-                        const formattedIcon = icon.substring(0, 5); // icon-
-                        setIcon(formattedIcon);
-
-                        // Force the initial temp unity to be Celsius
-                        if(isFahrenheit) {
-                            setTempUnity('°C');
-
-                            setIsCelsius(!isCelsius);
-                            setIsFahrenheit(!isFahrenheit);
-                        }
-
-                        setIsSearch(false);
-                    }
-
-                    // Join 'icon-' with icon that comes from the api response
-                    setIcon(icon => icon.concat(today.weather[0].icon));
-
-                    setTomorrow(response.data.list[1]);
-                    setTempCelsiusTomorrow(response.data.list[1].temp.day);
-
-                    setAfterTomorrow(response.data.list[2]);
-                    setTempCelsiusAfterTomorrow(
-                        response.data.list[2].temp.day
-                    );
-                });
-        }
-
         if(formattedCity) {
-            loadWeather();
+            loadWeather(formattedCity, weatherAPI);
         }
-    }, [city]);
-
-    const handleSubmitCity = useCallback((data: SearchFormData) => {
-        setIsSearch(true);
-
-        const { state, city } = data;
-
-        setState(state);
-        setCity(city);
-    }, []);
-
-    const handleClickTemp = useCallback(() => {
-        // Conversions
-        if(isCelsius) {
-            const celsiusToday = today.temp.day;
-            today.temp.day = (Math.round(((celsiusToday * 9/5) + 32) * 100) / 100);
-
-            const celsiusTomorrow = tomorrow.temp.day;
-            tomorrow.temp.day = (Math.round(((celsiusTomorrow * 9/5) + 32) * 100) / 100);
-
-            const celsiusAfterTomorrow = afterTomorrow.temp.day;
-            afterTomorrow.temp.day = (Math.round(((celsiusAfterTomorrow * 9/5) + 32) * 100) / 100);
-
-            setTempUnity('°F');
-        } else {
-            const fahrenheitToday = today.temp.day;
-            today.temp.day = (Math.round((fahrenheitToday - 32) * 5/9 * 100) / 100);
-
-            const fahrenheitTomorrow = tomorrow.temp.day;
-            tomorrow.temp.day = (Math.round((fahrenheitTomorrow - 32) * 5/9 * 100) / 100);
-
-            const fahrenheitAfterTomorrow = afterTomorrow.temp.day;
-            afterTomorrow.temp.day = (Math.round((fahrenheitAfterTomorrow - 32) * 5/9 * 100) / 100);
-
-            setTempUnity('°C');
-        }
-
-        setIsCelsius(!isCelsius);
-        setIsFahrenheit(!isFahrenheit);
-    }, [
-        today.temp.day,
-        tomorrow.temp.day,
-        afterTomorrow.temp.day,
-        isCelsius,
-        isFahrenheit
-    ]);
+    }, [loadWeather, city]);
 
     return (
         <Container>
             <Header>
                 <main>
-                    <img
-                        src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg"
-                        alt="HU"
-                        width="50"
-                    />
-
-                    <Form ref={formRef} onSubmit={handleSubmitCity}>
-                        <Input
-                            name="state"
-                            icon={FiMap}
-                            type="text"
-                            placeholder="Estado"
+                    <div>
+                        <img
+                            src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg"
+                            alt="HU"
+                            width="50"
+                            height="50"
                         />
 
-                        <Input
-                            name="city"
-                            icon={FiMap}
-                            type="text"
-                            placeholder="Cidade"
-                        />
+                        <Form ref={formRef} onSubmit={handleSubmitCity}>
+                            <Input
+                                name="state"
+                                icon={FiMap}
+                                type="text"
+                                placeholder={t('state')}
+                            />
 
-                        <Button type="submit" loading={isSearch}>
-                            Buscar
-                        </Button>
-                    </Form>
+                            <Input
+                                name="city"
+                                icon={FiMap}
+                                type="text"
+                                placeholder={t('city')}
+                            />
+
+                            <Button type="submit" loading={isSearch}>
+                                {t('search')}
+                            </Button>
+                        </Form>
+                    </div>
+
+                    <div>
+                        <button
+                            type="button"
+                            onClick={() => handleChangeLanguage('pt_br')}
+                        >
+                            <img src={brazilianFlag} alt="pt_br"/>
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => handleChangeLanguage('en')}
+                        >
+                            <img src={USAFlag} alt="en"/>
+                        </button>
+                    </div>
                 </main>
             </Header>
 
@@ -260,17 +301,17 @@ const Dashboard: React.FC = () => {
                         <i className={icon}></i>
 
                         <Weather>
-                            <time>Hoje</time>
+                            <time>{t('today')}</time>
                             <span onClick={handleClickTemp}>
-                                {today.temp.day} {tempUnity}
+                                {today.temp.day} {tempUnit}
                             </span>
 
                             <p>{today.weather[0].description}</p>
 
                             <div>
-                                <p>Vento: {today.speed} km/h</p>
-                                <p>Humidade: {today.humidity}%</p>
-                                <p>Pressão: {today.pressure}hPA</p>
+                                <p>{t('wind')}: {today.speed} km/h</p>
+                                <p>{t('humidity')}: {today.humidity}%</p>
+                                <p>{t('pressure')}: {today.pressure}hPA</p>
                             </div>
                         </Weather>
                     </Today>
@@ -280,9 +321,9 @@ const Dashboard: React.FC = () => {
                         city={city}
                     >
                         <Weather>
-                            <time>Amanhã</time>
+                            <time>{t('tomorrow')}</time>
                             <span onClick={handleClickTemp}>
-                                {tomorrow.temp.day} {tempUnity}
+                                {tomorrow.temp.day} {tempUnit}
                             </span>
                         </Weather>
                     </Tomorrow>
@@ -292,9 +333,9 @@ const Dashboard: React.FC = () => {
                         city={city}
                     >
                         <Weather>
-                            <time>Depois de Amanhã</time>
+                            <time>{t('after tomorrow')}</time>
                             <span onClick={handleClickTemp}>
-                                {afterTomorrow.temp.day} {tempUnity}
+                                {afterTomorrow.temp.day} {tempUnit}
                             </span>
                         </Weather>
                     </AfterTomorrow>

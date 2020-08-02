@@ -36,34 +36,64 @@ export const Header = styled.header`
 
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
         @media (max-width: 575px) {
             align-items: flex-start;
         }
 
-        > img {
-            margin-right: 24px;
-        }
-
-        form {
+        > div:nth-child(1) {
             display: flex;
 
-            @media (max-width: 575px) {
-                flex-direction: column;
+            img {
+                margin-right: 24px;
             }
 
-            div:nth-child(2) {
+            form {
+                display: flex;
+
                 @media (max-width: 575px) {
-                    margin: 0;
-                    margin-top: 8px;
+                    flex-direction: column;
+                }
+
+                div:nth-child(2) {
+                    @media (max-width: 575px) {
+                        margin: 0;
+                        margin-top: 8px;
+                    }
+                }
+
+                button {
+                    @media (max-width: 575px) {
+                        margin: 0;
+                        margin-top: 8px;
+                        width: 100%;
+                    }
                 }
             }
+        }
+
+        > div:nth-child(2) {
+            margin-left: 8px;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
 
             button {
-                @media (max-width: 575px) {
-                    margin: 0;
-                    margin-top: 8px;
-                    width: 100%;
+                border: none;
+                width: 30px;
+
+                img {
+                    height: 20px;
+                    width: 30px;
+                    object-fit: cover;
+                    border-radius: 6px;
+                    transition: opacity .2s;
+
+                    &:hover {
+                        opacity: .8;
+                    }
                 }
             }
         }
