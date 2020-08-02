@@ -3,5 +3,5 @@ export default function transformDegreesToText(degrees) {
   const circleFractions = 360 / rosePoints.length
   const index = Math.round(degrees / circleFractions)
 
-  return rosePoints[index]
+  return rosePoints[index] || 'N'
 }
