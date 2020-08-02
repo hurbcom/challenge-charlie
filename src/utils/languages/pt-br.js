@@ -14,5 +14,7 @@ export default {
   today: 'hoje',
   tomorrow: 'Amanhã',
   type_in_the_location_name: 'Digite o nome do local',
+  you_must_enable_geolocation_in_order_to_use_this_app:
+    'Você deve habilitar a geolocalização para utilizar essa aplicação',
   wind: 'vento',
 }

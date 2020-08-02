@@ -6,7 +6,7 @@ import WeatherConditionIcon from 'components/WeatherConditionIcon/WeatherConditi
 import Loading from 'icons/loading.svg'
 import styles from './Section.module.scss'
 
-const Section = ({ day, error, temperatureBasedClassName, weather, ...rest }) => {
+const Section = ({ day, errorMessage, temperatureBasedClassName, weather, ...rest }) => {
   const className = `${styles.section} ${styles[temperatureBasedClassName]} ${
     !weather ? styles['no-results'] : ''
   }`
@@ -26,14 +26,14 @@ const Section = ({ day, error, temperatureBasedClassName, weather, ...rest }) =>
 
   return (
     <section className={className}>
-      {error ? <Title>{error}</Title> : renderWeatherContent()}
+      {errorMessage ? <Title>{errorMessage}</Title> : renderWeatherContent()}
     </section>
   )
 }
 
 Section.propTypes = {
   day: PropTypes.string,
-  error: PropTypes.string,
+  errorMessage: PropTypes.string,
   temperatureBasedClassName: PropTypes.string.isRequired,
   weather: PropTypes.object,
 }

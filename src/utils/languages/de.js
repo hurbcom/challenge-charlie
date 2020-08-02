@@ -14,5 +14,7 @@ export default {
   today: 'heute',
   tomorrow: 'Morgendomani',
   type_in_the_location_name: 'Geben Sie den Namen des Ortes ein',
+  you_must_enable_geolocation_in_order_to_use_this_app:
+    'Sie müssen die Geolokalisierung aktivieren, um diese App verwenden zu können',
   wind: 'Wind',
 }

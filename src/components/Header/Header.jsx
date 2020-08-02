@@ -6,10 +6,10 @@ import useInput from 'hooks/useInput'
 import i18n from 'utils/i18n'
 import styles from './Header.module.scss'
 
-const Header = ({ city, onCityChanged }) => {
+const Header = ({ city, disabled, onCityChanged }) => {
   const { handleSubmit, text, setText } = useInput(city, onCityChanged)
 
-  const placeholder = text || i18n('Type in the location name')
+  const placeholder = disabled ? '' : text || i18n('Type in the location name')
 
   return (
     <header className={styles.header}>
@@ -17,13 +17,20 @@ const Header = ({ city, onCityChanged }) => {
         <Compass />
       </label>
 
-      <Input onChange={setText} onSubmit={handleSubmit} placeholder={placeholder} text={text} />
+      <Input
+        disabled={disabled}
+        onChange={setText}
+        onSubmit={handleSubmit}
+        placeholder={placeholder}
+        text={text}
+      />
     </header>
   )
 }
 
 Header.propTypes = {
   city: PropTypes.string,
+  disabled: PropTypes.bool,
   onCityChanged: PropTypes.func.isRequired,
   state: PropTypes.string,
 }
