@@ -40,7 +40,7 @@ export function OpenWeatherService({ city }) {
         .filter(({ dt_txt }) => dt_txt.includes(hoursMinutesAndSecondsAtNoon))
         .map(({ dt_txt, main }) => {
           const forecastDate = new Date(dt_txt)
-          const differenceBetweenDays = Math.floor(
+          const differenceBetweenDays = Math.round(
             (forecastDate - currentDate) / dayDurationInMilliSeconds,
           )
 
