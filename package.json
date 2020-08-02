@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development",
-    "test": "jest --watchAll=true"
+    "test": "jest",
+    "test:watch": "jest --watchAll=true"
   },
   "keywords": [
     "weather",
@@ -63,6 +64,7 @@
   "lint-staged": {
     "**/*.{js,jsx,css,scss}": [
       "npx eslint --fix",
+      "npm test",
       "prettier --write"
     ]
   }
