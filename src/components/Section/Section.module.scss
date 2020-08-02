@@ -1,6 +1,6 @@
-$opacityFifty: 0.5;
-$opacityEighty: 0.8;
-$opacityNinety: 0.9;
+$opacityLow: 0.6;
+$opacityMedium: 0.8;
+$opacityHigh: 0.9;
 
 .section {
   display: flex;
@@ -23,50 +23,50 @@ $opacityNinety: 0.9;
   }
 
   &.cold {
-    background: rgba(var(--color-blue-rgb), $opacityEighty);
+    background: rgba(var(--color-blue-rgb), $opacityMedium);
 
     &-light {
-      background: rgba(var(--color-blue-rgb), $opacityFifty);
+      background: rgba(var(--color-blue-rgb), $opacityLow);
     }
 
     &-dark {
-      background: rgba(var(--color-blue-dark-rgb), $opacityNinety);
+      background: rgba(var(--color-blue-dark-rgb), $opacityHigh);
     }
   }
 
   &.normal {
-    background: rgba(var(--color-yellow-rgb), $opacityEighty);
+    background: rgba(var(--color-yellow-rgb), $opacityMedium);
 
     &-light {
-      background: rgba(var(--color-yellow-rgb), $opacityFifty);
+      background: rgba(var(--color-yellow-rgb), $opacityLow);
     }
 
     &-dark {
-      background: rgba(var(--color-yellow-dark-rgb), $opacityNinety);
+      background: rgba(var(--color-yellow-dark-rgb), $opacityHigh);
     }
   }
 
   &.hot {
-    background: rgba(var(--color-red-rgb), $opacityEighty);
+    background: rgba(var(--color-red-rgb), $opacityMedium);
 
     &-light {
-      background: rgba(var(--color-red-rgb), $opacityFifty);
+      background: rgba(var(--color-red-rgb), $opacityLow);
     }
 
     &-dark {
-      background: rgba(var(--color-red-dark-rgb), $opacityNinety);
+      background: rgba(var(--color-red-dark-rgb), $opacityHigh);
     }
   }
 
   &.unset {
-    background: rgba(var(--color-gray-rgb), $opacityEighty);
+    background: rgba(var(--color-gray-rgb), $opacityMedium);
 
     &-light {
-      background: rgba(var(--color-gray-rgb), $opacityFifty);
+      background: rgba(var(--color-gray-rgb), $opacityLow);
     }
 
     &-dark {
-      background: rgba(var(--color-gray-dark-rgb), $opacityNinety);
+      background: rgba(var(--color-gray-dark-rgb), $opacityHigh);
     }
   }
 }

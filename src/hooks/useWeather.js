@@ -4,15 +4,19 @@ import i18n from 'utils/i18n'
 
 const limitOfDays = 2
 
+const initialForecasts = Array(2).fill({
+  description: '',
+})
+
 function useWeather({ city }) {
   const [error, setError] = useState()
   const [weather, setWeather] = useState()
-  const [forecasts, setForecasts] = useState()
+  const [forecasts, setForecasts] = useState(initialForecasts)
 
   useEffect(() => {
     if (city) {
       setError(null)
-      setForecasts(null)
+      setForecasts(initialForecasts)
       setWeather(null)
 
       const openWeatherServiceInstance = new OpenWeatherService({ city })
@@ -25,7 +29,7 @@ function useWeather({ city }) {
       openWeatherServiceInstance
         .getForecasts(limitOfDays)
         .then(setForecasts)
-        .catch(() => setForecasts([]))
+        .catch(() => setForecasts(initialForecasts))
     }
   }, [city])
 

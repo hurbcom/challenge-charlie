@@ -21,7 +21,7 @@ const Weather = ({ day, weather }) => (
 )
 
 Weather.propTypes = {
-  day: PropTypes.string.isRequired,
+  day: PropTypes.string,
   weather: PropTypes.object.isRequired,
 }
 

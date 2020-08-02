@@ -6,7 +6,7 @@ import WeatherConditionIcon from 'components/WeatherConditionIcon/WeatherConditi
 import Loading from 'icons/loading.svg'
 import styles from './Section.module.scss'
 
-const Section = ({ day = 'Today', error, temperatureBasedClassName, weather, ...rest }) => {
+const Section = ({ day, error, temperatureBasedClassName, weather, ...rest }) => {
   const className = `${styles.section} ${styles[temperatureBasedClassName]} ${
     !weather ? styles['no-results'] : ''
   }`

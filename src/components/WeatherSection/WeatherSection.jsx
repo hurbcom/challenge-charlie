@@ -12,6 +12,7 @@ const WeatherSection = ({ city, ...rest }) => {
   return (
     <>
       <Section
+        day='Today'
         error={error}
         temperatureBasedClassName={classNames[0]}
         weather={weather}

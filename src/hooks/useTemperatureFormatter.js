@@ -22,7 +22,7 @@ function useTemperatureFormatter(temperature) {
     setTemperatureUnit(temperatureUnit === fahrenheit ? celsius : fahrenheit)
   }
 
-  const formattedTemperature = `${newValue} º${temperatureUnit.toUpperCase()}`
+  const formattedTemperature = newValue ? `${newValue} º${temperatureUnit.toUpperCase()}` : ''
 
   return {
     formattedTemperature,
