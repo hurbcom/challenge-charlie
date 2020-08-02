@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Text from 'components/Text/Text'
 import Title from 'components/Title/Title'
+import i18n from 'utils/i18n'
 import useTemperatureFormatter from 'hooks/useTemperatureFormatter'
 
 const MainWeather = ({ day, temperature }) => {
@@ -9,7 +10,7 @@ const MainWeather = ({ day, temperature }) => {
 
   return (
     <>
-      <Title uppercase>{day}</Title>
+      <Title uppercase>{i18n(day)}</Title>
       <Text onClick={handleTemperatureUnitToggle}>{formattedTemperature}</Text>
     </>
   )

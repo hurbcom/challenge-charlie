@@ -1,12 +1,23 @@
-import { ptBR } from './languages/pt-br'
+import { de, es, it, ptBr } from './languages'
 
 export default function i18n(string) {
-  const language = navigator.language
-  const message = string.toLowerCase().replace(/ /g, '_').trim()
+  const text = string.toLowerCase().replace(/ /g, '_').trim()
 
-  switch (language.toLowerCase()) {
+  switch (navigator.language.toLowerCase()) {
+    case 'de': {
+      return de[string]
+    }
+
+    case 'es': {
+      return es[string]
+    }
+
+    case 'it': {
+      return it[string]
+    }
+
     case 'pt-br': {
-      return ptBR[message]
+      return ptBr[text]
     }
 
     default: {
