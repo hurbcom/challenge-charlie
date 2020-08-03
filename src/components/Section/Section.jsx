@@ -13,7 +13,7 @@ const Section = ({ day, errorMessage, temperatureBasedClassName, weather, ...res
 
   function renderWeatherContent() {
     if (!weather) {
-      return <Loading />
+      return <Loading data-testid='loading-icon' />
     }
 
     return (
@@ -25,7 +25,7 @@ const Section = ({ day, errorMessage, temperatureBasedClassName, weather, ...res
   }
 
   return (
-    <section className={className}>
+    <section className={className} data-testid='section-wrapper'>
       {errorMessage ? <Title>{errorMessage}</Title> : renderWeatherContent()}
     </section>
   )
@@ -35,7 +35,17 @@ Section.propTypes = {
   day: PropTypes.string,
   errorMessage: PropTypes.string,
   temperatureBasedClassName: PropTypes.string.isRequired,
-  weather: PropTypes.object,
+  weather: PropTypes.shape({
+    description: PropTypes.string,
+    descriptionId: PropTypes.number,
+    humidity: PropTypes.number,
+    pressure: PropTypes.number,
+    temperature: PropTypes.number,
+    wind: PropTypes.shape({
+      degrees: PropTypes.number,
+      speed: PropTypes.number,
+    }),
+  }),
 }
 
 export default Section

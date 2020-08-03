@@ -14,7 +14,7 @@ const Header = ({ city, disabled, onCityChanged }) => {
   return (
     <header className={styles.header} data-testid='input-header'>
       <label htmlFor='locale-input'>
-        <Compass />
+        <Compass data-testid='label-icon' />
       </label>
 
       <Input

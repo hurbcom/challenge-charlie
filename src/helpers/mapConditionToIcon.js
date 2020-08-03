@@ -20,7 +20,7 @@ export default function mapConditionToIcon(id, sunRise, sunSet) {
     case 230:
     case 231:
     case 232: {
-      return <Thunderstorm />
+      return <Thunderstorm data-testid='thunderstorm-icon' />
     }
 
     case 300:
@@ -31,7 +31,7 @@ export default function mapConditionToIcon(id, sunRise, sunSet) {
     case 313:
     case 314:
     case 321: {
-      return <Drizzle />
+      return <Drizzle data-testid='drizzle-icon' />
     }
 
     case 500:
@@ -44,7 +44,7 @@ export default function mapConditionToIcon(id, sunRise, sunSet) {
     case 521:
     case 522:
     case 531: {
-      return <Rain />
+      return <Rain data-testid='rain-icon' />
     }
 
     case 600:
@@ -58,14 +58,14 @@ export default function mapConditionToIcon(id, sunRise, sunSet) {
     case 620:
     case 621:
     case 622: {
-      return <Snow />
+      return <Snow data-testid='snow-icon' />
     }
 
     case 801:
     case 802:
     case 803:
     case 804: {
-      return <Clouds />
+      return <Clouds data-testid='clouds-icon' />
     }
 
     default: {
@@ -76,7 +76,11 @@ export default function mapConditionToIcon(id, sunRise, sunSet) {
       const isNightTime =
         (hour >= sunSetInHours && hour <= 24) || (hour >= 0 && hour <= sunRiseInHours)
 
-      return isNightTime ? <ClearNight /> : <ClearDay />
+      return isNightTime ? (
+        <ClearNight data-testid='clear-night-icon' />
+      ) : (
+        <ClearDay data-testid='clear-day-icon' />
+      )
     }
   }
 }

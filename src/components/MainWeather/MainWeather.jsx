@@ -10,7 +10,7 @@ const MainWeather = ({ day, temperature }) => {
   const { formattedTemperature, handleTemperatureUnitToggle } = useTemperatureFormatter(temperature)
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid='main-weather-wrapper'>
       {day && <Title uppercase>{i18n(day)}</Title>}
       {temperature && <Text onClick={handleTemperatureUnitToggle}>{formattedTemperature}</Text>}
     </div>

@@ -5,7 +5,7 @@ import WeatherDetails from 'components/WeatherDetails/WeatherDetails'
 import styles from './Weather.module.scss'
 
 const Weather = ({ day, weather }) => (
-  <div className={styles.weather}>
+  <div className={styles.weather} data-testid='weather-wrapper'>
     <MainWeather day={day} temperature={weather.temperature} />
 
     {weather.description && (

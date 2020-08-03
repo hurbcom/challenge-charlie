@@ -14,7 +14,7 @@ const WeatherDetails = ({ description, humidity, pressure, windDegrees, windSpee
   const pressureText = `${i18n('Pressure')}: ${pressure} hPA`
 
   return (
-    <div className={styles.description}>
+    <div className={styles.description} data-testid='details-wrapper'>
       <Title size='small'>{description}</Title>
       <Text size='small'>{windText}</Text>
       <Text size='small'>{humidityText}</Text>
