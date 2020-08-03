@@ -1,16 +1,16 @@
 ## Hurb Challenge Charlie
 
-Tecnologias utilizadas:
+#### Tecnologias utilizadas:
 
-* React 16.13
-* Webpack 4
-* Node-sass 4
-* Babel 7
-* Eslint
-* Prettier
-* Husky
-* React-Testing-Library
-* Jest
+* [React 16.13](https://reactjs.org/)
+* [Webpack 4](https://webpack.js.org/)
+* [Node-Sass 4](https://github.com/sass/node-sass)
+* [Babel 7](https://babeljs.io/)
+* [Eslint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+* [Husky](https://github.com/typicode/husky)
+* [React-Testing-Library](https://testing-library.com/docs/react-testing-library/intro)
+* [Jest](https://jestjs.io/)
 
 #### Passos para rodar localmente
 
