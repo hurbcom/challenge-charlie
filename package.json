@@ -20,6 +20,10 @@
     "email": "gabriel.pireda@gmail.com",
     "name": "Gabriel Pireda"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpireda/hurb-challenge-charlie"
+  },
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
