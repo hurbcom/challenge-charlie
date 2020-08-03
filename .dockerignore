@@ -1,0 +1,6 @@
+Dockerfile
+.dockerignore
+dist
+node_modules/
+__mocks__/
+TODO.md
