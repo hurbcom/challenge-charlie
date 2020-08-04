@@ -2,6 +2,7 @@
 
 #### Tecnologias utilizadas:
 
+* [NodeJS 14](https://nodejs.org/en/)
 * [React 16.13](https://reactjs.org/)
 * [Webpack 4](https://webpack.js.org/)
 * [Node-Sass 4](https://github.com/sass/node-sass)
