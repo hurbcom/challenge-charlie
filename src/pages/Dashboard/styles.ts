@@ -178,6 +178,7 @@ export const Days = styled.div`
 `;
 
 export const Today = styled.section<IWeatherDayProps>`
+    /* Conditionals */
     ${props => props.celsius < 15 && css`
         background: linear-gradient(90deg, rgba(4, 123, 249, .7) 0%, rgba(4, 123, 249, .7) 100%);
     `}
@@ -197,6 +198,7 @@ export const Today = styled.section<IWeatherDayProps>`
 `;
 
 export const Tomorrow = styled.section<IWeatherDayProps>`
+    /* Conditionals */
     ${props => props.celsius < 15 && css`
         background: linear-gradient(90deg, rgba(4, 123, 249, .9) 0%, rgba(4, 123, 249, .9) 100%);
     `}
@@ -216,6 +218,7 @@ export const Tomorrow = styled.section<IWeatherDayProps>`
 `;
 
 export const AfterTomorrow = styled.section<IWeatherDayProps>`
+    /* Conditionals */
     ${props => props.celsius < 15 && css`
         background: ${shade(.25, '#047BF9')};
     `}

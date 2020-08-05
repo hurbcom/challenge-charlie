@@ -54,7 +54,7 @@ interface IListDaysProps {
     ]
 }
 
-interface SearchFormData {
+interface ISearchFormData {
     state: string;
     city: string;
 }
@@ -80,6 +80,7 @@ const Dashboard: React.FC = () => {
     );
     const [icon, setIcon] = useState<string>('icon-');
     const [isSearch, setIsSearch] = useState<boolean>(false);
+    const [isChangeLanguage, setIsChangeLanguage] = useState<boolean>(false);
     const [isCelsius, setIsCelsius] = useState<boolean>(true);
     const [isFahrenheit, setIsFahrenheit] = useState<boolean>(false);
     const [language, setLanguage] = useState<string>('pt_br');
@@ -97,6 +98,15 @@ const Dashboard: React.FC = () => {
     // keys to APIs
     const key = 'c63386b4f77e46de817bdf94f552cddf';
     const appid = '08dbab0eeefe53317d2e0ad7c2a2e060';
+
+    // Call Bing API to load the image
+    // const loadImage = useCallback(async (
+    //     bingAPI: AxiosInstance
+    // ): Promise<void> => {
+    //     await bingAPI.get('/').then(response => {
+    //         console.log(response.data.images[0].url)
+    //     });
+    // }, []);
 
     // When call api to load geolocation
     const loadLocation = useCallback(async (
@@ -125,7 +135,17 @@ const Dashboard: React.FC = () => {
             .then(response => {
                 const today = response.data.list[0];
                 setToday(today);
+
+                // Reference to css
                 setTempCelsiusToday(today.temp.day);
+
+                // Force the initial temp unit to be Celsius
+                if(isFahrenheit && isChangeLanguage) {
+                    setTempUnit('°C');
+
+                    setIsCelsius(true);
+                    setIsFahrenheit(false);
+                }
 
                 // If a city search is made
                 if(isSearch) {
@@ -133,6 +153,7 @@ const Dashboard: React.FC = () => {
                     const formattedIcon = icon.substring(0, 5); // icon-
                     setIcon(formattedIcon);
 
+                    // Verify the language on search
                     if(isFahrenheit) {
                         // Force the initial temp unit to be Celsius
                         setTempUnit('°C');
@@ -141,31 +162,41 @@ const Dashboard: React.FC = () => {
                         setIsFahrenheit(false);
                     }
 
-                    // setCity(response.data.city.name);
+                    setCity(response.data.city.name);
 
+                    setIsChangeLanguage(false);
                     setIsSearch(false);
                 }
 
-                // Join 'icon-' with icon that comes from the api response
-                setIcon(icon => icon.concat(today.weather[0].icon));
+                if(!isSearch && !isChangeLanguage) {
+                    // Join 'icon-' with icon that comes from the api response
+                    setIcon(icon => icon.concat(today.weather[0].icon));
+                    setIsChangeLanguage(false);
+                }
 
                 setTomorrow(response.data.list[1]);
+
+                // Reference to css
                 setTempCelsiusTomorrow(response.data.list[1].temp.day);
 
                 setAfterTomorrow(response.data.list[2]);
+
+                // Reference to css
                 setTempCelsiusAfterTomorrow(
                     response.data.list[2].temp.day
                 );
             });
-    }, [city]);
+    }, [city, language, isSearch, units, isChangeLanguage]);
 
     const handleChangeLanguage = useCallback((lng: string) => {
         i18n.changeLanguage(lng);
 
         setLanguage(lng);
+
+        setIsChangeLanguage(true);
     }, [i18n]);
 
-    const handleSubmitCity = useCallback((data: SearchFormData) => {
+    const handleSubmitCity = useCallback((data: ISearchFormData) => {
         setIsSearch(true);
 
         const { state, city } = data;
@@ -174,7 +205,7 @@ const Dashboard: React.FC = () => {
         setCity(city);
     }, []);
 
-    const handleClickTemp = useCallback(() => {
+    const handleChangeTempUnit = useCallback(() => {
         // Conversions
         if(isCelsius) {
             const celsiusToday = today.temp.day;
@@ -203,11 +234,11 @@ const Dashboard: React.FC = () => {
         setIsCelsius(!isCelsius);
         setIsFahrenheit(!isFahrenheit);
     }, [
-        today.temp.day,
-        tomorrow.temp.day,
-        afterTomorrow.temp.day,
+        today,
+        tomorrow,
+        afterTomorrow,
         isCelsius,
-        isFahrenheit
+        isFahrenheit,
     ]);
 
     // When latitude or longitude change - init application
@@ -307,7 +338,7 @@ const Dashboard: React.FC = () => {
 
                         <Weather>
                             <time>{t('today')}</time>
-                            <span onClick={handleClickTemp}>
+                            <span onClick={handleChangeTempUnit}>
                                 {today.temp.day} {tempUnit}
                             </span>
 
@@ -327,7 +358,7 @@ const Dashboard: React.FC = () => {
                     >
                         <Weather>
                             <time>{t('tomorrow')}</time>
-                            <span onClick={handleClickTemp}>
+                            <span onClick={handleChangeTempUnit}>
                                 {tomorrow.temp.day} {tempUnit}
                             </span>
                         </Weather>
@@ -339,7 +370,7 @@ const Dashboard: React.FC = () => {
                     >
                         <Weather>
                             <time>{t('after tomorrow')}</time>
-                            <span onClick={handleClickTemp}>
+                            <span onClick={handleChangeTempUnit}>
                                 {afterTomorrow.temp.day} {tempUnit}
                             </span>
                         </Weather>
