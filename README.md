@@ -1,58 +1,110 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./github/exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+ > Desafio de frontend
 
- Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
+## 👷‍♂️ Objetivo
+
+Construir um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./github/exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+
+Logo que a página for carregada deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
 
 Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
 
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+A cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
 
 A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
 
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+## 🔗 Tabela de conteúdos
 
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+- [Features](#features)
+- [Tecnologias](#technologias)
+- [Instalação](#instalacao)
+- [Início](#inicio)
+- [Projeto](#projeto)
+- [Licença](#licenca)
 
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+## 📚 Features <a name="features"/>
 
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
+- Carregar a geolocalização atual, mostrando estado e cidade
+- Carregar o clima atual da sua localidade
+- Mudar o padrão de cores dependendo da temperatura atual do lugar
+- Trocar a unidade de temperatura ao clicar em qualquer temperatura
+- Buscar por uma cidade, mostrando a previsão de tempo dela
+- Traduzir a aplicação entre Português e Inglês (adicional)
 
-## Requisitos
+## 📌 Tecnologias <a name="tecnologias"/>
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+- [ReactJS](https://pt-br.reactjs.org/)
+- [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled components](https://styled-components.com/docs/basics)
+- [Feather Icons](https://react-icons.github.io/react-icons/icons?name=fi)
+- [Meteocons](http://www.alessioatzeni.com/meteocons/) ícones de clima
+- [Open Cage](https://opencagedata.com/) para converter latitude e longitude em uma localidade
+- [Open Weather](https://openweathermap.org/) para consultar a previsão do tempo
+- [Unform](https://github.com/Rocketseat/unform) formulário para a busca da cidade
+- [i18next](https://www.i18next.com/overview/introduction) para fazer a tradução
 
-## Critério de avaliação
+## 📂 Instalação <a name="instalacao"/>
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
+Primeiro de tudo, é importante que você tenha instalado [Yarn](https://yarnpkg.com/).
 
-## Dúvidas
+Então, rode esse comando no terminal para clonar o projeto via HTTPS:
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+```bash
+git clone https://github.com/fernandogatto/challenge-charlie.git
+```
 
-Boa sorte e boa viagem! ;)
+URLs SSH fornecem acesso a um repositório Git via SSH, um protocolo seguro. Se você possui uma chave SSH registrada na sua conta do Github, clone o projeto usando este comando:
 
-<p align="center">
-  <img src="./github/ca.jpg" alt="Challange accepted" />
-</p>
+```bash
+git@github.com:fernandogatto/challenge-charlie.git
+```
+
+**Instalação das dependências**
+
+```bash
+yarn install
+```
+
+## 🚀 Início <a name="inicio"/>
+
+Rode o seguinte comando em um terminal:
+
+```bash
+# Inicie o servidor
+yarn start
+```
+## 💻 Projeto <a name="projeto"/>
+
+![](/github/challenge-charlie.gif)
+
+**APIs**
+
+- [OpenCage](https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en)
+- [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=7ba73e0eb8efe773ed08bfd0627f07b8)
+
+**Chaves**
+
+- OpenCage key `c63386b4f77e46de817bdf94f552cddf`
+- OpenWeather AAPID `08dbab0eeefe53317d2e0ad7c2a2e060`
+
+**Modificações**
+
+Ao invés de colocar o input na área branca de estado e cidade, como mostra no [exemplo](./github/exemplo.jpg), achei que colocá-lo separado poderia ficar mais organizado. Assim, optei por criar um cabeçalho contendo um formulário de busca da cidade e uma opção para tradução da língua.
+
+O botão do formulário tem um *load* que indica o carregamento da cidade ao fazer a busca.
+
+A tradução da língua é para ser acessível a um maior número de pessoas.
+
+Não consegui puxar a API de imagem do Bing por causa do bloqueio no cors. Tentei criar um proxy, mas sem resultado.
+
+O projeto no momento está na versão de desenvolvimento.
+
+## 📕 Licença <a name="licenca"/>
+
+[MIT License](https://choosealicense.com/licenses/mit/).
+
+Feito com 💜 por [Fernando Gatto](https://github.com/fernandogatto/).
+
+2020
