@@ -55,7 +55,6 @@ interface IListDaysProps {
 }
 
 interface ISearchFormData {
-    state: string;
     city: string;
 }
 
@@ -199,9 +198,9 @@ const Dashboard: React.FC = () => {
     const handleSubmitCity = useCallback((data: ISearchFormData) => {
         setIsSearch(true);
 
-        const { state, city } = data;
+        const { city } = data;
 
-        setState(state);
+        setState('');
         setCity(city);
     }, []);
 
@@ -240,6 +239,11 @@ const Dashboard: React.FC = () => {
         isCelsius,
         isFahrenheit,
     ]);
+
+    // To load Bing API
+    // useEffect(()  => {
+    //     loadImage(bingAPI);
+    // }, [loadImage]);
 
     // When latitude or longitude change - init application
     useEffect(() => {
@@ -284,13 +288,6 @@ const Dashboard: React.FC = () => {
 
                         <Form ref={formRef} onSubmit={handleSubmitCity}>
                             <Input
-                                name="state"
-                                icon={FiMap}
-                                type="text"
-                                placeholder={t('state')}
-                            />
-
-                            <Input
                                 name="city"
                                 icon={FiMap}
                                 type="text"
@@ -325,7 +322,9 @@ const Dashboard: React.FC = () => {
                 <Location>
                     <i className="icon-compass"></i>
 
-                    <p>{state},</p>
+                    {/* If state is not empty, return the value */}
+                    {state && (<p>{state},</p>)}
+
                     <p>{city}</p>
                 </Location>
 
