@@ -17,7 +17,7 @@ A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com
 ## 🔗 Tabela de conteúdos
 
 - [Features](#features)
-- [Tecnologias](#technologias)
+- [Tecnologias](#tecnologias)
 - [Instalação](#instalacao)
 - [Início](#inicio)
 - [Projeto](#projeto)
