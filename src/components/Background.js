@@ -15,7 +15,7 @@ export default function Background(props) {
             aria-label="Description of the image"
             title="Tooltip for users not using assistive technologies"
         >
-            {status != 'fetched' ? 'Loading...' : null}
+            {status !== 'fetched' ? 'Loading...' : null}
             {props.children}
         </Section>
     );
