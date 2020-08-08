@@ -1,8 +1,8 @@
 setup:
-	@docker build -t app:dev .
+	@docker-compose build
 
 run:
-	@docker run -it -v ${PWD}:/app -v /app/node_modules -p 3000:3000 --rm app:dev yarn start
+	@docker-compose run --service-ports web yarn start
 
 test:
-	@docker run -it -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm app:dev yarn test
+	@docker-compose run --service-ports web yarn test
