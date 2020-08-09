@@ -7,7 +7,7 @@ import { setupServer } from 'msw/node'
 
 const server = setupServer(
     rest.get('http://localhost:5000/proxy/', (req, res, ctx) => {
-        return res(ctx.json({ images: [{ url: '/test'}] }));
+        return res(ctx.json({ images: [{ url: '/test', copyright: 'credits'}] }));
     })
 );
 
@@ -36,4 +36,11 @@ test('renders background on fetch complete', async () => {
     ), {
         timeout: 50
     });
+});
+
+test('renders credits on fetch complete', async () => {
+    const { container } = render(<Background />);
+
+    await wait(() => screen.getByText(/credits/i));
+    expect(screen.getByText(/credits/i)).toBeInTheDocument();
 });
