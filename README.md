@@ -5,6 +5,29 @@
 ### Estilização
 Apesar de ser possível fazer o projeto usando CSS puro, para esse projeto optei por usar o Styled Components para permitir o reuso de componentes visuais e usar temas para distinguir o visual para cada faixa de temperatura.
 
+### Cache
+Nos serviços que consomem as APIs do OpenCage e o OpenWeather eu criei uma camada de cache local usando localStorage, dessa forma o usuário acessa a API na primeira vez mas durante o dia ele consome o Cache da API do OpenWeather, ao virar o dia esse cache é expirado.
+
+No OpenCage o cache é de 1 ano, visto que não há riscos da latitude e longitude de uma cidade mudar. Esse cache poderia ser eterno, mas preferi revalidar ele em 1 ano.
+
+As chaves de cache são formadas por:
+OpenWeather = 'openweather_' + latitude + longitude
+OpenCage = 'opencage_' + Nome da Cidade ou Latitude + Longitude
+
+### Server
+Criei um micro server com flask (python) para driblar a questão de CORS na busca da imagem do Bing. Não me preocupei em fazer testes, ou preparar esse micro server para produção pois isso já foi bastante explorado no desafio https://github.com/clybob/challenge-bravo.
+
+### Layout
+Adicionei um rodapé com os créditos da imagem obtida através do Bing, usar essa imagem sem atribuir os créditos é no mínimo uma violação de direito autoral. Nesse rodapé adicionei um background como sombra para facilitar a leitura em imagens muito claras.
+
+### SVGs
+Otimização e organização
+
+### OpenCage e OpenWeather
+
+### Cores
+Para a escolha das cores dos temas eu usei a ferramenta https://material.io/resources/color/ para ter um padrão mais sólido.
+
 
 Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
 
