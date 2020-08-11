@@ -13,8 +13,8 @@ export default function Background(props) {
         <Section
             imageUrl={isComplete ? `https://www.bing.com${data.images[0].url}` : ''}
             role="img"
-            aria-label={isComplete ? data.images[0].copyright : ''}
-            title={isComplete ? data.images[0].copyright : ''}
+            aria-label={isComplete ? data.images[0].copyright : 'Background'}
+            title={isComplete ? data.images[0].copyright : 'Background'}
         >
             {isComplete ? null : 'Loading...'}
             {props.children}

@@ -8,6 +8,7 @@ export const Section = styled.section`
     background: url(${props => props.imageUrl ? props.imageUrl : ""});
     background-position: center;
     background-size: cover;
+    align-items: center;
 `;
 
 export const Footer = styled.footer`
@@ -17,7 +18,7 @@ export const Footer = styled.footer`
     text-align: center;
     background: linear-gradient(transparent, rgba(0,0,0,0.5) 90%);
     color: white;
-    padding: 20px 10px 10px 10px;
-    font-size: 12px;
+    padding: 1.25rem 0.625rem 0.625rem 0.625rem;
+    font-size: 0.75rem;
     box-sizing: border-box;
 `;
