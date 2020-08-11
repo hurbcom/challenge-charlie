@@ -1,5 +1,34 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
+## Como rodar
+
+### Setup
+```
+make setup
+```
+
+### Run
+```
+make run
+```
+
+### Testes
+```
+make test
+```
+
+### Build
+```
+make build
+```
+
+## Tecnologias
+* React
+* Styled Components
+* Python
+* Flask
+* Docker Compose
+
 ## Decisões de projeto
 
 ### Estilização
@@ -21,7 +50,7 @@ Ao olhar a documentação da OpenWeather encontrei a rota [one-call](https://ope
 
 Quando o usuário escolhe digitar a cidade, nesse caso é feita uma consulta na OpenCage para transformar o nome da cidade em coordenadas geográficas e depois disso é consultada a OpenWeather.
 
-Acredito que essa mudança na estratégia de consulta traz um grande benefício para o usuário, onde no caso mais simples, pegando a localização do browser acontece apenas 1 chamada de API em vez de 3. E no caso mais complexo, onde ele digita a cidade, são apenas 2 chamadas em vez de 3.
+Acredito que essa mudança na estratégia de consulta traz um grande benefício para o usuário, onde no caso mais simples, pegando a localização do browser acontece apenas 2 chamadas de API em vez de 3. E no caso mais complexo, onde ele digita a cidade, são apenas 2 chamadas em vez de 3.
 
 ### SVGs
 Os ícones fornecidos no desafio poderiam ser baixados em diversos formatos, eu escolhi usar SVG, por se tratar de um formato escalar ele é melhor apresentado independente do device.
@@ -37,6 +66,8 @@ Adicionei um rodapé com os créditos da imagem obtida através do Bing, usar es
 ### Cores
 Para a escolha das cores dos temas eu usei a ferramenta [de paleta de cores do material-ui](https://material.io/resources/color/) para ter um padrão mais sólido.
 
+
+## Especificações
 
 Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
 
