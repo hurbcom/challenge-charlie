@@ -36,7 +36,7 @@ export default function Weather(props) {
                 opencage.getCityName(geoCode.lat, geoCode.lng, setCity);
             });
         }
-    }, []);
+    }, [openweather, opencage]);
 
     if (weather && weather[0].temp.day < 15) {
         theme = themes.cold;
