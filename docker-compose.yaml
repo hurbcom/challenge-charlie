@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+    challenge_charlie_dev:
+        image: challenge_charlie:dev
+        container_name: challenge_charlie_dev
+        hostname: challenge_charlie_dev
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports: 
+            - 3333:80
+        networks: 
+            - challenge_charlie_network
+    
+    challenge_charlie_prod:
+        image: challenge_charlie:prod
+        container_name: challenge_charlie_prod
+        hostname: challenge_charlie_prod
+        build: 
+            context: .
+            dockerfile: Dockerfile.prod
+        ports: 
+            - 4444:80
+        networks: 
+            - challenge_charlie_network
+
+networks:
+    challenge_charlie_network:
+        name: challenge_charlie_network
