@@ -5,7 +5,8 @@
             {
                 "modules": false,
                 "targets": {
-                    "browsers": []
+                    "browsers": [],
+                    "esmodules": true
                 }
             }
         ],
