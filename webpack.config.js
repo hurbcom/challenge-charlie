@@ -36,6 +36,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.OPENWEATHER_APPID': JSON.stringify('7ba73e0eb8efe773ed08bfd0627f07b8'),
+            'process.env.OPENCAGE_APIKEY': JSON.stringify('c63386b4f77e46de817bdf94f552cddf')
         })
     ]
 };

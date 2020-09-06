@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import WeatherForecast from './pages/weather-forecast.page'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 // const store = createStore(
 //     rootReducer,
@@ -15,6 +16,7 @@ function App() {
 
     return (
         <>
+            <CssBaseline />
             <WeatherForecast />
         </>
     )
