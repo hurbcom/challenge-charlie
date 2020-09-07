@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchLocation } from '../actions/location.actions'
-import { Button, Card } from '@material-ui/core'
+import { Button, Card, TextField } from '@material-ui/core'
 import LocationOn from '@material-ui/icons/LocationOn'
 
 function CurrentLocation() {
@@ -11,6 +11,9 @@ function CurrentLocation() {
 
     return (
         <Card>
+            <TextField>
+                
+            </TextField>
             <Button
                 fullWidth
                 startIcon={<LocationOn />}

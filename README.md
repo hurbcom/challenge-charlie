@@ -19,8 +19,20 @@ I dopted Fontawesome icons in exchange for manutenability and for the plug and p
 As I'm a Google material design appreciator, and my skills with UX are not that good, I decided to use this library.
 
 ## Get started
+### What do you need?
+- Git for wathever SO you are working on
+- Blue whale a.k.a docker
+- Free space on disk
+
 ### Clone this repo
 `git clone`
 
-### Have fun
+### Get into the folder
+`cd challange-charlie`
+
+### Get things up
 `docker-compose up -d --build`
+
+### Have fun
+#### Development: http://localhost:3333
+#### Production: http://localhost:4444
