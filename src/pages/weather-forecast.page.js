@@ -5,6 +5,7 @@ import BackgroundOverlay from '../components/background-overlay'
 import { Box, Select } from '@material-ui/core'
 import Forecast from '../components/forecast'
 import Units from '../components/units'
+import Spacer from '../components/spacer'
 
 function WeatherForecastPage() {
     return (
@@ -19,7 +20,7 @@ function WeatherForecastPage() {
                 >
                     <Box>
                         <CurrentLocation />
-                        <div style={{ height: 8 }}></div>
+                        <Spacer vertical />
                         <Forecast
                             index={0}
                             title='Agora'
@@ -27,8 +28,9 @@ function WeatherForecastPage() {
                             tempVariant='h1'
                             unitVariant='h4'
                             forecastVariant='body1'
+                            forecastDescriptionVariant='subtitle1'
                         />
-                        <div style={{ height: 8 }}></div>
+                        <Spacer vertical />
                         <Box
                             display='flex'
                             flexDirection='row'
@@ -40,9 +42,10 @@ function WeatherForecastPage() {
                                 tempVariant='h4'
                                 unitVariant='h5'
                                 forecastVariant='body2'
+                                forecastDescriptionVariant='caption'
                                 vertical
                             />
-                            <div style={{ width: 8 }}></div>
+                            <Spacer />
                             <Forecast
                                 index={2}
                                 title='Depois'
@@ -50,10 +53,11 @@ function WeatherForecastPage() {
                                 tempVariant='h4'
                                 unitVariant='h5'
                                 forecastVariant='body2'
+                                forecastDescriptionVariant='caption'
                                 vertical
                             />
                         </Box>
-                        <div style={{ height: 8 }}></div>
+                        <Spacer vertical />
                         <Units />
                     </Box>
                 </Box>

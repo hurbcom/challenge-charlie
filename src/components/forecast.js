@@ -4,6 +4,7 @@ import { Card, CardContent, Typography, Box } from '@material-ui/core'
 import ForecastSummary from './forecast-summary'
 import PropTypes from 'prop-types'
 import { relative } from 'path'
+import Spacer from './spacer'
 
 function Forecast({
     index,
@@ -12,6 +13,7 @@ function Forecast({
     tempVariant,
     unitVariant,
     forecastVariant,
+    forecastDescriptionVariant: forecastDescriptionVariant,
     vertical
 }) {
     const forecast = useSelector(state => state.weatherForecast.forecasts[index], shallowEqual)
@@ -22,14 +24,24 @@ function Forecast({
             {
                 forecast &&
                 <Card style={{
+                    position: 'relative',
                     display: 'flex',
                     flex: 1,
                 }}>
                     <div
                         style={{
+                            position: 'absolute',
+                            right: 0,
+                            width: 30,
+                            height: 30,
+                            backgroundColor: '#dedede'
+                        }}
+                    >
+                    </div>
+                    <div
+                        style={{
                             width: 10,
-                            backgroundColor: forecast.color,
-                            zIndex: 1
+                            backgroundColor: forecast.color
                         }}
                     ></div>
                     <CardContent
@@ -40,9 +52,10 @@ function Forecast({
                         <Typography variant={titleVariant}>
                             { title || forecast.date }
                         </Typography>
-                        <Typography variant={'overline'}>
+                        <Typography variant={forecastDescriptionVariant}>
                             { forecast.description }
                         </Typography>
+                        <Spacer vertical/>
                         <Box
                             display='flex'
                             flexDirection={vertical ? 'column' : 'row'}
@@ -85,6 +98,7 @@ Forecast.propTypes = {
     tempVariant: PropTypes.string.isRequired,
     unitVariant: PropTypes.string.isRequired,
     forecastVariant: PropTypes.string.isRequired,
+    forecastDescriptionVariant: PropTypes.string.isRequired,
     vertical: PropTypes.bool
 }
 
