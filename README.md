@@ -25,7 +25,7 @@ As I'm a Google material design appreciator, and my skills with UX are not that 
 - Free space on disk
 
 ### Clone this repo
-`git clone`
+`git clone https://github.com/vaugustoribeiro/challenge-charlie.git`
 
 ### Get into the folder
 `cd challange-charlie`
