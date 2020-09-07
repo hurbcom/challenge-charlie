@@ -24,31 +24,16 @@ function Forecast({
             {
                 forecast &&
                 <Card style={{
-                    position: 'relative',
                     display: 'flex',
                     flex: 1,
                 }}>
-                    <div
-                        style={{
-                            position: 'absolute',
-                            right: 0,
-                            width: 30,
-                            height: 30,
-                            backgroundColor: '#dedede'
-                        }}
-                    >
-                    </div>
                     <div
                         style={{
                             width: 10,
                             backgroundColor: forecast.color
                         }}
                     ></div>
-                    <CardContent
-                        style={{
-                            zIndex: 2
-                        }}
-                    >
+                    <CardContent>
                         <Typography variant={titleVariant}>
                             { title || forecast.date }
                         </Typography>

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Background from '../components/background'
-import CurrentLocation from '../components/current-location'
+import LocationSearch from '../components/location-search'
 import BackgroundOverlay from '../components/background-overlay'
-import { Box, Select } from '@material-ui/core'
+import { Box, Select, Typography } from '@material-ui/core'
 import Forecast from '../components/forecast'
 import Units from '../components/units'
 import Spacer from '../components/spacer'
+import GreatTitle from '../components/great-title'
+import { useSelector } from 'react-redux'
 
 function WeatherForecastPage() {
+
+    const ready = useSelector(state => state.weatherForecast.ready)
+
     return (
         <Background>
             <BackgroundOverlay>
@@ -19,7 +24,8 @@ function WeatherForecastPage() {
                     flex='1'
                 >
                     <Box>
-                        <CurrentLocation />
+                        <GreatTitle />
+                        <LocationSearch />
                         <Spacer vertical />
                         <Forecast
                             index={0}
@@ -58,7 +64,7 @@ function WeatherForecastPage() {
                             />
                         </Box>
                         <Spacer vertical />
-                        <Units />
+                        {ready && <Units />}
                     </Box>
                 </Box>
             </BackgroundOverlay>

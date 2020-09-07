@@ -27,7 +27,8 @@ export function locationReducer(state = INITIAL_STATE, action) {
         case FETCH_LOCATION_FAIL:
             return {
                 ...state,
-                fetching: false
+                fetching: false,
+                message: action.payload
             }
             break
     }
