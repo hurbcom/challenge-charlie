@@ -1,17 +1,11 @@
 export const getCelciusColor = (celcius) => {
-    let color = ''
+    let backgroundColor = 'rgb(255, 255, 200)'
 
-    switch (true) {
-        case celcius < 15:
-            color = '#0000FF'
-            break
-        case celcius > 35:
-            color = '#FF0000'
-            break
-        default:
-            color = '#FFFF00'
-            break
+    if (celcius <= 15) {
+        backgroundColor = `rgb(200, 200, 255)`
+    } else if (celcius >= 35) {
+        backgroundColor = `rgb(255, 200, 200)`
     }
 
-    return color
+    return backgroundColor
 }

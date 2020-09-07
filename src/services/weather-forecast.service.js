@@ -3,27 +3,34 @@ import { getCelciusColor } from "../utils/get-celcius-color"
 
 const url = `http://api.openweathermap.org/data/2.5/onecall?APPID=${process.env.OPENWEATHER_APPID}&exclude=hourly,minutely&units=metric`
 
-export const getWeatherForecast = async (lat, lon) => {
+export const getWeatherForecast = async (lat, lon, count) => {
     const response = await fetch(`${url}&lat=${lat}&lon=${lon}`)
     const data = await response.json()
 
-    const currentCelciusTemp = Math.round(data.current.temp)
-    const tomorrowCelciusTemp = Math.round(data.daily[0].temp.day)
-    const afterTomorrowCelciusTemp = Math.round(data.daily[1].temp.day)
-
-    return {
-        today: mapForecast(currentCelciusTemp, data.current),
-        tomorrow: mapForecast(tomorrowCelciusTemp, data.daily[1]),
-        afterTomorrow: mapForecast(afterTomorrowCelciusTemp, data.daily[2])
-    }
+    return data.daily.slice(0, count).map(d => mapForecast(d))
 }
 
-const mapForecast = (celciusTemp, s) => ({
-    celcius: celciusTemp,
-    fahrenheit: convertCelciusToFahrenheit(celciusTemp),
-    color: getCelciusColor(celciusTemp),
-    humidity: s.humidity,
-    pressure: s.pressure,
-    windSpeed: s.wind_speed,
-    date: new Date(s.dt * 1000).toLocaleDateString()
-})
+const mapForecast = (data) => {
+    const celciusTemp = Math.round(data.temp.day)
+    return {
+        temps: [
+            {
+                code: 'celcius',
+                value: celciusTemp,
+                unit: '°C',
+                selected: true
+            },
+            {
+                code: 'fahrenheit',
+                value: convertCelciusToFahrenheit(celciusTemp),
+                unit: '°F',
+                selected: false
+            },
+        ],
+        color: getCelciusColor(celciusTemp),
+        humidity: data.humidity,
+        pressure: data.pressure,
+        windSpeed: data.wind_speed,
+        date: new Date(data.dt * 1000).toLocaleDateString(),
+    }
+}

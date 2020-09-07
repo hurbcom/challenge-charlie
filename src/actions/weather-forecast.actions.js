@@ -25,9 +25,9 @@ export const fetchWeatherForecast = () => async (dispatch, getState) => {
 
         const { latitude, longitude } = state.location
 
-        const weatherForecast = await getWeatherForecast(latitude, longitude)
-
-        dispatch(fetchWeatherForecastDone(weatherForecast))
+        const forecasts = await getWeatherForecast(latitude, longitude, 3)
+        console.log(forecasts)
+        dispatch(fetchWeatherForecastDone(forecasts))
     } catch (err) {
         dispatch(fetchWeatherForecastFail(err))
     }

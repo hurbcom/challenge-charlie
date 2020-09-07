@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchLocation } from '../actions/location.actions'
 import { Button, Card } from '@material-ui/core'
+import LocationOn from '@material-ui/icons/LocationOn'
 
 function CurrentLocation() {
     const dispatch = useDispatch()
@@ -10,7 +11,12 @@ function CurrentLocation() {
 
     return (
         <Card>
-            <Button fullWidth onClick={() => dispatch(fetchLocation())}>{ address || 'Usar minha localização' }</Button>
+            <Button
+                fullWidth
+                startIcon={<LocationOn />}
+                onClick={() => dispatch(fetchLocation())}>
+                { address || 'Usar minha localização' }
+            </Button>
         </Card>
     )
 }
