@@ -1,4 +1,4 @@
-const url = `http://api.opencagedata.com/geocode/v1/json?key=${process.env.OPENCAGE_APIKEY}&language=pt-BR`
+const url = `//api.opencagedata.com/geocode/v1/json?key=${process.env.OPENCAGE_APIKEY}&language=pt-BR`
 
 export const getReadableAddress = async (latitude, longitude) => {
     const response = await fetch(`${url}&q=${latitude},${longitude}`)

@@ -1,7 +1,7 @@
 import { convertCelciusToFahrenheit } from "../utils/convert-celcius-to-fahrenheit"
 import { getCelciusColor } from "../utils/get-celcius-color"
 
-const url = `http://api.openweathermap.org/data/2.5/onecall?APPID=${process.env.OPENWEATHER_APPID}&exclude=hourly,minutely&units=metric&lang=pt_br`
+const url = `//api.openweathermap.org/data/2.5/onecall?APPID=${process.env.OPENWEATHER_APPID}&exclude=hourly,minutely&units=metric&lang=pt_br`
 
 export const getWeatherForecast = async (lat, lon, count) => {
     const response = await fetch(`${url}&lat=${lat}&lon=${lon}`)
