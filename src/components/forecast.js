@@ -15,29 +15,19 @@ function Forecast({
     vertical
 }) {
     const forecast = useSelector(state => state.weatherForecast.forecasts[index], shallowEqual)
-
-    function getTemp() {
-        return forecast.temps.find(p => p.selected).value
-    }
-
-    function getUnit() {
-        return forecast.temps.find(p => p.selected).unit
-    }
+    const selectedUnit = useSelector(state => state.weatherForecast.selectedUnit)
 
     return (
         <>
             {
                 forecast &&
                 <Card style={{
-                    position: 'relative',
                     display: 'flex',
-                    flex: 1
+                    flex: 1,
                 }}>
                     <div
                         style={{
-                            position: 'absolute',
-                            width: '100%',
-                            height: '100%',
+                            width: 10,
                             backgroundColor: forecast.color,
                             zIndex: 1
                         }}
@@ -50,6 +40,9 @@ function Forecast({
                         <Typography variant={titleVariant}>
                             { title || forecast.date }
                         </Typography>
+                        <Typography variant={'overline'}>
+                            { forecast.description }
+                        </Typography>
                         <Box
                             display='flex'
                             flexDirection={vertical ? 'column' : 'row'}
@@ -60,10 +53,10 @@ function Forecast({
                                 alignItems='flex-start'
                             >
                                 <Typography variant={tempVariant} >
-                                    {getTemp()}
+                                    {forecast.temps[selectedUnit].value}
                                 </Typography>
                                 <Typography variant={unitVariant} >
-                                    {getUnit()}
+                                    {forecast.temps[selectedUnit].unit}
                                 </Typography>
                             </Box>
                             <Box
@@ -71,7 +64,8 @@ function Forecast({
                                 flexDirection='column'
                                 justifyContent='center'
                                 style={{
-                                    marginLeft: vertical ? 0 : 32
+                                    marginLeft: vertical ? 0 : 16,
+                                    paddingTop: vertical ? 16 : 0
                                 }}
                             >
                                 <ForecastSummary forecast={forecast} variant={forecastVariant} />

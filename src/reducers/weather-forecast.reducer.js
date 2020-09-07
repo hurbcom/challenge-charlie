@@ -1,12 +1,14 @@
 import {
     FETCH_WEATHERFORECAST_INIT,
     FETCH_WEATHERFORECAST_FAIL,
-    FETCH_WEATHERFORECAST_DONE
+    FETCH_WEATHERFORECAST_DONE,
+    SET_SELECTED_UNIT
 } from '../actions/weather-forecast.actions'
 
 const INITIAL_STATE = {
     fetching: false,
-    forecasts: []
+    forecasts: [],
+    selectedUnit: 'celcius'
 }
 
 export function weatherForecastReducer(state = INITIAL_STATE, action) {
@@ -26,6 +28,11 @@ export function weatherForecastReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 fetching: false
+            }
+        case SET_SELECTED_UNIT:
+            return {
+                ...state,
+                selectedUnit: action.payload
             }
     }
     return state
