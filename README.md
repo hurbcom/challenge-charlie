@@ -18,7 +18,14 @@ I dopted Fontawesome icons in exchange for manutenability and for the plug and p
 ### 5) Material UI
 As I'm a Google material design appreciator, and my skills with UX are not that good, I decided to use this library.
 
-## Get started
+## What is missing
+- Components tests
+- Reducers tests
+- Integration tests
+- Global error handling
+- My team ;(
+
+## Getting started
 ### What do you need?
 - Git for wathever SO you are working on
 - Blue whale a.k.a docker
