@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "outDir": "./build",
+        "target": "es5",
+        "module": "ES6",
+        "jsx": "react",
+        "declaration": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "typeRoots": ["node_modules/@types"],
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": false
+    }
+}
