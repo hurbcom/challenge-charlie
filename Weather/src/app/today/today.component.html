@@ -1,0 +1,35 @@
+<div class="row">
+   <div class="col-md-6 offset-md-3">
+     <div class = "col-sm-12 text-center">
+      <h2>Weather in {{weather.name}}, {{weather.sys.country}}</h2>
+     </div>
+
+     <div class="input-group mt-5">
+       <input class="form-control" type="text" #userInput placeholder="Digite sua cidade">
+       <div class="input-group-append">
+         <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
+       </div>
+     </div>
+
+     <div class="col-sm-12">
+       <span class="temp"><img src="assets/{{weather.weather[0].icon}}.png" alt="01d.png">
+        {{weather.main.temp| number: '1.0-0'}} &#176;C</span>
+        <p class="text-uppercase font-italic font-weight-bold">
+          {{weather.weather[0].description}}
+        </p>
+   </div>
+
+   <table class="table table-light table-striped table-bordered table-sm">
+     <tbody>
+       <tr>
+         <td>Humidade: </td><td>{{weather.main.humidity}}%</td>
+       </tr>
+       <tr>
+        <td>Vento: </td><td>{{weather.wind.speed}}Km/h</td>
+      </tr>
+      <tr>
+        <td>Pressão:</td><td>{{weather.main.pressure}}hPA</td>
+      </tr>
+     </tbody>
+   </table>
+</div>
