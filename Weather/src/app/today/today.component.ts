@@ -10,13 +10,15 @@ export class TodayComponent implements OnInit {
 lat;
 lon;
 weather;
+img;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
     this.getLocation();
+    this.getBackground();
   }
 
-  getLocation(){
+ async getLocation(){
     if('geolocation' in navigator){
       navigator.geolocation.watchPosition((sucess)=>{
         this.lat = sucess.coords.latitude;
@@ -24,17 +26,21 @@ weather;
 
         this.weatherService.getWeatherDataByCoords(this.lat, this.lon).subscribe(data=>{
           this.weather = data;
-          console.log(data);
-        })
-      })
+        });
+      });
     }
   }
 
-  getCity(city){
-    this.weatherService.getWeatherByCity(city).subscribe(data=>{
+ async getCity(city){
+      this.weatherService.getWeatherByCity(city).subscribe(data=>{
       this.weather = data;
-      console.log(data)
-      console.log(city)
-    })
+    });
+  }
+
+  async getBackground(){
+    this.weatherService.getImageBing().subscribe(data=>{
+      this.img = data;
+      console.log(this.img);
+    });
   }
 }

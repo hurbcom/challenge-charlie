@@ -1,35 +1,51 @@
-<div class="row">
-   <div class="col-md-6 offset-md-3">
+<div class="container" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}');">
+   <div class="box" *ngIf="weather" >
+     <div class="content">
      <div class = "col-sm-12 text-center">
-      <h2>Weather in {{weather.name}}, {{weather.sys.country}}</h2>
+      <h2>Temperatura em {{weather.city.name}}, {{weather.city.country}}</h2>
      </div>
 
      <div class="input-group mt-5">
-       <input class="form-control" type="text" #userInput placeholder="Digite sua cidade">
+       <input class="form-control" type="text" #userInput placeholder="{{weather.city.name}}, {{weather.city.country}}">
        <div class="input-group-append">
          <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
        </div>
      </div>
 
-     <div class="col-sm-12">
-       <span class="temp"><img src="assets/{{weather.weather[0].icon}}.png" alt="01d.png">
-        {{weather.main.temp| number: '1.0-0'}} &#176;C</span>
-        <p class="text-uppercase font-italic font-weight-bold">
-          {{weather.weather[0].description}}
-        </p>
-   </div>
+     <div class="row">
+      <div class="col-sm-2">
 
-   <table class="table table-light table-striped table-bordered table-sm">
-     <tbody>
-       <tr>
-         <td>Humidade: </td><td>{{weather.main.humidity}}%</td>
-       </tr>
-       <tr>
-        <td>Vento: </td><td>{{weather.wind.speed}}Km/h</td>
-      </tr>
-      <tr>
-        <td>Pressão:</td><td>{{weather.main.pressure}}hPA</td>
-      </tr>
-     </tbody>
-   </table>
+        <span class="temp" *ngIf="weather.list[0].temp.day<=15"><img  src="../../assets/10.svg" width="10%" height="10%" alt="01d.png">
+        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+
+        <span class="temp" *ngIf="weather.list[0].temp.day>=45"><img  src="../../assets/1.svg" width="10%" height="10%" alt="01d.png">
+        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+
+        <span class="temp"*ngIf="weather.list[0].temp.day<44&&weather.list[0].temp.day>16" ><img src="../../assets/2.svg" width="10%" height="10%" alt="01d.png">
+        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+
+      </div>
+      <div class="col-sm-2">
+        
+              <p>Humidade: </p>
+              <p>{{weather.list[0].humidity}}%</p>
+           
+             <p>Vento: </p>
+             <p>{{weather.list[0].speed}}Km/h</p>
+          
+             <p>Pressão:</p>
+             <p>{{weather.list[0].pressure}}hPA</p>
+
+      </div>
+    </div>
+    <div class="row">
+      <h4>AMANHÃ </h4>
+      <h4>{{weather.list[1].temp.day}}°C</h4>
+    </div>
+    <div class="row"></div>
+      <h4>DEPOIS DE AMANHÃ </h4>
+      <h4>{{weather.list[2].temp.day}}°C</h4>
+    </div>
+  </div>
+   
 </div>
