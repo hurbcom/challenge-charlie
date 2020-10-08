@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,11 @@ getWeatherByCity(city: string){
 }
 
 getImageBing(){
-  return this.http.get(this.urlImg);
+  let headers = new HttpHeaders()
+  // .set('Ocp-Apim-Subscription-Key:', '123456789ABCDE')
+  // .set('X-MSEdge-ClientIP','999.999.999.999')
+  // .set('X-Search-Location','lat:47.60357;long:-122.3295;re:100')
+  // .set('Host','api.cognitive.microsoft.com');
+  return this.http.get(this.urlImg, {headers});
 }
 }

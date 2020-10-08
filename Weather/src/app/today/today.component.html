@@ -1,50 +1,67 @@
-<div class="container" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}');">
-   <div class="box" *ngIf="weather" >
+<div class="container" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}') no-repeat center center fixed;">
+   <div class="box" [style.background-color]="getStyle()" *ngIf="weather">
      <div class="content">
-     <div class = "col-sm-12 text-center">
-      <h2>Temperatura em {{weather.city.name}}, {{weather.city.country}}</h2>
+     <div class = "row">
      </div>
-
-     <div class="input-group mt-5">
-       <input class="form-control" type="text" #userInput placeholder="{{weather.city.name}}, {{weather.city.country}}">
-       <div class="input-group-append">
-         <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
-       </div>
+     <div class = "row">
+      <div class="input-group input-group-lg">
+        <img  src="../../assets/44.svg" class="img-responsive zmdi zmdi-link mx-auto" width="50" height="50" alt="01d.png">
+        <input class="form-control main-input bg-light text-dark" 
+        type="text" 
+        #userInput 
+        style="font-weight: bold; color:#8a8987"
+        (keyup.enter)="getCity(userInput.value)"
+        (blur)="getCity(userInput.value)"
+        placeholder="{{weather.city.name}}, {{weather.city.country}}">
+        <!-- <div class="input-group-append">
+          <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
+        </div> -->
+      </div>
      </div>
-
      <div class="row">
-      <div class="col-sm-2">
+      <div class="col-md-6 icone" style="justify-content: center;">
 
-        <span class="temp" *ngIf="weather.list[0].temp.day<=15"><img  src="../../assets/10.svg" width="10%" height="10%" alt="01d.png">
-        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+        <span class="temp" *ngIf="weather.list[0].temp.day<=15"><img  src="../../assets/8.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
 
-        <span class="temp" *ngIf="weather.list[0].temp.day>=45"><img  src="../../assets/1.svg" width="10%" height="10%" alt="01d.png">
-        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+        <span class="temp" *ngIf="weather.list[0].temp.day>=35"><img  src="../../assets/1.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
 
-        <span class="temp"*ngIf="weather.list[0].temp.day<44&&weather.list[0].temp.day>16" ><img src="../../assets/2.svg" width="10%" height="10%" alt="01d.png">
-        {{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</span>
+        <span class="temp"*ngIf="weather.list[0].temp.day<35&&weather.list[0].temp.day>15" ><img src="../../assets/2.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
 
       </div>
-      <div class="col-sm-2">
+      <div class="col-md-6">
+        <h4>Hoje</h4>
+        <h4>{{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</h4>
+        <br>
+        <h4>{{weather.list[0].weather[0].description| titlecase }}</h4>
+        <br>
+        <h5>Vento: {{weather.list[0].speed}}Km/h</h5>
+             
+        <h5>Humidade: {{weather.list[0].humidity}}%</h5>
+
+        <h5>Pressão: {{weather.list[0].pressure}}hPA</h5>
+             
+      </div>
+    </div>
+    <div class="row" [style.background-color]="getStyle()">
+      <div class="col-md-6">
         
-              <p>Humidade: </p>
-              <p>{{weather.list[0].humidity}}%</p>
-           
-             <p>Vento: </p>
-             <p>{{weather.list[0].speed}}Km/h</p>
-          
-             <p>Pressão:</p>
-             <p>{{weather.list[0].pressure}}hPA</p>
-
+      </div>
+      <div class="col-md-6">
+        <h4>AMANHÃ </h4>
+        <h4>{{weather.list[1].temp.day}} &#176;C</h4>
       </div>
     </div>
-    <div class="row">
-      <h4>AMANHÃ </h4>
-      <h4>{{weather.list[1].temp.day}}°C</h4>
-    </div>
-    <div class="row"></div>
-      <h4>DEPOIS DE AMANHÃ </h4>
-      <h4>{{weather.list[2].temp.day}}°C</h4>
+    <div class="row" [style.background-color]="getStyle()" >
+      <div class="col-md-6">
+        
+      </div>
+      <div class="col-md-6">
+        <h4>DEPOIS DE AMANHÃ </h4>
+        <h4>{{weather.list[2].temp.day}} &#176;C</h4>
+      </div>
     </div>
   </div>
    

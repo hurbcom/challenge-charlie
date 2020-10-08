@@ -1,14 +1,48 @@
 .container {
   width: 100vw;
   height: 100vh;
-  /* background: #6C7A89; */
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1800px;
+  padding-right: 0px !important; 
+     padding-left: 0px !important; 
+     margin-right: 0px !important; 
+     margin-left: 0px !important;
+}
+.box{
+  width: 600px;
+  height: auto;
+  color: white;
+}
+
+.icone{
   flex-direction: row;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  fill: white;
 }
-.box::before {
-  width: 800px;
-  height: 600px;
-  background-color: rgba(0,0,0,.7);
+
+.input-group{
+  background-color:#f8f9fa;
 }
+
+.input {font-weight:bold !important;}
+
+.row{
+  margin-bottom: 1rem;
+} 
+
+/* #main-form .main-form .shortfieldz .zmdi-link {
+  position: absolute;
+  font-size: 28px;
+  top: 10px;
+  left: 25px; 
+  background-color:  rgb(196, 195, 193);
+  pointer-events: none;
+  vertical-align: middle;
+} */
+
