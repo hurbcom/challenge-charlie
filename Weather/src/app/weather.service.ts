@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export class WeatherService {
 url = 'http://api.openweathermap.org/data/2.5/forecast/daily';
-urlImg = 'https://www.bing.com/HPImageArchive.aspx?resolution=1920&format=js&idx=0&n=1&mkt=pt-BR';
+urlImg = 'https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?resolution=1920&format=js&idx=0&n=1&mkt=pt-BR';
 apikey = '9de243494c0b295cca9337e1e96b00e2';
 lang = 'pt_br';
 cnt = '3';

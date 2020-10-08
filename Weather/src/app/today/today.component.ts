@@ -12,8 +12,6 @@ lon;
 weather;
 img;
 temp;
-  input: {};
-  chamada2: () => void;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -51,8 +49,7 @@ temp;
     var resultado = '';
     if(this.weather.cod === 200){
       return resultado = 'rgba(0, 0, 0, 0.445)';
-    }
-    else if (this.weather.list[0].temp.day <= 15){
+    } else if (this.weather.list[0].temp.day <= 15){
       return resultado = ' rgba(0, 68, 255, 0.5)';
     } else if (this.weather.list[0].temp.day >= 35){
       return resultado = ' rgba(255, 60, 0, 0.575)';
@@ -62,4 +59,5 @@ temp;
 
 
   }
+
 }

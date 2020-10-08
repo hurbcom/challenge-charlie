@@ -1,8 +1,6 @@
-<div class="container" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}') no-repeat center center fixed;">
-   <div class="box" [style.background-color]="getStyle()" *ngIf="weather">
-     <div class="content">
-     <div class = "row">
-     </div>
+
+<div class="bgapp" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}')">
+   <div class="container text-white" [style.background-color]="getStyle()" *ngIf="weather">
      <div class = "row">
       <div class="input-group input-group-lg">
         <img  src="../../assets/44.svg" class="img-responsive zmdi zmdi-link mx-auto" width="50" height="50" alt="01d.png">
@@ -13,9 +11,6 @@
         (keyup.enter)="getCity(userInput.value)"
         (blur)="getCity(userInput.value)"
         placeholder="{{weather.city.name}}, {{weather.city.country}}">
-        <!-- <div class="input-group-append">
-          <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
-        </div> -->
       </div>
      </div>
      <div class="row">
@@ -62,7 +57,5 @@
         <h4>DEPOIS DE AMANHÃ </h4>
         <h4>{{weather.list[2].temp.day}} &#176;C</h4>
       </div>
-    </div>
-  </div>
-   
+    </div>   
 </div>
