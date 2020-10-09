@@ -1,35 +1,62 @@
-<div class="row">
-   <div class="col-md-6 offset-md-3">
-     <div class = "col-sm-12 text-center">
-      <h2>Weather in {{weather.name}}, {{weather.sys.country}}</h2>
+
+<div class="bgapp" *ngIf="img" style="background: url('http://bing.com.br{{img.images[0].url}}')">
+   <div class="container text-white" [style.background-color]="getStyle()" *ngIf="weather">
+     <div class = "row">
+      <div class="input-group input-group-lg">
+        <img  src="../../assets/44.svg" class="img-responsive zmdi zmdi-link mx-auto" width="50" height="50" alt="01d.png">
+        <input class="form-control main-input bg-light text-dark" 
+        type="text" 
+        #userInput 
+        style="font-weight: bold; color:#8a8987"
+        (keyup.enter)="getCity(userInput.value)"
+        (blur)="getCity(userInput.value)"
+        onfocus="this.value='';"
+        placeholder="{{weather.city.name}}, {{weather.city.country}}">
+      </div>
      </div>
+     <div class="row">
+      <div class="col-md-6 icone" style="justify-content: center;">
 
-     <div class="input-group mt-5">
-       <input class="form-control" type="text" #userInput placeholder="Digite sua cidade">
-       <div class="input-group-append">
-         <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Buscar</button>
-       </div>
-     </div>
+        <span class="temp" *ngIf="weather.list[0].temp.day<=15"><img  src="../../assets/8.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
 
-     <div class="col-sm-12">
-       <span class="temp"><img src="assets/{{weather.weather[0].icon}}.png" alt="01d.png">
-        {{weather.main.temp| number: '1.0-0'}} &#176;C</span>
-        <p class="text-uppercase font-italic font-weight-bold">
-          {{weather.weather[0].description}}
-        </p>
-   </div>
+        <span class="temp" *ngIf="weather.list[0].temp.day>=35"><img  src="../../assets/1.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
 
-   <table class="table table-light table-striped table-bordered table-sm">
-     <tbody>
-       <tr>
-         <td>Humidade: </td><td>{{weather.main.humidity}}%</td>
-       </tr>
-       <tr>
-        <td>Vento: </td><td>{{weather.wind.speed}}Km/h</td>
-      </tr>
-      <tr>
-        <td>Pressão:</td><td>{{weather.main.pressure}}hPA</td>
-      </tr>
-     </tbody>
-   </table>
+        <span class="temp"*ngIf="weather.list[0].temp.day<35&&weather.list[0].temp.day>15" ><img src="../../assets/2.svg" width="200rm" height="200rm" alt="01d.png">
+        </span>
+
+      </div>
+      <div class="col-md-6">
+        <h4>Hoje</h4>
+        <h4>{{weather.list[0].temp.day| number: '1.0-0'}} &#176;C</h4>
+        <br>
+        <h4>{{weather.list[0].weather[0].description| titlecase }}</h4>
+        <br>
+        <h5>Vento: {{weather.list[0].speed}}Km/h</h5>
+             
+        <h5>Humidade: {{weather.list[0].humidity}}%</h5>
+
+        <h5>Pressão: {{weather.list[0].pressure}}hPA</h5>
+             
+      </div>
+    </div>
+    <div class="row" [style.background-color]="getStyle()">
+      <div class="col-md-6">
+        
+      </div>
+      <div class="col-md-6">
+        <h4>AMANHÃ </h4>
+        <h4>{{weather.list[1].temp.day}} &#176;C</h4>
+      </div>
+    </div>
+    <div class="row" [style.background-color]="getStyle()" >
+      <div class="col-md-6">
+        
+      </div>
+      <div class="col-md-6">
+        <h4>DEPOIS DE AMANHÃ </h4>
+        <h4>{{weather.list[2].temp.day}} &#176;C</h4>
+      </div>
+    </div>   
 </div>

@@ -1,0 +1,36 @@
+.bgapp {
+  height: 100vh;
+}
+
+.container{
+  max-width: 620px;
+}
+.icone{
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  fill: white;
+}
+
+.input-group{
+  background-color:#f8f9fa;
+}
+
+.input {font-weight:bold !important;}
+
+.row{
+  margin-bottom: 1rem;
+} 
+
+/* #main-form .main-form .shortfieldz .zmdi-link {
+  position: absolute;
+  font-size: 28px;
+  top: 10px;
+  left: 25px; 
+  background-color:  rgb(196, 195, 193);
+  pointer-events: none;
+  vertical-align: middle;
+} */
+
