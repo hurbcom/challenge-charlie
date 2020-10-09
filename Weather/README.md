@@ -6,6 +6,7 @@ Este projeto foi gerado com [Angular CLI] (https://github.com/angular/angular-cl
 
 Execute `ng serve` para um servidor de desenvolvimento. Navegue até `http: // localhost: 4200 /`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
 
+Na primeira execução rodar `npm i` e depois `npm start` ou `ng serve`
 Utiliza API do BING e do openweathermap
 
 Estilização feita pelo bootstrap
