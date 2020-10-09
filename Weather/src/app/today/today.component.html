@@ -10,6 +10,7 @@
         style="font-weight: bold; color:#8a8987"
         (keyup.enter)="getCity(userInput.value)"
         (blur)="getCity(userInput.value)"
+        onfocus="this.value='';"
         placeholder="{{weather.city.name}}, {{weather.city.country}}">
       </div>
      </div>

@@ -56,8 +56,5 @@ temp;
     }else if (this.weather.list[0].temp.day > 15 && this.weather.list[0].temp.day < 35){
       return resultado = 'rgba(255, 208, 0, 0.5)';
     }
-
-
   }
-
 }
