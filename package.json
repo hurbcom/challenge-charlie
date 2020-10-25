@@ -1,0 +1,53 @@
+{
+  "name": "challenge-hurb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/eriktronkos/challenge-hurb.git",
+  "author": "Erik Tronkos erikeft@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "clean": "rimraf .out/ && rimraf .next/",
+    "build": "yarn clean && next build",
+    "start": "next start",
+    "lint": "eslint --ext .ts,.tsx . --max-warnings=0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.7",
+    "@babel/runtime-corejs2": "^7.8.7",
+    "@datorama/akita": "^4.17.1",
+    "axios": "^0.19.2",
+    "axios-observable": "^1.1.3",
+    "next": "^9.5.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-responsive-carousel": "^3.2.9",
+    "rxjs": "^6.5.3",
+    "styled-components": "^5.2.0",
+    "styled-icons": "^10.22.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.17",
+    "@types/styled-components": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "babel-plugin-styled-components": "^1.10.6",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "akitaCli": {
+    "customFolderName": "true",
+    "template": "ts",
+    "basePath": "./stores"
+  }
+}

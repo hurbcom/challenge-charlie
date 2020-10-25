@@ -1,0 +1,17 @@
+.navbar-custom {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  background-color: #1b1b1b;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+@media (min-width: 1024px) {
+  .navbar-custom {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+.table-responsive {
+  border-radius: 4px;
+}
