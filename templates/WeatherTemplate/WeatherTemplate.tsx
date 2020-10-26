@@ -1,18 +1,31 @@
 import React from 'react';
 import {
-    Background,
-    BigCard,
-    BottomSmallCard,
-    CurrentTemperatureBox,
-    CurrentWeatherInfoColumn,
-    InputCard,
-    RootCard, TemperatureLabelParagraph,
-    TemperatureParagraph,
-    TopSmallCard,
+  Background,
+  BigCard,
+  BigCardVisibilityContainer,
+  BottomSmallCard,
+  CurrentTemperatureBox,
+  CurrentWeatherInfoColumn,
+  ForecastTemperatureBox,
+  ForecastTemperatureLabelParagraph,
+  ForecastTemperatureParagraph,
+  IconContainer,
+  InputCard,
+  OtherWeatherInfoParagraph,
+  RootCard,
+  SmallCardVisibilityContainer,
+  Spacer,
+  TemperatureLabelParagraph,
+  TemperatureParagraph,
+  TopSmallCard,
+  WeatherDescription,
 } from './styles';
 import { SearchInput } from 'components/SearchInput';
-import { WeatherData } from 'external/openWeather/types';
-import { useWeatherData } from '../../hooks/useWeatherData';
+import { useWeatherData } from 'hooks/useWeatherData';
+import { useTemperatureFormat } from 'hooks/useTemperatureFormat';
+import { WeatherIcon } from 'components/WeatherIcon/WeatherIcon';
+import CountUp from 'react-countup';
+import { degToCompass } from 'utils/degToCompass';
 
 export interface WeatherTemplateProps {
   backgroundImageUrl: string;
@@ -20,8 +33,10 @@ export interface WeatherTemplateProps {
 
 export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) => {
   const { weatherData, onSubmitSearch, foundLocation, isLoadingWeather } = useWeatherData();
+  const { formatTemperature, toggleUnit, unitSymbol } = useTemperatureFormat();
 
-  console.log('WEATHER DATA', weatherData)
+  console.log('WEATHER DATA', weatherData);
+  const currentDay = weatherData?.current;
 
   return (
     <>
@@ -30,21 +45,53 @@ export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) =>
           <InputCard>
             <SearchInput loading={isLoadingWeather} onSubmitSearch={onSubmitSearch} foundLocation={foundLocation} />
           </InputCard>
-          <BigCard>
-            {/*<img src={`/assets/icons/${weatherData?.weather?.[0]?.icon.substr(0, 2).replace(/^[0]+/g, '')}.svg`} />*/}
-            <img
-              src={`http://openweathermap.org/img/w/${weatherData?.current?.weather?.[0]?.icon}.png`}
-              style={{ width: '50%' }}
-            />
-            <CurrentWeatherInfoColumn>
-              <CurrentTemperatureBox>
-                <TemperatureLabelParagraph>HOJE</TemperatureLabelParagraph>
-                <TemperatureParagraph>32°C</TemperatureParagraph>
-              </CurrentTemperatureBox>
-            </CurrentWeatherInfoColumn>
+          <BigCard currentTemp={currentDay?.temp}>
+            <BigCardVisibilityContainer visible={!!weatherData?.current}>
+              <IconContainer>
+                <WeatherIcon
+                  sunrise={weatherData?.current?.sunrise}
+                  sunset={weatherData?.current?.sunset}
+                  weatherId={weatherData?.current?.weather?.[0]?.id}
+                />
+              </IconContainer>
+              <CurrentWeatherInfoColumn>
+                <CurrentTemperatureBox>
+                  <TemperatureLabelParagraph>HOJE</TemperatureLabelParagraph>
+                  <TemperatureParagraph onClick={toggleUnit}>
+                    <CountUp suffix={unitSymbol} start={0} end={formatTemperature(currentDay?.temp)} />
+                  </TemperatureParagraph>
+                </CurrentTemperatureBox>
+                <WeatherDescription>{currentDay?.weather?.[0]?.description}</WeatherDescription>
+                <OtherWeatherInfoParagraph>
+                  {`Vento: ${degToCompass(currentDay?.wind_deg)} ${currentDay?.wind_speed}km/h`}
+                </OtherWeatherInfoParagraph>
+                <OtherWeatherInfoParagraph>{`Humidade: ${currentDay?.humidity}%`}</OtherWeatherInfoParagraph>
+                <OtherWeatherInfoParagraph>{`Pressão: ${currentDay?.pressure}hPA`}</OtherWeatherInfoParagraph>
+              </CurrentWeatherInfoColumn>
+            </BigCardVisibilityContainer>
           </BigCard>
-          <TopSmallCard />
-          <BottomSmallCard />
+          <TopSmallCard currentTemp={currentDay?.temp}>
+            <SmallCardVisibilityContainer visible={!!weatherData?.daily?.[1]}>
+              <Spacer />
+              <ForecastTemperatureBox>
+                <ForecastTemperatureLabelParagraph>{'AMANHÃ'}</ForecastTemperatureLabelParagraph>
+                <ForecastTemperatureParagraph onClick={toggleUnit}>
+                  <CountUp suffix={unitSymbol} end={formatTemperature(weatherData?.daily?.[1].temp?.day)} />
+                </ForecastTemperatureParagraph>
+              </ForecastTemperatureBox>
+            </SmallCardVisibilityContainer>
+          </TopSmallCard>
+          <BottomSmallCard currentTemp={currentDay?.temp}>
+            <SmallCardVisibilityContainer visible={!!weatherData?.daily?.[2]}>
+              <Spacer />
+              <ForecastTemperatureBox>
+                <ForecastTemperatureLabelParagraph>{'DEPOIS DE AMANHÃ'}</ForecastTemperatureLabelParagraph>
+                <ForecastTemperatureParagraph onClick={toggleUnit}>
+                  <CountUp suffix={unitSymbol} end={formatTemperature(weatherData?.daily?.[2].temp?.day)} />
+                </ForecastTemperatureParagraph>
+              </ForecastTemperatureBox>
+            </SmallCardVisibilityContainer>
+          </BottomSmallCard>
         </RootCard>
       </Background>
     </>

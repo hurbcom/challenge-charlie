@@ -64,9 +64,6 @@ export const openCageDataGeocodingExternal = {
           placeName: mountedPlaceName,
         };
       }),
-      tap(payload => {
-        console.log('PAYLOAD', payload);
-      }),
     );
   },
 };

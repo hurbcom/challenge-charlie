@@ -1,2 +1,1 @@
-export * from './backgroundImage';
-export * from './types';
+export * from './geocoding';

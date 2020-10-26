@@ -31,6 +31,14 @@ const nextConfig = {
     config.resolve.alias['styled-components'] = path.resolve('./node_modules/styled-components');
     return config;
   },
+  webpackDevMiddleware: config => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    };
+
+    return config;
+  },
 };
 
 module.exports = withBundleAnalyzer(withSass(withCSS(nextConfig)));

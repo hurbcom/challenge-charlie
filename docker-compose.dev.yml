@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+    nextjs-dev:
+        ports:
+            - 3002:3002
+        build:
+            context: .
+            dockerfile: dev.Dockerfile
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+            - /usr/src/app/.next
+        env_file:
+            - .env

@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { GlobalStyles } from 'components/Layout/GlobalStyles';
 
+import 'lib/weather-icons.css';
+
 const App = ({ Component, pageProps }) => {
   return (
     <>
