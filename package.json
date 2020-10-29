@@ -10,7 +10,11 @@
     "clean": "rimraf .out/ && rimraf .next/",
     "build": "yarn clean && next build",
     "start": "next start",
-    "lint": "eslint --ext .ts,.tsx . --max-warnings=0"
+    "lint": "eslint --ext .ts,.tsx . --max-warnings=0",
+    "cypress:server": "next build && next start -p 3002",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
+    "cypress:test": "start-server-and-test cypress:server http-get://localhost:3002 'yarn cypress:run'"
   },
   "dependencies": {
     "@babel/runtime": "^7.8.7",
@@ -35,12 +39,14 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.6",
+    "cypress": "^5.5.0",
     "dotenv": "^8.2.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "prettier": "^1.19.1",
+    "start-server-and-test": "^1.11.5",
     "typescript": "^3.8.3"
   },
   "akitaCli": {

@@ -1,0 +1,93 @@
+{
+  "documentation": "https://opencagedata.com/api",
+  "licenses": [{ "name": "see attribution guide", "url": "https://opencagedata.com/credits" }],
+  "rate": { "limit": 2500, "remaining": 2490, "reset": 1604016000 },
+  "results": [
+    {
+      "annotations": {
+        "DMS": { "lat": "22\u00b0 54' 24.47640'' S", "lng": "43\u00b0 10' 19.99884'' W" },
+        "MGRS": "23KPQ8746465633",
+        "Maidenhead": "GG87jc92ii",
+        "Mercator": { "x": -4805909.763, "y": -2604126.455 },
+        "OSM": {
+          "edit_url": "https://www.openstreetmap.org/edit?way=40047582#map=17/-22.90680/-43.17222",
+          "note_url": "https://www.openstreetmap.org/note/new#map=17/-22.90680/-43.17222&layers=N",
+          "url": "https://www.openstreetmap.org/?mlat=-22.90680&mlon=-43.17222#map=17/-22.90680/-43.17222"
+        },
+        "UN_M49": {
+          "regions": { "AMERICAS": "019", "BR": "076", "LATIN_AMERICA": "419", "SOUTH_AMERICA": "005", "WORLD": "001" },
+          "statistical_groupings": ["LEDC"]
+        },
+        "callingcode": 55,
+        "currency": {
+          "decimal_mark": ",",
+          "html_entity": "R$",
+          "iso_code": "BRL",
+          "iso_numeric": "986",
+          "name": "Brazilian Real",
+          "smallest_denomination": 5,
+          "subunit": "Centavo",
+          "subunit_to_unit": 100,
+          "symbol": "R$",
+          "symbol_first": 1,
+          "thousands_separator": "."
+        },
+        "flag": "\ud83c\udde7\ud83c\uddf7",
+        "geohash": "75cm9tfynr4jer9xh12m",
+        "qibla": 67.61,
+        "roadinfo": {
+          "drive_on": "right",
+          "road": "Pra\u00e7a do Expedicion\u00e1rio",
+          "road_type": "pedestrian",
+          "speed_in": "km/h"
+        },
+        "sun": {
+          "rise": { "apparent": 1603959000, "astronomical": 1603954260, "civil": 1603957620, "nautical": 1603955940 },
+          "set": { "apparent": 1604005380, "astronomical": 1604010120, "civil": 1604006760, "nautical": 1604008440 }
+        },
+        "timezone": {
+          "name": "America/Sao_Paulo",
+          "now_in_dst": 0,
+          "offset_sec": -10800,
+          "offset_string": "-0300",
+          "short_name": "BRT"
+        },
+        "what3words": { "words": "secret.monday.unusually" }
+      },
+      "bounds": {
+        "northeast": { "lat": -22.9062366, "lng": -43.1713993 },
+        "southwest": { "lat": -22.907203, "lng": -43.1729553 }
+      },
+      "components": {
+        "ISO_3166-1_alpha-2": "BR",
+        "ISO_3166-1_alpha-3": "BRA",
+        "_category": "road",
+        "_type": "road",
+        "city": "Rio de Janeiro",
+        "city_district": "Zona Central do Rio de Janeiro",
+        "continent": "South America",
+        "country": "Brasil",
+        "country_code": "br",
+        "county": "Regi\u00e3o Metropolitana do Rio de Janeiro",
+        "municipality": "Regi\u00e3o Geogr\u00e1fica Imediata do Rio de Janeiro",
+        "quarter": "Castelo",
+        "region": "Regi\u00e3o Sudeste",
+        "road": "Pra\u00e7a do Expedicion\u00e1rio",
+        "road_type": "pedestrian",
+        "square": "Pra\u00e7a do Expedicion\u00e1rio",
+        "state": "Rio de Janeiro",
+        "state_code": "RJ",
+        "state_district": "Regi\u00e3o Geogr\u00e1fica Intermedi\u00e1ria do Rio de Janeiro",
+        "suburb": "Centro"
+      },
+      "confidence": 9,
+      "formatted": "Pra\u00e7a do Expedicion\u00e1rio, Centro, Rio de Janeiro - RJ, Brasil",
+      "geometry": { "lat": -22.906799, "lng": -43.1722219 }
+    }
+  ],
+  "status": { "code": 200, "message": "OK" },
+  "stay_informed": { "blog": "https://blog.opencagedata.com", "twitter": "https://twitter.com/OpenCage" },
+  "thanks": "For using an OpenCage API",
+  "timestamp": { "created_http": "Thu, 29 Oct 2020 05:59:14 GMT", "created_unix": 1603951154 },
+  "total_results": 1
+}

@@ -11,12 +11,12 @@ export const openCageDataGeocodingExternal = {
   reverseGeocoding: ({ lat, long }: { lat: number; long: number }) => {
     if (!(lat || long)) return EMPTY;
     return Api.get<ReverseGeocodingPayload>(
-      `/geocode/v1/json?q=${lat}+${long}&key=${process.env.NEXT_PUBLIC_OPEN_CAGE_KEY}`,
+      `/geocode/v1/json?q=${lat}+${long}&language=pt-BR&limit=1&key=${process.env.NEXT_PUBLIC_OPEN_CAGE_KEY}`,
       {
         baseURL: process.env.NEXT_PUBLIC_OPEN_CAGE_DATA_URL,
       },
     ).pipe(
-      retryBackoff({ initialInterval: 3000 }),
+      retryBackoff({ initialInterval: 3000, maxRetries: 3 }),
       map<AxiosResponse<ReverseGeocodingPayload>, CityStateCountry>(rawData => {
         const components = rawData?.data.results?.[0]?.components;
         const city = components?.city;
@@ -38,13 +38,13 @@ export const openCageDataGeocodingExternal = {
       {
         baseURL: process.env.NEXT_PUBLIC_OPEN_CAGE_DATA_URL,
         validateStatus: status => {
-          return status < 500;
+          return status < 400 || status === 404;
         },
       },
     ).pipe(
-      retryBackoff({ initialInterval: 3000 }),
+      retryBackoff({ initialInterval: 3000, maxRetries: 3 }),
       map(payload => {
-        if (payload.status >= 400) {
+        if (payload.status === 404) {
           return alert(`No location found for: "${placeName}"`);
         }
         const firstResult = payload?.data?.results?.[0];

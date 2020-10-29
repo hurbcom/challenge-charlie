@@ -18,9 +18,10 @@ export const SearchInput = ({ loading, onSubmitSearch, foundLocation, ...rest }:
     <Container>
       <CompassIcon src={'/assets/icons/compass.svg'} isLoading={loading} />
       <Input
+        {...rest}
         type="text"
         placeholder="Busca"
-        {...rest}
+        data-cy={'search-input'}
         value={inputValue}
         onChange={ev => setInputValue(ev?.currentTarget?.value)}
         onKeyDown={ev => {

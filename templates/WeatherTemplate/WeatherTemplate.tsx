@@ -61,7 +61,7 @@ export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) =>
                     <CountUp suffix={unitSymbol} start={0} end={formatTemperature(currentDay?.temp)} />
                   </TemperatureParagraph>
                 </CurrentTemperatureBox>
-                <WeatherDescription>{currentDay?.weather?.[0]?.description}</WeatherDescription>
+                <WeatherDescription data-cy={'weather-description'}>{currentDay?.weather?.[0]?.description}</WeatherDescription>
                 <OtherWeatherInfoParagraph>
                   {`Vento: ${degToCompass(currentDay?.wind_deg)} ${currentDay?.wind_speed}km/h`}
                 </OtherWeatherInfoParagraph>

@@ -9,7 +9,7 @@ export const bingBackgroundImageExternal = {
     return Api.get<BingBackgroundImagePayload>(`/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`, {
       baseURL: process.env.NEXT_PUBLIC_BING_URL,
     }).pipe(
-      retryBackoff({ initialInterval: 3000 }),
+      retryBackoff({ initialInterval: 3000, maxRetries: 3 }),
       map<AxiosResponse<BingBackgroundImagePayload>, string>(rawData => {
         const path = rawData.data?.images?.[0]?.url;
         return path ? `${process.env.NEXT_PUBLIC_BING_URL}${path}` : null;
