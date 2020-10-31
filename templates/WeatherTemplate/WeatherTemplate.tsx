@@ -35,7 +35,6 @@ export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) =>
   const { weatherData, onSubmitSearch, foundLocation, isLoadingWeather } = useWeatherData();
   const { formatTemperature, toggleUnit, unitSymbol } = useTemperatureFormat();
 
-  console.log('WEATHER DATA', weatherData);
   const currentDay = weatherData?.current;
 
   return (
@@ -43,9 +42,14 @@ export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) =>
       <Background backgroundUrl={backgroundImageUrl}>
         <RootCard>
           <InputCard>
-            <SearchInput loading={isLoadingWeather} onSubmitSearch={onSubmitSearch} foundLocation={foundLocation} />
+            <SearchInput
+              loading={isLoadingWeather}
+              onSubmitSearch={onSubmitSearch}
+              foundLocation={foundLocation}
+              disabled={isLoadingWeather}
+            />
           </InputCard>
-          <BigCard currentTemp={currentDay?.temp}>
+          <BigCard data-cy={'big-card'} currentTemp={currentDay?.temp}>
             <BigCardVisibilityContainer visible={!!weatherData?.current}>
               <IconContainer>
                 <WeatherIcon
@@ -58,36 +62,55 @@ export const WeatherTemplate = ({ backgroundImageUrl }: WeatherTemplateProps) =>
                 <CurrentTemperatureBox>
                   <TemperatureLabelParagraph>HOJE</TemperatureLabelParagraph>
                   <TemperatureParagraph onClick={toggleUnit}>
-                    <CountUp suffix={unitSymbol} start={0} end={formatTemperature(currentDay?.temp)} />
+                    <CountUp
+                      className={'cy-today-temperature'}
+                      suffix={unitSymbol}
+                      start={0}
+                      end={formatTemperature(currentDay?.temp)}
+                    />
                   </TemperatureParagraph>
                 </CurrentTemperatureBox>
-                <WeatherDescription data-cy={'weather-description'}>{currentDay?.weather?.[0]?.description}</WeatherDescription>
-                <OtherWeatherInfoParagraph>
+                <WeatherDescription data-cy={'weather-description'}>
+                  {currentDay?.weather?.[0]?.description}
+                </WeatherDescription>
+                <OtherWeatherInfoParagraph data-cy={'wind-description'}>
                   {`Vento: ${degToCompass(currentDay?.wind_deg)} ${currentDay?.wind_speed}km/h`}
                 </OtherWeatherInfoParagraph>
-                <OtherWeatherInfoParagraph>{`Humidade: ${currentDay?.humidity}%`}</OtherWeatherInfoParagraph>
-                <OtherWeatherInfoParagraph>{`Pressão: ${currentDay?.pressure}hPA`}</OtherWeatherInfoParagraph>
+                <OtherWeatherInfoParagraph
+                  data-cy={'humidity-description'}
+                >{`Humidade: ${currentDay?.humidity}%`}</OtherWeatherInfoParagraph>
+                <OtherWeatherInfoParagraph
+                  data-cy={'pressure-description'}
+                >{`Pressão: ${currentDay?.pressure}hPA`}</OtherWeatherInfoParagraph>
               </CurrentWeatherInfoColumn>
             </BigCardVisibilityContainer>
           </BigCard>
-          <TopSmallCard currentTemp={currentDay?.temp}>
+          <TopSmallCard data-cy={'top-small-card'} currentTemp={currentDay?.temp}>
             <SmallCardVisibilityContainer visible={!!weatherData?.daily?.[1]}>
               <Spacer />
               <ForecastTemperatureBox>
                 <ForecastTemperatureLabelParagraph>{'AMANHÃ'}</ForecastTemperatureLabelParagraph>
                 <ForecastTemperatureParagraph onClick={toggleUnit}>
-                  <CountUp suffix={unitSymbol} end={formatTemperature(weatherData?.daily?.[1].temp?.day)} />
+                  <CountUp
+                    className={'cy-tomorrow-temperature'}
+                    suffix={unitSymbol}
+                    end={formatTemperature(weatherData?.daily?.[1].temp?.day)}
+                  />
                 </ForecastTemperatureParagraph>
               </ForecastTemperatureBox>
             </SmallCardVisibilityContainer>
           </TopSmallCard>
-          <BottomSmallCard currentTemp={currentDay?.temp}>
+          <BottomSmallCard data-cy={'bottom-small-card'} currentTemp={currentDay?.temp}>
             <SmallCardVisibilityContainer visible={!!weatherData?.daily?.[2]}>
               <Spacer />
               <ForecastTemperatureBox>
                 <ForecastTemperatureLabelParagraph>{'DEPOIS DE AMANHÃ'}</ForecastTemperatureLabelParagraph>
                 <ForecastTemperatureParagraph onClick={toggleUnit}>
-                  <CountUp suffix={unitSymbol} end={formatTemperature(weatherData?.daily?.[2].temp?.day)} />
+                  <CountUp
+                    className={'cy-after-tomorrow-temperature'}
+                    suffix={unitSymbol}
+                    end={formatTemperature(weatherData?.daily?.[2].temp?.day)}
+                  />
                 </ForecastTemperatureParagraph>
               </ForecastTemperatureBox>
             </SmallCardVisibilityContainer>

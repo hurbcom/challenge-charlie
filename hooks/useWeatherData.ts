@@ -3,8 +3,6 @@ import { openWeatherExternal } from 'external/openWeather/weatherData';
 import { useCurrentLocationData } from './useCurrentLocationData';
 import { useReverseGeocodingData } from './useReverseGeocodingData';
 import { WeatherData } from 'external/openWeather/types';
-import { openCageDataGeocodingExternal } from '../external/openCageData/geocoding';
-import { GeocodingCoordinates } from '../external/openCageData/types/forwardGeocoding';
 import { useForwardGeocodingData } from './useForwardGeocodingData';
 
 export const useWeatherData = () => {
@@ -26,8 +24,11 @@ export const useWeatherData = () => {
 
   const { foundPlaceName, geocodingCoordinates } = useForwardGeocodingData({ searchValue });
 
-  console.log('currentLatLong', currentLatLong);
-  console.log('GEOCODING RESULT', geocodingCoordinates);
+  useEffect(() => {
+    if (positionError) {
+      setIsLoadingWeather(false);
+    }
+  }, [positionError])
 
   useEffect(() => {
     const coordinates = geocodingCoordinates ?? currentLatLong;

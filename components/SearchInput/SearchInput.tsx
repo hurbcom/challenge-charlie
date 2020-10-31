@@ -16,7 +16,7 @@ export const SearchInput = ({ loading, onSubmitSearch, foundLocation, ...rest }:
 
   return (
     <Container>
-      <CompassIcon src={'/assets/icons/compass.svg'} isLoading={loading} />
+      <CompassIcon data-cy={'compass-icon'} src={'/assets/icons/compass.svg'} isLoading={loading} />
       <Input
         {...rest}
         type="text"

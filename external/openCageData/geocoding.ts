@@ -34,7 +34,7 @@ export const openCageDataGeocodingExternal = {
     if (!placeName) return EMPTY;
 
     return Api.get<ForwardGeocodingPayload>(
-      `/geocode/v1/json?q=${placeName}&key=${process.env.NEXT_PUBLIC_OPEN_CAGE_KEY}`,
+      `/geocode/v1/json?q=${placeName}&language=pt-BR&limit=1&key=${process.env.NEXT_PUBLIC_OPEN_CAGE_KEY}`,
       {
         baseURL: process.env.NEXT_PUBLIC_OPEN_CAGE_DATA_URL,
         validateStatus: status => {

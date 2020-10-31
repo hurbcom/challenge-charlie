@@ -1,0 +1,81 @@
+{
+  "documentation": "https://opencagedata.com/api",
+  "licenses": [{ "name": "see attribution guide", "url": "https://opencagedata.com/credits" }],
+  "rate": { "limit": 2500, "remaining": 2424, "reset": 1604188800 },
+  "results": [
+    {
+      "annotations": {
+        "DMS": { "lat": "13\u00b0 45' 15.31044'' N", "lng": "100\u00b0 29' 35.11320'' E" },
+        "MGRS": "47PPR6142521048",
+        "Maidenhead": "OK03fs91ea",
+        "Mercator": { "x": 11186839.273, "y": 1535884.61 },
+        "OSM": {
+          "edit_url": "https://www.openstreetmap.org/edit?node=1628207792#map=16/13.75425/100.49309",
+          "note_url": "https://www.openstreetmap.org/note/new#map=16/13.75425/100.49309&layers=N",
+          "url": "https://www.openstreetmap.org/?mlat=13.75425&mlon=100.49309#map=16/13.75425/100.49309"
+        },
+        "UN_M49": {
+          "regions": { "ASIA": "142", "SOUTHEAST_ASIA": "035", "TH": "764", "WORLD": "001" },
+          "statistical_groupings": ["LEDC"]
+        },
+        "callingcode": 66,
+        "currency": {
+          "alternate_symbols": [],
+          "decimal_mark": ".",
+          "html_entity": "&#x0E3F;",
+          "iso_code": "THB",
+          "iso_numeric": "764",
+          "name": "Thai Baht",
+          "smallest_denomination": 1,
+          "subunit": "Satang",
+          "subunit_to_unit": 100,
+          "symbol": "\u0e3f",
+          "symbol_first": 1,
+          "thousands_separator": ","
+        },
+        "flag": "\ud83c\uddf9\ud83c\udded",
+        "geohash": "w4rqnzbu6dsf2mdeb15w",
+        "qibla": 286.89,
+        "roadinfo": { "drive_on": "left", "speed_in": "km/h" },
+        "sun": {
+          "rise": { "apparent": 1604185980, "astronomical": 1604181660, "civil": 1604184660, "nautical": 1604183160 },
+          "set": { "apparent": 1604141400, "astronomical": 1604145720, "civil": 1604142720, "nautical": 1604144220 }
+        },
+        "timezone": {
+          "name": "Asia/Bangkok",
+          "now_in_dst": 0,
+          "offset_sec": 25200,
+          "offset_string": "+0700",
+          "short_name": "+07"
+        },
+        "what3words": { "words": "voucher.drew.beaters" },
+        "wikidata": "Q1861"
+      },
+      "bounds": {
+        "northeast": { "lat": 13.9142529, "lng": 100.653087 },
+        "southwest": { "lat": 13.5942529, "lng": 100.333087 }
+      },
+      "components": {
+        "ISO_3166-1_alpha-2": "TH",
+        "ISO_3166-1_alpha-3": "THA",
+        "_category": "place",
+        "_type": "city",
+        "city": "Banguecoque",
+        "continent": "Asia",
+        "country": "Tail\u00e2ndia",
+        "country_code": "th",
+        "county": "\u0e40\u0e02\u0e15\u0e1e\u0e23\u0e30\u0e19\u0e04\u0e23",
+        "postcode": "10200",
+        "state": "Banguecoque"
+      },
+      "confidence": 3,
+      "formatted": "Banguecoque, \u0e40\u0e02\u0e15\u0e1e\u0e23\u0e30\u0e19\u0e04\u0e23, Tail\u00e2ndia",
+      "geometry": { "lat": 13.7542529, "lng": 100.493087 }
+    }
+  ],
+  "status": { "code": 200, "message": "OK" },
+  "stay_informed": { "blog": "https://blog.opencagedata.com", "twitter": "https://twitter.com/OpenCage" },
+  "thanks": "For using an OpenCage API",
+  "timestamp": { "created_http": "Sat, 31 Oct 2020 05:22:56 GMT", "created_unix": 1604121776 },
+  "total_results": 1
+}

@@ -6,7 +6,6 @@ export const useCurrentLocationData = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       loc => {
-        console.log('CURRENT LOCATION', loc);
         setCurrentLocation(loc);
       },
       err => setError(err),

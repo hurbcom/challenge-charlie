@@ -25,7 +25,7 @@ export const CompassIcon = styled.img<{ isLoading?: boolean }>`
       ? css`
           ${rotate} 0.5s ease-in-out infinite
         `
-      : ''};
+      : undefined};
 `;
 
 export const Input = styled.input`

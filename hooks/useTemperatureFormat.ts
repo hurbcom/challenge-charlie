@@ -21,9 +21,9 @@ export const useTemperatureFormat = () => {
   const getUnitSymbol = () => {
     switch (temperatureUnit) {
       case TemperatureUnit.CELSIUS:
-        return '°C';
+        return 'ºC';
       case TemperatureUnit.FAHRENHEIT:
-        return '°F';
+        return 'ºF';
     }
   };
 

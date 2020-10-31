@@ -1,0 +1,78 @@
+{
+  "documentation": "https://opencagedata.com/api",
+  "licenses": [{ "name": "see attribution guide", "url": "https://opencagedata.com/credits" }],
+  "rate": { "limit": 2500, "remaining": 2488, "reset": 1604188800 },
+  "results": [
+    {
+      "annotations": {
+        "DMS": { "lat": "50\u00b0 27' 0.12096'' N", "lng": "30\u00b0 31' 26.88996'' E" },
+        "MGRS": "36UUA2423491598",
+        "Maidenhead": "KO50gk28va",
+        "Mercator": { "x": 3397931.288, "y": 6491614.953 },
+        "OSM": {
+          "edit_url": "https://www.openstreetmap.org/edit?relation=421866#map=17/50.45003/30.52414",
+          "note_url": "https://www.openstreetmap.org/note/new#map=17/50.45003/30.52414&layers=N",
+          "url": "https://www.openstreetmap.org/?mlat=50.45003&mlon=30.52414#map=17/50.45003/30.52414"
+        },
+        "UN_M49": {
+          "regions": { "EASTERN_EUROPE": "151", "EUROPE": "150", "UA": "804", "WORLD": "001" },
+          "statistical_groupings": ["LEDC"]
+        },
+        "callingcode": 380,
+        "currency": {
+          "alternate_symbols": [],
+          "decimal_mark": ".",
+          "html_entity": "&#x20B4;",
+          "iso_code": "UAH",
+          "iso_numeric": "980",
+          "name": "Ukrainian Hryvnia",
+          "smallest_denomination": 1,
+          "subunit": "Kopiyka",
+          "subunit_to_unit": 100,
+          "symbol": "\u20b4",
+          "symbol_first": 0,
+          "thousands_separator": ","
+        },
+        "flag": "\ud83c\uddfa\ud83c\udde6",
+        "geohash": "u8vxn84uxzvsc0th01v0",
+        "qibla": 162.45,
+        "roadinfo": { "drive_on": "right", "speed_in": "km/h" },
+        "sun": {
+          "rise": { "apparent": 1604119680, "astronomical": 1604113080, "civil": 1604117640, "nautical": 1604115360 },
+          "set": { "apparent": 1604154840, "astronomical": 1604161440, "civil": 1604156880, "nautical": 1604159220 }
+        },
+        "timezone": {
+          "name": "Europe/Kiev",
+          "now_in_dst": 0,
+          "offset_sec": 7200,
+          "offset_string": "+0200",
+          "short_name": "EET"
+        },
+        "what3words": { "words": "plunge.bottom.elder" },
+        "wikidata": "Q1899"
+      },
+      "bounds": {
+        "northeast": { "lat": 50.590833, "lng": 30.8276549 },
+        "southwest": { "lat": 50.2132422, "lng": 30.2363911 }
+      },
+      "components": {
+        "ISO_3166-1_alpha-2": "UA",
+        "ISO_3166-1_alpha-3": "UKR",
+        "_category": "place",
+        "_type": "city",
+        "city": "Kiev",
+        "continent": "Europe",
+        "country": "Ucr\u00e2nia",
+        "country_code": "ua"
+      },
+      "confidence": 2,
+      "formatted": "Kiev, Ucr\u00e2nia",
+      "geometry": { "lat": 50.4500336, "lng": 30.5241361 }
+    }
+  ],
+  "status": { "code": 200, "message": "OK" },
+  "stay_informed": { "blog": "https://blog.opencagedata.com", "twitter": "https://twitter.com/OpenCage" },
+  "thanks": "For using an OpenCage API",
+  "timestamp": { "created_http": "Sat, 31 Oct 2020 03:03:52 GMT", "created_unix": 1604113432 },
+  "total_results": 1
+}
