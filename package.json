@@ -1,20 +1,19 @@
 {
   "name": "challenge-hurb",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/eriktronkos/challenge-hurb.git",
   "author": "Erik Tronkos erikeft@gmail.com",
   "license": "MIT",
   "scripts": {
     "dev": "next dev -p 3002",
-    "clean": "rimraf .out/ && rimraf .next/",
-    "build": "yarn clean && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .ts,.tsx . --max-warnings=0",
     "cypress:server": "next build && next start -p 3002",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "cypress:test": "start-server-and-test cypress:server http-get://localhost:3002 'yarn cypress:run'"
+    "cypress:test": "start-server-and-test cypress:server http-get://localhost:3002 'yarn cypress:run'",
+    "cypress:test-open": "start-server-and-test cypress:server http-get://localhost:3002 'yarn cypress:open'"
   },
   "dependencies": {
     "@babel/runtime": "^7.8.7",
