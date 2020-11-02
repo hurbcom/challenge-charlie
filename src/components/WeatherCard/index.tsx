@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import * as S from './styles'
 
-const WeatherCard = () => {
+const WeatherCard = ({ position }) => {
   const [isCelsius, setIsCelsius] = useState(true)
   return (
-    <S.Wrapper>
+    <S.Wrapper position={position}>
       <S.BodyCard>
         <S.TitleSection>
           <S.Title>Rio de Janeiro, Rio de Janeiro</S.Title>

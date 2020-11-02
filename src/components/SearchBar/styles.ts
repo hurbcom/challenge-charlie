@@ -9,6 +9,7 @@ export const Wrapper = styled.form`
   border-radius: 1.2rem 1.2rem 0 0;
   width: 100%;
   max-width: 425px;
+  z-index: 2;
 `
 
 export const Input = styled.input`

@@ -9,6 +9,11 @@ export const Wrapper = styled.div`
   max-width: 425px;
   border-radius: 0 0 1.2rem 1.2rem;
   padding: 1.6rem;
+  transition: all 0.5s ease;
+  transform: ${({ position }) =>
+    Object.keys(position).length === 0 ? 'scaleY(0.1)' : 'scaleY(1)'};
+  margin-top: ${({ position }) =>
+    Object.keys(position).length === 0 ? '-33rem' : '0'};
 `
 export const BodyCard = styled.div`
   display: flex;
