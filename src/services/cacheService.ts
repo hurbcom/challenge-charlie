@@ -1,7 +1,7 @@
 class CacheService {
   public static setCacheData = (
     key: string,
-    value: number,
+    value,
     ttl: number,
     type = 'DAYS'
   ) => {
