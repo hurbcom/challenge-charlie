@@ -8,12 +8,18 @@ import Loader from 'components/Loader'
 
 export default function Home() {
   const [positionObj, setPositionObj] = useState<any>({})
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const getLocation = async () => {
     setIsLoading(true)
-    const position = await Geolocation.askLocation()
-    if (position.permission) setPositionObj(position)
-    setIsLoading(false)
+    try {
+      const position = await Geolocation.askLocation()
+      if (position.permission) setPositionObj(position)
+    } catch (e) {
+      alert(e.message)
+      console.log('Erro: ', e)
+    } finally {
+      setIsLoading(false)
+    }
   }
   useEffect(() => {
     getLocation()
