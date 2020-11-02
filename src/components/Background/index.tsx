@@ -19,7 +19,7 @@ const Background = ({ children }: IBackground) => {
       return
     }
     const background = await BingService.getImageFromBing()
-    CacheService.setCacheData('background', background, 1, 'DAYS')
+    CacheService.setCacheData('background', background, 3, 'HOURS')
     setBgImage(background)
   }
 

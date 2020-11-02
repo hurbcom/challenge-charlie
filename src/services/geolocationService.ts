@@ -7,7 +7,7 @@ class Geolocation {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
     }
-    CacheService.setCacheData('location', postionObj, 15, 'SECONDS')
+    CacheService.setCacheData('location', postionObj, 15, 'MINUTES')
     return postionObj
   }
   private static handlePermissionError = (error: any) => {
@@ -15,7 +15,7 @@ class Geolocation {
       permission: false
     }
     if (error.code == error.PERMISSION_DENIED) {
-      CacheService.setCacheData('location', postionObj, 15, 'SECONDS')
+      CacheService.setCacheData('location', postionObj, 15, 'MINUTES')
       return {
         error: true,
         errorCode: 1,
