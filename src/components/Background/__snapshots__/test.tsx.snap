@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Background /> should render the heading 1`] = `
+<main
+  class=""
+>
+  <h1>
+    Background
+  </h1>
+</main>
+`;

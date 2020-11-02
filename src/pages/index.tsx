@@ -1,5 +1,10 @@
+import Background from 'components/Background'
 import SearchBar from 'components/SearchBar'
 
 export default function Home() {
-  return <SearchBar />
+  return (
+    <Background>
+      <SearchBar />
+    </Background>
+  )
 }
