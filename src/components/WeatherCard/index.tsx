@@ -2,7 +2,11 @@ import { useState } from 'react'
 
 import * as S from './styles'
 
-const WeatherCard = ({ position }) => {
+interface Position {
+  position: any
+}
+
+const WeatherCard = ({ position }: Position) => {
   const [isCelsius, setIsCelsius] = useState(true)
   return (
     <S.Wrapper position={position}>

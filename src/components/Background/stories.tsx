@@ -6,4 +6,4 @@ export default {
   component: Background
 } as Meta
 
-export const Default: Story = () => <Background />
+export const Default: Story = () => <Background>Algum Elemento Aqui</Background>

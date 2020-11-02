@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react'
 import Background from '.'
 
 describe('<Background />', () => {
-  it('should render the heading', () => {
-    const { container } = render(<Background />)
+  it('should render the background', () => {
+    const { container } = render(<Background>hi</Background>)
 
     expect(
       screen.getByRole('heading', { name: /Background/i })

@@ -6,4 +6,6 @@ export default {
   component: WeatherCard
 } as Meta
 
-export const Default: Story = () => <WeatherCard />
+export const Default: Story = () => (
+  <WeatherCard position={{ permission: true, latitude: 123, longitude: 123 }} />
+)

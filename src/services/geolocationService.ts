@@ -1,7 +1,7 @@
 import CacheService from './cacheService'
 
 class Geolocation {
-  public static handlePermissionSuccess = (position) => {
+  public static handlePermissionSuccess = (position: any) => {
     const postionObj = {
       permission: true,
       latitude: position.coords.latitude,
@@ -10,7 +10,7 @@ class Geolocation {
     CacheService.setCacheData('location', postionObj, 15, 'SECONDS')
     return postionObj
   }
-  private static handlePermissionError = (error) => {
+  private static handlePermissionError = (error: any) => {
     const postionObj = {
       permission: false
     }

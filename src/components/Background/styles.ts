@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface Props {
+  bg?: string
+}
+
 export const Wrapper = styled.main`
   position: relative;
   width: 100%;
@@ -18,7 +22,7 @@ export const Wrapper = styled.main`
     left: 0;
     width: 100%;
     height: 100%;
-    background: ${({ bg }) =>
+    background: ${({ bg }: Props) =>
       bg === '#06092b' ? '#06092b' : `url(https://www.bing.com${bg})`};
     background-size: cover;
     background-position: center;

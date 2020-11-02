@@ -1,7 +1,7 @@
 class CacheService {
   public static setCacheData = (
     key: string,
-    value,
+    value: any,
     ttl: number,
     type = 'DAYS'
   ) => {
@@ -31,7 +31,7 @@ class CacheService {
     localStorage.setItem(`_CACHE_DATA_RENATO_${key}`, JSON.stringify(item))
   }
 
-  public static getCacheData = (key) => {
+  public static getCacheData = (key: string) => {
     const itemStr = localStorage.getItem(`_CACHE_DATA_RENATO_${key}`)
     // if is expired return null
     if (!itemStr) {

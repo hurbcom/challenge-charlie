@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface Props {
+  position?: any
+}
+
 export const Wrapper = styled.div`
   background-color: rgb(66 69 78 / 0.75);
   color: #fff;
@@ -10,9 +14,9 @@ export const Wrapper = styled.div`
   border-radius: 0 0 1.2rem 1.2rem;
   padding: 1.6rem;
   transition: all 0.5s ease;
-  transform: ${({ position }) =>
+  transform: ${({ position }: Props) =>
     Object.keys(position).length === 0 ? 'scaleY(0.1)' : 'scaleY(1)'};
-  margin-top: ${({ position }) =>
+  margin-top: ${({ position }: Props) =>
     Object.keys(position).length === 0 ? '-33rem' : '0'};
 `
 export const BodyCard = styled.div`
