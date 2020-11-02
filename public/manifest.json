@@ -1,0 +1,21 @@
+{
+  "name": "Renato Lins - Frontend Charlie Hurb",
+  "short_name": "Frontend Challenge",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#06092B",
+  "description": "This is a frontend challenge for hurb, created by Renato Lins",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#06092B"
+}
