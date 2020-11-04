@@ -2,20 +2,20 @@ import { useState } from 'react'
 
 import * as S from './styles'
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState<string>()
+const SearchBar = ({ onPerformSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('')
 
   const onChangeInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   }
 
-  const onPerformSearch = (e: React.SyntheticEvent<EventTarget>) => {
+  const handleSubmit = (e, searchTerm) => {
     e.preventDefault()
-    if (!searchTerm) return false
-    console.log(searchTerm)
+    onPerformSearch(searchTerm)
   }
+
   return (
-    <S.Wrapper onSubmit={onPerformSearch}>
+    <S.Wrapper onSubmit={(e) => handleSubmit(e, searchTerm)}>
       <S.Input
         placeholder="País, Estado ou Cidade"
         onChange={onChangeInputSearch}

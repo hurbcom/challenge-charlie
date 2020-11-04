@@ -35,6 +35,7 @@ export const Submit = styled.input`
   color: #fff;
   text-align: center;
   font-weight: bold;
+  border: none;
   border-radius: 1.2rem;
   font-size: 1.3rem;
   padding: 0.4rem 1.5rem;
@@ -45,13 +46,19 @@ export const Submit = styled.input`
   &:hover {
     background-color: #189e83;
   }
-  @media (min-width: 320px) {
+  @media (min-width: 340px) {
     margin-left: 0;
-  }
-  @media (min-width: 425px) {
     font-size: 1.6rem;
-    margin-top: 0;
+  }
+  @media (min-width: 350px) {
     margin-left: 1rem;
+  }
+  @media (max-width: 360px) {
+    margin-top: 1rem;
+  }
+  @media (min-width: 361px) {
+    margin-left: 1rem;
+    margin-top: 0rem;
   }
   @media (min-width: 768px) {
     font-size: 2rem;
