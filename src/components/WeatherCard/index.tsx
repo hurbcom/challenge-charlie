@@ -6,7 +6,6 @@ import OpenCageService from 'services/openCageService'
 import SearchBar from 'components/SearchBar'
 import OpenWeatherService from 'services/openWeatherService'
 import Utils from 'utils/utils'
-import Loader from 'components/Loader'
 import SkeletonLoader from 'components/SkeletonLoader'
 
 interface Props {
@@ -17,12 +16,27 @@ const WeatherCard = ({ position }: Props) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isCelsius, setIsCelsius] = useState(true)
   const [search, setSearch] = useState<string>('')
-  const [country, setCountry] = useState('')
   const [city, setCity] = useState('')
   const [weatherObj, setWeatherObj] = useState({
-    weatherDescription: 'bla bla bla',
-    celsius: 0,
-    fahrenheit: 0
+    today: {
+      celsius: 0,
+      fahrenheit: 0,
+      description: '',
+      windSpeed: 0,
+      windDeg: '',
+      humidity: 0,
+      pressure: 0
+    },
+    tomorrow: {
+      celsius: 0,
+      fahrenheit: 0,
+      icon: ''
+    },
+    afterTomorrow: {
+      celsius: 0,
+      fahrenheit: 0,
+      icon: ''
+    }
   })
 
   const getSearchedLocation = async () => {
@@ -31,27 +45,48 @@ const WeatherCard = ({ position }: Props) => {
       latitude,
       longitude
     )
-    setCountry(response?.country)
     setCity(response?.city)
-    handleSubmitSearch(response?.city)
+    await handleSubmitSearch(response?.city)
   }
 
   const handleSubmitSearch = async (value: string) => {
     try {
       setIsLoading(true)
-      const results = await OpenWeatherService.getWeatherWithCityName(value)
+      const latLongCityCountry = await OpenCageService.getLatLongFromCityName(
+        value
+      )
+      const results = await OpenWeatherService.getWeatherDaily(
+        latLongCityCountry?.lat,
+        latLongCityCountry?.long
+      )
       if (results) {
-        const celsius = Math.round(results.main.temp)
-        const fahrenheit = Math.round(
-          Utils.convertToFahrenheit(results.main.temp)
-        )
+        const { today, tomorrow, afterTomorrow } = results
         setWeatherObj({
-          weatherDescription: results.weather[0].description,
-          celsius,
-          fahrenheit
+          today: {
+            celsius: Math.round(today.temp),
+            fahrenheit: Math.round(Utils.convertToFahrenheit(today.temp)),
+            description: today.weather[0].description,
+            windSpeed: today.wind_speed,
+            windDeg: Utils.getWindDeg(today.wind_deg),
+            humidity: today.humidity,
+            pressure: today.pressure
+          },
+          tomorrow: {
+            celsius: Math.round(tomorrow.temp.day),
+            fahrenheit: Math.round(
+              Utils.convertToFahrenheit(tomorrow.temp.day)
+            ),
+            icon: tomorrow.weather[0].main
+          },
+          afterTomorrow: {
+            celsius: Math.round(afterTomorrow.temp.day),
+            fahrenheit: Math.round(
+              Utils.convertToFahrenheit(afterTomorrow.temp.day)
+            ),
+            icon: afterTomorrow.weather[0].main
+          }
         })
-        setCountry(results.sys.country)
-        setCity(results.name)
+        setCity(latLongCityCountry?.city)
       }
     } catch (err) {
       console.error(err)
@@ -63,12 +98,7 @@ const WeatherCard = ({ position }: Props) => {
   useEffect(() => {
     if (position && position.latitude && position.longitude)
       getSearchedLocation()
-  }, [position])
-
-  useEffect(() => {
-    if (position && position.latitude && position.longitude)
-      getSearchedLocation()
-  }, [search])
+  }, [position, search])
 
   return (
     <>
@@ -103,31 +133,39 @@ const WeatherCard = ({ position }: Props) => {
       )}
       {!isLoading && (
         <>
+          {console.log(weatherObj)}
           <SearchBar onPerformSearch={(value) => handleSubmitSearch(value)} />
           <S.Wrapper position={position}>
             <S.BodyCard>
               <S.TitleSection>
-                <S.Title>
-                  {city}, {country}
-                </S.Title>
+                <S.Title>{city}</S.Title>
                 <S.Date>HOJE</S.Date>
               </S.TitleSection>
               {isCelsius && (
                 <S.Temperature onClick={() => setIsCelsius(!isCelsius)}>
-                  {weatherObj.celsius}ºC
+                  {weatherObj.today.celsius}ºC
                 </S.Temperature>
               )}
               {!isCelsius && (
                 <S.Temperature onClick={() => setIsCelsius(!isCelsius)}>
-                  {weatherObj.fahrenheit}ºF
+                  {weatherObj.today.fahrenheit}ºF
                 </S.Temperature>
               )}
               <S.Divider />
-              <S.WeatherStatus>Ensolarado</S.WeatherStatus>
+              <S.WeatherStatus>
+                {Utils.capitalize(weatherObj.today.description)}
+              </S.WeatherStatus>
               <S.DetailsWrapper>
-                <S.DetailedStatus>Vento: NO 64.km/h</S.DetailedStatus>
-                <S.DetailedStatus>Umidade: 78%</S.DetailedStatus>
-                <S.DetailedStatus>Pressão: 1003hPA</S.DetailedStatus>
+                <S.DetailedStatus>
+                  Vento: {weatherObj.today.windDeg} {weatherObj.today.windSpeed}
+                  km/h
+                </S.DetailedStatus>
+                <S.DetailedStatus>
+                  Umidade: {weatherObj.today.humidity}%
+                </S.DetailedStatus>
+                <S.DetailedStatus>
+                  Pressão: {weatherObj.today.pressure}hPA
+                </S.DetailedStatus>
               </S.DetailsWrapper>
             </S.BodyCard>
             <S.FooterCard>
@@ -135,12 +173,12 @@ const WeatherCard = ({ position }: Props) => {
                 <S.Icon className="icon" data-icon="H" />{' '}
                 {isCelsius && (
                   <S.FooterTemperature>
-                    {weatherObj.celsius}ºC
+                    {weatherObj.tomorrow.celsius}ºC
                   </S.FooterTemperature>
                 )}
                 {!isCelsius && (
                   <S.FooterTemperature>
-                    {weatherObj.fahrenheit}ºF
+                    {weatherObj.tomorrow.fahrenheit}ºF
                   </S.FooterTemperature>
                 )}
                 <S.FooterDate>amanhã</S.FooterDate>
@@ -149,12 +187,12 @@ const WeatherCard = ({ position }: Props) => {
                 <S.Icon className="icon" data-icon="H" />{' '}
                 {isCelsius && (
                   <S.FooterTemperature>
-                    {weatherObj.celsius}ºC
+                    {weatherObj.afterTomorrow.celsius}ºC
                   </S.FooterTemperature>
                 )}
                 {!isCelsius && (
                   <S.FooterTemperature>
-                    {weatherObj.fahrenheit}ºF
+                    {weatherObj.afterTomorrow.fahrenheit}ºF
                   </S.FooterTemperature>
                 )}
                 <S.FooterDate>depois de amanhã</S.FooterDate>

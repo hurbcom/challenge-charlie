@@ -39,6 +39,11 @@ export const TitleSection = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 `
 export const Date = styled.h2`
   font-size: 2rem;
