@@ -5,7 +5,7 @@
   "author": "Mateus Barbosa mateusx@poli.ufrj.br",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev -p 3002",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .ts,.tsx . --max-warnings=0"

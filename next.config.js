@@ -16,5 +16,11 @@ module.exports = {
     }
     return config;
   },
-  env: {}
+  env: {
+    bingUrl: process.env.BING_URL,
+    openCageUrl: process.env.OPEN_CAGE_URL,
+    openCageKey: process.env.OPEN_CAGE_KEY,
+    openWeatherUrl: process.env.OPEN_WEATHER_URL,
+    openWeatherKey: process.env.OPEN_WEATHER_KEY
+  }
 }
