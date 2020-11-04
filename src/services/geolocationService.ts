@@ -53,7 +53,7 @@ class Geolocation {
           (error) => {
             reject(Geolocation.handlePermissionError(error))
           },
-          { timeout: 10000, maximumAge: 10000, enableHighAccuracy: false }
+          { timeout: 10000, maximumAge: 10000, enableHighAccuracy: true }
         )
       } else {
         reject({
