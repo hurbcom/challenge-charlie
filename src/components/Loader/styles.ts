@@ -11,4 +11,8 @@ export const Wrapper = styled.main`
   justify-content: center;
   background: #000000cf;
   color: #fff;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 `
