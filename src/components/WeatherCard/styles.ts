@@ -1,12 +1,30 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import Utils from 'utils/utils'
 
-interface Props {
+interface BgProps {
+  bgColor: number
   position?: any
 }
 
+interface IconProps {
+  iconColor: number
+}
+
+const backgroundAnimation = keyframes`
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
 export const Wrapper = styled.div`
-  background-color: rgb(66 69 78 / 0.75);
-  color: #fff;
+  background-image: ${({ bgColor }: BgProps) =>
+    Utils.getBackgroundColorMatchWithWeather(bgColor)};
+  color: ${({ bgColor }: BgProps) =>
+    Utils.getTextColorMatchWithWeather(bgColor)};
   font-size: 1.6rem;
   width: 100%;
   height: 600px;
@@ -14,10 +32,31 @@ export const Wrapper = styled.div`
   border-radius: 0 0 1.2rem 1.2rem;
   padding: 1.6rem;
   transition: all 0.5s ease;
-  transform: ${({ position }: Props) =>
+  transform: ${({ position }: BgProps) =>
     Object.keys(position).length === 0 ? 'scaleY(0.1)' : 'scaleY(1)'};
-  margin-top: ${({ position }: Props) =>
+  margin-top: ${({ position }: BgProps) =>
     Object.keys(position).length === 0 ? '-33rem' : '0'};
+  transition: background-image 1s ease;
+  z-index: 1;
+  animation: ${backgroundAnimation} 1s forwards;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: ${({ bgColor }: BgProps) =>
+      Utils.getBackgroundHoverColorMatchWithWeather(bgColor)};
+    z-index: -1;
+    transition: opacity 0.5s linear;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
 `
 export const BodyCard = styled.div`
   display: flex;
@@ -34,7 +73,7 @@ export const TitleSection = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 20%;
+  height: 25%;
 `
 export const Title = styled.h1`
   font-size: 2rem;
@@ -72,10 +111,10 @@ export const DetailsWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 30%;
 `
 export const DetailedStatus = styled.p`
   line-height: 2.5rem;
+  font-weight: 600;
 `
 export const FooterCard = styled.div`
   display: flex;
@@ -109,6 +148,7 @@ export const FooterDate = styled.h2`
   }
 `
 export const Icon = styled.span`
-  font-size: 2rem;
-  color: yellow;
+  font-size: 3rem;
+  color: ${({ iconColor }: IconProps) =>
+    Utils.getTextColorMatchWithWeather(iconColor)};
 `

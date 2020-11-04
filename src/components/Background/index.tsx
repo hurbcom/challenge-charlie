@@ -14,7 +14,6 @@ const Background = ({ children }: IBackground) => {
   const getBackgroundImage = async () => {
     const cache = await CacheService.getCacheData('background')
     if (cache) {
-      console.log(cache)
       setBgImage(cache)
       return
     }

@@ -76,14 +76,14 @@ const WeatherCard = ({ position }: Props) => {
             fahrenheit: Math.round(
               Utils.convertToFahrenheit(tomorrow.temp.day)
             ),
-            icon: tomorrow.weather[0].main
+            icon: Utils.getIconMatchWithWeather(tomorrow.weather[0].main)
           },
           afterTomorrow: {
             celsius: Math.round(afterTomorrow.temp.day),
             fahrenheit: Math.round(
               Utils.convertToFahrenheit(afterTomorrow.temp.day)
             ),
-            icon: afterTomorrow.weather[0].main
+            icon: Utils.getIconMatchWithWeather(afterTomorrow.weather[0].main)
           }
         })
         setCity(latLongCityCountry?.city)
@@ -102,13 +102,13 @@ const WeatherCard = ({ position }: Props) => {
 
   return (
     <>
-      {isLoading && (
-        <>
-          <SearchBar onPerformSearch={(value) => handleSubmitSearch(value)} />
-          <S.Wrapper position={position}>
+      <SearchBar onPerformSearch={(value) => handleSubmitSearch(value)} />
+      <S.Wrapper bgColor={weatherObj.today.celsius} position={position}>
+        {isLoading && (
+          <>
             <S.BodyCard>
               <S.TitleSection>
-                <SkeletonLoader width="60%" height="2.7rem" />
+                <SkeletonLoader width="60%" height="5.4rem" />
                 <SkeletonLoader width="30%" height="2.7rem" />
               </S.TitleSection>
               <SkeletonLoader width="13.4rem" height="8rem" />
@@ -128,14 +128,10 @@ const WeatherCard = ({ position }: Props) => {
                 <SkeletonLoader width="9rem" height="9rem" />
               </S.FooterDetails>
             </S.FooterCard>
-          </S.Wrapper>
-        </>
-      )}
-      {!isLoading && (
-        <>
-          {console.log(weatherObj)}
-          <SearchBar onPerformSearch={(value) => handleSubmitSearch(value)} />
-          <S.Wrapper position={position}>
+          </>
+        )}
+        {!isLoading && (
+          <>
             <S.BodyCard>
               <S.TitleSection>
                 <S.Title>{city}</S.Title>
@@ -170,7 +166,11 @@ const WeatherCard = ({ position }: Props) => {
             </S.BodyCard>
             <S.FooterCard>
               <S.FooterDetails>
-                <S.Icon className="icon" data-icon="H" />{' '}
+                <S.Icon
+                  iconColor={weatherObj.today.celsius}
+                  className="icon"
+                  data-icon={weatherObj.tomorrow.icon}
+                />{' '}
                 {isCelsius && (
                   <S.FooterTemperature>
                     {weatherObj.tomorrow.celsius}ºC
@@ -184,7 +184,11 @@ const WeatherCard = ({ position }: Props) => {
                 <S.FooterDate>amanhã</S.FooterDate>
               </S.FooterDetails>
               <S.FooterDetails>
-                <S.Icon className="icon" data-icon="H" />{' '}
+                <S.Icon
+                  iconColor={weatherObj.today.celsius}
+                  className="icon"
+                  data-icon={weatherObj.afterTomorrow.icon}
+                />{' '}
                 {isCelsius && (
                   <S.FooterTemperature>
                     {weatherObj.afterTomorrow.celsius}ºC
@@ -198,9 +202,9 @@ const WeatherCard = ({ position }: Props) => {
                 <S.FooterDate>depois de amanhã</S.FooterDate>
               </S.FooterDetails>
             </S.FooterCard>
-          </S.Wrapper>
-        </>
-      )}
+          </>
+        )}
+      </S.Wrapper>
     </>
   )
 }
