@@ -1,6 +1,11 @@
 import * as S from './styles'
 
-const SkeletonLoader = ({ height, width }) => (
+interface Props {
+  height: string
+  width: string
+}
+
+const SkeletonLoader = ({ height, width }: Props) => (
   <S.SkeletonWrapper height={height} width={width} />
 )
 

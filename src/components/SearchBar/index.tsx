@@ -2,14 +2,21 @@ import { useState } from 'react'
 
 import * as S from './styles'
 
-const SearchBar = ({ onPerformSearch }) => {
+interface Props {
+  onPerformSearch: (searchTerm: string) => void
+}
+
+const SearchBar = ({ onPerformSearch }: Props) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const onChangeInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   }
 
-  const handleSubmit = (e, searchTerm) => {
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement>,
+    searchTerm: string
+  ) => {
     e.preventDefault()
     onPerformSearch(searchTerm)
   }

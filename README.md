@@ -4,6 +4,8 @@
 
 Tomei o cuidado de criar um serviço de cache para que uma vez que chamada a url de background do bing, o serviço guarda a url em cache por 3 horas pois a imagem do bing só atualiza a cada 24 horas.
 
+TODO: pegar informações adicionais do clima e o tempo de amanhã e depois de amanhã.
+
 
 
 -   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
