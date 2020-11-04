@@ -9,9 +9,24 @@ class OpenCageService {
         `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=c63386b4f77e46de817bdf94f552cddf&language=${language}`
       )
       const results = await response.json()
-      console.log(results)
-      const { state, city, country } = results.results[0].components
-      return { state, city, country }
+      const { formatted } = results.results[0]
+      return { city: formatted }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  public static getLatLongFromCityName = async (
+    cityName: string,
+    language = 'pt-BR'
+  ) => {
+    try {
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=c63386b4f77e46de817bdf94f552cddf&language=${language}`
+      )
+      const results = await response.json()
+      const { lat, lng } = results.results[0].geometry
+      const { formatted } = results.results[0]
+      return { lat, long: lng, city: formatted }
     } catch (err) {
       console.error(err)
     }
