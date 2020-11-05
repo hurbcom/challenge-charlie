@@ -13,15 +13,20 @@ interface Props {
 }
 
 const WeatherCard = ({ position }: Props) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [isCelsius, setIsCelsius] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isCelsius, setIsCelsius] = useState<boolean>(true)
   const [search, setSearch] = useState<string>('')
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState<string>('')
+  const [errorState, setErrorState] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>(
+    'Erro, por favor, tente novamente'
+  )
   const [weatherObj, setWeatherObj] = useState({
     today: {
       celsius: 0,
       fahrenheit: 0,
       description: '',
+      icon: '',
       windSpeed: 0,
       windDeg: '',
       humidity: 0,
@@ -40,7 +45,14 @@ const WeatherCard = ({ position }: Props) => {
   })
 
   const getSearchedLocation = async () => {
+    console.log(position)
     const { latitude, longitude } = position
+    if (position.error) {
+      setErrorState(true)
+      setErrorMessage(position.message)
+      setIsLoading(false)
+    }
+    if (!latitude || !longitude) return
     const response = await OpenCageService.getLocationNameFromLatLong(
       latitude,
       longitude
@@ -51,10 +63,17 @@ const WeatherCard = ({ position }: Props) => {
 
   const handleSubmitSearch = async (value: string) => {
     try {
+      setErrorState(false)
       setIsLoading(true)
       const latLongCityCountry = await OpenCageService.getLatLongFromCityName(
         value
       )
+      if (latLongCityCountry.message) {
+        console.log(latLongCityCountry)
+        setErrorState(true)
+        setErrorMessage(latLongCityCountry.message)
+        throw new Error('erro')
+      }
       const results = await OpenWeatherService.getWeatherDaily(
         latLongCityCountry?.lat,
         latLongCityCountry?.long
@@ -66,6 +85,7 @@ const WeatherCard = ({ position }: Props) => {
             celsius: Math.round(today.temp),
             fahrenheit: Math.round(Utils.convertToFahrenheit(today.temp)),
             description: today.weather[0].description,
+            icon: Utils.getIconMatchWithWeather(today.weather[0].main),
             windSpeed: today.wind_speed,
             windDeg: Utils.getWindDeg(today.wind_deg),
             humidity: today.humidity,
@@ -96,14 +116,16 @@ const WeatherCard = ({ position }: Props) => {
   }
 
   useEffect(() => {
-    if (position && position.latitude && position.longitude)
-      getSearchedLocation()
+    if (position) getSearchedLocation()
   }, [position, search])
 
   return (
     <>
       <SearchBar onPerformSearch={(value) => handleSubmitSearch(value)} />
-      <S.Wrapper bgColor={weatherObj.today.celsius} position={position}>
+      <S.Wrapper
+        bgColor={isLoading || errorState ? 999 : weatherObj.today.celsius}
+        position={position}
+      >
         {isLoading && (
           <>
             <S.BodyCard>
@@ -130,7 +152,7 @@ const WeatherCard = ({ position }: Props) => {
             </S.FooterCard>
           </>
         )}
-        {!isLoading && (
+        {!isLoading && !errorState && (
           <>
             <S.BodyCard>
               <S.TitleSection>
@@ -149,7 +171,12 @@ const WeatherCard = ({ position }: Props) => {
               )}
               <S.Divider />
               <S.WeatherStatus>
-                {Utils.capitalize(weatherObj.today.description)}
+                {Utils.capitalize(weatherObj.today.description)}{' '}
+                <S.Icon
+                  iconColor={weatherObj.today.celsius}
+                  className="icon"
+                  data-icon={weatherObj.today.icon}
+                />
               </S.WeatherStatus>
               <S.DetailsWrapper>
                 <S.DetailedStatus>
@@ -202,6 +229,14 @@ const WeatherCard = ({ position }: Props) => {
                 <S.FooterDate>depois de amanhã</S.FooterDate>
               </S.FooterDetails>
             </S.FooterCard>
+          </>
+        )}
+        {!isLoading && errorState && (
+          <>
+            <S.BodyCard>
+              <S.ErrorTitle>{errorMessage}</S.ErrorTitle>
+              <S.Temperature>😔</S.Temperature>
+            </S.BodyCard>
           </>
         )}
       </S.Wrapper>

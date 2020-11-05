@@ -21,7 +21,7 @@ const backgroundAnimation = keyframes`
 `
 
 export const Wrapper = styled.div`
-  background-image: ${({ bgColor }: BgProps) =>
+  background: ${({ bgColor }: BgProps) =>
     Utils.getBackgroundColorMatchWithWeather(bgColor)};
   color: ${({ bgColor }: BgProps) =>
     Utils.getTextColorMatchWithWeather(bgColor)};
@@ -36,7 +36,7 @@ export const Wrapper = styled.div`
     Object.keys(position).length === 0 ? 'scaleY(0.1)' : 'scaleY(1)'};
   margin-top: ${({ position }: BgProps) =>
     Object.keys(position).length === 0 ? '-33rem' : '0'};
-  transition: background-image 1s ease;
+  transition: all 0.2s ease-in;
   z-index: 1;
   animation: ${backgroundAnimation} 1s forwards;
 
@@ -47,7 +47,7 @@ export const Wrapper = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: ${({ bgColor }: BgProps) =>
+    background: ${({ bgColor }: BgProps) =>
       Utils.getBackgroundHoverColorMatchWithWeather(bgColor)};
     z-index: -1;
     transition: opacity 0.5s linear;
@@ -83,6 +83,10 @@ export const Title = styled.h1`
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
+`
+export const ErrorTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: 700;
 `
 export const Date = styled.h2`
   font-size: 2rem;
