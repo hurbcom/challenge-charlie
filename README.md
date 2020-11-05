@@ -1,45 +1,96 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-## Observações:
+## Sumário
 
-Tomei o cuidado de criar um serviço de cache para que uma vez que chamada a url de background do bing, o serviço guarda a url em cache por 3 horas pois a imagem do bing só atualiza a cada 24 horas.
+- [Demonstração da aplicação](#Demo-da-aplicação)	
+- [Requisitos para rodar o projeto em Desenvolvimento](#Requisitos-para-rodar-o-projeto-em-Desenvolvimento)
+- [Instalação do ambiente de Desenvolvimento](#Instalação-do-ambiente-de-Desenvolvimento)
+- [Documentação do Processo de Desenvolvimento](#Documentação-do-Processo-de-Desenvolvimento)
+- [Redes Sociais e Portfólio](#Redes-Sociais-e-Portfólio)
 
-TODO: pegar informações adicionais do clima e o tempo de amanhã e depois de amanhã.
+## Demo da aplicação
+https://renatolins-challenge-charlie.vercel.app/
 
+## Requisitos para rodar o projeto em Desenvolvimento
 
++ [Node](https://nodejs.org/)
++ [Yarn (opcional)](https://yarnpkg.com/)
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+## Instalação
 
-## Critério de avaliação
+Abra o terminal e digite:
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
+### `git clone https://github.com/renatolinsjr/challenge-charlie.git`
 
-## Dúvidas
+Agora que você clonou o projeto para o seu computador, será necessário instalar todas as dependências para a aplicação rodar diretamente no localhost. Para isso, digite o comando abaixo e espere a instalação terminar:
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+### `npm install`
+ou
+### `yarn`
 
-Boa sorte e boa viagem! ;)
+Com a aplicação clonada e todas as dependências instaladas você pode executar o comando abaixo para iniciar a aplicação:
+
+### `npm run dev`
+ou
+### `yarn dev`
+
+A aplicação rodará no endereço http://localhost:3000/ divirta-se!
+
+## Documentação do Processo de Desenvolvimento
+
+### Sobre as configurações:
+
+Antes do desenvolvimento, reservei o meu tempo para montar a estrutura do projeto e para isso resolvi utilizar o framework Next.js como ponto de partida por ser a maneira mais rápida e prática de se iniciar uma aplicação em React atualmente. Com a escolha do framework, a aplicação que inicialmente é uma SPA caso venha a escalar poderá ser facilmente alterada para páginas com SSG ou SSR.
+
+Mas isso não descarta o processo de configuração do Webpack. No arquivo next-config.js eu posso sobrescrever o Webpack e foi o que eu fiz, deixei a aplicação pronta para se tornar uma PWA também. Ainda sobre configuração, fiz todo o processo de instalação do plugin do Styled Components no babel e utilizei pressets de typescript.
+
+### Sobre as mudanças na interface:
+
+A maior preocupação de um Frontend são seus usuários. E para todo projeto eu faço as mesmas perguntas:
+
+ - A interface é clara o bastante para ser utilizada por qualquer usuário?
+ - Qualquer interação, seja com a interface ou erros estão sendo mostrados para o usuário?
+ - O usuário se sente confortável em passar horas utilizando a aplicação?
+
+Bom, a resposta para essas três perguntas estão claramente representadas no produto final:
+
+#### A interface é clara o bastante para ser utilizada por qualquer usuário?
+
+Pensei em mudar o layout inicial a fim de propor uma experiência mais moderna e simples para o usuário. Retirei a divisão do card que inicialmente era feita em 3 camadas e que poderia causar desconforto visual para o usuário e coloquei um degradê no card inteiro. O usuário ainda tem a possibilidade de passar o mouse por cima do card e alternar entre cores mais intensas e cores menos vivas. Nem todo usuário deseja saber os detalhes de vento, pressão ou umidade do ar, por isso coloquei centralizado as principais informações (temperatura e condição climática) separadas por uma linha pontilhada para chamar a atenção do usuário. Logo acima tem o nome do local que o usuário buscou, junto com a informação da data de hoje. As informações do clima dos outros dias encontram-se na parte inferior que também possuem interação ao passar com o mouse. Clicando na temperatura é possível alternar entre Celsius e Fahrenheit conforme solicitado.
+
+#### Qualquer interação, seja com a interface ou erros estão sendo mostrados para o usuário?
+
+A aplicação possui estado de erros claros para caso o usuário bloqueio o acesso a localização pelo navegador e caso o usuário digite uma localidade errada. O feedback é visual com uma mensagem e um emoji deixando claro as informações que o usuário precisa fazer para continuar usando a aplicação.
+
+#### O usuário se sente confortável em passar horas utilizando a aplicação?
+
+Conforme dito mais acima, o usuário pode interagir com a interface, copiar os textos (propositalmente), interagir com a visualização da temperatura e interagir com a cor do card, tudo isso em uma interface bem moderna e responsiva. Além disso é guardado o cache da localização do usuário por 15 minutos para ele não ser solicitado novamente e um cache da imagem do bing a cada 3 horas para não estourar o número de requests diários.
+
+### Tasks Checklist
+
+ - [x] Construir um microsite responsivo para mostrar a previsão do tempo
+ - [x] Quando a página for aberta deve ser coletada as coordenadas geográficas do usuário via _reverse geocode_
+ - [x] Deve usar a imagem de destaque do Bing como fundo de tela 
+ - [x] Aplicar degradê de cores conforme a temperatura:
+ - menor que 15º: tons azulados
+ - maior que 35º: tons avermelhados
+ - qualquer outra termperatura: tons amarelados
+ - [x] Ao clicar na temperatura é possível trocar de Celsius para Fahrenheit
+
+A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+
+Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+
+Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+
+Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+
+## Redes Sociais e Portfólio
+
+Email: renatolinsren@gmail.com
+[Whatsapp](https://cutt.ly/zgD6oFW)
+[Linkedin](https://www.linkedin.com/in/renatolinsjr/)
+Telefone: (21) 97992-4953
 
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
