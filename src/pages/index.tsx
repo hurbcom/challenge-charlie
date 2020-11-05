@@ -14,8 +14,8 @@ export default function Home() {
       const position = await Geolocation.askLocation()
       if (position.permission) setPositionObj(position)
     } catch (e) {
-      alert(e.message)
-      console.log('Erro: ', e)
+      setPositionObj(e)
+      console.error('Erro: ', e.message)
     } finally {
       setIsLoading(false)
     }
