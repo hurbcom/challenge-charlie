@@ -20,7 +20,7 @@ class Geolocation {
         error: true,
         errorCode: 1,
         reason: 'Permission denied',
-        message: 'permissão ao gps negada'
+        message: 'permissão ao gps negada, utilize a busca acima ☝️'
       }
     }
     if (error.code == error.POSITION_UNAVAILABLE) {
