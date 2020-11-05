@@ -36,21 +36,24 @@ class Utils {
     return allDirections[dIndex] ? allDirections[dIndex] : 'N'
   }
   public static getBackgroundColorMatchWithWeather = (temp: number) => {
+    if (temp === 999) return '#42454eed'
     if (temp <= 15) return 'linear-gradient(0deg, #0093E9 0%, #80D0C7 100%)'
-    if (temp >= 25)
+    if (temp >= 35)
       return 'linear-gradient(0deg, hsl(344, 100%, 50%), hsl(31, 100%, 40%))'
     return 'linear-gradient(0deg, #cac531, #f3f9a7)'
   }
   public static getBackgroundHoverColorMatchWithWeather = (temp: number) => {
+    if (temp === 999) return '#42454e'
     if (temp <= 15)
       return 'radial-gradient( circle farthest-corner at 21.3% 26.5%,  rgba(47,181,227,1) 0%, rgba(155,208,237,1) 61.4% )'
-    if (temp >= 25)
+    if (temp >= 35)
       return 'radial-gradient( circle farthest-corner at 50.4% 50.5%,  rgba(251,32,86,1) 0%, rgba(135,2,35,1) 90% )'
     return 'radial-gradient( circle 426px at 77.9% 31.3%,  rgba(255,229,131,1) 0%, rgb(249, 222, 0) 90% )'
   }
   public static getTextColorMatchWithWeather = (temp: number) => {
+    if (temp === 999) return '#fff;'
     if (temp <= 15) return '#424242'
-    if (temp >= 25) return '#fff'
+    if (temp >= 35) return '#fff'
     return '#000'
   }
   public static getIconMatchWithWeather = (status: string) => {
