@@ -45,7 +45,6 @@ const WeatherCard = ({ position }: Props) => {
   })
 
   const getSearchedLocation = async () => {
-    console.log(position)
     const { latitude, longitude } = position
     if (position.error) {
       setErrorState(true)
@@ -69,7 +68,6 @@ const WeatherCard = ({ position }: Props) => {
         value
       )
       if (latLongCityCountry.message) {
-        console.log(latLongCityCountry)
         setErrorState(true)
         setErrorMessage(latLongCityCountry.message)
         throw new Error('erro')
