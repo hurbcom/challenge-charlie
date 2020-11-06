@@ -1,0 +1,1 @@
+export { formatLocationName } from './string';
