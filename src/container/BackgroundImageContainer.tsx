@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 
 import BackgroundImage from '../components/BackgroundImage';
-import bing from '../services/externals/bing';
+import { getBackgroundImageUrl } from '../services/externals/bing';
 
 type TBackgroundImageContainer = HtmlHTMLAttributes<HTMLDivElement>;
 
@@ -16,7 +16,7 @@ const BackgroundImageContainer: FunctionComponent<TBackgroundImageContainer> = (
   const [imageUrl, setImageUrl] = useState<string>();
 
   useEffect(() => {
-    bing.getBackgroundImageUrl().then((url) => {
+    getBackgroundImageUrl().then((url) => {
       setImageUrl(url);
     });
   }, []);
