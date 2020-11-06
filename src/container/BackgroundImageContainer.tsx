@@ -17,8 +17,6 @@ const BackgroundImageContainer: FunctionComponent<TBackgroundImageContainer> = (
 
   useEffect(() => {
     bing.getBackgroundImageUrl().then((url) => {
-      console.log(url);
-      
       setImageUrl(url);
     });
   }, []);
