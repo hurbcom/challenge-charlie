@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-const Index: React.FC = () => {
-  return <h1>Hello World</h1>;
+import BackgroundImage from '../container/BackgroundImageContainer';
+
+const Index: FunctionComponent = () => {
+  return <BackgroundImage>Hello World</BackgroundImage>;
 };
 
 export default Index;
