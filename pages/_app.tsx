@@ -1,9 +1,12 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { FC } from 'react';
+import { FunctionComponent } from 'react';
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => (
+import { GlobalStyle } from '../src/theme/GlobalStyle'
+
+const MyApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
+    <GlobalStyle />
     <Head>
       <title>Challenge Charlie</title>
     </Head>
