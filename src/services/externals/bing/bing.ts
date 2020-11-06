@@ -9,8 +9,8 @@ const bingBackgroundImage = {
       baseUrl: process.env.bingUrl
     })
       .then((data: IBingImage) => {
-        const path = data?.images?.[0]?.url;
-        return path ? `${process.env.bingUrl}${path}` : null;
+        const { url } = data?.images?.[0];
+        return url ? `${process.env.bingUrl}${url}` : null;
       })
       .catch((err) => err);
   }

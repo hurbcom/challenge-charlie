@@ -10,6 +10,7 @@ export interface IImage {
   drk: number;
   enddate: string;
   fullstartdate: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   hs: any[];
   hsh: string;
   quiz: string;
