@@ -5,7 +5,7 @@ import { IOpenCage, ICoordinates, ILocation } from './interface';
 
 export const getGeoLocationCoordinates = ({ locationName }: ILocation) => {
   return get({
-    url: `?q=${locationName}&key=${process.env.openCageKey}&language=pt-BR&limit=1`,
+    url: `geocode/v1/json?q=${locationName}&key=${process.env.openCageKey}&language=pt-BR&limit=1`,
     baseUrl: process.env.openCageUrl
   })
     .then((data: IOpenCage) => {
@@ -27,7 +27,7 @@ export const getGeoLocationCoordinates = ({ locationName }: ILocation) => {
 
 export const getGeoLocationName = ({ lat, lng }: ICoordinates) => {
   return get({
-    url: `?q=${lat},${lng}&key=${process.env.openCageKey}&language=pt-BR`,
+    url: `geocode/v1/json?q=${lat},${lng}&key=${process.env.openCageKey}&language=pt-BR`,
     baseUrl: process.env.openCageUrl
   })
     .then((data: IOpenCage) => {

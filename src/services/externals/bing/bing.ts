@@ -12,4 +12,4 @@ export const getBackgroundImageUrl = () => {
       return url ? `${process.env.bingUrl}${url}` : null;
     })
     .catch((err) => err);
-}
+};
