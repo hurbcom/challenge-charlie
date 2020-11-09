@@ -1,4 +1,4 @@
 export interface IAPI {
-  baseUrl: string;
+  baseURL: string;
   url: string;
 }

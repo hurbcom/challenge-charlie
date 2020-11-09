@@ -1,1 +1,1 @@
-export { get } from './api';
+export { get, useFetch } from './api';
