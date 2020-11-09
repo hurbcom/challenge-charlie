@@ -1,1 +1,0 @@
-export { getBackgroundImageUrl } from './bing';
