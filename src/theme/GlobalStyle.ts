@@ -82,10 +82,24 @@ export const GlobalStyle = createGlobalStyle`
   ul,
   var,
   video {
+    border: 0;
+    box-sizing: border-box;
+    font-size: 100%;
     margin: 0;
     padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+    outline: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    font-size: bold;
+  }
+
+  p, strong {
+    font-size: 1.6rem;
   }
 `;
