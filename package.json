@@ -8,7 +8,10 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .ts,.tsx . --max-warnings=0"
+    "lint": "eslint --ext .ts,.tsx . --max-warnings=0",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:prod": "npm test --no-cache"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
@@ -27,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "babel-plugin-styled-components": "^1.11.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",

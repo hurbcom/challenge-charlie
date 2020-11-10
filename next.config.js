@@ -3,6 +3,11 @@ const { ANALYZE } = process.env;
 module.exports = {
   distDir: '.build',
   webpack: config => {
+    config.module.rules.push({
+      test: /.*\.(test|spec)\.(ts|tsx|js|jsx)$/,
+      loader: 'ignore-loader'
+    })
+    
     if (ANALYZE) {
       const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
