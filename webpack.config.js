@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
     output: {
@@ -11,9 +13,14 @@ module.exports = {
         alias: {
             react: path.join(__dirname, "node_modules", "react"),
         },
+        extensions: [".js", ".jsx"],
     },
     module: {
         rules: [
+            // {
+            //     test: /\.css$/,
+            //     use: [MiniCssExtractPlugin.loader, "css-loader"],
+            // },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
@@ -22,14 +29,13 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: [
-                    {
-                        loader: "style-loader",
-                    },
-                    {
-                        loader: "css-loader",
-                    },
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader",
+                    // "style-loader",
                 ],
             },
         ],
@@ -37,6 +43,10 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: "./src/index.html",
+        }),
+        new MiniCssExtractPlugin({
+            filename: devMode ? "[name].css" : "[name].[hash].css",
+            chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
         }),
     ],
 };
