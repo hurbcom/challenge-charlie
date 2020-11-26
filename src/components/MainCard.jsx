@@ -1,9 +1,16 @@
 import React from "react";
+import Header from "./Header";
+import MainInfo from "./MainInfo";
+import DayPlusOne from "./DayPlusOne";
+import DayPlusTwo from "./DayPlusTwo";
 
 const MainCard = () => {
     return (
         <div className="main_card--container">
-            <h1>alo mundo</h1>
+            <Header />
+            <MainInfo />
+            <DayPlusOne />
+            <DayPlusTwo />
         </div>
     );
 };

@@ -1,6 +1,11 @@
 .main_card--container {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 100%;
+    width: 90vmin;
+    height: 100vmin;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1), 0px 1px 18px rgba(0, 0, 0, 0.06),
+        0px 6px 10px rgba(0, 0, 0, 0.07);
 }
