@@ -3,7 +3,10 @@ import React from "react";
 function DayPlusOne() {
     return (
         <div className="day_plus_one_container">
-            <h3>DayPlusOne</h3>
+            <div className="day_plus_one_container--content">
+                <h2>AMANHÃ</h2>
+                <h2>25 °C</h2>
+            </div>
         </div>
     );
 }

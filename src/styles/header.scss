@@ -1,7 +1,22 @@
 .header_container {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     height: 15.4%;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1), 0px 1px 18px rgba(0, 0, 0, 0.06),
         0px 6px 10px rgba(0, 0, 0, 0.07);
+    h3 {
+        color: $gray1;
+        font-size: 4.6vmin;
+        font-weight: 800;
+        margin-left: 2vmin;
+        letter-spacing: 0.05vmin;
+    }
+    svg {
+        fill: $gray1;
+        width: 9vmin;
+        height: 9vmin;
+        margin-left: 2vmin;
+    }
 }

@@ -5,3 +5,14 @@
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1), 0px 1px 18px rgba(0, 0, 0, 0.06),
         0px 6px 10px rgba(0, 0, 0, 0.07);
 }
+
+.day_plus_two_container--content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 48vmin;
+    color: $white;
+    h2 {
+        font-size: 4vmin;
+        font-weight: bold;
+    }
+}

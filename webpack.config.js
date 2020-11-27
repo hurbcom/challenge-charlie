@@ -38,6 +38,17 @@ module.exports = {
                     // "style-loader",
                 ],
             },
+            {
+                test: /\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[hash].[ext]'
+                }
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
+            },
         ],
     },
     plugins: [
