@@ -20,25 +20,25 @@ function DayPlusTwo() {
                         !geoLoading &&
                         !invalidCity &&
                         dayPlusTwoTemp > 35 &&
-                        scale === "C°") ||
-                    (dayPlusTwoTemp > 95 && scale === "F°"),
+                        scale === "°C") ||
+                    (dayPlusTwoTemp > 95 && scale === "°F"),
                 "day_plus_two_container--is-cold":
                     (!loading &&
                         !geoLoading &&
                         !invalidCity &&
                         dayPlusTwoTemp < 15 &&
-                        scale === "C°") ||
-                    (dayPlusTwoTemp < 59 && scale === "F°"),
+                        scale === "°C") ||
+                    (dayPlusTwoTemp < 59 && scale === "°F"),
                 "day_plus_two_container--is-warm":
                     (!loading &&
                         !geoLoading &&
                         !invalidCity &&
                         dayPlusTwoTemp > 15 &&
                         dayPlusTwoTemp < 35 &&
-                        scale === "C°") ||
+                        scale === "°C") ||
                     (dayPlusTwoTemp > 59 &&
                         dayPlusTwoTemp < 95 &&
-                        scale === "F°"),
+                        scale === "°F"),
             })}
         >
             <div className="day_plus_two_container--content">

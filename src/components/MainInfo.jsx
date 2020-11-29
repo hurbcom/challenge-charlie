@@ -59,20 +59,20 @@ const MainInfo = () => {
                     !loading && // After check if all loadings are ended, we see if the temperature in each scale correspond with the class that i want to apply.
                     !geoLoading &&
                     !invalidCity &&
-                    ((todayTemp > 35 && scale === "C°") ||
-                        (todayTemp > 95 && scale === "F°")),
+                    ((todayTemp > 35 && scale === "°C") ||
+                        (todayTemp > 95 && scale === "°F")),
                 "main_info_container--is-cold":
                     !loading &&
                     !geoLoading &&
                     !invalidCity &&
-                    ((todayTemp < 15 && scale === "C°") ||
-                        (todayTemp < 59 && scale === "F°")),
+                    ((todayTemp < 15 && scale === "°C") ||
+                        (todayTemp < 59 && scale === "°F")),
                 "main_info_container--is-warm":
                     !loading &&
                     !geoLoading &&
                     !invalidCity &&
-                    ((todayTemp > 15 && todayTemp < 35 && scale === "C°") ||
-                        (todayTemp > 59 && todayTemp < 95 && scale === "F°")),
+                    ((todayTemp > 15 && todayTemp < 35 && scale === "°C") ||
+                        (todayTemp > 59 && todayTemp < 95 && scale === "°F")),
             })}
         >
             {loading || geoLoading ? (

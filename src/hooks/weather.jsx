@@ -13,7 +13,7 @@ export const WeatherProvider = ({ children }) => {
     const [direction, setDirection] = useState();
     const [humidity, setHumidity] = useState();
     const [pressure, setPressure] = useState();
-    const [scale, setScale] = useState("C°");
+    const [scale, setScale] = useState("°C");
     const [loading, setLoading] = useState(true);
 
     // Fahreinheit to Celsius
@@ -73,7 +73,7 @@ export const WeatherProvider = ({ children }) => {
             `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&exclude=minutely,hourly&appid=5ca0d94f4b64649ea9e9a402d511df8a`
         );
         const apiRes = response.data.daily;
-        setScale("C°");
+        setScale("°C");
         setTodayTemp(apiRes[0].temp.day.toFixed(1));
         setDayPlusOneTemp(apiRes[1].temp.day.toFixed(1));
         setDayPlusTwoTemp(apiRes[2].temp.day.toFixed(1));
@@ -88,17 +88,17 @@ export const WeatherProvider = ({ children }) => {
 
     const switchScale = useCallback(() => {
         switch (scale) {
-            case "C°":
+            case "°C":
                 setTodayTemp(fahrenheit(todayTemp));
                 setDayPlusOneTemp(fahrenheit(dayPlusOneTemp));
                 setDayPlusTwoTemp(fahrenheit(dayPlusTwoTemp));
-                setScale("F°");
+                setScale("°F");
                 break;
-            case "F°":
+            case "°F":
                 setTodayTemp(celsius(todayTemp));
                 setDayPlusOneTemp(celsius(dayPlusOneTemp));
                 setDayPlusTwoTemp(celsius(dayPlusTwoTemp));
-                setScale("C°");
+                setScale("°C");
                 break;
             default:
         }
