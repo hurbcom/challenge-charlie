@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-    client:
+    prod:
         stdin_open: true
         build:
             context: .

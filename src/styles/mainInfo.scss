@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 51.6%;
-    background: rgba(228, 180, 21, 0.575);
+    background: $invalid-main;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1), 0px 1px 18px rgba(0, 0, 0, 0.06),
         0px 6px 10px rgba(0, 0, 0, 0.07);
 
@@ -26,12 +26,12 @@
     padding-left: 6vmin;
 
     h2 {
-        font-size: 4vmin;
+        font-size: 4.5vmin;
         font-weight: bold;
     }
 
     h3 {
-        font-size: 3vmin;
+        font-size: 3.5vmin;
         font-weight: bold;
     }
 }
@@ -42,4 +42,20 @@
 
 .main_info_container--data_info--others_info {
     margin: 3vmin 0;
+}
+
+.main_info_container--is-hot {
+    background: $hot-main;
+}
+
+.main_info_container--is-warm {
+    background: $warm-main;
+}
+
+.main_info_container--is-cold {
+    background: $cold-main;
+}
+
+.main_info_container--data_info--today_temp--switch_temp {
+    cursor: pointer;
 }

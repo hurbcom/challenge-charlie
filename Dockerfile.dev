@@ -10,4 +10,4 @@ EXPOSE 8080
 
 COPY . /app
 
-CMD ["npm", "start"]
+CMD ["npm", "run" ,"docker:start"]

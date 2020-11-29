@@ -4,7 +4,8 @@
     "description": "Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece \"Rio de Janeiro, Rio de Janeiro\"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.",
     "main": "index.js",
     "scripts": {
-        "start": "webpack-dev-server --mode=development --open --host 0.0.0.0",
+        "start": "webpack-dev-server --mode=development --open",
+        "docker:start": "webpack-dev-server --mode=development --open --host 0.0.0.0",
         "build": "webpack --mode=production"
     },
     "repository": {
@@ -19,11 +20,16 @@
     "homepage": "https://github.com/douglasthmz/challenge-charlie#readme",
     "dependencies": {
         "axios": "^0.21.0",
+        "classnames": "^2.2.6",
         "react": "^17.0.1",
-        "react-dom": "^17.0.1"
+        "react-dom": "^17.0.1",
+        "react-loading": "^2.0.3"
     },
     "devDependencies": {
         "@babel/core": "^7.12.7",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-proposal-export-default-from": "^7.12.1",
+        "@babel/polyfill": "^7.12.1",
         "@babel/preset-env": "^7.12.7",
         "@babel/preset-react": "^7.12.7",
         "@svgr/webpack": "^5.5.0",

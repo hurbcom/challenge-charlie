@@ -6,3 +6,10 @@
     background-size: cover;
     box-shadow: inset 0 0 0 100vh rgba(0, 0, 0, 0.7);
 }
+
+.app-container__loading {
+    position: absolute;
+    top: calc(50% - 8vmin);
+    left: calc(50% - 8vmin);
+    // color: $white;
+}

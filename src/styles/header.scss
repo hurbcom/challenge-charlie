@@ -8,7 +8,7 @@
         0px 6px 10px rgba(0, 0, 0, 0.07);
     h3 {
         color: $gray1;
-        font-size: 4.6vmin;
+        font-size: 5.5vmin;
         font-weight: 800;
         margin-left: 2vmin;
         letter-spacing: 0.05vmin;
@@ -19,4 +19,24 @@
         height: 9vmin;
         margin-left: 2vmin;
     }
+}
+
+.header_container--input_form {
+    width: 100%;
+    height: 100%;
+}
+
+.header_container--input_location {
+    color: $gray1;
+    font-size: 5.5vmin;
+    font-weight: 800;
+    margin-left: 2vmin;
+    letter-spacing: 0.05vmin;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

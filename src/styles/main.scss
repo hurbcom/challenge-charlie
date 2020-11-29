@@ -1,5 +1,17 @@
 $gray1: #686868;
 $white: #fafafa;
+$warm-main: rgba(228, 180, 21, 0.575);
+$invalid-main: rgba(138, 138, 138, 0.397);
+$cold-main: rgba(89, 100, 255, 0.493);
+$hot-main: rgba(255, 89, 89, 0.493);
+$warm-day-plus-one: rgba(250, 204, 5, 0.85);
+$invalid-day-plus-one: rgba(100, 100, 100, 0.85);
+$cold-day-plus-one: rgba(46, 60, 250, 0.63);
+$hot-day-plus-one: rgba(250, 67, 67, 0.692);
+$warm-day-plus-two: rgba(184, 150, 1, 0.85);
+$invalid-day-plus-two: rgba(78, 78, 78, 0.85);
+$cold-day-plus-two: rgba(28, 39, 196, 0.685);
+$hot-day-plus-two: rgba(209, 49, 49, 0.774);
 
 @import "./reset.scss";
 @import "./appContainer.scss";

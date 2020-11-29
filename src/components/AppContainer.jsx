@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import ReactLoading from "react-loading";
+import { useBackground } from "../hooks/backgroundBing";
 
 const AppContainer = ({ children }) => {
-    const [backgroundImage, setBackgroundImage] = useState("");
+    const { backgroundImage, getBackground, loading } = useBackground();
     useEffect(() => {
-        axios
-            .get(
-                "https://cors-anywhere.herokuapp.com/www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR"
-            )
-            .then((response) => {
-                console.log(response);
-                setBackgroundImage(
-                    `https://www.bing.com${response.data.images[0].url}`
-                );
-            });
+        getBackground();
     }, []);
 
     return (
-        <div
-            className="app_container"
-            style={{
-                backgroundImage: `url(${backgroundImage})`,
-            }}
-        >
-            {children}
-        </div>
+        <>
+            {loading ? (
+                <div className="app_container">
+                    <ReactLoading
+                        className="app-container__loading"
+                        type="spokes"
+                        height={"16vmin"}
+                        width={"16vmin"}
+                    />
+                </div>
+            ) : (
+                <div
+                    className="app_container"
+                    style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                    }}
+                >
+                    {children}
+                </div>
+            )}
+        </>
     );
 };
 
