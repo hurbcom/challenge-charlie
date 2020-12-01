@@ -11,7 +11,10 @@ const AppContainer = ({ children }) => {
     return (
         <>
             {loading ? (
-                <div className="app_container">
+                <div
+                    className="app_container"
+                    data-testid="AppContainer-onLoading"
+                >
                     <ReactLoading
                         className="app-container__loading"
                         type="spokes"
@@ -22,6 +25,7 @@ const AppContainer = ({ children }) => {
             ) : (
                 <div
                     className="app_container"
+                    data-testid="AppContainer-loaded"
                     style={{
                         backgroundImage: `url(${backgroundImage})`,
                     }}

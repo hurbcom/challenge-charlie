@@ -30,6 +30,12 @@ Para produção:
 
 `docker-compose up`
 
+Endereço da aplicação: `http://localhost:8080`
+
+Rodando testes:
+
+`npm run test`
+
 ## Sobre o projeto
 
 ### Escolhas técnicas
@@ -51,6 +57,10 @@ Como recomendado foi utilizado Webpack + Babel para execução do projeto.
 
 foram criados dois arquivos: `docker-compose.dev.yml`, responsável pelo ambiente de desenvolvimento e o `docker-compose.yml` para produção. Ambos contém instruções para rodar os seus Dockerfile.dev e Dockerfile.
 
+Sobre testes, foi feito o setup usando a [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) com [Jest](https://jestjs.io/).
+
+**Importante ressaltar** que a aplicação não está com cobertura completa de testes.
+
 ## Bibliotecas utilizadas
 
 -   React
@@ -59,6 +69,8 @@ foram criados dois arquivos: `docker-compose.dev.yml`, responsável pelo ambient
 -   SASS
 -   Axios (utilizado para a execução de requisições web)
 -   classnames (utilizado para aplicar classes a elementos através de condicionais no próprio código JS)
+-   Jest
+-   React Testing Library
 
 ## Regras de negócio
 
