@@ -1,0 +1,32 @@
+{
+  "UF": [
+      {"stateName": "Acre", "abbr": "AC"},
+      {"stateName": "Alagoas", "abbr": "AL"},
+      {"stateName": "Amapá", "abbr": "AP"},
+      {"stateName": "Amazonas", "abbr": "AM"},
+      {"stateName": "Bahia", "abbr": "BA"},
+      {"stateName": "Ceará", "abbr": "CE"},
+      {"stateName": "Distrito Federal", "abbr": "DF"},
+      {"stateName": "Espírito Santo", "abbr": "ES"},
+      {"stateName": "Goiás", "abbr": "GO"},
+      {"stateName": "Maranhão", "abbr": "MA"},
+      {"stateName": "Mato Grosso", "abbr": "MT"},
+      {"stateName": "Mato Grosso do Sul", "abbr": "MS"},
+      {"stateName": "Minas Gerais", "abbr": "MG"},
+      {"stateName": "Pará", "abbr": "PA"},
+      {"stateName": "Paraíba", "abbr": "PB"},
+      {"stateName": "Paraná", "abbr": "PR"},
+      {"stateName": "Pernambuco", "abbr": "PE"},
+      {"stateName": "Piauí", "abbr": "PI"},
+      {"stateName": "Rio de Janeiro", "abbr": "RJ"},
+      {"stateName": "Rio Grande do Norte", "abbr": "RN"},
+      {"stateName": "Rio Grande do Sul", "abbr": "RS"},
+      {"stateName": "Rondônia", "abbr": "RO"},
+      {"stateName": "Roraima", "abbr": "RR"},
+      {"stateName": "Santa Catarina", "abbr": "SC"},
+      {"stateName": "São Paulo", "abbr": "SP"},
+      {"stateName": "Sergipe", "abbr": "SE"},
+      {"stateName": "Tocantins", "abbr": "TO"}
+
+  ]
+}

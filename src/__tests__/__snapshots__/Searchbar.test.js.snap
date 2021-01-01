@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar Component Renders 1`] = `
+<section
+  className="sc-bdfBwQ iIzYUp"
+>
+  <img
+    className="sc-hKgILt eBBmrW"
+    src="public/img/44.svg"
+  />
+  <form
+    className="sc-gsTCUz cVyLar"
+    onSubmit={[Function]}
+  >
+    <input
+      className="sc-dlfnbm gHrCKK"
+      onChange={[Function]}
+      placeholder="Type your location"
+      type="text"
+      value="Cidade123"
+    />
+  </form>
+</section>
+`;

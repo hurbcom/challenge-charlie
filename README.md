@@ -47,6 +47,25 @@ O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melh
 -   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
 -   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
 
+## Como rodar a aplicação?
+## Quick Start
+
+``` bash
+# Comando para configurar a aplicação
+npm run setup
+
+#cria a imagem docker
+npm run docker:build
+
+# Comando para rodar a imagem
+npm run docker:run
+
+# Live
+Acesse a aplicação em http://localhost:8080
+
+#IMOPORTANTE!!!!
+Abrir browser com cors desativado para poder ter a experiencia total da aplicação
+```
 ## Dúvidas
 
 Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!

@@ -1,0 +1,7 @@
+{
+    "errorMessages": {
+        "missingCityOrState": {
+            "message": "You are missing a city or a state."
+        }
+    }
+}

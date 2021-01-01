@@ -1,0 +1,6 @@
+
+https://maps.googleapis.com/maps/api/geocode/json?latlng=-23.017493299999998,-46.9761232&key=AIzaSyBi1vFE-sAqZdUnsEC0Dnh5xIC46Lj7rnE
+
+###
+
+https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR
