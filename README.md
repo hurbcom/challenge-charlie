@@ -46,6 +46,17 @@ O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melh
 -   **Histórico de commits** Qualidade e estrutura dos commits.
 -   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
 -   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
+## Dúvidas
+
+Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+
+Boa sorte e boa viagem! ;)
+
+<p align="center">
+  <img src="ca.jpg" alt="Challange accepted" />
+</p>
+
+
 
 ## Como rodar a aplicação?
 ## Quick Start
@@ -66,12 +77,14 @@ Acesse a aplicação em http://localhost:8080
 #IMOPORTANTE!!!!
 Abrir browser com cors desativado para poder ter a experiencia total da aplicação
 ```
-## Dúvidas
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+## Método de desenvolvimento
 
-Boa sorte e boa viagem! ;)
+O Desenvolvimento da aplicação foi feito tendo em mente escalabilidade, manutenibilidade e componentização. O design da arquitetura do projeto foi definido em camadas:
+- Builders --> Métodos ou classes que transformam um dado e o devolvem no padrão correto
+- Filters --> Métodos ou classes que transformam um dado, filtrando-o e retornando no padrão correto.
+- Const --> Constantes da aplicação, podendo se referir a dados de responsividade, erros, dados de negócio, etc.
+- Context --> Onde ficam armazenados os Providers das classes de Context APIs
+- Pages --> Componentes de inicialização de cada página
+- Template --> Containeres de cada página que servirão como injetores de dependencia dada uma estrutura "base"
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>

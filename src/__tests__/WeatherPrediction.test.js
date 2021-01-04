@@ -4,6 +4,7 @@ import WeatherPrediction from '../pages/WeatherPrediction/WeatherPrediction';
 import React from 'react';
 
 
+
 describe.only('WeatherPrediction Component', () => {
 	let wrapper;
 

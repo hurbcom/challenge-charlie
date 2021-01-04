@@ -196,7 +196,7 @@ export default function WeatherPrediction() {
         </SunIcon>
         <WeatherDetails>
           <WeatherDetailsTitleWrapper>
-            <WeatherDetailsTitle>Hoje</WeatherDetailsTitle>
+            <WeatherDetailsTitle>Today</WeatherDetailsTitle>
             <WeatherDetailsTitle>{weather.temp}C</WeatherDetailsTitle>
           </WeatherDetailsTitleWrapper>
           <WeatherDetailsTitleWrapper>
@@ -210,14 +210,14 @@ export default function WeatherPrediction() {
       <WeatherSection bgcolor={temperatureRange} mode={'medium'}>
         <Filler></Filler>
         <WeatherDetails>
-          <WeatherDetailsTitle>Amanhã</WeatherDetailsTitle>
+          <WeatherDetailsTitle>Tomorrow</WeatherDetailsTitle>
           <WeatherDetailsTitle>10</WeatherDetailsTitle>
         </WeatherDetails>
       </WeatherSection>
       <WeatherSection bgcolor={temperatureRange} mode={'light'}>
         <Filler></Filler>
         <WeatherDetails>
-          <WeatherDetailsTitle>Depois de amanhã</WeatherDetailsTitle>
+          <WeatherDetailsTitle>After tomorrow</WeatherDetailsTitle>
           <WeatherDetailsTitle>20</WeatherDetailsTitle>
         </WeatherDetails>
       </WeatherSection>

@@ -8,7 +8,7 @@ import { SearchBarInput } from '../components/SearchBar/SearchBar.styles';
 const setCityMock = jest.fn()
 
 const SearchBarComponentProps = {
-	address: 'Endereco123',
+	address: {},
 	city: 'Cidade123',
 	setCity: setCityMock,
 	searchCity: () => true,

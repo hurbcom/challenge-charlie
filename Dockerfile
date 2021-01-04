@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:14.15.1
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 

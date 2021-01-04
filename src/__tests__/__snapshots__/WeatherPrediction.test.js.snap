@@ -25,7 +25,8 @@ exports[`WeatherPrediction Component Renders 1`] = `
     </form>
   </section>
   <section
-    className="sc-jSgupP fhDzcp"
+    className="sc-jSgupP fKhKQu"
+    mode="dark"
   >
     <section
       className="sc-gKsewC"
@@ -56,18 +57,18 @@ exports[`WeatherPrediction Component Renders 1`] = `
       </svg>
     </section>
     <section
-      className="sc-iBPRYJ fFOZeZ"
+      className="sc-iBPRYJ dlObUm"
     >
       <div
         className="sc-fubCfw ecWMBM"
       >
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         >
-          Hoje
+          Today
         </h1>
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         >
           C
         </h1>
@@ -76,22 +77,22 @@ exports[`WeatherPrediction Component Renders 1`] = `
         className="sc-fubCfw ecWMBM"
       >
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         />
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         >
           Wind: 
           km/h
         </h1>
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         >
           Humidity: 
           %
         </h1>
         <h1
-          className="sc-pFZIQ hVDcHa"
+          className="sc-pFZIQ cytPDv"
         >
           Pressure: 
           hPA
@@ -100,42 +101,44 @@ exports[`WeatherPrediction Component Renders 1`] = `
     </section>
   </section>
   <section
-    className="sc-jSgupP kZsdJH"
+    className="sc-jSgupP fKhKQu"
+    mode="medium"
   >
     <div
       className="sc-jrAGrp hWJtez"
     />
     <section
-      className="sc-iBPRYJ fFOZeZ"
+      className="sc-iBPRYJ dlObUm"
     >
       <h1
-        className="sc-pFZIQ hVDcHa"
+        className="sc-pFZIQ cytPDv"
       >
-        Amanhã
+        Tomorrow
       </h1>
       <h1
-        className="sc-pFZIQ hVDcHa"
+        className="sc-pFZIQ cytPDv"
       >
         10
       </h1>
     </section>
   </section>
   <section
-    className="sc-jSgupP dTqSwy"
+    className="sc-jSgupP fKhKQu"
+    mode="light"
   >
     <div
       className="sc-jrAGrp hWJtez"
     />
     <section
-      className="sc-iBPRYJ fFOZeZ"
+      className="sc-iBPRYJ dlObUm"
     >
       <h1
-        className="sc-pFZIQ hVDcHa"
+        className="sc-pFZIQ cytPDv"
       >
-        Depois de amanhã
+        After tomorrow
       </h1>
       <h1
-        className="sc-pFZIQ hVDcHa"
+        className="sc-pFZIQ cytPDv"
       >
         20
       </h1>
