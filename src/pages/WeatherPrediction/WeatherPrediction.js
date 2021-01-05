@@ -178,7 +178,7 @@ export default function WeatherPrediction() {
 				searchCity={searchCity}
 				loading={loading}
 			></SearchBar>
-			<WeatherSection bgcolor={temperatureRange} mode={'dark'}>
+			<WeatherSection bgcolor={temperatureRange} mode={'light'}>
 				<SunIcon>
 					<WiDaySunny size={sunnySize} color="#fefefe"></WiDaySunny>
 				</SunIcon>
@@ -207,7 +207,7 @@ export default function WeatherPrediction() {
 					<WeatherDetailsTitle>10°C</WeatherDetailsTitle>
 				</WeatherDetails>
 			</WeatherSection>
-			<WeatherSection bgcolor={temperatureRange} mode={'light'}>
+			<WeatherSection bgcolor={temperatureRange} mode={'dark'}>
 				<Filler></Filler>
 				<WeatherDetails>
 					<WeatherDetailsTitle>After tomorrow</WeatherDetailsTitle>
