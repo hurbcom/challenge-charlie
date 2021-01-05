@@ -4,15 +4,15 @@ import TemperatureRangeProvider from './context/TemperatureRangeProvider';
 import Layout from './template/Layout';
 
 class App extends Component {
-  render() {
-    return (
-      <TemperatureRangeProvider>
-        <Layout>
-          <WeatherPrediction></WeatherPrediction>
-        </Layout>
-      </TemperatureRangeProvider>
-    );
-  }
+	render() {
+		return (
+			<TemperatureRangeProvider>
+				<Layout>
+					<WeatherPrediction></WeatherPrediction>
+				</Layout>
+			</TemperatureRangeProvider>
+		);
+	}
 }
 
 export default App;

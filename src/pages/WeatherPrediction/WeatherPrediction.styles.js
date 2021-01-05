@@ -3,9 +3,9 @@ import Devices from '../../const/responsiveness';
 import Colors from '../../const/colors';
 
 const temperatureRangeCodes = {
-  COLD: 1,
-  AVERAGE: 2,
-  HOT: 3
+	COLD: 1,
+	AVERAGE: 2,
+	HOT: 3
 };
 
 export const WeatherPredictionStyle = styled.section`
@@ -24,36 +24,39 @@ export const WeatherPredictionStyle = styled.section`
 
 export const WeatherSection = styled.section`
   background-color: ${(props) => {
-    switch (props.bgcolor) {
-      case temperatureRangeCodes.COLD:
-        switch(props.mode){
-          case 'dark':
-            return Colors.DARK_BLUE
-          case 'medium':
-            return Colors.BLUE
-          case 'light':
-            return Colors.LIGHT_BLUE
-        }
-      case temperatureRangeCodes.HOT:
-        switch(props.mode){
-          case 'dark':
-            return Colors.DARK_RED
-          case 'medium':
-            return Colors.RED
-          case 'light':
-            return Colors.LIGHT_RED
-        }
-      case temperatureRangeCodes.AVERAGE:
-        switch(props.mode){
-          case 'dark':
-            return Colors.DARK_YELLOW
-          case 'medium':
-            return Colors.YELLOW
-          case 'light':
-            return Colors.LIGHT_YELLOW
-        }
-    }
-  }};
+		switch (props.bgcolor) {
+		case temperatureRangeCodes.COLD:
+			switch(props.mode){
+			case 'dark':
+				return Colors.DARK_BLUE;
+			case 'medium':
+				return Colors.BLUE;
+			case 'light':
+				return Colors.LIGHT_BLUE;
+			}
+			break;
+		case temperatureRangeCodes.HOT:
+			switch(props.mode){
+			case 'dark':
+				return Colors.DARK_RED;
+			case 'medium':
+				return Colors.RED;
+			case 'light':
+				return Colors.LIGHT_RED;
+			}
+			break;
+		case temperatureRangeCodes.AVERAGE:
+			switch(props.mode){
+			case 'dark':
+				return Colors.DARK_YELLOW;
+			case 'medium':
+				return Colors.YELLOW;
+			case 'light':
+				return Colors.LIGHT_YELLOW;
+			}
+			break;
+		}
+	}};
   position: relative;
   display: flex;
   flex-wrap: wrap;

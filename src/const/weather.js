@@ -1,3 +1,3 @@
 export default Object.freeze({
-  SUNNY: 'WiDaySunny'
+	SUNNY: 'WiDaySunny'
 });

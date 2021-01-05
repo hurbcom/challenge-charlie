@@ -3,7 +3,7 @@ import temperatures from './temperatures';
 import text from './text';
 
 export default {
-  numbers,
-  temperatures,
-  text
+	numbers,
+	temperatures,
+	text
 };

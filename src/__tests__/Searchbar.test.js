@@ -1,11 +1,11 @@
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import SearchBar from '../components/SearchBar/SearchBar';
 import React from 'react';
 import { SearchBarInput } from '../components/SearchBar/SearchBar.styles';
 
 
-const setCityMock = jest.fn()
+const setCityMock = jest.fn();
 
 const SearchBarComponentProps = {
 	address: {},
@@ -13,7 +13,7 @@ const SearchBarComponentProps = {
 	setCity: setCityMock,
 	searchCity: () => true,
 	loading: false
-}
+};
 
 describe('SearchBar Component', () => {
 	let wrapper;
@@ -36,9 +36,9 @@ describe('SearchBar Component', () => {
 			target: {
 				value: 'teste123'
 			}
-		}
+		};
 
-		wrapper.find(SearchBarInput).simulate('change', event)
-		expect(setCityMock).toHaveBeenCalledWith('teste123')
-	})
+		wrapper.find(SearchBarInput).simulate('change', event);
+		expect(setCityMock).toHaveBeenCalledWith('teste123');
+	});
 });
