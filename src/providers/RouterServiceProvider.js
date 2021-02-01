@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import BingTemplate from "@/templates/BingTemplate";
 
 Vue.use(Router)
 
@@ -11,7 +12,13 @@ const RouterServiceProvider = new Router({
     },
     routes: [
         {path: '*', component: () => import('@/pages/NotFound')},
-        {path: '/', name: 'home', component: () => import('@/pages/Home')}
+        {
+            path: '/',
+            component: BingTemplate,
+            children: [
+                {path: '/', name: 'home', component: () => import('@/pages/Home')},
+            ]
+        }
     ]
 });
 
