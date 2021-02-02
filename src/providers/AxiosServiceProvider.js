@@ -40,7 +40,7 @@ export const axiosToOpenWeather = axios.create({
 
 axiosToOpenWeather.interceptors.request.use(
     async config => {
-        config.params['appid'] = WEATHER_TOKEN
+        config.params['APPID'] = WEATHER_TOKEN
         return config
     },
     error => {

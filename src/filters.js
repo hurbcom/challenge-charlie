@@ -18,6 +18,9 @@ Vue.filter('formatDate', (value, time=true) => {
     }
     return moment(String(value)).format('DD/MM/YYYY H:mm:ss')
 });
+Vue.filter('onlyTime', (value) => {
+    return moment(String(value)).format('H:mm:ss')
+});
 Vue.filter('ageFromBirthday', (value, datetime=false) => {
     if (value) {
         const timestamp = datetime ? value : `${value} 00:00:00`
