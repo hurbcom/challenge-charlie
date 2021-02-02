@@ -31,7 +31,7 @@ export default {
     ]),
     async changeInput() {
       if (this.location_input.length >= 3) {
-        alert(this.location_input)
+        // alert(this.location_input)
         await this['openCage/loadList']({
           q: `${this.location_input}`,
           pretty: 1,
@@ -54,6 +54,7 @@ export default {
       this.location_input = this.location.components.city
     },
     async loadWeather() {
+      this.$store.commit('openWeather/setCurrent', {})
       await this['openWeather/loadList']({
         q: `${this.location.components.city},${this.location.components.state},${this.location.components.country_code}`
       })
@@ -69,7 +70,6 @@ export default {
         Object.keys(this.weatherCurrent).length === 0 && this.weatherCurrent.constructor === Object // Check Empty Object
       ) {
         await this['openWeather/loadCurrent']({id: this.weather.city.id})
-        console.log(this.weatherCurrent)
         this.$store.commit('openWeather/setList', {
           ...this.weather,
           list: [
