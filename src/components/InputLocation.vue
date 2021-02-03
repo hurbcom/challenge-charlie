@@ -1,6 +1,19 @@
 <template>
-  <div>
-    <b-input v-model="location_input" @change="changeInput" class="border-0 bg-transparent"/>
+  <div class="w-100">
+    <b-input
+      v-model="location_input"
+      @keyup="searchLocations"
+      @change="loadWeather"
+      :placeholder="placeholder"
+      class="border-0 bg-transparent w-100"
+      list="my-list-id"
+    />
+
+    <datalist v-if="locationCage.results" id="my-list-id">
+      <option :key="index" v-for="(location, index) in locationCage.results">
+        {{ `${location.formatted}` }}
+      </option>
+    </datalist>
   </div>
 </template>
 
@@ -16,11 +29,25 @@ export default {
       weather: 'openWeather/list',
       weatherCurrent: 'openWeather/current'
     }),
+    placeholder() {
+      if (this.location.components.city) {
+        return `${this.location.components.city}, ${this.location.components.state}, ${this.location.components.country_code.toUpperCase()}`
+      }
+      return `${this.location.components.state}, ${this.location.components.country_code.toUpperCase()}`
+  }
+
   },
   data() {
     return {
-      location: null,
-      location_input: null
+      timeout: null,
+      location_input: null,
+      location: {
+        components: {
+          city: null,
+          state: null,
+          country_code: ''
+        }
+      },
     }
   },
   methods: {
@@ -29,57 +56,88 @@ export default {
       'openWeather/loadList',
       'openWeather/loadCurrent'
     ]),
-    async changeInput() {
-      if (this.location_input.length >= 3) {
-        // alert(this.location_input)
-        await this['openCage/loadList']({
-          q: `${this.location_input}`,
-          pretty: 1,
-          no_annotations: 1
-        })
+    async searchLocations(evt) {
+      clearTimeout(this.timeout);
 
-        this.prepareLocation()
-        await this.loadWeather()
-      }
+      this.timeout = setTimeout(async () => {
+
+        if (evt.target.value.length >= 3) {
+          await this['openCage/loadList']({
+            q: `${evt.target.value}`,
+            pretty: 1,
+            no_annotations: 1
+          })
+
+          const FILTERED = {
+            ...this.locationCage,
+            results: this.locationCage.results.filter(r => r.components.state && r.components.country_code)
+          }
+          this.$store.commit('openCage/setList', FILTERED, {root: true})
+          this.$forceUpdate()
+        }
+
+      }, 800);
     },
-    prepareLocation() {
-      this.location = this.locationCage.results
-        .find(r => r.components.city && r.components.state && r.components.country_code)
+    async loadWeather() {
+      this.$store.commit('openWeather/setList', [], {root: true})
+      this.$store.commit('openWeather/setCurrent', {}, {root: true})
 
-      if (!this.location) {
-        this.$snotify.error('Não foi possível encontrar a localidade informada!')
+      this.location = this.locationCage.results.find(r => r.formatted === this.location_input)
+
+      if (!this.location){
+        this.$snotify.error('Não foi possível encontrar a Localização!')
+        this.location = {
+          components: {
+            city: null,
+            state: null,
+            country_code: ''
+          }
+        }
         return
       }
 
-      this.location_input = this.location.components.city
-    },
-    async loadWeather() {
-      this.$store.commit('openWeather/setCurrent', {})
-      await this['openWeather/loadList']({
-        q: `${this.location.components.city},${this.location.components.state},${this.location.components.country_code}`
-      })
+      try {
+        const query = this.location.components.city ?
+          `${this.location.components.city},${this.location.components.state},${this.location.components.country_code}` :
+          `${this.location.components.state},${this.location.components.country_code}`
 
-      const todaysWeather = this.weather.list
-        .filter(temp => {
-          const GIVEN_DAY = moment(temp.dt_txt)
-          if (GIVEN_DAY.isSame(moment().startOf('day'), 'd')) { return true }
-        })
+        await this['openWeather/loadList']({q: query})
 
-      if (
-        todaysWeather.length === 0 &&
-        Object.keys(this.weatherCurrent).length === 0 && this.weatherCurrent.constructor === Object // Check Empty Object
-      ) {
-        await this['openWeather/loadCurrent']({id: this.weather.city.id})
-        this.$store.commit('openWeather/setList', {
-          ...this.weather,
-          list: [
-            {
-              dt_txt: moment().format(),
-              ...this.weatherCurrent
-            },
-            ...this.weather.list
-          ]
-        }, {root: true})
+        this.$store.commit('openCage/setList', [], {root: true})
+
+        const todaysWeather = this.weather.list
+          .filter(temp => {
+            const GIVEN_DAY = moment(temp.dt_txt)
+            if (GIVEN_DAY.isSame(moment().startOf('day'), 'd')) {
+              return true
+            }
+          })
+
+        if (
+          todaysWeather.length === 0 &&
+          Object.keys(this.weatherCurrent).length === 0 && this.weatherCurrent.constructor === Object // Check Empty Object
+        ) {
+          await this['openWeather/loadCurrent']({id: this.weather.city.id})
+          this.$store.commit('openWeather/setList', {
+            ...this.weather,
+            list: [
+              {
+                dt_txt: moment().format(),
+                ...this.weatherCurrent
+              },
+              ...this.weather.list
+            ]
+          }, {root: true})
+        }
+
+        if (!this.weather.list || this.weather.list.length === 0) {
+          this.$snotify.error('Não foi possível encontrar previsão para esta Localização!')
+        }
+
+        this.location_input = null
+      }catch (e) {
+        this.$snotify.error('Error ao procurar previsão para esta Localização!')
+        console.error(e)
       }
     }
   },
@@ -91,8 +149,8 @@ export default {
         no_annotations: 1
       })
 
-      this.prepareLocation()
-
+      const location = this.locationCage.results.find(r => r.components.city && r.components.state && r.components.country_code)
+      this.location_input = `${location.formatted}`
       await this.loadWeather()
 
     }, console.error);
