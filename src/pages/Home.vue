@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex vh-100 justify-content-center align-items-center">
+  <div class="d-flex min-vh-100 justify-content-center align-items-center">
     <b-card
       body-class="p-0" no-body
       :class="{
@@ -13,10 +13,10 @@
         <InputLocation/>
       </b-card-header>
       <div class="weather row ml-0 mr-0">
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="col-6 d-flex align-items-center justify-content-center">
           <WeatherIcon :icon="today[0].icon" size="100"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-6">
           <h3 class="mb-0">HOJE</h3>
           <Temperature :value="today[0].temp"/>
           <p class="text-capitalize">{{ today[0].description }}</p>
@@ -27,33 +27,37 @@
           </p>
         </div>
       </div>
-      <div class="weather row ml-0 mr-0">
-        <div class="col-md-6">
-          <b-button v-b-toggle.collapse-tomorrow variant="link">Detalhado</b-button>
-          <b-collapse id="collapse-tomorrow" class="mt-2">
-            <b-table :fields="fields" :items="tomorrow">
-              <template v-slot:cell(time)="{item}">{{ item.time | onlyTime }}</template>
-            </b-table>
-          </b-collapse>
+      <div class="weather">
+        <div class=" row ml-0 mr-0">
+          <div class="col-6">
+            <b-button v-b-toggle.collapse-tomorrow variant="link">Detalhado</b-button>
+          </div>
+          <div class="col-6">
+            <h3 class="mb-0">AMANHÃ</h3>
+            <Temperature :value="tomorrow[0].temp"/>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h3 class="mb-0">AMANHÃ</h3>
-          <Temperature :value="tomorrow[0].temp"/>
-        </div>
+        <b-collapse id="collapse-tomorrow" class="mt-2">
+          <b-table :fields="fields" :items="tomorrow">
+            <template v-slot:cell(time)="{item}">{{ item.time | onlyTime }}</template>
+          </b-table>
+        </b-collapse>
       </div>
-      <div class="weather row ml-0 mr-0">
-        <div class="col-md-6">
-          <b-button v-b-toggle.collapse-aftertomorrow variant="link">Detalhado</b-button>
-          <b-collapse id="collapse-aftertomorrow" class="mt-2">
-            <b-table :fields="fields" :items="afterTomorrow">
-              <template v-slot:cell(time)="{item}">{{ item.time | onlyTime }}</template>
-            </b-table>
-          </b-collapse>
+      <div class="weather">
+        <div class=" row ml-0 mr-0">
+          <div class="col-6">
+            <b-button v-b-toggle.collapse-aftertomorrow variant="link">Detalhado</b-button>
+          </div>
+          <div class="col-6">
+            <h4 class="mb-0">DEPOIS DE AMANHÃ</h4>
+            <Temperature :value="afterTomorrow[0].temp"/>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h4 class="mb-0">DEPOIS DE AMANHÃ</h4>
-          <Temperature :value="afterTomorrow[0].temp"/>
-        </div>
+        <b-collapse id="collapse-aftertomorrow" class="mt-2">
+          <b-table :fields="fields" :items="afterTomorrow">
+            <template v-slot:cell(time)="{item}">{{ item.time | onlyTime }}</template>
+          </b-table>
+        </b-collapse>
       </div>
     </b-card>
   </div>

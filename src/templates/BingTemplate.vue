@@ -1,5 +1,5 @@
 <template>
-  <div class="vh-100" :style="`background: url(${imgUrl})`">
+  <div class="min-vh-100" :style="`background-image: url(${imgUrl});background-size: cover;`">
     <router-view></router-view>
     <slot></slot>
   </div>
