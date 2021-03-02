@@ -1,0 +1,13 @@
+<h1>Previsão do Tempo</h1>
+<input *ngIf="objectWeather != undefined" 
+    type="search" 
+    [(ngModel)]="objectWeather.name"
+    placeholder="{{objectWeather.name}}">
+    <button (click)="getWeather()">
+        Pesquisar
+    </button>
+<p *ngIf="objectWeather != undefined">
+    Hoje {{localTemperature}}˚C
+</p>
+<div>{{ 'HELLO' | translate:param }}</div>
+
