@@ -1,0 +1,14 @@
+<div class="row weatherTomorrow {{nextDays['tomorrow']?.color}}">
+  <div class="col-sm-6">
+    <h3 class="day">AMANHÃ</h3>
+    <h3 class="temperature cursor-pointer" (click)="convertTemperature()">
+      {{nextDays['tomorrow']?.temp+'º'+currentMeter}}</h3>
+  </div>
+</div>
+<div class="row weatherAfterTomorrow {{nextDays['afterTomorrow']?.color}}">
+  <div class="col-sm-6">
+    <h3 class="day">DEPOIS DE AMANHÃ</h3>
+    <h3 class="temperature cursor-pointer" (click)="convertTemperature()">
+      {{nextDays['afterTomorrow']?.temp+'º'+currentMeter}}</h3>
+  </div>
+</div>

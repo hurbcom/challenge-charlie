@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('./assets/fonts/meteocons-font/stylesheet.css');
+// @import url('./assets/mixins/animate.sass');
+
+body{
+  overflow-x: hidden;
+}
+
+.container-fluid{
+  overflow: hidden;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

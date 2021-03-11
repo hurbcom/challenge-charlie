@@ -1,0 +1,71 @@
+:host{
+  .weatherToday{
+        
+    &.cold{
+      background-color: rgba(0, 21, 255,0.8);
+    }
+    &.normal{
+      background-color: rgba(231,186,22,0.8);
+    }
+    &.hot{
+      background-color: rgba(214, 0, 0,0.9)
+    }
+    &.default{
+      background-color: rgba(110, 110, 110,0.9)
+    }
+    
+    .weatherTodayIcon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i{
+        font-style: normal;
+        color: #fff;
+        &:before{
+          font-family: 'Meteocons';
+          content: attr(data-icon);
+          font-size: 25vw;
+          @media (max-width:575px){
+            font-size: 100px;
+          }
+          @media (min-width:1024px){
+            font-size: 22vw;
+          }
+        }
+      }
+    }
+
+    .weatherTodayInfo{
+      padding-bottom: 30px;
+      h2, h3{
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0;
+
+        &.temperature, &.condition{
+          margin-bottom: 15px;
+        }
+
+        &.wind, &.humidity, &.pressure{
+          @media (min-width:576px) and (max-width:1024px){
+            font-size: 3vw;
+          }
+          @media(min-width:1025px){
+            font-size: 2vw;
+          }
+        }
+        
+        @media (max-width:575px){
+          text-align: center;
+          font-size: 20px;
+        }
+        @media (min-width:576px) and (max-width:1024px){
+          font-size: 3.6vw;
+        }
+        @media(min-width:1025px){
+          font-size: 2.6vw;
+        }
+      }
+    }
+  }
+}

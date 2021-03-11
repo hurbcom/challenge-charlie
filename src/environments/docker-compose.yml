@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  dashboard:
+    build: .
+    ports:
+      - "4200:4200"
+      - "49153:49153"
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"

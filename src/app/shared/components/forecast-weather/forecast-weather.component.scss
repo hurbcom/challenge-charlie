@@ -1,0 +1,53 @@
+:host{
+  .weatherTomorrow, .weatherAfterTomorrow{
+    justify-content:flex-end;
+    color: #fff;
+    padding-bottom: 40px;
+
+    h3{
+      @media (max-width:575px){
+        text-align: center;
+        font-size: 20px;
+      }
+      @media (min-width:576px) and (max-width:1024px){
+        font-size: 3.6vw;
+      }
+      @media(min-width:1025px){
+        font-size: 2.6vw;
+      }
+    }
+  }
+
+  .weatherTomorrow{
+    &.cold{
+      background-color: rgba(77, 91, 255,0.9)
+    }
+    &.normal{
+      background-color: rgba(249,204,5,0.9)
+    }
+    &.hot{
+      background-color: rgba(255, 5, 5,0.9)
+    }
+    &.default{
+      background-color: rgba(135, 135, 135,0.9)
+    }
+    
+  }
+
+  .weatherAfterTomorrow{
+    &.cold{
+      background-color: rgba(0, 14, 163,0.9);
+    }
+    &.normal{
+      background-color: rgba(182,148,2,0.9)
+      
+    }
+    &.hot{
+      background-color: rgba(168, 0, 0,0.9)
+    }
+    &.default{
+      background-color: rgba(61, 61, 61,0.9)
+    }
+    
+  }
+}

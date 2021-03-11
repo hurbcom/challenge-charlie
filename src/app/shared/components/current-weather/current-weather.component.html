@@ -1,0 +1,15 @@
+<div class="row weatherToday {{currentWeather.color}}">
+  <div class="col-sm-6 weatherTodayIcon">
+    <i class="currentWeatherIcon" [attr.data-icon]="currentWeather.icon"></i>
+  </div>
+  <div class="col-sm-6 weatherTodayInfo">
+    <h2 class="day">HOJE</h2>
+    <h2 class="temperature cursor-pointer" (click)="convertTemperature()">
+      {{currentWeather.temp+'º'+currentMeter}}</h2>
+
+    <h2 class="condition">{{currentWeather.condition}}</h2>
+    <h3 class="wind">Vento: {{currentWeather.wind}}km/h</h3>
+    <h3 class="humidity">Humidade: {{currentWeather.humidity}}%</h3>
+    <h3 class="pressure">Pressão: {{currentWeather.pressure}}hpa</h3>
+  </div>
+</div>

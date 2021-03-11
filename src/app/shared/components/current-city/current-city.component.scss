@@ -1,0 +1,29 @@
+:host {
+  .city{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: #f5f3eb;
+    color: #727272;
+
+    .location{
+      font-style: normal;
+      &:before{
+        font-family: 'Meteocons';
+        content: attr(data-icon);
+        font-size: 35px;
+      }
+    }
+
+    .stateCity{
+      margin-bottom: 0;
+      margin-left: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #727272;
+      background: transparent;
+      border: 0px;
+      width: 280px;
+    }
+  }
+}

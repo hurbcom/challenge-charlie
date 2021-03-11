@@ -1,0 +1,14 @@
+<div class="alert alert-danger mb-0 text-center" *ngIf="messageError != ''" role="alert">
+  {{messageError}}
+</div>
+<div class="container-fluid main-container" [ngStyle]="{'background-image': 'url('+backgroundImage+')'}">
+  <div class="row weatherBoard">
+    <div class="col-xs-12 col-sm-8 weatherBoardContainer">
+      <current-city></current-city>
+      <current-weather [hidden]="cityName == ''"></current-weather>
+      <forecast-weather [hidden]="cityName == ''"></forecast-weather>
+    </div>
+  </div>
+
+
+</div>
