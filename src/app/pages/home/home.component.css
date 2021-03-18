@@ -1,0 +1,231 @@
+.change-unit
+{
+    top: 23px;
+    right: 10%;
+    width: 40px;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(255,255,255,.5);
+}
+.change-unit em
+{
+    font-size: 1.5rem;
+}
+.content
+{
+    width: 100%;
+    padding: 0 0 20px;
+}
+.box-content
+{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 980px;
+}
+.image-background
+{
+    top: 132px;
+    opacity: .5;
+    width: 700px;
+    height: 600px;
+    position: absolute;
+    left: calc(50% - 350px);
+}
+.item-content
+{
+    width: 380px;
+    display: flex;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 20px;
+    align-items: center;
+    background-color: rgba(255,255,255,.5);
+}
+.item-content input
+{
+    width: 85%;
+    border: none;
+    color: #000;
+    margin: 0 auto;
+    font-size: 1rem;
+    text-align: center;
+    background-color: transparent;
+}
+.item-content input::placeholder
+{
+    color: #000;
+}
+.item-content em
+{
+
+    right: 10px;
+    color: #000;
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: absolute;
+}
+.invalid-location-message
+{
+    top: calc(50% - 74px);
+    position: absolute;
+    text-align: center;
+    left: calc(50% - 123px);
+}
+div.weather-card
+{
+    width: 500px;
+    display: block;
+    border-radius: 10px;
+    /* background: hsla(0,0%,100%,.1); */
+    background: rgba(255,255,255,.3);
+}
+div.weather-card article
+{
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+div.weather-card article.next-time-prev
+{
+    height: 80%;
+    text-align: center;
+}
+div.weather-card article.next-time-prev div.wheather-next-hours
+{
+    width: 25%;
+    border-right: 1px solid black;
+}
+div.weather-card article.next-time-prev div:last-child
+{
+    border-right: none;
+}
+div.weather-card p.temperature
+{
+    font-size: 6rem;
+}
+.loading-spinner
+{
+    margin: 0 auto;
+}
+.loading-spinner p
+{
+    margin: 10px 0 0;
+}
+.search-bar
+{
+    height: 40px;
+}
+.subtitle
+{
+    margin: 0;
+    padding: 10px 20px;
+}
+.details-list p
+{
+    font-size: 12px;
+}
+.details-list div
+{
+    width: 45%;
+}
+.details-list li
+{
+    width: 100%;
+    display: flex;
+    padding: 5px 0;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0,0,0,.4);
+}
+div.details
+{
+    color: #000;
+    padding: 0 0 10px 0;
+    height: fit-content;
+}
+header
+{
+    padding: 1px 0;
+    background-color: rgba(0,0,0,.1);
+}
+nav
+{
+    color: #fff;
+    background-color: #002036;
+}
+nav ul
+{
+    height: 50px;
+    display: flex;
+    margin: 0 auto;
+    max-width: 980px;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+nav ul li
+{
+    height: 95%;
+    cursor: pointer;
+    font-size: 1rem;
+}
+nav ul li p
+{
+    margin-top: 15px;
+}
+.secundary-temp
+{
+    font-size: 30px;
+    color: #1b4de4;
+    font-weight: bold;
+}
+.not-selected-item
+{
+    border-bottom: 2px solid #002036;
+}
+.selected-item
+{
+    border-bottom: 2px solid #fff;
+}
+.thermal-sensation
+{
+    font-size: 3rem;
+    font-weight: bold;
+}
+.secundary-time
+{
+    font-size: 1.125rem;
+    margin-bottom: 5px;
+}
+.secundary-icon
+{
+    width: 80%;
+    margin-top: -10px;
+}
+p
+{
+    margin: 0;
+    font-size: 1.125rem;
+}
+h1
+{
+    margin: 0;
+    font-weight: bold;
+}
+h2
+{
+    color: #fff;
+    text-align: center;
+}
+h3, h2
+{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}

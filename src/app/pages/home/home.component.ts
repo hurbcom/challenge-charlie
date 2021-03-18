@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalWeather } from 'src/app/models/localWeather';
 import { WeatherService } from 'src/app/services/weather.service';
-import { TranslateService } from '@ngx-translate/core';
-
+import { Utils } from 'src/app/utils/utils';
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
@@ -9,66 +9,157 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent implements OnInit
 {
-	public latitude: any;
-	public longitude: any;
-	public objectWeather: any;
-	public KELVIN: number = 273;
-	public localTemperature: string;
-	public CELCIUS: string = "Celcius";
-	public FAHRENHEIT: string = "Fahrennheit";
-	public weatherDescription: string;
-	public param: any = {value: 'world'};
+	public unit: string
+	public KELVIN: number;
+	public imgUrl: string;
+	public nowTime: string;
+	public iconUrl: string;
+	public localName: string;
+	public container: number;
+	public searchName: string;
+	public weatherIcon: string;
+	public selectedItem: number;
+	public callingResponse: boolean;
+	public invalidSearchLocation: boolean;
+	public weatherList: Array<LocalWeather>;
+	public todayWeather: LocalWeather = new LocalWeather();
 
-	constructor(private weatherService: WeatherService, translate: TranslateService)
+	public utils = Utils;
+
+	constructor(private weatherService: WeatherService)
 	{
-		translate.setDefaultLang('en');
-
-		translate.use('pt');
+		this.KELVIN = 273;
+		this.container = 1;
+		this.selectedItem = 1;
+		this.imgUrl = "../../../assets/imgs/rain.png";
 	}
 
 	ngOnInit(): void
 	{
+		this.unit = this.utils.CELCIUS;
+		this.callingResponse = true;
 		this.getLocation();
-		this.getTranslateWeatherDescription();
+;	}
+
+	public changeUnit()
+	{
+		if(this.unit == this.utils.CELCIUS)
+		{
+			this.unit = this.utils.FAHRENHEIT;
+		}
+		else
+		{
+			this.unit = this.utils.CELCIUS;
+		}
+		this.searchName = this.localName;
+		this.getWeather();
 	}
 
 	public getWeather()
 	{
+		if(this.searchName !== "")
+		{
+			this.callingResponse = true;
+			this.weatherService.getWeather(this.searchName, this.unit).subscribe(
+				(res: any) =>
+				{
+					setTimeout(() => {
+						this.callingResponse = false;
+						this.setWeatherData(res);
+						this.invalidSearchLocation = false;
+					}, 1000);
+				},
+				()=>
+				{
+					setTimeout(() => {
+						this.callingResponse = false;
+						this.invalidSearchLocation = true;
+						this.searchName = "";
+					}, 1000);
+				}
+			);
+		}
+	}
+
+	public getWeatherByLatLong(lat: any, long: any, unit: string)
+	{
+		this.callingResponse = true;
 		this.weatherService
-		.getWeather(this.objectWeather.name)
+		.getWeatherByLatLong(lat, long, unit)
 		.subscribe(
 			(res: any) =>
 			{
-				this.objectWeather = JSON.parse(res._body)
-				console.log("response:", this.objectWeather);
-				this.localTemperature = this.convertTemperature(this.objectWeather.main.temp, this.CELCIUS);
+				setTimeout(() => {
+					this.callingResponse = false;
+					this.invalidSearchLocation = false;
+					this.setWeatherData(res);
+				}, 1000);
+			},
+			(error: any)=>
+			{
+				setTimeout(() => {
+					this.callingResponse = false;
+					this.invalidSearchLocation = false;
+					this.searchName = "";
+				}, 1000);
 			}
 		);
 	}
 
-	public getWeatherByLatLong(lat: any, long: any)
+	public setWeatherListIcons(list: any)
 	{
-		this.weatherService.getWeatherByLatLong(lat, long).subscribe(
-			(res: any) =>
-			{
-				this.objectWeather = JSON.parse(res._body)
-				this.localTemperature = this.convertTemperature(this.objectWeather.main.temp, this.CELCIUS);
-			}
-		)
+		list.forEach((weather: any) => {
+			weather.time = this.utils.formatTime(weather.dt_txt);
+			this.getWeatherIcon(weather.weather[0].icon + "@2x.png");
+			setTimeout(() => {
+				weather.icon = this.iconUrl;
+			}, 0);
+		});
 	}
 
-	public convertTemperature(temp: number, tempType: string): string
+	public setTodayWeatherData(todayData: any)
 	{
-		let convertTemp: number;
-		if(tempType == this.CELCIUS)
+		this.todayWeather = 
+			{
+				icon: this.iconUrl,
+				time: todayData.dt_txt,
+				wind: todayData.wind.speed,
+				visibility: todayData.visibility,
+				humidity: todayData.main.humidity,
+				pressure: todayData.main.pressure,
+				seaLevel: todayData.main.sea_level,
+				description: todayData.weather[0].description,
+				max: this.utils.roundWeather(todayData.main.temp_max),
+				min: this.utils.roundWeather(todayData.main.temp_min),
+				temperature: this.utils.roundWeather(todayData.main.temp),
+				feelsLike: this.utils.roundWeather(todayData.main.feels_like),
+			}
+	}
+
+	public setWeatherData(response: any)
+	{
+		let weatherBodyResponse = JSON.parse(response._body);
+		this.searchName = "";
+		this.localName = weatherBodyResponse.city.name;
+		this.weatherList = weatherBodyResponse.list;
+		let today: any = this.weatherList[0];
+		this.nowTime = this.utils.formatTime(today.dt_txt);
+		let iconCode = today.weather[0].icon + "@2x.png";
+		this.imgUrl = this.utils.setBackgroundImage(today.weather[0].main);
+
+		console.log("today:", today)
+
+		this.setWeatherListIcons(this.weatherList);
+		this.getWeatherIcon(iconCode);
+
+		
+		setTimeout(() =>
 		{
-			convertTemp = temp - this.KELVIN;
-		}
-		else
-		{
-			convertTemp = 1.8 * (temp - 273) + 32;
-		}
-		return (Math.round(convertTemp * 100) / 100).toFixed(0);
+			this.setTodayWeatherData(today);
+			let temp = parseInt(this.todayWeather.temperature);
+			this.utils.setBackgroundColor(temp, this.unit);
+		}, 0);
+
 	}
 
 	public getLocation()
@@ -82,25 +173,20 @@ export class HomeComponent implements OnInit
 		{
 			navigator.geolocation.getCurrentPosition((position)=>
 			{
-				this.latitude = position.coords.latitude;
-				this.longitude = position.coords.longitude;
-				this.getWeatherByLatLong(this.latitude, this.longitude);
+				let latitude = position.coords.latitude;
+				let longitude = position.coords.longitude;
+				this.getWeatherByLatLong(latitude, longitude, this.unit);
 			});
 		}
 	}
 
-	public async getTranslateWeatherDescription()
+	public getWeatherIcon(iconCode: string)
 	{
-		// const text = await translate("Hello world", "es");
-		// console.log(text); // Hola mundo
-		// switch(description)
-		// {
-		// 	case "few clouds":
-		// 		this.weatherDescription = "Poucas nuvens";
-		// 		break;
-		// 	case "broken clouds":
-		// 		this.weatherDescription = "Nuvens quebradas";
-		// 		break;
-		// }
+		this.weatherService.getWeatherIcon(iconCode).subscribe(
+			(res: any)=>
+			{
+				this.iconUrl = res.url;
+			}
+		);
 	}
 }
