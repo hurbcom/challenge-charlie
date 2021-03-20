@@ -1,24 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { apiFetch } from "./Utils";
-import { BING_IMAGE_API } from "./Utils/urls";
+import { BING_IMAGE } from "./Utils/urls";
 
 function App() {
+  const [styles, setStyles] = useState({
+    width: '100%',
+    height: '100%',
+    backgroundPosition: 'center center'
+  })
 
   useEffect(() => {
 
-    apiFetch(BING_IMAGE_API)
+    apiFetch(BING_IMAGE)
       .get()
       .then(response => response.json())
-      .then(data => {
-        console.log(data)
+      .then(url => {
+        setStyles(state => ({ ...state, backgroundImage: `url(${url})` }))
       })
-
 
   }, [])
 
   return (
-    <div className="App">
-      App
+    <div className="App" style={styles}>
     </div>
   );
 }
