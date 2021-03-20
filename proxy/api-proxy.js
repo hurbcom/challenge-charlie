@@ -41,7 +41,7 @@ app.get('/user-location',(req,res)=>{
 app.get('/weather-forecast',(req,res)=>{
     const {cityName} = req.query;
     request(
-        { url: `http://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)}&appid=7ba73e0eb8efe773ed08bfd0627f07b8` },
+        { url: `http://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)}&appid=7ba73e0eb8efe773ed08bfd0627f07b8&units=metric` },
         (error, response, body) => {
           if (error || response.statusCode !== 200) {
             return res.status(500).json({ type: 'error', message: error });

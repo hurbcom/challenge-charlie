@@ -1,32 +1,6 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "./Utils";
+import { apiFetch, getCoordinates } from "./Utils";
 import { BING_IMAGE, USER_LOCATION, WEATHER_FORECAST } from "./Utils/urls";
-
-function getCoordinates() {
-  return new Promise(function (resolve: PositionCallback, reject: PositionErrorCallback) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-}
-
-async function getUsersCity() {
-  let cityName
-  if ('geolocation' in navigator) {
-    try {
-      const position = await getCoordinates()
-      const { latitude, longitude } = position.coords
-
-      const data = await apiFetch(USER_LOCATION(latitude, longitude))
-        .get()
-        .then(res => res.json())
-
-      cityName = data.results[0].components.city
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  return cityName
-}
 
 function App() {
   const [searchString, setSearchString] = useState<string>()
@@ -35,6 +9,26 @@ function App() {
     backgroundSize: 'cover',
     backgroundColor: 'rgba(34,34,34,.9)',
   })
+
+  async function getUsersCity() {
+    let cityName
+    if ('geolocation' in navigator) {
+      try {
+        const position = await getCoordinates()
+        const { latitude, longitude } = position.coords
+
+        const data = await apiFetch(USER_LOCATION(latitude, longitude))
+          .get()
+          .then(res => res.json())
+
+        cityName = data.results[0].components.city
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    return cityName
+  }
 
   useEffect(() => {
     getUsersCity().then(cityName => {
