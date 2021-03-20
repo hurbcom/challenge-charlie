@@ -4,13 +4,11 @@ import { BING_IMAGE } from "./Utils/urls";
 
 function App() {
   const [styles, setStyles] = useState({
-    width: '100%',
-    height: '100%',
-    backgroundPosition: 'center center'
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   })
 
   useEffect(() => {
-
     apiFetch(BING_IMAGE)
       .get()
       .then(response => response.json())
