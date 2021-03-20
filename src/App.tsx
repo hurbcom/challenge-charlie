@@ -52,7 +52,6 @@ function App() {
 
   useEffect(() => {
     if (searchString) {
-      console.log(WEATHER_FORECAST(searchString))
       apiFetch(WEATHER_FORECAST(searchString))
         .get()
         .then(res => res.json())
