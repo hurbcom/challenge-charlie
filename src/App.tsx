@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
+import SearchBar from "./Components/SearchBar";
 import { apiFetch, getCoordinates } from "./Utils";
 import { BING_IMAGE, USER_LOCATION, WEATHER_FORECAST } from "./Utils/urls";
 
 function App() {
-  const [searchString, setSearchString] = useState<string>()
+  const [selectedCity, setSelectedCity] = useState<string | undefined>()
+  const [searchString, setSearchString] = useState<string>('')
   const [styles, setStyles] = useState({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundColor: 'rgba(34,34,34,.9)',
   })
 
-  async function getUsersCity() {
-    let cityName
+  async function getUsersCityName(): Promise<string | undefined> {
+    let cityName: string | undefined = undefined
     if ('geolocation' in navigator) {
       try {
         const position = await getCoordinates()
@@ -31,8 +33,8 @@ function App() {
   }
 
   useEffect(() => {
-    getUsersCity().then(cityName => {
-      setSearchString(cityName)
+    getUsersCityName().then(cityName => {
+      setSelectedCity(cityName)
     })
 
     apiFetch(BING_IMAGE)
@@ -45,20 +47,25 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (searchString) {
-      apiFetch(WEATHER_FORECAST(searchString))
+    if (selectedCity) {
+      apiFetch(WEATHER_FORECAST(selectedCity))
         .get()
         .then(res => res.json())
         .then(forecast => {
           console.log(forecast)
         })
     }
-  }, [searchString])
+  }, [selectedCity])
 
-  console.log('SearchString', searchString)
+  console.log('SearchString', selectedCity)
 
   return (
     <div className="App" style={styles}>
+      <SearchBar
+        onSearch={(searchString: any) => {
+          console.log(searchString)
+        }}
+      />
     </div>
   );
 }
