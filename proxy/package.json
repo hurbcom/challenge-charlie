@@ -1,0 +1,14 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "main": "api-proxy.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node api-proxy.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}

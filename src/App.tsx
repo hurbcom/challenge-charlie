@@ -1,10 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { apiFetch } from "./Utils";
+import { BING_IMAGE_API } from "./Utils/urls";
 
 function App() {
+
+  useEffect(() => {
+
+    apiFetch(BING_IMAGE_API)
+      .get()
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+
+
+  }, [])
+
   return (
     <div className="App">
+      App
     </div>
   );
 }
