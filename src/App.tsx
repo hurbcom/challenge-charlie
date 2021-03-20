@@ -1,36 +1,68 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "./Utils";
-import { BING_IMAGE, USER_LOCATION } from "./Utils/urls";
+import { BING_IMAGE, USER_LOCATION, WEATHER_FORECAST } from "./Utils/urls";
 
-function getBrowsersLocation() {
+function getCoordinates() {
+  return new Promise(function (resolve: PositionCallback, reject: PositionErrorCallback) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+async function getUsersCity() {
+  let cityName
   if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(position => {
+    try {
+      const position = await getCoordinates()
       const { latitude, longitude } = position.coords
-      apiFetch(USER_LOCATION(latitude, longitude))
+
+      const data = await apiFetch(USER_LOCATION(latitude, longitude))
         .get()
         .then(res => res.json())
-        .then(data => {
-          console.log(data)
-        })
-    })
+
+      cityName = data.results[0].components.city
+
+    } catch (error) {
+      console.log(error)
+    }
   }
+  return cityName
 }
 
 function App() {
+  const [searchString, setSearchString] = useState<string>()
   const [styles, setStyles] = useState({
     backgroundPosition: 'center',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    backgroundColor: 'rgba(34,34,34,.9)',
   })
 
   useEffect(() => {
-    getBrowsersLocation()
+    getUsersCity().then(cityName => {
+      setSearchString(cityName)
+    })
+
     apiFetch(BING_IMAGE)
       .get()
       .then(response => response.json())
       .then(url => {
         setStyles(state => ({ ...state, backgroundImage: `url(${url})` }))
       })
+
   }, [])
+
+  useEffect(() => {
+    if (searchString) {
+      console.log(WEATHER_FORECAST(searchString))
+      apiFetch(WEATHER_FORECAST(searchString))
+        .get()
+        .then(res => res.json())
+        .then(forecast => {
+          console.log(forecast)
+        })
+    }
+  }, [searchString])
+
+  console.log('SearchString', searchString)
 
   return (
     <div className="App" style={styles}>
