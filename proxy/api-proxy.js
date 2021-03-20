@@ -1,3 +1,12 @@
+/*
+This api-proxy serves as a middleware for making the api calls
+in order to avoid cross-origin problems, since server-to-server
+communications does not raise the same problems.
+Using cors lib allows for making the local server communication
+with cors policy enbaled while it is possible to communicate with
+the API servers through express.
+*/
+
 const express = require('express')
 const cors = require('cors')
 const request = require('request')
