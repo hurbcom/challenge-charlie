@@ -24,6 +24,20 @@ app.get('/bing-image-url',(req,res)=>{
       )
 })
 
+app.get('/user-location',(req,res)=>{
+    const {lat, lon} = req.query;
+    request(
+        { url: `https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C%20${lon}&key=c63386b4f77e46de817bdf94f552cddf&language=pt&pretty=1` },
+        (error, response, body) => {
+          if (error || response.statusCode !== 200) {
+            return res.status(500).json({ type: 'error', message: err.message });
+          }
+
+          res.json(JSON.parse(body));
+        }
+      )
+})
+
 app.listen(3005, () => {
     console.log('Proxy is running on port 3005')
 })

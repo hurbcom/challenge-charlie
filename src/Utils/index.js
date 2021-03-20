@@ -1,7 +1,7 @@
 export function apiFetch(url){
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   };
 
   return {
