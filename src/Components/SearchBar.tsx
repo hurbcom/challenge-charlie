@@ -12,6 +12,12 @@ function SearchBar({ onSearch }: any) {
                 onSearch(inputValue)
             }
         }, 500);
+
+        return () => {
+            if (timeout) {
+                clearTimeout(timeout)
+            }
+        }
     }, [inputValue])
 
     return (

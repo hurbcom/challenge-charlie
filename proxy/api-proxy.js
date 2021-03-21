@@ -2,9 +2,8 @@
 This api-proxy serves as a middleware for making the api calls
 in order to avoid cross-origin problems, since server-to-server
 communication does not raise the same problems.
-Using cors lib allows for making the local server communication
-with cors policy enbaled while it is possible to communicate with
-the API servers through express.
+Using cors lib allows for local communication with cors policy enabled,
+while it is possible to communicate with the API servers through express.
 */
 
 const express = require('express')
@@ -50,12 +49,14 @@ app.get('/user-location',(req,res)=>{
 app.get('/weather-forecast',(req,res)=>{
     const {cityName} = req.query;
     request(
-        { url: `http://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)}&appid=7ba73e0eb8efe773ed08bfd0627f07b8&units=metric` },
+        { url: `http://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)}&appid=7ba73e0eb8efe773ed08bfd0627f07b8&exclude=hourly&units=metric` },
         (error, response, body) => {
           if (error || response.statusCode !== 200) {
+           if(res.status(400)){
+             return res.status(400).json({ type: 'error', message: 'city not found' });
+           }
             return res.status(500).json({ type: 'error', message: error });
           }
-
           res.json(JSON.parse(body));
         }
       )
