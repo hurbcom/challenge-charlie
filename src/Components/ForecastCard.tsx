@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, getUsersCityName } from "../Utils"
-import { USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
+import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
 import { Card, SearchBarArea } from "./styled"
 
@@ -21,6 +21,16 @@ function ForecastCard() {
             })
     }
 
+    function fetchLocations(query: string) {
+        apiFetch(REVERSE_GEOCODE(query))
+            .get()
+            .then(res => res.json())
+            .then(locations => {
+                //setSelectedCity()
+                console.log(locations)
+            })
+    }
+
     useEffect(() => {
         getUsersCityName().then(cityName => {
             if (cityName) {
@@ -35,7 +45,7 @@ function ForecastCard() {
                 <SvgIcons.Compass />
                 <SearchBar
                     onSearch={(searchString: any) => {
-                        fetchForecast(searchString)
+                        fetchLocations(searchString)
                     }}
                 />
             </SearchBarArea>
