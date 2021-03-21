@@ -1,4 +1,4 @@
-import { USER_LOCATION } from "./urls";
+import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "./urls";
 
 export function getCoordinates() {
   return new Promise(function (
@@ -9,23 +9,50 @@ export function getCoordinates() {
   });
 }
 
-export async function getUsersCityName(): Promise<string | undefined> {
+export async function fetchUsersLocation(
+  latitude: number,
+  longitude: number
+): Promise<string | undefined> {
   let cityName: string | undefined = undefined;
-  if ("geolocation" in navigator) {
-    try {
-      const position = await getCoordinates();
-      const { latitude, longitude } = position.coords;
 
-      const data = await apiFetch(USER_LOCATION(latitude, longitude))
-        .get()
-        .then((res) => res.json());
-
-      cityName = data.results[0].components.city;
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    const data = await apiFetch(USER_LOCATION(latitude, longitude))
+      .get()
+      .then((res) => res.json());
+    console.log(data);
+    cityName = data.results[0].formatted;
+  } catch (error) {
+    console.log(error);
   }
+
   return cityName;
+}
+
+export async function fetchForecast(
+  latitude: number,
+  longitude: number
+): Promise<any> {
+  try {
+    const forecast = apiFetch(WEATHER_FORECAST(latitude, longitude))
+      .get()
+      .then((res) => res.json());
+
+    return forecast;
+  } catch (error) {
+    return error;
+  }
+}
+
+export function fetchLocations(query: string): Promise<any> {
+  try {
+    const locations = apiFetch(REVERSE_GEOCODE(query))
+      .get()
+      .then((locations) => locations.json());
+
+    return locations;
+  } catch (error) {
+    return error;
+  }
 }
 
 export function apiFetch(url: string) {

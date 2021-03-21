@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
-import { apiFetch, getCoordinates, getUsersCityName } from "../Utils"
+import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
 import { Card, SearchBarArea } from "./styled"
@@ -10,32 +10,18 @@ function ForecastCard() {
     const [searchString, setSearchString] = useState<string>('')
     const TEMP_COLOR = '#ffd500'
 
-
-    function fetchForecast(query: string) {
-        apiFetch(WEATHER_FORECAST(query))
-            .get()
-            .then(res => res.json())
-            .then(forecast => {
-                //setSelectedCity()
-                console.log(forecast)
-            })
-    }
-
-    function fetchLocations(query: string) {
-        apiFetch(REVERSE_GEOCODE(query))
-            .get()
-            .then(res => res.json())
-            .then(locations => {
-                //setSelectedCity()
-                console.log(locations)
-            })
-    }
-
     useEffect(() => {
-        getUsersCityName().then(cityName => {
-            if (cityName) {
-                fetchForecast(cityName)
-            }
+        getCoordinates().then(position => {
+            const { latitude, longitude } = position.coords
+
+            fetchForecast(latitude, longitude).then(forecast => {
+                console.log('FORECAST', forecast)
+            })
+            fetchUsersLocation(latitude, longitude).then(location => {
+                if (location) {
+                    setSelectedCity(location)
+                }
+            })
         })
     }, [])
 
@@ -45,7 +31,12 @@ function ForecastCard() {
                 <SvgIcons.Compass />
                 <SearchBar
                     onSearch={(searchString: any) => {
-                        fetchLocations(searchString)
+                        if (searchString.length) {
+                            fetchLocations(searchString)
+                                .then(locations => {
+                                    console.log(locations)
+                                })
+                        }
                     }}
                 />
             </SearchBarArea>
