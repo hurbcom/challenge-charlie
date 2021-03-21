@@ -11,7 +11,6 @@ function App() {
     backgroundColor: 'rgba(34,34,34,.9)',
   })
 
-
   useEffect(() => {
     apiFetch(BING_IMAGE)
       .get()
@@ -19,7 +18,6 @@ function App() {
       .then(url => {
         setStyles(state => ({ ...state, backgroundImage: `url(${url})` }))
       })
-
   }, [])
 
   return (

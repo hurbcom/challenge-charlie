@@ -7,6 +7,7 @@ import { Card } from "./styled"
 function ForecastCard() {
     const [selectedCity, setSelectedCity] = useState<string | undefined>()
     const [searchString, setSearchString] = useState<string>('')
+    const TEMP_COLOR = '#ffd500'
 
     async function getUsersCityName(): Promise<string | undefined> {
         let cityName: string | undefined = undefined
@@ -46,14 +47,21 @@ function ForecastCard() {
         })
     }, [])
 
-
     return (
         <Card>
-            <SearchBar
-                onSearch={(searchString: any) => {
-                    fetchForecast(searchString)
-                }}
-            />
+            <div className="search-bar" style={{ height: '10%' }}>
+                <SearchBar
+                    onSearch={(searchString: any) => {
+                        fetchForecast(searchString)
+                    }}
+                />
+            </div>
+            <div className='main' style={{ flexGrow: 1, backgroundColor: `${TEMP_COLOR}7F` }}>
+            </div>
+            <div className='tomorrow' style={{ height: '15%', backgroundColor: `${TEMP_COLOR}CC` }}>
+            </div>
+            <div className='day-after-tomorrow' style={{ height: '15%', backgroundColor: `${TEMP_COLOR}AA` }}>
+            </div>
         </Card>
     )
 }
