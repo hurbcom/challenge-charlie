@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, getUsersCityName } from "../Utils"
 import { USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
@@ -31,6 +32,7 @@ function ForecastCard() {
     return (
         <Card>
             <SearchBarArea>
+                <SvgIcons.Compass />
                 <SearchBar
                     onSearch={(searchString: any) => {
                         fetchForecast(searchString)
