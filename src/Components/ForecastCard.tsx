@@ -4,6 +4,8 @@ import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocat
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
 import { Card, SearchBarArea } from "./styled"
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Button from 'react-bootstrap/Button';
 
 function ForecastCard() {
     const [selectedCity, setSelectedCity] = useState<string | undefined>()
@@ -29,16 +31,35 @@ function ForecastCard() {
         <Card>
             <SearchBarArea>
                 <SvgIcons.Compass />
-                <SearchBar
-                    onSearch={(searchString: any) => {
-                        if (searchString.length) {
-                            fetchLocations(searchString)
-                                .then(locations => {
-                                    console.log(locations)
-                                })
-                        }
-                    }}
-                />
+                <OverlayTrigger
+                    show={true}
+                    placement="bottom"
+                    overlay={({ placement, arrowProps, show: _show, popper, ...props }) => (
+                        <div
+                            {...props}
+                            style={{
+                                backgroundColor: 'rgba(255, 100, 100, 0.85)',
+                                padding: '2px 10px',
+                                color: 'white',
+                                borderRadius: 3,
+                                ...props.style,
+                            }}
+                        >
+                            MENU
+                        </div>
+                    )}
+                >
+                    <SearchBar
+                        onSearch={(searchString: any) => {
+                            if (searchString.length) {
+                                fetchLocations(searchString)
+                                    .then(locations => {
+                                        console.log(locations)
+                                    })
+                            }
+                        }}
+                    />
+                </OverlayTrigger>
             </SearchBarArea>
             <div className='main' style={{ flexGrow: 1, backgroundColor: `${TEMP_COLOR}7F` }}>
             </div>

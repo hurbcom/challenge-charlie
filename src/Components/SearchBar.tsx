@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 let timeout: any
 
-function SearchBar({ onSearch }: any) {
+function SearchBar({ onSearch }: any, ref: React.ForwardedRef<any>) {
     const [inputValue, setInputValue] = useState<string>('')
 
     useEffect(() => {
@@ -18,10 +18,11 @@ function SearchBar({ onSearch }: any) {
                 clearTimeout(timeout)
             }
         }
-    }, [inputValue])
+    }, [inputValue, onSearch])
 
     return (
         <input
+            ref={ref}
             value={inputValue}
             type="text"
             onChange={e => {
@@ -31,4 +32,4 @@ function SearchBar({ onSearch }: any) {
     )
 }
 
-export default SearchBar
+export default React.forwardRef(SearchBar)
