@@ -6,11 +6,16 @@ function DropDownMenu({ data, loading, ...rest }: any, ref: React.ForwardedRef<a
     return (
         <div ref={ref} {...rest}>
             {loading && <Spinner />}
-            {data.map((option: any) => (
+            {data.length ? data.map((option: any) => (
                 <div key={option.id}>
                     {option.value}
                 </div>
-            ))}
+            )) : (
+                <div>
+                    No Results
+                </div>
+            )
+            }
         </div>
     )
 }
