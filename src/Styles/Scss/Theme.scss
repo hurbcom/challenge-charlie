@@ -1,0 +1,87 @@
+.theme {
+    &--noInfo {
+        .card__content-info {
+            background-color: $color-grey-light;
+        }
+
+        .boxTemp--tomorrow {
+            background-color: $color-grey-medium;
+        }
+
+        .boxTemp--after {
+            background-color: $color-grey-dark;
+        }
+
+        .boxTemp__wrapper,
+        .card__text-box {
+            display: none;
+        }
+
+        .card__icon:before {
+            color: $color-white;
+            font-family: 'MeteoconsRegular';
+            content: ')';
+        }
+
+    }
+
+    &--normal {
+        .card__content-info {
+            background-color: $color-yellow-light;
+        }
+
+        .boxTemp--tomorrow {
+            background-color: $color-yellow-medium;
+        }
+
+        .boxTemp--after {
+            background-color: $color-yellow-dark;
+        }
+
+        .card__icon:before {
+            color: $color-white;
+            font-family: 'MeteoconsRegular';
+            content: 'B';
+        }
+    }
+
+    &--sunny {
+        .card__content-info {
+            background-color: $color-red-light;
+        }
+
+        .boxTemp--tomorrow {
+            background-color: $color-red-medium;
+        }
+
+        .boxTemp--after {
+            background-color: $color-red-dark;
+        }
+
+        .card__icon:before {
+            color: $color-white;
+            font-family: 'MeteoconsRegular';
+            content: 'B';
+        }
+    }
+
+    &--cold {
+        .card__content-info {
+            background-color: $color-blue-light;
+        }
+
+        .boxTemp--tomorrow {
+            background-color: $color-blue-medium;
+        }
+
+        .boxTemp--after {
+            background-color: $color-blue-dark;
+        }
+
+        .card__icon:before {
+            color: $color-white;
+            font-family: 'MeteoconsRegular';
+            content: 'W';
+        }
+    }
+}

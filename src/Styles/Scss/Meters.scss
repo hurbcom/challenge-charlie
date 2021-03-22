@@ -1,0 +1,47 @@
+.meters {
+    &__box-info{
+        display: block;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-bottom: rem(5);
+        font-size: rem(16);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            font-size: rem(20);
+            text-align: left;
+        }
+    }
+    &__celsius,
+    &__fahrenheit {
+        font-size: rem(12);
+        font-weight: normal;
+    }
+
+    &__unit {
+        cursor: pointer;
+        margin-left: rem(5);
+        &--celsius {
+            .meters__celsius {
+                font-size: rem(16);
+                font-weight: bold;
+
+                @media #{$global-break-md} {
+                    font-size: rem(20);
+                    text-align: left;
+                }
+            }
+        }
+        &--fahrenheit {
+            .meters__fahrenheit {
+                font-size: rem(16);
+                font-weight: bold;
+
+                @media #{$global-break-md} {
+                    font-size: rem(20);
+                    text-align: left;
+                }
+            }
+        }
+    } 
+}

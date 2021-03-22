@@ -1,0 +1,82 @@
+.card {
+    height: 100%;
+    width: 100%;
+
+    &__content-info {
+        display: flex;
+        flex-direction: column;
+        padding: rem(20);
+
+        @media #{$global-break-md} {
+            padding: rem(20);
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+    &__text-box,
+    &__icon {
+        width: 50%;
+    }
+
+    &__text-box {
+        color: $color-white;
+        margin: 0 auto;
+        width: 100%;
+
+        @media #{$global-break-md} {
+            width: auto;
+            margin: 0;
+        }
+    }
+
+    &__today {
+        padding-bottom: rem(20);
+    }
+
+    &__today-info,
+    &__status-info,
+    &__status-air {
+        display: block;
+        font-weight: bold;
+        padding-bottom: rem(5);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            text-align: left;
+        }
+    }
+    &__status-info
+    &__status-air {   
+        padding: rem(1);
+    }
+    &__status-info {
+        font-size: rem(18);
+        
+        @media #{$global-break-md} {
+            font-size: rem(20);
+        }
+    }
+    &__today-info {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: rem(18);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            font-size: rem(20);
+            text-align: left;
+        }
+    }
+    &__icon {
+        font-size: rem(120);
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+        @media #{$global-break-md}{
+            font-size: rem(200);
+            margin: 0;
+        }
+
+    }
+}

@@ -1,58 +1,93 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
+# 🔗[Hurb Weather search city]('https://github.com/Thiagorrrr/Hurb')
+This project was created to research on the temperature of the desired city. Informing the weather today, tomorrow and the day after, visually indicating the temperature either in degrees celsius or fahrenheit.
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+## Available Scripts
 
- Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
+In the project directory, you can run:
 
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
+### `yarn start`
 
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+### `yarn test`
 
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+### `yarn build`
 
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Requisitos
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Critério de avaliação
+### `yarn eject`
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Dúvidas
+## Resolving some problems
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+### Allow CORS: Access-Control-Allow-Origin
+If you browser is runner with http or the API does not used Access-Control-Allow-Origin: '*'. This can be resolved with the extension [Allow CORS: Access-Control-Allow-Origin
+](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) just install and active for resolved that problem.
 
-Boa sorte e boa viagem! ;)
+### GPS or Http navigator
+ 
+If user or there is a problem with ```navigator.geolocation``` the aplication sets ```Rio de janeiro``` with a default value
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+## Apis
+this site use three types of apis:
+
+1. [Background at Bing.](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
+2. [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=7ba73e0eb8efe773ed08bfd0627f07b8)
+3. [opencage](https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en)
+
+### background at Bing
+this api was used to adding a ```background-image```
+    
+### OpenWeather
+this api was used to convert ```latitude``` and ```longitude``` in an available city
+
+### Opencage
+this api was used to see the weather forecast.
+
+## Check layout view 
+
+### Mobile
+<img width="236" alt="Captura de Tela 2021-03-20 às 02 33 54" src="https://user-images.githubusercontent.com/19389360/111860227-fc521d80-8924-11eb-85a7-2c1bb0d701f3.png">
+
+### Desktop
+<img width="1437" alt="Captura de Tela 2021-03-20 às 02 32 57" src="https://user-images.githubusercontent.com/19389360/111860270-43d8a980-8925-11eb-97ee-a653ba422b17.png">
+
+## Layout Validation
+
+### Search input values
+There are two validations important for user, an is search ```with no value``` or ```invalid properts```.
+
+<img width="354" alt="Captura de Tela 2021-03-20 às 03 00 24" src="https://user-images.githubusercontent.com/19389360/111861258-91581500-892b-11eb-87bd-f68842a90841.png">
+
+
+### Not found city
+When the user set a city name invalid, this mensage is called. ```Cidade não encontrada!```
+
+<img width="346" alt="Captura de Tela 2021-03-20 às 02 59 36" src="https://user-images.githubusercontent.com/19389360/111861065-29ed9580-892a-11eb-9f1f-f7d3faa28026.png">
+
+### Loading with Shimmer
+When card is loading the component ```CardShimmer```. Instead of showing a loading icon we could have a sample layout of our app which indicates how and where our content gets placed when that is fully loaded.
+
+<img width="365" alt="Captura de Tela 2021-03-20 às 03 00 24" src="https://user-images.githubusercontent.com/19389360/111861190-227abc00-892b-11eb-9ec7-5490fd7d1361.png">
+
+## Docker image
+
+Link to, link ```public.ecr.aws/n6a9a7w8/hurb-stage```
+
+## Site
+
+Link to, [Hurb Weather search city](https://nervous-benz-289225.netlify.app/)

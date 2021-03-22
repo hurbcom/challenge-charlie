@@ -1,0 +1,20 @@
+.status {
+    &__info,
+    &__air {
+        display: block;
+        font-weight: bold;
+        padding: rem(1) rem(5);
+        text-align: center;
+
+        @media #{$global-break-md} {
+            text-align: left;
+        }
+    }
+    &__info {
+        font-size: rem(18);
+        
+        @media #{$global-break-md} {
+            font-size: rem(20);
+        }
+    }
+}

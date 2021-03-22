@@ -1,0 +1,84 @@
+.card-shimmer {
+    height: 100%;
+    width: 100%;
+
+    &__wrapper {
+        background-color: $color-white;
+    }
+
+    &__content-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(20);
+    }
+    &__text-box,
+    &__icon {
+        width: 50%;
+    }
+
+    &__box,
+    &__text-box {
+        color: $color-white;
+    }
+
+    &__today {
+        padding-bottom: rem(20);
+    }
+
+    &__box-info,
+    &__today-info,
+    &__status-info,
+    &__status-air {
+        display: block;
+        font-weight: bold;
+        height: rem(20);
+        margin-bottom: rem(5);
+    }
+    &__status-info
+    &__status-air {   
+        padding: rem(1);
+    }
+    &__status-info {
+        font-size: rem(20);
+    }
+    &__today-info {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: rem(20);
+    }
+    &__icon {
+        height: rem(100);
+        width: rem(100);
+        
+        @media #{$global-break-md}{
+            height: rem(200);
+            width: rem(200);
+        }
+    }
+
+    &__box {
+        display: flex;
+        justify-content: flex-end;
+        padding: rem(10) rem(20);
+    }
+    &__box-wrapper{
+        width: 50%;
+    }
+
+    &__city-info {
+        display: flex;
+        align-items: center;
+        background-color: $color-grey-lighter;
+        padding: rem(20);
+        height: 30px;
+    }
+
+    &__city-icon:before {
+        font-size: rem(30);
+        margin-right: rem(10);
+        color: $color-grey-dark;
+        font-family: 'MeteoconsRegular';
+        content: '(';
+    }
+}

@@ -1,0 +1,30 @@
+.boxTemp { 
+    color: $color-white;
+    display: flex;
+    justify-content: flex-end;
+    padding: rem(10) 0;
+
+    &__box-info {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: rem(18);
+        text-align: center;
+        padding-bottom: rem(5);
+
+        @media #{$global-break-md} {
+            font-size: rem(20);
+            text-align: left;
+        }
+    }
+
+    &__wrapper{
+        width: 100%;
+        padding-bottom: rem(10);
+
+        @media #{$global-break-md} {
+            width: 50%;
+            align-items: center;
+        }
+    }
+}

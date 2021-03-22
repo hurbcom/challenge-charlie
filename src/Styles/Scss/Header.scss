@@ -1,0 +1,37 @@
+.header {
+    display: inline-block;
+    position: relative;
+    color: $color-white;
+    width: 100%;
+    background: $color-hurb;
+
+    &__logo {
+        svg {
+            width: rem(75);
+
+            @media #{$global-break-md}{
+                width: auto;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 rem(20);
+        padding: rem(15) 0;
+    }
+    
+    &__title {
+        font-size: rem(20);
+        text-align: center;
+        margin: 0;
+        margin-left: rem(15);
+
+        @media #{$global-break-md}{
+            font-size: rem(25);
+            margin-left: rem(20);
+        }
+    }
+}

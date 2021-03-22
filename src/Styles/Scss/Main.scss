@@ -1,0 +1,26 @@
+.main {
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+    overflow: scroll;
+    background: $color-hurb;
+
+    @media #{$global-break-md}{
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% + 60px);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

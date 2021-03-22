@@ -1,0 +1,39 @@
+.search {
+    padding: 0 0 rem(20) 0;
+
+    &__label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: rem(10) rem(20);
+        border: rem(1) solid $color-white;
+
+        &--error {
+            border: rem(1) solid $color-red;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        background: transparent;
+        box-shadow: none;
+        outline: transparent;
+        border: 0;
+        opacity: 1;
+        color: $color-white;
+    }
+
+    &__btn {
+        width: 8%;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+    }
+    &__error {
+        display: block;
+        color: $color-red;
+        margin-top: rem(5);
+    }
+}
