@@ -59,9 +59,7 @@ app.get("/reverse-geocode", (req, res) => {
     (error, response, body) => {
       if (error || response.statusCode !== 200) {
         if (res.status(400)) {
-          return res
-            .status(400)
-            .json({ type: "error", message: "city not found" });
+          return res.status(200).json({ results: [] });
         }
         return res.status(500).json({ type: "error", message: error });
       }
