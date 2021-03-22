@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
@@ -6,8 +6,14 @@ import SearchBar from "./SearchBar"
 import { Card, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Button from 'react-bootstrap/Button';
+import DropDownMenu from "./DropDownMenu"
+
+let currentString: string = ''
 
 function ForecastCard() {
+    const [loading, setLoading] = useState<boolean>(false)
+    const [searching, setSearching] = useState<boolean>(false)
+    const [locations, setLocations] = useState<any>()
     const [selectedCity, setSelectedCity] = useState<string | undefined>()
     const [searchString, setSearchString] = useState<string>('')
     const TEMP_COLOR = '#ffd500'
@@ -17,7 +23,7 @@ function ForecastCard() {
             const { latitude, longitude } = position.coords
 
             fetchForecast(latitude, longitude).then(forecast => {
-                console.log('FORECAST', forecast)
+                // console.log('FORECAST', forecast)
             })
             fetchUsersLocation(latitude, longitude).then(location => {
                 if (location) {
@@ -27,34 +33,59 @@ function ForecastCard() {
         })
     }, [])
 
+    const getLocationsOptions = useCallback(() => {
+        // console.log(locations)
+        if (locations?.results) {
+            return locations.results.map((location: any, index: number) => ({ value: location.formatted, id: index }))
+        } else {
+            return []
+        }
+
+
+    }, [locations])
+
+
     return (
         <Card>
             <SearchBarArea>
                 <SvgIcons.Compass />
                 <OverlayTrigger
-                    show={true}
+                    show={searching}
                     placement="bottom"
                     overlay={({ placement, arrowProps, show: _show, popper, ...props }) => (
-                        <div
+                        <DropDownMenu
                             {...props}
                             style={{
-                                backgroundColor: 'rgba(255, 100, 100, 0.85)',
+                                margin: '0 auto',
+                                width: '65%',
+                                backgroundColor: 'rgba(43, 50, 82, 0.85)',
                                 padding: '2px 10px',
                                 color: 'white',
-                                borderRadius: 3,
+                                borderRadius: 5,
                                 ...props.style,
                             }}
-                        >
-                            MENU
-                        </div>
+                            data={getLocationsOptions()}
+                            loading={loading}
+                        />
+
+
                     )}
                 >
                     <SearchBar
-                        onSearch={(searchString: any) => {
-                            if (searchString.length) {
-                                fetchLocations(searchString)
+                        onFocus={() => setSearching(true)}
+                        onBlur={() => setSearching(false)}
+                        onSearch={(string: any) => {
+                            if (string.length) {
+                                currentString = string
+                                setLoading(true)
+                                fetchLocations(string)
                                     .then(locations => {
-                                        console.log(locations)
+                                        setLocations(locations)
+                                    })
+                                    .finally(() => {
+                                        if (currentString === string) {
+                                            setLoading(false)
+                                        }
                                     })
                             }
                         }}

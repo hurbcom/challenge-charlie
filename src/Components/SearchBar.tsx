@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 let timeout: any
 
-function SearchBar({ onSearch }: any, ref: React.ForwardedRef<any>) {
+function SearchBar({ onSearch, ...rest }: any, ref: React.ForwardedRef<any>) {
     const [inputValue, setInputValue] = useState<string>('')
 
     useEffect(() => {
@@ -11,14 +11,15 @@ function SearchBar({ onSearch }: any, ref: React.ForwardedRef<any>) {
             if (onSearch) {
                 onSearch(inputValue)
             }
-        }, 250);
+        }, 150);
 
         return () => {
             if (timeout) {
                 clearTimeout(timeout)
             }
         }
-    }, [inputValue, onSearch])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inputValue])
 
     return (
         <input
@@ -28,6 +29,8 @@ function SearchBar({ onSearch }: any, ref: React.ForwardedRef<any>) {
             onChange={e => {
                 setInputValue(e.target.value)
             }}
+            {...rest}
+
         />
     )
 }
