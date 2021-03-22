@@ -1,9 +1,11 @@
 import React from "react"
+import styled from "styled-components";
+import { CgSpinner } from 'react-icons/cg'
 
 function DropDownMenu({ data, loading, ...rest }: any, ref: React.ForwardedRef<any>) {
     return (
         <div ref={ref} {...rest}>
-            {loading && <div>Loading...</div>}
+            {loading && <Spinner />}
             {data.map((option: any) => (
                 <div key={option.id}>
                     {option.value}
@@ -14,3 +16,20 @@ function DropDownMenu({ data, loading, ...rest }: any, ref: React.ForwardedRef<a
 }
 
 export default React.forwardRef(DropDownMenu)
+
+const Spinner = styled(CgSpinner)`
+    animation: spin infinite 2s linear;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+`

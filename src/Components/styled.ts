@@ -13,12 +13,6 @@ export const Card = styled.div`
 export const SearchBarArea = styled.div`
   height: 10%;
   position: relative;
-
-  svg {
-    position: absolute;
-    height: 100%;
-    margin-left: 10px;
-  }
   /* 
   .input-icons {
     width: 100%;
@@ -40,5 +34,22 @@ export const SearchBarArea = styled.div`
     outline: unset;
     font-size: 35px;
     //padding-left: 70px;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  height: 100%;
+  padding: 5px;
+
+  svg {
+    height: 100%;
+    /* width: 70px; */
+    font-size: 55px;
+    /* margin-left: 5px;
+    /* position: absolute;
+    height: 100%;
+    font-size: 40px; */
+    //margin-left: 10px;
   }
 `;

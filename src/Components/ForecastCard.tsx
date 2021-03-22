@@ -3,10 +3,11 @@ import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
-import { Card, SearchBarArea } from "./styled"
+import { Card, IconWrapper, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Button from 'react-bootstrap/Button';
 import DropDownMenu from "./DropDownMenu"
+import { RiCompassLine } from 'react-icons/ri'
 
 let currentString: string = ''
 
@@ -48,7 +49,9 @@ function ForecastCard() {
     return (
         <Card>
             <SearchBarArea>
-                <SvgIcons.Compass />
+                <IconWrapper>
+                    <RiCompassLine />
+                </IconWrapper>
                 <OverlayTrigger
                     show={searching}
                     placement="bottom"
@@ -56,10 +59,11 @@ function ForecastCard() {
                         <DropDownMenu
                             {...props}
                             style={{
+                                positions: 'relative',
                                 margin: '0 auto',
                                 width: '65%',
                                 backgroundColor: 'rgba(43, 50, 82, 0.85)',
-                                padding: '2px 10px',
+                                padding: '20px 15px',
                                 color: 'white',
                                 borderRadius: 5,
                                 ...props.style,
