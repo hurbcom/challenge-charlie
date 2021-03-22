@@ -5,6 +5,10 @@ This project was created to research on the temperature of the desired city. Inf
 
 In the project directory, you can run:
 
+### `yarn install`
+
+Install dependencies.
+
 ### `yarn start`
 
 Runs the app in the development mode.\
@@ -90,4 +94,4 @@ Link to, link ```public.ecr.aws/n6a9a7w8/hurb-stage```
 
 ## Site
 
-Link to, [Hurb Weather search city](https://nervous-benz-289225.netlify.app/)
+Link to, [Hurb Weather search city](https://hopeful-hoover-786b2f.netlify.app/)
