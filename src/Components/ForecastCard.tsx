@@ -70,7 +70,7 @@ function ForecastCard() {
                     }}
                 />
                 <Overlay
-                    show={searching}
+                    show={searching && searchString.length > 1}
                     target={searchAreaRef.current}
                     placement="bottom"
                     rootClose
