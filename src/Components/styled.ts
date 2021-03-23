@@ -53,3 +53,10 @@ export const IconWrapper = styled.div`
     //margin-left: 10px;
   }
 `;
+export const DropdownItem = styled.div<{ selectable?: boolean }>`
+  cursor: ${({ selectable }) => (selectable ? "pointer" : "auto")};
+  padding: 8px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;

@@ -11,7 +11,7 @@ function SearchBar({ onSearch, ...rest }: any, ref: React.ForwardedRef<any>) {
             if (onSearch) {
                 onSearch(inputValue)
             }
-        }, 150);
+        }, 250);
 
         return () => {
             if (timeout) {

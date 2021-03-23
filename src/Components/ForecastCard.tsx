@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import SearchBar from "./SearchBar"
 import { Card, IconWrapper, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
 import DropDownMenu from "./DropDownMenu"
 import { RiCompassLine } from 'react-icons/ri'
@@ -12,6 +13,7 @@ import { RiCompassLine } from 'react-icons/ri'
 let currentString: string = ''
 
 function ForecastCard() {
+    const searchAreaRef = useRef(null);
     const [loading, setLoading] = useState<boolean>(false)
     const [searching, setSearching] = useState<boolean>(false)
     const [locations, setLocations] = useState<any>()
@@ -35,9 +37,8 @@ function ForecastCard() {
     }, [])
 
     const getLocationsOptions = useCallback(() => {
-        // console.log(locations)
         if (locations?.results) {
-            return locations.results.map((location: any, index: number) => ({ value: location.formatted, id: index }))
+            return locations.results.map((location: any, index: number) => ({ value: location.formatted, id: index, ...location }))
         } else {
             return []
         }
@@ -52,49 +53,49 @@ function ForecastCard() {
                 <IconWrapper>
                     <RiCompassLine />
                 </IconWrapper>
-                <OverlayTrigger
+                <SearchBar
+                    ref={searchAreaRef}
+                    onFocus={() => setSearching(true)}
+                    onSearch={(string: any) => {
+                        currentString = string
+                        setSearchString(string)
+                        setLoading(true)
+                        fetchLocations(string)
+                            .then(locations => {
+                                if (currentString === string) {
+                                    setLoading(false)
+                                    setLocations(locations)
+                                }
+                            })
+                    }}
+                />
+                <Overlay
                     show={searching}
+                    target={searchAreaRef.current}
                     placement="bottom"
-                    overlay={({ placement, arrowProps, show: _show, popper, ...props }) => (
-                        <DropDownMenu
-                            {...props}
-                            style={{
-                                positions: 'relative',
-                                margin: '0 auto',
-                                width: '65%',
-                                backgroundColor: 'rgba(43, 50, 82, 0.85)',
-                                padding: '20px 15px',
-                                color: 'white',
-                                borderRadius: 5,
-                                ...props.style,
-                            }}
-                            data={getLocationsOptions()}
-                            loading={loading}
-                        />
-
-
-                    )}
+                    rootClose
+                    onHide={(event) => {
+                        if (event.target !== searchAreaRef.current) {
+                            setSearching(false)
+                        }
+                    }}
                 >
-                    <SearchBar
-                        onFocus={() => setSearching(true)}
-                        onBlur={() => setSearching(false)}
-                        onSearch={(string: any) => {
-                            if (string.length) {
-                                currentString = string
-                                setLoading(true)
-                                fetchLocations(string)
-                                    .then(locations => {
-                                        setLocations(locations)
-                                    })
-                                    .finally(() => {
-                                        if (currentString === string) {
-                                            setLoading(false)
-                                        }
-                                    })
-                            }
+                    <DropDownMenu
+                        style={{
+                            zIndex: 99,
+                            positions: 'relative',
+                            margin: '0 auto',
+                            width: '65%',
+                            backgroundColor: 'rgba(43, 50, 82, 0.85)',
+                            padding: '30px 20px',
+                            color: 'white',
+                            borderRadius: 5,
                         }}
+                        data={getLocationsOptions()}
+                        loading={loading}
+                        onClickOption={(option: any) => console.log('OPTION', option)}
                     />
-                </OverlayTrigger>
+                </Overlay>
             </SearchBarArea>
             <div className='main' style={{ flexGrow: 1, backgroundColor: `${TEMP_COLOR}7F` }}>
             </div>
@@ -102,7 +103,7 @@ function ForecastCard() {
             </div>
             <div className='day-after-tomorrow' style={{ height: '15%', backgroundColor: `${TEMP_COLOR}AA` }}>
             </div>
-        </Card>
+        </Card >
     )
 }
 

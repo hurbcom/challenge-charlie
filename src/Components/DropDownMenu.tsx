@@ -1,19 +1,27 @@
 import React from "react"
 import styled from "styled-components";
 import { CgSpinner } from 'react-icons/cg'
+import { DropdownItem } from "./styled";
 
-function DropDownMenu({ data, loading, ...rest }: any, ref: React.ForwardedRef<any>) {
+function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React.ForwardedRef<any>) {
     return (
         <div ref={ref} {...rest}>
             {loading && <Spinner />}
             {data.length ? data.map((option: any) => (
-                <div key={option.id}>
+                <DropdownItem
+                    selectable
+                    key={option.id}
+                    onClick={() => {
+                        if (onClickOption) {
+                            return onClickOption(option)
+                        }
+                    }}>
                     {option.value}
-                </div>
+                </DropdownItem>
             )) : (
-                <div>
+                <DropdownItem>
                     No Results
-                </div>
+                </DropdownItem>
             )
             }
         </div>
