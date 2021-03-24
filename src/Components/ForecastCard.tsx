@@ -37,7 +37,7 @@ function ForecastCard() {
         if (selectedLocation) {
             console.log('HOOK_SELECTED_LOC', selectedLocation)
             //searchInputRef.current.value = selectedLocation.formatted
-            setSearching(false)
+            //setSearching(false)
 
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng).then(forecast => {
@@ -95,6 +95,7 @@ function ForecastCard() {
                     rootClose
                     onHide={(event) => {
                         if (!searchInputRef.current.contains(event.target)) {
+                            searchInputRef.current.querySelector('input').blur()
                             setSearching(false)
                         }
                     }}
