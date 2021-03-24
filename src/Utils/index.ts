@@ -9,7 +9,7 @@ export function getCoordinates() {
   });
 }
 
-export async function fetchUsersLocation(
+export async function fetchUserLocation(
   latitude: number,
   longitude: number
 ): Promise<any> {

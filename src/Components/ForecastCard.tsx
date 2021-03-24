@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
-import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
+import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
 import { Card, IconWrapper, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -26,7 +26,7 @@ function ForecastCard() {
             const { latitude, longitude } = position.coords
 
 
-            fetchUsersLocation(latitude, longitude).then(location => {
+            fetchUserLocation(latitude, longitude).then(location => {
                 if (location) {
                     setSelectedLocation(location)
                 }
