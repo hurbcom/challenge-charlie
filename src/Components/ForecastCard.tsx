@@ -13,7 +13,7 @@ let currentString: string = ''
 let timeout: any
 
 function ForecastCard() {
-    const searchInputRef = useRef<any>(null);
+    const aearchAreaRef = useRef<any>(null);
     const [loading, setLoading] = useState<boolean>(false)
     const [searching, setSearching] = useState<boolean>(false)
     const [locations, setLocations] = useState<any>()
@@ -36,13 +36,13 @@ function ForecastCard() {
     useEffect(() => {
         if (selectedLocation) {
             console.log('HOOK_SELECTED_LOC', selectedLocation)
-            //searchInputRef.current.value = selectedLocation.formatted
+            //aearchAreaRef.current.value = selectedLocation.formatted
             //setSearching(false)
 
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng).then(forecast => {
                 console.log('FORECAST', forecast)
-                //searchInputRef.current?.blur()
+                //aearchAreaRef.current?.blur()
             })
         }
     }, [selectedLocation])
@@ -75,7 +75,7 @@ function ForecastCard() {
 
     return (
         <Card>
-            <SearchBarArea ref={searchInputRef}>
+            <SearchBarArea ref={aearchAreaRef}>
                 <IconWrapper>
                     <RiCompassLine />
                 </IconWrapper>
@@ -83,6 +83,7 @@ function ForecastCard() {
                     type="text"
                     value={searchString}
                     onFocus={() => setSearching(true)}
+                    onBlur={() => setSearching(false)}
                     onChange={e => {
                         onSearchLocation(e.target.value)
                     }}
@@ -90,12 +91,12 @@ function ForecastCard() {
                 />
                 <Overlay
                     show={searching && searchString.length > 1}
-                    target={searchInputRef.current}
+                    target={aearchAreaRef.current}
                     placement="bottom"
                     rootClose
+                    rootCloseEvent='mousedown'
                     onHide={(event) => {
-                        if (!searchInputRef.current.contains(event.target)) {
-                            searchInputRef.current.querySelector('input').blur()
+                        if (!aearchAreaRef.current.contains(event.target)) {
                             setSearching(false)
                         }
                     }}
