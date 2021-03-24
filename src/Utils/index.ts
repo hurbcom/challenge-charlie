@@ -12,20 +12,16 @@ export function getCoordinates() {
 export async function fetchUsersLocation(
   latitude: number,
   longitude: number
-): Promise<string | undefined> {
-  let cityName: string | undefined = undefined;
-
+): Promise<any> {
   try {
     const data = await apiFetch(USER_LOCATION(latitude, longitude))
       .get()
       .then((res) => res.json());
-    console.log(data);
-    cityName = data.results[0].formatted;
+
+    return data.results[0];
   } catch (error) {
     console.log(error);
   }
-
-  return cityName;
 }
 
 export async function fetchForecast(

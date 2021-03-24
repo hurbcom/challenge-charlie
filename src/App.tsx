@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ForecastCard from "./Components/ForecastCard";
-import SearchBar from "./Components/SearchBar";
 import { apiFetch, getCoordinates } from "./Utils";
 import { BING_IMAGE, USER_LOCATION, WEATHER_FORECAST } from "./Utils/urls";
 

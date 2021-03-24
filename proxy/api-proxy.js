@@ -54,7 +54,7 @@ app.get("/reverse-geocode", (req, res) => {
     {
       url: `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
         location
-      )}&key=c63386b4f77e46de817bdf94f552cddf&language=pt&pretty=1`,
+      )}&key=c63386b4f77e46de817bdf94f552cddf&language=pt&pretty=1&no_dedupe=1`,
     },
     (error, response, body) => {
       if (error || response.statusCode !== 200) {

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
 import { apiFetch, getCoordinates, fetchUsersLocation, fetchForecast, fetchLocations } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import SearchBar from "./SearchBar"
 import { Card, IconWrapper, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
@@ -11,13 +10,14 @@ import DropDownMenu from "./DropDownMenu"
 import { RiCompassLine } from 'react-icons/ri'
 
 let currentString: string = ''
+let timeout: any
 
 function ForecastCard() {
-    const searchAreaRef = useRef(null);
+    const searchInputRef = useRef<any>(null);
     const [loading, setLoading] = useState<boolean>(false)
     const [searching, setSearching] = useState<boolean>(false)
     const [locations, setLocations] = useState<any>()
-    const [selectedCity, setSelectedCity] = useState<string | undefined>()
+    const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
     const TEMP_COLOR = '#ffd500'
 
@@ -25,16 +25,28 @@ function ForecastCard() {
         getCoordinates().then(position => {
             const { latitude, longitude } = position.coords
 
-            fetchForecast(latitude, longitude).then(forecast => {
-                // console.log('FORECAST', forecast)
-            })
+
             fetchUsersLocation(latitude, longitude).then(location => {
                 if (location) {
-                    setSelectedCity(location)
+                    setSelectedLocation(location)
                 }
             })
         })
     }, [])
+
+    useEffect(() => {
+        if (selectedLocation) {
+            console.log('HOOK_SELECTED_LOC', selectedLocation)
+            //searchInputRef.current.value = selectedLocation.formatted
+            setSearching(false)
+
+            const { lat, lng } = selectedLocation.geometry
+            fetchForecast(lat, lng).then(forecast => {
+                console.log('FORECAST', forecast)
+                //searchInputRef.current?.blur()
+            })
+        }
+    }, [selectedLocation])
 
     const getLocationsOptions = useCallback(() => {
         if (locations?.results) {
@@ -42,10 +54,25 @@ function ForecastCard() {
         } else {
             return []
         }
-
-
     }, [locations])
 
+    function onSearchLocation(query: string) {
+        setSearchString(query)
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            currentString = query
+            setLoading(true)
+            fetchLocations(query)
+                .then(locations => {
+                    if (currentString === query) {
+                        setLoading(false)
+                        setLocations(locations)
+                    }
+                })
+        }, 300);
+    }
+
+    console.log('SEARCH_STR', searchString)
 
     return (
         <Card>
@@ -53,29 +80,23 @@ function ForecastCard() {
                 <IconWrapper>
                     <RiCompassLine />
                 </IconWrapper>
-                <SearchBar
-                    ref={searchAreaRef}
+                <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchString}
                     onFocus={() => setSearching(true)}
-                    onSearch={(string: any) => {
-                        currentString = string
-                        setSearchString(string)
-                        setLoading(true)
-                        fetchLocations(string)
-                            .then(locations => {
-                                if (currentString === string) {
-                                    setLoading(false)
-                                    setLocations(locations)
-                                }
-                            })
+                    onChange={e => {
+                        onSearchLocation(e.target.value)
                     }}
+
                 />
                 <Overlay
                     show={searching && searchString.length > 1}
-                    target={searchAreaRef.current}
+                    target={searchInputRef.current}
                     placement="bottom"
                     rootClose
                     onHide={(event) => {
-                        if (event.target !== searchAreaRef.current) {
+                        if (event.target !== searchInputRef.current) {
                             setSearching(false)
                         }
                     }}
@@ -93,7 +114,9 @@ function ForecastCard() {
                         }}
                         data={getLocationsOptions()}
                         loading={loading}
-                        onClickOption={(option: any) => console.log('OPTION', option)}
+                        onClickOption={(option: any) => {
+                            setSelectedLocation(option)
+                        }}
                     />
                 </Overlay>
             </SearchBarArea>
