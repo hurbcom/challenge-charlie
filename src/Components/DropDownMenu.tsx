@@ -22,7 +22,7 @@ function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React
             )
         } else if (!loading) {
             return (
-                < DropdownItem >
+                <DropdownItem >
                     No Results
                 </DropdownItem>
             )

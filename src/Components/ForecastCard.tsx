@@ -25,7 +25,6 @@ function ForecastCard() {
         getCoordinates().then(position => {
             const { latitude, longitude } = position.coords
 
-
             fetchUserLocation(latitude, longitude).then(location => {
                 if (location) {
                     setSelectedLocation(location)
@@ -76,12 +75,11 @@ function ForecastCard() {
 
     return (
         <Card>
-            <SearchBarArea>
+            <SearchBarArea ref={searchInputRef}>
                 <IconWrapper>
                     <RiCompassLine />
                 </IconWrapper>
                 <input
-                    ref={searchInputRef}
                     type="text"
                     value={searchString}
                     onFocus={() => setSearching(true)}
@@ -96,7 +94,7 @@ function ForecastCard() {
                     placement="bottom"
                     rootClose
                     onHide={(event) => {
-                        if (event.target !== searchInputRef.current) {
+                        if (!searchInputRef.current.contains(event.target)) {
                             setSearching(false)
                         }
                     }}
