@@ -20,7 +20,6 @@ function ForecastCard() {
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
-    const TEMP_COLOR = '#ffd500'
 
     useEffect(() => {
         getCoordinates().then(position => {
@@ -29,6 +28,7 @@ function ForecastCard() {
             fetchUserLocation(latitude, longitude).then(location => {
                 if (location) {
                     setSelectedLocation(location)
+                    setSearchString(location.formatted)
                 }
             })
         })
