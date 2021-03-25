@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import SvgIcons from "../Icons/SvgIcons"
-import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations } from "../Utils"
+import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, SearchBarArea } from "./styled"
+import { Card, IconWrapper, MainArea, SearchBarArea, SubArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -16,6 +16,7 @@ function ForecastCard() {
     const aearchAreaRef = useRef<any>(null);
     const [loading, setLoading] = useState<boolean>(false)
     const [searching, setSearching] = useState<boolean>(false)
+    const [forecast, setForecast] = useState<any>()
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
@@ -35,14 +36,10 @@ function ForecastCard() {
 
     useEffect(() => {
         if (selectedLocation) {
-            console.log('HOOK_SELECTED_LOC', selectedLocation)
-            //aearchAreaRef.current.value = selectedLocation.formatted
-            //setSearching(false)
-
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng).then(forecast => {
-                console.log('FORECAST', forecast)
-                //aearchAreaRef.current?.blur()
+                const temperatures = forecast.daily.slice(0, 3).map((day: any) => ({ ...day.temp }))
+                setForecast(temperatures)
             })
         }
     }, [selectedLocation])
@@ -70,8 +67,6 @@ function ForecastCard() {
                 })
         }, 300);
     }
-
-    console.log('SEARCH_STR', searchString)
 
     return (
         <Card>
@@ -120,12 +115,21 @@ function ForecastCard() {
                     />
                 </Overlay>
             </SearchBarArea>
-            <div className='main' style={{ flexGrow: 1, backgroundColor: `${TEMP_COLOR}7F` }}>
-            </div>
-            <div className='tomorrow' style={{ height: '15%', backgroundColor: `${TEMP_COLOR}CC` }}>
-            </div>
-            <div className='day-after-tomorrow' style={{ height: '15%', backgroundColor: `${TEMP_COLOR}AA` }}>
-            </div>
+            <MainArea tempColor={getTempColor(0)}>
+
+            </MainArea>
+            <SubArea
+                className='tomorrow'
+                tempColor={getTempColor(0)}
+            >
+
+            </SubArea>
+            <SubArea
+                className='day-after-tomorrow'
+                tempColor={getTempColor(0)}
+            >
+
+            </SubArea>
         </Card >
     )
 }

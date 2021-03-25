@@ -13,17 +13,6 @@ export const Card = styled.div`
 export const SearchBarArea = styled.div`
   height: 10%;
   position: relative;
-  /* 
-  .input-icons {
-    width: 100%;
-    margin-bottom: 10px;
-  } */
-
-  /* .input-field {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-  } */
 
   input {
     background-color: #ffffffaa;
@@ -44,13 +33,7 @@ export const IconWrapper = styled.div`
 
   svg {
     height: 100%;
-    /* width: 70px; */
     font-size: 55px;
-    /* margin-left: 5px;
-    /* position: absolute;
-    height: 100%;
-    font-size: 40px; */
-    //margin-left: 10px;
   }
 `;
 export const DropdownItem = styled.div<{ selectable?: boolean }>`
@@ -59,4 +42,19 @@ export const DropdownItem = styled.div<{ selectable?: boolean }>`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+`;
+
+export const MainArea = styled.div<{ tempColor: string }>`
+  flex-grow: 1;
+  background-color: ${({ tempColor }) => tempColor};
+`;
+
+export const SubArea = styled.div<{ tempColor: string }>`
+  height: 15%;
+  &.tomorrow {
+    background-color: ${({ tempColor }) => tempColor};
+  }
+  &.day-after-tomorrow {
+    background-color: ${({ tempColor }) => tempColor};
+  }
 `;

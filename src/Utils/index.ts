@@ -88,3 +88,7 @@ export function apiFetch(url: string) {
       }),
   };
 }
+
+export function getTempColor(temp: number) {
+  return "hsla(0, 0%, 70%, 0.6)";
+}
