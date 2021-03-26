@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, MainArea, SearchBarArea, SubArea } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -119,29 +119,38 @@ function ForecastCard() {
                     />
                 </Overlay>
             </SearchBarArea>
-            <MainArea tempColor={getTempColor(forecast[0]?.temp.max)}>
-                <WeatherIcon iconId={forecast[0]?.weather[0].icon} />
-                {forecast[0]?.temp.max}
-                {forecast[0]?.weather[0].description}
-                {forecast[0]?.wind_speed}
-                {forecast[0]?.pressure}
-            </MainArea>
-            <SubArea
+            <ForecastArea
+                className='today'
+                tempColor={getTempColor(forecast[0]?.temp.max)}
+            >
+                <div>
+                    <WeatherIcon iconId={forecast[0]?.weather[0].icon} />
+                </div>
+                <div>
+                    {forecast[0]?.temp.max}
+                    {forecast[0]?.weather[0].description}
+                    {forecast[0]?.wind_speed}
+                    {forecast[0]?.pressure}
+                </div>
+            </ForecastArea>
+            <ForecastArea
                 className='tomorrow'
                 tempColor={getTempColor(forecast[1]?.temp.max)}
             >
-                <WeatherIcon iconId={forecast[1]?.weather[0].icon} />
-                {forecast[1]?.temp.max}
-                {forecast[1]?.weather[0].description}
-            </SubArea>
-            <SubArea
+                <div>
+                    {forecast[1]?.temp.max}
+                    {forecast[1]?.weather[0].description}
+                </div>
+            </ForecastArea>
+            <ForecastArea
                 className='day-after-tomorrow'
                 tempColor={getTempColor(forecast[2]?.temp.max)}
             >
-                <WeatherIcon iconId={forecast[2]?.weather[0].icon} />
-                {forecast[2]?.temp.max}
-                {forecast[2]?.weather[0].description}
-            </SubArea>
+                <div>
+                    {forecast[2]?.temp.max}
+                    {forecast[2]?.weather[0].description}
+                </div>
+            </ForecastArea>
         </Card >
     )
 }

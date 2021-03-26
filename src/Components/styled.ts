@@ -44,17 +44,23 @@ export const DropdownItem = styled.div<{ selectable?: boolean }>`
   white-space: nowrap;
 `;
 
-export const MainArea = styled.div<{ tempColor: string }>`
-  flex-grow: 1;
-  background-color: ${({ tempColor }) => tempColor};
-`;
-
-export const SubArea = styled.div<{ tempColor: string }>`
+export const ForecastArea = styled.div<{ tempColor: string }>`
+  display: flex;
   height: 15%;
-  &.tomorrow {
-    background-color: ${({ tempColor }) => tempColor};
+  background-color: ${({ tempColor }) => tempColor};
+
+  > div {
+    width: 50%;
   }
+
+  &.today {
+    flex-grow: 1;
+  }
+  &.tomorrow,
   &.day-after-tomorrow {
     background-color: ${({ tempColor }) => tempColor};
+    > div {
+      margin-left: auto;
+    }
   }
 `;
