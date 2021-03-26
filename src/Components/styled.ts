@@ -66,3 +66,9 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
     background-color: ${({ tempColor }) => tempColor};
   }
 `;
+
+export const DayLabel = styled.div`
+  text-transform: uppercase;
+`;
+
+export const InfoArea = styled.div``;

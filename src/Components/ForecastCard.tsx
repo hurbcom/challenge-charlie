@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -139,24 +139,26 @@ function ForecastCard() {
                 </div>
                 <div>
                     <div>
-                        <div>Hoje</div>
+                        <DayLabel>Hoje</DayLabel>
                         <span>{`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                     </div>
-                    <div>
-                        <span>{forecast[0]?.weather[0].description}</span>
-                    </div>
-                    <div>
-                        <span>Vento: </span>
-                        <span>{`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}</span>
-                    </div>
-                    <div>
-                        <span>Umidade: </span>
-                        <span>{`${forecast[0]?.dew_point}%`}</span>
-                    </div>
-                    <div>
-                        <span>Pressão: </span>
-                        <span>{`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}                        </span>
-                    </div>
+                    <InfoArea>
+                        <div>
+                            <span>{forecast[0]?.weather[0].description}</span>
+                        </div>
+                        <div>
+                            <span>Vento: </span>
+                            <span>{`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}</span>
+                        </div>
+                        <div>
+                            <span>Umidade: </span>
+                            <span>{`${forecast[0]?.dew_point}%`}</span>
+                        </div>
+                        <div>
+                            <span>Pressão: </span>
+                            <span>{`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}                        </span>
+                        </div>
+                    </InfoArea>
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -164,7 +166,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[1]?.temp.max)}
             >
                 <div>
-                    <div>Amanhã</div>
+                    <DayLabel>Amanhã</DayLabel>
                     <span>{`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
@@ -173,7 +175,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[2]?.temp.max)}
             >
                 <div>
-                    <div>Depois de Amanhã</div>
+                    <DayLabel>Depois de Amanhã</DayLabel>
                     <span>{`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
