@@ -20,11 +20,12 @@ export const SearchBarArea = styled.div`
     color: #817e7c;
     background-color: #ffffffaa;
     width: 100%;
-    padding: 0 2px 2px 70px;
+    padding: 0 15px 2px 65px;
     height: 100%;
     border: 0;
     outline: unset;
     font-size: 35px;
+    text-overflow: ellipsis;
   }
 `;
 
