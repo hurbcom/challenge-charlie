@@ -10,26 +10,26 @@ import {
     WiFog
 } from "react-icons/wi";
 
-function WeatherIcon({ iconId }: any) {
+function WeatherIcon({ iconId, style }: any) {
     switch (iconId) {
         case "01d":
-            return <WiDaySunny />;
+            return <WiDaySunny style={style} />;
         case "02d":
-            return <WiDayCloudy />;
+            return <WiDayCloudy style={style} />;
         case "03d":
-            return <WiCloud />;
+            return <WiCloud style={style} />;
         case "04d":
-            return <WiCloudy />;
+            return <WiCloudy style={style} />;
         case "09d":
-            return <WiShowers />;
+            return <WiShowers style={style} />;
         case "10d":
-            return <WiDayRainMix />;
+            return <WiDayRainMix style={style} />;
         case "11d":
-            return <WiLightning />;
+            return <WiLightning style={style} />;
         case "13d":
-            return <WiSnowflakeCold />;
+            return <WiSnowflakeCold style={style} />;
         case "50d":
-            return <WiFog />;
+            return <WiFog style={style} />;
         default:
             return null;
     }

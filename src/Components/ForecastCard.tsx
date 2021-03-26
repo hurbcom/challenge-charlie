@@ -82,7 +82,7 @@ function ForecastCard() {
                         e.target.select()
                         setSearching(true)
                     }}
-                    onBlur={() => setSearching(false)}
+                    //onBlur={() => setSearching(false)}
                     onChange={e => {
                         onSearchLocation(e.target.value)
                     }}
@@ -115,6 +115,7 @@ function ForecastCard() {
                         loading={loading}
                         onClickOption={(option: any) => {
                             setSelectedLocation(option)
+                            setSearching(false)
                         }}
                     />
                 </Overlay>
@@ -124,7 +125,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[0]?.temp.max)}
             >
                 <div>
-                    <WeatherIcon iconId={forecast[0]?.weather[0].icon} />
+                    <WeatherIcon iconId={forecast[0]?.weather[0].icon} style={{ width: '100%', height: '100%' }} />
                 </div>
                 <div>
                     {forecast[0]?.temp.max}

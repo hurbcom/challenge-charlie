@@ -8,6 +8,7 @@ export const Card = styled.div`
   width: 65%;
   background-color: #ddddddaa;
   box-sizing: border-box;
+  color: #fff;
 `;
 
 export const SearchBarArea = styled.div`
@@ -32,6 +33,7 @@ export const IconWrapper = styled.div`
   padding: 5px;
 
   svg {
+    color: black;
     height: 100%;
     font-size: 55px;
   }
