@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -143,9 +143,9 @@ function ForecastCard() {
                         <span>{`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                     </div>
                     <InfoArea>
-                        <div>
+                        <Description>
                             <span>{forecast[0]?.weather[0].description}</span>
-                        </div>
+                        </Description>
                         <div>
                             <span>Vento: </span>
                             <span>{`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}</span>

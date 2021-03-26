@@ -9,6 +9,7 @@ export const Card = styled.div`
   background-color: #ddddddaa;
   box-sizing: border-box;
   color: #fff;
+  font-size: 22px;
 `;
 
 export const SearchBarArea = styled.div`
@@ -71,4 +72,11 @@ export const DayLabel = styled.div`
   text-transform: uppercase;
 `;
 
-export const InfoArea = styled.div``;
+export const InfoArea = styled.div`
+  margin: 20px 0;
+`;
+
+export const Description = styled.div`
+  text-transform: capitalize;
+  padding-bottom: 10px;
+`;
