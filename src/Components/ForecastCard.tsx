@@ -105,6 +105,8 @@ function ForecastCard() {
                     onHide={(event) => {
                         if (!aearchAreaRef.current.contains(event.target)) {
                             setSearching(false)
+                            setSearchString(selectedLocation.formatted)
+
                         }
                     }}
                 >
@@ -138,7 +140,7 @@ function ForecastCard() {
                 <div>
                     <div>
                         <div>Hoje</div>
-                        <span>{`${forecast[0]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                        <span>{`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                     </div>
                     <div>
                         <span>{forecast[0]?.weather[0].description}</span>
@@ -149,7 +151,7 @@ function ForecastCard() {
                     </div>
                     <div>
                         <span>Umidade: </span>
-                        <span>{`${forecast[0]?.dew_point}% `}</span>
+                        <span>{`${forecast[0]?.dew_point}%`}</span>
                     </div>
                     <div>
                         <span>Pressão: </span>
@@ -163,7 +165,7 @@ function ForecastCard() {
             >
                 <div>
                     <div>Amanhã</div>
-                    <span>{`${forecast[1]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                    <span>{`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -172,7 +174,7 @@ function ForecastCard() {
             >
                 <div>
                     <div>Depois de Amanhã</div>
-                    <span>{`${forecast[2]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                    <span>{`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
         </Card >
