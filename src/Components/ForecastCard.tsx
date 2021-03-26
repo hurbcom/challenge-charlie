@@ -20,6 +20,14 @@ function ForecastCard() {
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
+    const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
+
+    const UNITS_OF_MEASUREMENT = {
+        'wind': system === 'metric' ? 'km/h' : 'm/h',
+        'pressure': system === 'metric' ? 'hPA' : 'hPA',
+        'temperature': system === 'metric' ? `\u00B0C` : 'm/h'
+
+    }
 
     useEffect(() => {
         getCoordinates().then(position => {
@@ -128,10 +136,25 @@ function ForecastCard() {
                     <WeatherIcon iconId={forecast[0]?.weather[0].icon} style={{ width: '100%', height: '100%' }} />
                 </div>
                 <div>
-                    {forecast[0]?.temp.max}
-                    {forecast[0]?.weather[0].description}
-                    {forecast[0]?.wind_speed}
-                    {forecast[0]?.pressure}
+                    <div>
+                        <div>Hoje</div>
+                        <span>{`${forecast[0]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                    </div>
+                    <div>
+                        <span>{forecast[0]?.weather[0].description}</span>
+                    </div>
+                    <div>
+                        <span>Vento: </span>
+                        <span>{`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}</span>
+                    </div>
+                    <div>
+                        <span>Umidade: </span>
+                        <span>{`${forecast[0]?.dew_point}% `}</span>
+                    </div>
+                    <div>
+                        <span>Pressão: </span>
+                        <span>{`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}                        </span>
+                    </div>
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -139,7 +162,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[1]?.temp.max)}
             >
                 <div>
-                    {forecast[1]?.temp.max}
+                    <span>{`${forecast[1]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -147,7 +170,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[2]?.temp.max)}
             >
                 <div>
-                    {forecast[2]?.temp.max}
+                    <span>{`${forecast[2]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
         </Card >
