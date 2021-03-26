@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -26,7 +26,6 @@ function ForecastCard() {
         'wind': system === 'metric' ? 'km/h' : 'm/h',
         'pressure': system === 'metric' ? 'hPA' : 'hPA',
         'temperature': system === 'metric' ? `\u00B0C` : 'm/h'
-
     }
 
     useEffect(() => {
@@ -98,6 +97,7 @@ function ForecastCard() {
                 />
                 <Overlay
                     show={searching}
+                    transition={false}
                     target={aearchAreaRef.current}
                     placement="bottom"
                     rootClose
@@ -119,7 +119,9 @@ function ForecastCard() {
                             backgroundColor: 'rgba(43, 50, 82, 0.85)',
                             padding: '30px 20px',
                             color: 'white',
-                            borderRadius: 5,
+                            //borderRadius: 5,
+                            boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)'
+
                         }}
                         data={getLocationsOptions()}
                         loading={loading}
@@ -135,7 +137,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[0]?.temp.max)}
             >
                 <div>
-                    <WeatherIcon iconId={forecast[0]?.weather[0].icon} style={{ width: '100%', height: '100%' }} />
+                    <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
                 </div>
                 <div>
                     <div>

@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App" style={styles}>
+    <div style={styles}>
       <ForecastCard />
     </div>
   );

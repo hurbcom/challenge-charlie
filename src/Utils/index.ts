@@ -90,5 +90,15 @@ export function apiFetch(url: string) {
 }
 
 export function getTempColor(temp: number) {
+  if (temp) {
+    if (temp > 35) {
+      return "hsla(0, 100%, 50%, 0.6)";
+    } else if (temp < 15) {
+      return "hsla(240, 100%, 50%, 0.6)";
+    } else {
+      return "hsla(50, 100%, 50%, 0.6)";
+    }
+  }
+  console.log(temp);
   return "hsla(0, 0%, 70%, 0.6)";
 }

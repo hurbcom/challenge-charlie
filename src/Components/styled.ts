@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import WeatherIcon from "../Icons/WeatherIcon";
 
 export const Card = styled.div`
   display: flex;
@@ -79,4 +80,9 @@ export const InfoArea = styled.div`
 export const Description = styled.div`
   text-transform: capitalize;
   padding-bottom: 10px;
+`;
+
+export const StyledWeatherIcon = styled(WeatherIcon)`
+  height: 100%;
+  width: 100%;
 `;
