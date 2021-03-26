@@ -140,7 +140,6 @@ function ForecastCard() {
             >
                 <div>
                     {forecast[1]?.temp.max}
-                    {forecast[1]?.weather[0].description}
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -149,7 +148,6 @@ function ForecastCard() {
             >
                 <div>
                     {forecast[2]?.temp.max}
-                    {forecast[2]?.weather[0].description}
                 </div>
             </ForecastArea>
         </Card >

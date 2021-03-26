@@ -12,10 +12,12 @@ export const Card = styled.div`
 `;
 
 export const SearchBarArea = styled.div`
+  color: #817e7c;
   height: 10%;
   position: relative;
 
   input {
+    color: #817e7c;
     background-color: #ffffffaa;
     width: 100%;
     padding: 0 2px 2px 70px;
@@ -23,7 +25,6 @@ export const SearchBarArea = styled.div`
     border: 0;
     outline: unset;
     font-size: 35px;
-    //padding-left: 70px;
   }
 `;
 
@@ -33,7 +34,6 @@ export const IconWrapper = styled.div`
   padding: 5px;
 
   svg {
-    color: black;
     height: 100%;
     font-size: 55px;
   }
@@ -53,6 +53,8 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
 
   > div {
     width: 50%;
+    padding: 20px;
+    margin-left: auto;
   }
 
   &.today {
@@ -61,8 +63,5 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   &.tomorrow,
   &.day-after-tomorrow {
     background-color: ${({ tempColor }) => tempColor};
-    > div {
-      margin-left: auto;
-    }
   }
 `;
