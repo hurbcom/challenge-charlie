@@ -97,7 +97,7 @@ function ForecastCard() {
 
                 />
                 <Overlay
-                    show={searching && searchString.length > 1}
+                    show={searching}
                     target={aearchAreaRef.current}
                     placement="bottom"
                     rootClose
