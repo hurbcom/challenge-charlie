@@ -162,6 +162,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[1]?.temp.max)}
             >
                 <div>
+                    <div>Amanhã</div>
                     <span>{`${forecast[1]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
@@ -170,6 +171,7 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[2]?.temp.max)}
             >
                 <div>
+                    <div>Depois de Amanhã</div>
                     <span>{`${forecast[2]?.temp.max}${UNITS_OF_MEASUREMENT['temperature']}`}</span>
                 </div>
             </ForecastArea>
