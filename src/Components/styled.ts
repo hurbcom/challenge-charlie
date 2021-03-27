@@ -15,6 +15,10 @@ export const Card = styled.div`
   @media (max-width: 770px) {
     font-size: 18px;
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const SearchBarArea = styled.div`
@@ -57,6 +61,10 @@ export const StyledDropdown = styled(DropDownMenu)`
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+
+  @media (max-width: 500px) {
+    width: 98%;
+  }
 `;
 
 export const DropdownItem = styled.div<{ selectable?: boolean }>`
