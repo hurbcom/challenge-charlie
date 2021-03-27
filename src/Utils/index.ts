@@ -89,16 +89,16 @@ export function apiFetch(url: string) {
   };
 }
 
-export function getTempColor(temp: number) {
+export function getTempColor(temp: number, lightness: number) {
   if (temp) {
     if (temp > 35) {
-      return "hsla(0, 100%, 50%, 0.6)";
+      return `hsla(0, 100%, ${lightness}%, 0.7)`;
     } else if (temp < 15) {
-      return "hsla(240, 100%, 50%, 0.6)";
+      return `hsla(240, 100%, ${lightness}%, 0.7)`;
     } else {
-      return "hsla(50, 100%, 50%, 0.6)";
+      return `hsla(45, 100%, ${lightness}%, 0.7)`;
     }
   }
-  console.log(temp);
-  return "hsla(0, 0%, 70%, 0.6)";
+
+  return `hsla(0, 0%, ${lightness}%, 0.7)`;
 }

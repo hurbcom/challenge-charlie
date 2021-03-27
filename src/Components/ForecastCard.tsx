@@ -133,7 +133,7 @@ function ForecastCard() {
             </SearchBarArea>
             <ForecastArea
                 className='today'
-                tempColor={getTempColor(forecast[0]?.temp.max)}
+                tempColor={getTempColor(forecast[0]?.temp.max, 60)}
             >
                 <div>
                     <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
@@ -164,7 +164,7 @@ function ForecastCard() {
             </ForecastArea>
             <ForecastArea
                 className='tomorrow'
-                tempColor={getTempColor(forecast[1]?.temp.max)}
+                tempColor={getTempColor(forecast[0]?.temp.max, 50)}
             >
                 <div>
                     <DayLabel>Amanhã</DayLabel>
@@ -173,7 +173,7 @@ function ForecastCard() {
             </ForecastArea>
             <ForecastArea
                 className='day-after-tomorrow'
-                tempColor={getTempColor(forecast[2]?.temp.max)}
+                tempColor={getTempColor(forecast[0]?.temp.max, 40)}
             >
                 <div>
                     <DayLabel>Depois de Amanhã</DayLabel>
