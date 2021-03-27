@@ -90,7 +90,7 @@ export const InfoArea = styled.div`
 
 export const Description = styled.div`
   text-transform: capitalize;
-  padding-bottom: 10px;
+  margin: 15px 0;
 `;
 
 export const StyledWeatherIcon = styled(WeatherIcon)`

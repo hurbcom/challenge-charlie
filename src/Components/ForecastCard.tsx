@@ -144,31 +144,29 @@ function ForecastCard() {
                     </Block>
                 </Section>
                 <Section>
-                    <div>
-                        <Block loading={loadingForecast}>
-                            <DayLabel>Hoje</DayLabel>
-                            {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
-                        </Block>
-                    </div>
-                    <InfoArea>
-                        <Block loading={loadingForecast}>
-                            <Description>
-                                {forecast[0]?.weather[0].description}
-                            </Description>
-                            <div>
-                                <span>Vento: </span>
-                                {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
-                            </div>
-                            <div>
-                                <span>Umidade: </span>
-                                {`${forecast[0]?.dew_point}%`}
-                            </div>
-                            <div>
-                                <span>Pressão: </span>
-                                {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
-                            </div>
-                        </Block>
-                    </InfoArea>
+
+                    <Block loading={loadingForecast}>
+                        <DayLabel>Hoje</DayLabel>
+                        {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                    </Block>
+
+                    <Block loading={loadingForecast}>
+                        <Description>
+                            {forecast[0]?.weather[0].description}
+                        </Description>
+                        <div>
+                            <span>Vento: </span>
+                            {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
+                        </div>
+                        <div>
+                            <span>Umidade: </span>
+                            {`${forecast[0]?.humidity} %`}
+                        </div>
+                        <div>
+                            <span>Pressão: </span>
+                            {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
+                        </div>
+                    </Block>
                 </Section>
             </ForecastArea>
             <ForecastArea
