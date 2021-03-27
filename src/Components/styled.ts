@@ -7,7 +7,6 @@ export const Card = styled.div`
   height: 100%;
   margin: 0 auto;
   width: 65%;
-  background-color: #ddddddaa;
   box-sizing: border-box;
   color: #fff;
   font-size: 22px;
@@ -53,10 +52,11 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   display: flex;
   background-color: ${({ tempColor }) => tempColor};
   flex-wrap: wrap;
+  font-weight: 600;
 
   > div {
     width: 50%;
-    padding: 20px;
+    padding: 18px;
   }
 
   &.today {
