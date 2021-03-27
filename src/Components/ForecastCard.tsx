@@ -89,7 +89,13 @@ function ForecastCard() {
         }, 300);
     }
 
-    console.log(forecast)
+    function formatTemperature(temp: number) {
+        if (temp) {
+            return `${temp.toFixed()} ${UNITS_OF_MEASUREMENT['temperature']}`
+        } else {
+            return ''
+        }
+    }
 
     return (
         <Card>
@@ -137,22 +143,22 @@ function ForecastCard() {
                 tempColor={getTempColor(today?.current.temp, 60)}
             >
                 <Section>
-                    <Block loading={loadingForecast} style={{ height: '100%', width: '100%' }}>
+                    <Block loadingBlock={loadingForecast} style={{ height: '100%', width: '100%' }}>
                         <StyledWeatherIcon iconId={today?.current.weather[0].icon} />
                     </Block>
                 </Section>
                 <Section>
-                    <Block loading={loadingForecast}>
+                    <Block loadingBlock={loadingForecast}>
                         <DayLabel>Hoje</DayLabel>
-                        {`${today?.current.temp} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                        {formatTemperature(today?.current.temp)}
                     </Block>
-                    <Block loading={loadingForecast}>
+                    <Block loadingBlock={loadingForecast}>
                         <Description>
                             {today?.current.weather[0].description}
                         </Description>
                         <div>
                             <span>Vento: </span>
-                            {`${today?.current.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
+                            {`${getWindDirection(today?.current.wind_deg)} ${today?.current.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
                         </div>
                         <div>
                             <span>Umidade: </span>
@@ -171,8 +177,9 @@ function ForecastCard() {
             >
                 <Section>
                     <DayLabel>Amanhã</DayLabel>
-                    <Block loading={loadingForecast}>
-                        {`${tomorrow?.forecast.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                    <Block loadingBlock={loadingForecast}>
+                        {formatTemperature(tomorrow?.forecast.temp.max)}
+                        {` / ${formatTemperature(tomorrow?.forecast.temp.min)}`}
                     </Block>
                 </Section>
             </ForecastArea>
@@ -182,8 +189,9 @@ function ForecastCard() {
             >
                 <Section>
                     <DayLabel>Depois de Amanhã</DayLabel>
-                    <Block loading={loadingForecast}>
-                        {`${tomorrow?.forecast.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                    <Block loadingBlock={loadingForecast}>
+                        {formatTemperature(afterTomorrow?.forecast.temp.max)}
+                        {` / ${formatTemperature(afterTomorrow?.forecast.temp.min)}`}
                     </Block>
                 </Section>
             </ForecastArea>

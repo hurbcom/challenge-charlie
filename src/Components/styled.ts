@@ -121,11 +121,11 @@ export const StyledWeatherIcon = styled(WeatherIcon)`
   width: 100%;
 `;
 
-export const Block = styled.div<{ loading: boolean }>`
+export const Block = styled.div<{ loadingBlock: boolean }>`
   position: relative;
 
-  ${({ loading }) =>
-    loading
+  ${({ loadingBlock }) =>
+    loadingBlock
       ? css`
           min-width: 200px;
           opacity: 0.3;
