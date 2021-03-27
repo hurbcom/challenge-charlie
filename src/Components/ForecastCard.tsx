@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon, Value } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -136,28 +136,41 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[0]?.temp.max, 60)}
             >
                 <div>
-                    <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
+                    <Value loading={true} style={{ height: '100%', width: '100%' }}>
+                        <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
+                    </Value>
                 </div>
                 <div>
                     <div>
                         <DayLabel>Hoje</DayLabel>
-                        <span>{`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                        <Value loading={true}>
+                            {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                        </Value>
                     </div>
                     <InfoArea>
                         <Description>
-                            <span>{forecast[0]?.weather[0].description}</span>
+                            <Value loading={true}>
+                                {forecast[0]?.weather[0].description}
+                            </Value>
                         </Description>
                         <div>
                             <span>Vento: </span>
-                            <span>{`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}</span>
+                            <Value loading={true}>
+                                {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
+                            </Value>
+
                         </div>
                         <div>
                             <span>Umidade: </span>
-                            <span>{`${forecast[0]?.dew_point}%`}</span>
+                            <Value loading={true}>
+                                {`${forecast[0]?.dew_point}%`}
+                            </Value>
                         </div>
                         <div>
                             <span>Pressão: </span>
-                            <span>{`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}                        </span>
+                            <Value loading={true}>
+                                {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
+                            </Value>
                         </div>
                     </InfoArea>
                 </div>
@@ -168,7 +181,9 @@ function ForecastCard() {
             >
                 <div>
                     <DayLabel>Amanhã</DayLabel>
-                    <span>{`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                    <Value loading={true}>
+                        {`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                    </Value>
                 </div>
             </ForecastArea>
             <ForecastArea
@@ -177,7 +192,9 @@ function ForecastCard() {
             >
                 <div>
                     <DayLabel>Depois de Amanhã</DayLabel>
-                    <span>{`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}</span>
+                    <Value loading={true}>
+                        {`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                    </Value>
                 </div>
             </ForecastArea>
         </Card >

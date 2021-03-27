@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import WeatherIcon from "../Icons/WeatherIcon";
 
 export const Card = styled.div`
@@ -55,7 +55,6 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   font-weight: 600;
 
   > div {
-    width: 50%;
     padding: 18px;
   }
 
@@ -65,6 +64,7 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
 
     > div {
       min-width: 250px;
+      width: 50%;
     }
   }
   &.tomorrow,
@@ -94,4 +94,45 @@ export const Description = styled.div`
 export const StyledWeatherIcon = styled(WeatherIcon)`
   height: 100%;
   width: 100%;
+`;
+
+export const Value = styled.div<{ loading: boolean }>`
+  position: relative;
+
+  ${({ loading }) =>
+    loading
+      ? css`
+          //display: none;
+          min-width: 200px;
+          opacity: 0.3;
+          border-radius: 5px;
+          color: transparent;
+          background-color: #eee;
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background: linear-gradient(
+              to right,
+              transparent 0%,
+              #fff 50%,
+              transparent 100%
+            );
+            animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+            @keyframes load {
+              from {
+                left: 0;
+              }
+              to {
+                left: calc(100% - 200px);
+              }
+            }
+          }
+        `
+      : ""};
 `;
