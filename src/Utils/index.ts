@@ -102,3 +102,29 @@ export function getTempColor(temp: number, lightness: number) {
 
   return `hsla(0, 0%, ${lightness}%, 0.7)`;
 }
+
+export function getWindDirection(degree: number) {
+  degree = degree % 360;
+  const SECTORS = [
+    "N",
+    "NNE",
+    "NE",
+    "ENE",
+    "E",
+    "ESE",
+    "SE",
+    "SSE",
+    "S",
+    "SSW",
+    "SW",
+    "WSW",
+    "W",
+    "WNW",
+    "NW",
+    "NNW",
+  ];
+
+  const DEGREES_PER_SECTOR = 360 / SECTORS.length;
+
+  return SECTORS[Math.round(degree / DEGREES_PER_SECTOR) % 16];
+}

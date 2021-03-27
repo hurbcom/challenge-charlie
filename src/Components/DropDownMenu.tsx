@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components";
 import { CgSpinner } from 'react-icons/cg'
-import { DropdownItem } from "./styled";
+import { DropdownItem, StyledDropdown } from "./styled";
 
 function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React.ForwardedRef<any>) {
     function getDropdownOptions() {
@@ -29,10 +29,10 @@ function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React
         }
     }
     return (
-        <div ref={ref} {...rest}>
+        <StyledDropdown ref={ref} {...rest}>
             {loading && <Spinner />}
             {getDropdownOptions()}
-        </div >
+        </StyledDropdown >
     )
 }
 

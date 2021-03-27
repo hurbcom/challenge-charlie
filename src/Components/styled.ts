@@ -50,7 +50,7 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const StyledDropdown = styled(DropDownMenu)`
+export const StyledDropdown = styled.div`
   z-index: 99;
   top: -1px !important;
   margin: 0 auto;

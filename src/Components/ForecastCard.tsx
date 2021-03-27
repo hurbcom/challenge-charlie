@@ -3,6 +3,7 @@ import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTe
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section, StyledDropdown } from "./styled"
 import Overlay from 'react-bootstrap/Overlay';
 import { RiCompassLine } from 'react-icons/ri'
+import DropDownMenu from "./DropDownMenu";
 
 let currentString: string = ''
 let timeout: any
@@ -43,7 +44,6 @@ function ForecastCard() {
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng).then(forecast => {
                 const temperatures = forecast.daily.slice(0, 3)
-
                 setForecast(temperatures)
             })
                 .finally(() => setLoadingForecast(false))
@@ -87,7 +87,6 @@ function ForecastCard() {
                         e.target.select()
                         setSearching(true)
                     }}
-                    //onBlur={() => setSearching(false)}
                     onChange={e => {
                         onSearchLocation(e.target.value)
                     }}
@@ -108,7 +107,7 @@ function ForecastCard() {
                         }
                     }}
                 >
-                    <StyledDropdown
+                    <DropDownMenu
                         data={getLocationsOptions()}
                         loading={loading}
                         onClickOption={(option: any) => {
