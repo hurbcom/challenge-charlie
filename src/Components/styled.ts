@@ -51,21 +51,30 @@ export const DropdownItem = styled.div<{ selectable?: boolean }>`
 
 export const ForecastArea = styled.div<{ tempColor: string }>`
   display: flex;
-  height: 15%;
   background-color: ${({ tempColor }) => tempColor};
+  flex-wrap: wrap;
 
   > div {
     width: 50%;
     padding: 20px;
-    margin-left: auto;
   }
 
   &.today {
     flex-grow: 1;
+    justify-content: center;
+
+    > div {
+      min-width: 250px;
+    }
   }
   &.tomorrow,
   &.day-after-tomorrow {
+    height: 15%;
     background-color: ${({ tempColor }) => tempColor};
+
+    > div {
+      margin-left: auto;
+    }
   }
 `;
 
