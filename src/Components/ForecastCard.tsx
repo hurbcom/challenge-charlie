@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon, Value } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon, Block, Section } from "./styled"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
@@ -138,67 +138,60 @@ function ForecastCard() {
                 className='today'
                 tempColor={getTempColor(forecast[0]?.temp.max, 60)}
             >
-                <div>
-                    <Value loading={loadingForecast} style={{ height: '100%', width: '100%' }}>
+                <Section>
+                    <Block loading={loadingForecast} style={{ height: '100%', width: '100%' }}>
                         <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
-                    </Value>
-                </div>
-                <div>
+                    </Block>
+                </Section>
+                <Section>
                     <div>
-                        <Value loading={loadingForecast}>
+                        <Block loading={loadingForecast}>
                             <DayLabel>Hoje</DayLabel>
                             {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
-                        </Value>
+                        </Block>
                     </div>
                     <InfoArea>
-                        <Description>
-                            <Value loading={loadingForecast}>
+                        <Block loading={loadingForecast}>
+                            <Description>
                                 {forecast[0]?.weather[0].description}
-                            </Value>
-                        </Description>
-                        <div>
-                            <Value loading={loadingForecast}>
+                            </Description>
+                            <div>
                                 <span>Vento: </span>
                                 {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
-                            </Value>
-
-                        </div>
-                        <div>
-                            <Value loading={loadingForecast}>
+                            </div>
+                            <div>
                                 <span>Umidade: </span>
                                 {`${forecast[0]?.dew_point}%`}
-                            </Value>
-                        </div>
-                        <div>
-                            <Value loading={loadingForecast}>
+                            </div>
+                            <div>
                                 <span>Pressão: </span>
                                 {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
-                            </Value>
-                        </div>
+                            </div>
+                        </Block>
                     </InfoArea>
-                </div>
+                </Section>
             </ForecastArea>
             <ForecastArea
                 className='tomorrow'
                 tempColor={getTempColor(forecast[0]?.temp.max, 50)}
             >
-                <div>
+                <Section>
                     <DayLabel>Amanhã</DayLabel>
-                    <Value loading={loadingForecast}>
+                    <Block loading={loadingForecast}>
                         {`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
-                    </Value>
-                </div>
+                    </Block>
+                </Section>
             </ForecastArea>
             <ForecastArea
                 className='day-after-tomorrow'
                 tempColor={getTempColor(forecast[0]?.temp.max, 40)}
             >
-                <div>
+                <Section>
                     <DayLabel>Depois de Amanhã</DayLabel>
-                    <Value loading={loadingForecast}>
+                    <Block loading={loadingForecast}>
                         {`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
-                    </Value>
-                </div>
+                    </Block>
+                </Section>
             </ForecastArea>
         </Card >
     )

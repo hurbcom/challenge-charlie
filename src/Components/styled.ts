@@ -58,15 +58,6 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   flex-wrap: wrap;
   font-weight: 600;
 
-  > div {
-    padding: 14px;
-    width: 50%;
-  }
-
-  > div {
-    min-width: 250px;
-  }
-
   &.today {
     flex-grow: 1;
     justify-content: center;
@@ -107,7 +98,7 @@ export const StyledWeatherIcon = styled(WeatherIcon)`
   width: 100%;
 `;
 
-export const Value = styled.div<{ loading: boolean }>`
+export const Block = styled.div<{ loading: boolean }>`
   position: relative;
 
   ${({ loading }) =>
@@ -118,7 +109,6 @@ export const Value = styled.div<{ loading: boolean }>`
           border-radius: 5px;
           color: transparent;
           background-color: #eee;
-          margin: 5px;
 
           &:before {
             content: "";
@@ -146,4 +136,10 @@ export const Value = styled.div<{ loading: boolean }>`
           }
         `
       : ""};
+`;
+
+export const Section = styled.div`
+  min-width: 250px;
+  padding: 14px;
+  width: 50%;
 `;
