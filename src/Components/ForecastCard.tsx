@@ -19,6 +19,8 @@ function ForecastCard() {
     const [searchString, setSearchString] = useState<string>('')
     const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
 
+    const { today, tomorrow, afterTomorrow } = forecast
+
     const UNITS_OF_MEASUREMENT = {
         'wind': system === 'metric' ? 'km/h' : 'm/h',
         'pressure': system === 'metric' ? 'hPA' : 'hPA',
@@ -44,19 +46,17 @@ function ForecastCard() {
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng)
                 .then(forecast => {
-
-
                     setForecast(
                         {
                             'today': {
                                 current: forecast.current,
-                                forecast: forecast[0]
+                                forecast: forecast.daily[0]
                             },
                             'tomorrow': {
-                                forecast: forecast[1]
+                                forecast: forecast.daily[1]
                             },
-                            'after-tomorrow': {
-                                forecast: forecast[1]
+                            'afterTomorrow': {
+                                forecast: forecast.daily[1]
                             }
                         }
                     )
@@ -88,6 +88,8 @@ function ForecastCard() {
                 })
         }, 300);
     }
+
+    console.log(forecast)
 
     return (
         <Card>
@@ -132,56 +134,56 @@ function ForecastCard() {
             </SearchBarArea>
             <ForecastArea
                 className='today'
-                tempColor={getTempColor(forecast[0]?.temp.max, 60)}
+                tempColor={getTempColor(today?.current.temp, 60)}
             >
                 <Section>
                     <Block loading={loadingForecast} style={{ height: '100%', width: '100%' }}>
-                        <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
+                        <StyledWeatherIcon iconId={today?.current.weather[0].icon} />
                     </Block>
                 </Section>
                 <Section>
                     <Block loading={loadingForecast}>
                         <DayLabel>Hoje</DayLabel>
-                        {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                        {`${today?.current.temp} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Block>
                     <Block loading={loadingForecast}>
                         <Description>
-                            {forecast[0]?.weather[0].description}
+                            {today?.current.weather[0].description}
                         </Description>
                         <div>
                             <span>Vento: </span>
-                            {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
+                            {`${today?.current.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
                         </div>
                         <div>
                             <span>Umidade: </span>
-                            {`${forecast[0]?.humidity} %`}
+                            {`${today?.current.humidity} %`}
                         </div>
                         <div>
                             <span>Pressão: </span>
-                            {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
+                            {`${today?.current.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
                         </div>
                     </Block>
                 </Section>
             </ForecastArea>
             <ForecastArea
                 className='tomorrow'
-                tempColor={getTempColor(forecast[0]?.temp.max, 50)}
+                tempColor={getTempColor(today?.current.temp, 50)}
             >
                 <Section>
                     <DayLabel>Amanhã</DayLabel>
                     <Block loading={loadingForecast}>
-                        {`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                        {`${tomorrow?.forecast.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Block>
                 </Section>
             </ForecastArea>
             <ForecastArea
                 className='day-after-tomorrow'
-                tempColor={getTempColor(forecast[0]?.temp.max, 40)}
+                tempColor={getTempColor(today?.current.temp, 40)}
             >
                 <Section>
                     <DayLabel>Depois de Amanhã</DayLabel>
                     <Block loading={loadingForecast}>
-                        {`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
+                        {`${tomorrow?.forecast.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Block>
                 </Section>
             </ForecastArea>

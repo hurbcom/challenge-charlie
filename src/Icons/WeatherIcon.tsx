@@ -11,6 +11,7 @@ import {
 } from "react-icons/wi";
 
 function WeatherIcon({ iconId, className }: any) {
+    console.log('ICON', iconId)
     switch (iconId) {
         case "01d":
             return <WiDaySunny className={className} />;
