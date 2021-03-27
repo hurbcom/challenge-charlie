@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
+import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection } from "../Utils"
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section, StyledDropdown } from "./styled"
 import Overlay from 'react-bootstrap/Overlay';
 import { RiCompassLine } from 'react-icons/ri'
@@ -13,7 +13,7 @@ function ForecastCard() {
     const [loading, setLoading] = useState<boolean>(false)
     const [loadingForecast, setLoadingForecast] = useState<boolean>(true)
     const [searching, setSearching] = useState<boolean>(false)
-    const [forecast, setForecast] = useState<any>([])
+    const [forecast, setForecast] = useState<any>({})
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
@@ -42,10 +42,25 @@ function ForecastCard() {
             setLoadingForecast(true)
             setSearchString(selectedLocation.formatted)
             const { lat, lng } = selectedLocation.geometry
-            fetchForecast(lat, lng).then(forecast => {
-                const temperatures = forecast.daily.slice(0, 3)
-                setForecast(temperatures)
-            })
+            fetchForecast(lat, lng)
+                .then(forecast => {
+
+
+                    setForecast(
+                        {
+                            'today': {
+                                current: forecast.current,
+                                forecast: forecast[0]
+                            },
+                            'tomorrow': {
+                                forecast: forecast[1]
+                            },
+                            'after-tomorrow': {
+                                forecast: forecast[1]
+                            }
+                        }
+                    )
+                })
                 .finally(() => setLoadingForecast(false))
         }
     }, [selectedLocation])
@@ -90,7 +105,6 @@ function ForecastCard() {
                     onChange={e => {
                         onSearchLocation(e.target.value)
                     }}
-
                 />
                 <Overlay
                     show={searching}
@@ -103,7 +117,6 @@ function ForecastCard() {
                         if (!aearchAreaRef.current.contains(event.target)) {
                             setSearching(false)
                             setSearchString(selectedLocation.formatted)
-
                         }
                     }}
                 >

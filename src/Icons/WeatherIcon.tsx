@@ -31,7 +31,7 @@ function WeatherIcon({ iconId, className }: any) {
         case "50d":
             return <WiFog className={className} />;
         default:
-            return <div className={className}>Larissa Manoela</div>;
+            return null;
     }
 }
 
