@@ -50,7 +50,8 @@ function ForecastCard() {
                 const temperatures = forecast.daily.slice(0, 3)
 
                 setForecast(temperatures)
-            }).finally(() => setLoadingForecast(false))
+            })
+                .finally(() => setLoadingForecast(false))
         }
     }, [selectedLocation])
 
@@ -144,8 +145,8 @@ function ForecastCard() {
                 </div>
                 <div>
                     <div>
-                        <DayLabel>Hoje</DayLabel>
                         <Value loading={loadingForecast}>
+                            <DayLabel>Hoje</DayLabel>
                             {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                         </Value>
                     </div>
@@ -156,21 +157,21 @@ function ForecastCard() {
                             </Value>
                         </Description>
                         <div>
-                            <span>Vento: </span>
                             <Value loading={loadingForecast}>
+                                <span>Vento: </span>
                                 {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
                             </Value>
 
                         </div>
                         <div>
-                            <span>Umidade: </span>
                             <Value loading={loadingForecast}>
+                                <span>Umidade: </span>
                                 {`${forecast[0]?.dew_point}%`}
                             </Value>
                         </div>
                         <div>
-                            <span>Pressão: </span>
                             <Value loading={loadingForecast}>
+                                <span>Pressão: </span>
                                 {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
                             </Value>
                         </div>

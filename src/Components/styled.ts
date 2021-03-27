@@ -59,14 +59,16 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   font-weight: 600;
 
   > div {
-    padding: 18px;
+    padding: 14px;
     width: 50%;
-    min-width: 250px;
   }
 
   &.today {
     flex-grow: 1;
     justify-content: center;
+    > div:first-child {
+      min-width: 250px;
+    }
   }
   &.tomorrow,
   &.day-after-tomorrow {
@@ -115,6 +117,7 @@ export const Value = styled.div<{ loading: boolean }>`
           border-radius: 5px;
           color: transparent;
           background-color: #eee;
+          margin: 5px;
 
           &:before {
             content: "";
