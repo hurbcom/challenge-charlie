@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { apiFetch, getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
-import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "../Utils/urls"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, InfoArea, Description, StyledWeatherIcon, Block, Section } from "./styled"
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor } from "../Utils"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section, StyledDropdown } from "./styled"
 import Overlay from 'react-bootstrap/Overlay';
-import Button from 'react-bootstrap/Button';
-import DropDownMenu from "./DropDownMenu"
 import { RiCompassLine } from 'react-icons/ri'
-import WeatherIcon from "../Icons/WeatherIcon";
 
 let currentString: string = ''
 let timeout: any
@@ -113,18 +108,7 @@ function ForecastCard() {
                         }
                     }}
                 >
-                    <DropDownMenu
-                        style={{
-                            zIndex: 99,
-                            positions: 'relative',
-                            margin: '0 auto',
-                            width: '65%',
-                            backgroundColor: 'rgba(43, 50, 82, 0.85)',
-                            padding: '30px 20px',
-                            color: 'white',
-                            boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)'
-
-                        }}
+                    <StyledDropdown
                         data={getLocationsOptions()}
                         loading={loading}
                         onClickOption={(option: any) => {
@@ -144,12 +128,10 @@ function ForecastCard() {
                     </Block>
                 </Section>
                 <Section>
-
                     <Block loading={loadingForecast}>
                         <DayLabel>Hoje</DayLabel>
                         {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Block>
-
                     <Block loading={loadingForecast}>
                         <Description>
                             {forecast[0]?.weather[0].description}

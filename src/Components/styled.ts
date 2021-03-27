@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import WeatherIcon from "../Icons/WeatherIcon";
+import DropDownMenu from "./DropDownMenu";
 
 export const Card = styled.div`
   display: flex;
@@ -44,6 +45,20 @@ export const IconWrapper = styled.div`
     font-size: 55px;
   }
 `;
+
+export const StyledDropdown = styled(DropDownMenu)`
+  z-index: 99;
+  top: -1px !important;
+  margin: 0 auto;
+  width: 65%;
+  background-color: rgb(255 255 255 / 95%);
+  padding: 30px 20px;
+  color: #817e7c;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+`;
+
 export const DropdownItem = styled.div<{ selectable?: boolean }>`
   cursor: ${({ selectable }) => (selectable ? "pointer" : "auto")};
   padding: 8px 0;
