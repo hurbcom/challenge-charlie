@@ -10,6 +10,10 @@ export const Card = styled.div`
   box-sizing: border-box;
   color: #fff;
   font-size: 22px;
+
+  @media (max-width: 770px) {
+    font-size: 18px;
+  }
 `;
 
 export const SearchBarArea = styled.div`
@@ -56,16 +60,13 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
 
   > div {
     padding: 18px;
+    width: 50%;
+    min-width: 250px;
   }
 
   &.today {
     flex-grow: 1;
     justify-content: center;
-
-    > div {
-      min-width: 250px;
-      width: 50%;
-    }
   }
   &.tomorrow,
   &.day-after-tomorrow {
@@ -74,6 +75,13 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
 
     > div {
       margin-left: auto;
+    }
+  }
+
+  @media (max-width: 770px) {
+    > div {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 `;
@@ -102,7 +110,6 @@ export const Value = styled.div<{ loading: boolean }>`
   ${({ loading }) =>
     loading
       ? css`
-          //display: none;
           min-width: 200px;
           opacity: 0.3;
           border-radius: 5px;

@@ -15,6 +15,7 @@ let timeout: any
 function ForecastCard() {
     const aearchAreaRef = useRef<any>(null);
     const [loading, setLoading] = useState<boolean>(false)
+    const [loadingForecast, setLoadingForecast] = useState<boolean>(true)
     const [searching, setSearching] = useState<boolean>(false)
     const [forecast, setForecast] = useState<any>([])
     const [locations, setLocations] = useState<any>()
@@ -42,13 +43,14 @@ function ForecastCard() {
 
     useEffect(() => {
         if (selectedLocation) {
+            setLoadingForecast(true)
             setSearchString(selectedLocation.formatted)
             const { lat, lng } = selectedLocation.geometry
             fetchForecast(lat, lng).then(forecast => {
                 const temperatures = forecast.daily.slice(0, 3)
 
                 setForecast(temperatures)
-            })
+            }).finally(() => setLoadingForecast(false))
         }
     }, [selectedLocation])
 
@@ -136,39 +138,39 @@ function ForecastCard() {
                 tempColor={getTempColor(forecast[0]?.temp.max, 60)}
             >
                 <div>
-                    <Value loading={true} style={{ height: '100%', width: '100%' }}>
+                    <Value loading={loadingForecast} style={{ height: '100%', width: '100%' }}>
                         <StyledWeatherIcon iconId={forecast[0]?.weather[0].icon} />
                     </Value>
                 </div>
                 <div>
                     <div>
                         <DayLabel>Hoje</DayLabel>
-                        <Value loading={true}>
+                        <Value loading={loadingForecast}>
                             {`${forecast[0]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                         </Value>
                     </div>
                     <InfoArea>
                         <Description>
-                            <Value loading={true}>
+                            <Value loading={loadingForecast}>
                                 {forecast[0]?.weather[0].description}
                             </Value>
                         </Description>
                         <div>
                             <span>Vento: </span>
-                            <Value loading={true}>
+                            <Value loading={loadingForecast}>
                                 {`${forecast[0]?.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
                             </Value>
 
                         </div>
                         <div>
                             <span>Umidade: </span>
-                            <Value loading={true}>
+                            <Value loading={loadingForecast}>
                                 {`${forecast[0]?.dew_point}%`}
                             </Value>
                         </div>
                         <div>
                             <span>Pressão: </span>
-                            <Value loading={true}>
+                            <Value loading={loadingForecast}>
                                 {`${forecast[0]?.pressure} ${UNITS_OF_MEASUREMENT['pressure']} `}
                             </Value>
                         </div>
@@ -181,7 +183,7 @@ function ForecastCard() {
             >
                 <div>
                     <DayLabel>Amanhã</DayLabel>
-                    <Value loading={true}>
+                    <Value loading={loadingForecast}>
                         {`${forecast[1]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Value>
                 </div>
@@ -192,7 +194,7 @@ function ForecastCard() {
             >
                 <div>
                     <DayLabel>Depois de Amanhã</DayLabel>
-                    <Value loading={true}>
+                    <Value loading={loadingForecast}>
                         {`${forecast[2]?.temp.max} ${UNITS_OF_MEASUREMENT['temperature']}`}
                     </Value>
                 </div>
