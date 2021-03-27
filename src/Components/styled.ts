@@ -63,12 +63,13 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
     width: 50%;
   }
 
+  > div {
+    min-width: 250px;
+  }
+
   &.today {
     flex-grow: 1;
     justify-content: center;
-    > div:first-child {
-      min-width: 250px;
-    }
   }
   &.tomorrow,
   &.day-after-tomorrow {
