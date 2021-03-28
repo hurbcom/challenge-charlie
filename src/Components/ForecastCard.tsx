@@ -176,8 +176,8 @@ function ForecastCard() {
                 tempColor={getTempColor(today?.current.temp, 50)}
             >
                 <Section>
-                    <DayLabel>Amanhã</DayLabel>
                     <Block loadingBlock={loadingForecast}>
+                        <DayLabel>Amanhã</DayLabel>
                         {formatTemperature(tomorrow?.forecast.temp.max)}
                         {` / ${formatTemperature(tomorrow?.forecast.temp.min)}`}
                     </Block>
@@ -188,8 +188,8 @@ function ForecastCard() {
                 tempColor={getTempColor(today?.current.temp, 40)}
             >
                 <Section>
-                    <DayLabel>Depois de Amanhã</DayLabel>
                     <Block loadingBlock={loadingForecast}>
+                        <DayLabel>Depois de Amanhã</DayLabel>
                         {formatTemperature(afterTomorrow?.forecast.temp.max)}
                         {` / ${formatTemperature(afterTomorrow?.forecast.temp.min)}`}
                     </Block>
