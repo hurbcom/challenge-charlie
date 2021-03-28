@@ -78,7 +78,13 @@ export const DropdownItem = styled.div<{ selectable?: boolean }>`
   white-space: nowrap;
 `;
 
-export const ForecastArea = styled.div<{ tempColor: string }>`
+type ForecastAreaProps = {
+  tempColor: string;
+  initialLoading: boolean;
+};
+
+export const ForecastArea = styled.div<ForecastAreaProps>`
+  position: relative;
   display: flex;
   background-color: ${({ tempColor }) => tempColor};
   flex-wrap: wrap;
@@ -106,6 +112,37 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
       margin-right: auto;
     }
   }
+
+  ${({ initialLoading }) =>
+    initialLoading
+      ? css`
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background: linear-gradient(
+              to right,
+              transparent 0%,
+              rgba(255, 255, 255, 0.05) 25%,
+              rgba(255, 255, 255, 0.05) 75%,
+              transparent 100%
+            );
+            animation: load 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+            @keyframes load {
+              from {
+                left: 0;
+              }
+              to {
+                left: calc(100% - 200px);
+              }
+            }
+          }
+        `
+      : ""};
 `;
 
 export const DayLabel = styled.div`
@@ -166,7 +203,7 @@ export const Block = styled.div<{ loadingBlock: boolean }>`
       : ""};
 `;
 
-export const Section = styled.div`
+export const StyledSection = styled.div`
   min-width: 250px;
   padding: 14px;
   width: 50%;

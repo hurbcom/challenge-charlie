@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit } from "../Utils"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section, Temperature } from "./styled"
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, StyledSection, Temperature } from "./styled"
 import Overlay from 'react-bootstrap/Overlay'
 import { RiCompassLine } from 'react-icons/ri'
 import DropDownMenu from "./DropDownMenu"
@@ -14,19 +14,17 @@ function ForecastCard() {
     const [initialLoading, setInitialLoading] = useState<boolean>(true)
     const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
     const [isSearching, setIsSearching] = useState<boolean>(false)
-    const [forecast, setForecast] = useState<any>({})
+    const [forecast, setForecast] = useState<any>(null)
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
     const [searchString, setSearchString] = useState<string>('')
     const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
 
-    const { today, tomorrow, afterTomorrow } = forecast
-
     useEffect(() => {
         getCoordinates().then(position => {
             const { latitude, longitude } = position.coords
 
-            fetchUserLocation(latitude, longitude).then(location => {
+            return fetchUserLocation(latitude, longitude).then(location => {
                 if (location) {
                     setSearchString(location.formatted)
                     setSelectedLocation(location)
@@ -34,10 +32,9 @@ function ForecastCard() {
                         .then(forecast => {
                             setForecast(parseForecastData(forecast))
                         })
-                        .finally(() => setInitialLoading(false))
                 }
             })
-        })
+        }).finally(() => setInitialLoading(false))
     }, [])
 
     const getLocationsOptions = useCallback(() => {
@@ -123,7 +120,9 @@ function ForecastCard() {
                     onHide={(event) => {
                         if (!searchAreaRef.current.contains(event.target)) {
                             setIsSearching(false)
-                            setSearchString(selectedLocation.formatted)
+                            if (selectedLocation) {
+                                setSearchString(selectedLocation.formatted)
+                            }
                         }
                     }}
                 >
@@ -148,72 +147,71 @@ function ForecastCard() {
                 </Overlay>
             </SearchBarArea>
             <ForecastArea
+                initialLoading={initialLoading}
                 className='today'
-                tempColor={getTempColor(today?.temp, 60, system)}
+                tempColor={getTempColor(forecast?.today?.temp, 60, system)}
             >
-                <Section>
-                    <Block loadingBlock={initialLoading} style={{ height: '100%', width: '100%' }}>
-                        <StyledWeatherIcon iconId={today?.weather[0].icon} />
-                    </Block>
+                <Section show={!!forecast}>
+                    <StyledWeatherIcon iconId={forecast?.today?.weather[0].icon} />
                 </Section>
-                <Section>
-                    <Block loadingBlock={initialLoading}>
-                        <DayLabel>Hoje</DayLabel>
-                        <Temperature onClick={switchSystem}>
-                            {formatTemperature(today?.temp)}
-                        </Temperature>
-                    </Block>
-                    <Block loadingBlock={initialLoading}>
-                        <Description>
-                            {today?.weather[0].description}
-                        </Description>
-                    </Block>
-                    <Block loadingBlock={initialLoading}>
-                        <div>
-                            <span>Vento: </span>
-                            {`${getWindDirection(today?.wind_deg)} ${today?.wind_speed} ${getUnit('wind', system)}`}
-                        </div>
-                        <div>
-                            <span>Umidade: </span>
-                            {`${today?.humidity} %`}
-                        </div>
-                        <div>
-                            <span>Pressão: </span>
-                            {`${today?.pressure} ${getUnit('pressure', system)} `}
-                        </div>
-                    </Block>
+                <Section show={!!forecast}>
+                    <DayLabel>Hoje</DayLabel>
+                    <Temperature onClick={switchSystem}>
+                        {formatTemperature(forecast?.today?.temp)}
+                    </Temperature>
+                    <Description>
+                        {forecast?.today?.weather[0].description}
+                    </Description>
+                    <div>
+                        <span>Vento: </span>
+                        {`${getWindDirection(forecast?.today?.wind_deg)} ${forecast?.today?.wind_speed} ${getUnit('wind', system)}`}
+                    </div>
+                    <div>
+                        <span>Umidade: </span>
+                        {`${forecast?.today?.humidity} %`}
+                    </div>
+                    <div>
+                        <span>Pressão: </span>
+                        {`${forecast?.today?.pressure} ${getUnit('pressure', system)} `}
+                    </div>
                 </Section>
             </ForecastArea>
             <ForecastArea
+                initialLoading={initialLoading}
                 className='tomorrow'
-                tempColor={getTempColor(today?.temp, 50, system)}
+                tempColor={getTempColor(forecast?.today?.temp, 50, system)}
             >
-                <Section>
-                    <Block loadingBlock={initialLoading}>
-                        <DayLabel>Amanhã</DayLabel>
-                        <Temperature onClick={switchSystem}>
-                            {formatTemperature(tomorrow?.temp.max)}
-                            {` / ${formatTemperature(tomorrow?.temp.min)}`}
-                        </Temperature>
-                    </Block>
+                <Section show={!!forecast}>
+                    <DayLabel>Amanhã</DayLabel>
+                    <Temperature onClick={switchSystem}>
+                        {formatTemperature(forecast?.tomorrow?.temp.max)}
+                        {` / ${formatTemperature(forecast?.tomorrow?.temp.min)}`}
+                    </Temperature>
                 </Section>
             </ForecastArea>
             <ForecastArea
+                initialLoading={initialLoading}
                 className='day-after-tomorrow'
-                tempColor={getTempColor(today?.temp, 40, system)}
+                tempColor={getTempColor(forecast?.today?.temp, 40, system)}
             >
-                <Section>
-                    <Block loadingBlock={initialLoading}>
-                        <DayLabel>Depois de Amanhã</DayLabel>
-                        <Temperature onClick={switchSystem}>
-                            {formatTemperature(afterTomorrow?.temp.max)}
-                            {` / ${formatTemperature(afterTomorrow?.temp.min)}`}
-                        </Temperature>
-                    </Block>
+                <Section show={!!forecast}>
+                    <DayLabel>Depois de Amanhã</DayLabel>
+                    <Temperature onClick={switchSystem}>
+                        {formatTemperature(forecast?.afterTomorrow?.temp.max)}
+                        {` / ${formatTemperature(forecast?.afterTomorrow?.temp.min)}`}
+                    </Temperature>
                 </Section>
             </ForecastArea>
         </Card >
     )
+}
+
+function Section({ show, children }: any) {
+    return show ? (
+        <StyledSection>
+            {children}
+        </StyledSection>
+    ) : null
 }
 
 export default ForecastCard
