@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import WeatherIcon from "../Icons/WeatherIcon";
-import DropDownMenu from "./DropDownMenu";
 
 export const Card = styled.div`
   display: flex;
@@ -53,6 +52,7 @@ export const IconWrapper = styled.div`
 export const StyledDropdown = styled.div`
   z-index: 99;
   top: -1px !important;
+  border-top: 1px solid #ddd;
   margin: 0 auto;
   width: 65%;
   background-color: rgb(255 255 255 / 95%);

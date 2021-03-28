@@ -92,11 +92,11 @@ export function apiFetch(url: string) {
 export function getTempColor(temp: number, lightness: number) {
   if (temp) {
     if (temp > 35) {
-      return `hsla(0, 100%, ${lightness}%, 0.7)`;
+      return `hsla(0, 100%, ${lightness}%, 0.8)`;
     } else if (temp < 15) {
-      return `hsla(240, 100%, ${lightness}%, 0.7)`;
+      return `hsla(240, 100%, ${lightness}%, 0.8)`;
     } else {
-      return `hsla(45, 100%, ${lightness}%, 0.7)`;
+      return `hsla(45, 100%, ${lightness}%, 0.8)`;
     }
   }
 

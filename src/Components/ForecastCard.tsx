@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection } from "../Utils"
-import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section, StyledDropdown } from "./styled"
-import Overlay from 'react-bootstrap/Overlay';
+import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, Block, Section } from "./styled"
+import Overlay from 'react-bootstrap/Overlay'
 import { RiCompassLine } from 'react-icons/ri'
-import DropDownMenu from "./DropDownMenu";
+import DropDownMenu from "./DropDownMenu"
 
 let currentString: string = ''
 let timeout: any

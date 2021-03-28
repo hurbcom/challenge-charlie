@@ -1,29 +1,33 @@
-import { useEffect, useState } from "react";
-import ForecastCard from "./Components/ForecastCard";
-import { apiFetch, getCoordinates } from "./Utils";
-import { BING_IMAGE, USER_LOCATION, WEATHER_FORECAST } from "./Utils/urls";
+import { useEffect, useState } from "react"
+import styled from "styled-components"
+import ForecastCard from "./Components/ForecastCard"
+import { apiFetch } from "./Utils"
+import { BING_IMAGE } from "./Utils/urls"
 
 function App() {
-  const [styles, setStyles] = useState({
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundColor: 'rgba(34,34,34,.9)',
-  })
+  const [backgroundImage, setBackgroundImage] = useState<string>('')
 
   useEffect(() => {
     apiFetch(BING_IMAGE)
       .get()
       .then(response => response.json())
       .then(url => {
-        setStyles(state => ({ ...state, backgroundImage: `url(${url})` }))
+        setBackgroundImage(`url(${url})`)
       })
   }, [])
 
   return (
-    <div style={styles}>
+    <StyledApp backgroundImage={backgroundImage}>
       <ForecastCard />
-    </div>
+    </StyledApp>
   );
 }
 
 export default App;
+
+const StyledApp = styled.div<{ backgroundImage: string }>`
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(34,34,34,.9);
+    background-image: ${({ backgroundImage }) => backgroundImage}
+`
