@@ -28,7 +28,7 @@ export const SearchBarArea = styled.div`
 
   input {
     color: #817e7c;
-    background-color: #ffffffaa;
+    background-color: rgb(255, 255, 255, 0.9);
     width: 100%;
     padding: 0 15px 2px 65px;
     height: 100%;
