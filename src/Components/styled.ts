@@ -81,6 +81,8 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   flex-wrap: wrap;
   font-weight: 600;
 
+  transition: all 500ms linear;
+
   &.today {
     flex-grow: 1;
     justify-content: center;
@@ -128,7 +130,7 @@ export const Block = styled.div<{ loadingBlock: boolean }>`
     loadingBlock
       ? css`
           min-width: 200px;
-          opacity: 0.3;
+          opacity: 0.2;
           border-radius: 5px;
           color: transparent;
           background-color: #eee;
