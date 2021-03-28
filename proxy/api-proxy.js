@@ -32,7 +32,7 @@ app.get("/bing-image-url", (req, res) => {
   );
 });
 
-app.get("/user-location", (req, res) => {
+app.get("/reverse-geocode", (req, res) => {
   const { lat, lon } = req.query;
   request(
     {
@@ -48,7 +48,7 @@ app.get("/user-location", (req, res) => {
   );
 });
 
-app.get("/reverse-geocode", (req, res) => {
+app.get("/forward-geocode", (req, res) => {
   const { location } = req.query;
   request(
     {

@@ -41,8 +41,8 @@ function ForecastCard() {
     }, [])
 
     const getLocationsOptions = useCallback(() => {
-        if (locations?.results) {
-            return locations.results.map((location: any, index: number) => ({ value: location.formatted, id: index, ...location }))
+        if (locations) {
+            return locations.map((location: any, index: number) => ({ value: location.formatted, id: index, ...location }))
         } else {
             return []
         }
@@ -82,7 +82,7 @@ function ForecastCard() {
                 .then(locations => {
                     if (currentString === query) {
                         setLoading(false)
-                        setLocations(locations)
+                        setLocations(locations.results)
                     }
                 })
         }, 300);

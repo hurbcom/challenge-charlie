@@ -1,5 +1,5 @@
-import { IForecast } from "../types/api-types";
-import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "./urls";
+import { IForecast, ILocation } from "../types/api-types";
+import { FORWARD_GEOCODE, REVERSE_GEOCODE, WEATHER_FORECAST } from "./urls";
 
 export function getCoordinates() {
   return new Promise(function (
@@ -15,7 +15,7 @@ export async function fetchUserLocation(
   longitude: number
 ): Promise<any> {
   try {
-    const data = await apiFetch(USER_LOCATION(latitude, longitude))
+    const data = await apiFetch(REVERSE_GEOCODE(latitude, longitude))
       .get()
       .then((res) => res.json());
 
@@ -41,9 +41,9 @@ export async function fetchForecast(
   }
 }
 
-export function fetchLocations(query: string): Promise<any> {
+export function fetchLocations(query: string): Promise<ILocation> {
   try {
-    const locations = apiFetch(REVERSE_GEOCODE(query))
+    const locations = apiFetch(FORWARD_GEOCODE(query))
       .get()
       .then((locations) => locations.json());
 

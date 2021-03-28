@@ -1,9 +1,6 @@
 const PROXY = "http://localhost:3005";
 export const BING_IMAGE = `${PROXY}/bing-image-url`;
 
-export const USER_LOCATION = (latitude: number, longitude: number) =>
-  `${PROXY}/user-location?lat=${latitude}&lon=${longitude}`;
-
 export const WEATHER_FORECAST = (
   latitude: number,
   longitude: number,
@@ -11,5 +8,8 @@ export const WEATHER_FORECAST = (
 ) =>
   `${PROXY}/weather-forecast?lat=${latitude}&lon=${longitude}&system=${system}`;
 
-export const REVERSE_GEOCODE = (location: string) =>
-  `${PROXY}/reverse-geocode?location=${location}`;
+export const FORWARD_GEOCODE = (location: string) =>
+  `${PROXY}/forward-geocode?location=${location}`;
+
+export const REVERSE_GEOCODE = (latitude: number, longitude: number) =>
+  `${PROXY}/reverse-geocode?lat=${latitude}&lon=${longitude}`;
