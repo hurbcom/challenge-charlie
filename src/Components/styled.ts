@@ -81,7 +81,7 @@ export const ForecastArea = styled.div<{ tempColor: string }>`
   flex-wrap: wrap;
   font-weight: 600;
 
-  transition: all 500ms linear;
+  transition: background-color 500ms linear;
 
   &.today {
     flex-grow: 1;
