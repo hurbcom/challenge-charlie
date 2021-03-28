@@ -50,7 +50,7 @@ export interface IForecast {
   daily: IDaily[];
 }
 
-interface IResult {
+export interface ILocationResult {
   formatted: string;
   geometry: {
     lat: number;
@@ -59,5 +59,5 @@ interface IResult {
 }
 
 export interface ILocation {
-  results: IResult[];
+  results: ILocationResult[];
 }

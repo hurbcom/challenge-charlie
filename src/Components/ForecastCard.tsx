@@ -4,7 +4,7 @@ import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, 
 import Overlay from 'react-bootstrap/Overlay'
 import { RiCompassLine } from 'react-icons/ri'
 import DropDownMenu from "./DropDownMenu"
-import { IForecast } from "../types/api-types"
+import { IForecast, ILocationResult } from "../types/api-types"
 import { IForecastState } from "../types"
 
 let currentString: string = ''
@@ -17,8 +17,8 @@ function ForecastCard() {
     const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
     const [isSearching, setIsSearching] = useState<boolean>(false)
     const [forecast, setForecast] = useState<IForecastState | null>(null)
-    const [locations, setLocations] = useState<any>()
-    const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
+    const [locations, setLocations] = useState<ILocationResult[]>()
+    const [selectedLocation, setSelectedLocation] = useState<ILocationResult | undefined>()
     const [searchString, setSearchString] = useState<string>('')
     const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
 
@@ -42,7 +42,7 @@ function ForecastCard() {
 
     const getLocationsOptions = useCallback(() => {
         if (locations) {
-            return locations.map((location: any, index: number) => ({ value: location.formatted, id: index, ...location }))
+            return locations.map((location, index: number) => ({ value: location.formatted, id: index, ...location }))
         } else {
             return []
         }
@@ -59,17 +59,19 @@ function ForecastCard() {
     }
 
     function switchSystem() {
-        const newSystem = system === 'metric' ? 'imperial' : 'metric'
-        const { lat, lng } = selectedLocation.geometry
+        if (selectedLocation) {
+            const newSystem = system === 'metric' ? 'imperial' : 'metric'
+            const { lat, lng } = selectedLocation.geometry
 
-        setLoadingForecast(true)
+            setLoadingForecast(true)
 
-        fetchForecast(lat, lng, newSystem)
-            .then(forecast => {
-                setForecast(formatForecastState(forecast))
-                setSystem(newSystem)
-                setLoadingForecast(false)
-            })
+            fetchForecast(lat, lng, newSystem)
+                .then(forecast => {
+                    setForecast(formatForecastState(forecast))
+                    setSystem(newSystem)
+                    setLoadingForecast(false)
+                })
+        }
     }
 
     function onSearchLocation(query: string) {
@@ -132,7 +134,7 @@ function ForecastCard() {
                     <DropDownMenu
                         data={getLocationsOptions()}
                         loading={loading}
-                        onClickOption={(location: any) => {
+                        onClickOption={(location) => {
                             const { lat, lng } = location.geometry
 
                             setIsSearching(false)

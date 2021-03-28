@@ -3,11 +3,23 @@ import styled from "styled-components";
 import { CgSpinner } from 'react-icons/cg'
 import { DropdownItem, StyledDropdown } from "./styled";
 
-function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React.ForwardedRef<any>) {
+interface BaseOption {
+    id: string | number;
+    value: string;
+};
+
+
+interface IProps<T> {
+    loading: boolean
+    data: T[]
+    onClickOption: (option: T) => void;
+}
+
+function DropDownMenu<T extends BaseOption>({ data, loading, onClickOption, ...rest }: IProps<T>, ref: React.ForwardedRef<HTMLDivElement>) {
     function getDropdownOptions() {
         if (data.length) {
             return (
-                data.length && data.map((option: any) => (
+                data.length && data.map((option) => (
                     <DropdownItem
                         selectable
                         key={option.id}
@@ -36,7 +48,7 @@ function DropDownMenu({ data, loading, onClickOption, ...rest }: any, ref: React
     )
 }
 
-export default React.forwardRef(DropDownMenu)
+export default React.forwardRef(DropDownMenu) as <T extends BaseOption>(props: IProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> }) => JSX.Element;
 
 const Spinner = styled(CgSpinner)`
     animation: spin infinite 2s linear;
