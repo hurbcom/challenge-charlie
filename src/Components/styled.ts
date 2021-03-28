@@ -1,14 +1,17 @@
 import styled, { css } from "styled-components";
 import WeatherIcon from "../Icons/WeatherIcon";
 
-export const Card = styled.div`
+export const Card = styled.div<{ loadingElement: boolean }>`
   display: flex;
   flex-direction: column;
   height: 100%;
   margin: 0 auto;
   width: 65%;
   box-sizing: border-box;
-  color: #fff;
+  color: ${({ loadingElement }) =>
+    loadingElement
+      ? "rgba(255,255,255,0.6) !important"
+      : "rgba(255,255,255,1)"};
   font-size: 22px;
 
   @media (max-width: 770px) {
@@ -167,4 +170,8 @@ export const Section = styled.div`
   min-width: 250px;
   padding: 14px;
   width: 50%;
+`;
+
+export const Temperature = styled.div`
+  cursor: pointer;
 `;

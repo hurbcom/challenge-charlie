@@ -70,10 +70,10 @@ app.get("/reverse-geocode", (req, res) => {
 });
 
 app.get("/weather-forecast", (req, res) => {
-  const { lat, lon } = req.query;
+  const { lat, lon, system } = req.query;
   request(
     {
-      url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt_br&units=metric`,
+      url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt_br&units=${system}`,
     },
     (error, response, body) => {
       if (error || response.statusCode !== 200) {

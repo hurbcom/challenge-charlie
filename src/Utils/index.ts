@@ -26,10 +26,11 @@ export async function fetchUserLocation(
 
 export async function fetchForecast(
   latitude: number,
-  longitude: number
+  longitude: number,
+  system: "metric" | "imperial"
 ): Promise<any> {
   try {
-    const forecast = apiFetch(WEATHER_FORECAST(latitude, longitude))
+    const forecast = apiFetch(WEATHER_FORECAST(latitude, longitude, system))
       .get()
       .then((res) => res.json());
 
@@ -89,18 +90,25 @@ export function apiFetch(url: string) {
   };
 }
 
-export function getTempColor(temp: number, lightness: number) {
+export function getTempColor(
+  temp: number,
+  lightness: number,
+  system: "imperial" | "metric"
+) {
+  const highTemp = system === "metric" ? 35 : 95;
+  const lowTemp = system === "metric" ? 15 : 59;
+
   if (temp) {
-    if (temp > 35) {
+    if (temp > highTemp) {
       return `hsla(0, 100%, ${lightness}%, 0.8)`;
-    } else if (temp < 15) {
+    } else if (temp < lowTemp) {
       return `hsla(240, 100%, ${lightness}%, 0.8)`;
     } else {
       return `hsla(45, 100%, ${lightness}%, 0.8)`;
     }
   }
 
-  return `hsla(0, 0%, ${lightness}%, 0.7)`;
+  return `hsla(0, 0%, ${lightness}%, 0.8)`;
 }
 
 export function getWindDirection(degree: number) {
@@ -127,4 +135,14 @@ export function getWindDirection(degree: number) {
   const DEGREES_PER_SECTOR = 360 / SECTORS.length;
 
   return SECTORS[Math.round(degree / DEGREES_PER_SECTOR) % 16];
+}
+
+export function getUnit(attr: string, system: string) {
+  const UNITS_OF_MEASUREMENT: any = {
+    wind: system === "metric" ? "km/h" : "m/h",
+    pressure: system === "metric" ? "hPA" : "hPA",
+    temperature: system === "metric" ? `\u00B0C` : "F",
+  };
+
+  return `${UNITS_OF_MEASUREMENT[attr]}`;
 }
