@@ -9,11 +9,11 @@ let currentString: string = ''
 let timeout: any
 
 function ForecastCard() {
-    const aearchAreaRef = useRef<any>(null);
+    const searchAreaRef = useRef<any>(null);
     const [loading, setLoading] = useState<boolean>(false)
     const [initialLoading, setInitialLoading] = useState<boolean>(true)
     const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
-    const [searching, setSearching] = useState<boolean>(false)
+    const [isSearching, setIsSearching] = useState<boolean>(false)
     const [forecast, setForecast] = useState<any>({})
     const [locations, setLocations] = useState<any>()
     const [selectedLocation, setSelectedLocation] = useState<any | undefined>()
@@ -32,14 +32,13 @@ function ForecastCard() {
                     setSelectedLocation(location)
                     fetchForecast(latitude, longitude, system)
                         .then(forecast => {
-                            setForecast(parseForecast(forecast))
+                            setForecast(parseForecastData(forecast))
                         })
                         .finally(() => setInitialLoading(false))
                 }
             })
         })
     }, [])
-
 
     const getLocationsOptions = useCallback(() => {
         if (locations?.results) {
@@ -49,19 +48,12 @@ function ForecastCard() {
         }
     }, [locations])
 
-    function parseForecast(forecast: any) {
+    function parseForecastData(forecast: any) {
         return (
             {
-                'today': {
-                    current: forecast.current,
-                    forecast: forecast.daily[0]
-                },
-                'tomorrow': {
-                    forecast: forecast.daily[1]
-                },
-                'afterTomorrow': {
-                    forecast: forecast.daily[2]
-                }
+                'today': forecast.current,
+                'tomorrow': forecast.daily[1],
+                'afterTomorrow': forecast.daily[2]
             }
         )
     }
@@ -74,7 +66,7 @@ function ForecastCard() {
 
         fetchForecast(lat, lng, newSystem)
             .then(forecast => {
-                setForecast(parseForecast(forecast))
+                setForecast(parseForecastData(forecast))
                 setSystem(newSystem)
                 setLoadingForecast(false)
             })
@@ -106,7 +98,7 @@ function ForecastCard() {
 
     return (
         <Card loadingElement={loadingForecast}>
-            <SearchBarArea ref={aearchAreaRef}>
+            <SearchBarArea ref={searchAreaRef}>
                 <IconWrapper>
                     <RiCompassLine />
                 </IconWrapper>
@@ -115,22 +107,22 @@ function ForecastCard() {
                     value={searchString}
                     onFocus={(e) => {
                         e.target.select()
-                        setSearching(true)
+                        setIsSearching(true)
                     }}
                     onChange={e => {
                         onSearchLocation(e.target.value)
                     }}
                 />
                 <Overlay
-                    show={searching}
+                    show={isSearching}
                     transition={false}
-                    target={aearchAreaRef.current}
+                    target={searchAreaRef.current}
                     placement="bottom"
                     rootClose
                     rootCloseEvent='mousedown'
                     onHide={(event) => {
-                        if (!aearchAreaRef.current.contains(event.target)) {
-                            setSearching(false)
+                        if (!searchAreaRef.current.contains(event.target)) {
+                            setIsSearching(false)
                             setSearchString(selectedLocation.formatted)
                         }
                     }}
@@ -141,14 +133,14 @@ function ForecastCard() {
                         onClickOption={(location: any) => {
                             const { lat, lng } = location.geometry
 
-                            setSearching(false)
+                            setIsSearching(false)
                             setLoadingForecast(true)
                             setSearchString(location.formatted)
                             setSelectedLocation(location)
 
                             fetchForecast(lat, lng, system)
                                 .then(forecast => {
-                                    setForecast(parseForecast(forecast))
+                                    setForecast(parseForecastData(forecast))
                                 })
                                 .finally(() => setLoadingForecast(false))
                         }}
@@ -157,65 +149,65 @@ function ForecastCard() {
             </SearchBarArea>
             <ForecastArea
                 className='today'
-                tempColor={getTempColor(today?.current.temp, 60, system)}
+                tempColor={getTempColor(today?.temp, 60, system)}
             >
                 <Section>
                     <Block loadingBlock={initialLoading} style={{ height: '100%', width: '100%' }}>
-                        <StyledWeatherIcon iconId={today?.current.weather[0].icon} />
+                        <StyledWeatherIcon iconId={today?.weather[0].icon} />
                     </Block>
                 </Section>
                 <Section>
                     <Block loadingBlock={initialLoading}>
                         <DayLabel>Hoje</DayLabel>
                         <Temperature onClick={switchSystem}>
-                            {formatTemperature(today?.current.temp)}
+                            {formatTemperature(today?.temp)}
                         </Temperature>
                     </Block>
                     <Block loadingBlock={initialLoading}>
                         <Description>
-                            {today?.current.weather[0].description}
+                            {today?.weather[0].description}
                         </Description>
                     </Block>
                     <Block loadingBlock={initialLoading}>
                         <div>
                             <span>Vento: </span>
-                            {`${getWindDirection(today?.current.wind_deg)} ${today?.current.wind_speed} ${getUnit('wind', system)}`}
+                            {`${getWindDirection(today?.wind_deg)} ${today?.wind_speed} ${getUnit('wind', system)}`}
                         </div>
                         <div>
                             <span>Umidade: </span>
-                            {`${today?.current.humidity} %`}
+                            {`${today?.humidity} %`}
                         </div>
                         <div>
                             <span>Pressão: </span>
-                            {`${today?.current.pressure} ${getUnit('pressure', system)} `}
+                            {`${today?.pressure} ${getUnit('pressure', system)} `}
                         </div>
                     </Block>
                 </Section>
             </ForecastArea>
             <ForecastArea
                 className='tomorrow'
-                tempColor={getTempColor(today?.current.temp, 50, system)}
+                tempColor={getTempColor(today?.temp, 50, system)}
             >
                 <Section>
                     <Block loadingBlock={initialLoading}>
                         <DayLabel>Amanhã</DayLabel>
                         <Temperature onClick={switchSystem}>
-                            {formatTemperature(tomorrow?.forecast.temp.max)}
-                            {` / ${formatTemperature(tomorrow?.forecast.temp.min)}`}
+                            {formatTemperature(tomorrow?.temp.max)}
+                            {` / ${formatTemperature(tomorrow?.temp.min)}`}
                         </Temperature>
                     </Block>
                 </Section>
             </ForecastArea>
             <ForecastArea
                 className='day-after-tomorrow'
-                tempColor={getTempColor(today?.current.temp, 40, system)}
+                tempColor={getTempColor(today?.temp, 40, system)}
             >
                 <Section>
                     <Block loadingBlock={initialLoading}>
                         <DayLabel>Depois de Amanhã</DayLabel>
                         <Temperature onClick={switchSystem}>
-                            {formatTemperature(afterTomorrow?.forecast.temp.max)}
-                            {` / ${formatTemperature(afterTomorrow?.forecast.temp.min)}`}
+                            {formatTemperature(afterTomorrow?.temp.max)}
+                            {` / ${formatTemperature(afterTomorrow?.temp.min)}`}
                         </Temperature>
                     </Block>
                 </Section>
