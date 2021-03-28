@@ -56,7 +56,7 @@ function ForecastCard() {
                                 forecast: forecast.daily[1]
                             },
                             'afterTomorrow': {
-                                forecast: forecast.daily[1]
+                                forecast: forecast.daily[2]
                             }
                         }
                     )
@@ -156,6 +156,8 @@ function ForecastCard() {
                         <Description>
                             {today?.current.weather[0].description}
                         </Description>
+                    </Block>
+                    <Block loadingBlock={loadingForecast}>
                         <div>
                             <span>Vento: </span>
                             {`${getWindDirection(today?.current.wind_deg)} ${today?.current.wind_speed} ${UNITS_OF_MEASUREMENT['wind']} `}
