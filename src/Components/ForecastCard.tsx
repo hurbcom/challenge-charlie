@@ -28,9 +28,9 @@ function ForecastCard() {
                 if (location) {
                     setSearchString(location.formatted)
                     setSelectedLocation(location)
-                    fetchForecast(latitude, longitude, system)
+                    return fetchForecast(latitude, longitude, system)
                         .then(forecast => {
-                            setForecast(parseForecastData(forecast))
+                            setForecast(formatForecastState(forecast))
                         })
                 }
             })
@@ -45,7 +45,7 @@ function ForecastCard() {
         }
     }, [locations])
 
-    function parseForecastData(forecast: any) {
+    function formatForecastState(forecast: any) {
         return (
             {
                 'today': forecast.current,
@@ -63,7 +63,7 @@ function ForecastCard() {
 
         fetchForecast(lat, lng, newSystem)
             .then(forecast => {
-                setForecast(parseForecastData(forecast))
+                setForecast(formatForecastState(forecast))
                 setSystem(newSystem)
                 setLoadingForecast(false)
             })
@@ -139,7 +139,7 @@ function ForecastCard() {
 
                             fetchForecast(lat, lng, system)
                                 .then(forecast => {
-                                    setForecast(parseForecastData(forecast))
+                                    setForecast(formatForecastState(forecast))
                                 })
                                 .finally(() => setLoadingForecast(false))
                         }}
