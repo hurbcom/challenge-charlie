@@ -1,3 +1,4 @@
+import { IForecast } from "../types/api-types";
 import { REVERSE_GEOCODE, USER_LOCATION, WEATHER_FORECAST } from "./urls";
 
 export function getCoordinates() {
@@ -28,7 +29,7 @@ export async function fetchForecast(
   latitude: number,
   longitude: number,
   system: "metric" | "imperial"
-): Promise<any> {
+): Promise<IForecast> {
   try {
     const forecast = apiFetch(WEATHER_FORECAST(latitude, longitude, system))
       .get()
@@ -91,7 +92,7 @@ export function apiFetch(url: string) {
 }
 
 export function getTempColor(
-  temp: number,
+  temp: number | null | undefined,
   lightness: number,
   system: "imperial" | "metric"
 ) {
@@ -111,7 +112,11 @@ export function getTempColor(
   return `hsla(0, 0%, ${lightness}%, 0.8)`;
 }
 
-export function getWindDirection(degree: number) {
+export function getWindDirection(degree: number | null | undefined) {
+  if (!degree) {
+    return;
+  }
+
   degree = degree % 360;
   const SECTORS = [
     "N",
