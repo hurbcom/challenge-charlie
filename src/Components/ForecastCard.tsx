@@ -7,13 +7,13 @@ import DropDownMenu from "./DropDownMenu"
 import { IForecast, ILocationResult } from "../types/api-types"
 import { IForecastState, ISystemState } from "../types"
 
-let currentString: string = ''
-let timeout: any
-
 const defaultSystem: ISystemState = 'metric'
 
 function ForecastCard() {
     const searchAreaRef = useRef<HTMLDivElement>(null);
+    const timeout = useRef<number>()
+    const currentString = useRef<string>('')
+
     const [loading, setLoading] = useState<boolean>(false)
     const [initialLoading, setInitialLoading] = useState<boolean>(false)
     const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
@@ -80,13 +80,13 @@ function ForecastCard() {
 
     function onSearchLocation(query: string) {
         setSearchString(query)
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            currentString = query
+        clearTimeout(timeout.current);
+        timeout.current = window.setTimeout(() => {
+            currentString.current = query
             setLoading(true)
             fetchLocations(query)
                 .then(locations => {
-                    if (currentString === query) {
+                    if (currentString.current === query) {
                         setLoading(false)
                         setLocations(locations.results)
                     }
