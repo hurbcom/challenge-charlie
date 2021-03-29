@@ -40,7 +40,10 @@ function DropDownMenu<T extends BaseOption>({ data, loading, onClickOption, ...r
         }
     }
     return (
-        <StyledDropdown ref={ref} {...rest}>
+        <StyledDropdown
+            ref={ref} {...rest}
+            data-testid="dropdown"
+        >
             {loading && <Spinner />}
             {getDropdownOptions()}
         </StyledDropdown >
