@@ -21,7 +21,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn start-server & wait-on http://localhost:3005 & yarn start-client",
+    "start-client": "react-scripts start",
+    "start-server": "cd ./proxy && node api-proxy.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "wait-on": "^5.3.0"
   }
 }
