@@ -129,3 +129,14 @@ export function getUnit(attr: string, system: string) {
 
   return `${UNITS_OF_MEASUREMENT[attr]}`;
 }
+
+export function formatTemperature(
+  temp: number | null | undefined,
+  system: ISystemState
+) {
+  if (temp) {
+    return `${temp.toFixed()} ${getUnit("temperature", system)}`;
+  } else {
+    return "";
+  }
+}

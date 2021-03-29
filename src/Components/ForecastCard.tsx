@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit } from "../Utils"
+import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit, formatTemperature } from "../Utils"
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, StyledSection, Temperature } from "./styled"
 import Overlay from 'react-bootstrap/Overlay'
 import { RiCompassLine } from 'react-icons/ri'
@@ -94,14 +94,6 @@ function ForecastCard() {
         }, 300);
     }
 
-    function formatTemperature(temp: number | null | undefined) {
-        if (temp) {
-            return `${temp.toFixed()} ${getUnit('temperature', system)}`
-        } else {
-            return ''
-        }
-    }
-
     return (
         <Card loadingElement={loadingForecast}>
             <SearchBarArea ref={searchAreaRef}>
@@ -166,7 +158,7 @@ function ForecastCard() {
                 <Section show={!!forecast}>
                     <DayLabel>Hoje</DayLabel>
                     <Temperature onClick={switchSystem}>
-                        {formatTemperature(forecast?.today.temp)}
+                        {formatTemperature(forecast?.today.temp, system)}
                     </Temperature>
                     <Description>
                         {forecast?.today.weather[0].description}
@@ -193,8 +185,8 @@ function ForecastCard() {
                 <Section show={!!forecast}>
                     <DayLabel>Amanhã</DayLabel>
                     <Temperature onClick={switchSystem}>
-                        {formatTemperature(forecast?.tomorrow?.temp.max)}
-                        {` / ${formatTemperature(forecast?.tomorrow?.temp.min)}`}
+                        {formatTemperature(forecast?.tomorrow?.temp.max, system)}
+                        {` / ${formatTemperature(forecast?.tomorrow?.temp.min, system)}`}
                     </Temperature>
                 </Section>
             </ForecastArea>
@@ -206,8 +198,8 @@ function ForecastCard() {
                 <Section show={!!forecast}>
                     <DayLabel>Depois de Amanhã</DayLabel>
                     <Temperature onClick={switchSystem}>
-                        {formatTemperature(forecast?.afterTomorrow?.temp.max)}
-                        {` / ${formatTemperature(forecast?.afterTomorrow?.temp.min)}`}
+                        {formatTemperature(forecast?.afterTomorrow?.temp.max, system)}
+                        {` / ${formatTemperature(forecast?.afterTomorrow?.temp.min, system)}`}
                     </Temperature>
                 </Section>
             </ForecastArea>
