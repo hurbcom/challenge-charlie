@@ -62,7 +62,7 @@ function ForecastCard() {
         )
     }
 
-    function switchSystem() {
+    function switchSystem(system: ISystemState) {
         if (selectedLocation) {
             const newSystem = system === 'metric' ? 'imperial' : 'metric'
             const { lat, lng } = selectedLocation.geometry
@@ -157,7 +157,7 @@ function ForecastCard() {
                 </Section>
                 <Section show={!!forecast}>
                     <DayLabel>Hoje</DayLabel>
-                    <Temperature onClick={switchSystem}>
+                    <Temperature onClick={() => switchSystem(system)}>
                         {formatTemperature(forecast?.today.temp, system)}
                     </Temperature>
                     <Description>
