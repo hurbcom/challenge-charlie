@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components";
 import { CgSpinner } from 'react-icons/cg'
-import { DropdownItem, StyledDropdown } from "./styled";
+import { DropdownItem, StyledDropdown, StyledList } from "./styled";
 
 interface BaseOption {
     id: string | number;
@@ -45,7 +45,9 @@ function DropDownMenu<T extends BaseOption>({ data, loading, onClickOption, ...r
             data-testid="dropdown"
         >
             {loading && <Spinner />}
-            {getDropdownOptions()}
+            <StyledList>
+                {getDropdownOptions()}
+            </StyledList>
         </StyledDropdown >
     )
 }

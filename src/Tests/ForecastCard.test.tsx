@@ -1,7 +1,7 @@
 import ForecastCard from '../Components/ForecastCard'
-import { render, fireEvent, screen, act, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, act, waitFor, within } from '@testing-library/react';
 import { mockFetchPromise } from './utils';
-import { fakeLocationResults } from './mocks';
+import { fakeForecastData, fakeLocationResults } from './mocks';
 
 beforeAll(() => jest.spyOn(window, 'fetch'))
 
@@ -36,5 +36,17 @@ test("tests search location", async () => {
     expect(input.value).toBe('Rio de Janeiro')
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
-    expect(dropdown.childElementCount).toBe(10)
+
+
+    const options = within(dropdown).queryAllByRole('listitem')
+    expect(options).toHaveLength(10)
+
+    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise(fakeForecastData));
+
+    await waitFor(async () => {
+        return await act(async () => {
+            options[0].click();
+        })
+    })
+
 })

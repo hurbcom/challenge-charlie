@@ -70,7 +70,7 @@ export const StyledDropdown = styled.div`
   }
 `;
 
-export const DropdownItem = styled.div<{ selectable?: boolean }>`
+export const DropdownItem = styled.li<{ selectable?: boolean }>`
   cursor: ${({ selectable }) => (selectable ? "pointer" : "auto")};
   padding: 8px 0;
   text-overflow: ellipsis;
@@ -211,4 +211,8 @@ export const StyledSection = styled.div`
 
 export const Temperature = styled.div`
   cursor: pointer;
+`;
+
+export const StyledList = styled.ul`
+  padding: 0;
 `;

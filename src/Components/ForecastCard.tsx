@@ -40,7 +40,9 @@ function ForecastCard() {
                             })
                     }
                 })
-            }).finally(() => setInitialLoading(false))
+            })
+                .catch(err => console.log(err))
+                .finally(() => setInitialLoading(false))
         }
     }, [])
 
@@ -90,7 +92,7 @@ function ForecastCard() {
                         setLoading(false)
                         setLocations(locations.results)
                     }
-                })
+                }).catch(err => console.log(err))
         }, 300);
     }
 
@@ -143,6 +145,7 @@ function ForecastCard() {
                                 .then(forecast => {
                                     setForecast(formatForecastState(forecast))
                                 })
+                                .catch(err => console.log(err))
                                 .finally(() => setLoadingForecast(false))
                         }}
                     />
