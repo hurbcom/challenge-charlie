@@ -184,7 +184,7 @@ function ForecastCard() {
             >
                 <Section show={!!forecast}>
                     <DayLabel>Amanhã</DayLabel>
-                    <Temperature onClick={switchSystem}>
+                    <Temperature onClick={() => switchSystem(system)}>
                         {formatTemperature(forecast?.tomorrow?.temp.max, system)}
                         {` / ${formatTemperature(forecast?.tomorrow?.temp.min, system)}`}
                     </Temperature>
@@ -197,7 +197,7 @@ function ForecastCard() {
             >
                 <Section show={!!forecast}>
                     <DayLabel>Depois de Amanhã</DayLabel>
-                    <Temperature onClick={switchSystem}>
+                    <Temperature onClick={() => switchSystem(system)}>
                         {formatTemperature(forecast?.afterTomorrow?.temp.max, system)}
                         {` / ${formatTemperature(forecast?.afterTomorrow?.temp.min, system)}`}
                     </Temperature>
