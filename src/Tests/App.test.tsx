@@ -1,8 +1,6 @@
-import ForecastCard from '../Components/ForecastCard'
-import { render, fireEvent, screen, act } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import App from '../App';
 import { BING_IMAGE } from '../Utils/urls';
-import { apiFetch } from '../Utils';
 import { mockFetchPromise } from './utils';
 
 const FETCH_INIT = {
