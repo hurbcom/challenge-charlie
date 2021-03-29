@@ -5,7 +5,6 @@ import { fakeForecastData, fakeLocationResults } from './mocks';
 
 beforeAll(() => jest.spyOn(window, 'fetch'))
 
-
 test("tests search location", async () => {
     await act(async () => {
         render(<ForecastCard />)
@@ -43,10 +42,10 @@ test("tests search location", async () => {
 
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise(fakeForecastData));
 
-    await waitFor(async () => {
-        return await act(async () => {
-            options[0].click();
-        })
+    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
+
+    await act(async () => {
+        options[0].click();
     })
 
 })

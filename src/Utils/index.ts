@@ -96,6 +96,7 @@ export function getWindDirection(degree: number | null | undefined) {
   }
 
   degree = degree % 360;
+
   const SECTORS = [
     "N",
     "NNE",
