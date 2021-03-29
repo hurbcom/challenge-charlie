@@ -1,15 +1,7 @@
 import { render, act } from '@testing-library/react';
 import App from '../App';
 import { BING_IMAGE } from '../Utils/urls';
-import { mockFetchPromise } from './utils';
-
-const FETCH_INIT = {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-}
+import { FETCH_INIT, mockFetchPromise } from './utils';
 
 beforeAll(() => jest.spyOn(window, 'fetch'))
 

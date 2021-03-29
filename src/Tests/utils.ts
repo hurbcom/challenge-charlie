@@ -6,3 +6,11 @@ export function mockFetchPromise(payload: any): Promise<any> {
 
   return mockFetchPromise;
 }
+
+export const FETCH_INIT = {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+};

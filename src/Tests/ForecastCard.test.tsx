@@ -6,8 +6,10 @@ import { fakeForecastData, fakeLocationResults } from './mocks';
 beforeAll(() => jest.spyOn(window, 'fetch'))
 
 test("tests search location", async () => {
+    let container;
     await act(async () => {
-        render(<ForecastCard />)
+        const result = render(<ForecastCard />)
+        container = result.container
     })
     //Find search input
     const input = screen.getByRole('textbox', { name: '' }) as HTMLInputElement
@@ -24,6 +26,7 @@ test("tests search location", async () => {
 
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise({ results: [] }));
 
+    //Check no results label
     expect(dropdown.childElementCount).toBe(1)
     expect(screen.getByText(/no\sresults/i)).toBeTruthy()
 
@@ -36,7 +39,6 @@ test("tests search location", async () => {
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
 
-
     const options = within(dropdown).queryAllByRole('listitem')
     expect(options).toHaveLength(10)
 
@@ -47,5 +49,7 @@ test("tests search location", async () => {
     await act(async () => {
         options[0].click();
     })
+
+    expect(container).toMatchSnapshot()
 
 })
