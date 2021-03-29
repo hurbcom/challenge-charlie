@@ -1,5 +1,7 @@
 # Challenge Charlie
 
+A microsite for displaying the current temperature and the forecast for the next two days of the disired location.
+
 ## Available Scripts
 
 In the project directory, you can run:
