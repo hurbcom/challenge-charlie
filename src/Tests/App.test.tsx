@@ -3,6 +3,7 @@ import { render, fireEvent, screen, act } from '@testing-library/react';
 import App from '../App';
 import { BING_IMAGE } from '../Utils/urls';
 import { apiFetch } from '../Utils';
+import { mockFetchPromise } from './utils';
 
 const FETCH_INIT = {
   method: "GET",
@@ -16,12 +17,7 @@ beforeAll(() => jest.spyOn(window, 'fetch'))
 
 describe("App", () => {
   it("fetches image background url", async () => {
-    const mockSuccessResponse = 'url';
-    const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-    const mockFetchPromise = Promise.resolve({
-      json: () => mockJsonPromise,
-    });
-    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise('url'));
     await act(async () => {
       render(<App />)
     })
