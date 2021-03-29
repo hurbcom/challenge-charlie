@@ -1,3 +1,4 @@
+import { ISystemState } from "../types";
 import { IForecast, ILocation } from "../types/api-types";
 import { FORWARD_GEOCODE, REVERSE_GEOCODE, WEATHER_FORECAST } from "./urls";
 
@@ -28,7 +29,7 @@ export async function fetchUserLocation(
 export async function fetchForecast(
   latitude: number,
   longitude: number,
-  system: "metric" | "imperial"
+  system: ISystemState
 ): Promise<IForecast> {
   try {
     const forecast = apiFetch(WEATHER_FORECAST(latitude, longitude, system))
@@ -71,7 +72,7 @@ export function apiFetch(url: string) {
 export function getTempColor(
   temp: number | null | undefined,
   lightness: number,
-  system: "imperial" | "metric"
+  system: ISystemState
 ) {
   const highTemp = system === "metric" ? 35 : 95;
   const lowTemp = system === "metric" ? 15 : 59;

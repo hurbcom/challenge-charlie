@@ -5,3 +5,5 @@ export interface IForecastState {
   tomorrow: IForecast["daily"][1];
   afterTomorrow: IForecast["daily"][2];
 }
+
+export type ISystemState = "imperial" | "metric";

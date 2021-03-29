@@ -5,7 +5,7 @@ import Overlay from 'react-bootstrap/Overlay'
 import { RiCompassLine } from 'react-icons/ri'
 import DropDownMenu from "./DropDownMenu"
 import { IForecast, ILocationResult } from "../types/api-types"
-import { IForecastState } from "../types"
+import { IForecastState, ISystemState } from "../types"
 
 let currentString: string = ''
 let timeout: any
@@ -20,7 +20,7 @@ function ForecastCard() {
     const [locations, setLocations] = useState<ILocationResult[]>()
     const [selectedLocation, setSelectedLocation] = useState<ILocationResult | undefined>()
     const [searchString, setSearchString] = useState<string>('')
-    const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
+    const [system, setSystem] = useState<ISystemState>('metric')
 
     useEffect(() => {
         if (navigator.geolocation) {
