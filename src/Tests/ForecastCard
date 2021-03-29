@@ -1,0 +1,3 @@
+import ForecastCard from '../Components/ForecastCard'
+import { render, fireEvent, screen, renderHook, act } from '@testing-library/react';
+

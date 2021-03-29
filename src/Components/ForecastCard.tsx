@@ -13,7 +13,7 @@ let timeout: any
 function ForecastCard() {
     const searchAreaRef = useRef<HTMLDivElement>(null);
     const [loading, setLoading] = useState<boolean>(false)
-    const [initialLoading, setInitialLoading] = useState<boolean>(true)
+    const [initialLoading, setInitialLoading] = useState<boolean>(false)
     const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
     const [isSearching, setIsSearching] = useState<boolean>(false)
     const [forecast, setForecast] = useState<IForecastState | null>(null)
@@ -23,20 +23,23 @@ function ForecastCard() {
     const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
 
     useEffect(() => {
-        getCoordinates().then(position => {
-            const { latitude, longitude } = position.coords
+        if (navigator.geolocation) {
+            setInitialLoading(true)
+            getCoordinates().then(position => {
+                const { latitude, longitude } = position.coords
 
-            return fetchUserLocation(latitude, longitude).then(location => {
-                if (location) {
-                    setSearchString(location.formatted)
-                    setSelectedLocation(location)
-                    return fetchForecast(latitude, longitude, system)
-                        .then(forecast => {
-                            setForecast(formatForecastState(forecast))
-                        })
-                }
-            })
-        }).finally(() => setInitialLoading(false))
+                return fetchUserLocation(latitude, longitude).then(location => {
+                    if (location) {
+                        setSearchString(location.formatted)
+                        setSelectedLocation(location)
+                        return fetchForecast(latitude, longitude, system)
+                            .then(forecast => {
+                                setForecast(formatForecastState(forecast))
+                            })
+                    }
+                })
+            }).finally(() => setInitialLoading(false))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

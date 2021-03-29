@@ -8,7 +8,6 @@ interface BaseOption {
     value: string;
 };
 
-
 interface IProps<T> {
     loading: boolean
     data: T[]
