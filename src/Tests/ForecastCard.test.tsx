@@ -19,9 +19,10 @@ describe("ForecastCard", () => {
 
         const dropdown = screen.getByTestId('dropdown')
 
-        fireEvent.change(input, { target: { value: 'C' } })
+        fireEvent.change(input, { target: { value: 'R' } })
 
         expect(dropdown.childElementCount).toBe(1)
+        expect(screen.getByText(/no\sresults/i)).toBeTruthy()
 
 
         jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise({ results: fakeLocationResults }));
