@@ -101,6 +101,7 @@ function ForecastCard() {
                     <RiCompassLine />
                 </IconWrapper>
                 <input
+                    readOnly={loadingForecast}
                     type="text"
                     value={searchString}
                     onFocus={(e) => {
@@ -112,7 +113,7 @@ function ForecastCard() {
                     }}
                 />
                 <Overlay
-                    show={isSearching}
+                    show={isSearching && !loadingForecast}
                     transition={false}
                     target={searchAreaRef.current}
                     placement="bottom"
@@ -128,8 +129,8 @@ function ForecastCard() {
                     }}
                 >
                     <DropDownMenu
-                        data={getLocationsOptions()}
                         loading={loading}
+                        data={getLocationsOptions()}
                         onClickOption={(location) => {
                             const { lat, lng } = location.geometry
 
