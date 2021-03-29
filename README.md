@@ -2,6 +2,8 @@
 
 A microsite for displaying the current temperature and the forecast for the next two days of the disired location.
 
+![image](https://user-images.githubusercontent.com/21958049/112880640-12887800-90a1-11eb-8cd2-560d3f21445c.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
