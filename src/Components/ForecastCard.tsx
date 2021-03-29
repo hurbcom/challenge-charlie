@@ -10,6 +10,8 @@ import { IForecastState, ISystemState } from "../types"
 let currentString: string = ''
 let timeout: any
 
+const defaultSystem: ISystemState = 'metric'
+
 function ForecastCard() {
     const searchAreaRef = useRef<HTMLDivElement>(null);
     const [loading, setLoading] = useState<boolean>(false)
@@ -20,7 +22,7 @@ function ForecastCard() {
     const [locations, setLocations] = useState<ILocationResult[]>()
     const [selectedLocation, setSelectedLocation] = useState<ILocationResult | undefined>()
     const [searchString, setSearchString] = useState<string>('')
-    const [system, setSystem] = useState<ISystemState>('metric')
+    const [system, setSystem] = useState<ISystemState>(defaultSystem)
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -32,7 +34,7 @@ function ForecastCard() {
                     if (location) {
                         setSearchString(location.formatted)
                         setSelectedLocation(location)
-                        return fetchForecast(latitude, longitude, system)
+                        return fetchForecast(latitude, longitude, defaultSystem)
                             .then(forecast => {
                                 setForecast(formatForecastState(forecast))
                             })
@@ -40,7 +42,6 @@ function ForecastCard() {
                 })
             }).finally(() => setInitialLoading(false))
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getLocationsOptions = useCallback(() => {
