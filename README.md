@@ -40,7 +40,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## To build Docker image
 ### Development
-`docker build Dockerfile -t [your_image_name]:[your_tag] .`
+`docker build Dockerfile.dev -t [your_image_name]:[your_tag] .`
 
 ### Production
 `docker build Dockerfile.prod -t [your_image_name]:[your_tag] .`
