@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react"
+import { RiCompassLine } from 'react-icons/ri'
+import Overlay from 'react-bootstrap/Overlay'
+
+import { IForecastState, ISystemState } from "../types"
+import { IForecast, ILocationResult } from "../types/api-types"
+
 import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit, formatTemperature } from "../Utils"
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, StyledSection, Temperature } from "./styled"
-import Overlay from 'react-bootstrap/Overlay'
-import { RiCompassLine } from 'react-icons/ri'
 import DropDownMenu from "./DropDownMenu"
-import { IForecast, ILocationResult } from "../types/api-types"
-import { IForecastState, ISystemState } from "../types"
 
 const defaultSystem: ISystemState = 'metric'
 
@@ -14,14 +16,14 @@ function ForecastCard() {
     const timeout = useRef<number>()
     const currentString = useRef<string>('')
 
-    const [loading, setLoading] = useState<boolean>(false)
     const [initialLoading, setInitialLoading] = useState<boolean>(false)
-    const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
     const [isSearching, setIsSearching] = useState<boolean>(false)
+    const [loadingOptions, setLoadingOptions] = useState<boolean>(false)
+    const [loadingForecast, setLoadingForecast] = useState<boolean>(false)
+    const [searchString, setSearchString] = useState<string>('')
     const [forecast, setForecast] = useState<IForecastState | null>(null)
     const [locations, setLocations] = useState<ILocationResult[]>()
     const [selectedLocation, setSelectedLocation] = useState<ILocationResult | undefined>()
-    const [searchString, setSearchString] = useState<string>('')
     const [system, setSystem] = useState<ISystemState>(defaultSystem)
 
     useEffect(() => {
@@ -85,11 +87,11 @@ function ForecastCard() {
         clearTimeout(timeout.current);
         timeout.current = window.setTimeout(() => {
             currentString.current = query
-            setLoading(true)
+            setLoadingOptions(true)
             fetchLocations(query)
                 .then(locations => {
                     if (currentString.current === query) {
-                        setLoading(false)
+                        setLoadingOptions(false)
                         setLocations(locations.results)
                     }
                 }).catch(err => console.log(err))
@@ -131,7 +133,7 @@ function ForecastCard() {
                     }}
                 >
                     <DropDownMenu
-                        loading={loading}
+                        loading={loadingOptions}
                         data={getLocationsOptions()}
                         onClickOption={(location) => {
                             const { lat, lng } = location.geometry
