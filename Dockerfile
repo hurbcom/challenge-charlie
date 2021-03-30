@@ -12,4 +12,4 @@ RUN npm install
 
 COPY . $PROJECT_DIR
 
-RUN npm run build
+CMD ["npm", "start"]
