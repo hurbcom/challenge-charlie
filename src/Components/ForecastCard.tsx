@@ -4,8 +4,8 @@ import Overlay from 'react-bootstrap/Overlay'
 
 import { IForecastState, ISystemState } from "../types"
 import { IForecast, ILocationResult } from "../types/api-types"
-
 import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit, formatTemperature } from "../Utils"
+
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, StyledSection, Temperature } from "./styled"
 import DropDownMenu from "./DropDownMenu"
 
