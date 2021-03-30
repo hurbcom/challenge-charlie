@@ -15,4 +15,7 @@ RUN npm install
 
 WORKDIR $PROJECT_DIR
 
+EXPOSE 3000
+EXPOSE 3005
+
 CMD ["npm", "start"]
