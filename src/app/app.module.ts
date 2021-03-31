@@ -3,16 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 
+import { HttpClientModule } from '@angular/common/http';
 import { WeatherService } from './services/weather.service';
-import { HttpModule } from '@angular/http';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +19,12 @@ import { LoadingComponent } from './components/loading/loading.component';
     LoadingComponent
   ],
   imports: [
+	FormsModule,
     BrowserModule,
-    AppRoutingModule,
+	AppRoutingModule,
     HttpClientModule,
-    HttpModule,
-    FormsModule,
+    BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule
   ],
   providers: [
     WeatherService

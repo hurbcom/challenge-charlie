@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +14,7 @@ export class WeatherService
 	weatherApiId: string = "&cnt=4&appid=7ba73e0eb8efe773ed08bfd0627f07b8";
 	iconUrl: string = "http://openweathermap.org/img/wn/";
 
-	constructor(private http: Http) { }
+	constructor(private http: HttpClient) { }
 
 	public getWeather(locationName: string, unit: string): any
 	{

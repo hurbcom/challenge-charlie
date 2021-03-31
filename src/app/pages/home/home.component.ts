@@ -138,16 +138,13 @@ export class HomeComponent implements OnInit
 
 	public setWeatherData(response: any)
 	{
-		let weatherBodyResponse = JSON.parse(response._body);
 		this.searchName = "";
-		this.localName = weatherBodyResponse.city.name;
-		this.weatherList = weatherBodyResponse.list;
+		this.localName = response.city.name;
+		this.weatherList = response.list;
 		let today: any = this.weatherList[0];
 		this.nowTime = this.utils.formatTime(today.dt_txt);
 		let iconCode = today.weather[0].icon + "@2x.png";
 		this.imgUrl = this.utils.setBackgroundImage(today.weather[0].main);
-
-		console.log("today:", today)
 
 		this.setWeatherListIcons(this.weatherList);
 		this.getWeatherIcon(iconCode);
