@@ -51,7 +51,7 @@ export const Utils =
 	},
 	formatTime(fullTimeText: string)
 	{
-		return fullTimeText.substring(10, 16);
+		return fullTimeText.substring(11, 16);
 	},
 	setBackgroundImage(mainInfo: string): string
 	{
