@@ -35,7 +35,7 @@ let translateDictionary =
     "thunderstorm with light rain":"Chuva leve com raios e trovões",
 
     //snow
-    "Snow": "Neve",
+    "snow": "Neve",
     "light snow": "Neve fraca",
     "Heavy snow": "Neve forte",
     "Sleet": "Granizo",
