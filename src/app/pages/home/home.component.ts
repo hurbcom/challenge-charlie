@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit
 	{
 		list.forEach((weather: any) => {
 			weather.time = this.utils.formatTime(weather.dt_txt);
-			this.getWeatherIcon(weather.weather[0].icon + "@2x.png");
+			this.getWeatherIcon(weather.weather[0].description);
 			setTimeout(() => {
 				weather.icon = this.iconUrl;
 			}, 0);
@@ -143,18 +143,15 @@ export class HomeComponent implements OnInit
 		this.weatherList = response.list;
 		let today: any = this.weatherList[0];
 		this.nowTime = this.utils.formatTime(today.dt_txt);
-		let iconCode = today.weather[0].icon + "@2x.png";
-		this.imgUrl = this.utils.setBackgroundImage(today.weather[0].main);
+		let iconCode = today.weather[0].description;
+		this.utils.setBackgroundImage(today.weather[0].main);
 
 		this.setWeatherListIcons(this.weatherList);
 		this.getWeatherIcon(iconCode);
-
 		
 		setTimeout(() =>
 		{
 			this.setTodayWeatherData(today);
-			let temp = parseInt(this.todayWeather.temperature);
-			this.utils.setBackgroundColor(temp, this.unit);
 		}, 0);
 
 	}
@@ -177,13 +174,8 @@ export class HomeComponent implements OnInit
 		}
 	}
 
-	public getWeatherIcon(iconCode: string)
+	public getWeatherIcon(condition: string)
 	{
-		this.weatherService.getWeatherIcon(iconCode).subscribe(
-			(res: any)=>
-			{
-				this.iconUrl = res.url;
-			}
-		);
+		this.iconUrl = this.utils.getWeatherIcon(condition);
 	}
 }
