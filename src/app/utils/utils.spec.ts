@@ -18,20 +18,20 @@ describe('Utils', ()=>
         expect(parseRoundedNumber).toEqual(expectedResult)
     }));
 
-    it("Teste setando imagem de background", inject([HomeComponent], (test: HomeComponent)=>{
-		let expectedResult = "../../../assets/imgs/rain.png"
-        let result = test.utils.setBackgroundImage("Rain")
+    it("Teste setando css da temperatura", inject([HomeComponent], (test: HomeComponent)=>{
+		let expectedResult = "warm-temp"
+        let result = test.utils.setTempNumberColor(16, "Celcius")
         expect(result).toEqual(expectedResult)
 	}));
 	
     it("Teste de formatação de hora", inject([HomeComponent], (test: HomeComponent)=>{
-		let expectedResult = "12:00"
+		let expectedResult = "12"
 		let result = test.utils.formatTime("2021-04-01 12:00:00")
         expect(result).toEqual(expectedResult)
 	}));
 	
     it("Teste de formatação de hora", inject([HomeComponent], (test: HomeComponent)=>{
-		let condition = "Snow"
+		let condition = "snow"
 		let expectedResult = "Neve"
 		let result = test.utils.translateConditions(condition)
         expect(result).toEqual(expectedResult)
