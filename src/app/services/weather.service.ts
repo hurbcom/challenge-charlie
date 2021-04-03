@@ -27,10 +27,4 @@ export class WeatherService
 		let url = this.baseUrl + this.urlByLat + lat + this.urlByLong + long + this.urlByUnit + unit + this.weatherApiId;
 		return this.http.get(url);
 	}
-
-	public getWeatherIcon(iconCode: string)
-	{
-		let url = this.iconUrl + iconCode;
-		return this.http.get(url);
-	}
 }
