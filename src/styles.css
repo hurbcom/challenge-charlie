@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body
 {
-    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#474643),to(rgb(166, 171, 190)));
+    background-image: url("assets/imgs/soft_clouds_sky.jpg");
     background-attachment: fixed;
     background-position: 50%;
     background-size: cover;
