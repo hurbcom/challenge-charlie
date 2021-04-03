@@ -1,4 +1,5 @@
 import { dictionary } from './translationDictionary';
+import { iconsDictionary } from './iconDictionary';
 
 export const Utils =
 {
@@ -26,48 +27,63 @@ export const Utils =
 	{
 		return dictionary[condition];
 	},
-    setBackgroundColor(temperature: number, unit: string)
+    setTempNumberColor(temperature: number, unit: string): string
 	{
-		let body: any = document.getElementById("weather-body");
-		let hotBackground = "-webkit-gradient(linear,left top,left bottom,color-stop(9%,#e70c0c),to(#fdd211))";
-		let coldBackground = "-webkit-gradient(linear,left top,left bottom,color-stop(9%,#094af0),to(#d2d6f5))";
-		let warmBackground = "-webkit-gradient(linear,left top,left bottom,color-stop(9%,#f8ab31),to(#f7d760))";
-		// let nightBackground = "-webkit-gradient(linear,left top,left bottom,color-stop(9%,#1a357c),to(#99479b))";
+		let hotColor = "hot-temp";
+		let coldColor = "cold-temp";
+		let warmColor = "warm-temp";
 
 		if((unit == this.CELCIUS && temperature <= 15) || 
 			(unit == this.FAHRENHEIT && temperature <= 59))
 		{
-			body.style.backgroundImage = coldBackground;
+			return coldColor;
 		}
 		else if((unit == this.CELCIUS && temperature >= 35) || 
 				(unit == this.FAHRENHEIT && temperature >= 95))
 		{
-			body.style.backgroundImage = hotBackground;
+			return hotColor;
 		}
 		else
 		{
-			body.style.backgroundImage = warmBackground;
+			return warmColor;
 		}
 	},
 	formatTime(fullTimeText: string)
 	{
-		return fullTimeText.substring(11, 16);
+		return fullTimeText.substring(11, 13);
 	},
-	setBackgroundImage(mainInfo: string): string
+	setBackgroundImage(mainInfo: string): void
 	{
+		let clear_sky = "assets/imgs/soft_clouds_sky.jpg";
+		let rain_sky = "url('assets/imgs/rain_sky.jpg')";
+		let snow_sky = "url('assets/imgs/snow_sky.jpg')";
+		let cloud_sky = "url('assets/imgs/clouds-sky.jpg')";
+		let body: any = document.getElementById("weather-body");
 		switch(mainInfo)
 		{
 			case "Rain":
-				return this.RAIN_SKY_URL_IMG;
+				body.style.backgroundImage = rain_sky;
+				break;
 
 			case "Clouds":
-				return this.CLOUD_SKY_URL_IMG;
+				body.style.backgroundImage = cloud_sky;
+				break;
 
 			case "Snow":
-				return this.SNOW_SKY_URL_IMG;
+				body.style.backgroundImage = snow_sky;
+				break;
+
+			case "Clear":
+				body.style.backgroundImage = clear_sky;
+				break;
 
 			default:
-				return this.CLEAR_SKY_URL_IMG;
+				body.style.backgroundImage = clear_sky;
+				break;
 		}
+	},
+	getWeatherIcon(condition: string)
+	{
+		return iconsDictionary[condition];
 	}
 }
