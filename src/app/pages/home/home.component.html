@@ -1,132 +1,115 @@
-
-<img src="{{imgUrl}}" alt="" class="image-background" 
-*ngIf="!callingResponse && !invalidSearchLocation">
-<header>
-    <article class="box-content">
-        <div class="item-content search-bar">
-            <input *ngIf="todayWeather != undefined" 
-                type="search" 
-                [(ngModel)]="searchName"
-                placeholder="Buscar cidade"
-                (keydown.enter)="getWeather()">
-            <em (click)="getWeather()" class="fa fa-search"></em>
-        </div>
-    </article>
-    <div class="change-unit" (click)="changeUnit()">
-        <em class="fa fa-thermometer-empty" aria-hidden="true"></em>
-        <h3>
-            {{unit == utils.CELCIUS ? '˚C' : '˚F'}}
-        </h3>
-    </div>
-</header>
-<nav>
-    <ul>
-        <li *ngFor="let item of utils.NAVBAR_MENU" 
-        (click)="selectedItem = item.key; container = item.key"
-        [ngClass]="{'selected-item': selectedItem == item.key,
-                    'not-selected-item': selectedItem != item.key}">
-        <p>
-            {{item.title}}
-        </p>
-        </li>
-    </ul>
-</nav>
-
-<section class="content">
-    <article class="box-content" *ngIf="!invalidSearchLocation && !callingResponse">
-        <div class="weather-card item-content" *ngIf="container == 1">
-            <article>
-                <div>
-                    <h1>Clima em {{localName}}</h1>
-                    <p class="secundary-time">Até às {{nowTime}}</p>
-                    <p class="temperature">
-                        {{todayWeather.temperature}}˚
-                    </p>
+<main>
+    <header>
+        <article class="box-content search-content">
+            <div class="item-content search-bar">
+                <input *ngIf="todayWeather != undefined" 
+                    type="search" 
+                    [(ngModel)]="searchName"
+                    placeholder="Buscar localidade"
+                    (keydown.enter)="getWeather()">
+                <em (click)="getWeather()" class="fa fa-search"></em>
+            </div>
+            <div class="change-unit" (click)="changeUnit()">
+                <em class="fa fa-thermometer-empty" aria-hidden="true"></em>
+                <h3>
+                    {{unit == utils.CELCIUS ? '˚C' : '˚F'}}
+                </h3>
+            </div>
+        </article>
+    </header>
+    
+    <section class="content">
+        <article class="box-content" *ngIf="!invalidSearchLocation && !callingResponse">
+            <div class="weather-main item-content" *ngIf="container == 1">
+                <article>
+                    <h1>{{localName}}</h1>
                     <p>
                         {{utils.translateConditions(todayWeather.description)}}
                     </p>
-                    <p>{{todayWeather.humidity}}% de umidade do ar </p>
-                </div>
-                <div>
-                    <img src="{{todayWeather.icon}}" alt="">
-                    <p>
-                        {{todayWeather.min}}˚/{{todayWeather.max}}˚
+                    <p class="temperature" [ngClass]="utils.setTempNumberColor(todayWeather.temperature, unit)">
+                        {{todayWeather.temperature}}˚
                     </p>
-                </div>
-            </article>
-        </div>
-        <div class="weather-card item-content details" *ngIf="container == 1 || container == 2">
-            <h3 class="subtitle">
-                Previsão por hora
-            </h3>
-            <article class="next-time-prev">
-                <div *ngFor="let weather of weatherList" class="wheather-next-hours">
-                    <p class="secundary-time">
-                        {{weather.time}}
-                    </p>
-                    <p class="secundary-temp">
-                        {{utils.roundWeather(weather.main.temp)}}˚
-                    </p>
-                    <img src="{{weather.icon}}" alt="" class="secundary-icon">
-                </div>
-            </article>
-        </div>
-        <div class="weather-card item-content details" *ngIf="container == 1 || container == 3">
-            <div class="subtitle">
-                <h3>O clima hoje em {{localName}}</h3>
-                <p class="thermal-sensation">{{todayWeather.feelsLike}}˚</p>
-                <p>Sensação térmica</p>
+                    <div class="minAndMAx">
+                        <p class="today">
+                            Hoje
+                        </p>
+                        <span>
+                            <p>
+                                {{todayWeather.min}}
+                            </p>
+                            <p class="max">
+                                {{todayWeather.max}}
+                            </p>
+                        </span>
+    
+                    </div>
+                </article>
             </div>
-            <article class="next-time-prev details-list" *ngIf="!callingResponse">
-                <div>
-                    <ul>
-                        <li>
-                            <p>Min/Max</p>
-                            <p>{{todayWeather.min}}˚/{{todayWeather.max}}˚</p>
-                        </li>
-                        <li>
-                            <p>Umidade</p>
-                            <p>{{todayWeather.humidity}}%</p>
-                        </li>
-                        <li>
-                            <p>Visibilidade</p>
-                            <p>{{todayWeather.visibility}}%</p>
-                        </li>
-                    </ul>
+            <div class="weather-card item-content details" *ngIf="container == 1 || container == 2">
+                <article class="next-time-prev">
+                    <div *ngFor="let weather of weatherList" class="wheather-next-hours">
+                        <p class="secundary-time">
+                            {{weather.time}}
+                        </p>
+                        <img src="{{weather.icon}}" alt="" class="secundary-icon">
+                        <p class="secundary-temp">
+                            {{utils.roundWeather(weather.main.temp)}}˚
+                        </p>
+                    </div>
+                </article>
+            </div>
+            <div class="weather-card item-content details" *ngIf="container == 1 || container == 3">
+                <div class="subtitle">
+                    <p class="thermal-sensation">{{todayWeather.feelsLike}}˚</p>
+                    <p>Sensação térmica</p>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Pressão</p>
-                            <p>{{todayWeather.pressure}} mb</p>
-                        </li>
-                        <li>
-                            <p>Vento</p>
-                            <p>{{todayWeather.wind}} km/h</p>
-                        </li>
-                        <li>
-                            <p>Nível do Mar</p>
-                            <p>{{todayWeather.seaLevel}} hpa</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    </article>
-    <article class="box-content" *ngIf="invalidSearchLocation && !callingResponse">
-        <div class="invalid-location-message">
-            <img src="../assets/icons/icon-error.svg" alt="">
-            <h2>
-                Localidade não encontrada
-            </h2>
-        </div>
-    </article>
-</section>
-
-<section class="loading-beaut" *ngIf="callingResponse">
-    <app-loading></app-loading>
-</section>
-
-
-
-
+                <article class="next-time-prev details-list" *ngIf="!callingResponse">
+                    <div>
+                        <ul>
+                            <li>
+                                <p>Min/Max</p>
+                                <p>{{todayWeather.min}}˚/{{todayWeather.max}}˚</p>
+                            </li>
+                            <li>
+                                <p>Umidade</p>
+                                <p>{{todayWeather.humidity}}%</p>
+                            </li>
+                            <li>
+                                <p>Visibilidade</p>
+                                <p>{{todayWeather.visibility}}%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <p>Pressão</p>
+                                <p>{{todayWeather.pressure}} mb</p>
+                            </li>
+                            <li>
+                                <p>Vento</p>
+                                <p>{{todayWeather.wind}} km/h</p>
+                            </li>
+                            <li>
+                                <p>Nível do Mar</p>
+                                <p>{{todayWeather.seaLevel}} hpa</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </article>
+        <article class="box-content" *ngIf="invalidSearchLocation && !callingResponse">
+            <div class="invalid-location-message">
+                <img src="../assets/icons/icon-error.svg" alt="">
+                <h2>
+                    Localidade não encontrada
+                </h2>
+            </div>
+        </article>
+    </section>
+    
+    <section class="loading-beaut" *ngIf="callingResponse">
+        <app-loading></app-loading>
+    </section>
+</main>
