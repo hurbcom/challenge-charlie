@@ -21,7 +21,7 @@ svg {
 path {
   stroke: #000;
   stroke-width: 0.25;
-  fill: #241E20;
+  fill: #000;
 }
 
 #cloud {
@@ -30,7 +30,7 @@ path {
 }
 
 #cloud path {
-  fill: #efefef;
+  fill: #000;
 }
 
 #sun {
@@ -77,7 +77,7 @@ path {
 
 .drop {
   opacity: 1;
-  background: #9ea1a4;
+  background: #000;
   display: block;
   float: left;
   width: 3px;
