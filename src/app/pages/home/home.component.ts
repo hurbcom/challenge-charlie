@@ -9,7 +9,7 @@ import { Utils } from 'src/app/utils/utils';
 })
 export class HomeComponent implements OnInit
 {
-	public unit: string
+	public unit: string;
 	public KELVIN: number;
 	public imgUrl: string;
 	public nowTime: string;
@@ -31,33 +31,33 @@ export class HomeComponent implements OnInit
 		this.KELVIN = 273;
 		this.container = 1;
 		this.selectedItem = 1;
-		this.imgUrl = "../../../assets/imgs/rain.png";
+		this.imgUrl = '../../../assets/imgs/rain.png';
 	}
 
 	ngOnInit(): void
 	{
-		this.unit = this.utils.CELCIUS;
+		this.unit = this.utils.CELSIUS;
 		this.callingResponse = true;
 		this.getLocation();
-;	}
+	}
 
-	public changeUnit()
+	public changeUnit(): void
 	{
-		if(this.unit == this.utils.CELCIUS)
+		if (this.unit === this.utils.CELSIUS)
 		{
 			this.unit = this.utils.FAHRENHEIT;
 		}
 		else
 		{
-			this.unit = this.utils.CELCIUS;
+			this.unit = this.utils.CELSIUS;
 		}
 		this.searchName = this.localName;
 		this.getWeather();
 	}
 
-	public getWeather()
+	public getWeather(): void
 	{
-		if(this.searchName !== "")
+		if (this.searchName !== '')
 		{
 			this.callingResponse = true;
 			this.weatherService.getWeather(this.searchName, this.unit).subscribe(
@@ -69,19 +69,19 @@ export class HomeComponent implements OnInit
 						this.invalidSearchLocation = false;
 					}, 1000);
 				},
-				()=>
+				() =>
 				{
 					setTimeout(() => {
 						this.callingResponse = false;
 						this.invalidSearchLocation = true;
-						this.searchName = "";
+						this.searchName = '';
 					}, 1000);
 				}
 			);
 		}
 	}
 
-	public getWeatherByLatLong(lat: any, long: any, unit: string)
+	public getWeatherByLatLong(lat: any, long: any, unit: string): void
 	{
 		this.callingResponse = true;
 		this.weatherService
@@ -95,18 +95,18 @@ export class HomeComponent implements OnInit
 					this.setWeatherData(res);
 				}, 1000);
 			},
-			(error: any)=>
+			() =>
 			{
 				setTimeout(() => {
 					this.callingResponse = false;
 					this.invalidSearchLocation = false;
-					this.searchName = "";
+					this.searchName = '';
 				}, 1000);
 			}
 		);
 	}
 
-	public setWeatherListIcons(list: any)
+	public setWeatherListIcons(list: any): void
 	{
 		list.forEach((weather: any) => {
 			weather.time = this.utils.formatTime(weather.dt_txt);
@@ -117,9 +117,9 @@ export class HomeComponent implements OnInit
 		});
 	}
 
-	public setTodayWeatherData(todayData: any)
+	public setTodayWeatherData(todayData: any): void
 	{
-		this.todayWeather = 
+		this.todayWeather =
 			{
 				icon: this.iconUrl,
 				time: todayData.dt_txt,
@@ -133,48 +133,46 @@ export class HomeComponent implements OnInit
 				min: this.utils.roundWeather(todayData.main.temp_min),
 				temperature: this.utils.roundWeather(todayData.main.temp),
 				feelsLike: this.utils.roundWeather(todayData.main.feels_like),
-			}
+			};
 	}
 
-	public setWeatherData(response: any)
+	public setWeatherData(response: any): void
 	{
-		this.searchName = "";
+		this.searchName = '';
 		this.localName = response.city.name;
 		this.weatherList = response.list;
-		let today: any = this.weatherList[0];
+		const today: any = this.weatherList[0];
 		this.nowTime = this.utils.formatTime(today.dt_txt);
-		let iconCode = today.weather[0].description;
+		const iconCode = today.weather[0].description;
 		this.utils.setBackgroundImage(today.weather[0].main);
 
 		this.setWeatherListIcons(this.weatherList);
 		this.getWeatherIcon(iconCode);
-		
 		setTimeout(() =>
 		{
 			this.setTodayWeatherData(today);
 		}, 0);
-
 	}
 
-	public getLocation()
+	public getLocation(): void
 	{
-		if(!(navigator.geolocation))
+		if (!(navigator.geolocation))
 		{
-			alert("Navegador não suporta geolocalização!");
+			alert('Navegador não suporta geolocalização!');
 			return null;
 		}
 		else
 		{
-			navigator.geolocation.getCurrentPosition((position)=>
+			navigator.geolocation.getCurrentPosition((position) =>
 			{
-				let latitude = position.coords.latitude;
-				let longitude = position.coords.longitude;
+				const latitude = position.coords.latitude;
+				const longitude = position.coords.longitude;
 				this.getWeatherByLatLong(latitude, longitude, this.unit);
 			});
 		}
 	}
 
-	public getWeatherIcon(condition: string)
+	public getWeatherIcon(condition: string): void
 	{
 		this.iconUrl = this.utils.getWeatherIcon(condition);
 	}
