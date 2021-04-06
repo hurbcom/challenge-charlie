@@ -123,7 +123,7 @@ export function getWindDirection(degree: number | null | undefined) {
 
 export function getUnit(attr: string, system: string) {
   const UNITS_OF_MEASUREMENT: any = {
-    wind: system === "metric" ? "m/s" : "mph",
+    wind: system === "metric" ? "km/h" : "mph",
     pressure: system === "metric" ? "hPA" : "hPA",
     temperature: system === "metric" ? `\u00B0C` : "F",
   };
@@ -137,6 +137,21 @@ export function formatTemperature(
 ) {
   if (temp) {
     return `${temp.toFixed()} ${getUnit("temperature", system)}`;
+  } else {
+    return "";
+  }
+}
+
+export function convertWindSpeed(
+  value: number | null | undefined,
+  system: ISystemState
+) {
+  if (value) {
+    if (system === "metric") {
+      return (value * 3.6).toFixed(2);
+    } else {
+      return value;
+    }
   } else {
     return "";
   }

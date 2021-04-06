@@ -4,7 +4,7 @@ import Overlay from 'react-bootstrap/Overlay'
 
 import { IForecastState, ISystemState } from "../types"
 import { IForecast, ILocationResult } from "../types/api-types"
-import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit, formatTemperature } from "../Utils"
+import { getCoordinates, fetchUserLocation, fetchForecast, fetchLocations, getTempColor, getWindDirection, getUnit, formatTemperature, convertWindSpeed } from "../Utils"
 
 import { Card, IconWrapper, ForecastArea, SearchBarArea, DayLabel, Description, StyledWeatherIcon, StyledSection, Temperature } from "./styled"
 import DropDownMenu from "./DropDownMenu"
@@ -171,7 +171,7 @@ function ForecastCard() {
                     </Description>
                     <div>
                         <span>Vento: </span>
-                        {`${getWindDirection(forecast?.today.wind_deg)} ${forecast?.today.wind_speed} ${getUnit('wind', system)}`}
+                        {`${getWindDirection(forecast?.today.wind_deg)} ${convertWindSpeed(forecast?.today.wind_speed, system)} ${getUnit('wind', system)}`}
                     </div>
                     <div>
                         <span>Umidade: </span>
