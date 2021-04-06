@@ -123,7 +123,7 @@ export function getWindDirection(degree: number | null | undefined) {
 
 export function getUnit(attr: string, system: string) {
   const UNITS_OF_MEASUREMENT: any = {
-    wind: system === "metric" ? "km/h" : "m/h",
+    wind: system === "metric" ? "m/s" : "mph",
     pressure: system === "metric" ? "hPA" : "hPA",
     temperature: system === "metric" ? `\u00B0C` : "F",
   };
