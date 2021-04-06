@@ -21,7 +21,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "yarn start-server & wait-on http://localhost:3005 & yarn start-client",
+    "start": "yarn start-server & wait-on http://localhost:3005 && yarn start-client",
     "start-client": "react-scripts start",
     "start-server": "cd ./proxy && node api-proxy.js",
     "build": "react-scripts build",

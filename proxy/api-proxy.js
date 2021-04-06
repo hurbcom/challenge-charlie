@@ -16,6 +16,10 @@ const app = express();
 
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Proxy is ready!");
+});
+
 app.get("/bing-image-url", (req, res) => {
   request(
     { url: `${BING_URL}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR` },
