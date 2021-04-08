@@ -69,12 +69,15 @@ Faça uma cópia local deste repositório:
 
 ```git clone <SOLUTION_GIT_URI>```
 
-**Running localhost project**
-To install dependecies
-npm i
+Instale o NodeJS caso ainda não tenha feito.
 
-To run project
-ng serve
+Navegue até a pasta do projeto e instale as dependências:
+
+```npm install```
+
+Em seguida rode o comando abixo para iniciar o servidor
+```ng serve```
+
 
 **Running Project with Docker**
 docker build -t challenge .
