@@ -29,7 +29,7 @@ describe('Utils', () => {
 		expect(result).toEqual(expectedResult);
 	}));
 
-	it('Teste de formatação de hora', inject([HomeComponent], (test: HomeComponent) => {
+	it('Teste de tradução de clima', inject([HomeComponent], (test: HomeComponent) => {
 		const condition = 'snow';
 		const expectedResult = 'Neve';
 		const result = test.utils.translateConditions(condition);
