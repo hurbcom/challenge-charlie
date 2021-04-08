@@ -14,13 +14,13 @@ article.after-details
 }
 .change-unit
 {
-    width: 21px;
-    height: 21px;
+    width: 40px;
+    height: 20px;
     padding: 10px;
     display: flex;
-    margin: 20px 5px;
+    margin: 20px -1px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0 20px 20px 0;
     align-items: center;
     border: 1px solid #fff;
     justify-content: space-around;
@@ -150,10 +150,10 @@ div.weather-card article.next-time-prev div:last-child
 {
     width: 100%;
     height: 40px;
-    max-width: 350px;
-    border-radius: 20px;
+    border-radius: 20px 0 0 20px;
     border: 1px solid #fff;
     background: rgba(255,255,255,.2);
+    margin: 20px 0;
 }
 .subtitle
 {
@@ -291,7 +291,7 @@ h3, h2
     color: #fff;
     font-size: 20px;
 }
-h3
+article.after-details h3
 {
     width: 100px;
 }
