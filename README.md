@@ -56,3 +56,29 @@ Boa sorte e boa viagem! ;)
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
+
+**Tecnologias utilizadas**
+Angular
+HTML
+Css
+Typescript
+
+**Instalação**
+Todos os passos a seguir deverão ser executados na prompt de comando do sistema operacional.
+Faça uma cópia local deste repositório:
+
+```git clone <SOLUTION_GIT_URI>```
+
+**Running localhost project**
+To install dependecies
+npm i
+
+To run project
+ng serve
+
+**Running Project with Docker**
+docker build -t challenge .
+To build image docker
+
+docker run -p 8080:8080 angular-previsao-tempo
+To run application on port 8080
