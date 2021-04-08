@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit
 	public invalidSearchLocation: boolean;
 	public weatherList: Array<LocalWeather>;
 	public todayWeather: LocalWeather = new LocalWeather();
+	public tomorrowWeather: LocalWeather = new LocalWeather();
+	public afterTomorrowWeather: LocalWeather = new LocalWeather();
 
 	public utils = Utils;
 
@@ -117,23 +119,24 @@ export class HomeComponent implements OnInit
 		});
 	}
 
-	public setTodayWeatherData(todayData: any): void
+	public setTodayWeatherData(todayData: any): LocalWeather
 	{
-		this.todayWeather =
-			{
-				icon: this.iconUrl,
-				time: todayData.dt_txt,
-				wind: todayData.wind.speed,
-				visibility: todayData.visibility,
-				humidity: todayData.main.humidity,
-				pressure: todayData.main.pressure,
-				seaLevel: todayData.main.sea_level,
-				description: todayData.weather[0].description,
-				max: this.utils.roundWeather(todayData.main.temp_max),
-				min: this.utils.roundWeather(todayData.main.temp_min),
-				temperature: this.utils.roundWeather(todayData.main.temp),
-				feelsLike: this.utils.roundWeather(todayData.main.feels_like),
-			};
+		const data: LocalWeather = {
+			time: todayData.dt_txt,
+			wind: todayData.wind.speed,
+			visibility: todayData.visibility,
+			humidity: todayData.main.humidity,
+			pressure: todayData.main.pressure,
+			seaLevel: todayData.main.sea_level,
+			description: todayData.weather[0].description,
+			max: this.utils.roundWeather(todayData.main.temp_max),
+			min: this.utils.roundWeather(todayData.main.temp_min),
+			temperature: this.utils.roundWeather(todayData.main.temp),
+			feelsLike: this.utils.roundWeather(todayData.main.feels_like),
+			icon: this.utils.getWeatherIcon(todayData.weather[0].description),
+		};
+
+		return data;
 	}
 
 	public setWeatherData(response: any): void
@@ -141,7 +144,10 @@ export class HomeComponent implements OnInit
 		this.searchName = '';
 		this.localName = response.city.name;
 		this.weatherList = response.list;
+		this.filterForecast(this.weatherList);
 		const today: any = this.weatherList[0];
+		const tomorrow: any = this.weatherList[7];
+		const afterTomorrow: any = this.weatherList[15];
 		this.nowTime = this.utils.formatTime(today.dt_txt);
 		const iconCode = today.weather[0].description;
 		this.utils.setBackgroundImage(today.weather[0].main);
@@ -150,7 +156,9 @@ export class HomeComponent implements OnInit
 		this.getWeatherIcon(iconCode);
 		setTimeout(() =>
 		{
-			this.setTodayWeatherData(today);
+			this.todayWeather = this.setTodayWeatherData(today);
+			this.tomorrowWeather = this.setTodayWeatherData(tomorrow);
+			this.afterTomorrowWeather = this.setTodayWeatherData(afterTomorrow);
 		}, 0);
 	}
 
@@ -175,5 +183,11 @@ export class HomeComponent implements OnInit
 	public getWeatherIcon(condition: string): void
 	{
 		this.iconUrl = this.utils.getWeatherIcon(condition);
+	}
+
+	public filterForecast(forecast: any): void
+	{
+		const tomorrow = forecast.slice(1, 9);
+		const afterTomorrow = forecast.slice(9);
 	}
 }
