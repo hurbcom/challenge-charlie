@@ -2,18 +2,29 @@ main
 {
     padding: 10px;
 }
+div.after-details
+{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+article.after-details
+{
+    margin-top: 20px;
+}
 .change-unit
 {
-    width: 40px;
-    height: 40px;
-    padding: 5px;
+    width: 21px;
+    height: 21px;
+    padding: 10px;
     display: flex;
-    margin: 15px 5px;
+    margin: 20px 5px;
     cursor: pointer;
     border-radius: 5px;
     align-items: center;
+    border: 1px solid #fff;
     justify-content: space-around;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255,255,255,.2);
 }
 .change-unit em
 {
@@ -51,7 +62,7 @@ main
 {
     width: 85%;
     border: none;
-    color: #000;
+    color: #fff;
     margin: 0 auto;
     font-size: 1rem;
     text-align: center;
@@ -59,13 +70,16 @@ main
 }
 .item-content input::placeholder
 {
-    color: #000;
+    color: #fff;
 }
+em
+{
+    color: #fff;
+}
+
 .item-content em
 {
-
     right: 10px;
-    color: #000;
     cursor: pointer;
     font-size: 1.3rem;
     position: absolute;
@@ -97,7 +111,7 @@ div.weather-card
     width: 100%;
     display: block;
     max-width: 500px;
-    border-top: 1px solid;
+    border-top: 1px solid #fff;
 }
 div.weather-card article
 {
@@ -137,8 +151,9 @@ div.weather-card article.next-time-prev div:last-child
     width: 100%;
     height: 40px;
     max-width: 350px;
-    border: 1px solid;
     border-radius: 20px;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,.2);
 }
 .subtitle
 {
@@ -155,7 +170,6 @@ div.weather-card article.details-list
 .details-list p
 {
     font-size: 1rem;
-    font-weight: bold;
 }
 .details-list div
 {
@@ -169,8 +183,8 @@ div.weather-card article.details-list
     width: 100%;
     display: flex;
     padding: 5px 0;
+    border-top: 1px solid #fff;
     justify-content: space-between;
-    border-top: 1px solid rgba(0,0,0,.4);
 }
 header
 {
@@ -187,7 +201,7 @@ header
     display: flex;
     justify-content: space-between;
 }
-.minAndMAx p.today,
+p.max,
 .minAndMAx p.max
 {
     font-weight: bold;
@@ -220,7 +234,6 @@ nav ul li p
 .secundary-temp
 {
     font-size: 30px;
-    font-weight: bold;
 }
 .not-selected-item
 {
@@ -233,7 +246,6 @@ nav ul li p
 .thermal-sensation
 {
     font-size: 3rem;
-    font-weight: bold;
 }
 .secundary-time
 {
@@ -241,7 +253,7 @@ nav ul li p
 }
 .secundary-icon
 {
-    width: 50%;
+    width: 60px;
 }
 p.hot-temp
 {
@@ -249,7 +261,7 @@ p.hot-temp
 }
 p.cold-temp
 {
-    color: #0076be;
+    color: #90caf9;
 }
 p.warm-temp
 {
@@ -258,11 +270,13 @@ p.warm-temp
 p
 {
     margin: 0;
+    color: #fff;
     font-size: 1.6rem;
 }
 h1
 {
     margin: 0;
+    color: #fff;
     line-height: 1;
     font-size: 4rem;
     margin-bottom: 20px;
@@ -273,7 +287,11 @@ h2
 }
 h3, h2
 {
-    font-size: 20px;
-    font-weight: bold;
     margin: 0;
+    color: #fff;
+    font-size: 20px;
+}
+h3
+{
+    width: 100px;
 }

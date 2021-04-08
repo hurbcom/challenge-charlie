@@ -20,7 +20,7 @@
     
     <section class="content">
         <article class="box-content" *ngIf="!invalidSearchLocation && !callingResponse">
-            <div class="weather-main item-content" *ngIf="container == 1">
+            <div class="weather-main item-content">
                 <article>
                     <h1>{{localName}}</h1>
                     <p>
@@ -45,9 +45,9 @@
                     </div>
                 </article>
             </div>
-            <div class="weather-card item-content details" *ngIf="container == 1 || container == 2">
+            <div class="weather-card item-content details">
                 <article class="next-time-prev">
-                    <div *ngFor="let weather of weatherList" class="wheather-next-hours">
+                    <div *ngFor="let weather of weatherList | slice: 0:4" class="wheather-next-hours">
                         <p class="secundary-time">
                             {{weather.time}}
                         </p>
@@ -58,7 +58,7 @@
                     </div>
                 </article>
             </div>
-            <div class="weather-card item-content details" *ngIf="container == 1 || container == 3">
+            <div class="weather-card item-content details">
                 <div class="subtitle">
                     <p class="thermal-sensation">{{todayWeather.feelsLike}}˚</p>
                     <p>Sensação térmica</p>
@@ -96,6 +96,36 @@
                             </li>
                         </ul>
                     </div>
+                </article>
+            </div>
+            <div class="weather-card item-content details">
+                <article class="after-details">
+                    <h3>Amanhã</h3>
+                    <img class="secundary-icon" src="{{tomorrowWeather.icon}}" alt="">
+                    <div class="after-details">
+                        <p>
+                            {{tomorrowWeather.min}}
+                        </p>
+                        <p class="max">
+                            {{tomorrowWeather.max}}
+                        </p>
+                    </div>
+                    
+                </article>
+            </div>
+            <div class="weather-card item-content details">
+                <article class="after-details">
+                    <h3>Depois de amanhã</h3>
+                    <img class="secundary-icon" src="{{afterTomorrowWeather.icon}}" alt="">
+                    <div class="after-details">
+                        <p>
+                            {{afterTomorrowWeather.min}}
+                        </p>
+                        <p class="max">
+                            {{afterTomorrowWeather.max}}
+                        </p>
+                    </div>
+                    
                 </article>
             </div>
         </article>
