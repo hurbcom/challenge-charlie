@@ -21,6 +21,10 @@ Em seguida rode o comando abixo para iniciar o servidor
 ```ng serve```
 
 ## Docker
+Navegue até a pasta do projeto e rode o comando:
+
+```ng build --prod```
+
 Certifique-se que tenha o Docker instalado. E então, construa uma imagem feita no Dockerfile no projeto com o comando:
 
 ```docker build -t angular-previsao-tempo .```
