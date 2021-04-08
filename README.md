@@ -31,7 +31,7 @@ Certifique-se que tenha o Docker instalado. E então, construa uma imagem feita 
 
 Depois de criado, basta subir subir o container com o comando:
 
-```docker run -p 8080:8080 angular-previsao-tempo```
+```docker run -p 8080:80 angular-previsao-tempo```
 
 Quando estiver tudo certo, basta abrir a url no navegador:
 
