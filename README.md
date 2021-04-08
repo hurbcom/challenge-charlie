@@ -76,12 +76,24 @@ Navegue até a pasta do projeto e instale as dependências:
 ```npm install```
 
 Em seguida rode o comando abixo para iniciar o servidor
+
 ```ng serve```
 
+## Docker
+Certifique-se que tenha o Docker instalado. E então, construa uma imagem feita no Dockerfile no projeto com o comando:
 
-**Running Project with Docker**
-docker build -t challenge .
-To build image docker
+```docker build -t angular-previsao-tempo .```
 
-docker run -p 8080:8080 angular-previsao-tempo
-To run application on port 8080
+Depois de criado, basta subir subir o container com o comando:
+
+```docker run -p 8080:8080 angular-previsao-tempo```
+
+Quando estiver tudo certo, basta abrir a url no navegador:
+
+```http://localhost:8080```
+
+## Testes unitários
+
+Navegue até a pasta do projeto e rode o comando abaixo:
+
+```npm test```
