@@ -57,13 +57,13 @@ Boa sorte e boa viagem! ;)
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
 
-**Tecnologias utilizadas**
-Angular
-HTML
-Css
-Typescript
+## Tecnologias utilizadas
+- Angular
+- HTML
+- Css
+- Typescript
 
-**Instalação**
+## Instalação
 Todos os passos a seguir deverão ser executados na prompt de comando do sistema operacional.
 Faça uma cópia local deste repositório:
 
