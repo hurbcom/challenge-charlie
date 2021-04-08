@@ -31,11 +31,11 @@ export const Utils =
 		const coldColor = 'cold-temp';
 		const warmColor = 'warm-temp';
 
-		if ((unit === this.CELCIUS && temperature <= 15) ||
+		if ((unit === this.CELSIUS && temperature <= 15) ||
 			(unit === this.FAHRENHEIT && temperature <= 59)) {
 			return coldColor;
 		}
-		else if ((unit === this.CELCIUS && temperature >= 35) ||
+		else if ((unit === this.CELSIUS && temperature >= 35) ||
 			(unit === this.FAHRENHEIT && temperature >= 95)) {
 			return hotColor;
 		}
