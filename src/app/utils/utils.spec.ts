@@ -13,7 +13,7 @@ describe('Utils', () => {
 	it('Valor da temperatura arredondado', inject([HomeComponent], (test: HomeComponent) => {
 		const expectedResult = 36;
 		const stringNumber = test.utils.roundWeather(36.000);
-		const parseRoundedNumber = parseInt(stringNumber, 2);
+		const parseRoundedNumber = parseInt(stringNumber, 10);
 		expect(parseRoundedNumber).toEqual(expectedResult);
 	}));
 
