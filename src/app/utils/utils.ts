@@ -49,7 +49,7 @@ export const Utils =
 	},
 	setBackgroundImage(mainInfo: string): void
 	{
-		const clearSky = 'assets/imgs/soft_clouds_sky.jpg';
+		const clearSky = `url('assets/imgs/soft_clouds_sky.jpg')`;
 		const rainSky = `url('assets/imgs/rain_sky.jpg')`;
 		const snowSky = `url('assets/imgs/snow_sky.jpg')`;
 		const cloudSky = `url('assets/imgs/clouds-sky.jpg')`;
