@@ -1,0 +1,82 @@
+.background-image {
+    background-image: none; 
+  } 
+
+  /* como utilizar? API BING */
+  
+  .localizacao {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2rem;
+    gap: 10px;
+    background-color: #017367;
+    padding: 10px;
+  }
+  
+  p, h4 {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+  }
+  
+  h4.status {
+    line-height: 70px;
+  }
+  
+  p.caracteristicas{
+    color: white;
+    font-size: 22px;
+  }
+  
+  /* #36383d */
+  
+  .temperatura {
+    line-height: 30px;
+    padding-bottom: 15px;
+    
+  }
+  
+  .imagem-clima {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .hoje {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 100%;
+    gap: 30px;
+    background-color: #028677;
+  }
+  
+  .amanha {
+    background-color: #039180;
+    width: 100%;
+  }
+  
+  p.semana {
+    font-size: 26px;
+    padding-top: 10px;
+    margin-left: 315px;
+    line-height: 20px;
+  }
+  
+  .depois-amanhã {
+    background-color: #049e8c;
+    width: 100%;
+  }
+  
+  .logo {
+    flex-basis: 50%;
+  }
+  
+  .dados {
+    flex-basis: 50%;
+  }
+  
+  
