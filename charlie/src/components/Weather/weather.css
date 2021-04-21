@@ -1,47 +1,55 @@
 .weather {
-    width: 600px;
-    margin: 0 auto;
-  }
-  
-  .weather form {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  
-  .weather form input {
-    padding: 10px;
-    border: none;
-    font-family: "Noto Sans JP", sans-serif;
-    font-size: 20px;
-    border-bottom: 2px;
-    margin-right: 10px;
-    width: 510px;
-  }
-  
-  .weather form input:focus {
-    outline: none;
-    border-bottom: 3px;
-  }
-  
-  .weather .pesquisa {
-    margin-left: 10px;
-    padding: 8px;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: transparent;
-  }
-  
-  .weather .pesquisa:hover {
-    background: transparent;
-    color: black;
-  }
-  
-  .weather .pesquisa:focus {
-    outline: none;
-  }
-  
-  .fa-searchengin {
-    font-size: 30px;
-  }
+  margin: 0 auto;
+  width: 650px;
+ 
+}
+
+.weather form {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.weather form input {
+  border: none;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 10px;
+  font-size: 1.25rem;
+  color: #817e7c;
+  border-bottom: 2px;
+  margin-right: 10px;
+  flex: 1;
+  border-radius: 10px;
+}
+
+.weather form input:focus {
+  outline: none;
+  border-bottom: 3px;
+}
+
+.weather .pesquisa {
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.weather .pesquisa:hover {
+  background: transparent;
+  color: black;
+}
+
+.weather .pesquisa:focus {
+  outline: none;
+}
+
+.fa-search{
+  font-size: 1.875rem;
+  color: #635d59;
+}
+
