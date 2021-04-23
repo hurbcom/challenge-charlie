@@ -3,10 +3,17 @@
 ### Passo a passo para o desenvolvimento do projeto
 
 - Criar setup utilizando o webpack, jest, eslint, react, typescript e styled component
+- Criar arquivos para rodar a aplicação via Docker
+
+<br />
 
 ---
 
 ### Observações
+
+- ## Organização de diretórios:
+
+<br />
 
 ---
 

@@ -24,7 +24,7 @@ Para excluir a pasta de modulos instalados basta rodar o seguinte comando:
 make clean-modules
 ```
 
-### Rodando o projeto
+### Rodando o projeto local
 
 Execute o comando abaixo para que o Webpack fique observando os arquivos do diretório `src/` recompilando-os sempre que sofrerem alterações.
 
@@ -38,6 +38,18 @@ Você também pode executar o watch para refazer o build a cada alteração
 
 ```bash
 make watch
+```
+
+#### Rodando via Docker
+
+O primeiro passo é ter certeza que o _Docker_ está instalado em sua máquina. Caso não esteja, você pode baixar [aqui](https://www.docker.com/).
+
+O docker está instalado em sua máquina? Então bora iniciá-lo em segundo plano (rode o executável instalado em sua máquina).
+
+Pronto! Se você tem o docker instalado e ele está rodando em segundo plano, basta executar:
+
+```bash
+make docker-run
 ```
 
 ## Lint

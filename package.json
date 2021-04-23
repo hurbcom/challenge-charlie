@@ -2,7 +2,7 @@
   "name": "project-weather",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"webpack-dev-server --config .webpack/config.dev.js\" \"sleep 5 && open http://localhost:8000\"",
+    "start": "webpack-dev-server --config .webpack/config.dev.js",
     "watch": "webpack --config .webpack/config.dev.js --debug --progress --watch",
     "build": "webpack --config .webpack/config.dev.js --debug --progress",
     "test": "jest --verbose",

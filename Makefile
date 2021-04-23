@@ -17,6 +17,12 @@ start:
 	$(PKG_MANAGER) start
 	@echo "🏁 Finished [start]."
 
+docker-run:
+	@echo "🚀 [docker-run] Running project using Docker."
+	docker build -t sample:dev .
+	docker run -v ${PWD}:/app -v /app/node_modules -p 8000:8000 --rm sample:dev
+	@echo "🏁 Finished [docker-run]."
+
 lint:
 	@echo "🚀 [lint] Checking codes using linter."
 	$(PKG_MANAGER) run lint
