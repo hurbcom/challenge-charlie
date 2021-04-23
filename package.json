@@ -1,0 +1,53 @@
+{
+  "name": "project-weather",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"webpack-dev-server --config .webpack/config.dev.js\" \"sleep 5 && open http://localhost:8000\"",
+    "watch": "webpack --config .webpack/config.dev.js --debug --progress --watch",
+    "build": "webpack --config .webpack/config.dev.js --debug --progress",
+    "test": "jest --verbose",
+    "test:ci": "jest --coverage",
+    "test:coverage": "jest --verbose --coverage",
+    "test:updateSnapshot": "jest --updateSnapshot",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
+  },
+  "dependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-decorators": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.41",
+    "@types/react": "^16.14.5",
+    "@types/react-dom": "^16.9.12",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.3",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
+    "concurrently": "^6.0.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-standard-typescript": "^1.0.3",
+    "eslint-plugin-jest": "^24.3.5",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "styled-components": "^5.2.3",
+    "typescript": "^4.2.4",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

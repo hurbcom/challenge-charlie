@@ -1,0 +1,15 @@
+image: node:12
+
+stages:
+  - lint
+  - test
+
+lint:
+  script:
+    - make setup
+    - make lint
+
+test:
+  script:
+    - make setup
+    - make test
