@@ -1,5 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import AppContainer from './containers/AppContainer'
+import GlobalStyle from '../src/components/UI/GlobalStyle'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <>
+    <GlobalStyle />
+    <AppContainer />
+  </>,
+  document.getElementById('root')
+)
