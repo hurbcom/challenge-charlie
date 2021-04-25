@@ -10,7 +10,7 @@ declare global {
 const getWeather = (location: string) => {
   window.dataContext = window.dataContext || {}
 
-  const apiOpenWeather = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8`
+  const apiOpenWeather = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&lang=pt_br&APPID=7ba73e0eb8efe773ed08bfd0627f07b8`
   return axios.get(apiOpenWeather).then((res) => {
     console.log('PASSOU AQUI')
     return (window.dataContext = {
