@@ -13,6 +13,9 @@ export const OtherDaysWrapper = styled.div<Props>`
 export const OtherDaysWrapperIcon = styled.div`
   flex: 1;
   min-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const OtherDaysDetails = styled.div`

@@ -23,6 +23,9 @@ export const TodayDetails = styled.div`
 export const TodayWrapperIcon = styled.div`
   flex: 1;
   min-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const TodayWeather = styled.p`
