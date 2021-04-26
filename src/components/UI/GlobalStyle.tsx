@@ -5,9 +5,6 @@ export default createGlobalStyle`
     font-size: 16px;
     overflow-x: hidden;
     box-sizing: border-box;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
     font-family: monospace,opensans, sans-serif;
   }
 
@@ -19,7 +16,6 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     font-weight: normal;
-    background-color: #eee;
   }
 
   ol, ul {
