@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
-export const OtherDaysWrapper = styled.div`
+type Props = {
+  day: number
+}
+
+export const OtherDaysWrapper = styled.div<Props>`
   display: flex;
   flex-direction: row;
-  background: rgba(143, 143, 143, 0.3);
+  background: ${(p: Props) => (p.day === 1 ? 'rgba(143, 143, 143, 0.3)' : 'rgba(143, 143, 143, 0.5)')};
   padding: 20px 60px;
 `
 export const OtherDaysWrapperIcon = styled.div`

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { DayType } from '../../common/types/day'
 import {
   TodayWrapper,
@@ -16,6 +16,23 @@ type Props = {
 }
 
 const Today: React.FC<Props> = ({ contextToday }: Props) => {
+  const [temperature, setTemperature] = useState(Math.round(contextToday?.main.temp))
+  const [scaleCelsius, setScaleCelsius] = useState(true)
+
+  const handleClick = () => {
+    let newTemperature
+
+    if (scaleCelsius) {
+      newTemperature = Math.round((9 * temperature) / 5 + 32)
+      setScaleCelsius(false)
+      setTemperature(newTemperature)
+    } else {
+      newTemperature = Math.round(((temperature - 32) * 5) / 9)
+      setScaleCelsius(true)
+      setTemperature(newTemperature)
+    }
+  }
+
   return (
     <TodayWrapper>
       <TodayWrapperIcon>
@@ -23,7 +40,9 @@ const Today: React.FC<Props> = ({ contextToday }: Props) => {
       </TodayWrapperIcon>
       <TodayDetails>
         <Title>HOJE</Title>
-        <Title>{`${contextToday?.main.temp_max} F`}</Title>
+        <Title hasClick={true} onClick={() => handleClick()}>
+          {scaleCelsius ? `${temperature} °C` : `${temperature} °F`}
+        </Title>
         <TodayWeather>{contextToday?.weather[0]?.description}</TodayWeather>
         <TodayDetailsWeather>
           <TodayDetailsWeatherItem>Vento: NO {contextToday?.wind?.speed} km/h</TodayDetailsWeatherItem>

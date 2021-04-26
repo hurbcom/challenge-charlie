@@ -43,8 +43,8 @@ export const AppContainer: React.FC = () => {
           {globalContext && globalContext.weatherPerDay && (
             <>
               <Today contextToday={globalContext.weatherPerDay[0]} />
-              <OtherDays contextOtherDays={globalContext.weatherPerDay[1]} />
-              <OtherDays contextOtherDays={globalContext.weatherPerDay[2]} />
+              <OtherDays day={1} contextOtherDays={globalContext.weatherPerDay[1]} />
+              <OtherDays day={2} contextOtherDays={globalContext.weatherPerDay[2]} />
             </>
           )}
         </AppContainerWrapper>
