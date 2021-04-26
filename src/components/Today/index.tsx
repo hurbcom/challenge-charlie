@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DayType } from '../../common/types/day'
 import {
   TodayWrapper,
@@ -33,8 +33,24 @@ const Today: React.FC<Props> = ({ contextToday }: Props) => {
     }
   }
 
+  const backgroundColor = () => {
+    if (contextToday?.main.temp < 15) {
+      return 'rgba(79,127,234,0.5)'
+    } else if (contextToday?.main.temp >= 15 && contextToday?.main.temp <= 35) {
+      return 'rgba(234,208,79,0.5)'
+    } else if (contextToday?.main.temp > 35) {
+      return 'rgba(253,104,104,0.5)'
+    } else {
+      return 'rgba(143, 143, 143, 0.15)'
+    }
+  }
+
+  useEffect(() => {
+    setTemperature(Math.round(contextToday?.main.temp))
+  }, [contextToday?.main.temp])
+
   return (
-    <TodayWrapper>
+    <TodayWrapper color={backgroundColor()}>
       <TodayWrapperIcon>
         <Icon>ICON</Icon>
       </TodayWrapperIcon>

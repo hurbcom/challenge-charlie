@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 type Props = {
-  day: number
+  color: string
 }
 
 export const OtherDaysWrapper = styled.div<Props>`
   display: flex;
   flex-direction: row;
-  background: ${(p: Props) => (p.day === 1 ? 'rgba(143, 143, 143, 0.3)' : 'rgba(143, 143, 143, 0.5)')};
+  background: ${(p: Props) => p.color};
   padding: 20px 60px;
 `
 export const OtherDaysWrapperIcon = styled.div`

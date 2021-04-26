@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
-export const TodayWrapper = styled.div`
+type Props = {
+  color: string
+}
+
+export const TodayWrapper = styled.div<Props>`
   display: flex;
   flex-direction: row;
-  background: rgba(143, 143, 143, 0.15);
+  background: ${(p) => p.color};
   padding: 20px 60px;
   flex: 1;
 `
