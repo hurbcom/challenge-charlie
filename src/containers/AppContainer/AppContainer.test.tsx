@@ -1,6 +1,6 @@
 import React from 'react'
-import App from './App'
+import AppContainer from './index'
 it('renders learn react link', () => {
-  const render = <App />
+  const render = <AppContainer />
   expect(render).toBeTruthy()
 })
