@@ -17,7 +17,7 @@ export const AppContainer: React.FC = () => {
 
     setTimeout(() => {
       setGlobalContext(window.dataContext)
-    }, 5000)
+    }, 2000)
   }
 
   const handleChange = (event: any) => {
@@ -32,7 +32,7 @@ export const AppContainer: React.FC = () => {
         setNameInput(window.dataContext?.info?.name)
       }
       setGlobalContext(window.dataContext)
-    }, 5000)
+    }, 2000)
   }, [])
 
   return (
