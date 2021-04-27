@@ -42,3 +42,12 @@ export const AppContainerWrapper = styled.div`
   margin: 0 auto;
   position: relative;
 `
+
+export const AppContainerError = styled.div`
+  font-size: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+`
