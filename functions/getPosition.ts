@@ -10,7 +10,6 @@ const getPosition = () => {
       (position) => {
         getLocationName(position?.coords?.latitude, position?.coords?.longitude)
           .then((resultLocationName) => getWeather(resultLocationName))
-
           .catch(() => {
             console.debug('[Error getPosition function]')
           })
