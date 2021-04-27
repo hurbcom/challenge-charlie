@@ -6,41 +6,40 @@ import Drizzle from '../../assets/icons/Drizzle'
 import Thunderstorm from '../../assets/icons/Thunderstorm'
 import Snow from '../../assets/icons/Snow'
 import WeatherDefault from '../../assets/icons/WeatherDefault'
+import { IconWrapper } from './Icon.style'
 
 type Props = {
   weather: string
-  width: string
-  height: string
 }
 
-const Icon: React.FC<Props> = ({ weather, width, height }: Props) => {
+const Icon: React.FC<Props> = ({ weather }: Props) => {
   let componentIcon
 
   switch (weather) {
     case 'Clear':
-      componentIcon = <Clear width={width} height={height} />
+      componentIcon = <Clear />
       break
     case 'Clouds':
-      componentIcon = <Clouds width={width} height={height} />
+      componentIcon = <Clouds />
       break
     case 'Rain':
-      componentIcon = <Rain width={width} height={height} />
+      componentIcon = <Rain />
       break
     case 'Drizzle':
-      componentIcon = <Drizzle width={width} height={height} />
+      componentIcon = <Drizzle />
       break
     case 'Thunderstorm':
-      componentIcon = <Thunderstorm width={width} height={height} />
+      componentIcon = <Thunderstorm />
       break
     case 'Snow':
-      componentIcon = <Snow width={width} height={height} />
+      componentIcon = <Snow />
       break
     default:
-      componentIcon = <WeatherDefault width={width} height={height} />
+      componentIcon = <WeatherDefault />
       break
   }
 
-  return <i>{componentIcon}</i>
+  return <IconWrapper>{componentIcon}</IconWrapper>
 }
 
 export default Icon
