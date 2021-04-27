@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import settings from '../UI/Settings'
 
 type Props = {
   color: string
@@ -18,6 +19,10 @@ export const TodayDetails = styled.div`
   flex-direction: column;
   justify-content: center;
   min-width: 50%;
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    flex-direction: column;
+  }
 `
 
 export const TodayWrapperIcon = styled.div`
@@ -32,6 +37,10 @@ export const TodayWeather = styled.p`
   font-size: 40px;
   text-transform: capitalize;
   padding: 30px 0;
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    font-size: 30px;
+  }
 `
 
 export const TodayDetailsWeather = styled.div`
@@ -41,4 +50,9 @@ export const TodayDetailsWeather = styled.div`
 export const TodayDetailsWeatherItem = styled.p`
   font-size: 20px;
   padding: 5px 0;
+  white-space: nowrap;
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    font-size: 18px;
+  }
 `

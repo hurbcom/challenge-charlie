@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import settings from '../UI/Settings'
 
 type Props = {
   color: string
@@ -24,4 +25,8 @@ export const OtherDaysDetails = styled.div`
   flex-direction: column;
   justify-content: center;
   min-width: 50%;
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    flex-direction: column;
+  }
 `

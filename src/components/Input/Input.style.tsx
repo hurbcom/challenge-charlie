@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import settings from '../UI/Settings'
 
 export const InputWrapper = styled.div`
   background: #fffffff2;
@@ -9,6 +10,13 @@ export const InputWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 30px;
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
 `
 export const InputItem = styled.input`
   background: transparent;
@@ -23,4 +31,13 @@ export const InputItem = styled.input`
   &:focus-visible {
     outline: none;
   }
+
+  @media screen and (max-width: ${settings.mobileBreakPoint}) {
+    font-size: 30px;
+  }
+`
+
+export const InputIconClick = styled.div`
+  background: transparent;
+  cursor: pointer;
 `

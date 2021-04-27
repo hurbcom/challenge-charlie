@@ -20,6 +20,12 @@ export const AppContainerMask = styled.main`
     content: '';
     position: absolute;
     background: rgb(0, 0, 0, 0.45);
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
   }
 `
 
