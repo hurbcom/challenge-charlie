@@ -52,7 +52,7 @@ const Today: React.FC<Props> = ({ contextToday }: Props) => {
   return (
     <TodayWrapper color={backgroundColor()}>
       <TodayWrapperIcon>
-        <Icon weather={contextToday?.weather[0].main} width="400" height="400" />
+        <Icon weather={contextToday?.weather[0].main} />
       </TodayWrapperIcon>
       <TodayDetails>
         <Title>HOJE</Title>

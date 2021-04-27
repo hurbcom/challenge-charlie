@@ -1,6 +1,7 @@
 import React from 'react'
-import { InputWrapper, InputItem } from './Input.style'
+import { InputWrapper, InputItem, InputIconClick } from './Input.style'
 import LocalIcon from '../../assets/icons/LocalIcon'
+import Search from '../../assets/icons/Search'
 
 type Props = {
   nameInput: string
@@ -11,9 +12,11 @@ type Props = {
 const Input: React.FC<Props> = ({ nameInput, handleClick, handleChange }: Props) => {
   return (
     <InputWrapper>
-      <LocalIcon width="40px" height="40px" color="#505050" />
+      <LocalIcon color="#505050" />
       <InputItem type="text" value={nameInput} onChange={handleChange} />
-      <button onClick={() => handleClick()}>FIND</button>
+      <InputIconClick onClick={() => handleClick()}>
+        <Search width="40px" height="40px" />
+      </InputIconClick>
     </InputWrapper>
   )
 }

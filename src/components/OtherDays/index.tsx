@@ -62,7 +62,7 @@ const OtherDays: React.FC<Props> = ({ day, contextOtherDays }: Props) => {
   return (
     <OtherDaysWrapper color={backgroundColor()}>
       <OtherDaysWrapperIcon>
-        <Icon weather={contextOtherDays?.weather[0].main} width="100" height="100" />
+        <Icon weather={contextOtherDays?.weather[0].main} />
       </OtherDaysWrapperIcon>
       <OtherDaysDetails>
         <Title>{day === 1 ? 'Amanhã' : 'Depois de Amanhã'}</Title>
