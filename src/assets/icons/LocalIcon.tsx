@@ -1,23 +1,20 @@
 import React from 'react'
 
 type Props = {
-  width: string
-  height: string
   color: string
 }
 
-const LocalIcon: React.FC<Props> = ({ width, height, color }: Props) => (
+const LocalIcon: React.FC<Props> = ({ color }: Props) => (
   <svg
     version="1.1"
     id="Layer_1"
     x="0px"
     y="0px"
-    width={width}
-    height={height}
+    width="40"
+    height="40"
     viewBox="0 0 512 512"
     enableBackground="new 0 0 512 512"
     xmlns="http://www.w3.org/2000/svg"
-    xmlSpace="preserve"
   >
     <g>
       <g>

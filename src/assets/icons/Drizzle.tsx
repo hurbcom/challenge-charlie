@@ -1,18 +1,13 @@
 import React from 'react'
 
-type Props = {
-  width: string
-  height: string
-}
-
-const Drizzle: React.FC<Props> = ({ width, height }: Props) => (
+const Drizzle: React.FC = () => (
   <svg
     version="1.1"
     id="Layer_1"
     x="0px"
     y="0px"
-    width={width}
-    height={height}
+    width="400"
+    height="400"
     viewBox="0 0 512 512"
     enableBackground="new 0 0 512 512"
   >
