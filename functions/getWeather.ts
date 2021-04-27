@@ -15,7 +15,6 @@ const getWeather = (location: string) => {
   return axios
     .get(apiOpenWeather)
     .then((res) => {
-      console.log('PASSOU AQUI')
       return [
         (window.error = false),
         (window.dataContext = {

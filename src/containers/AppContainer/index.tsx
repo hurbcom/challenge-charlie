@@ -18,7 +18,6 @@ export const AppContainer: React.FC = () => {
   const [globalContext, setGlobalContext] = useState({} as GlobalContextType)
 
   const handleClick = () => {
-    console.log('clicou')
     getWeather(nameInput)
 
     setTimeout(() => {
@@ -27,7 +26,6 @@ export const AppContainer: React.FC = () => {
   }
 
   const handleChange = (event: any) => {
-    console.log('change', event.target.value)
     setNameInput(event.target.value)
   }
 
