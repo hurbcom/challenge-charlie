@@ -15,23 +15,25 @@ export const AppContainerWallpaper = styled.div`
 
 export const AppContainerMask = styled.main`
   ::before {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
+    top: 0;
+    left: 0;
     content: '';
-    position: absolute;
+    position: fixed;
     background: rgb(0, 0, 0, 0.45);
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 100%;
+    min-height: 100vh;
   }
 `
 
 export const AppContainerWrapper = styled.div`
   max-width: 1224px;
-  height: 100vh;
+  min-height: 100vh;
   background: #909090b3;
   color: #fff;
   display: flex;

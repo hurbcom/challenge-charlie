@@ -62,7 +62,7 @@ const Today: React.FC<Props> = ({ contextToday }: Props) => {
         <TodayWeather>{contextToday?.weather[0]?.description}</TodayWeather>
         <TodayDetailsWeather>
           <TodayDetailsWeatherItem>Vento: NO {contextToday?.wind?.speed} km/h</TodayDetailsWeatherItem>
-          <TodayDetailsWeatherItem>Umidade: {contextToday?.main?.humidity} %</TodayDetailsWeatherItem>
+          <TodayDetailsWeatherItem>Umidade: {contextToday?.main?.humidity}%</TodayDetailsWeatherItem>
           <TodayDetailsWeatherItem>Pressão: {contextToday?.main?.pressure}hPA </TodayDetailsWeatherItem>
         </TodayDetailsWeather>
       </TodayDetails>

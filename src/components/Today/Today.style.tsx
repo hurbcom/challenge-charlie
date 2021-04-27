@@ -50,7 +50,7 @@ export const TodayDetailsWeather = styled.div`
 export const TodayDetailsWeatherItem = styled.p`
   font-size: 20px;
   padding: 5px 0;
-  white-space: nowrap;
+  white-space: pre-wrap;
 
   @media screen and (max-width: ${settings.mobileBreakPoint}) {
     font-size: 18px;
