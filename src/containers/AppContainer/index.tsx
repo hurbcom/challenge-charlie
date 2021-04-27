@@ -5,7 +5,13 @@ import { GlobalContextType } from '../../common/types/globalContext'
 import Input from '../../components/Input'
 import Today from '../../components/Today'
 import OtherDays from '../../components/OtherDays'
-import { AppContainerMask, AppContainerWallpaper, AppContainerWrapper, AppContainerError } from './AppContainer.style'
+import {
+  AppContainerMask,
+  AppContainerWallpaper,
+  AppContainerWrapper,
+  AppContainerError,
+  AppContainerTransition,
+} from './AppContainer.style'
 
 export const AppContainer: React.FC = () => {
   const [nameInput, setNameInput] = useState('')
@@ -40,16 +46,18 @@ export const AppContainer: React.FC = () => {
       <AppContainerMask>
         <AppContainerWrapper>
           <Input nameInput={nameInput} handleClick={handleClick} handleChange={handleChange} />
-          {globalContext && globalContext.weatherPerDay && window.error === false ? (
-            <>
-              <Today contextToday={globalContext.weatherPerDay[0]} />
-              <OtherDays day={1} contextOtherDays={globalContext.weatherPerDay[1]} />
-              <OtherDays day={2} contextOtherDays={globalContext.weatherPerDay[2]} />
-            </>
-          ) : (
-            window.error === undefined && <AppContainerError> Loading ...</AppContainerError>
-          )}
-          {window.error === true && <AppContainerError>Ops! ): Não encontramos essa cidade</AppContainerError>}
+          <AppContainerTransition key={globalContext.info?.id}>
+            {globalContext && globalContext.weatherPerDay && window.error === false ? (
+              <>
+                <Today contextToday={globalContext.weatherPerDay[0]} />
+                <OtherDays day={1} contextOtherDays={globalContext.weatherPerDay[1]} />
+                <OtherDays day={2} contextOtherDays={globalContext.weatherPerDay[2]} />
+              </>
+            ) : (
+              window.error === undefined && <AppContainerError> Loading ...</AppContainerError>
+            )}
+            {window.error === true && <AppContainerError>Ops! ): Não encontramos essa cidade</AppContainerError>}
+          </AppContainerTransition>
         </AppContainerWrapper>
       </AppContainerMask>
     </AppContainerWallpaper>

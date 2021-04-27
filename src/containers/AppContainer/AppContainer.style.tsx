@@ -43,6 +43,21 @@ export const AppContainerWrapper = styled.div`
   position: relative;
 `
 
+export const AppContainerTransition = styled.div`
+  transition: visibility 1s linear 100ms, opacity 1s linear 100ms;
+
+  animation: fadeInText 1900ms 0ms forwards;
+
+  @keyframes fadeInText {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`
+
 export const AppContainerError = styled.div`
   font-size: 30px;
   width: 100%;
