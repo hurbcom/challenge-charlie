@@ -1,16 +1,44 @@
+import { useState } from "react";
 import { GetStaticProps } from "next";
 import axios from "axios";
+import AsyncSelect from "react-select/async";
 
 import styles from "./home.module.scss";
+import fetchLocationOpenCage from "../services/openCage";
 
 type HomeProps = {
   bingImageUrl: string;
 };
 
 const Home = ({ bingImageUrl }: HomeProps) => {
+  const [place, setPlace] = useState({});
+
+  const loadOptions = async (
+    inputValue: string,
+    callback: (places: unknown[]) => void
+  ) => {
+    if (inputValue.length < 5) return;
+
+    const places = await fetchLocationOpenCage(inputValue);
+
+    callback(places);
+  };
+
   return (
     <div className={styles.container}>
       <img src={bingImageUrl} />
+
+      <div className={styles.inputContainer}>
+        <AsyncSelect
+          placeholder="Digite uma cidade para busca"
+          classNamePrefix="filter"
+          cacheOptions
+          loadOptions={loadOptions}
+          onChange={setPlace}
+          value={place}
+        />
+      </div>
+      {JSON.stringify(place)}
     </div>
   );
 };

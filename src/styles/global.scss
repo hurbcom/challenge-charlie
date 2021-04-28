@@ -12,13 +12,6 @@
   --gray-200: #afb2b1;
   --gray-500: #808080;
   --gray-800: #494d4b;
-
-  --green-500: #04d361;
-
-  --purple-300: #9f75ff;
-  --purple-400: #9164fa;
-  --purple-500: #8257e5;
-  --purple-800: #6f48c9;
 }
 
 @media (max-width: 1080px) {
@@ -65,4 +58,27 @@ button {
 
 h2 {
   font-size: 1.5rem;
+}
+
+.filter__control {
+  width: 100% !important;
+  background: #f5f8fa !important;
+  border: 1px solid #d3e2e5 !important;
+  // border-radius: 20px !important;
+  outline: none !important;
+  color: #5c8599 !important;
+
+  &:hover {
+    cursor: text;
+  }
+}
+
+.filter__option {
+  background: #f5f8fa !important;
+  color: #5c8599 !important;
+}
+
+.filter__option--is-focused {
+  background: #d3e2e5 !important;
+  color: #010101 !important;
 }
