@@ -1,0 +1,74 @@
+.cardContainer {
+  height: 13rem;
+
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 3rem 1rem 3rem;
+  transition: filter 0.2s;
+
+  @media (max-width: 580px) {
+    & {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    & > img {
+      transform: scale(0.8, 0.8);
+    }
+  }
+
+  @media (max-width: 300px) {
+    & > img {
+      transform: scale(0.7, 0.7);
+    }
+  }
+
+  main strong {
+    text-transform: capitalize;
+  }
+
+  main > div {
+    margin-bottom: 0.7rem;
+  }
+
+  main div:last-of-type {
+    margin-top: 0.7rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+  }
+}
+
+.darkBlue {
+  background: #005073;
+}
+.mediumBlue {
+  background: #107dac;
+}
+.lightBlue {
+  background: #189ad3;
+}
+.darkYellow {
+  background: #a98600;
+}
+.mediumYellow {
+  background: #dab600;
+}
+.lightYellow {
+  background: #e9d700;
+}
+.darkRed {
+  background: #ff2020;
+}
+.mediumRed {
+  background: #ff5757;
+}
+.lightRed {
+  background: #ff5757;
+}
+.gray {
+  background: var(--gray-500);
+}
