@@ -8,8 +8,6 @@
   --white: #fff;
 
   --gray-50: #f7f8fa;
-  --gray-100: #e6e8eb;
-  --gray-200: #afb2b1;
   --gray-500: #808080;
   --gray-800: #494d4b;
 }
@@ -35,7 +33,7 @@ input,
 textarea,
 button {
   font: 400 1rem "Open Sans", sans-serif;
-  color: var(--gray-500);
+  color: var(--gray-50);
 }
 
 h1,
@@ -64,7 +62,7 @@ h2 {
   width: 100% !important;
   background: #f5f8fa !important;
   border: 1px solid #d3e2e5 !important;
-  // border-radius: 20px !important;
+  border-radius: 0px !important;
   outline: none !important;
   color: #5c8599 !important;
 
@@ -81,4 +79,27 @@ h2 {
 .filter__option--is-focused {
   background: #d3e2e5 !important;
   color: #010101 !important;
+}
+
+.filter__menu {
+  border-radius: 0px !important;
+  margin-top: 0px !important;
+}
+
+.filter__control {
+  padding-left: 3rem;
+
+  &::before {
+    content: " ";
+
+    position: absolute;
+    left: -14rem;
+
+    width: 512px;
+    height: 512px;
+
+    transform: scale(0.05, 0.05);
+
+    background: url("/input.svg");
+  }
 }
