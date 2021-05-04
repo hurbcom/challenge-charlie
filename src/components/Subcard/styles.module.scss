@@ -1,0 +1,49 @@
+.subCardContainer {
+  height: 5rem;
+
+  display: flex;
+  align-items: center;
+  padding-left: 61%;
+
+  transition: filter 0.2s;
+
+  strong {
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+  }
+}
+
+.darkBlue {
+  background: #005073;
+}
+.mediumBlue {
+  background: #107dac;
+}
+.lightBlue {
+  background: #189ad3;
+}
+.darkYellow {
+  background: #a98600;
+}
+.mediumYellow {
+  background: #dab600;
+}
+.lightYellow {
+  background: #e9d700;
+}
+.darkRed {
+  background: #ff2020;
+}
+.mediumRed {
+  background: #ff5757;
+}
+.lightRed {
+  background: #ff5757;
+}
+.gray {
+  background: var(--gray-500);
+}
