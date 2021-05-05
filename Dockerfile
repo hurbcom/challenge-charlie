@@ -1,14 +1,16 @@
-FROM node:alpine
+FROM node:14.16-alpine AS base
+  WORKDIR /app
+  ENV PORT=3000
+  COPY . .
+  RUN yarn
 
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
+FROM base AS development
+  ENV NODE_ENV=development
+  EXPOSE ${PORT}
+  CMD ["yarn", "dev"]
 
-COPY . /usr/src
-
-RUN yarn
-
-RUN yarn build
-
-EXPOSE 3000
-
-CMD yarn start
+FROM base AS production
+  ENV NODE_ENV=production
+  EXPOSE ${PORT}
+  RUN yarn build
+  CMD ["yarn", "start"]
