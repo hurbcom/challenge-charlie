@@ -1,0 +1,18 @@
+version: "3.7"
+
+x-common-props: &common-props
+  build:
+    context: ./
+  working_dir: /usr/src
+
+services:
+  development:
+    <<: *common-props
+    ports:
+      - "3000:3000"
+    command: yarn dev
+  production:
+    <<: *common-props
+    ports:
+      - "3000:3000"
+    command: yarn start
