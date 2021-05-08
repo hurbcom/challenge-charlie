@@ -1,0 +1,69 @@
+
+#bloco1 {
+    height: 400px;
+
+    padding: 20px;
+    background-color: rgba(211, 209, 209, 0.5);
+}
+
+#id_description {
+    color: white;
+    width: 370px;
+    text-transform: capitalize;
+    font-size: 40px;
+    text-align: center;
+    bottom:20%;
+    position: absolute;
+    left: 52%;
+
+    transform: translateX(-50%);
+    bottom: 0;
+    flex: 1;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+
+
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+  }
+
+  #imagens {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    padding-top: 0;
+    transform: translateX(-50%);
+}
+
+#id_temp {
+    position: absolute;
+
+    line-height: 90px;
+    top: 5%;
+    left: 52%;
+    transform: translateX(-50%);
+    font-size: 7em;
+    font-weight: bold;
+    color: white;
+
+}
+
+
+#div_relative {
+    position: relative;
+    height: 400px;
+    width: auto;
+
+}

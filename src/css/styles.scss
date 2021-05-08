@@ -1,0 +1,42 @@
+@import url(./bootstrap.min.css);
+@import url(./bloco1.css);
+@import url(./bloco2.css);
+@import url(./bloco3e4.css);
+@import url(./responsividade.css);
+
+
+.container {
+
+    height: 100%;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#id_city {
+    font-size: 3em;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    position: static;
+    width: 100%;
+}
+
+#row2 {
+
+    height: 100%;
+
+}
+
+
+

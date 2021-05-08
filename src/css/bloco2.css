@@ -1,0 +1,93 @@
+#bloco2 {
+    height: 400px;
+
+    background-color: rgba(211, 209, 209, 0.5);
+}
+.numeros_p {
+    margin: 0%;
+    font-size: 2em;
+    bottom: 0;
+}
+
+
+.real_max_min {
+    position: relative;
+    height: 40%;
+    color: white;
+}
+
+#realfeel_ {
+    position: absolute;
+    left: 0;
+    padding-top: 0px;
+    width: 33%;
+    text-align: center;
+    font-size: 2em;
+
+}
+
+.realfeel {
+    position: absolute;
+    left: 0;
+    padding-top: 50px;
+    width: 33%;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(227, 228, 227, 0.2);
+    border-radius: 10px;
+}
+
+#tmax_ {
+    position: absolute;
+    right: 0;
+    padding-top: 0px;
+    width: 33%;
+    text-align: center;
+    font-size: 2em;
+}
+
+.tmax {
+    position: absolute;
+    right: 0;
+    padding-top: 50px;
+    width: 33%;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(227, 228, 227, 0.2);
+    border-radius: 10px;
+}
+
+#tmin_ {
+    position: absolute;
+    left: 50%;
+    width: 33%;
+    transform: translateX(-50%);
+    padding-top: 0px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.tmin {
+    position: absolute;
+    left: 50%;
+    width: 33%;
+    transform: translateX(-50%);
+    padding-top: 50px;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(227, 228, 227, 0.2);
+
+    border-radius: 10px;
+}
+
+
+
+.outros_inform {
+    padding-top: 5%;
+    padding-left: 5%;
+    color: white;
+    font-weight: bold;
+}

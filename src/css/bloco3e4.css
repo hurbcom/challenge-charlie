@@ -1,0 +1,127 @@
+#bloco3 {
+    height: 260px;
+    position: relative;
+    background-color: rgba(163, 158, 158, 0.5);
+}
+
+#bloco4 {
+    position: relative;
+    height: 260px;
+    background-color: rgba(85, 84, 84, 0.5);
+}
+
+#damanha {
+    position: relative;
+    height: 260px;
+    width: auto;
+}
+
+#amanha {
+    position: relative;
+    height: 260px;
+    width: auto;
+
+}
+
+#id_temp1d {
+    position: absolute;
+    font-size: 5em;
+    left: 70%;
+    top: 20%;
+    padding-top: 0;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+}
+
+#id_temp2d {
+    position: absolute;
+    font-size: 5em;
+    left: 70%;
+    top: 20%;
+    padding-top: 0;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+}
+
+#id_tempmin1d {
+    position: absolute;
+    font-size: 2em;
+    left: 60%;
+    top: 92%;
+    padding-top: 0;
+    transform: translateX(-70%) translateY(-70%);
+    color: white;
+}
+
+#id_tempmin2d {
+    position: absolute;
+    font-size: 2em;
+    left: 60%;
+    top: 92%;
+    padding-top: 0;
+    transform: translateX(-70%) translateY(-70%);
+    color: white;
+}
+
+#id_tempmax1d {
+    position: absolute;
+    font-size: 2em;
+    left: 85%;
+    top: 92%;
+    padding-top: 0;
+    transform: translateX(-70%) translateY(-70%);
+    color: white;
+}
+
+#id_tempmax2d {
+    position: absolute;
+    font-size: 2em;
+    left: 85%;
+    top: 92%;
+    padding-top: 0;
+    transform: translateX(-70%) translateY(-70%);
+    color: white;
+}
+
+
+
+#imagens1d {
+    position: absolute;
+    height: 210;
+    width: 210;
+    top: -5%;
+}
+
+#imagens2d {
+    position: absolute;
+    height: 210;
+    width: 210;
+    top: -5%;
+}
+
+#id_description1d {
+    position: absolute;
+    top: 75%;
+    font-size: 25px;
+    color: white;
+    width: 250px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#id_description2d {
+    position: absolute;
+    top: 75%;
+    font-size: 25px;
+    color: white;
+    width: 250px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#textoAmanha {
+    font-size: 25px;
+    color: whitesmoke;
+}

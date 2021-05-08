@@ -1,0 +1,63 @@
+@media only screen and (max-width: 998px) {
+    #tmin_ {
+        font-size: 20px;
+    }
+
+    .real_max_min {
+        font-size: 10px;
+    }
+
+    #id_temp {
+        font-size: 5em;
+        left: 33%;
+    }
+
+    .outros_inform {
+        font-size: 13px;
+        padding-top: 10%;
+    }
+
+    #id_description2d {
+        font-size: 15px;
+        text-align: left;
+        top: 79%;
+    }
+
+    #id_description1d {
+        font-size: 15px;
+        text-align: left;
+        top: 79%;
+    }
+
+    #imagens2d {
+
+        left: -5%;
+    }
+
+    #imagens1d {
+
+        left: -9%;
+    }
+
+    #id_temp1d {
+        font-size: 65px;
+    }
+
+    #id_temp2d {
+        font-size: 65px;
+    }
+
+}
+
+
+@media only screen and (max-width: 1200px) {
+    #id_description1d {
+        text-align: left;
+
+    }
+
+    #id_description2d {
+        text-align: left;
+
+    }
+}
