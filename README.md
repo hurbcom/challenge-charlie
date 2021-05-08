@@ -65,7 +65,7 @@ alem de incluir a lógica de como funcionaria a  troca de fahrenheit e celcius e
 e criar o modelo caso desse algum erro.
 
 3 dia = Corrigir todos os Class e os Id dentro do projeto para deixar-los mais intuitivos e criar o CSS para cada 
-ferramente, onde utilizei o boostrap para ajudar com a responsividade e alguns modelos de CSS, alem de testar todas 
+ferramenta, onde utilizei o boostrap para ajudar com a responsividade e alguns modelos de CSS, alem de testar todas 
 as possibilidade de dimensionamento de tela até chegar em um celular antigo e funcionar perfeitamente.
 
 4 dia = Configurar a aplicação em Webpack e verificar se estava tudo rodando perfeitamente, e assim também para o 
