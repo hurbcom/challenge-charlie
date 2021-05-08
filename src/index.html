@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+  <!-- Bootstrap CSS -->
+
+  <title>vamo</title>
+</head>
+
+<body>
+
+
+
+  <div class="container">
+    <div class="row" id="header">
+      <div id="id_city" class="container-fluid"></div>
+    </div>
+
+
+
+    <div class="row" id="row1">
+      <div id="bloco1" class="col-sm-12 col-md-6 col-lg-6">
+
+        <div id="div_relative">
+
+
+
+          <div id="botoes">
+            <p id="id_temp"></p>
+            <button type="button" class="btn btn-primary" id="celsius_">°C</button>
+            <button type="button" class="btn btn-primary" id="fahrenheit_">°F</button>
+            <p id="id_description"></p>
+            <div id="imagens">
+
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+      </div>
+
+      <div id="bloco2" class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="real_max_min">
+
+          <p id="realfeel_">RealFeel</p>
+          <p id="id_tempfl" class="realfeel"></p>
+
+          <p id="tmin_">Mínimo</p>
+          <p id="id_tempmin" class="tmin"></p>
+
+          <p id="tmax_">Máximo</p>
+          <p id="id_tempmax" class="tmax"></p>
+
+        </div>
+
+        <div class="outros_inform">
+          <p id="id_pressure" class="numeros_p"></p>
+          <p id="id_humidity" class="numeros_p"></p>
+          <p id="id_wind" class="numeros_p"></p>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="row" id="row2">
+      <div id="bloco3" class="col-sm-12 col-md-6 col-lg-6">
+
+        <div class="amanha">
+          <p id="textoAmanha">Amanhã</p>
+          <div id="imagens1d"></div>
+          <p id="id_temp1d"></p>
+          <p id="id_tempmin1d"></p>
+          <p id="id_tempmax1d"></p>
+          <p id="id_description1d"></p>
+
+        </div>
+
+      </div>
+
+      <div id="bloco4" class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="damanha">
+          <p id="textoAmanha">Depois de Amanhã</p>
+          <div id="imagens2d"></div>
+          <p id="id_temp2d"></p>
+          <p id="id_tempmin2d"></p>
+          <p id="id_tempmax2d"></p>
+          <p id="id_description2d"></p>
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+  </div>
+
+
+
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <script src="./js/index.js"></script>
+  <script src="./js/imagem.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+
+
+</body>
+
+</html>
