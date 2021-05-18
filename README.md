@@ -102,3 +102,33 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 ```
   npm run test
 ```
+
+## API
+O backend da aplicação foi criado em `NodeJS`, usando biblioteca `Express`.
+Atualmente ela se encontra já em um ambiente de testes, `http://challenge-hurb.herokuapp.com`
+
+```
+  [URL]: http://challenge-hurb.herokuapp.com
+  [APP_ID]: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCh7uxHjWd1CyRgPD4XHcIPKiDb
+```
+
+- **/bing** [GET] - Endpoint responsável por retornar a imagem do dia do Bing.com.
+- **/weather** [GET]- Endpoint responsável pela busca por nome ou por geo localização, seus parâmetros são `localname`, `latitude` e `longiture`.
+
+
+## Exemplo de como consumir API
+```nodejs
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://challenge-hurb.herokuapp.com/weather?localname=Rio de Janeiro',
+  'headers': {
+    'x-app-id': MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCh7uxHjWd1CyRgPD4XHcIPKiDb
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
