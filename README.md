@@ -9,9 +9,9 @@ Criação de um projeto que possa realizar previsões do tempo por geolocalicaç
 ## Layout
 
 <p align="center">
- <img src="layout/screen-3.png" alt="Challange accepted" style="width: 263px;"/>
-  <img src="layout/screen-2.png" alt="Challange accepted"  style="width: 263px;"/>
- <img src="layout/screen-1.png" alt="Challange accepted" style="width: 263px;" />
+ <img src="layout/screen-3.png" alt="Challange accepted" style="width: 230px;"/>
+  <img src="layout/screen-2.png" alt="Challange accepted"  style="width: 230px;"/>
+ <img src="layout/screen-1.png" alt="Challange accepted" style="width: 230px;" />
 </p>
 
 
