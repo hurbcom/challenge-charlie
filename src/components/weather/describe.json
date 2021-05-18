@@ -1,0 +1,41 @@
+{
+    "weather":{
+        "messages":{
+            "placeNotFound":"Infelizmente não encontramos o lugar pesquisado.",
+            "placeHolder":"Informe um lugar."
+        },
+        "fieldsApi":["description", "wind_speed", "humidity", "pressure", "visibility"],
+        "days":{
+            "today":{
+                "config":{
+                    "name":"Hoje",
+                    "showIcon":true
+                    
+                },
+                "labels":{
+                    "description":"{description}",
+                    "wind_speed":"Vento: NO {wind_speed} KM/h",
+                    "humidity":"Humidade: {humidity} %",
+                    "pressure":"Pressão: {pressure} hPA"
+                }
+            },
+            "tomorrow":{
+                "config":{
+                    "name":"Amanhã"
+                },
+                "labels":{
+                    "description":"{description}"
+                }
+            },
+            "after_tomorrow":{
+                "config":{
+                    "name":"Depois de amanhã",
+                    "showIcon":false
+                },
+                "labels":{
+                    "wind_speed":"Vento: NO {wind_speed} KM/h"
+                }
+            }
+        }
+    }
+}
