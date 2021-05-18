@@ -13,7 +13,7 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
  weather.day[x].config.showIcon = true
 ``` 
 ## Exemplo de configuração do componente
-```json
+```
 {
     "weather":{
         "messages":{
