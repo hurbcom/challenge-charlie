@@ -87,11 +87,11 @@ const Forecast = ({unit, data, config, labels, day, props}) =>{
     return (<>
                 <Box className={ classes.flex}>
                     <Box className={classes.boxIcon}>
-                        { config.showIcon && ( <Typography variant="body1" className={classes.fontIcons}> {cfgBackground.keyIcon} </Typography> ) } 
+                        { config.showIcon && ( <Typography variant="body1" className={classes.fontIcons} data="icon"> {cfgBackground.keyIcon} </Typography> ) } 
                     </Box> 
                     <Box className={classes.info}>
-                        <Typography variant="body1" className={clsx(classes.text, classes.today)}> {config.name} </Typography>
-                        <Typography variant="body1" className={clsx(classes.text, classes.temperature)}>
+                        <Typography variant="body1" className={clsx(classes.text, classes.today)} data={config.name}> {config.name} </Typography>
+                        <Typography variant="body1" className={clsx(classes.text, classes.temperature)} data="temperature">
                             <Link className={classes.link} onClick={()=>handleClick()}> {temperature.value} </Link>
                         </Typography>
                         { 
@@ -100,7 +100,7 @@ const Forecast = ({unit, data, config, labels, day, props}) =>{
                         // Caso seja uma frase Vento:{wind_speed} KM/h a saía vai ser Vento:100 KM/h
                         labels && (Object.keys(labels)
                                             .map(label=> (  data[label] && ( 
-                                                <Typography key={label} variant="body1" className={clsx(classes.text, classes[label] || classes.default)}>
+                                                <Typography key={label} data={label} variant="body1" className={clsx(classes.text, classes[label] || classes.default)}>
                                                     {  Util.formart(labels[label],{[label]: data[label]}) }
                                                 </Typography>)
                                     )))}
