@@ -64,7 +64,6 @@ test('Testando o comportamento mínimo para tela', () => {
     const props = { unit: null, data:__MOCK__,  day: "today" };
     let dataToday = props.data.days[props.day];
     let describe = Describe.weather.days[props.day];
-
     const { container } = render(<Forecast key={'day'} unit={props.unit || ""} day={props.day} data={dataToday} {...describe} />);
    
     if(describe.config.showIcon) {

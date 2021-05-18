@@ -5,7 +5,6 @@
 
 Criação de um projeto que possa realizar previsões do tempo por geolocalicação e busca pelo nome.
 
-
 ## Layout
 
 <p align="center">
@@ -16,11 +15,11 @@ Criação de um projeto que possa realizar previsões do tempo por geolocalicaç
 ## Escolhas Técnicas
 
 - **Meterial-UI** - Utilizado para construção do layout.
-- **NodeJS** - Utilizado para construir o backend da aplicação, para solucionar o problema de  `CORS policy` e para acesso único também, foi criado um minimo de segurança, é necessário enviar no header uma chave de autenticação, para então poder consumir a API.
+- **NodeJS** - Utilizado para construir o backend da aplicação, para solucionar o problema de  `CORS policy` e para acesso único também, foi criado um mínimo de segurança, é necessário enviar no header uma chave de autenticação  `x-app-id` , para então, poder consumir a API.
 
 ## Explicação do funcionamento do componente
-O componente é configurado pelo arquivo "describes.json", ou seja, realizada a a leitura dessa arquivo para construção de labels e exibição do icone para os respectivos dias.
-A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não existe a exibição do icone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma basta eu informar se eu quero exibir o icone somente alterando a propriedade para o respectivo dia..
+O componente é configurado pelo arquivo "describe.json", ou seja, realizada a leitura dessa arquivo para construção de labels e exibição do ícone para os respectivos dias.
+A ideia e tentar deixar o máximo flexível, por exemplo, no layout original não existe a exibição do ícone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma, podemos informar se eu quero exibir o ícone somente alterando a propriedade para o respectivo dia.
 
 ```json
  weather.day[x].config.showIcon = true
@@ -90,8 +89,13 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 
 ## Resultado com a configuração acima
 <p align="center">
-  <img src="layout/screen.png" alt="Challange accepted" />
+  <img src="layout/screen.png" alt="Layout" />
 </p>
+
+## Instalando as dependências do projeto
+```
+  npm install
+```
 
 ## Rodando o projeto
 ```
@@ -112,8 +116,8 @@ Atualmente ela se encontra já em um ambiente de testes, `http://challenge-hurb.
   [APP_ID]: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCh7uxHjWd1CyRgPD4XHcIPKiDb
 ```
 
-- **/bing** [GET] - Endpoint responsável por retornar a imagem do dia do Bing.com.
-- **/weather** [GET]- Endpoint responsável pela busca por nome ou por geo localização, seus parâmetros são `localname`, `latitude` e `longiture`.
+- **/bing** [GET] - Endpoint responsável pelo a imagem do dia do Bing.com.
+- **/weather** [GET]- Endpoint responsável pela busca pelo nome ou pela geolocalização, seus parâmetros são `localname`, `latitude` e `longiture`.
 
 
 ## Exemplo de como consumir API

@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Theme, Weather } from './components';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="App">
+      <Theme>
+        <Weather />
+      </Theme>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

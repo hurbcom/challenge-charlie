@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles,  Box, Typography } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { Util } from "../../config";
 /**
  * Definição do CSS para o componente
@@ -22,7 +21,6 @@ import { Util } from "../../config";
         height: 100,
         lineHeight: '100px',
       },
-      
     },
     text: {
       fontFamily: "'Roboto', sans-serif",
@@ -31,16 +29,17 @@ import { Util } from "../../config";
     }
   }));
 
+/**
+ *  Componente de mensageria
+ * @param {*} text = Texto que será exibido 
+ * @returns Componente Message
+ */
 const Message = ({text, props}) =>{
     const classes = useStyles();
     return (<Box className={classes.box}>
-            <Typography variant="body1" className={classes.fontIcons}> Z </Typography> 
-            <Typography variant="body1" className={classes.text}>{text}</Typography>
+            <Typography variant="body1" className={classes.fontIcons} data="icon"> Z </Typography> 
+            <Typography variant="body1" className={classes.text} data="message">{text}</Typography>
         </Box>)
 }
-
-Message.propTypes = { 
-    text: PropTypes.element.isRequired
- };
 
 export default  Message;
