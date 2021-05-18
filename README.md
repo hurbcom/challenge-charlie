@@ -7,11 +7,14 @@ Criação de um projeto que possa realizar previsões do tempo por geolocalicaç
 
 
 ## Layout
+
 <p align="center">
-  <img src="layout/screen-1.png" alt="Challange accepted" />
+ <img src="layout/screen-3.png" alt="Challange accepted" />
   <img src="layout/screen-2.png" alt="Challange accepted" />
-  <img src="layout/screen-3.png" alt="Challange accepted" />
+ <img src="layout/screen-1.png" alt="Challange accepted" />
 </p>
+
+
 ## Escolhas Técnicas
 
 - **Meterial-UI** - Utilizado para construção do layout.
