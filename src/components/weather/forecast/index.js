@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, Box, Typography } from "@material-ui/core";
 import Link from '@material-ui/core/Link';
-import { Util } from "../../config";
-import PropTypes from "prop-types";
+import { Util } from "../../../config";
 
 /**
  * Definição do CSS para o componente
@@ -101,7 +100,7 @@ const Forecast = ({unit, data, config, labels, day, props}) =>{
                         // Caso seja uma frase Vento:{wind_speed} KM/h a saía vai ser Vento:100 KM/h
                         labels && (Object.keys(labels)
                                             .map(label=> (  data[label] && ( 
-                                                <Typography variant="body1" className={clsx(classes.text, classes[label] || classes.default)}>
+                                                <Typography key={label} variant="body1" className={clsx(classes.text, classes[label] || classes.default)}>
                                                     {  Util.formart(labels[label],{[label]: data[label]}) }
                                                 </Typography>)
                                     )))}
@@ -111,12 +110,5 @@ const Forecast = ({unit, data, config, labels, day, props}) =>{
         </>);
 }
 
-Forecast.propTypes = { 
-                        unit: PropTypes.element.isRequired,
-                        data: PropTypes.element.isRequired,
-                        config: PropTypes.element.isRequired,
-                        labels: PropTypes.element.isRequired,
-                        day: PropTypes.element.isRequired,
-                     };
 
 export default Forecast;

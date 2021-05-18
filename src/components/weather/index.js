@@ -77,8 +77,9 @@ const Weather = () => {
                                               }, 
                                     });
 
+
   const setState = async (params) =>{
-    setForm({ ...form,  loading:true,  placeNotFound:false });
+    setForm({ ...form,  loading:true, localName: params.localName, placeNotFound:false });
     setConfig({...config, collapse:false })
     let data = await fetch_api(__CONSTANTS__.API.SEARCH, params);
     if(data.days) setForm({ ...form, loading:false, placeNotFound:false, localName: params.localName || data.city, weather: { days: data.days } });
@@ -96,18 +97,22 @@ const Weather = () => {
 
   const handleChange = (e) => {
     setForm({ ...form, localName: e.target.value });
-    if(config.typingTimeout) clearTimeout(config.typingTimeout);
-    setConfig({ typingTimeout: setTimeout(() => setState({localName: e.target.value }), 2000) });
+    if(e.target.value !== ""){
+        if(config.typingTimeout) clearTimeout(config.typingTimeout);
+        setConfig({ typingTimeout: setTimeout(() => setState({localName: e.target.value }), 2000) });
+    }
+    else
+        setConfig({...config, collapse:false });
   }
 
   return (
     <Box className={classes.page}>
       <Box className={classes.searchBox}>
-        { form.loading ? (<Typography variant="body1"><CircularProgress /></Typography>) : ( <Typography variant="body1" className={classes.fontIconCity}> ( </Typography> ) }
+        { form.loading ? (<CircularProgress />) : ( <Typography variant="body1" className={classes.fontIconCity}> ( </Typography> ) }
         <TextField className={classes.searchField} placeholder={Describe.weather.messages.placeHolder} value={form.localName} onChange={handleChange} fullWidth />
       </Box>
       <Collapse in={config.collapse}>
-          {(!form.loading && !form.placeNotFound) && Object.keys(Describe.weather.days).map(day=> (<Forecast unit={form.unit} day={day} data={form.weather.days[day]} {...Describe.weather.days[day]} />)) }
+          {(!form.loading && !form.placeNotFound) && Object.keys(Describe.weather.days).map((day, i)=> (<Forecast key={'day-'+i} unit={form.unit || ""} day={day} data={form.weather.days[day]} {...Describe.weather.days[day]} />)) }
           {(form.placeNotFound && (<Message text={Describe.weather.messages.placeNotFound}/>))}
       </Collapse>
     </Box>

@@ -30,7 +30,7 @@
             "after_tomorrow":{
                 "config":{
                     "name":"Depois de amanhã",
-                    "showIcon":false
+                    "showIcon":true
                 },
                 "labels":{
                     "description":"{description}",

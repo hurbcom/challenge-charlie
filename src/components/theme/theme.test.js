@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
 
-test('Verifica se adicionou o backgroung corretamente.', () => {
-  render(<App />);
-  const backGroundElement = screen.getByText(/learn react/i);
-  expect(backGroundElement).toBeInTheDocument();
+import { render, screen, queryByAttribute  } from '@testing-library/react';
+import Theme from  './index'
+
+test('Verifica adicionando o um componente no theme', () => {
+  const Component = () =>{ return ("Hurb") }
+  const { theme } = render(<Theme><Component/></Theme>);
+  const textComponent = screen.getByText(/Hurb/i);
+  expect(textComponent).toBeInTheDocument();
 });

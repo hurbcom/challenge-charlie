@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 /**
  * Componente para o theme do dia
  * @returns Componente Theme
