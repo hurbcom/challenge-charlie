@@ -5,6 +5,12 @@
 
 Criação de um projeto que possa realizar previsões do tempo por geolocalicação e busca pelo nome.
 
+## Escolhas Técnicas
+
+- **Meterial-UI** - Utilizado para construção do layout.
+- **NodeJS** - Utilizado para construir o backend da aplicação, para solucionar o problema de  `CORS policy` e para acesso único também, foi criado um minimo de segurança, é necessário enviar no header uma chave de autenticação, para então poder consumir a API.
+
+
 ## Explicação do funcionamento do componente
 O componente é configurado pelo arquivo "describes.json", ou seja, realizada a a leitura dessa arquivo para construção de labels e exibição do icone para os respectivos dias.
 A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não existe a exibição do icone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma basta eu informar se eu quero exibir o icone somente alterando a propriedade para o respectivo dia..
@@ -12,6 +18,7 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 ```json
  weather.day[x].config.showIcon = true
 ``` 
+
 ## Exemplo de configuração do componente
 ```
 {
@@ -75,16 +82,16 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 ```
 
 ## Resultado com a configuração acima
-<img src="layout/screen.png" alt="Challange accepted" />
-
-## Escolhas Técnicas
-
-- **Meterial-UI** - Utilizado para construção do layout.
-- **NodeJS** - Utilizado para construir o backend da aplicação, para solucionar o problema de  `CORS policy` e para acesso único também, foi criado um minimo de segurança, é necessário enviar no header uma chave de autenticação, para então poder consumir a API.
-
+<p align="center">
+  <img src="layout/screen.png" alt="Challange accepted" />
+</p>
 
 ## Rodando o projeto
+```
+  npm start
+```
 
-1. sudo chmod +x ./run.sh
-2. Para produção utilize: `./run.sh production`
-3. Para desenvolvimento utilize: `./run.sh development`
+## Rodando os tests
+```
+  npm run test
+```
