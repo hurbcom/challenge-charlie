@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import clsx from "clsx";
 import { makeStyles, TextField, Box, Typography } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Link from '@material-ui/core/Link';
 import Collapse from '@material-ui/core/Collapse';
 import Message from '../message';
 import Forecast from './forecast';
@@ -55,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 32,
       color: '#999999',
       padding: theme.spacing(0, 2),
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 25,
+      },
     },
   }
 }));
@@ -87,7 +88,7 @@ const Weather = () => {
   
   useEffect(() => {
     if(navigator.geolocation) 
-        navigator.geolocation.watchPosition(position => setState(position.coords), ()=> {
+        navigator.geolocation.getCurrentPosition(position => setState(position.coords), ()=> {
             setConfig({...config,  collapse:false}); 
             setForm({...form, loading:false, localName:''})
         });

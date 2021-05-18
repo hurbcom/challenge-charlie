@@ -4,13 +4,11 @@
             "placeNotFound":"Infelizmente não encontramos o lugar pesquisado.",
             "placeHolder":"Informe um lugar."
         },
-        "fieldsApi":["description", "wind_speed", "humidity", "pressure", "visibility"],
         "days":{
             "today":{
                 "config":{
                     "name":"Hoje",
                     "showIcon":true
-                    
                 },
                 "labels":{
                     "description":"{description}",
@@ -21,10 +19,12 @@
             },
             "tomorrow":{
                 "config":{
-                    "name":"Amanhã"
+                    "name":"Amanhã",
+                    "showIcon":true
                 },
                 "labels":{
-                    "description":"{description}"
+                    "description":"{description}",
+                    "wind_speed":"Vento: NO {wind_speed} KM/h"
                 }
             },
             "after_tomorrow":{
@@ -33,7 +33,9 @@
                     "showIcon":false
                 },
                 "labels":{
-                    "wind_speed":"Vento: NO {wind_speed} KM/h"
+                    "description":"{description}",
+                    "wind_speed":"Vento: NO {wind_speed} KM/h",
+                    "humidity":"Humidade: {humidity} %"
                 }
             }
         }

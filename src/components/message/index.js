@@ -1,17 +1,15 @@
-
-import React, { useEffect, useState } from "react";
-import clsx from "clsx";
-import { makeStyles, TextField, Box, Typography } from "@material-ui/core";
+import React from "react";
+import { makeStyles,  Box, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-
+import { Util } from "../../config";
 /**
  * Definição do CSS para o componente
  */
  const useStyles = makeStyles((theme) => ({
      box:{
         padding:theme.spacing(5),
-        background:"#fff",
-        color:"#999",
+        background:Util.convertHexToRGBA('#999999' , ".9"),
+        color:"#fff",
         textAlign:"center"
      },
     fontIcons: {

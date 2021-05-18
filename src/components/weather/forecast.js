@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
-import { makeStyles, TextField, Box, Typography } from "@material-ui/core";
+import { makeStyles, Box, Typography } from "@material-ui/core";
 import Link from '@material-ui/core/Link';
 import { Util } from "../../config";
 import PropTypes from "prop-types";
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "row",
       width: "100%",
-      background: props => props.background ? Util.convertHexToRGBA( props.background , ".9") : 'rgba(0,0,0,.4)',
+      background: props => props.background ? Util.convertHexToRGBA( props.background , props.alpha || ".7") : 'rgba(0,0,0,.4)',
       justifyContent: "space-between",
     },
     info: {
@@ -34,15 +34,15 @@ const useStyles = makeStyles((theme) => ({
     },
     fontIcons: {
       fontFamily: 'MeteoconsRegular',
-      fontSize: 180,
-      width: 180,
-      height: 180,
-      lineHeight: '180px',
+      fontSize: 160,
+      width: 160,
+      height: 160,
+      lineHeight: '160px',
       [theme.breakpoints.down("sm")]: {
-        fontSize: 100,
-        width: 100,
-        height: 100,
-        lineHeight: '100px',
+        fontSize: 130,
+        width: 130,
+        height: 130,
+        lineHeight: '130px',
       },
     },
     link:{
@@ -65,48 +65,10 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2, 0, 1, 0),
       textTransform: 'capitalize'
     },
-    wind_speed: {
-      fontSize: 16,
-    },
-    humidity: {
-      fontSize: 16,
-    },
     default: {
         fontSize: 16,
     },
-    pressure: {
-      fontSize: 16,
-    },
-    lightTomorrow: {
-      background: Util.convertHexToRGBA( '#ffffff' , ".5"),
-    },
-    tomorrow: {
-      background: props => Util.convertHexToRGBA( props.background , ".9"),
-      padding: theme.spacing(2),
-      textTransform: 'uppercase',
-      paddingLeft: '60%',
-      '& span': {
-        display: 'block',
-      },
-      [theme.breakpoints.down("sm")]: {
-        padding: theme.spacing(2),
-      },
-    },
-    darkAfterTomorrow: {
-      background: Util.convertHexToRGBA( '#000000' , ".8"),
-    },
-    afterTomorrow: {
-      background: props => Util.convertHexToRGBA( props.background , ".8"),
-      padding: theme.spacing(2),
-      textTransform: 'uppercase',
-      paddingLeft: '60%',
-      '& span': {
-        display: 'block',
-      },
-      [theme.breakpoints.down("sm")]: {
-        padding: theme.spacing(2),
-      }
-    }
+  
   }));
 
 /**
@@ -124,11 +86,11 @@ const Forecast = ({unit, data, config, labels, day, props}) =>{
     const [temperature, setTemperature] = useState(Util.convertUnit(unit, data.temp));
     const handleClick = ()=> setTemperature(Util.convertUnit(temperature.unit === "celsius" && "fahrenheit",  data.temp)); // faz a conversão.
     return (<>
-                <Box className={classes[cfgBackground.flex]}>
+                <Box className={ classes.flex}>
                     <Box className={classes.boxIcon}>
                         { config.showIcon && ( <Typography variant="body1" className={classes.fontIcons}> {cfgBackground.keyIcon} </Typography> ) } 
                     </Box> 
-                    <Box className={classes[cfgBackground.info]}>
+                    <Box className={classes.info}>
                         <Typography variant="body1" className={clsx(classes.text, classes.today)}> {config.name} </Typography>
                         <Typography variant="body1" className={clsx(classes.text, classes.temperature)}>
                             <Link className={classes.link} onClick={()=>handleClick()}> {temperature.value} </Link>

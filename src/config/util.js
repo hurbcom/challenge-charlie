@@ -56,11 +56,11 @@ const Util = {
    * @returns { background:"color", keyIcon:"icon", info:"classe", flex:"classe"  }
    */
   getColorToTemperature:(temperature, day)=>{
-    let config = { background:"#ffeb3b", keyIcon:"H", info:"info", flex:"flex" } // valores default para temperaturas entre (>15 && < 35)
-    if(parseInt(temperature) < 15) { config['background'] =  "#2596be"; config['keyIcon'] =  "R"; }
+    let config = { background:"#ffc107", keyIcon:"H", info:"info", flex:"flex", alpha:".7" } // valores default para temperaturas entre (>15 && < 35)
+    if(parseInt(temperature) < 15) { config['background'] =  "#2596be"; config['keyIcon'] =  (parseInt(temperature) < 5 ? "W": "R"); }
     else if(parseInt(temperature) > 35){ config['background'] =  "#be2525"; config['keyIcon'] =  "B"; }
-    if(day === 'tomorrow') { config['info'] = 'tomorrow'; config['flex'] = 'lightTomorrow'; }
-    else if(day === 'after_tomorrow') { config['info'] = 'afterTomorrow'; config['flex'] = 'darkAfterTomorrow'; }
+    if(day === 'tomorrow') { config['info'] = 'tomorrow'; config['flex'] = 'lightTomorrow';  config['alpha'] = ".8"; }
+    else if(day === 'after_tomorrow') { config['info'] = 'afterTomorrow'; config['flex'] = 'darkAfterTomorrow'; config['alpha'] = ".9"; }
     return config;
   }
 };
