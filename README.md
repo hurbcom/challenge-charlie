@@ -27,7 +27,7 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 ``` 
 
 ## Exemplo de configuração do componente
-```
+```java
 {
     "weather":{
         "messages":{
@@ -107,7 +107,7 @@ A ideia e tentar deixar o máximo flexivel, por exemplo, no layout original não
 O backend da aplicação foi criado em `NodeJS`, usando biblioteca `Express`.
 Atualmente ela se encontra já em um ambiente de testes, `http://challenge-hurb.herokuapp.com`
 
-```
+```java
   [URL]: http://challenge-hurb.herokuapp.com
   [APP_ID]: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCh7uxHjWd1CyRgPD4XHcIPKiDb
 ```
@@ -117,7 +117,7 @@ Atualmente ela se encontra já em um ambiente de testes, `http://challenge-hurb.
 
 
 ## Exemplo de como consumir API
-```nodejs
+```java
 var request = require('request');
 var options = {
   'method': 'GET',
@@ -131,4 +131,64 @@ request(options, function (error, response) {
   console.log(response.body);
 });
 
+```
+## Resposta da API
+```java
+{
+    "city": "Rio de Janeiro",
+    "days": {
+        "today": {
+            "dt": 1621368760,
+            "sunrise": 1621329611,
+            "sunset": 1621369116,
+            "temp": 23.05,
+            "feels_like": 23.19,
+            "pressure": 1015,
+            "humidity": 68,
+            "dew_point": 16.83,
+            "uvi": 0,
+            "clouds": 75,
+            "visibility": 10000,
+            "wind_speed": 4.63,
+            "wind_deg": 200,
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "nuvens quebradas",
+                    "icon": "04d"
+                }
+            ],
+            "description": "nuvens quebradas"
+        },
+        "tomorrow": {
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "nuvens quebradas",
+                    "icon": "04d"
+                }
+            ],
+            "wind_speed": 3.09,
+            "humidity": 63,
+            "temp": 23.31,
+            "description": "nuvens quebradas"
+        },
+        "after_tomorrow": {
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "céu limpo",
+                    "icon": "01d"
+                }
+            ],
+            "wind_speed": 3.33,
+            "humidity": 64,
+            "temp": 24.14,
+            "description": "céu limpo"
+        }
+    }
+}
 ```
