@@ -107,6 +107,12 @@ A ideia e tentar deixar o máximo flexível, por exemplo, no layout original nã
   npm run test
 ```
 
+## Docker
+```
+ ./run-app-deploy.sh --dev
+ ./run-app-deploy.sh --prod
+```
+
 ## API
 O backend da aplicação foi criado em `NodeJS`, usando biblioteca `Express`.
 Atualmente ela se encontra já em um ambiente de testes, `http://challenge-hurb.herokuapp.com`
