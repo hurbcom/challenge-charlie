@@ -18,8 +18,8 @@ Criação de um projeto que possa realizar previsões do tempo por geolocalicaç
 - **NodeJS** - Utilizado para construir o backend da aplicação, para solucionar o problema de  `CORS policy` e para acesso único também, foi criado um mínimo de segurança, é necessário enviar no header uma chave de autenticação  `x-app-id` , para então, poder consumir a API.
 
 ## Explicação do funcionamento do componente
-O componente é configurado pelo arquivo "describe.json", ou seja, realizada a leitura dessa arquivo para construção de labels e exibição do ícone para os respectivos dias.
-A ideia e tentar deixar o máximo flexível, por exemplo, no layout original não existe a exibição do ícone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma, podemos informar se eu quero exibir o ícone somente alterando a propriedade para o respectivo dia.
+O componente é configurado pelo arquivo "[describe.json](src/components/weather/describe.json)", ou seja, realizada a leitura do arquivo para construção de labels e exibição do ícone para os respectivos dias.
+A ideia e tentar deixar o máximo flexível, por exemplo, no layout original não existe a exibição do ícone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma, podemos informar se eu quero exibir o ícone apenas alterando a propriedade para o respectivo dia.
 
 ```json
  weather.day[x].config.showIcon = true
