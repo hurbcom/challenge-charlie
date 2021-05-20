@@ -44,9 +44,9 @@ const Util = {
    */
   convertUnit: (unit, value) =>{
     switch (unit) {
-      case 'fahrenheit': return { value: ((parseFloat(value) * 9/5) + 32).toFixed(0) + '°F', unit:'fahrenheit'};
-      case 'celsius': return {value:((parseFloat(value) -32) * 5/9).toFixed(0) +'°C', unit:'celsius'} 
-      default: return {value:parseFloat(value).toFixed(0)  +'°C', unit:'celsius'};
+      case 'fahrenheit': return { value: ((parseInt(value) * 9/5) + 32) + '°F', unit:'fahrenheit'};
+      case 'celsius': return {value:((parseInt(value) -32) * 5/9) +'°C', unit:'celsius'} 
+      default: return {value:parseInt(value)  +'°C', unit:'celsius'};
     }
   },
   /**
