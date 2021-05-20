@@ -1,7 +1,7 @@
 
 import { render, screen, queryByAttribute  } from '@testing-library/react';
 import Forecast from  './index'
-import Describe from '../describe.json';
+import Describe from '../weather/describe.json';
 
 const __MOCK__ = {
             "city": "Rio de Janeiro",

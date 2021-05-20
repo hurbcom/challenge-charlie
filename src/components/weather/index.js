@@ -3,7 +3,7 @@ import { makeStyles, TextField, Box, Typography } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import Message from '../message';
-import Forecast from './forecast';
+import Forecast from '../forecast';
 import Describe from './describe.json';
 import { fetch_api } from "../../api";
 import { Util, __CONSTANTS__ } from "../../config";
@@ -77,7 +77,7 @@ const Weather = () => {
                                               }, 
                                     });
 
-
+  // Adicionando informações no state 
   const setState = async (params) =>{
     setForm({ ...form,  loading:true, localName: params.localName, placeNotFound:false });
     setConfig({...config, collapse:false })
@@ -95,9 +95,10 @@ const Weather = () => {
         });
   }, []);
 
+  // Ação do campo de busca
   const handleChange = (e) => {
     setForm({ ...form, localName: e.target.value });
-    if(e.target.value !== ""){
+    if(e.target.value.length > 0){
         if(config.typingTimeout) clearTimeout(config.typingTimeout);
         setConfig({ typingTimeout: setTimeout(() => setState({localName: e.target.value }), 2000) });
     }

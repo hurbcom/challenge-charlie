@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, Box, Typography } from "@material-ui/core";
 import Link from '@material-ui/core/Link';
-import { Util } from "../../../config";
+import { Util } from "../../config";
 
 /**
  * Definição do CSS para o componente

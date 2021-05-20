@@ -22,7 +22,7 @@ O componente é configurado pelo arquivo "[describe.json](src/components/weather
 A ideia e tentar deixar o máximo flexível, por exemplo, no layout original não existe a exibição do ícone de temperatura para os dias "amanhã" e "depois de amanhã", dessa forma, podemos informar se eu quero exibir o ícone apenas alterando a propriedade para o respectivo dia.
 
 ```json
- weather.day[x].config.showIcon = true
+ weather.days[x].config.showIcon = true
 ``` 
 
 ## Exemplo de configuração do componente
