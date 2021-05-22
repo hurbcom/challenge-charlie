@@ -40,12 +40,12 @@ O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melh
 -   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
 -   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
 -   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome engmático? Comentários no código ajudam a explicar o fluxo?
+-   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome enigmático? Comentários no código ajudam a explicar o fluxo?
 -   **Segurança**: Existe alguma vulnerabilidade clara?
 -   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
 -   **Histórico de commits** Qualidade e estrutura dos commits.
 -   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura, etc, é a melhor escolha para a aplicação?
+-   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura etc, é a melhor escolha para a aplicação?
 
 ## Dúvidas
 
