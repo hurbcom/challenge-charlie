@@ -9,7 +9,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        loader: 'babel-loader',
       },
     ],
   },
@@ -29,5 +29,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
   ],
 };

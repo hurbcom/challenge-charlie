@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
-    "test": "jest --coverage"
+    "test": "jest --coverage && jest-coverage-badges"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,10 @@
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/plugin-syntax-typescript": "^7.12.13",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@types/axios": "^0.14.0",
@@ -45,6 +47,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "jest": "^27.0.3",
+    "jest-coverage-badges": "^1.1.2",
     "ts-jest": "^27.0.2",
     "ts-loader": "^9.2.2",
     "ts-node": "^10.0.0",
