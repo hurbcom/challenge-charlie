@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
@@ -25,6 +25,9 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
     hotOnly: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

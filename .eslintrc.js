@@ -30,6 +30,9 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'class-methods-use-this': 'off',
+    'import/prefer-default-export': 'off',
+    'object-curly-newline': 'off',
   },
   settings: {
     'import/parsers': {
