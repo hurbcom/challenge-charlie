@@ -7,7 +7,7 @@ export default class BingService {
 
   async getCurrentWallpaper(): Promise<{ backgroundImage: string }> {
     try {
-      const { data } = await HttpClient.get(`${this.url}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`);
+      const { data } = await HttpClient.get(`${this.url}HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`);
       return Promise.resolve(new BingServiceAdapter().getCurrentWallpaper(data));
     } catch (e) {
       return Promise.reject(e);

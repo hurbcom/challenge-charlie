@@ -1,5 +1,5 @@
 export default class BingServiceAdapter {
   getCurrentWallpaper(payload: any) {
-    return payload.images?.[0]?.url;
+    return { backgroundImage: `https://www.bing.com${payload.images[0].url}` };
   }
 }

@@ -61,6 +61,7 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "axios": "^0.21.1",
+    "axios-mock-adapter": "^1.19.0",
     "core-js": "^3.13.1",
     "dayjs": "^1.10.5",
     "qs-stringify": "^1.2.1",
