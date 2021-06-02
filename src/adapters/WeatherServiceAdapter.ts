@@ -1,24 +1,22 @@
 import { timestampToDate } from '../helpers/timestampToDate';
 
 interface IWeatherResume {
-  dt: number;
+  date: string;
   temp: number;
   pressure: number;
   humidity: number;
-  // should use this only for external api properties
-  // eslint-disable-next-line camelcase
-  wind_speed: number;
+  windSpeed: number;
   description: number;
 }
 
 export default class WeatherServiceAdapter {
-  private toWeather(weatherResume: IWeatherResume) {
+  private toWeather(weatherResume: any): IWeatherResume {
     return {
       date: timestampToDate(weatherResume.dt),
-      temp: weatherResume.temp,
+      temp: weatherResume?.temp?.day?.toFixed(2) || weatherResume.temp.toFixed(2),
       pressure: weatherResume.pressure,
       humidity: weatherResume.humidity,
-      windSpeed: weatherResume.wind_speed,
+      windSpeed: weatherResume.windSpeed,
       description: weatherResume.description,
     };
   }
