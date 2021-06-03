@@ -21,13 +21,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
     hotOnly: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

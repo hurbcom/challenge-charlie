@@ -7,8 +7,11 @@
     "strict": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "lib": ["DOM", "ES2016"],
+    "sourceMap": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
