@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
+
 import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
+
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
 import useBingApi from '../../../hooks/useBingAPI';
+
+import { DetailedWeather } from '../../shared/DetailedWeather';
+import { Input } from '../../shared/Input';
+
+import { HomeStyled } from './style';
 
 interface ICurrentPosition {
   lat: number;
@@ -10,6 +17,10 @@ interface ICurrentPosition {
 
 const Home = () => {
   const [currentPosition, setCurrentPosition] = useState<ICurrentPosition>();
+
+  const { backgroundImage } = useBingApi();
+
+  useWeatherAPI({ ...currentPosition, lang: navigator.language.toLowerCase(), units: 'metric' });
 
   const getLongLat = async () => {
     const {
@@ -22,10 +33,12 @@ const Home = () => {
     getLongLat();
   }, []);
 
-  useBingApi();
-  useWeatherAPI({ ...currentPosition, lang: navigator.language.toLowerCase(), units: 'metric' });
-
-  return <>Hurb Challenge</>;
+  return (
+    <HomeStyled backgroundImage={backgroundImage}>
+      <Input icon={require('../../../assets/icons/compass.svg')} />
+      <DetailedWeather />
+    </HomeStyled>
+  );
 };
 
 export default Home;

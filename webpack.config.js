@@ -11,6 +11,11 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.svg$/,
+        type: 'asset/inline',
+        use: 'svgo-loader',
+      },
     ],
   },
   output: {
@@ -26,6 +31,9 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
     hotOnly: true,
+  },
+  experiments: {
+    asset: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

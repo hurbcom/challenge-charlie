@@ -32,12 +32,14 @@
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.8",
     "@types/react-dom": "^17.0.5",
+    "@types/styled-components": "^5.1.9",
     "@types/testing-library__jest-dom": "^5.9.5",
     "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
     "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -49,6 +51,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.3",
     "jest-coverage-badges": "^1.1.2",
+    "svgo-loader": "^3.0.0",
     "ts-jest": "^27.0.2",
     "ts-loader": "^9.2.2",
     "ts-node": "^10.0.0",
@@ -64,15 +67,21 @@
     "axios-mock-adapter": "^1.19.0",
     "core-js": "^3.13.1",
     "dayjs": "^1.10.5",
+    "normalize.css": "^8.0.1",
     "qs-stringify": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "regenerator-runtime": "^0.13.7"
+    "regenerator-runtime": "^0.13.7",
+    "styled-components": "^5.3.0",
+    "styled-reset": "^4.3.4"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

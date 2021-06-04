@@ -35,6 +35,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'implicit-arrow-linebreak': 'off',
     'function-paren-newline': 'off',
+    'global-require': 'off',
   },
   settings: {
     'import/parsers': {
