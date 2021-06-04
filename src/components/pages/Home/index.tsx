@@ -7,6 +7,7 @@ import useBingApi from '../../../hooks/useBingAPI';
 
 import { DetailedWeather } from '../../shared/DetailedWeather';
 import { Input } from '../../shared/Input';
+import { ResumedWeather } from '../../shared/ResumedWeather';
 
 import { HomeStyled } from './style';
 
@@ -37,6 +38,10 @@ const Home = () => {
     <HomeStyled backgroundImage={backgroundImage}>
       <Input icon={require('../../../assets/icons/compass.svg')} />
       <DetailedWeather />
+      <div className="home__resumed-weathers">
+        <ResumedWeather description="Amanhã" temperature={25} icon={require('../../../assets/icons/3.svg')} />
+        <ResumedWeather description="Depois de Amanhã" temperature={22} icon={require('../../../assets/icons/3.svg')} />
+      </div>
     </HomeStyled>
   );
 };

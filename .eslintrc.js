@@ -36,6 +36,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'function-paren-newline': 'off',
     'global-require': 'off',
+    'react/require-default-props': 'off',
   },
   settings: {
     'import/parsers': {
