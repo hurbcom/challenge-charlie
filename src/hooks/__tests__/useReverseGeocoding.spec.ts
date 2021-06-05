@@ -7,17 +7,17 @@ import { useReverseGeocoding } from '../useReverseGeocoding';
 import { nominatimApiResponse } from '../__mocks__/nominatimApiResponse';
 
 const axiosMock = new MockAdapter(axios);
+const lat = -22.9068;
+const lon = -43.1729;
 
 beforeAll(() => {
   axiosMock
-    .onGet(`${constants.NOMINATIM_API}reverse?format=json&lat=-22.9068&lon=-43.1729`)
+    .onGet(`${constants.NOMINATIM_API}reverse?format=json&lat=${lat}&lon=${lon}`)
     .reply(200, nominatimApiResponse);
 });
 
 describe('useReverseGeocoding hook', () => {
   it('should return a addressInfo object', async () => {
-    const lat = -22.9068;
-    const lon = -43.1729;
     const { result, waitForValueToChange } = renderHook(() => useReverseGeocoding({ lat, lon }));
 
     await waitForValueToChange(() => result.current.addressInfo);

@@ -6,7 +6,7 @@ interface IWeatherDailyResume {
   pressure: number;
   humidity: number;
   windSpeed: number;
-  description: number;
+  description: string;
 }
 
 export interface IWeatherDaily {

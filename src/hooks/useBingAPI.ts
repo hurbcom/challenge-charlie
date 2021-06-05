@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import BingService from '../external/BingService';
 
 const useBingAPI = () => {

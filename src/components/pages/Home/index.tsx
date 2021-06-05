@@ -4,6 +4,7 @@ import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
 
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
 import useBingApi from '../../../hooks/useBingAPI';
+import { useReverseGeocoding } from '../../../hooks/useReverseGeocoding';
 
 import { DetailedWeather } from '../../shared/DetailedWeather';
 import { Input } from '../../shared/Input';
@@ -18,10 +19,18 @@ interface ICurrentPosition {
 
 const Home = () => {
   const [currentPosition, setCurrentPosition] = useState<ICurrentPosition>();
+  const [addressInput, setAddressInput] = useState('');
 
   const { backgroundImage } = useBingApi();
-
-  useWeatherAPI({ ...currentPosition, lang: navigator.language.toLowerCase(), units: 'metric' });
+  const { addressInfo } = useReverseGeocoding({
+    lat: currentPosition?.lat,
+    lon: currentPosition?.lon,
+  });
+  const { weatherResume } = useWeatherAPI({
+    ...currentPosition,
+    lang: navigator.language.toLowerCase(),
+    units: 'metric',
+  });
 
   const getLongLat = async () => {
     const {
@@ -34,13 +43,39 @@ const Home = () => {
     getLongLat();
   }, []);
 
+  useEffect(() => {
+    if (addressInfo.city) {
+      setAddressInput(`${addressInfo.city}, ${addressInfo.state}`);
+    }
+  }, [addressInfo]);
+
   return (
     <HomeStyled backgroundImage={backgroundImage}>
-      <Input icon={require('../../../assets/icons/compass.svg')} />
-      <DetailedWeather />
+      <Input
+        value={addressInput}
+        onChange={(event) => {
+          setAddressInput(event.currentTarget.value);
+        }}
+        icon={require('../../../assets/icons/compass.svg')}
+      />
+      <DetailedWeather
+        temp={weatherResume?.current.temp}
+        humidity={weatherResume?.current.humidity}
+        windSpeed={weatherResume?.current.windSpeed}
+        description={weatherResume?.current.description}
+        pressure={weatherResume?.current.pressure}
+      />
       <div className="home__resumed-weathers">
-        <ResumedWeather description="Amanhã" temperature={25} icon={require('../../../assets/icons/3.svg')} />
-        <ResumedWeather description="Depois de Amanhã" temperature={22} icon={require('../../../assets/icons/3.svg')} />
+        <ResumedWeather
+          description="Amanhã"
+          temperature={weatherResume?.tomorrow.temp}
+          icon={require('../../../assets/icons/3.svg')}
+        />
+        <ResumedWeather
+          description="Depois de Amanhã"
+          temperature={weatherResume?.afterTomorrow.temp}
+          icon={require('../../../assets/icons/3.svg')}
+        />
       </div>
     </HomeStyled>
   );

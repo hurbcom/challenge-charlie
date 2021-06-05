@@ -37,6 +37,8 @@ module.exports = {
     'function-paren-newline': 'off',
     'global-require': 'off',
     'react/require-default-props': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    radix: 'off',
   },
   settings: {
     'import/parsers': {

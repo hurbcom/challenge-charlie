@@ -51,7 +51,6 @@
     "husky": "^6.0.0",
     "jest": "^27.0.3",
     "jest-coverage-badges": "^1.1.2",
-    "jest-svg-transformer": "^1.0.0",
     "jest-transform-stub": "^2.0.0",
     "svgo-loader": "^3.0.0",
     "ts-jest": "^27.0.2",

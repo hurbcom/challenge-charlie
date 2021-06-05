@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import NominatimService from '../external/NominatimService';
 
 interface IUseReverseGeocoding {

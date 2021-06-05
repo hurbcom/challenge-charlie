@@ -12,7 +12,7 @@ export const ResumedWeatherStyled = styled.div`
   border-bottom: 1px solid #a5793d;
 
   .resumed-weather__icon {
-    width: 25%;
+    width: 3rem;
 
     img {
       filter: invert(1);

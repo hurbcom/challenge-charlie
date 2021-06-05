@@ -32,7 +32,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       text-align: center;
       padding: 20px;
       img {
-        width: 90%;
+        width: 10rem;
         filter: invert(1);
       }
     }
