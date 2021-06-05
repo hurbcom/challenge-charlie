@@ -8,6 +8,7 @@ interface IDetailedWeather {
   pressure: number | undefined;
   humidity: number | undefined;
   description: string | undefined;
+  icon: string;
 }
 
 export const DetailedWeather = ({
@@ -16,10 +17,11 @@ export const DetailedWeather = ({
   pressure,
   humidity,
   description,
+  icon,
 }: IDetailedWeather) => (
   <DetailedWeatherStyled>
     <div className="detailed-weather__icon">
-      <img src={require('../../../assets/icons/2.svg')} alt="a" />
+      {icon && <img src={require('../../../assets/icons/2.svg')} alt={description} />}
     </div>
     <div className="detailed-weather__info">
       <div className="detailed-weather__temp">

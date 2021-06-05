@@ -7,6 +7,7 @@ interface IWeatherDailyResume {
   humidity: number;
   windSpeed: number;
   description: string;
+  id: number;
 }
 
 export interface IWeatherDaily {
@@ -19,6 +20,7 @@ export default class WeatherServiceAdapter {
   private toWeather(weatherResume: any): IWeatherDailyResume {
     return {
       date: timestampToDate(weatherResume.dt),
+      id: weatherResume.weather[0].id,
       temp: weatherResume?.temp?.day || weatherResume.temp,
       pressure: weatherResume.pressure,
       humidity: weatherResume.humidity,

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
+import { getIconByWeatherId } from '../../../helpers/getIconByWeatherId';
 
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
 import useBingApi from '../../../hooks/useBingAPI';
@@ -64,17 +65,18 @@ const Home = () => {
         windSpeed={weatherResume?.current.windSpeed}
         description={weatherResume?.current.description}
         pressure={weatherResume?.current.pressure}
+        icon={getIconByWeatherId(weatherResume?.current.id)}
       />
       <div className="home__resumed-weathers">
         <ResumedWeather
           description="Amanhã"
           temperature={weatherResume?.tomorrow.temp}
-          icon={require('../../../assets/icons/3.svg')}
+          icon={getIconByWeatherId(weatherResume?.tomorrow.id)}
         />
         <ResumedWeather
           description="Depois de Amanhã"
           temperature={weatherResume?.afterTomorrow.temp}
-          icon={require('../../../assets/icons/3.svg')}
+          icon={getIconByWeatherId(weatherResume?.afterTomorrow.id)}
         />
       </div>
     </HomeStyled>
