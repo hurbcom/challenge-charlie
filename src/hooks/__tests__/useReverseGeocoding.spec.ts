@@ -15,14 +15,14 @@ beforeAll(() => {
 });
 
 describe('useReverseGeocoding hook', () => {
-  it('should return a addressInfo object', () => {
-    const lat = -22.906;
+  it('should return a addressInfo object', async () => {
+    const lat = -22.9068;
     const lon = -43.1729;
-    const { result, waitForNextUpdate } = renderHook(() => useReverseGeocoding({ lat, lon }));
+    const { result, waitForValueToChange } = renderHook(() => useReverseGeocoding({ lat, lon }));
 
-    waitForNextUpdate();
+    await waitForValueToChange(() => result.current.addressInfo);
 
-    expect(typeof result.current.addressInfo).toBe('string');
+    expect(typeof result.current.addressInfo).toBe('object');
     expect(result.current.addressInfo).toMatchObject({
       city: 'Rio de Janeiro',
       state: 'Rio de Janeiro',
