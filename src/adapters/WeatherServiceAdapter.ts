@@ -27,10 +27,22 @@ export default class WeatherServiceAdapter {
     };
   }
 
-  getWeather(payload: any): IWeatherDaily {
+  getWeatherResume(payload: any): IWeatherDaily {
     const current = this.toWeather(payload.current);
     const tomorrow = this.toWeather(payload.daily[1]);
     const afterTomorrow = this.toWeather(payload.daily[2]);
     return { current, tomorrow, afterTomorrow };
+  }
+
+  getWeatherByLocationName(payload: any) {
+    return {
+      lat: payload.lat,
+      lon: payload.lon,
+      temp: payload?.main?.temp,
+      pressure: payload?.main?.pressure,
+      humidity: payload?.main?.humidity,
+      windSpeed: payload?.wind?.speed,
+      description: payload?.weather[0].description,
+    };
   }
 }

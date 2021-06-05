@@ -17,12 +17,17 @@ const useWeatherAPI = ({ lat, lon, units, lang }: IHookPayload) => {
     setWeatherResume(data);
   };
 
+  const getWeatherByLocationName = async ({ location }: { location: string }) => {
+    const data = await new WeatherService().getWeatherByLocationName({ location });
+    return data;
+  };
+
   useEffect(() => {
     if (!lat || !lon) return;
     getWeatherResume();
   }, [lat, lon]);
 
-  return { weatherResume };
+  return { weatherResume, getWeatherByLocationName };
 };
 
 export default useWeatherAPI;
