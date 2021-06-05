@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import NominatimService from '../external/NominatimService';
+import OpenCageGeocodingService from '../external/OpenCageGeocodingService';
 
 interface IUseReverseGeocoding {
   lat: number | undefined;
@@ -11,7 +11,7 @@ export const useReverseGeocoding = ({ lat, lon }: IUseReverseGeocoding) => {
   const [addressInfo, setAddressInfo] = useState({ city: '', state: '', country: '' });
 
   const getLocationByLatLong = async () => {
-    const data = await new NominatimService().getLocationByLatLong({ lat, lon });
+    const data = await new OpenCageGeocodingService().getLocationByLatLong({ lat, lon });
     setAddressInfo(data);
   };
 

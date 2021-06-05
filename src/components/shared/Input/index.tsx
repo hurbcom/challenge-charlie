@@ -4,7 +4,7 @@ interface IInput {
   type?: string;
   icon?: string;
   value: string;
-  onChange: (event) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = ({ type = 'text', icon = '', value = '', onChange }: IInput) => (
