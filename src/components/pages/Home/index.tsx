@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
 import { getIconByWeatherId } from '../../../helpers/getIconByWeatherId';
@@ -23,21 +23,22 @@ const Home = () => {
   const [addressInput, setAddressInput] = useState('');
 
   const { backgroundImage } = useBingApi();
+
   const { addressInfo } = useReverseGeocoding({
     lat: currentPosition?.lat,
     lon: currentPosition?.lon,
   });
+
   const { weatherResume, getWeatherByLocationName } = useWeatherAPI({
     ...currentPosition,
-    units: 'metric',
   });
 
-  const getLongLat = async () => {
+  const getLongLat = useCallback(async () => {
     const {
       coords: { latitude: lat, longitude: lon },
     } = await getCurrentPosition();
     setCurrentPosition({ lat, lon });
-  };
+  }, []);
 
   useEffect(() => {
     getLongLat();

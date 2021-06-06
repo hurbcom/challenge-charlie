@@ -20,8 +20,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
-    filename: '[name].js',
+    publicPath: '.',
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
@@ -34,6 +34,9 @@ module.exports = {
   },
   experiments: {
     asset: true,
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

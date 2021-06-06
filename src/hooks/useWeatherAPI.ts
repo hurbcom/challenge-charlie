@@ -5,7 +5,7 @@ import WeatherService from '../external/WeatherService';
 interface IHookPayload {
   lat?: number | undefined;
   lon?: number | undefined;
-  units: string;
+  units?: string;
   lang?: string;
 }
 

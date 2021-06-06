@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { ResumedWeatherStyled } from './style';
 
 interface IResumedWeather {
@@ -17,3 +19,5 @@ export const ResumedWeather = ({ icon = '', description, temperature }: IResumed
     </div>
   </ResumedWeatherStyled>
 );
+
+export default memo(ResumedWeather);

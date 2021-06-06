@@ -1,0 +1,18 @@
+# IMPORTANT: docker-compose file for dev environment only!
+version: '3.9'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 3000:80
+    depends_on:
+      - web

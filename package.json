@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
+    "build:watch": "webpack --watch",
     "test": "jest --coverage"
   },
   "repository": {
@@ -58,6 +59,7 @@
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2",
     "webpack": "^5.38.1",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
@@ -68,8 +70,6 @@
     "axios-mock-adapter": "^1.19.0",
     "core-js": "^3.13.1",
     "dayjs": "^1.10.5",
-    "normalize.css": "^8.0.1",
-    "qs-stringify": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "regenerator-runtime": "^0.13.7",

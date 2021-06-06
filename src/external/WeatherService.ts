@@ -5,7 +5,7 @@ import WeatherServiceAdapter from '../adapters/WeatherServiceAdapter';
 interface IWeatherResumeRequestParameters {
   lat: number | undefined;
   lon: number | undefined;
-  units: string;
+  units?: string;
   lang?: string;
 }
 
@@ -23,7 +23,7 @@ export default class WeatherService {
   async getWeatherResume({
     lat,
     lon,
-    units,
+    units = 'metric',
     lang = DEFAULT_LANGUAGE,
   }: IWeatherResumeRequestParameters) {
     try {

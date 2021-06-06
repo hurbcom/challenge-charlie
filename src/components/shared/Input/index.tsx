@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { InputStyled } from './style';
 
 interface IInput {
@@ -18,3 +20,5 @@ export const Input = ({ type = 'text', icon = '', value = '', onChange, onKeyPre
     <input type={type} value={value} onChange={onChange} onKeyPress={onKeyPress} />
   </InputStyled>
 );
+
+export default memo(Input);
