@@ -6,7 +6,7 @@ interface IHookPayload {
   lat?: number | undefined;
   lon?: number | undefined;
   units: string;
-  lang: string;
+  lang?: string;
 }
 
 const useWeatherAPI = ({ lat, lon, units, lang }: IHookPayload) => {

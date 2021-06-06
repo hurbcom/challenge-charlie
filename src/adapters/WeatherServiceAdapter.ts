@@ -38,8 +38,8 @@ export default class WeatherServiceAdapter {
 
   getWeatherByLocationName(payload: any) {
     return {
-      lat: payload.lat,
-      lon: payload.lon,
+      lat: payload.coord.lat,
+      lon: payload.coord.lon,
       temp: payload?.main?.temp,
       pressure: payload?.main?.pressure,
       humidity: payload?.main?.humidity,

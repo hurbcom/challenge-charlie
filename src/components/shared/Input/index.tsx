@@ -5,15 +5,16 @@ interface IInput {
   icon?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEventHandler<HTMLInputElement> | undefined) => void;
 }
 
-export const Input = ({ type = 'text', icon = '', value = '', onChange }: IInput) => (
+export const Input = ({ type = 'text', icon = '', value = '', onChange, onKeyPress }: IInput) => (
   <InputStyled>
     {icon && (
       <div className="input__icon">
         <img src={icon} alt="compass" />
       </div>
     )}
-    <input type={type} value={value} onChange={onChange} />
+    <input type={type} value={value} onChange={onChange} onKeyPress={onKeyPress} />
   </InputStyled>
 );

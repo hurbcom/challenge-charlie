@@ -14,7 +14,7 @@ export default class OpenCageGeocodingService {
   async getLocationByLatLong({ lat, lon, lang = 'pt_br' }: IOpenCageGeocodingAPIParameters) {
     try {
       const { data } = await HttpClient.get(
-        `${this.url}geocode/v1/json?q=${lat},${lon}&language=${lang}`,
+        `${this.url}geocode/v1/json?q=${lat},${lon}&language=${lang}&key=${constants.OPENCAGEGEOCODING_API_ID}`,
       );
       return Promise.resolve(new OpenCageGeocodingServiceAdapter().getCurrentLocation(data));
     } catch (e) {

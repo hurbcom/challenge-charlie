@@ -21,7 +21,7 @@ export const DetailedWeather = ({
 }: IDetailedWeather) => (
   <DetailedWeatherStyled>
     <div className="detailed-weather__icon">
-      {icon && <img src={require('../../../assets/icons/2.svg')} alt={description} />}
+      <img src={icon} alt={description} />
     </div>
     <div className="detailed-weather__info">
       <div className="detailed-weather__temp">

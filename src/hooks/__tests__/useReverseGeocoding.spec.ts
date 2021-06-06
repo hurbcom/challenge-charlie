@@ -12,7 +12,9 @@ const lon = -43.1729;
 
 beforeAll(() => {
   axiosMock
-    .onGet(`${constants.OPENCAGEGEOCODING_API}geocode/v1/json?q=${lat},${lon}&language=pt_br`)
+    .onGet(
+      `${constants.OPENCAGEGEOCODING_API}geocode/v1/json?q=${lat},${lon}&language=pt_br&key=${constants.OPENCAGEGEOCODING_API_ID}`,
+    )
     .reply(200, openCageGeocodingApiResponse);
 });
 

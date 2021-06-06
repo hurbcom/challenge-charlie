@@ -27,9 +27,8 @@ const Home = () => {
     lat: currentPosition?.lat,
     lon: currentPosition?.lon,
   });
-  const { weatherResume } = useWeatherAPI({
+  const { weatherResume, getWeatherByLocationName } = useWeatherAPI({
     ...currentPosition,
-    lang: navigator.language.toLowerCase(),
     units: 'metric',
   });
 
@@ -45,8 +44,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (addressInfo.city) {
+    if (addressInfo.city && addressInfo.state) {
       setAddressInput(`${addressInfo.city}, ${addressInfo.state}`);
+    } else if (addressInfo.city && !addressInfo.state) {
+      setAddressInput(`${addressInfo.city}`);
     }
   }, [addressInfo]);
 
@@ -58,6 +59,12 @@ const Home = () => {
           setAddressInput(event.currentTarget.value);
         }}
         icon={require('../../../assets/icons/compass.svg')}
+        onKeyPress={async (event) => {
+          if (event.key === 'Enter') {
+            const data = await getWeatherByLocationName({ location: addressInput });
+            setCurrentPosition({ lat: data.lat, lon: data.lon });
+          }
+        }}
       />
       <DetailedWeather
         temp={weatherResume?.current.temp}
