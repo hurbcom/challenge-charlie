@@ -1,9 +1,12 @@
+import Color from 'color';
 import styled from 'styled-components';
 
-export const HomeStyled = styled.div<{ backgroundImage: string }>`
+export const HomeStyled = styled.div<{ backgroundImage: string; backgroundColor: string | Color }>`
   height: 100vh;
   background-image: url(${(props) => props.backgroundImage});
-  background: linear-gradient(180deg, rgba(209, 145, 14, 0.7) 35%, rgba(255, 200, 55, 0.9) 140%),
-    url(${(props) => props.backgroundImage});
+  background: ${(props) =>
+    `linear-gradient(180deg, ${(props.backgroundColor as Color).fade(0.5).string()} 35%, ${
+      props.backgroundColor as Color
+    } 140%), url(${props.backgroundImage})`};
   background-size: cover;
 `;

@@ -1,3 +1,4 @@
+import Color from 'color';
 import { memo } from 'react';
 
 import { ResumedWeatherStyled } from './style';
@@ -6,10 +7,16 @@ interface IResumedWeather {
   icon?: string;
   description: string;
   temperature: number | undefined;
+  backgroundColor: string | Color;
 }
 
-export const ResumedWeather = ({ icon = '', description, temperature }: IResumedWeather) => (
-  <ResumedWeatherStyled>
+export const ResumedWeather = ({
+  icon = '',
+  description,
+  temperature,
+  backgroundColor,
+}: IResumedWeather) => (
+  <ResumedWeatherStyled backgroundColor={backgroundColor}>
     <div className="resumed-weather__icon">
       <img src={icon} alt={description} />
     </div>

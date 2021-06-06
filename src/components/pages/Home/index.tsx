@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
 import { getIconByWeatherId } from '../../../helpers/getIconByWeatherId';
+import { getColorByTemp } from '../../../helpers/getGradientByTemp';
 
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
 import useBingApi from '../../../hooks/useBingAPI';
@@ -29,7 +30,7 @@ const Home = () => {
     lon: currentPosition?.lon,
   });
 
-  const { weatherResume, getWeatherByLocationName } = useWeatherAPI({
+  const { weatherResume, averageTemp, getWeatherByLocationName } = useWeatherAPI({
     ...currentPosition,
   });
 
@@ -53,7 +54,7 @@ const Home = () => {
   }, [addressInfo]);
 
   return (
-    <HomeStyled backgroundImage={backgroundImage}>
+    <HomeStyled backgroundImage={backgroundImage} backgroundColor={getColorByTemp(averageTemp)}>
       <Input
         value={addressInput}
         onChange={(event) => {
@@ -80,11 +81,13 @@ const Home = () => {
           description="Amanhã"
           temperature={weatherResume?.tomorrow.temp}
           icon={getIconByWeatherId(weatherResume?.tomorrow.id)}
+          backgroundColor={getColorByTemp(averageTemp)}
         />
         <ResumedWeather
           description="Depois de Amanhã"
           temperature={weatherResume?.afterTomorrow.temp}
           icon={getIconByWeatherId(weatherResume?.afterTomorrow.id)}
+          backgroundColor={getColorByTemp(averageTemp)}
         />
       </div>
     </HomeStyled>
