@@ -37,4 +37,35 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       }
     }
   }
+
+  .detailed-weather-skeleton__icon {
+    margin: 0 auto;
+    padding: 3rem;
+
+    > div {
+      background-color: #9a9a9a;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 50%;
+    }
+  }
+
+  .detailed-weather-skeleton__info {
+    padding: 3rem 0;
+
+    .detailed-weather-skeleton__temperature {
+      width: 8rem;
+      background-color: #9a9a9a;
+      height: 1.5rem;
+      border-radius: 2px;
+    }
+
+    .detailed-weather-skeleton__description {
+      width: 5rem;
+      height: 1rem;
+      background-color: #9a9a9a;
+      margin-top: 0.5rem;
+      border-radius: 2px;
+    }
+  }
 `;

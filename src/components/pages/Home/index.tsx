@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
 import { getIconByWeatherId } from '../../../helpers/getIconByWeatherId';
-import { getColorByTemperature } from '../../../helpers/getGradientByTemp';
+import { getColorByTemperature } from '../../../helpers/getColorByTemperature';
 import { getTemperatureWithCelsius } from '../../../helpers/getTemperatureWithCelsius';
 
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
@@ -28,12 +28,17 @@ const Home = () => {
 
   const { backgroundImage } = useBingApi();
 
-  const { addressInfo } = useReverseGeocoding({
+  const { addressInfo, isLoading: isReverseGeocodingLoading } = useReverseGeocoding({
     lat: currentPosition?.lat,
     lon: currentPosition?.lon,
   });
 
-  const { weatherResume, averageTemperature, getWeatherByLocationName } = useWeatherAPI({
+  const {
+    weatherResume,
+    averageTemperature,
+    getWeatherByLocationName,
+    isLoading: isWeatherAPILoading,
+  } = useWeatherAPI({
     ...currentPosition,
     temperatureUnit,
   });
@@ -60,9 +65,7 @@ const Home = () => {
   return (
     <HomeStyled
       backgroundImage={backgroundImage}
-      backgroundColor={getColorByTemperature(
-        getTemperatureWithCelsius(averageTemperature, temperatureUnit),
-      )}
+      backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
     >
       <Input
         value={addressInput}
@@ -79,6 +82,7 @@ const Home = () => {
       />
       <DetailedWeather
         temperature={weatherResume?.current.temperature}
+        isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
         humidity={weatherResume?.current.humidity}
         windSpeed={weatherResume?.current.windSpeed}
         description={weatherResume?.current.description}
@@ -92,22 +96,20 @@ const Home = () => {
       />
       <div className="home__resumed-weathers">
         <ResumedWeather
+          isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
           description="Amanhã"
           temperature={weatherResume?.tomorrow.temperature}
           temperatureUnit={temperatureUnit}
           icon={getIconByWeatherId(weatherResume?.tomorrow.id)}
-          backgroundColor={getColorByTemperature(
-            getTemperatureWithCelsius(averageTemperature, temperatureUnit),
-          )}
+          backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
         />
         <ResumedWeather
+          isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
           description="Depois de Amanhã"
           temperature={weatherResume?.afterTomorrow.temperature}
           temperatureUnit={temperatureUnit}
           icon={getIconByWeatherId(weatherResume?.afterTomorrow.id)}
-          backgroundColor={getColorByTemperature(
-            getTemperatureWithCelsius(averageTemperature, temperatureUnit),
-          )}
+          backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
         />
       </div>
     </HomeStyled>

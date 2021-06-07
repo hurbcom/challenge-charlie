@@ -9,10 +9,18 @@ interface IUseReverseGeocoding {
 
 export const useReverseGeocoding = ({ lat, lon }: IUseReverseGeocoding) => {
   const [addressInfo, setAddressInfo] = useState({ city: '', state: '', country: '' });
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const getLocationByLatLong = async () => {
-    const data = await new OpenCageGeocodingService().getLocationByLatLong({ lat, lon });
-    setAddressInfo(data);
+    try {
+      setLoading(true);
+      const data = await new OpenCageGeocodingService().getLocationByLatLong({ lat, lon });
+      setAddressInfo(data);
+    } catch (e) {
+      alert(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -20,5 +28,5 @@ export const useReverseGeocoding = ({ lat, lon }: IUseReverseGeocoding) => {
     getLocationByLatLong();
   }, [lat, lon]);
 
-  return { addressInfo };
+  return { addressInfo, isLoading };
 };

@@ -20,6 +20,13 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     }
   }
 
+  .resumed-weather-skeleton__icon {
+    background-color: #9a9a9a;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+  }
+
   .resumed-weather__weather {
     display: flex;
     flex-direction: column;
@@ -30,5 +37,20 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     .resumed-weather__description {
       text-transform: uppercase;
     }
+  }
+
+  .resumed-weather-skeleton__description {
+    background-color: #9a9a9a;
+    width: 6.5rem;
+    height: 1.5rem;
+    margin-bottom: 5px;
+    border-radius: 2px;
+  }
+
+  .resumed-weather-skeleton__temperature {
+    width: 3.5rem;
+    height: 1rem;
+    background-color: #9a9a9a;
+    border-radius: 2px;
   }
 `;

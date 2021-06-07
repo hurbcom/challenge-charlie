@@ -39,6 +39,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-one-expression-per-line': 'off',
     radix: 'off',
+    'max-len': ['error', { code: 120 }],
   },
   settings: {
     'import/parsers': {

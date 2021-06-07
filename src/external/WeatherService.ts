@@ -20,12 +20,7 @@ const DEFAULT_LANGUAGE = 'pt_br';
 export default class WeatherService {
   private url: string = constants.WEATHER_API;
 
-  async getWeatherResume({
-    lat,
-    lon,
-    units = 'metric',
-    lang = DEFAULT_LANGUAGE,
-  }: IWeatherResumeRequestParameters) {
+  async getWeatherResume({ lat, lon, units = 'metric', lang = DEFAULT_LANGUAGE }: IWeatherResumeRequestParameters) {
     try {
       const { data } = await HttpClient.get(
         `${this.url}data/2.5/onecall?exclude=hourly,minutely&appid=${constants.WEATHER_API_APP_ID}&lang=${lang}&units=${units}&lat=${lat}&lon=${lon}`,

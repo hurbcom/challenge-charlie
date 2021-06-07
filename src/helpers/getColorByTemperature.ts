@@ -1,7 +1,9 @@
 import Color from 'color';
 
 export const getColorByTemperature = (temperature: number | undefined) => {
-  const fallbackHexadecimal: Color = Color.rgb([255, 200, 54]);
+  const fallbackHexadecimal: Color = Color.rgb([74, 74, 74]);
+
+  console.log(temperature);
 
   if (!temperature) {
     return fallbackHexadecimal;
@@ -15,5 +17,5 @@ export const getColorByTemperature = (temperature: number | undefined) => {
     return Color.rgb([231, 111, 81]);
   }
 
-  return fallbackHexadecimal;
+  return Color.rgb([255, 200, 54]);
 };

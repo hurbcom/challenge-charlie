@@ -15,18 +15,26 @@ interface IUseWeatherAPIPayload {
 const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayload) => {
   const [weatherResume, setWeatherResume] = useState<IWeatherDaily>();
   const [averageTemperature, setAverageTemperature] = useState<number>();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const getWeatherResume = async () => {
-    const data = await new WeatherService().getWeatherResume({
-      lat,
-      lon,
-      units: getMetrictByTemperatureUnit(temperatureUnit),
-      lang,
-    });
-    setWeatherResume(data);
-    setAverageTemperature(
-      (data.current.temperature + data.tomorrow.temperature + data.afterTomorrow.temperature) / 3,
-    );
+    try {
+      setLoading(true);
+      const data = await new WeatherService().getWeatherResume({
+        lat,
+        lon,
+        units: getMetrictByTemperatureUnit(temperatureUnit),
+        lang,
+      });
+      setWeatherResume(data);
+      setAverageTemperature(
+        (data.current.temperature + data.tomorrow.temperature + data.afterTomorrow.temperature) / 3,
+      );
+    } catch (e) {
+      alert(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getWeatherByLocationName = async ({ location }: { location: string }) => {
@@ -39,7 +47,7 @@ const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayloa
     getWeatherResume();
   }, [lat, lon, temperatureUnit]);
 
-  return { weatherResume, averageTemperature, getWeatherByLocationName };
+  return { weatherResume, averageTemperature, getWeatherByLocationName, isLoading };
 };
 
 export default useWeatherAPI;
