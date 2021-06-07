@@ -27,7 +27,7 @@ describe('useWeatherAPI hook', () => {
     expect(result.current.weatherResume).toMatchObject({
       current: {
         date: '02/06/2021',
-        temp: 26.26,
+        temperature: 26.26,
         pressure: 1013,
         humidity: 70,
         windSpeed: 2.06,
@@ -35,7 +35,7 @@ describe('useWeatherAPI hook', () => {
       },
       tomorrow: {
         date: '03/06/2021',
-        temp: 26.47,
+        temperature: 26.47,
         pressure: 1019,
         humidity: 62,
         windSpeed: 3.21,
@@ -43,7 +43,7 @@ describe('useWeatherAPI hook', () => {
       },
       afterTomorrow: {
         date: '04/06/2021',
-        temp: 24.47,
+        temperature: 24.47,
         pressure: 1023,
         humidity: 71,
         windSpeed: 3.64,

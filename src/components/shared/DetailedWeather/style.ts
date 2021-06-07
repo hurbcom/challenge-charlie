@@ -14,7 +14,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       line-height: 30px;
     }
 
-    &__temp {
+    &__temperature {
       display: flex;
       flex-direction: column;
       margin-bottom: 10px;

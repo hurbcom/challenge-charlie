@@ -1,22 +1,32 @@
 import { useEffect, useState } from 'react';
+
+import { TemperatureUnit } from '../global-types';
 import { IWeatherDaily } from '../adapters/WeatherServiceAdapter';
 import WeatherService from '../external/WeatherService';
+import { getMetrictByTemperatureUnit } from '../helpers/getMetrictByTemperatureUnit';
 
-interface IHookPayload {
+interface IUseWeatherAPIPayload {
   lat?: number | undefined;
   lon?: number | undefined;
-  units?: string;
   lang?: string;
+  temperatureUnit: TemperatureUnit;
 }
 
-const useWeatherAPI = ({ lat, lon, units, lang }: IHookPayload) => {
+const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayload) => {
   const [weatherResume, setWeatherResume] = useState<IWeatherDaily>();
-  const [averageTemp, setAverageTemp] = useState<number>();
+  const [averageTemperature, setAverageTemperature] = useState<number>();
 
   const getWeatherResume = async () => {
-    const data = await new WeatherService().getWeatherResume({ lat, lon, units, lang });
+    const data = await new WeatherService().getWeatherResume({
+      lat,
+      lon,
+      units: getMetrictByTemperatureUnit(temperatureUnit),
+      lang,
+    });
     setWeatherResume(data);
-    setAverageTemp((data.current.temp + data.tomorrow.temp + data.afterTomorrow.temp) / 3);
+    setAverageTemperature(
+      (data.current.temperature + data.tomorrow.temperature + data.afterTomorrow.temperature) / 3,
+    );
   };
 
   const getWeatherByLocationName = async ({ location }: { location: string }) => {
@@ -27,9 +37,9 @@ const useWeatherAPI = ({ lat, lon, units, lang }: IHookPayload) => {
   useEffect(() => {
     if (!lat || !lon) return;
     getWeatherResume();
-  }, [lat, lon]);
+  }, [lat, lon, temperatureUnit]);
 
-  return { weatherResume, averageTemp, getWeatherByLocationName };
+  return { weatherResume, averageTemperature, getWeatherByLocationName };
 };
 
 export default useWeatherAPI;

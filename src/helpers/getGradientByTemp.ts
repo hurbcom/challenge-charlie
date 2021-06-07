@@ -1,18 +1,17 @@
 import Color from 'color';
 
-export const getColorByTemp = (temp: number | undefined) => {
-  // eslint-disable-next-line operator-linebreak
+export const getColorByTemperature = (temperature: number | undefined) => {
   const fallbackHexadecimal: Color = Color.rgb([255, 200, 54]);
 
-  if (!temp) {
+  if (!temperature) {
     return fallbackHexadecimal;
   }
 
-  if (temp < 15) {
+  if (temperature < 15) {
     return Color.rgb([109, 157, 197]);
   }
 
-  if (temp > 35) {
+  if (temperature > 35) {
     return Color.rgb([231, 111, 81]);
   }
 

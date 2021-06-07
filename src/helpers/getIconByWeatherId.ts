@@ -10,7 +10,7 @@ export const getIconByWeatherId = (id: number | undefined) => {
   if (id >= 500 && id < 600) {
     return require('../assets/icons/18.svg');
   }
-  if (id >= 600 && id < 700) {
+  if (id >= 600 && id < 800) {
     return require('../assets/icons/22.svg');
   }
   if (id >= 801 && id < 900) {

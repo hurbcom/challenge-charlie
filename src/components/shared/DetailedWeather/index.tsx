@@ -1,32 +1,48 @@
+import { TemperatureUnit } from '../../../global-types';
 import { capitalize } from '../../../helpers/capitalize';
 
 import { DetailedWeatherStyled } from './style';
 
 interface IDetailedWeather {
-  temp: number | undefined;
+  temperature: number | undefined;
   windSpeed: number | undefined;
   pressure: number | undefined;
   humidity: number | undefined;
   description: string | undefined;
   icon: string;
+  onTemperatureClick?: () => void;
+  temperatureUnit?: TemperatureUnit;
 }
 
 export const DetailedWeather = ({
-  temp,
+  temperature,
+  temperatureUnit = 'C',
   windSpeed,
   pressure,
   humidity,
   description,
   icon,
+  onTemperatureClick,
 }: IDetailedWeather) => (
   <DetailedWeatherStyled>
     <div className="detailed-weather__icon">
       <img src={icon} alt={description} />
     </div>
     <div className="detailed-weather__info">
-      <div className="detailed-weather__temp">
+      <div className="detailed-weather__temperature">
         <span>HOJE</span>
-        <span>{temp?.toFixed(0)}ºC</span>
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={onTemperatureClick}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              if (onTemperatureClick) onTemperatureClick();
+            }
+          }}
+        >
+          {temperature?.toFixed(0)}º{temperatureUnit}
+        </span>
       </div>
       <span className="detailed-weather__description">{capitalize(description)}</span>
       <div className="detailed-weather__other-infos">

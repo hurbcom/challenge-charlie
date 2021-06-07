@@ -1,6 +1,8 @@
 import Color from 'color';
 import { memo } from 'react';
 
+import { TemperatureUnit } from '../../../global-types';
+
 import { ResumedWeatherStyled } from './style';
 
 interface IResumedWeather {
@@ -8,12 +10,14 @@ interface IResumedWeather {
   description: string;
   temperature: number | undefined;
   backgroundColor: string | Color;
+  temperatureUnit?: TemperatureUnit;
 }
 
 export const ResumedWeather = ({
   icon = '',
   description,
   temperature,
+  temperatureUnit = 'C',
   backgroundColor,
 }: IResumedWeather) => (
   <ResumedWeatherStyled backgroundColor={backgroundColor}>
@@ -22,7 +26,9 @@ export const ResumedWeather = ({
     </div>
     <div className="resumed-weather__weather">
       <span className="resumed-weather__description">{description}</span>
-      <span>{temperature?.toFixed(0)}°C</span>
+      <span>
+        {temperature?.toFixed(0)}°{temperatureUnit}
+      </span>
     </div>
   </ResumedWeatherStyled>
 );

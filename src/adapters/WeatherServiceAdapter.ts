@@ -2,7 +2,7 @@ import { timestampToDate } from '../helpers/timestampToDate';
 
 interface IWeatherDailyResume {
   date: string;
-  temp: number;
+  temperature: number;
   pressure: number;
   humidity: number;
   windSpeed: number;
@@ -21,7 +21,7 @@ export default class WeatherServiceAdapter {
     return {
       date: timestampToDate(weatherResume.dt),
       id: weatherResume.weather[0].id,
-      temp: weatherResume?.temp?.day || weatherResume.temp,
+      temperature: weatherResume?.temp?.day || weatherResume.temp,
       pressure: weatherResume.pressure,
       humidity: weatherResume.humidity,
       windSpeed: weatherResume.wind_speed,
@@ -40,7 +40,7 @@ export default class WeatherServiceAdapter {
     return {
       lat: payload.coord.lat,
       lon: payload.coord.lon,
-      temp: payload?.main?.temp,
+      temperature: payload?.main?.temp,
       pressure: payload?.main?.pressure,
       humidity: payload?.main?.humidity,
       windSpeed: payload?.wind?.speed,
