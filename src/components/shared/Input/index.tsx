@@ -17,7 +17,13 @@ export const Input = ({ type = 'text', icon = '', value = '', onChange, onKeyPre
         <img src={icon} alt="compass" />
       </div>
     )}
-    <input type={type} value={value} onChange={onChange} onKeyPress={onKeyPress} />
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      onKeyPress={onKeyPress}
+      aria-label="Digite sua localidade aqui"
+    />
   </InputStyled>
 );
 

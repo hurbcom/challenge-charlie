@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    image: development-stage
     volumes:
       - .:/app
   nginx:

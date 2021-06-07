@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
-  mode: 'development',
   module: {
     rules: [
       {
@@ -22,25 +21,21 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '.',
     filename: '[name].bundle.js',
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.join(__dirname, 'dist/'),
-    port: 3000,
-    hotOnly: true,
-  },
   experiments: {
     asset: true,
   },
-  optimization: {
-    runtimeChunk: 'single',
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'index.html'),
+      title: 'Hurb Challenge :)',
+      meta: { description: 'Hurb Challenge - Jonas Emanuel' },
+    }),
     new webpack.ProvidePlugin({
       React: 'react',
     }),

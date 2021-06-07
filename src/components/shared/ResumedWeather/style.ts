@@ -31,7 +31,7 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     display: flex;
     flex-direction: column;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 2rem;
     cursor: pointer;
 

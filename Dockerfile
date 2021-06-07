@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json /app
 RUN npm i
 COPY . /app
-CMD  ["npm", "run", "build"]
+RUN  npm run build
 
 FROM nginx:alpine AS dist-stage
 RUN rm /etc/nginx/conf.d/*
