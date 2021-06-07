@@ -3,8 +3,6 @@ import Color from 'color';
 export const getColorByTemperature = (temperature: number | undefined) => {
   const fallbackHexadecimal: Color = Color.rgb([74, 74, 74]);
 
-  console.log(temperature);
-
   if (!temperature) {
     return fallbackHexadecimal;
   }

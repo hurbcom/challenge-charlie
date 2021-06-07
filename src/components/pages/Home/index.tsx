@@ -50,6 +50,11 @@ const Home = () => {
     setCurrentPosition({ lat, lon });
   }, []);
 
+  const onTemperatureClickHandler = useCallback(() => {
+    if (temperatureUnit === 'C') setCurrentTemperatureUnit('F');
+    if (temperatureUnit === 'F') setCurrentTemperatureUnit('C');
+  }, []);
+
   useEffect(() => {
     getLongLat();
   }, []);
@@ -89,10 +94,7 @@ const Home = () => {
         pressure={weatherResume?.current.pressure}
         icon={getIconByWeatherId(weatherResume?.current.id)}
         temperatureUnit={temperatureUnit}
-        onTemperatureClick={() => {
-          if (temperatureUnit === 'C') setCurrentTemperatureUnit('F');
-          if (temperatureUnit === 'F') setCurrentTemperatureUnit('C');
-        }}
+        onTemperatureClick={onTemperatureClickHandler}
       />
       <div className="home__resumed-weathers">
         <ResumedWeather
@@ -102,6 +104,7 @@ const Home = () => {
           temperatureUnit={temperatureUnit}
           icon={getIconByWeatherId(weatherResume?.tomorrow.id)}
           backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+          onTemperatureClick={onTemperatureClickHandler}
         />
         <ResumedWeather
           isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
@@ -110,6 +113,7 @@ const Home = () => {
           temperatureUnit={temperatureUnit}
           icon={getIconByWeatherId(weatherResume?.afterTomorrow.id)}
           backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+          onTemperatureClick={onTemperatureClickHandler}
         />
       </div>
     </HomeStyled>

@@ -11,18 +11,26 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       padding: 10px 0px;
       color: white;
       font-size: 1.4rem;
-      line-height: 30px;
+      line-height: 2rem;
     }
 
     &__temperature {
       display: flex;
       flex-direction: column;
       margin-bottom: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 5rem;
+      transition: transform 0.1s linear;
+
+      :hover {
+        transform: scale(1.1);
+      }
     }
 
     &__other-infos {
       margin-top: 10px;
-      line-height: 22px;
+      line-height: 1.5rem;
       font-size: 1rem;
       display: flex;
       flex-direction: column;
@@ -66,6 +74,27 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       background-color: #9a9a9a;
       margin-top: 0.5rem;
       border-radius: 2px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .detailed-weather {
+      &__info {
+        font-size: 2rem;
+        line-height: 3rem;
+      }
+
+      &__other-infos {
+        margin-top: 30px;
+        line-height: 2.5rem;
+        font-size: 2rem;
+      }
+
+      &__icon {
+        img {
+          width: 20rem;
+        }
+      }
     }
   }
 `;

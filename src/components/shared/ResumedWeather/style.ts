@@ -7,7 +7,7 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
-  height: 80px;
+  height: 5rem;
   background: ${(props) => (props.backgroundColor as Color).fade(0.5).string()};
   border-top: 1px solid ${(props) => (props.backgroundColor as Color).fade(0.7).string()};
   border-bottom: 1px solid ${(props) => (props.backgroundColor as Color).fade(0.7).string()};
@@ -31,8 +31,9 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     display: flex;
     flex-direction: column;
     color: white;
-    font-size: 1em;
-    line-height: 26px;
+    font-size: 1rem;
+    line-height: 2rem;
+    cursor: pointer;
 
     .resumed-weather__description {
       text-transform: uppercase;
@@ -52,5 +53,18 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     height: 1rem;
     background-color: #9a9a9a;
     border-radius: 2px;
+  }
+
+  @media (min-width: 1025px) {
+    height: 8rem;
+
+    .resumed-weather__weather {
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+
+    .resumed-weather__icon {
+      width: 5rem;
+    }
   }
 `;
