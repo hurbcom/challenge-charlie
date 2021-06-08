@@ -6,6 +6,16 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
   display: grid;
   grid-template-columns: 60% 40%;
 
+  @keyframes skeleton-blink {
+    from {
+      background-color: #9a9a9a;
+    }
+
+    to {
+      background-color: #ababab;
+    }
+  }
+
   .detailed-weather {
     &__info {
       padding: 10px 0px;
@@ -55,6 +65,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       width: 9rem;
       height: 9rem;
       border-radius: 50%;
+      animation: skeleton-blink 1s linear infinite;
     }
   }
 
@@ -66,6 +77,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       background-color: #9a9a9a;
       height: 1.5rem;
       border-radius: 2px;
+      animation: skeleton-blink 1s linear infinite;
     }
 
     .detailed-weather-skeleton__description {
@@ -74,6 +86,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       background-color: #9a9a9a;
       margin-top: 0.5rem;
       border-radius: 2px;
+      animation: skeleton-blink 1s linear infinite;
     }
   }
 

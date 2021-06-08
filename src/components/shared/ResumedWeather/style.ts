@@ -12,6 +12,16 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
   border-top: 1px solid ${(props) => (props.backgroundColor as Color).fade(0.7).string()};
   border-bottom: 1px solid ${(props) => (props.backgroundColor as Color).fade(0.7).string()};
 
+  @keyframes skeleton-blink {
+    from {
+      background-color: #9a9a9a;
+    }
+
+    to {
+      background-color: #ababab;
+    }
+  }
+
   .resumed-weather__icon {
     width: 3rem;
 
@@ -25,6 +35,7 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+    animation: skeleton-blink 1s linear infinite;
   }
 
   .resumed-weather__weather {
@@ -46,6 +57,7 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     height: 1.5rem;
     margin-bottom: 5px;
     border-radius: 2px;
+    animation: skeleton-blink 1s linear infinite;
   }
 
   .resumed-weather-skeleton__temperature {
@@ -53,6 +65,7 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     height: 1rem;
     background-color: #9a9a9a;
     border-radius: 2px;
+    animation: skeleton-blink 1s linear infinite;
   }
 
   @media (min-width: 1025px) {
