@@ -4,6 +4,7 @@ import { getIconByWeatherId } from '@helpers/getIconByWeatherId';
 import { getColorByTemperature } from '@helpers/getColorByTemperature';
 import { getTemperatureWithCelsius } from '@helpers/getTemperatureWithCelsius';
 import { getCurrentPosition } from '@helpers/getCurrentPosition';
+import { timestampTotHumanizeDateString } from '@helpers/getHumanizeDateString';
 
 import useWeatherAPI from '@hooks/useWeatherAPI';
 import useBingApi from '@hooks/useBingAPI';
@@ -64,15 +65,15 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(isWeatherAPILoading || isReverseGeocodingLoading || !currentPosition);
-  }, [isWeatherAPILoading, isReverseGeocodingLoading]);
+  }, [isWeatherAPILoading, isReverseGeocodingLoading, currentPosition]);
 
-  const onTemperatureClickHandler = useCallback(() => {
-    if (temperatureUnit === 'C') setCurrentTemperatureUnit('F');
-    if (temperatureUnit === 'F') setCurrentTemperatureUnit('C');
+  const onTemperatureClickHandler = useCallback((unit) => {
+    setCurrentTemperatureUnit(unit);
   }, []);
 
   const onMyLocationButtonClickHandler = useCallback(async () => {
     try {
+      setLoading(true);
       const {
         coords: { latitude: lat, longitude: lon },
       } = await getCurrentPosition();
@@ -103,35 +104,29 @@ const Home = () => {
         }}
       />
       <DetailedWeather
-        temperature={weatherResume?.current.temperature}
+        temperature={weatherResume?.today.temperature}
         isLoading={isLoading}
-        humidity={weatherResume?.current.humidity}
-        windSpeed={weatherResume?.current.windSpeed}
-        description={weatherResume?.current.description}
-        pressure={weatherResume?.current.pressure}
-        icon={getIconByWeatherId(weatherResume?.current.id)}
+        humidity={weatherResume?.today.humidity}
+        windSpeed={weatherResume?.today.windSpeed}
+        description={weatherResume?.today.description}
+        pressure={weatherResume?.today.pressure}
+        icon={getIconByWeatherId(weatherResume?.today.id)}
         temperatureUnit={temperatureUnit}
         onTemperatureClick={onTemperatureClickHandler}
       />
       <div className="home__resumed-weathers">
-        <ResumedWeather
-          isLoading={isLoading}
-          description="Amanhã"
-          temperature={weatherResume?.tomorrow.temperature}
-          temperatureUnit={temperatureUnit}
-          icon={getIconByWeatherId(weatherResume?.tomorrow.id)}
-          backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
-          onTemperatureClick={onTemperatureClickHandler}
-        />
-        <ResumedWeather
-          isLoading={isLoading}
-          description="Depois de Amanhã"
-          temperature={weatherResume?.afterTomorrow.temperature}
-          temperatureUnit={temperatureUnit}
-          icon={getIconByWeatherId(weatherResume?.afterTomorrow.id)}
-          backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
-          onTemperatureClick={onTemperatureClickHandler}
-        />
+        {weatherResume?.days.map((day) => (
+          <ResumedWeather
+            key={day.date}
+            isLoading={isLoading}
+            description={timestampTotHumanizeDateString(day.date)}
+            temperature={day.temperature}
+            temperatureUnit={temperatureUnit}
+            icon={getIconByWeatherId(day.id)}
+            backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+            onTemperatureClick={onTemperatureClickHandler}
+          />
+        ))}
       </div>
       <div className="footer">
         <Footer>

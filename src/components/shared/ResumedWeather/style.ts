@@ -49,6 +49,10 @@ export const ResumedWeatherStyled = styled.div<{ backgroundColor: string | Color
     .resumed-weather__description {
       text-transform: uppercase;
     }
+
+    .resumed-weather__temperature-info {
+      display: flex;
+    }
   }
 
   .resumed-weather-skeleton__description {

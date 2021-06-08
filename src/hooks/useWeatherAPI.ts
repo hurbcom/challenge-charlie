@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getMetrictByTemperatureUnit } from '@helpers/getMetrictByTemperatureUnit';
-import { IWeatherDaily } from '@adapters/WeatherServiceAdapter';
 import WeatherService from '@external/WeatherService';
+import { IWeatherWeekly } from '@adapters/WeatherServiceAdapter';
 
 import { TemperatureUnit } from '../global-types';
 
@@ -14,7 +14,7 @@ interface IUseWeatherAPIPayload {
 }
 
 const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayload) => {
-  const [weatherResume, setWeatherResume] = useState<IWeatherDaily>();
+  const [weatherResume, setWeatherResume] = useState<IWeatherWeekly>();
   const [averageTemperature, setAverageTemperature] = useState<number>();
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -28,9 +28,12 @@ const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayloa
         lang,
       });
       setWeatherResume(data);
-      setAverageTemperature(
-        (data.current.temperature + data.tomorrow.temperature + data.afterTomorrow.temperature) / 3,
-      );
+
+      const temperatureDays = data.days
+        .map((day) => day.temperature)
+        .reduce((accumulator, currentValue) => accumulator + currentValue);
+
+      setAverageTemperature((data.today.temperature + temperatureDays) / 3);
     } catch (e) {
       alert(e);
     } finally {

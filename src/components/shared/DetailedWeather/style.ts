@@ -28,14 +28,13 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
       display: flex;
       flex-direction: column;
       margin-bottom: 10px;
-      font-weight: bold;
       cursor: pointer;
       width: 5rem;
       transition: transform 0.1s linear;
+    }
 
-      :hover {
-        transform: scale(1.1);
-      }
+    &__temperature-info {
+      display: flex;
     }
 
     &__other-infos {

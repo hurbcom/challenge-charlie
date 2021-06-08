@@ -1,6 +1,7 @@
 import Color from 'color';
 import { memo } from 'react';
 
+import { TemperatureUnitSwitcher } from '@components/shared/TemperatureUnitSwitcher';
 import { TemperatureUnit } from '../../../global-types';
 
 import { ResumedWeatherStyled } from './style';
@@ -12,7 +13,7 @@ interface IResumedWeather {
   backgroundColor: string | Color;
   temperatureUnit?: TemperatureUnit;
   isLoading?: boolean;
-  onTemperatureClick?: () => void;
+  onTemperatureClick?: (temperatureUnit: string) => void;
 }
 
 export const ResumedWeather = ({
@@ -32,18 +33,15 @@ export const ResumedWeather = ({
         </div>
         <div className="resumed-weather__weather">
           <span className="resumed-weather__description">{description}</span>
-          <span
-            role="button"
-            tabIndex={0}
-            onClick={onTemperatureClick}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                if (onTemperatureClick) onTemperatureClick();
-              }
-            }}
-          >
-            {temperature?.toFixed(0)}°{temperatureUnit}
-          </span>
+          <div className="resumed-weather__temperature-info">
+            <span>{temperature?.toFixed(0)}</span>
+            <TemperatureUnitSwitcher
+              temperatureUnit={temperatureUnit}
+              onClick={(unit) => {
+                if (onTemperatureClick) onTemperatureClick(unit);
+              }}
+            />
+          </div>
         </div>
       </>
     ) : (
