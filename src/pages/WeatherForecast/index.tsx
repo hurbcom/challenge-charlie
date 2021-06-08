@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import sun from '../../assets/clear_sky.png';
+import Background from '../../components/Background';
+import type {
+    CurrentWeatherData,
+    DailyForecast,
+} from '../../interfaces/WeatherForecast';
 import {
-    Container,
+    getCurrentWeatherForecast,
+    getNextWeatherForecast,
+} from '../../services/WeatherForecastService';
+import {
     BoxContent,
     SearchContainer,
     TodayContainer,
@@ -14,38 +22,60 @@ import {
 } from './styles';
 
 const WeatherForecast: React.FC = () => {
+    const [todayData, setTodayData] = useState<
+        CurrentWeatherData | undefined
+    >();
+    const [tomorrowData, setTomorrowData] = useState<
+        DailyForecast | undefined
+    >();
+    const [afterTomorrowData, setAfterTomorrowData] = useState<
+        DailyForecast | undefined
+    >();
+
+    useEffect(() => {
+        getCurrentWeatherForecast().then(currentWeather =>
+            setTodayData(currentWeather),
+        );
+        getNextWeatherForecast().then(nextWeather => {
+            if (nextWeather && nextWeather.daily.length >= 3) {
+                const [_, tomorrow, afterTomorrow] = nextWeather.daily;
+                setTomorrowData(tomorrow);
+                setAfterTomorrowData(afterTomorrow);
+            }
+        });
+    }, []);
     return (
-        <Container>
+        <Background>
             <BoxContent>
                 <SearchContainer>Input</SearchContainer>
                 <TodayContainer>
                     <TodayInfo>
-                        <h2>Porto Alegre</h2>
+                        <h2>{todayData?.name}</h2>
                         <h3>Hoje</h3>
                         <img src={sun} alt="" />
-                        <h1>32º</h1>
-                        <span>Ensolarado</span>
+                        <h1>{todayData?.main.temp}º</h1>
+                        <span>{todayData?.weather[0].description}</span>
                     </TodayInfo>
                     <TodayOthersInfoContainer>
                         <TodayOthersInfo>
                             <img src={sun} alt="imagem" />
                             <div>
                                 <b>Vento</b>
-                                <p>NO 6.4km/h</p>
+                                <p>{todayData?.wind.speed} km/h</p>
                             </div>
                         </TodayOthersInfo>
                         <TodayOthersInfo>
                             <img src={sun} alt="imagem" />
                             <div>
                                 <b>Pressão</b>
-                                <p>100%</p>
+                                <p>{todayData?.main.pressure} %</p>
                             </div>
                         </TodayOthersInfo>
                         <TodayOthersInfo>
                             <img src={sun} alt="imagem" />
                             <div>
                                 <b>Humidade</b>
-                                <p>100%</p>
+                                <p>{todayData?.main.humidity}</p>
                             </div>
                         </TodayOthersInfo>
                     </TodayOthersInfoContainer>
@@ -53,19 +83,19 @@ const WeatherForecast: React.FC = () => {
                 <TomorrowInfo>
                     <h3>Amanhã</h3>
                     <div>
-                        <span>32º</span>
+                        <span>{tomorrowData?.temp.day}</span>
                         <img src={sun} alt="imagem" />
                     </div>
                 </TomorrowInfo>
                 <AfterTomorrowInfo>
                     <h3>Depois de Amanhã</h3>
                     <div>
-                        <span>32º</span>
+                        <span>{afterTomorrowData?.temp.day}</span>
                         <img src={sun} alt="imagem" />
                     </div>
                 </AfterTomorrowInfo>
             </BoxContent>
-        </Container>
+        </Background>
     );
 };
 
