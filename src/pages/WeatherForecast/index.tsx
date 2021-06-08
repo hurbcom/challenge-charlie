@@ -10,6 +10,7 @@ import {
     getCurrentWeatherForecast,
     getNextWeatherForecast,
 } from '../../services/WeatherForecastService';
+import { weatherIcons } from '../../utils/weatherIcons';
 import {
     BoxContent,
     SearchContainer,
@@ -52,7 +53,12 @@ const WeatherForecast: React.FC = () => {
                     <TodayInfo>
                         <h2>{todayData?.name}</h2>
                         <h3>Hoje</h3>
-                        <img src={sun} alt="" />
+                        <img
+                            src={weatherIcons(
+                                todayData?.weather[0].icon as any,
+                            )}
+                            alt={todayData?.weather[0].description}
+                        />
                         <h1>{todayData?.main.temp}º</h1>
                         <span>{todayData?.weather[0].description}</span>
                     </TodayInfo>
@@ -84,14 +90,24 @@ const WeatherForecast: React.FC = () => {
                     <h3>Amanhã</h3>
                     <div>
                         <span>{tomorrowData?.temp.day}</span>
-                        <img src={sun} alt="imagem" />
+                        <img
+                            src={weatherIcons(
+                                tomorrowData?.weather[0].icon as any,
+                            )}
+                            alt={tomorrowData?.weather[0].description}
+                        />
                     </div>
                 </TomorrowInfo>
                 <AfterTomorrowInfo>
                     <h3>Depois de Amanhã</h3>
                     <div>
                         <span>{afterTomorrowData?.temp.day}</span>
-                        <img src={sun} alt="imagem" />
+                        <img
+                            src={weatherIcons(
+                                afterTomorrowData?.weather[0].icon as any,
+                            )}
+                            alt={afterTomorrowData?.weather[0].description}
+                        />
                     </div>
                 </AfterTomorrowInfo>
             </BoxContent>
