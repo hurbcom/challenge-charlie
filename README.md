@@ -23,6 +23,8 @@
 
 ## O que pode melhorar:
 - Fornecer um auto completar para o usuário no momento de digitar a localização desejada. Utilizar uma API como por exemplo a Places API do Google(É paga :/ ).
+- Documentar os componentes da aplicação. (Utilizando Storybook por exemplo)
+- Escrever testes E2E para assim atender toda a pirâmide de testes.
 
 ## Mudanças em relação a experiência proposta:
 - A forma como o usuário alterna entre as unidades de temperatura está um pouco mais explicito e intuitivo do que foi pedido. Não fica tão claro pro usuário que ele pode alternar entre as unidades de medidas simplesmente clicando na temperatura. 
