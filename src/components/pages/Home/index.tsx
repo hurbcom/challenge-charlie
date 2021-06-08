@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { getCurrentPosition } from '../../../helpers/getCurrentPosition';
 import { getIconByWeatherId } from '../../../helpers/getIconByWeatherId';
 import { getColorByTemperature } from '../../../helpers/getColorByTemperature';
 import { getTemperatureWithCelsius } from '../../../helpers/getTemperatureWithCelsius';
@@ -8,6 +7,7 @@ import { getTemperatureWithCelsius } from '../../../helpers/getTemperatureWithCe
 import useWeatherAPI from '../../../hooks/useWeatherAPI';
 import useBingApi from '../../../hooks/useBingAPI';
 import { useReverseGeocoding } from '../../../hooks/useReverseGeocoding';
+import { useCurrentPosition } from '../../../hooks/useCurrentCoordinates';
 
 import { DetailedWeather } from '../../shared/DetailedWeather';
 import { Input } from '../../shared/Input';
@@ -16,17 +16,12 @@ import { ResumedWeather } from '../../shared/ResumedWeather';
 import { HomeStyled } from './style';
 import { TemperatureUnit } from '../../../global-types';
 
-interface ICurrentPosition {
-  lat: number;
-  lon: number;
-}
-
 const Home = () => {
-  const [currentPosition, setCurrentPosition] = useState<ICurrentPosition>();
   const [addressInput, setAddressInput] = useState('');
   const [temperatureUnit, setCurrentTemperatureUnit] = useState<TemperatureUnit>('C');
 
   const { backgroundImage } = useBingApi();
+  const { currentPosition, setCurrentPosition, isLoading: isLoadingCurrentPosition } = useCurrentPosition();
 
   const { addressInfo, isLoading: isReverseGeocodingLoading } = useReverseGeocoding({
     lat: currentPosition?.lat,
@@ -43,20 +38,9 @@ const Home = () => {
     temperatureUnit,
   });
 
-  const getLongLat = useCallback(async () => {
-    const {
-      coords: { latitude: lat, longitude: lon },
-    } = await getCurrentPosition();
-    setCurrentPosition({ lat, lon });
-  }, []);
-
   const onTemperatureClickHandler = useCallback(() => {
     if (temperatureUnit === 'C') setCurrentTemperatureUnit('F');
     if (temperatureUnit === 'F') setCurrentTemperatureUnit('C');
-  }, []);
-
-  useEffect(() => {
-    getLongLat();
   }, []);
 
   useEffect(() => {
@@ -87,7 +71,7 @@ const Home = () => {
       />
       <DetailedWeather
         temperature={weatherResume?.current.temperature}
-        isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
+        isLoading={isWeatherAPILoading || isReverseGeocodingLoading || isLoadingCurrentPosition}
         humidity={weatherResume?.current.humidity}
         windSpeed={weatherResume?.current.windSpeed}
         description={weatherResume?.current.description}
@@ -98,7 +82,7 @@ const Home = () => {
       />
       <div className="home__resumed-weathers">
         <ResumedWeather
-          isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
+          isLoading={isWeatherAPILoading || isReverseGeocodingLoading || isLoadingCurrentPosition}
           description="Amanhã"
           temperature={weatherResume?.tomorrow.temperature}
           temperatureUnit={temperatureUnit}
@@ -107,7 +91,7 @@ const Home = () => {
           onTemperatureClick={onTemperatureClickHandler}
         />
         <ResumedWeather
-          isLoading={isWeatherAPILoading || isReverseGeocodingLoading}
+          isLoading={isWeatherAPILoading || isReverseGeocodingLoading || isLoadingCurrentPosition}
           description="Depois de Amanhã"
           temperature={weatherResume?.afterTomorrow.temperature}
           temperatureUnit={temperatureUnit}
