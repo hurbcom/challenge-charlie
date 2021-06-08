@@ -1,13 +1,15 @@
 import React from 'react';
 
+import sun from '../../assets/clear_sky.png';
 import {
     Container,
     BoxContent,
     SearchContainer,
     TodayContainer,
-    AfterTomorrow,
+    AfterTomorrowInfo,
     TomorrowInfo,
-    IconContainer,
+    TodayOthersInfoContainer,
+    TodayOthersInfo,
     TodayInfo,
 } from './styles';
 
@@ -17,35 +19,51 @@ const WeatherForecast: React.FC = () => {
             <BoxContent>
                 <SearchContainer>Input</SearchContainer>
                 <TodayContainer>
-                    <IconContainer>
-                        <span>icone</span>
-                    </IconContainer>
                     <TodayInfo>
-                        <div>
-                            <span>HOJE</span>
-                            <span>32º</span>
-                        </div>
-
+                        <h2>Porto Alegre</h2>
+                        <h3>Hoje</h3>
+                        <img src={sun} alt="" />
+                        <h1>32º</h1>
                         <span>Ensolarado</span>
-                        <div>
-                            <p>Vento: NO 6.4km/h</p>
-                            <p>Humidade: NO 6.4km/h</p>
-                            <p>Pressão: NO 6.4km/h</p>
-                        </div>
                     </TodayInfo>
+                    <TodayOthersInfoContainer>
+                        <TodayOthersInfo>
+                            <img src={sun} alt="imagem" />
+                            <div>
+                                <b>Vento</b>
+                                <p>NO 6.4km/h</p>
+                            </div>
+                        </TodayOthersInfo>
+                        <TodayOthersInfo>
+                            <img src={sun} alt="imagem" />
+                            <div>
+                                <b>Pressão</b>
+                                <p>100%</p>
+                            </div>
+                        </TodayOthersInfo>
+                        <TodayOthersInfo>
+                            <img src={sun} alt="imagem" />
+                            <div>
+                                <b>Humidade</b>
+                                <p>100%</p>
+                            </div>
+                        </TodayOthersInfo>
+                    </TodayOthersInfoContainer>
                 </TodayContainer>
                 <TomorrowInfo>
+                    <h3>Amanhã</h3>
                     <div>
-                        <p>AMANHÃ</p>
-                        <p>32º</p>
+                        <span>32º</span>
+                        <img src={sun} alt="imagem" />
                     </div>
                 </TomorrowInfo>
-                <AfterTomorrow>
+                <AfterTomorrowInfo>
+                    <h3>Depois de Amanhã</h3>
                     <div>
-                        <p>DEPOIS DE AMANHÃ</p>
-                        <p>32º</p>
+                        <span>32º</span>
+                        <img src={sun} alt="imagem" />
                     </div>
-                </AfterTomorrow>
+                </AfterTomorrowInfo>
             </BoxContent>
         </Container>
     );

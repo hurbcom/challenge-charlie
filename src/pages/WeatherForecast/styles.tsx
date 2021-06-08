@@ -30,48 +30,75 @@ export const IconContainer = styled.div`
 export const TodayContainer = styled.div`
     background: yellow;
     display: flex;
-    justify-content: space-between;
-    > div {
-        flex: 1;
-        margin: 0.5rem 0 3.5rem 0;
-    }
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const TodayInfo = styled.div`
-    > span {
-        font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5rem;
+    padding: 1.5rem;
+    > img {
+        width: 80px;
+        margin: 1.5rem;
     }
-    > div > span {
-        font-size: 1.1rem;
-        display: block;
+`;
+
+export const TodayOthersInfoContainer = styled.div`
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    justify-content: space-between;
+`;
+
+export const TodayOthersInfo = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    :last-child {
+        margin-right: 0;
     }
-    > div {
-        margin: 0.5rem 0 1.5rem 0;
+    > img {
+        width: 30px;
+        margin-right: 0.5rem;
     }
 `;
 
 export const TomorrowInfo = styled.div`
     background: orangered;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: 1.1rem;
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
     > div {
-        width: 50%;
-        margin: 0.5rem 0 1rem 0;
+        display: flex;
+        align-items: center;
+        > span {
+            margin-right: 1rem;
+        }
+        > img {
+            width: 40px;
+        }
     }
 `;
 
-export const AfterTomorrow = styled.div`
+export const AfterTomorrowInfo = styled.div`
     background: orange;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: 1.1rem;
-
+    justify-content: space-between;
+    padding: 1.5rem;
+    align-items: center;
     > div {
-        width: 50%;
-        margin: 0.5rem 0 1rem 0;
+        display: flex;
+        align-items: center;
+        > span {
+            margin-right: 1rem;
+        }
+        > img {
+            width: 40px;
+        }
     }
 `;
