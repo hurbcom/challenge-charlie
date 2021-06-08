@@ -8,9 +8,10 @@ interface IInput {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: KeyboardEventHandler<HTMLInputElement> | undefined) => void;
+  placeholder?: string;
 }
 
-export const Input = ({ type = 'text', icon = '', value = '', onChange, onKeyPress }: IInput) => (
+export const Input = ({ type = 'text', icon = '', value = '', placeholder, onChange, onKeyPress }: IInput) => (
   <InputStyled>
     {icon && (
       <div className="input__icon">
@@ -23,6 +24,7 @@ export const Input = ({ type = 'text', icon = '', value = '', onChange, onKeyPre
       onChange={onChange}
       onKeyPress={onKeyPress}
       aria-label="Digite sua localidade aqui"
+      placeholder={placeholder}
     />
   </InputStyled>
 );

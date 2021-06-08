@@ -11,7 +11,16 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "lib": ["DOM", "ES2016"],
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@hooks/*": ["src/hooks/*"],
+      "@adapters/*": ["src/adapters/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@infrastructure/*": ["src/infrastructure/*"],
+      "@external/*": ["src/external/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

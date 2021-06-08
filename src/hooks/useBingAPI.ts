@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import BingService from '../external/BingService';
+import BingService from '@external/BingService';
 
 const useBingAPI = () => {
   const [backgroundImage, setBackgroundImage] = useState('');

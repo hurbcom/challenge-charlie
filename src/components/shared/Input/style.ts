@@ -23,5 +23,9 @@ export const InputStyled = styled.div`
     color: #989898;
     border: none;
     outline: none;
+
+    ::placeholder {
+      color: #ced4da;
+    }
   }
 `;

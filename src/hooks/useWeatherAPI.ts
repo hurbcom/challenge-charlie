@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { getMetrictByTemperatureUnit } from '@helpers/getMetrictByTemperatureUnit';
+import { IWeatherDaily } from '@adapters/WeatherServiceAdapter';
+import WeatherService from '@external/WeatherService';
+
 import { TemperatureUnit } from '../global-types';
-import { IWeatherDaily } from '../adapters/WeatherServiceAdapter';
-import WeatherService from '../external/WeatherService';
-import { getMetrictByTemperatureUnit } from '../helpers/getMetrictByTemperatureUnit';
 
 interface IUseWeatherAPIPayload {
   lat?: number | undefined;

@@ -1,6 +1,6 @@
-import HttpClient from '../infrastructure/HttpClient';
+import OpenCageGeocodingServiceAdapter from '@adapters/OpenCageGeocodingServiceAdapter';
+import HttpClient from '@infrastructure/HttpClient';
 import constants from '../constants';
-import OpenCageGeocodingServiceAdapter from '../adapters/OpenCageGeocodingServiceAdapter';
 
 interface IOpenCageGeocodingAPIParameters {
   lat: number | undefined;

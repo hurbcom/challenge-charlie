@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import OpenCageGeocodingService from '../external/OpenCageGeocodingService';
+import OpenCageGeocodingService from '@external/OpenCageGeocodingService';
 
 interface IUseReverseGeocoding {
   lat: number | undefined;

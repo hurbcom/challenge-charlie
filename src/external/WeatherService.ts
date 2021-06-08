@@ -1,6 +1,6 @@
-import HttpClient from '../infrastructure/HttpClient';
+import HttpClient from '@infrastructure/HttpClient';
+import WeatherServiceAdapter from '@adapters/WeatherServiceAdapter';
 import constants from '../constants';
-import WeatherServiceAdapter from '../adapters/WeatherServiceAdapter';
 
 interface IWeatherResumeRequestParameters {
   lat: number | undefined;

@@ -1,5 +1,5 @@
-import BingServiceAdapter from '../adapters/BingServiceAdapter';
-import HttpClient from '../infrastructure/HttpClient';
+import HttpClient from '@infrastructure/HttpClient';
+import BingServiceAdapter from '@adapters/BingServiceAdapter';
 import constants from '../constants';
 
 export default class BingService {

@@ -1,4 +1,4 @@
-import { timestampToDate } from '../helpers/timestampToDate';
+import { timestampToDate } from '@helpers/timestampToDate';
 
 interface IWeatherDailyResume {
   date: string;

@@ -11,6 +11,11 @@ export const HomeStyled = styled.div<{ backgroundImage: string; backgroundColor:
 
   background-size: cover;
 
+  .footer {
+    position: absolute;
+    bottom: 0;
+  }
+
   @media (max-width: 1024px) {
     background-position-x: 0px;
     animation: move-background 240s linear infinite;

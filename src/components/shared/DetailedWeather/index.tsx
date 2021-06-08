@@ -1,5 +1,5 @@
+import { capitalize } from '@helpers/capitalize';
 import { TemperatureUnit } from '../../../global-types';
-import { capitalize } from '../../../helpers/capitalize';
 
 import { DetailedWeatherStyled } from './style';
 
