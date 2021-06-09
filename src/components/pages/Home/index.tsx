@@ -15,6 +15,7 @@ import { Input } from '@components/shared/Input';
 import { ResumedWeather } from '@components/shared/ResumedWeather';
 import { Footer } from '@components/shared/Footer';
 import { Button } from '@components/shared/Button';
+import { ResumedWeatherSkeleton } from '@components/shared/ResumedWeatherSkeleton';
 
 import { TemperatureUnit } from '../../../global-types';
 
@@ -119,18 +120,23 @@ const Home = () => {
         onTemperatureClick={onTemperatureClickHandler}
       />
       <div className="home__resumed-weathers">
-        {weatherResume?.days.map((day) => (
-          <ResumedWeather
-            key={day.date}
-            isLoading={isLoading}
-            description={timestampTotHumanizeDateString(day.date)}
-            temperature={day.temperature}
-            temperatureUnit={temperatureUnit}
-            icon={getIconByWeatherId(day.id)}
+        {!isLoading ? (
+          weatherResume?.days.map((day) => (
+            <ResumedWeather
+              key={day.date}
+              description={timestampTotHumanizeDateString(day.date)}
+              temperature={day.temperature}
+              temperatureUnit={temperatureUnit}
+              icon={getIconByWeatherId(day.id)}
+              backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+              onTemperatureClick={onTemperatureClickHandler}
+            />
+          ))
+        ) : (
+          <ResumedWeatherSkeleton
             backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
-            onTemperatureClick={onTemperatureClickHandler}
           />
-        ))}
+        )}
       </div>
       <div className="footer">
         <Footer>

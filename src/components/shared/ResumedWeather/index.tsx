@@ -12,7 +12,6 @@ interface IResumedWeather {
   temperature: number | undefined;
   backgroundColor: string | Color;
   temperatureUnit?: TemperatureUnit;
-  isLoading?: boolean;
   onTemperatureClick?: (temperatureUnit: string) => void;
 }
 
@@ -22,37 +21,26 @@ export const ResumedWeather = ({
   temperature,
   temperatureUnit = 'C',
   backgroundColor,
-  isLoading = false,
   onTemperatureClick,
 }: IResumedWeather) => (
   <ResumedWeatherStyled backgroundColor={backgroundColor}>
-    {!isLoading ? (
-      <>
-        <div className="resumed-weather__icon">
-          <img src={icon} alt={description} />
+    <>
+      <div className="resumed-weather__icon">
+        <img src={icon} alt={description} />
+      </div>
+      <div className="resumed-weather__weather">
+        <span className="resumed-weather__description">{description}</span>
+        <div className="resumed-weather__temperature-info">
+          <span>{temperature?.toFixed(0)}</span>
+          <TemperatureUnitSwitcher
+            temperatureUnit={temperatureUnit}
+            onClick={(unit) => {
+              if (onTemperatureClick) onTemperatureClick(unit);
+            }}
+          />
         </div>
-        <div className="resumed-weather__weather">
-          <span className="resumed-weather__description">{description}</span>
-          <div className="resumed-weather__temperature-info">
-            <span>{temperature?.toFixed(0)}</span>
-            <TemperatureUnitSwitcher
-              temperatureUnit={temperatureUnit}
-              onClick={(unit) => {
-                if (onTemperatureClick) onTemperatureClick(unit);
-              }}
-            />
-          </div>
-        </div>
-      </>
-    ) : (
-      <>
-        <div className="resumed-weather-skeleton__icon" />
-        <div className="resumed-weather__weather">
-          <span className="resumed-weather-skeleton__description" />
-          <span className="resumed-weather-skeleton__temperature" />
-        </div>
-      </>
-    )}
+      </div>
+    </>
   </ResumedWeatherStyled>
 );
 
