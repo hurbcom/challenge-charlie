@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Color from 'color';
 
 import { getIconByWeatherId } from '@helpers/getIconByWeatherId';
 import { getColorByTemperature } from '@helpers/getColorByTemperature';
@@ -92,7 +93,11 @@ const Home = () => {
   return (
     <HomeStyled
       backgroundImage={backgroundImage}
-      backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+      backgroundColor={
+        !isLoading
+          ? getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))
+          : Color.rgb([74, 74, 74])
+      }
     >
       <Input
         value={addressInput}
@@ -128,13 +133,21 @@ const Home = () => {
               temperature={day.temperature}
               temperatureUnit={temperatureUnit}
               icon={getIconByWeatherId(day.id)}
-              backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+              backgroundColor={
+                !isLoading
+                  ? getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))
+                  : Color.rgb([74, 74, 74])
+              }
               onTemperatureClick={onTemperatureClickHandler}
             />
           ))
         ) : (
           <ResumedWeatherSkeleton
-            backgroundColor={getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))}
+            backgroundColor={
+              !isLoading
+                ? getColorByTemperature(getTemperatureWithCelsius(averageTemperature, temperatureUnit))
+                : Color.rgb([74, 74, 74])
+            }
           />
         )}
       </div>
