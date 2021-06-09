@@ -4,6 +4,6 @@ export function celsiusForFahrenheit(temp: number) {
 }
 
 export function fahrenheitForCelsius(temp: number) {
-    const celsius = (temp * 1.8) / +32;
-    return celsius;
+    const fahrenheit = (temp * 1.8) / +32;
+    return fahrenheit;
 }

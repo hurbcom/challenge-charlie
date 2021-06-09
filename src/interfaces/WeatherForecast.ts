@@ -20,6 +20,7 @@ interface TemperatureCurrent {
 }
 interface Wind {
     speed: number;
+    deg: number;
 }
 
 interface NextWeatherData {

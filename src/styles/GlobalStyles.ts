@@ -41,7 +41,7 @@ export default createGlobalStyle`
     line-height: 1.42857143;
     margin: 0;
     background: #ffffff;
-    color: #000000;
+    color: #ffffff;
     min-height: 100%;
     text-rendering: optimizeLegibility;
     font-smoothing: antialiased;

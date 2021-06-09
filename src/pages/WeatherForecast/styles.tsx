@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+import { backgroundColor } from '../../utils/backgroundColor';
+interface WeatherForecastProps {
+    temperature?: number;
+}
 export const BoxContent = styled.div`
     display: flex;
     flex-direction: column;
     width: 420px;
     border: none;
+    background: ${(props: WeatherForecastProps) =>
+        props.temperature ? backgroundColor(props.temperature) : '#fffff'};
 `;
 
 export const SearchContainer = styled.div`
@@ -19,7 +25,6 @@ export const IconContainer = styled.div`
 `;
 
 export const TodayContainer = styled.div`
-    background: yellow;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +39,10 @@ export const TodayInfo = styled.div`
     > img {
         width: 80px;
         margin: 1.5rem;
+    }
+    > span {
+        text-transform: capitalize;
+        line-height: 2rem;
     }
 `;
 
@@ -59,7 +68,6 @@ export const TodayOthersInfo = styled.div`
 `;
 
 export const TomorrowInfo = styled.div`
-    background: orangered;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,7 +85,6 @@ export const TomorrowInfo = styled.div`
 `;
 
 export const AfterTomorrowInfo = styled.div`
-    background: orange;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
