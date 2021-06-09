@@ -8,6 +8,7 @@
     "build": "webpack --config webpack.production.js",
     "build:watch": "webpack --watch --config webpack.development.js",
     "test": "jest --coverage",
+    "generateBadges": "jest --coverageReporters='json-summary' && jest-coverage-badges",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}'"
   },
   "repository": {

@@ -1,0 +1,15 @@
+export const weatherApiResponseNuuk = {
+  coord: { lon: -51.7216, lat: 64.1835 },
+  weather: [{ id: 802, main: 'Clouds', description: 'nuvens dispersas', icon: '03d' }],
+  base: 'stations',
+  main: { temp: 6.34, feels_like: 5.43, temp_min: 5.49, temp_max: 6.34, pressure: 999, humidity: 81 },
+  visibility: 10000,
+  wind: { speed: 1.54, deg: 180 },
+  clouds: { all: 34 },
+  dt: 1623217460,
+  sys: { type: 1, id: 86, country: 'GL', sunrise: 1623214994, sunset: 1623289762 },
+  timezone: -7200,
+  id: 3421319,
+  name: 'Nuuk',
+  cod: 200,
+};

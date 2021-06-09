@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { renderHook } from '@testing-library/react-hooks';
 import MockAdapter from 'axios-mock-adapter';
+import '@testing-library/jest-dom/extend-expect';
 
 import constants from '../../constants';
 import useBingApi from '../useBingAPI';

@@ -20,6 +20,7 @@ export const TemperatureUnitSwitcher = ({ onClick, temperatureUnit }: ITemperatu
         className={temperatureUnit === 'C' ? 'selected' : ''}
         role="button"
         tabIndex={0}
+        data-testid="celsius-unit"
         onKeyDown={(e) => {
           onKeyDownTemperatureUnitHandler(e, 'C');
         }}
@@ -31,6 +32,7 @@ export const TemperatureUnitSwitcher = ({ onClick, temperatureUnit }: ITemperatu
         className={temperatureUnit === 'F' ? 'selected' : ''}
         role="button"
         tabIndex={0}
+        data-testid="farenheit-unit"
         onKeyDown={(e) => {
           onKeyDownTemperatureUnitHandler(e, 'F');
         }}

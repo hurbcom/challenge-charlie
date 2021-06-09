@@ -84,7 +84,7 @@ const Home = () => {
       setCurrentPosition({ lat, lon });
       localStorage.setItem('USER_LOCATION', JSON.stringify({ lat, lon }));
     } catch (e) {
-      // alert(e);
+      //
     }
   }, []);
 

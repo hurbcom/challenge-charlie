@@ -35,7 +35,7 @@ const useWeatherAPI = ({ lat, lon, temperatureUnit, lang }: IUseWeatherAPIPayloa
 
       setAverageTemperature((data.today.temperature + temperatureDays) / 3);
     } catch (e) {
-      alert(e);
+      //
     } finally {
       setLoading(false);
     }

@@ -5,6 +5,14 @@ module.exports = {
   transform: {
     '^.+\\.svg$': 'jest-transform-stub',
   },
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: -10,
+    },
+  },
   moduleNameMapper: {
     '@external/(.*)': '<rootDir>/src/external/$1',
     '@hooks/(.*)': '<rootDir>/src/hooks/$1',
