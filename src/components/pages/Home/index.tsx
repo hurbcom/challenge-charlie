@@ -10,9 +10,9 @@ import useWeatherAPI from '@hooks/useWeatherAPI';
 import useBingApi from '@hooks/useBingAPI';
 import { useReverseGeocoding } from '@hooks/useReverseGeocoding';
 
-import { DetailedWeather } from '@components/shared/DetailedWeather';
+import DetailedWeather from '@components/shared/DetailedWeather';
+import ResumedWeather from '@components/shared/ResumedWeather';
 import { Input } from '@components/shared/Input';
-import { ResumedWeather } from '@components/shared/ResumedWeather';
 import { Footer } from '@components/shared/Footer';
 import { Button } from '@components/shared/Button';
 import { ResumedWeatherSkeleton } from '@components/shared/ResumedWeatherSkeleton';

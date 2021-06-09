@@ -15,7 +15,7 @@ interface IResumedWeather {
   onTemperatureClick?: (temperatureUnit: string) => void;
 }
 
-export const ResumedWeather = ({
+const ResumedWeather = ({
   icon = '',
   description,
   temperature,

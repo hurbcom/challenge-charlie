@@ -65,11 +65,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "webpack": "^5.38.1",
-    "html-webpack-plugin": "^5.3.1",
-    "webpack-merge": "^5.7.3",
     "@testing-library/jest-dom": "^5.12.0",
-    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "@testing-library/react": "^11.2.7",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.19.0",
@@ -78,12 +74,16 @@
     "commitlint": "^12.1.4",
     "core-js": "^3.13.1",
     "dayjs": "^1.10.5",
+    "html-webpack-plugin": "^5.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-lazy-load-image-component": "^1.5.1",
     "regenerator-runtime": "^0.13.7",
     "styled-components": "^5.3.0",
-    "styled-reset": "^4.3.4"
+    "styled-reset": "^4.3.4",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "webpack": "^5.38.1",
+    "webpack-merge": "^5.7.3"
   },
   "husky": {
     "hooks": {

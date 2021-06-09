@@ -1,4 +1,5 @@
 import { capitalize } from '@helpers/capitalize';
+import { memo } from 'react';
 import { TemperatureUnit } from '../../../global-types';
 import { TemperatureUnitSwitcher } from '../TemperatureUnitSwitcher';
 
@@ -16,7 +17,7 @@ interface IDetailedWeather {
   isLoading?: boolean;
 }
 
-export const DetailedWeather = ({
+const DetailedWeather = ({
   temperature,
   temperatureUnit = 'C',
   windSpeed,
@@ -67,3 +68,5 @@ export const DetailedWeather = ({
     )}
   </DetailedWeatherStyled>
 );
+
+export default memo(DetailedWeather);
