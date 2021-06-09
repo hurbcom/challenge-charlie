@@ -32,7 +32,7 @@
 - Documentar os componentes da aplicação. (Utilizando Storybook por exemplo)
 - Escrever testes E2E para assim atender toda a pirâmide de testes.
 - Utilizar um service worker para aplicar algumas estratégias de cache. (Tornar a aplicação num PWA)
-
+- Melhoria na exibição de erros para o usuário.
 ## Mudanças em relação a experiência proposta:
 - A forma como o usuário alterna entre as unidades de temperatura está um pouco mais explicito e intuitivo do que foi pedido. Não fica tão claro pro usuário que ele pode alternar entre as unidades de medidas simplesmente clicando na temperatura. 
 - Adição de um botão para o usuário informar a sua localização, pois não é uma boa prática de UX pedir a localização do usuário assim que o mesmo abre a aplicação. Pode gerar algum tipo de confusão no usuário.
