@@ -1,6 +1,6 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie - Jonas Emanuel
 
-<img src="./coverage/badge-branches.svg" /> <img src="./coverage/badge-functions.svg" /> <img src="./coverage/badge-lines.svg" /> <img src="./coverage/badge-statements.svg" />
+<img src="./src/assets/images/coverage-badge/badge-branches.svg" /> <img src="./src/assets/images/coverage-badge/badge-functions.svg" /> <img src="./src/assets/images/coverage-badge/badge-lines.svg" /> <img src="./src/assets/images/coverage-badge/badge-statements.svg" />
 ## Requisitos para rodar o projeto:
 
 - Docker
