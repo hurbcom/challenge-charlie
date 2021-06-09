@@ -40,6 +40,8 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     radix: 'off',
     'max-len': ['error', { code: 120 }],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
   settings: {
     'import/parsers': {

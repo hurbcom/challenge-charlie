@@ -23,6 +23,7 @@ export default class WeatherService {
   async getWeatherResume({ lat, lon, units = 'metric', lang = DEFAULT_LANGUAGE }: IWeatherResumeRequestParameters) {
     try {
       const { data } = await HttpClient.get(
+        // eslint-disable-next-line max-len
         `${this.url}data/2.5/onecall?exclude=hourly,minutely&appid=${constants.WEATHER_API_APP_ID}&lang=${lang}&units=${units}&lat=${lat}&lon=${lon}`,
       );
       return Promise.resolve(new WeatherServiceAdapter().getWeatherResume(data));

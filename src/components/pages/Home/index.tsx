@@ -48,6 +48,8 @@ const Home = () => {
     temperatureUnit,
   });
 
+  // Effects
+
   useEffect(() => {
     const storagedUserLocation = localStorage.getItem('USER_LOCATION');
     if (storagedUserLocation) {
@@ -67,6 +69,8 @@ const Home = () => {
     setLoading(isWeatherAPILoading || isReverseGeocodingLoading || !currentPosition);
   }, [isWeatherAPILoading, isReverseGeocodingLoading, currentPosition]);
 
+  // Callbacks
+
   const onTemperatureClickHandler = useCallback((unit) => {
     setCurrentTemperatureUnit(unit);
   }, []);
@@ -80,7 +84,7 @@ const Home = () => {
       setCurrentPosition({ lat, lon });
       localStorage.setItem('USER_LOCATION', JSON.stringify({ lat, lon }));
     } catch (e) {
-      alert(e);
+      // alert(e);
     }
   }, []);
 

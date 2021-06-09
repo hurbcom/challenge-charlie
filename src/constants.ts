@@ -4,6 +4,10 @@ const constants = {
   BING_API: '/bing/',
   OPENCAGEGEOCODING_API: 'https://api.opencagedata.com/',
   OPENCAGEGEOCODING_API_ID: 'c63386b4f77e46de817bdf94f552cddf',
+  TEST: {
+    LAT: -22.9068,
+    LON: -43.1729,
+  },
 };
 
 export default constants;

@@ -17,7 +17,7 @@ export const useReverseGeocoding = ({ lat, lon }: IUseReverseGeocoding) => {
       const data = await new OpenCageGeocodingService().getLocationByLatLong({ lat, lon });
       setAddressInfo(data);
     } catch (e) {
-      alert(e);
+      // alert(e);
     } finally {
       setLoading(false);
     }

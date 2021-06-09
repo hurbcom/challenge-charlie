@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { ChangeEvent, KeyboardEventHandler, memo } from 'react';
 
 import { InputStyled } from './style';
 
@@ -6,8 +6,8 @@ interface IInput {
   type?: string;
   icon?: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEventHandler<HTMLInputElement> | undefined) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
   placeholder?: string;
 }
 
