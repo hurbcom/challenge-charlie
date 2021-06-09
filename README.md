@@ -40,4 +40,12 @@
 <img src="./src/assets/images/lighthouse.png">
 
 ## Aplicação
-<img src="./src/assets/images/home-application.png">
+### Smartphone:
+
+<img src="./src/assets/images/home-mobile.png"> 
+
+### Tablet (Middle screens):
+<img src="./src/assets/images/home-mid-tablet.png">
+
+### Desktop (Middle screens):
+<img src="./src/assets/images/home-desktop.png">

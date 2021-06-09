@@ -104,7 +104,7 @@ export const DetailedWeatherStyled = styled.div.attrs(() => ({
 
       &__icon {
         img {
-          width: 20rem;
+          width: 17rem;
         }
       }
     }
