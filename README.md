@@ -35,3 +35,9 @@
 ## Erros cometidos durante o desenvolvimento:
 - Não fazer todo o desenvolvimento da aplicação orientado a testes. Embora o coverage esteja OK o ideal é que o TDD seja executado e nesse caso o executei somente nas primeiras funcionalidades do projeto.
 - Alguns commits tiveram muitas alterações, mais do que eu acho que deva ter em um único commit.
+
+## Lighthouse
+<img src="./src/assets/images/lighthouse.png">
+
+## Aplicação
+<img src="./src/assets/images/home-application.png">
