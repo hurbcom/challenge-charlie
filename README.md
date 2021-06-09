@@ -22,6 +22,10 @@
 - Jest and React Testing Library
 - ESLint (para validação de arquivos JS/TS estáticos e garantir o uso Style Guide Airbnb na escrita do código)
 
+## Alguns pontos:
+- Foi utilizada a abordagem Mobile First na construção da aplicação.
+- Foi utilizado o padrão conventional commits.
+
 ## O que pode melhorar:
 - Fornecer um auto completar para o usuário no momento de digitar a localização desejada. Utilizar uma API como por exemplo a Places API do Google(É paga :/ ).
 - Documentar os componentes da aplicação. (Utilizando Storybook por exemplo)
