@@ -53,5 +53,5 @@
 ### Tablet (Middle screens):
 <img src="./src/assets/images/home-mid-tablet.png">
 
-### Desktop (Middle screens):
+### Desktop:
 <img src="./src/assets/images/home-desktop.png">
