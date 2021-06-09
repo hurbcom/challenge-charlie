@@ -13,6 +13,11 @@
 - Executar `docker compose up` na pasta do projeto
 - Accessar http://localhost:3000 no seu navegador de preferência
 
+## Como rodar os testes da aplicação:
+- Abrir terminar em uma pasta de preferência.
+- Instalar dependências utilizando `npm i`
+- Executar `npm test`
+
 ## Tecnologias usadas:
 
 - ReactJS
@@ -37,10 +42,6 @@
 - A forma como o usuário alterna entre as unidades de temperatura está um pouco mais explicito e intuitivo do que foi pedido. Não fica tão claro pro usuário que ele pode alternar entre as unidades de medidas simplesmente clicando na temperatura. 
 - Adição de um botão para o usuário informar a sua localização, pois não é uma boa prática de UX pedir a localização do usuário assim que o mesmo abre a aplicação. Pode gerar algum tipo de confusão no usuário.
 - Adição de skeletons na aplicação para informar ao usuário que algo está sendo carregado.
-
-## Erros cometidos durante o desenvolvimento:
-- Não fazer todo o desenvolvimento da aplicação orientado a testes. Embora o coverage esteja OK o ideal é que o TDD seja executado e nesse caso o executei somente nas primeiras funcionalidades do projeto.
-- Alguns commits tiveram muitas alterações, mais do que eu acho que deva ter em um único commit.
 
 ## Lighthouse
 <img src="./src/assets/images/lighthouse.png">
