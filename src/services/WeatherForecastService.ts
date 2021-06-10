@@ -4,7 +4,7 @@ import type {
 } from '../interfaces/WeatherForecast';
 
 const URL_CURRENT_WEATHER =
-    'http://api.openweathermap.org/data/2.5/weather?appid=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt_br&units=metric';
+    'http://api.openweathermap.org/data/2.5/weather?appid=889ccf4cff9e104cef05b745c7777936&lang=pt_br&units=metric';
 
 export const getCurrentWeatherForecast = async (
     location: string,
@@ -20,7 +20,7 @@ export const getCurrentWeatherForecast = async (
 };
 
 const URL_NEXT_WEATHER =
-    'https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&appid=7ba73e0eb8efe773ed08bfd0627f07b8&lang=pt_br&units=metric';
+    'https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&appid=889ccf4cff9e104cef05b745c7777936&lang=pt_br&units=metric';
 
 export const getNextWeatherForecast = async (
     lat: number,

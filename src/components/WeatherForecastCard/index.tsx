@@ -16,11 +16,10 @@ import { celsiusForFahrenheit } from '../../utils/temperature';
 import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
 import SecondarySectionWeather from '../SecondarySectionWeather';
+import WeatherDetails from '../WeatherDetails';
 import {
     BoxContent,
     TodayContainer,
-    AfterTomorrowInfo,
-    TomorrowInfo,
     TodayOthersInfoContainer,
     TodayOthersInfo,
     TodayInfo,
@@ -86,8 +85,8 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                 <SearchBar onSubmit={handleSubmit} inputRef={inputRef} />
                 <TodayContainer>
                     <TodayInfo>
-                        <h2>{todayData?.name}</h2>
-                        <h3>Hoje</h3>
+                        <span>{todayData?.name}</span>
+                        <p>Hoje</p>
                         <img
                             src={weatherIcons(
                                 todayData?.weather[0].icon as any,
@@ -114,37 +113,28 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                         <span>{todayData?.weather[0].description}</span>
                     </TodayInfo>
                     <TodayOthersInfoContainer>
-                        <TodayOthersInfo>
+                        <WeatherDetails
+                            label="Vento"
+                            content={
+                                todayData?.wind.deg &&
+                                windDirection(todayData?.wind.deg)
+                            }
+                            value={`${todayData?.wind.speed} Km/h`}
+                        >
                             <img src={sun} alt="imagem" />
-                            <div>
-                                <b>Vento</b>
-                                <p>
-                                    <span>
-                                        {todayData?.wind.deg &&
-                                            windDirection(todayData?.wind.deg)}
-                                    </span>
-                                    {todayData?.wind.speed} Km/h
-                                </p>
-                            </div>
-                        </TodayOthersInfo>
-                        <TodayOthersInfo>
+                        </WeatherDetails>
+                        <WeatherDetails
+                            label="Pressão"
+                            value={`${todayData?.main.pressure} hPA`}
+                        >
                             <img src={sun} alt="imagem" />
-                            <div>
-                                <b>Pressão</b>
-                                <p>
-                                    {todayData?.main.pressure &&
-                                        todayData?.main.pressure}
-                                    hPA
-                                </p>
-                            </div>
-                        </TodayOthersInfo>
-                        <TodayOthersInfo>
+                        </WeatherDetails>
+                        <WeatherDetails
+                            label="Humidade"
+                            value={`${todayData?.main.humidity}%`}
+                        >
                             <img src={sun} alt="imagem" />
-                            <div>
-                                <b>Humidade</b>
-                                <p>{todayData?.main.humidity} %</p>
-                            </div>
-                        </TodayOthersInfo>
+                        </WeatherDetails>
                     </TodayOthersInfoContainer>
                 </TodayContainer>
                 <SecondarySectionWeather

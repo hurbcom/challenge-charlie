@@ -18,10 +18,12 @@ const CardVertical: React.FC<SecondarySectionWeather> = ({
     return (
         <Container>
             <div>
-                <h3>{title}</h3>
+                <span>{title}</span>
             </div>
             <div onClick={onClick}>
-                <span>{value}</span>
+                <span>
+                    <b>{value}</b>
+                </span>
                 <img src={iconSource} alt={alt} />
             </div>
         </Container>

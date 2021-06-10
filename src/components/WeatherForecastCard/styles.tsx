@@ -9,6 +9,7 @@ export const BoxContent = styled.div`
     flex-direction: column;
     width: 420px;
     border: none;
+    color: #ffffff;
     background: ${(props: WeatherForecastProps) =>
         props.temperature ? backgroundColor(props.temperature) : '#fffff'};
 `;
@@ -33,11 +34,15 @@ export const TodayInfo = styled.div`
     padding: 1.5rem;
     > img {
         width: 80px;
-        margin: 1.5rem;
+        margin: 1rem;
+    }
+    > div > h1 {
+        font-size: 3.375rem;
+        line-height: 3.5rem;
     }
     > span {
+        font-size: 1.5rem;
         text-transform: capitalize;
-        line-height: 2rem;
     }
 `;
 
@@ -59,39 +64,5 @@ export const TodayOthersInfo = styled.div`
     > img {
         width: 30px;
         margin-right: 0.5rem;
-    }
-`;
-
-export const TomorrowInfo = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    > div {
-        display: flex;
-        align-items: center;
-        > span {
-            margin-right: 1rem;
-        }
-        > img {
-            width: 40px;
-        }
-    }
-`;
-
-export const AfterTomorrowInfo = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem;
-    align-items: center;
-    > div {
-        display: flex;
-        align-items: center;
-        > span {
-            margin-right: 1rem;
-        }
-        > img {
-            width: 40px;
-        }
     }
 `;
