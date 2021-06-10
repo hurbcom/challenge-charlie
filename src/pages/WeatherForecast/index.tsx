@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import sun from '../../assets/clear_sky.png';
 import Background from '../../components/Background';
 import Input from '../../components/Input';
+import SearchBar from '../../components/SearchBar';
 import type {
     CurrentWeatherData,
     DailyForecast,
@@ -83,14 +84,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     return (
         <Background>
             <BoxContent temperature={todayData?.main.temp}>
-                <FormSearchContainer onSubmit={handleSubmit}>
-                    <Input
-                        inputRef={inputRef}
-                        placeholder="Pesquisar"
-                        name="searchLocation"
-                    />
-                    <button type="submit">Pesquisar</button>
-                </FormSearchContainer>
+                <SearchBar onSubmit={handleSubmit} inputRef={inputRef} />
                 <TodayContainer>
                     <TodayInfo>
                         <h2>{todayData?.name}</h2>
