@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import sun from '../../assets/clear_sky.png';
 import Background from '../../components/Background';
+import Input from '../../components/Input';
 import type {
     CurrentWeatherData,
     DailyForecast,
 } from '../../interfaces/WeatherForecast';
+import { getCoordinatesByLocation } from '../../services/GeolocationService';
 import {
     getCurrentWeatherForecast,
     getNextWeatherForecast,
@@ -15,7 +17,7 @@ import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
 import {
     BoxContent,
-    SearchContainer,
+    FormSearchContainer,
     TodayContainer,
     AfterTomorrowInfo,
     TomorrowInfo,
@@ -27,7 +29,18 @@ import {
 interface WeatherForecastProps {
     temperature?: number;
 }
+const defaultLocation = {
+    city: 'Rio de Janeiro',
+    lat: -22.9110137,
+    long: -43.2093727,
+};
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
+    const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
+
+    const [search, setSearch] = useState(defaultLocation.city);
+    const [latitude, setLatitude] = useState(defaultLocation.lat);
+    const [longitude, setLongitude] = useState(defaultLocation.long);
+
     const [todayData, setTodayData] = useState<
         CurrentWeatherData | undefined
     >();
@@ -39,21 +52,43 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     >();
 
     useEffect(() => {
-        getCurrentWeatherForecast().then(currentWeather =>
-            setTodayData(currentWeather),
-        );
-        getNextWeatherForecast().then(nextWeather => {
-            if (nextWeather && nextWeather.daily.length >= 3) {
-                const [_, tomorrow, afterTomorrow] = nextWeather.daily;
-                setTomorrowData(tomorrow);
-                setAfterTomorrowData(afterTomorrow);
-            }
-        });
-    }, []);
+        const setWeatherForecast = () => {
+            getCurrentWeatherForecast(search).then(currentWeather =>
+                setTodayData(currentWeather),
+            );
+            getNextWeatherForecast(latitude, longitude).then(nextWeather => {
+                if (nextWeather && nextWeather.daily.length >= 3) {
+                    const [_, tomorrow, afterTomorrow] = nextWeather.daily;
+                    setTomorrowData(tomorrow);
+                    setAfterTomorrowData(afterTomorrow);
+                }
+            });
+        };
+
+        setWeatherForecast();
+    }, [search, latitude, longitude]);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (inputRef.current?.value) {
+            setSearch(inputRef.current?.value);
+            const { lat, lon } = await getCoordinatesByLocation(search);
+            setLatitude(lat);
+            setLongitude(lon);
+        }
+    };
+
     return (
         <Background>
             <BoxContent temperature={todayData?.main.temp}>
-                <SearchContainer>Input</SearchContainer>
+                <FormSearchContainer onSubmit={handleSubmit}>
+                    <Input
+                        inputRef={inputRef}
+                        placeholder="Pesquisar"
+                        name="search"
+                    />
+                    <button type="submit">Pesquisar</button>
+                </FormSearchContainer>
                 <TodayContainer>
                     <TodayInfo>
                         <h2>{todayData?.name}</h2>
@@ -90,8 +125,8 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                                 <b>Pressão</b>
                                 <p>
                                     {todayData?.main.pressure &&
-                                        todayData?.main.pressure / 100}
-                                    %
+                                        todayData?.main.pressure}
+                                    hPA
                                 </p>
                             </div>
                         </TodayOthersInfo>
@@ -99,7 +134,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                             <img src={sun} alt="imagem" />
                             <div>
                                 <b>Humidade</b>
-                                <p>{todayData?.main.humidity} hPA</p>
+                                <p>{todayData?.main.humidity} %</p>
                             </div>
                         </TodayOthersInfo>
                     </TodayOthersInfoContainer>

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
-const Input: React.FC = () => {
-    return <div />;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    inputRef?: React.LegacyRef<HTMLInputElement>;
+}
+
+const Input: React.FC<InputProps> = ({ inputRef, ...rest }) => {
+    return (
+        <Container>
+            <input ref={inputRef} {...rest} />
+        </Container>
+    );
 };
 
 export default Input;

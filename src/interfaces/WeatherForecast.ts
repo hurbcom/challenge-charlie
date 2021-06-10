@@ -1,3 +1,5 @@
+import { Coordinates } from './Coordinates';
+
 interface CurrentWeatherData {
     id: number;
     name: string;
@@ -7,10 +9,6 @@ interface CurrentWeatherData {
     base: string;
     main: TemperatureCurrent;
     wind: Wind;
-}
-interface Coordinates {
-    lon: number;
-    lat: number;
 }
 
 interface TemperatureCurrent {

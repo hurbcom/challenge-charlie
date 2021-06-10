@@ -13,9 +13,21 @@ export const BoxContent = styled.div`
         props.temperature ? backgroundColor(props.temperature) : '#fffff'};
 `;
 
-export const SearchContainer = styled.div`
+export const FormSearchContainer = styled.form`
+    width: 100%;
     background: white;
-    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    color: #000000;
+
+    > button {
+        border: none;
+        padding: 0.5rem;
+        background: #000000;
+        color: #ffffff;
+        border-radius: 4px;
+    }
 `;
 
 export const IconContainer = styled.div`
