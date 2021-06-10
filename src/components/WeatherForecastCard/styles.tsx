@@ -53,16 +53,3 @@ export const TodayOthersInfoContainer = styled.div`
     padding: 1.5rem;
     justify-content: space-between;
 `;
-
-export const TodayOthersInfo = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 0.5rem;
-    :last-child {
-        margin-right: 0;
-    }
-    > img {
-        width: 30px;
-        margin-right: 0.5rem;
-    }
-`;

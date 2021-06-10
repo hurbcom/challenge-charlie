@@ -23,24 +23,26 @@ import {
     BoxContent,
     TodayContainer,
     TodayOthersInfoContainer,
-    TodayOthersInfo,
     TodayInfo,
 } from './styles';
 
 interface WeatherForecastProps {
     temperature?: number;
 }
+
 const defaultLocation = {
     city: 'Rio de Janeiro',
     lat: -22.9110137,
     long: -43.2093727,
 };
+
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
     const [searchLocation, setSearchLocation] = useState(defaultLocation.city);
-    const [latitude, setLatitude] = useState(defaultLocation.lat);
-    const [longitude, setLongitude] = useState(defaultLocation.long);
+    const [userLocation, setUserLocation] = useState({});
+    const latitude = useRef(defaultLocation.lat);
+    const longitude = useRef(defaultLocation.long);
 
     const [todayData, setTodayData] = useState<
         CurrentWeatherData | undefined
@@ -55,17 +57,41 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     const [isCelsius, setIsCelsius] = useState(true);
 
     useEffect(() => {
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 1000,
+            maximumAge: 0,
+        };
+
+        function success(position: any) {
+            let coordinates = position.coords;
+            setUserLocation(coordinates);
+            console.log('Latitude : ' + coordinates.latitude);
+            console.log('Longitude: ' + coordinates.longitude);
+        }
+
+        function error(err: any) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+        navigator.geolocation.getCurrentPosition(success, error, options);
+    }, []);
+
+    useEffect(() => {
+        console.log('userLocation', userLocation);
         const setWeatherForecast = () => {
             getCurrentWeatherForecast(searchLocation).then(currentWeather =>
                 setTodayData(currentWeather),
             );
-            getNextWeatherForecast(latitude, longitude).then(nextWeather => {
-                if (nextWeather && nextWeather.daily.length >= 3) {
-                    const [_, tomorrow, afterTomorrow] = nextWeather.daily;
-                    setTomorrowData(tomorrow);
-                    setAfterTomorrowData(afterTomorrow);
-                }
-            });
+
+            getNextWeatherForecast(latitude.current, longitude.current).then(
+                nextWeather => {
+                    if (nextWeather && nextWeather.daily.length >= 3) {
+                        const [, tomorrow, afterTomorrow] = nextWeather.daily;
+                        setTomorrowData(tomorrow);
+                        setAfterTomorrowData(afterTomorrow);
+                    }
+                },
+            );
         };
 
         setWeatherForecast();
@@ -74,10 +100,14 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (inputRef.current?.value) {
+            const { lat, lon } = await getCoordinatesByLocation(
+                inputRef.current?.value,
+            );
+
+            latitude.current = lat;
+            longitude.current = lon;
+
             setSearchLocation(inputRef.current?.value);
-            const { lat, lon } = await getCoordinatesByLocation(searchLocation);
-            setLatitude(lat);
-            setLongitude(lon);
         }
     };
 
