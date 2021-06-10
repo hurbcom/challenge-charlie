@@ -29,17 +29,13 @@ import {
     TodayInfo,
 } from './styles';
 
-interface WeatherForecastProps {
-    temperature?: number;
-}
-
 const defaultLocation = {
     city: 'Rio de Janeiro',
     lat: -22.9110137,
     long: -43.2093727,
 };
 
-const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
+const WeatherForecast: React.FC = () => {
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
     const [searchLocation, setSearchLocation] = useState(defaultLocation.city);

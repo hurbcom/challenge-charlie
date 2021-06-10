@@ -11,7 +11,6 @@ interface WeatherDetailsProps {
 }
 
 const WeatherDetails: React.FC<WeatherDetailsProps> = ({
-    children,
     label,
     content,
     value,

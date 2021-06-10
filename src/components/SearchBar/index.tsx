@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import Input from '../Input';
 import { Container } from './styles';
@@ -13,7 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit, inputRef }) => {
         <Container onSubmit={onSubmit}>
             <Input
                 inputRef={inputRef}
-                placeholder="Cidade,Estado,País"
+                placeholder="Cidade, Estado, País"
                 name="searchLocation"
             />
             <button type="submit">Pesquisar</button>
