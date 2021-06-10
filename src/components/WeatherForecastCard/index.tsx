@@ -9,7 +9,10 @@ import type {
     CurrentWeatherData,
     DailyForecast,
 } from '../../interfaces/WeatherForecast';
-import { getCoordinatesByLocation } from '../../services/GeolocationService';
+import {
+    getCoordinatesByLocation,
+    getLocationFromCoordinates,
+} from '../../services/GeolocationService';
 import {
     getCurrentWeatherForecast,
     getNextWeatherForecast,
@@ -40,7 +43,6 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
     const [searchLocation, setSearchLocation] = useState(defaultLocation.city);
-    const [userLocation, setUserLocation] = useState({});
     const latitude = useRef(defaultLocation.lat);
     const longitude = useRef(defaultLocation.long);
 
@@ -63,11 +65,15 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
             maximumAge: 0,
         };
 
-        function success(position: any) {
+        async function success(position: any) {
             let coordinates = position.coords;
-            setUserLocation(coordinates);
-            console.log('Latitude : ' + coordinates.latitude);
-            console.log('Longitude: ' + coordinates.longitude);
+            latitude.current = coordinates.latitude;
+            longitude.current = coordinates.longitude;
+            const userLocation = await getLocationFromCoordinates(
+                coordinates.latitude,
+                coordinates.longitude,
+            );
+            setSearchLocation(userLocation);
         }
 
         function error(err: any) {
@@ -77,7 +83,6 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     }, []);
 
     useEffect(() => {
-        console.log('userLocation', userLocation);
         const setWeatherForecast = () => {
             getCurrentWeatherForecast(searchLocation).then(currentWeather =>
                 setTodayData(currentWeather),
