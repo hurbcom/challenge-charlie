@@ -15,6 +15,7 @@ import {
 import { celsiusForFahrenheit } from '../../utils/temperature';
 import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
+import SecondarySectionWeather from '../SecondarySectionWeather';
 import {
     BoxContent,
     TodayContainer,
@@ -146,62 +147,40 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                         </TodayOthersInfo>
                     </TodayOthersInfoContainer>
                 </TodayContainer>
-                <TomorrowInfo>
-                    <h3>Amanhã</h3>
-                    <div onClick={() => setIsCelsius(!isCelsius)}>
-                        {isCelsius ? (
-                            <span>
-                                {tomorrowData?.temp.day &&
-                                    Math.round(tomorrowData?.temp.day)}{' '}
-                                °C
-                            </span>
-                        ) : (
-                            <span>
-                                {tomorrowData?.temp.day &&
-                                    celsiusForFahrenheit(
-                                        Math.round(tomorrowData?.temp.day),
-                                    )}{' '}
-                                °F
-                            </span>
-                        )}
-
-                        <img
-                            src={weatherIcons(
-                                tomorrowData?.weather[0].icon as any,
-                            )}
-                            alt={tomorrowData?.weather[0].description}
-                        />
-                    </div>
-                </TomorrowInfo>
-                <AfterTomorrowInfo>
-                    <h3>Depois de Amanhã</h3>
-                    <div onClick={() => setIsCelsius(!isCelsius)}>
-                        {isCelsius ? (
-                            <span>
-                                {afterTomorrowData?.temp.day &&
-                                    Math.round(
-                                        afterTomorrowData?.temp.day,
-                                    )}{' '}
-                                °C
-                            </span>
-                        ) : (
-                            <span>
-                                {afterTomorrowData?.temp.day &&
-                                    celsiusForFahrenheit(
-                                        Math.round(afterTomorrowData?.temp.day),
-                                    )}{' '}
-                                °F
-                            </span>
-                        )}
-
-                        <img
-                            src={weatherIcons(
-                                afterTomorrowData?.weather[0].icon as any,
-                            )}
-                            alt={afterTomorrowData?.weather[0].description}
-                        />
-                    </div>
-                </AfterTomorrowInfo>
+                <SecondarySectionWeather
+                    title="Amanhã"
+                    onClick={() => setIsCelsius(!isCelsius)}
+                    iconSource={weatherIcons(
+                        tomorrowData?.weather[0].icon as any,
+                    )}
+                    alt={tomorrowData?.weather[0].description}
+                    value={
+                        isCelsius
+                            ? tomorrowData?.temp.day &&
+                              `${Math.round(tomorrowData?.temp.day)}°C`
+                            : tomorrowData?.temp.day &&
+                              `${celsiusForFahrenheit(
+                                  Math.round(tomorrowData?.temp.day),
+                              )}°F`
+                    }
+                />
+                <SecondarySectionWeather
+                    title="Depois de Amanhã"
+                    onClick={() => setIsCelsius(!isCelsius)}
+                    iconSource={weatherIcons(
+                        afterTomorrowData?.weather[0].icon as any,
+                    )}
+                    alt={afterTomorrowData?.weather[0].description}
+                    value={
+                        isCelsius
+                            ? afterTomorrowData?.temp.day &&
+                              `${Math.round(afterTomorrowData?.temp.day)}°C`
+                            : afterTomorrowData?.temp.day &&
+                              `${celsiusForFahrenheit(
+                                  Math.round(afterTomorrowData?.temp.day),
+                              )}°F`
+                    }
+                />
             </BoxContent>
         </Background>
     );
