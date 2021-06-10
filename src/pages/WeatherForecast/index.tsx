@@ -12,18 +12,18 @@ import {
     getCurrentWeatherForecast,
     getNextWeatherForecast,
 } from '../../services/WeatherForecastService';
-import { removeDecimal } from '../../utils/removeDecimal';
+import { celsiusForFahrenheit } from '../../utils/temperature';
 import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
 import {
     BoxContent,
-    FormSearchContainer,
     TodayContainer,
     AfterTomorrowInfo,
     TomorrowInfo,
     TodayOthersInfoContainer,
     TodayOthersInfo,
     TodayInfo,
+    FormSearchContainer,
 } from './styles';
 
 interface WeatherForecastProps {
@@ -37,7 +37,7 @@ const defaultLocation = {
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
     const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
-    const [search, setSearch] = useState(defaultLocation.city);
+    const [searchLocation, setSearchLocation] = useState(defaultLocation.city);
     const [latitude, setLatitude] = useState(defaultLocation.lat);
     const [longitude, setLongitude] = useState(defaultLocation.long);
 
@@ -51,9 +51,11 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
         DailyForecast | undefined
     >();
 
+    const [isCelsius, setIsCelsius] = useState(true);
+
     useEffect(() => {
         const setWeatherForecast = () => {
-            getCurrentWeatherForecast(search).then(currentWeather =>
+            getCurrentWeatherForecast(searchLocation).then(currentWeather =>
                 setTodayData(currentWeather),
             );
             getNextWeatherForecast(latitude, longitude).then(nextWeather => {
@@ -66,13 +68,13 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
         };
 
         setWeatherForecast();
-    }, [search, latitude, longitude]);
+    }, [searchLocation, latitude, longitude]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (inputRef.current?.value) {
-            setSearch(inputRef.current?.value);
-            const { lat, lon } = await getCoordinatesByLocation(search);
+            setSearchLocation(inputRef.current?.value);
+            const { lat, lon } = await getCoordinatesByLocation(searchLocation);
             setLatitude(lat);
             setLongitude(lon);
         }
@@ -85,7 +87,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                     <Input
                         inputRef={inputRef}
                         placeholder="Pesquisar"
-                        name="search"
+                        name="searchLocation"
                     />
                     <button type="submit">Pesquisar</button>
                 </FormSearchContainer>
@@ -99,10 +101,23 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                             )}
                             alt={todayData?.weather[0].description}
                         />
-                        <h1>
-                            {todayData?.main.temp &&
-                                removeDecimal(todayData?.main.temp.toString())}
-                        </h1>
+                        <div onClick={() => setIsCelsius(!isCelsius)}>
+                            {isCelsius ? (
+                                <h1>
+                                    {todayData?.main.temp &&
+                                        Math.round(todayData?.main.temp)}
+                                    °C
+                                </h1>
+                            ) : (
+                                <h1>
+                                    {todayData?.main.temp &&
+                                        celsiusForFahrenheit(
+                                            Math.round(todayData?.main.temp),
+                                        )}
+                                    °F
+                                </h1>
+                            )}
+                        </div>
                         <span>{todayData?.weather[0].description}</span>
                     </TodayInfo>
                     <TodayOthersInfoContainer>
@@ -141,13 +156,23 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                 </TodayContainer>
                 <TomorrowInfo>
                     <h3>Amanhã</h3>
-                    <div>
-                        <span>
-                            {tomorrowData?.temp.day &&
-                                removeDecimal(
-                                    tomorrowData?.temp.day.toString(),
-                                )}
-                        </span>
+                    <div onClick={() => setIsCelsius(!isCelsius)}>
+                        {isCelsius ? (
+                            <span>
+                                {tomorrowData?.temp.day &&
+                                    Math.round(tomorrowData?.temp.day)}{' '}
+                                °C
+                            </span>
+                        ) : (
+                            <span>
+                                {tomorrowData?.temp.day &&
+                                    celsiusForFahrenheit(
+                                        Math.round(tomorrowData?.temp.day),
+                                    )}{' '}
+                                °F
+                            </span>
+                        )}
+
                         <img
                             src={weatherIcons(
                                 tomorrowData?.weather[0].icon as any,
@@ -158,13 +183,25 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                 </TomorrowInfo>
                 <AfterTomorrowInfo>
                     <h3>Depois de Amanhã</h3>
-                    <div>
-                        <span>
-                            {afterTomorrowData?.temp.day &&
-                                removeDecimal(
-                                    afterTomorrowData?.temp.day.toString(),
-                                )}
-                        </span>
+                    <div onClick={() => setIsCelsius(!isCelsius)}>
+                        {isCelsius ? (
+                            <span>
+                                {afterTomorrowData?.temp.day &&
+                                    Math.round(
+                                        afterTomorrowData?.temp.day,
+                                    )}{' '}
+                                °C
+                            </span>
+                        ) : (
+                            <span>
+                                {afterTomorrowData?.temp.day &&
+                                    celsiusForFahrenheit(
+                                        Math.round(afterTomorrowData?.temp.day),
+                                    )}{' '}
+                                °F
+                            </span>
+                        )}
+
                         <img
                             src={weatherIcons(
                                 afterTomorrowData?.weather[0].icon as any,
