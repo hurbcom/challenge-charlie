@@ -6,6 +6,8 @@ interface WeatherDetailsProps {
     label?: string;
     content?: string | number;
     value?: string;
+    altImage?: string;
+    imageSource?: string;
 }
 
 const WeatherDetails: React.FC<WeatherDetailsProps> = ({
@@ -13,10 +15,12 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({
     label,
     content,
     value,
+    altImage,
+    imageSource,
 }) => {
     return (
         <Container>
-            {children}
+            <img src={imageSource} alt={altImage} />
             <div>
                 <b>{label}</b>
                 <p>

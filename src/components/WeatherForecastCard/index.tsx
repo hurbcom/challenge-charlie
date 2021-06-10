@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import sun from '../../assets/clear_sky.png';
+import humidity from '../../assets/humidity.png';
+import pressure from '../../assets/pressure.png';
+import wind from '../../assets/wind.png';
 import Background from '../../components/Background';
 import SearchBar from '../../components/SearchBar';
 import type {
@@ -120,21 +122,18 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ temperature }) => {
                                 windDirection(todayData?.wind.deg)
                             }
                             value={`${todayData?.wind.speed} Km/h`}
-                        >
-                            <img src={sun} alt="imagem" />
-                        </WeatherDetails>
+                            imageSource={wind}
+                        />
                         <WeatherDetails
                             label="Pressão"
                             value={`${todayData?.main.pressure} hPA`}
-                        >
-                            <img src={sun} alt="imagem" />
-                        </WeatherDetails>
+                            imageSource={pressure}
+                        />
                         <WeatherDetails
                             label="Humidade"
                             value={`${todayData?.main.humidity}%`}
-                        >
-                            <img src={sun} alt="imagem" />
-                        </WeatherDetails>
+                            imageSource={humidity}
+                        />
                     </TodayOthersInfoContainer>
                 </TodayContainer>
                 <SecondarySectionWeather
