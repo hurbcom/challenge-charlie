@@ -53,3 +53,17 @@ export const TodayOthersInfoContainer = styled.div`
     padding: 1.5rem;
     justify-content: space-between;
 `;
+
+export const TomorrowContainer = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 1.5rem;
+    justify-content: space-between;
+`;
+
+export const AfterTomorrowContainer = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 1.5rem;
+    justify-content: space-between;
+`;

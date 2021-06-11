@@ -21,12 +21,15 @@ import { celsiusForFahrenheit } from '../../utils/temperature';
 import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
 import SecondarySectionWeather from '../SecondarySectionWeather';
+import { SkeletonLoader } from '../SkeletonLoader';
 import WeatherDetails from '../WeatherDetails';
 import {
     BoxContent,
     TodayContainer,
     TodayOthersInfoContainer,
     TodayInfo,
+    TomorrowContainer,
+    AfterTomorrowContainer,
 } from './styles';
 
 const defaultLocation = {
@@ -53,6 +56,7 @@ const WeatherForecast: React.FC = () => {
     >();
 
     const [isCelsius, setIsCelsius] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         let options = {
@@ -70,10 +74,12 @@ const WeatherForecast: React.FC = () => {
                 coordinates.longitude,
             );
             setSearchLocation(userLocation);
+            setIsLoading(false);
         }
 
         function error(err: any) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
+            setIsLoading(false);
         }
         navigator.geolocation.getCurrentPosition(success, error, options);
     }, []);
@@ -99,6 +105,7 @@ const WeatherForecast: React.FC = () => {
     }, [searchLocation, latitude, longitude]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        setIsLoading(false);
         event.preventDefault();
         if (inputRef.current?.value) {
             const { lat, lon } = await getCoordinatesByLocation(
@@ -112,95 +119,136 @@ const WeatherForecast: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1200);
+    }, []);
+
     return (
         <Background>
-            <BoxContent temperature={todayData?.main.temp}>
+            <BoxContent temperature={isLoading ? 1000 : todayData?.main.temp}>
                 <SearchBar onSubmit={handleSubmit} inputRef={inputRef} />
-                <TodayContainer>
-                    <TodayInfo>
-                        <span>{todayData?.name}</span>
-                        <p>Hoje</p>
-                        <img
-                            src={weatherIcons(
-                                todayData?.weather[0].icon as any,
+                {isLoading ? (
+                    <>
+                        <TodayContainer>
+                            <SkeletonLoader width={'50%'} height={'25px'} />
+                            <SkeletonLoader width={'30%'} height={'20px'} />
+                            <SkeletonLoader width={'25%'} height={'60px'} />
+                            <SkeletonLoader width={'30%'} height={'55px'} />
+                            <SkeletonLoader width={'50%'} height={'30px'} />
+                        </TodayContainer>
+                        <TodayOthersInfoContainer>
+                            <SkeletonLoader width={'30%'} height={'50px'} />
+                            <SkeletonLoader width={'30%'} height={'50px'} />
+                            <SkeletonLoader width={'30%'} height={'50px'} />
+                        </TodayOthersInfoContainer>
+                        <TomorrowContainer>
+                            <SkeletonLoader width={'50%'} height={'25px'} />
+                            <SkeletonLoader width={'35%'} height={'25px'} />
+                        </TomorrowContainer>
+                        <AfterTomorrowContainer>
+                            <SkeletonLoader width={'50%'} height={'25px'} />
+                            <SkeletonLoader width={'35%'} height={'25px'} />
+                        </AfterTomorrowContainer>
+                    </>
+                ) : (
+                    <>
+                        <TodayContainer>
+                            <TodayInfo>
+                                <span>{todayData?.name}</span>
+                                <p>Hoje</p>
+                                <img
+                                    src={weatherIcons(
+                                        todayData?.weather[0].icon as any,
+                                    )}
+                                    alt={todayData?.weather[0].description}
+                                />
+                                <div onClick={() => setIsCelsius(!isCelsius)}>
+                                    {isCelsius ? (
+                                        <h1>
+                                            {todayData?.main.temp &&
+                                                Math.round(
+                                                    todayData?.main.temp,
+                                                )}
+                                            °C
+                                        </h1>
+                                    ) : (
+                                        <h1>
+                                            {todayData?.main.temp &&
+                                                celsiusForFahrenheit(
+                                                    Math.round(
+                                                        todayData?.main.temp,
+                                                    ),
+                                                )}
+                                            °F
+                                        </h1>
+                                    )}
+                                </div>
+                                <span>{todayData?.weather[0].description}</span>
+                            </TodayInfo>
+                            <TodayOthersInfoContainer>
+                                <WeatherDetails
+                                    label="Vento"
+                                    content={
+                                        todayData?.wind.deg &&
+                                        windDirection(todayData?.wind.deg)
+                                    }
+                                    value={`${todayData?.wind.speed} Km/h`}
+                                    imageSource={wind}
+                                />
+                                <WeatherDetails
+                                    label="Pressão"
+                                    value={`${todayData?.main.pressure} hPA`}
+                                    imageSource={pressure}
+                                />
+                                <WeatherDetails
+                                    label="Humidade"
+                                    value={`${todayData?.main.humidity}%`}
+                                    imageSource={humidity}
+                                />
+                            </TodayOthersInfoContainer>
+                        </TodayContainer>
+                        <SecondarySectionWeather
+                            title="Amanhã"
+                            onClick={() => setIsCelsius(!isCelsius)}
+                            iconSource={weatherIcons(
+                                tomorrowData?.weather[0].icon as any,
                             )}
-                            alt={todayData?.weather[0].description}
-                        />
-                        <div onClick={() => setIsCelsius(!isCelsius)}>
-                            {isCelsius ? (
-                                <h1>
-                                    {todayData?.main.temp &&
-                                        Math.round(todayData?.main.temp)}
-                                    °C
-                                </h1>
-                            ) : (
-                                <h1>
-                                    {todayData?.main.temp &&
-                                        celsiusForFahrenheit(
-                                            Math.round(todayData?.main.temp),
-                                        )}
-                                    °F
-                                </h1>
-                            )}
-                        </div>
-                        <span>{todayData?.weather[0].description}</span>
-                    </TodayInfo>
-                    <TodayOthersInfoContainer>
-                        <WeatherDetails
-                            label="Vento"
-                            content={
-                                todayData?.wind.deg &&
-                                windDirection(todayData?.wind.deg)
+                            alt={tomorrowData?.weather[0].description}
+                            value={
+                                isCelsius
+                                    ? tomorrowData?.temp.day &&
+                                      `${Math.round(tomorrowData?.temp.day)}°C`
+                                    : tomorrowData?.temp.day &&
+                                      `${celsiusForFahrenheit(
+                                          Math.round(tomorrowData?.temp.day),
+                                      )}°F`
                             }
-                            value={`${todayData?.wind.speed} Km/h`}
-                            imageSource={wind}
                         />
-                        <WeatherDetails
-                            label="Pressão"
-                            value={`${todayData?.main.pressure} hPA`}
-                            imageSource={pressure}
-                        />
-                        <WeatherDetails
-                            label="Humidade"
-                            value={`${todayData?.main.humidity}%`}
-                            imageSource={humidity}
-                        />
-                    </TodayOthersInfoContainer>
-                </TodayContainer>
-                <SecondarySectionWeather
-                    title="Amanhã"
-                    onClick={() => setIsCelsius(!isCelsius)}
-                    iconSource={weatherIcons(
-                        tomorrowData?.weather[0].icon as any,
-                    )}
-                    alt={tomorrowData?.weather[0].description}
-                    value={
-                        isCelsius
-                            ? tomorrowData?.temp.day &&
-                              `${Math.round(tomorrowData?.temp.day)}°C`
-                            : tomorrowData?.temp.day &&
-                              `${celsiusForFahrenheit(
-                                  Math.round(tomorrowData?.temp.day),
-                              )}°F`
-                    }
-                />
-                <SecondarySectionWeather
-                    title="Depois de Amanhã"
-                    onClick={() => setIsCelsius(!isCelsius)}
-                    iconSource={weatherIcons(
-                        afterTomorrowData?.weather[0].icon as any,
-                    )}
-                    alt={afterTomorrowData?.weather[0].description}
-                    value={
-                        isCelsius
-                            ? afterTomorrowData?.temp.day &&
-                              `${Math.round(afterTomorrowData?.temp.day)}°C`
-                            : afterTomorrowData?.temp.day &&
-                              `${celsiusForFahrenheit(
-                                  Math.round(afterTomorrowData?.temp.day),
-                              )}°F`
-                    }
-                />
+                        <SecondarySectionWeather
+                            title="Depois de Amanhã"
+                            onClick={() => setIsCelsius(!isCelsius)}
+                            iconSource={weatherIcons(
+                                afterTomorrowData?.weather[0].icon as any,
+                            )}
+                            alt={afterTomorrowData?.weather[0].description}
+                            value={
+                                isCelsius
+                                    ? afterTomorrowData?.temp.day &&
+                                      `${Math.round(
+                                          afterTomorrowData?.temp.day,
+                                      )}°C`
+                                    : afterTomorrowData?.temp.day &&
+                                      `${celsiusForFahrenheit(
+                                          Math.round(
+                                              afterTomorrowData?.temp.day,
+                                          ),
+                                      )}°F`
+                            }
+                        />{' '}
+                    </>
+                )}
             </BoxContent>
         </Background>
     );
