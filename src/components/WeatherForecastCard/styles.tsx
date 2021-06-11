@@ -7,6 +7,7 @@ interface WeatherForecastProps {
 export const BoxContent = styled.div`
     display: flex;
     flex-direction: column;
+    width: 420px;
     max-width: 420px;
     border: none;
     color: #000000;
@@ -78,7 +79,10 @@ const contentStyle = css`
     justify-content: space-between;
 `;
 export const TodayOthersInfoContainer = styled.div`
-    ${contentStyle}
+    display: flex;
+    width: 100%;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    justify-content: space-between;
     margin: 0 auto;
     justify-content: space-between;
     @media screen and (max-width: 400px) {
@@ -97,4 +101,16 @@ export const TomorrowContainer = styled.div`
 
 export const AfterTomorrowContainer = styled.div`
     ${contentStyle}
+`;
+
+export const ErrorMessageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    height: 500px;
+    text-align: center;
+    > span {
+        font-size: 1.5rem;
+    }
 `;

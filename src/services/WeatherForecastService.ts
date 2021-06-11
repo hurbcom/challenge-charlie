@@ -9,14 +9,11 @@ const URL_CURRENT_WEATHER =
 export const getCurrentWeatherForecast = async (
     location: string,
 ): Promise<CurrentWeatherData | undefined> => {
-    try {
-        const response = await fetch(`${URL_CURRENT_WEATHER}&q=${location}`);
-        const currentWeather = await response.json();
-        return currentWeather;
-    } catch (error) {
-        console.error(error);
-        return undefined;
-    }
+    const response = await fetch(`${URL_CURRENT_WEATHER}&q=${location}`);
+    const currentWeather = await response.json();
+    console.log(currentWeather);
+    if (currentWeather.cod !== 200) return undefined;
+    return currentWeather;
 };
 
 const URL_NEXT_WEATHER =
@@ -26,14 +23,7 @@ export const getNextWeatherForecast = async (
     lat: number,
     lon: number,
 ): Promise<NextWeatherData | undefined> => {
-    try {
-        const response = await fetch(
-            `${URL_NEXT_WEATHER}&lat=${lat}&lon=${lon}`,
-        );
-        const nextWeatherForecast = await response.json();
-        return nextWeatherForecast;
-    } catch (error) {
-        console.error(error);
-        return undefined;
-    }
+    const response = await fetch(`${URL_NEXT_WEATHER}&lat=${lat}&lon=${lon}`);
+    const nextWeatherForecast = await response.json();
+    return nextWeatherForecast;
 };
