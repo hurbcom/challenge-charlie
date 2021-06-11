@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { backgroundColor } from '../../utils/backgroundColor';
 interface WeatherForecastProps {
@@ -7,9 +7,9 @@ interface WeatherForecastProps {
 export const BoxContent = styled.div`
     display: flex;
     flex-direction: column;
-    width: 420px;
+    max-width: 420px;
     border: none;
-    color: #ffffff;
+    color: #000000;
     background: ${(props: WeatherForecastProps) =>
         props.temperature ? backgroundColor(props.temperature) : '#fffff'};
 `;
@@ -46,24 +46,30 @@ export const TodayInfo = styled.div`
     }
 `;
 
-export const TodayOthersInfoContainer = styled.div`
+const contentStyle = css`
     display: flex;
     width: 100%;
-    margin: 0 auto;
     padding: 1.5rem;
     justify-content: space-between;
+`;
+export const TodayOthersInfoContainer = styled.div`
+    ${contentStyle}
+    margin: 0 auto;
+    justify-content: space-between;
+    @media screen and (max-width: 400px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > div {
+            margin-top: 0.5rem;
+        }
+    }
 `;
 
 export const TomorrowContainer = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 1.5rem;
-    justify-content: space-between;
+    ${contentStyle}
 `;
 
 export const AfterTomorrowContainer = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 1.5rem;
-    justify-content: space-between;
+    ${contentStyle}
 `;
