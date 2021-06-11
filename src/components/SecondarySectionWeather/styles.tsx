@@ -10,6 +10,7 @@ export const Container = styled.div`
         align-items: center;
         > span {
             margin-right: 1rem;
+            cursor: pointer;
         }
         > img {
             width: 40px;

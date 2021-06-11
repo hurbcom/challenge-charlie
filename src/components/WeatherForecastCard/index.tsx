@@ -79,7 +79,7 @@ const WeatherForecast: React.FC = () => {
 
         function error(err: any) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
-            setIsLoading(false);
+            setIsLoading(true);
         }
         navigator.geolocation.getCurrentPosition(success, error, options);
     }, []);
@@ -166,7 +166,7 @@ const WeatherForecast: React.FC = () => {
                                 />
                                 <div onClick={() => setIsCelsius(!isCelsius)}>
                                     {isCelsius ? (
-                                        <h1>
+                                        <h1 title="Clique para converter para Fahrenheit">
                                             {todayData?.main.temp &&
                                                 Math.round(
                                                     todayData?.main.temp,
@@ -174,7 +174,7 @@ const WeatherForecast: React.FC = () => {
                                             °C
                                         </h1>
                                     ) : (
-                                        <h1>
+                                        <h1 title="Clique para converter para Celsius">
                                             {todayData?.main.temp &&
                                                 celsiusForFahrenheit(
                                                     Math.round(

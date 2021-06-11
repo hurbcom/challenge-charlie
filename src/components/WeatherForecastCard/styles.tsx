@@ -39,6 +39,7 @@ export const TodayInfo = styled.div`
     > div > h1 {
         font-size: 3.375rem;
         line-height: 3.5rem;
+        cursor: pointer;
     }
     > span {
         font-size: 1.5rem;

@@ -7,4 +7,7 @@ export const Container = styled.div`
     border-radius: 4px;
     margin-right: 0.5rem;
     padding: 0.5rem;
+    > input {
+        width: 100%;
+    }
 `;

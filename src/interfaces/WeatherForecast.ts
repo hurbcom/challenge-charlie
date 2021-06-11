@@ -1,12 +1,9 @@
 import { Coordinates } from './Coordinates';
 
 interface CurrentWeatherData {
-    id: number;
     name: string;
-    cod: number;
     coord: Coordinates;
     weather: Weather[];
-    base: string;
     main: TemperatureCurrent;
     wind: Wind;
 }
@@ -24,12 +21,10 @@ interface Wind {
 interface NextWeatherData {
     lat: number;
     lon: number;
-    timezone: string;
     daily: DailyForecast[];
 }
 
 interface DailyForecast {
-    dt: Number;
     temp: Temperatures;
     weather: Weather[];
 }
