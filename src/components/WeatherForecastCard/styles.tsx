@@ -9,6 +9,7 @@ export const BoxContent = styled.div`
     flex-direction: column;
     width: 420px;
     max-width: 420px;
+    min-height: 500px;
     border: none;
     color: #000000;
     background: ${(props: WeatherForecastProps) =>

@@ -124,21 +124,23 @@ const WeatherForecast: React.FC = () => {
         event.preventDefault();
 
         try {
-            setIsLoading(true);
-            setIsError(false);
             if (inputRef.current?.value) {
+                setIsLoading(true);
                 const { lat, lon } = await getCoordinatesByLocation(
                     inputRef.current?.value,
                 );
+
                 latitude.current = lat;
                 longitude.current = lon;
                 setSearchLocation(inputRef.current?.value);
+                setIsError(false);
             }
-            setIsLoading(false);
         } catch (err) {
             console.error(err);
             setIsError(true);
             setMessageError('Local não encontrado.Tente Novamente.');
+        } finally {
+            setIsLoading(false);
         }
     };
 

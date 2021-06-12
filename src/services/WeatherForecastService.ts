@@ -4,7 +4,7 @@ import type {
 } from '../interfaces/WeatherForecast';
 
 const URL_CURRENT_WEATHER =
-    'http://api.openweathermap.org/data/2.5/weather?appid=889ccf4cff9e104cef05b745c7777936&lang=pt_br&units=metric';
+    'https://api.openweathermap.org/data/2.5/weather?appid=889ccf4cff9e104cef05b745c7777936&lang=pt_br&units=metric';
 
 export const getCurrentWeatherForecast = async (
     location: string,
