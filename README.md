@@ -1,46 +1,192 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
 
-## Available Scripts
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/aquistapace/challenge-charlie">
+    
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+  
 
-In the project directory, you can run:
+  <a href="https://github.com/aquistapace">
+    <img alt="Feito por Caroline Aquistapace" src="https://img.shields.io/badge/feito%20por-Caroline-Aquistapace%237519C1">
+  </a>
+  
 
-### `yarn start`
+</p>
+<h1 align="center">
+   Challenge-Charlie | Hurb
+</h1>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h4 align="center"> 
+	 ⛅ ☔⛄ Microsite para Previsão do Tempo
+</h4>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-demo">Demo</a> • 
+ <a href="#-funcionalidades">Funcionalidades</a> • 
+ <a href="#-layout">Layout</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-autora">Autora</a> • 
+ <a href="#user-content--licença">Licença</a>
+</p>
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💻 Sobre o projeto
 
-### `yarn build`
+☔ O microsite Previsão do Tempo é um microsite responsivo que mostra a previsão do tempo para o dia corrente e para os próximos dois dias consecutivos, de acordo com o nome de uma localidade informada pelo usuário. 
+Além da previsão do tempo essa aplicação também apresenta outras informações, como: direção e velocidade do vento, umidade e pressão, referentes ao dia de hoje.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📺 Demo
+Antes de acessar a demonstração você deve  acessar [CORS Anywhere](http://cors-anywhere.herokuapp.com/corsdemo) e clicar em **“Request temporary access to the demo server”** para visualizar a imagem de fundo, pois a API do BING para imagens, que foi utilizada neste projeto, utiliza CORS.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+## ⚙️ Funcionalidades
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] O usuário pode pesquisar a Previsão do Tempo ao inserir o nome de  uma localidade no campo de pesquisa, caso o nome da localidade seja válido, são carregadas as informações de:
+	- [x] Previsão do Tempo para Hoje, mostrando:
+		- [x] Temperatura,
+		- [x] Ícone do clima. Os ícones utilizados podem ser encontrados em  [Meteocons](http://www.alessioatzeni.com/meteocons/)
+		- [x] Uma descrição do clima ,
+		- [x] Outras informações : Direção e Velocidade do Vento, Humidade e  Pressão Atmosférica.(Os ícones utilizados podem ser encontrados em [Flaticon](https://www.flaticon.com/)
+	- [x] Previsão do Tempo para Amanhã e Depois de Amanhã, mostrando:
+		- [x] Temperatura ,
+		- [x] Ícone do clima. Os ícones utilizados podem ser encontrados em [Meteocons](http://www.alessioatzeni.com/meteocons/)
+		
+- [x] O usuário pode permitir ou não o acesso a sua coordenadas geográficas para visualizar a previsão do tempo de sua localidade.
+- [x] O usuário ao clicar em qualquer temperatura pode  alterar a visualização da temperatura de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+- [x] O usuário pode visualizar um degradê de cores ,que reflete a temperatura atual do lugar buscado para as três datas.
+	- [x] Para temperaturas abaixo de 15ºC deve ser usado tons de azul,
+	- [x] para temperaturas acima de 35ºC deve ser usado tons de vermelho
+	- [x] use tons de amarelo para as demais temperaturas.
+	- [x] Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê.
+- [x]  O usuário pode visualizar todos os dias uma imagem diferente como background da página. A URL da imagem de fundo foi  extraída da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🎨 Layout
+- Para o layout dessa aplicação eu  criei uma hierarquia visual. 
+	- Eu centralizei as informações relacionadas a temperatura de hoje, dando destaque ao ícone e a temperatura corrente , seguida pela descrição do clima e o nome do local que o usuário buscou na pesquisa, pois considerei que essas sejam as principais informações que um usuário deseja ao acessar uma aplicação de previsão de tempo.
+	- Agrupei as informações de velocidade do tempo, humidade e pressão, pois são informações que nem todos os usuários querem ver. Mas mantive próxima as informações da temperatura corrente, já que possuem relação direta
+	- As demais temperaturas foram agrupadas e posicionadas após todas as informações de previsão de tempo para hoje.
+	- > Veja o protótipo desenvolvido no [figma](https://github.com/aquistapace/challenge-charlie/blob/main/package.json)
+	
+- Eu adicionei animações para indicar a funcionalidade de ao clicar em qualquer temperatura o usuário pode alterar a visualização da temperatura de Celsius para Fahrenheit ou de Fahrenheit para Celsius. Também adicionei um tootlip  na temperatura de hoje, informando ao usuário que ao clicar ali ele pode visualizar a temperatura em outra unidade.
+- Deixei em destaque o campo de busca com um botão autoexplicativo, para facilitar a pesquisa da previsão do tempo para uma nova localidade.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Desktop
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Página de Temperatura abaixo de 15ºC, acima de 35ºC, Página de Erro caso não encontre uma localidade pelo nome.
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/src/assets/login.png" width="400px">
+  
+  ### Mobile
+- Página de Temperatura abaixo de 15ºC e acima de 35ºC
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/src/assets/login.png" width="400px">
+
+---
+## 🚀 Como executar o projeto
+
+###  🎏Pré-requisitos
+
+- Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Docker](https://www.docker.com/) 
+- Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+- Como a API do BING para imagens utiliza CORS você precisa acessar [CORS Anywhere](http://cors-anywhere.herokuapp.com/corsdemo) e clicar em "Request temporary access to the demo server" para visualizar a imagem.
+
+
+
+#### 🧭 Rodando a aplicação na sua máquina
+
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:aquistapace/challenge-charlie.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd challenge-charlie
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm start
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+
+
+```
+#### 🧭 Rodando a aplicação dentro de um container Docker
+Para esta aplicação foram criados no Docker um `stage` para produção e um para desenvolvimento.
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:aquistapace/challenge-charlie.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd challenge-charlie
+
+# Para esta aplicação foram criados stage dev e prod
+
+#Crie as imagem docker 
+#para o stage de desenvolvimento
+$ docker build -t challenge-charlie:dev .
+#para o stage de produção
+$ docker build -f Dockerfile.prod -t challenge-charlie:prod 
+
+#Uma vez que as imagens estão criadas, pode-se rodar os containers:
+#para o stage de desenvolvimento:
+$ docker-compose up -d
+# No stage de desenvolvimento a aplicação será aberta na porta:3000 - acesse http://localhost:3000
+#para o stage de produção:
+$ docker-compose -f docker-compose-prod.yml up --build  
+# No stage de produção aplicação será aberta na porta:1337 - acesse http://localhost:1337
+
+```
+---
+#### 🧭 Rodando os testes da aplicação
+```bash
+# Para executar os testes utilize
+$ npm test
+```
+
+## 🛠 Tecnologias
+As seguintes tecnologias foram usadas no desenvolvimento do projeto:
+- **[React](https://reactjs.org/)**  
+- **[TypeScript](https://www.typescriptlang.org/)**
+ -   **[Styled Components](https://styled-components.com/)** 
+ - **[Fetch](https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API)** 
+ -  **[Jest](https://jestjs.io/pt-BR/)** 
+> Veja o arquivo  [package.json](https://github.com/aquistapace/challenge-charlie/blob/main/package.json)
+#### APIs utilizadas
+- [Open Weather](http://api.openweathermap.org) -API utilizada para Previsão do Tempo
+-  [Open Cage](https://api.opencagedata.com) - API utilizada para converter latitude e longitude em uma localidade.
+-  [API do BING](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) - API utilizada para extrair a URL da imagem de fundo da página.
+
+
+#### **Utilitários**
+
+-   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
+-   Markdown:  **[StackEdit](https://stackedit.io/)**,  **[Markdown Emoji](https://gist.github.com/rxaviers/7360908)**
+
+
+---
+## 🦸 Autora
+
+ ### <sub><b>Caroline Aquistapace</b></sub></a> <a href="https://github.com/aquistapace" title="Git Hub">🌸</a>
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito com ❤️ por Caroline Aquistapace
+
+---
