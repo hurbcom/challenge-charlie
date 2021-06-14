@@ -126,11 +126,11 @@ $ cd challenge-charlie
 #para o stage de desenvolvimento
 $ docker build -t challenge-charlie:dev .
 #para o stage de produção
-$ docker build -f Dockerfile.prod -t challenge-charlie:prod 
+$ docker build -f Dockerfile.prod -t challenge-charlie:prod .
 
 #Uma vez que as imagens estão criadas, pode-se rodar os containers:
 #para o stage de desenvolvimento:
-$ docker-compose up -d
+$ docker-compose up -d --build
 # No stage de desenvolvimento a aplicação será aberta na porta:3000 - acesse http://localhost:3000
 #para o stage de produção:
 $ docker-compose -f docker-compose-prod.yml up --build  
