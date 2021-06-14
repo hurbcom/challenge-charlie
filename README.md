@@ -50,7 +50,7 @@ Clique [aqui](https://challenge-charlie-hurb.herokuapp.com/) para acessar a apli
 ---
 
 ## ⚙️ Funcionalidades
-- Busca de previsão do tempo por nome de uma localidade,
+- Busca de previsão do tempo por nome de uma localidade ou por geolocalização do usuário,
 - Previsão do Tempo para Hoje,
 -  Previsão do Tempo para Amanhã e Depois de Amanhã,
 -  Temperaturas em Celsius ou em Fahrenheit,
