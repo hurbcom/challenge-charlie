@@ -124,6 +124,7 @@ const WeatherForecast: React.FC = () => {
                         setTomorrowData(tomorrow);
                         setAfterTomorrowData(afterTomorrow);
                         setIsError(false);
+                        setIsLoading(false);
                     } else {
                         setIsError(true);
                         setMessageError(
@@ -164,12 +165,6 @@ const WeatherForecast: React.FC = () => {
             setIsLoading(false);
         }
     };
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1200);
-    }, []);
 
     return (
         <Background>
