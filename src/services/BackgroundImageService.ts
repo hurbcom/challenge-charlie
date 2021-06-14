@@ -1,4 +1,4 @@
-const URL_IMAGE =
+export const URL_IMAGE_BING =
     'https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
 
 export const getImageOfTheDay = async (): Promise<string | undefined> => {
@@ -6,7 +6,7 @@ export const getImageOfTheDay = async (): Promise<string | undefined> => {
         origin: 'localhost',
     });
     try {
-        const response = await fetch(URL_IMAGE, { headers });
+        const response = await fetch(URL_IMAGE_BING, { headers });
         const currentImage = await response.json();
         return currentImage.images[0].url as string;
     } catch (error) {

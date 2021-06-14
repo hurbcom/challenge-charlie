@@ -17,7 +17,7 @@ import {
     getCurrentWeatherForecast,
     getNextWeatherForecast,
 } from '../../services/WeatherForecastService';
-import { celsiusForFahrenheit } from '../../utils/temperature';
+import { celsiusForFahrenheit } from '../../utils/celsiusForFahrenheit';
 import { weatherIcons } from '../../utils/weatherIcons';
 import { windDirection } from '../../utils/windDirection';
 import SecondarySectionWeather from '../SecondarySectionWeather';

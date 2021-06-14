@@ -15,8 +15,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit, inputRef }) => {
                 inputRef={inputRef}
                 placeholder="Cidade, Estado, País"
                 name="searchLocation"
+                data-testid="form-input"
             />
-            <button type="submit">Pesquisar</button>
+            <button type="submit" data-testid="form-button">
+                Pesquisar
+            </button>
         </Container>
     );
 };

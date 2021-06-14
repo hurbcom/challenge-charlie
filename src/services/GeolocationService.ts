@@ -1,6 +1,6 @@
 import { Coordinates } from '../interfaces/Coordinates';
 
-const URL_GEOLOCATION =
+export const URL_GEOLOCATION =
     'https://api.opencagedata.com/geocode/v1/json?key=e4a1d306c8bb4fdda513d15283580c71&lang=pt_br&limit=1';
 
 export const getCoordinatesByLocation = async (
