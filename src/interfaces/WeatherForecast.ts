@@ -6,6 +6,7 @@ interface CurrentWeatherData {
     weather: Weather[];
     main: TemperatureCurrent;
     wind: Wind;
+    cod: number;
 }
 
 interface TemperatureCurrent {

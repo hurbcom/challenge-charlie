@@ -1,16 +1,19 @@
 import { shallow } from 'enzyme';
 
-import WeatherForecastCard from '../../components/WeatherForecastCard';
-import { getImageOfTheDay } from '../../services/BackgroundImageService';
-import {
-    getLocationFromCoordinates,
-    URL_GEOLOCATION,
-} from '../../services/GeolocationService';
+import WeatherDetails from '../../components/WeatherDetails';
 
 describe('Testing weather Details Section Component', () => {
-    const wrapper = shallow(<WeatherForecastCard />);
+    const weatherDetailsSection = shallow(
+        <WeatherDetails
+            label="labelTest"
+            content="contentTest"
+            value="valueTest"
+            altImage="altImageTeste"
+            imageSource="urlImage"
+        />,
+    );
 
     test('should render correctly', () => {
-        expect(wrapper);
+        expect(weatherDetailsSection);
     });
 });

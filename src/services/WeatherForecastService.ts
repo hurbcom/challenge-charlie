@@ -11,7 +11,6 @@ export const getCurrentWeatherForecast = async (
 ): Promise<CurrentWeatherData | undefined> => {
     const response = await fetch(`${URL_CURRENT_WEATHER}&q=${location}`);
     const currentWeather = await response.json();
-    console.log(currentWeather);
     if (currentWeather.cod !== 200) return undefined;
     return currentWeather;
 };

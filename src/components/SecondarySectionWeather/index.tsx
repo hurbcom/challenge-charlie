@@ -18,7 +18,7 @@ const CardVertical: React.FC<SecondarySectionWeather> = ({
     return (
         <Container>
             <div>
-                <span>{title}</span>
+                <p>{title}</p>
             </div>
             <div onClick={onClick} data-testid="section-div">
                 <span>

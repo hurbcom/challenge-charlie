@@ -1,19 +1,11 @@
 import { shallow } from 'enzyme';
 
-import WeatherDetails from '../../components/WeatherDetails';
+import WeatherForecastCard from '../../components/WeatherForecastCard';
 
 describe('Testing weather Details Section Component', () => {
-    const weatherDetailsSection = shallow(
-        <WeatherDetails
-            label="labelTest"
-            content="contentTest"
-            value="valueTest"
-            altImage="altImageTeste"
-            imageSource="urlImage"
-        />,
-    );
+    const wrapper = shallow(<WeatherForecastCard />);
 
     test('should render correctly', () => {
-        expect(weatherDetailsSection);
+        expect(wrapper);
     });
 });

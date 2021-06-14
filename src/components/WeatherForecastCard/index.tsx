@@ -91,14 +91,22 @@ const WeatherForecast: React.FC = () => {
             searchLocation &&
                 getCurrentWeatherForecast(searchLocation)
                     .then(currentWeather => {
-                        if (!currentWeather) {
+                        if (!currentWeather || currentWeather.cod == 404) {
                             setIsError(true);
+                            setMessageError(
+                                'Local não encontrado.Tente Novamente.',
+                            );
                         } else {
                             setTodayData(currentWeather);
                             setIsError(false);
                         }
                     })
-                    .catch(() => setIsError(true));
+                    .catch(() => {
+                        setIsError(true);
+                        setMessageError(
+                            'Local não encontrado.Tente Novamente.',
+                        );
+                    });
 
             latitude.current &&
                 longitude.current &&
@@ -112,9 +120,17 @@ const WeatherForecast: React.FC = () => {
                             setIsError(false);
                         } else {
                             setIsError(true);
+                            setMessageError(
+                                'Local não encontrado.Tente Novamente.',
+                            );
                         }
                     })
-                    .catch(() => setIsError(true));
+                    .catch(() => {
+                        setIsError(true);
+                        setMessageError(
+                            'Local não encontrado.Tente Novamente.',
+                        );
+                    });
         };
 
         setWeatherForecast();
