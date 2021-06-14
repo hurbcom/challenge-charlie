@@ -91,38 +91,17 @@ const WeatherForecast: React.FC = () => {
             searchLocation &&
                 getCurrentWeatherForecast(searchLocation)
                     .then(currentWeather => {
-                        if (!currentWeather || currentWeather.cod == 404) {
+                        if (!currentWeather) {
                             setIsError(true);
                             setMessageError(
                                 'Local não encontrado.Tente Novamente.',
                             );
+                            latitude.current = null;
+                            longitude.current = null;
                         } else {
                             setTodayData(currentWeather);
                             setIsError(false);
-                        }
-                    })
-                    .catch(() => {
-                        setIsError(true);
-                        setMessageError(
-                            'Local não encontrado.Tente Novamente.',
-                        );
-                    });
-
-            latitude.current &&
-                longitude.current &&
-                getNextWeatherForecast(latitude.current, longitude.current)
-                    .then(nextWeather => {
-                        if (nextWeather && nextWeather.daily.length >= 3) {
-                            const [, tomorrow, afterTomorrow] =
-                                nextWeather.daily;
-                            setTomorrowData(tomorrow);
-                            setAfterTomorrowData(afterTomorrow);
-                            setIsError(false);
-                        } else {
-                            setIsError(true);
-                            setMessageError(
-                                'Local não encontrado.Tente Novamente.',
-                            );
+                            setNextWeatherForecast();
                         }
                     })
                     .catch(() => {
@@ -136,11 +115,37 @@ const WeatherForecast: React.FC = () => {
         setWeatherForecast();
     }, [searchLocation, latitude, longitude]);
 
+    const setNextWeatherForecast = () => {
+        if (latitude.current && longitude.current) {
+            getNextWeatherForecast(latitude.current, longitude.current)
+                .then(nextWeather => {
+                    if (nextWeather && nextWeather.daily.length >= 3) {
+                        const [, tomorrow, afterTomorrow] = nextWeather.daily;
+                        setTomorrowData(tomorrow);
+                        setAfterTomorrowData(afterTomorrow);
+                        setIsError(false);
+                    } else {
+                        setIsError(true);
+                        setMessageError(
+                            'Local não encontrado.Tente Novamente.',
+                        );
+                    }
+                })
+                .catch(() => {
+                    setIsError(true);
+                    setMessageError('Local não encontrado.Tente Novamente.');
+                });
+        }
+    };
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
-            if (inputRef.current?.value) {
+            if (
+                inputRef.current?.value &&
+                inputRef.current?.value !== searchLocation
+            ) {
                 setIsLoading(true);
                 const { lat, lon } = await getCoordinatesByLocation(
                     inputRef.current?.value,
