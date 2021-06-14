@@ -45,7 +45,7 @@ Antes de acessar a demonstração você deve  acessar [CORS Anywhere](http://cor
 
 Clique [aqui](https://challenge-charlie-hurb.herokuapp.com/) para acessar a aplicação.
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="demo" title="Previsao do Tempo" src="https://github.com/aquistapace/challenge-charlie/blob/main/demo_challenge.gif" width="400px">
+  <img alt="demo" title="Previsao do Tempo" src="https://github.com/aquistapace/challenge-charlie/blob/master/demo_challenge.gif" width="600px"></p>
 
 ---
 
@@ -72,17 +72,12 @@ Clique [aqui](https://challenge-charlie-hurb.herokuapp.com/) para acessar a apli
 ### Desktop
 
 - Página de Temperatura abaixo de 15ºC, acima de 35ºC, Página de Erro caso não encontre uma localidade pelo nome.
-<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/gramado.png" width="400px">
-  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/dubai.png" width="400px">
-  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/erro_message_local.png" width="400px">
+<p align="center" style="display: flex; align-items: flex-start; justify-content: start;">
+  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/gramado.png" width="400px">
+  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/dubai.png" width="400px">
+  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/erro_message_local.png" width="400px">
   </p>
-  
-  ### Mobile
-- Página de Temperatura abaixo de 15ºC e acima de 35ºC
-<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/main/src/assets/login.png" width="400px">
-
+ 
 ---
 ## 🚀 Como executar o projeto
 
