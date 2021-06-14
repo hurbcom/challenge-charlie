@@ -60,8 +60,9 @@ Clique [aqui](https://challenge-charlie-hurb.herokuapp.com/) para acessar a apli
 ## 🎨 Layout
 - Para o layout dessa aplicação eu  criei uma hierarquia visual. 
 	- Eu centralizei as informações relacionadas a temperatura de hoje, dando destaque ao ícone e a temperatura corrente , seguida pela descrição do clima e o nome do local que o usuário buscou na pesquisa, pois considerei que essas sejam as principais informações que um usuário deseja ao acessar uma aplicação de previsão de tempo.
-	- Agrupei as informações de velocidade do tempo, humidade e pressão, pois são informações que nem todos os usuários querem ver. Mas mantive próxima as informações da temperatura corrente, já que possuem relação direta
-	- As demais temperaturas foram agrupadas e posicionadas após todas as informações de previsão de tempo para hoje.
+	- As  temperaturas de amanhã e depois de amanhã foram agrupadas e posicionadas no final do card,com tipografia semelhante a descrição do clima e o nome do local.
+	- As informações de velocidade do tempo, humidade e pressão atmosférica foram agrupadas , pois são informações que nem todos os usuários querem ver. Mas mantive próxima as informações da temperatura corrente, já que possuem relação direta
+	
 	- > Veja o protótipo desenvolvido no [figma](https://www.figma.com/file/G9wzq290wZweyRL8UstP64/challenge-charlie?node-id=0%3A1)
 	
 - Eu adicionei animações para indicar a funcionalidade de ao clicar em qualquer temperatura o usuário pode alterar a visualização da temperatura de Celsius para Fahrenheit ou de Fahrenheit para Celsius. Também adicionei um tootlip  na temperatura de hoje, informando ao usuário que ao clicar ali ele pode visualizar a temperatura em outra unidade.
