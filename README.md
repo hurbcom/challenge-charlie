@@ -34,7 +34,7 @@
 
 ## 💻 Sobre o projeto
 
-☔ O microsite Previsão do Tempo é um microsite responsivo que mostra a previsão do tempo para o dia corrente e para os próximos dois dias consecutivos, de acordo com o nome de uma localidade informada pelo usuário. 
+☔ O microsite Previsão do Tempo é um microsite responsivo que mostra a previsão do tempo para o dia corrente e para os próximos dois dias, de acordo com o nome de uma localidade informada pelo usuário. 
 
 Além da previsão do tempo essa aplicação também apresenta outras informações, como: direção e velocidade do vento, umidade e pressão, referentes ao dia de hoje.
 
@@ -72,10 +72,10 @@ Clique [aqui](https://challenge-charlie-hurb.herokuapp.com/) para acessar a apli
 
 ### Desktop
 
-- Página de Temperatura abaixo de 15ºC, acima de 35ºC, Página de Erro caso não encontre uma localidade pelo nome.
+- Página de Temperatura acima de 35ºC e demais temperaturas, Página de Erro caso não encontre uma localidade pelo nome.
 <p align="center" style="display: flex; align-items: flex-start; justify-content: start;">
-  <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/gramado.png" width="400px">
   <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/dubai.png" width="400px">
+    <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/rio_de_janeiro.png" width="400px">
   <img alt="login" title="Página de Login" src="https://github.com/aquistapace/challenge-charlie/blob/master/erro_message_local.png" width="400px">
   </p>
  
