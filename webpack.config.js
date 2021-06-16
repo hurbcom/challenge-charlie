@@ -32,6 +32,14 @@ const config = {
                 use: "babel-loader",
                 exclude: /node_modules/
             },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
+                ],
+            },
         ],
     },
     plugins: [
@@ -59,3 +67,9 @@ if (isProd) {
 }
 
 module.exports = config;
+
+/**
+ * @see https://www.skcript.com/svr/using-webpack-with-react-typescript/
+ * @see https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
+ * @see https://webpack.js.org/loaders/sass-loader/
+ */
