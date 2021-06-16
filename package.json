@@ -52,6 +52,7 @@
     "eslint-plugin-react-hooks": "^4",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.1",
+    "husky": "^6.0.0",
     "jest": "^27.0.4",
     "jest-dom": "^4.0.0",
     "sass": "^1.35.1",
