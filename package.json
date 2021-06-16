@@ -11,7 +11,8 @@
     "dev": "cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
     "start": "serve dist",
-    "lint": "eslint --fix --ext .ts --ext .tsx --ext .js --ext .jsx --ext .json ./src"
+    "lint": "eslint --fix --ext .ts --ext .tsx --ext .js --ext .jsx --ext .json ./src",
+    "test": "yarn jest"
   },
   "husky": {
     "hooks": {
@@ -32,10 +33,13 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
+    "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
@@ -48,6 +52,8 @@
     "eslint-plugin-react-hooks": "^4",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.4",
+    "jest-dom": "^4.0.0",
     "sass": "^1.35.1",
     "sass-loader": "^12.1.0",
     "serve": "^12.0.0",

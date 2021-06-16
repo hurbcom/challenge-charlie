@@ -48,6 +48,19 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'import/prefer-default-export': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/*.test.ts',
+          '**/*.test.tsx',
+          '**/*.test.jsx',
+          '**/*.spec.ts',
+          '**/*.spec.tsx',
+          '**/*.spec.jsx',
+        ],
+      },
+    ],
   },
   settings: {
     react: {
