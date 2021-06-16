@@ -58,6 +58,7 @@ module.exports = {
           '**/*.spec.ts',
           '**/*.spec.tsx',
           '**/*.spec.jsx',
+          './src/tests/**/*',
         ],
       },
     ],
