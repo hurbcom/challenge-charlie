@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+
+  development:
+    container_name: hurb-challenge-charlie-development
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '/app/node_modules'
+      - .:/app/:rw
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  production:
+    container_name: hurb-challenge-charlie-production
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '80:80'

@@ -12,3 +12,36 @@ O [repositório original](https://github.com/hurbcom/challenge-charlie) está di
 Considerações:
 
 - Achei interessante criar o projeto react com webpack, fica bem mais flexível, já havia usado webpack mas na época que eu nem usava react ainda, até o momento só hávia criado projetos react pra web com o create react-app
+
+
+Rodar o projeto com docker:
+
+Use docker-compose
+
+Para testar durante o desenvolvimento em modo watch
+`docker-compose up development`
+
+Para testar a build de produção localmente
+`docker-compose up production`
+
+
+Ou use o cli do docker de forma mais manual:
+
+
+Para testar durante o desenvolvimento em modo watch:
+
+Na raiz do projeto, para gerar a imagem docker rode o comando:
+
+`docker build -t hurb-challenge-charlie:dev .`
+
+Logo após a build da imagem finalizar, para criar o container a partir dessa imagem rode:
+
+`docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true hurb-challenge-charlie:dev`
+
+Para testar a build de produção localmente:
+
+`docker build -f Dockerfile.prod -t hurb-challenge-charlie:prod .`
+
+`docker run -it --rm -p 80:80 hurb-challenge-charlie:prod`
+
+

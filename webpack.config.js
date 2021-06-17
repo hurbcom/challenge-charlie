@@ -1,10 +1,13 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
+
+console.log('ENVIRONMENT: ', process.env.NODE_ENV);
+console.log('CHOKIDAR_USEPOLLING: ', !!process.env.CHOKIDAR_USEPOLLING);
 
 const config = {
   mode: isProd ? 'production' : 'development',
@@ -53,6 +56,10 @@ const config = {
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
   ],
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
+  },
 };
 
 if (isProd) {
@@ -61,7 +68,8 @@ if (isProd) {
   };
 } else {
   config.devServer = {
-    port: 9000,
+    host: process.env.CHOKIDAR_USEPOLLING ? '0.0.0.0' : 'localhost',
+    port: 3000,
     open: true,
     hot: true,
     compress: true,
