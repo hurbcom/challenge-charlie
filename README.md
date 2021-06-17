@@ -44,4 +44,7 @@ Para testar a build de produção localmente:
 
 `docker run -it --rm -p 80:80 hurb-challenge-charlie:prod`
 
+## Problemas conhecidos
+
+- Não descobri por que o modo watch não está funcionando enquanto uso docker, o volume funciona, porém o webpack não re-compila. Acredito estar associado a usar as versões mais novas de todas as libs...
 
