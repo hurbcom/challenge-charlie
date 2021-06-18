@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+    application:
+        container_name: application-development
+        build:
+            context: .
+            dockerfile: dev.dockerfile
+        ports:
+            - 8080:8080
+        volumes:
+            - .:/app
+            - '/app/node_modules'
+        command: sh -c "yarn install && yarn dev"

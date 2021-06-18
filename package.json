@@ -11,11 +11,14 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js",
-    "docker:prod": "docker-compose up"
+    "docker:prod": "docker-compose up",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up"
   },
   "dependencies": {
+    "start": "^5.1.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
