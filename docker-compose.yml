@@ -1,13 +1,6 @@
 version: '3.9'
 
 services:
-    application:
-        container_name: application-build-production
-        build:
-            context: .
-            dockerfile: prod.dockerfile
-            target: build-stage
-
     nginx:
         container_name: nginx-production
         build:
@@ -16,6 +9,4 @@ services:
             target: production-stage
         ports:
              - 3000:80
-        depends_on:
-            - application
         restart: always
