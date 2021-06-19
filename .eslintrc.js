@@ -59,6 +59,7 @@ module.exports = {
           '**/*.spec.tsx',
           '**/*.spec.jsx',
           './src/tests/**/*',
+          './webpack.config.js',
         ],
       },
     ],
