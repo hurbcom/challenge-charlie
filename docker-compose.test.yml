@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+    application-test:
+        build:
+            context: .
+            dockerfile: test.dockerfile
+            target: base-stage
+        entrypoint: yarn test
