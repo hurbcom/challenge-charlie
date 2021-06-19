@@ -44,11 +44,18 @@ const config = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       filename: 'index.html',
       inject: 'body',
     }),
@@ -75,6 +82,7 @@ if (isProd) {
     compress: true,
     stats: 'errors-only',
     overlay: true,
+    contentBase: resolve(__dirname, './public'),
   };
 }
 

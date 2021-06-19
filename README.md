@@ -48,3 +48,9 @@ Para testar a build de produção localmente:
 
 - Não descobri por que o modo watch não está funcionando enquanto uso docker, o volume funciona, porém o webpack não re-compila. Acredito estar associado a usar as versões mais novas de todas as libs...
 
+
+
+## Ícones
+
+para usar os icones Meteocons basta adicionar uma propriedade `data-icon="IdDoÍcone"`. Is data-icon disponíveis estão listados abaixo dos ícones nessa imagem:
+<img src="./docs/assets/meteocons-icons.png" alt="Imagem com os ícones disponíveis"/>

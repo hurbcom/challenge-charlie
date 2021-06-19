@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+$fontsFolder: '@public/assets/fonts';
+
+@font-face {
+    font-family: 'MeteoconsRegular';
+    src: url($fontsFolder + '/meteocons/meteocons-webfont.eot');
+    src: url($fontsFolder + '/meteocons/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsFolder + '/meteocons/meteocons-webfont.woff') format('woff'),
+         url($fontsFolder + '/meteocons/meteocons-webfont.ttf') format('truetype'),
+         url($fontsFolder + '/meteocons/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
