@@ -13,6 +13,7 @@
     "start": "serve dist",
     "lint": "eslint --fix --ext .ts --ext .tsx --ext .js --ext .jsx --ext .json ./src",
     "test": "yarn jest",
+    "test:watch": "yarn jest --watchAll",
     "postinstall": "husky install"
   },
   "husky": {

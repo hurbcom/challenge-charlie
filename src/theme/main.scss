@@ -4,4 +4,9 @@
 @import './fonts.scss';
 @import './icons.scss';
 
-@import '@components/Card/styles.scss'
+/* components */
+@import '@components/Layout/styles.scss';
+@import '@components/WeatherCard/styles.scss';
+
+/* pages */
+@import '@pages/Home/styles.scss';

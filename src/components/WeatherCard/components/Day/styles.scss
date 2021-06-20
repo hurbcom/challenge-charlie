@@ -1,0 +1,79 @@
+.day {
+  padding-left: 1rem;
+  padding-top: .5rem;
+  padding-right: 1rem;
+
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  grid-gap: 2rem;
+
+  background: $primaryColor;
+
+  &:first-of-type {
+    padding-top: .5rem;
+  }
+
+  &:not(:first-of-type) {
+    padding-bottom: 2rem;
+  }
+
+  p {
+    text-transform: uppercase;
+
+    &.text {
+      font-size: 1.2rem;
+    }
+
+    &.temperature {
+      font-size: 1.5rem;
+    }
+  }
+
+  &.--today {
+    background: rgba($primaryColor, .65);
+
+    .details {
+      display: flex;
+      flex-direction: column;
+
+      > p {
+        text-transform: unset;
+        margin-top: 1rem;
+        margin-bottom: .75rem;
+
+        font-size: 1.5rem;
+      }
+
+      small {
+        font-size: .8rem;
+      }
+    }
+
+    .icon {
+      color: $white;
+      font-size: 18rem;
+
+      @media (max-width: 724px) {
+        font-size: 42vw;
+      }
+    }
+  }
+
+  &.--tomorrow {
+    background: $primaryColor;
+  }
+
+  &.--after-tomorrow {
+    background: $primaryColorDark1;
+  }
+
+  @media (max-width: 724px) {
+    grid-gap: 0;
+  }
+
+  @media (max-width: 486px) {
+    &:first-of-type {
+      padding-bottom: 2rem;
+    }
+  }
+}
