@@ -1,5 +1,5 @@
 {
-  "name": "challenge-charlie",
+  "name": "challenge-charlie-frontend",
   "version": "0.1.0",
   "description": "Desafio Charlie da Hurb",
   "main": "./public/index.html",
@@ -32,11 +32,13 @@
   "devDependencies": {
     "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
+    "@types/axios": "^0.14.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
@@ -70,6 +72,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@babel/runtime": "^7.14.6",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
