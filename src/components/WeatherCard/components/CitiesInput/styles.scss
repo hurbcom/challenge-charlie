@@ -1,0 +1,34 @@
+.cities-input {
+  padding: .8rem;
+
+  display: flex;
+  align-items: center;
+
+  background-color: $grey;
+
+  .icon {
+    padding-right: .34rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 3.5rem;
+    color: $greyColorDark1;
+  }
+
+  .input {
+    margin-left: .1rem;
+
+    width: 100%;
+    border: none;
+    padding: .5rem;
+    padding-left: .26rem;
+
+    color: $greyColorDark1;
+    font-size: 1.9rem;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: transparent;
+  }
+}
