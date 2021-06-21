@@ -9,12 +9,14 @@
   .icon {
     padding-right: .34rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     font-size: 3.5rem;
     color: $greyColorDark1;
+
+    margin-top: .25rem;
+
+    @media (max-width: 724px) {
+      font-size: 2rem;
+    }
   }
 
   .input {
@@ -30,5 +32,9 @@
     font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif;
     background-color: transparent;
+
+    @media (max-width: 724px) {
+      font-size: 1.2rem;
+    }
   }
 }

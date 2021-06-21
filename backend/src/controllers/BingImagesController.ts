@@ -4,7 +4,7 @@ import GetBingImageService from '@services/GetBingImageService'
 import BingAPI from '@libraries/BingAPI'
 
 class BingImagesController {
-  public async getImage (req: Request, res: Response) {
+  public async getImage (_: Request, res: Response) {
     const bingAPI = new BingAPI()
 
     const getBingImageService = new GetBingImageService(

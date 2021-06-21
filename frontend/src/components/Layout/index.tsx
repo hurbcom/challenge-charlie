@@ -19,7 +19,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <div className="layout">
       <img
-        className="background"
+        className={`background ${imageURL ? '' : '--hidden'}`}
         src={imageURL}
         alt="background"
       />

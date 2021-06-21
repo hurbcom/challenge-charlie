@@ -10,7 +10,7 @@ html {
     max-width: 100vw;
 
     > .background {
-      position: absolute;
+      position: fixed;
       z-index: -1;
 
       width: 100%;
@@ -18,6 +18,12 @@ html {
       height: 100%;
 
       filter: brightness(30%);
+
+      transition: opacity 1.5s;
+
+      &.--hidden {
+        opacity: 0;
+      }
     }
 
     p, small {
