@@ -1,0 +1,16 @@
+@import "@/scss/reset.scss";
+@import "@/scss/variaveis.scss";
+
+
+
+.app {
+    width: 100vw;
+    min-height: 95vh;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}

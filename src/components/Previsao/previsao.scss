@@ -1,0 +1,26 @@
+@import "@/scss/mixins/breakpoint.scss";
+
+.previsao {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+
+    @include breakpoint(desktop) {
+        min-width: 37.5rem;
+    }
+
+    span {
+        display: block;
+    }
+
+
+    .conteudo-previsao {
+        flex: 0 0 50%;
+        color: var(--previsao-cor-texto);
+        width: 50%;
+        align-self: center;
+        padding-left: 1rem;
+    }
+}

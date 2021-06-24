@@ -1,0 +1,53 @@
+$branco: #FFFFFF;
+$amarelo: #fcba03;
+$vermelho: #f54545;
+$azul: #1b7cf2;
+$cinza: #666666;
+
+$valorOpacidadePadrao: .3;
+
+@function aplicarOpacidadeCor($cor, $opacidade: $valorOpacidadePadrao) {
+    @return #{transparentize($cor, $opacidade)};
+}
+
+@mixin criarVariaveisPrevisao($variavelCssCor, $variavelCorSass) {
+    --previsao-background-padrao: var(#{$variavelCssCor});
+    --previsao-futura-background: #{transparentize($variavelCorSass, .05)};
+    --previsao-futura-background-secundario: #{darken($variavelCorSass, 20%)};
+}
+
+:root {
+    --amarelo: #{aplicarOpacidadeCor($amarelo)};
+    --azul: #{aplicarOpacidadeCor($azul)};
+    --vermelho: #{aplicarOpacidadeCor($vermelho)};
+    --cinza: #{aplicarOpacidadeCor($cinza)};
+    --branco: #{$branco};
+
+    /*
+        Componente Previsao
+    */
+    --previsao-background-padrao: var(--amarelo);
+    --previsao-cor-texto: var(--branco);
+
+    /* Componente Previsao Futura */
+    --previsao-futura-background: #{transparentize($amarelo, .05)};
+    --previsao-futura-background-secundario: #{darken($amarelo, 20%)};
+
+    /*
+        Componente Localidade
+    */
+    --localidade-background: var(--branco);
+    --localidade-cor-texto: var(--cinza);
+}
+
+.sem-localizacao {
+    @include criarVariaveisPrevisao(--cinza, $cinza);
+}
+
+.frio {
+    @include criarVariaveisPrevisao(--azul, $azul);
+}
+
+.quente {
+    @include criarVariaveisPrevisao(--vermelho, $vermelho);
+}

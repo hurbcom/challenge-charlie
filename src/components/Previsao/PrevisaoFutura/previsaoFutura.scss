@@ -1,0 +1,16 @@
+@import "@/scss/mixins/breakpoint.scss";
+
+.previsao-futura {
+    padding: 2rem 0;
+    display: flex;
+    background-color: var(--previsao-futura-background);
+    flex-flow: column wrap;
+
+    @include breakpoint(desktop) {
+        align-content: flex-end;
+    }
+
+    &.background-secundario {
+        background-color: var(--previsao-futura-background-secundario);
+    }
+}

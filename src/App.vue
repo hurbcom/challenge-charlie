@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="app" style="background-image: url(https://bing.com/th?id=OHR.Nichinan_ROW5789384238_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp)">
     <router-view/>
   </div>
 </template>
@@ -11,13 +10,4 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="./app.scss" lang="scss"></style>

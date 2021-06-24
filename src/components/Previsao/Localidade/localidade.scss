@@ -1,0 +1,26 @@
+.localidade {
+    height: 5rem;
+    background: var(--localidade-background);
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+
+    svg {
+       width: 4rem;
+       height: 4rem;
+
+       path {
+           fill: var(--localidade-cor-texto);
+       }
+    }
+
+    input {
+        background: none;
+        border: none;
+        flex: 1;
+        outline: none;
+        padding-left: 1rem;
+        font-size: 2rem;
+        color: var(--localidade-cor-texto);
+    }
+}

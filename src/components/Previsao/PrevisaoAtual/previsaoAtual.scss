@@ -1,0 +1,37 @@
+@import "@/scss/mixins/breakpoint.scss";
+
+.previsao-atual {
+    display: flex;
+    height: 300px;
+    flex: 3;
+    transition: .3s ease-in-out;
+    background: var(--previsao-background-padrao);
+
+    svg {
+        height: auto;
+
+        path {
+            fill: var(--previsao-cor-texto);
+        }
+    }
+
+    .texto-destaque {
+        font-size: 2.2rem;
+        margin: 1.5rem 0;
+    }
+
+    .texto-detalhe {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+    }
+
+    @include breakpoint(mobileonly) {
+        flex-direction: column;
+
+        svg {
+            max-width: 80%;
+            align-self: center;
+        }
+    }
+
+}
