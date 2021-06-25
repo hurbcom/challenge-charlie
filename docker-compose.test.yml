@@ -6,4 +6,4 @@ services:
             context: .
             dockerfile: test.dockerfile
             target: base-stage
-        entrypoint: yarn test
+        entrypoint: yarn clear_jest && yarn test
