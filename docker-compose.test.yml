@@ -2,8 +2,9 @@ version: '3.9'
 
 services:
     application-test:
+        container_name: application-test
         build:
             context: .
             dockerfile: test.dockerfile
             target: base-stage
-        entrypoint: yarn clear_jest && yarn test
+        entrypoint: yarn test
