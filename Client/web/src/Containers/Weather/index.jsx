@@ -7,7 +7,7 @@ import { CardWeather } from '../../Components/Card';
 export const WeatherContainer = memo(() => {
   const [nameLocale, setNameLocale] = useState(null);
   const [weatherInfo, setWeatherInfo] = useState(null);
-  const [mode, setMode] = useState('CF');
+  const mode = 'CF';
 
   useEffect(() => {
     async function getLocation() {
