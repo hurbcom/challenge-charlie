@@ -9,7 +9,7 @@ class ApiService {
 
   getWeather(nameCity, key) {
     return axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${nameCity}&APPID=${key}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&APPID=${key}`
     );
   }
 }
