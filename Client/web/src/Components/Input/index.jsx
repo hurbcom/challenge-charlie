@@ -11,6 +11,7 @@ export const Input = styled.input`
   color: ${colors.gray};
   font-size: 30px;
   padding: 10px;
+  font-family: 'Roboto', sans-serif;
 
   @media screen and (max-width: 600px) {
     font-size: 20px;

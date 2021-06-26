@@ -4,5 +4,7 @@ export default {
   dark: '#000',
   gray: '#c4c4c4',
   gray_ligth: '#eaeaea',
-  yellow: '#dcc361',
+  yellow: '#ffcb3d',
+  yellow_ligth: '#ffe344',
+  yellow_dark: '#fcdc28',
 };

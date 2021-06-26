@@ -7,5 +7,19 @@ export const AppStyle = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 auto;
-  background-color: #c4c4c4;
+  background-image: ${(props) => `url(${props.image})`};
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media screen and (max-width: 700px) {
+    h2,
+    span,
+    strong {
+      font-size: 14px;
+    }
+
+    svg {
+      width: 100px;
+    }
+  }
 `;

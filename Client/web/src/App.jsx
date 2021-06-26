@@ -1,62 +1,38 @@
-import { memo, useCallback, useEffect, useState, Suspense } from 'react';
+import { Suspense } from 'react';
 
 import './Styles/global.css';
 import { AppStyle } from './Styles/app';
-import env from 'react-dotenv';
-import GoogleService from './Services/google';
-import { CardWeather } from './Components/Card';
+import { WeatherContainer } from './Containers/Weather';
 
-export const App = memo(() => {
-  const [nameLocale, setNameLocale] = useState(null);
-  useEffect(() => {
-    async function getLocation() {
-      if (!('geolocation' in navigator)) {
-        return alert('Navegador não compativel com geolocalização');
-      }
+import image1 from './Assets/Images/image1.png';
+import image2 from './Assets/Images/image2.png';
+import image3 from './Assets/Images/image3.png';
 
-      navigator.geolocation.getCurrentPosition(
-        async ({ coords: { latitude, longitude } }) => {
-          const {
-            data: { results },
-          } = await GoogleService.getLocationGoogle(
-            latitude,
-            longitude,
-            env.KEY_API
-          );
+const dataImages = [
+  {
+    key: 0,
+    src: image1,
+  },
+  {
+    key: 1,
+    src: image2,
+  },
+  {
+    key: 2,
+    src: image3,
+  },
+];
 
-          setNameLocale(
-            `${results[6].address_components[0].long_name}, ${results[6].address_components[1].long_name}`
-          );
+function indexRandon() {
+  const index = Math.floor(Math.random() * dataImages.length);
 
-          console.log('results', results);
-        },
-        (error) => {
-          return alert(`Error: ${error}`);
-        }
-      );
-    }
+  return dataImages[index].src;
+}
 
-    getLocation();
-  }, []);
-
-  const handleChange = useCallback((value) => {
-    if (!!value) setNameLocale(value);
-  }, []);
-
-  const handleOnBlur = useCallback(() => {
-    if (!!nameLocale) return alert('Por favor informe uma cidade');
-  }, [nameLocale]);
-  return (
-    <>
-      <AppStyle>
-        <Suspense fallback="Carregando...">
-          <CardWeather
-            nameLocale={nameLocale}
-            handleChange={handleChange}
-            handleOnBlur={handleOnBlur}
-          />
-        </Suspense>
-      </AppStyle>
-    </>
-  );
-});
+export const App = () => (
+  <Suspense fallback="Carregando...">
+    <AppStyle image={indexRandon()}>
+      <WeatherContainer />
+    </AppStyle>
+  </Suspense>
+);
