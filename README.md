@@ -3,25 +3,24 @@
 Desafio desenvolvido para o Hurb que consiste em um microsite que informa a previsão do tempo.
 
 ## Requisitos para execução da aplicação
--   Para executar aplicação, deve ser preciso rodar os seguintes comandos:
+-   Para executar a aplicação, é necessário rodar os seguintes comandos:
     -   git clone `https://github.com/niltonmendes/challenge-charlie.git`
     -   cd `challenge-charlie`
     -   execute `npm install ou yarn install` para instalar dependências
     -   após instalar as dependências execute: `npm start ou yarn start`
 
 ## Requisitos para execução da aplicação via Docker
--   Para executar aplicação via docker, foi criado um arquivo chamado `run-app-deploy.sh` para facilitar a conteinerização e deploy:
+-   Para executar a aplicação via docker, foi criado um arquivo chamado `run-app-deploy.sh` para facilitar a conteinerização e deploy:
     -   git clone `https://github.com/niltonmendes/challenge-charlie.git`
     -   cd `challenge-charlie`
     -   Para levantar containers preparados para desenvolvimento utilize: `./run-app-deploy.sh --dev`
     -   Para levantar containers preparados para produção utilize: `./run-app-deploy.sh --prod`
-    -   Se houver problemas para executar o arquivo `run-app-deploy.sh` execute o seguinte comando: `chmod +x run-app-deploy.sh`
+    -   Se houver problemas para executar o arquivo `run-app-deploy.sh` execute o seguinte comando:
+    `chmod +x run-app-deploy.sh`
 
-## Considerações
+## Considerações finais
 -   O arquivo `.env`foi adicionado intencionalmente para facilitar a execução. Isso não acontecerá em uma aplicação comercial :grinning: :wink:
-
-## Finalizações
--   Agradeço desde já a oportunidade de participar desse challenge. :smiling_face_with_three_hearts:	#gohurb #queroserumfanatico
+-   Agradeço desde já a oportunidade de participar desse challenge. :smiling_face_with_three_hearts: #gohurb #queroserumfanatico
 
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
