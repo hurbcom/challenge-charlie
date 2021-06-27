@@ -42,6 +42,15 @@
       ],
       "@interfaces/*": [
         "./src/interfaces/*"
+      ],
+      "@exceptions/*": [
+        "./src/exceptions/*"
+      ],
+      "@validators/*": [
+        "./src/validators/*"
+      ],
+      "@mocks/*": [
+        "./src/__mocks__/*"
       ]
     }
   },

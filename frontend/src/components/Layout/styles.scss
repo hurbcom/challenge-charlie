@@ -2,8 +2,24 @@ $font-size: 1rem;
 $line-height-base: 1.5;
 
 html {
+  font-size: 16px;
+
+  overflow-x: hidden;
+
   @media (max-width: 724px) {
     font-size: 14px;
+  }
+
+  @media (max-width: 475px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 399px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 337px) {
+    font-size: 8px;
   }
 
   .layout {
@@ -17,8 +33,6 @@ html {
       max-width: 100%;
       height: 100%;
 
-      filter: brightness(30%);
-
       transition: opacity 1.5s;
 
       &.--hidden {
@@ -30,6 +44,7 @@ html {
       color: $grey;
 
       font-weight: 500;
+
       font-family: 'Noto Sans JP', sans-serif;
 
       font-size: $font-size;

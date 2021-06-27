@@ -1,4 +1,8 @@
+
 import express from 'express'
+
+import 'express-async-error'
+
 import routes from './routes'
 import cors from 'cors'
 

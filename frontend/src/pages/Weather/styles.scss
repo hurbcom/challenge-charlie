@@ -1,0 +1,41 @@
+@import './components/Day/styles.scss';
+@import './components/CitiesInput/styles.scss';
+
+.weather {
+
+  display: grid;
+  grid-template-areas:
+    "l l l l l l main r r r r r r"
+    "l l l l l l main r r r r r r";
+
+  min-height: 100vh;
+  min-width: 100vw;
+
+  overflow: hidden;
+
+  main {
+    grid-area: main
+  }
+
+  .darkness {
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgba(0,0,0,.75);
+
+    &.--left {
+      grid-area: l;
+    }
+    &.--right {
+      grid-area: r;
+    }
+    &.--bottom {
+      position: relative;
+
+      min-height: 0;
+      min-width: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+

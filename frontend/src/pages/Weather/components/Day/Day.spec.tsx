@@ -8,8 +8,13 @@ describe('Day component', () => {
     render(
       <Day
         day="Hoje"
-        temperature="32ºC"
+        unitOfMeasure="ºC"
+        weather={{
+          temperatureInFahrenheit: 78,
+          temperatureInCelsius: 34,
+        }}
         variant="--today"
+        onClickInTemperature={() => undefined}
       />,
     );
 
@@ -20,8 +25,13 @@ describe('Day component', () => {
     render(
       <Day
         day="Hoje"
-        temperature="32ºC"
+        unitOfMeasure="ºC"
+        weather={{
+          temperatureInFahrenheit: 78,
+          temperatureInCelsius: 34,
+        }}
         variant="--today"
+        onClickInTemperature={() => undefined}
       />,
     );
 

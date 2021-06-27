@@ -1,13 +1,17 @@
 import React from 'react';
 
+import { WeatherProvider } from '@contexts/Weather';
+
 import Layout from '@components/Layout';
-import Home from '@pages/Home';
+import Weather from '@pages/Weather';
 
 import '@theme/main.scss';
 
 const App: React.FC = () => (
   <Layout>
-    <Home />
+    <WeatherProvider>
+      <Weather />
+    </WeatherProvider>
   </Layout>
 );
 

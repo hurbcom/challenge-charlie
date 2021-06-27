@@ -1,0 +1,52 @@
+.cities-input {
+  padding: 1.3rem 1rem;
+
+  display: flex;
+  align-items: center;
+
+  background-color: $grey;
+
+  .icon {
+    margin-right: .44rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4.2rem;
+    color: $greyColorDark1;
+
+    @media (max-width: 724px) {
+      font-size: 2rem;
+    }
+  }
+
+  .input {
+    margin-left: .1rem;
+    margin-top: -.30rem;
+
+    width: 100%;
+    border: none;
+    padding: .5rem;
+    padding-left: .36rem;
+
+    color: $greyColorDark1;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.5;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: transparent;
+
+    @media (max-width: 572px) {
+      font-size: 2.2rem;
+    }
+
+    @media (max-width: 526px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.9rem;
+    }
+  }
+}

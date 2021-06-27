@@ -12,6 +12,7 @@ O [repositório original](https://github.com/hurbcom/challenge-charlie) está di
 Considerações:
 
 - Achei interessante criar o projeto react com webpack, fica bem mais flexível, já havia usado webpack mas na época que eu nem usava react ainda, até o momento só hávia criado projetos react pra web com o create react-app
+- Não encontrei a fonte correta, então selecionei uma semelhante.
 
 
 Rodar o projeto com docker:

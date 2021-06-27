@@ -1,6 +1,6 @@
 import BingAPI from '@libraries/BingAPI'
 
-class GetBingImage {
+class GetBingImageService {
   private bingAPI: BingAPI
   private basePath: string;
 
@@ -20,4 +20,4 @@ class GetBingImage {
   }
 }
 
-export default GetBingImage
+export default GetBingImageService

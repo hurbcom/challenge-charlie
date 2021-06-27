@@ -60,6 +60,7 @@ module.exports = {
           '**/*.spec.jsx',
           './src/tests/**/*',
           './webpack.config.js',
+          './jest.config.js',
         ],
       },
     ],
