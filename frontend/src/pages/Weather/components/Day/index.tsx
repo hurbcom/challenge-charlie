@@ -68,7 +68,7 @@ const Day: React.FC<Props> = ({
       weather?.windSpeedInMetersBySecond
         ? getKmByHourFromMetersBySecond(
           weather?.windSpeedInMetersBySecond,
-        ).concat('%')
+        )
         : '...'
     ),
     [weather],
