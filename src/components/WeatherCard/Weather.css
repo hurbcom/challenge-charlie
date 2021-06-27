@@ -104,3 +104,28 @@
 .weather_card.after_tomorrow.red {
     background: var(--red-500);
 }
+
+@media(max-width: 720px) {
+    .weather_card {
+        flex-direction: column;
+    }
+
+    .weather_card .box_weather_data {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .weather_card.tomorrow .icon, .weather_card.after_tomorrow .icon {
+        font-size: 8rem;
+        width: 100%;
+    }
+}
+
+@media(min-width: 721px) and (max-width: 1020px) { 
+    .weather_card.tomorrow .icon,
+    .weather_card.after_tomorrow .icon {
+        font-size: 8rem;
+        width: 34%;
+        text-align: center;
+    } 
+}

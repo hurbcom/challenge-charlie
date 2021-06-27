@@ -122,7 +122,9 @@ function App() {
                       : { backgroundColor: '#f3eeeb', cursor: 'pointer' };
                     
                     return (
-                      <div {...getSuggestionItemProps(suggestion, {
+                      <div 
+                        key={suggestion.placeId}
+                        {...getSuggestionItemProps(suggestion, {
                         className,
                         style,
                       })}

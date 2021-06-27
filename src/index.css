@@ -4,16 +4,16 @@
   --gray-100: #f3eeeb;
   --gray-300: #8e8e8e;
 
-  --yellow-100: rgba(249, 203, 4, 0.4);
-  --yellow-300: rgba(249, 203, 4, 0.7);
+  --yellow-100: rgba(249, 203, 4, 0.6);
+  --yellow-300: rgba(249, 203, 4, 0.8);
   --yellow-500: rgba(249, 203, 4, 1);
 
-  --blue-100: rgba(0, 66, 253, 0.4);
-  --blue-300: rgba(0, 66, 253, 0.7);
+  --blue-100: rgba(0, 66, 253, 0.6);
+  --blue-300: rgba(0, 66, 253, 0.8);
   --blue-500: rgba(0, 66, 253, 1);
 
-  --red-100: rgba(255, 0, 0, 0.4);
-  --red-300: rgba(255, 0, 0, 0.7);
+  --red-100: rgba(255, 0, 0, 0.6);
+  --red-300: rgba(255, 0, 0, 0.8);
   --red-500: rgba(255, 0, 0, 1);
 }
 
@@ -70,5 +70,17 @@ img {
 }
 
 #root {
-  height: 100vh;
+  height: 120vh;
+}
+
+@media(max-width: 720px) {
+  #root {
+    height: 165vh;
+  }
+}
+
+@media(min-width: 721px) and (max-width: 1080px) {
+  #root {
+    height: 100vh;
+  }
 }

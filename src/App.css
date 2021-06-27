@@ -56,10 +56,6 @@ header .content .input_box .box_select .loading {
     background: var(--gray-100);
 }
 
-header .content .input_box .box_select .suggestion-item {
-    margin-bottom: 1rem;
-}
-
 header .content .input_box .box_select .suggestion.active {
     background: var(--gray-100);
 }
@@ -84,3 +80,23 @@ main {
     font-weight: 500;
     color: var(--white);
 }
+
+@media(max-width: 720px) {
+    .loader_container p {
+        text-align: center;
+    }
+
+    header .content .input_box .box_select {
+        top: 75px;
+    }
+}
+
+@media(min-width: 721px) and (max-width: 1080px) {
+    .loader_container p {
+        text-align: center;
+    }
+
+    header .content .input_box .box_select {
+        top: 79px;
+    }
+  }
