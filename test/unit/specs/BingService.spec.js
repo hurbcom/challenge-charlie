@@ -6,6 +6,8 @@ import flushPromises from 'flush-promises'
 
 describe('BingService', () => {
   let stub
+  const bingService = new BingService()
+
   beforeAll(() => {
     stub = sinon.stub(axios, 'get')
   })
@@ -19,7 +21,7 @@ describe('BingService', () => {
       data: MockApiBing
     }))
 
-    let urlImagemBackground = await BingService.obterUrlImagemAleatoria()
+    let urlImagemBackground = await bingService.obterUrlImagemAleatoria()
     expect(stub.called).toBe(true)
     await flushPromises()
     expect(urlImagemBackground).toEqual(`${BING_URL}${MockApiBing.images[0].url}`)
@@ -29,7 +31,7 @@ describe('BingService', () => {
     const REQUISICAO_INVALIDA = 'Requisição inválida'
     stub.returns(Promise.reject(REQUISICAO_INVALIDA))
     try {
-      await BingService.obterUrlImagemAleatoria()
+      await bingService.obterUrlImagemAleatoria()
     } catch (error) {
       expect(error).toEqual(REQUISICAO_INVALIDA)
     }

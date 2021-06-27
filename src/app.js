@@ -9,7 +9,7 @@ export default {
   }),
 
   async created () {
-    this.urlImagemBackground = await BingService.obterUrlImagemAleatoria()
+    this.urlImagemBackground = await (new BingService()).obterUrlImagemAleatoria()
     this.style = `background-image: url(${this.urlImagemBackground})`
   }
 }

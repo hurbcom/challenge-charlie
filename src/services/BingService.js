@@ -4,7 +4,7 @@ export const BING_URL = 'https://bing.com'
 const PROXY_API = `http://andersonsoares.net.br/curl.php`
 const BING_URL_API_IMAGEM = `${BING_URL}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`
 
-export default {
+export default class BingService {
   obterUrlImagemAleatoria () {
     return new Promise(async (resolve, reject) => {
       try {
