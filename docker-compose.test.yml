@@ -8,3 +8,5 @@ services:
             dockerfile: test.dockerfile
             target: base-stage
         entrypoint: yarn test
+        volumes:
+          - ./test:/app/test
