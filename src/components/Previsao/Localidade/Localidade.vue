@@ -1,7 +1,7 @@
 <template>
     <section id="localidade" class="localidade">
-        <IconeBussola />
-        <input type="text" placeholder="Localidade" />
+        <span @click="obterLocalizacaoUsuario"><IconeBussola class="botao-selecionar-localidade" :class="{ 'carregando': obtendoLocalizacaoUsuario }" /></span>
+        <input type="text" v-model="cidadePesquisada" :placeholder="placeholder" />
     </section>
 </template>
 

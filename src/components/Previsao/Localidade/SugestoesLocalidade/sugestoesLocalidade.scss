@@ -1,0 +1,26 @@
+.sugestoes-localidade {
+  position: absolute;
+  top: 100%;
+  background: var(--sugestoes-localidade-background);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  left: 0;
+  box-shadow: 1px 7px 6px rgba(0, 0, 0, 0.5);
+
+  .sugestao-localidade {
+    border: none;
+    background: none;
+    text-align: left;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    font-weight: 500;
+    font-size: 1.3rem;
+
+    &:hover {
+      background: var(--sugestao-localidade-background-hover)
+    }
+  }
+}

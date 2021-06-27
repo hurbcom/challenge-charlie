@@ -38,6 +38,15 @@ $valorOpacidadePadrao: .3;
     */
     --localidade-background: var(--branco);
     --localidade-cor-texto: var(--cinza);
+    --localidade-botao-hover: #{darken($cinza, 2%)};
+    --sugestoes-localidade-background: var(--branco);
+    --sugestao-localidade-background-hover: #{darken($branco, 5%)};
+
+    /*
+      Componente Sem localizacao
+    */
+    --sem-localizacao-background: #{transparentize($branco, 0.1)};
+    --sem-localizacao-cor-texto: #333;
 }
 
 .sem-localizacao {

@@ -1,0 +1,2 @@
+
+{"coord":{"lon":-43.9378,"lat":-19.9208},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"base":"stations","main":{"temp":292.6,"feels_like":292.22,"temp_min":289.9,"temp_max":293.48,"pressure":1024,"humidity":62},"visibility":10000,"wind":{"speed":4.63,"deg":90},"clouds":{"all":0},"dt":1624710692,"sys":{"type":1,"id":8414,"country":"BR","sunrise":1624699840,"sunset":1624739186},"timezone":-10800,"id":3470127,"name":"Belo Horizonte","cod":200}

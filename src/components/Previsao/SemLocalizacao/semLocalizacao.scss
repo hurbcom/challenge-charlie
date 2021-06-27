@@ -1,0 +1,33 @@
+.sem-localizacao {
+  flex: 1;
+  background: var(--sem-localizacao-background);
+  align-items: center;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  border-top: 1px solid;
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+  color: var(--sem-localizacao-cor-texto);
+
+  svg {
+    width: 70%;
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-size: 1.8rem;
+  }
+
+  p {
+    svg {
+      width: 1.25rem;
+      height: auto;
+      path {
+        fill: gray !important;
+      }
+    }
+  }
+}

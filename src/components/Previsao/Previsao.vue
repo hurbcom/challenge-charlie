@@ -1,9 +1,12 @@
 <template>
     <section id="previsao" class="previsao">
-        <Localidade />
-        <PrevisaoAtual />
-        <PrevisaoFutura />
-        <PrevisaoFutura class="background-secundario" />
+        <Localidade @change="atualizarDadosGeograficos"/>
+        <template v-if="dadosGeograficos">
+          <PrevisaoAtual />
+          <PrevisaoFutura />
+          <PrevisaoFutura class="background-secundario" />
+        </template>
+        <SemLocalizacao v-else/>
     </section>
 </template>
 

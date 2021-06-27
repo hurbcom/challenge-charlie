@@ -1,16 +1,49 @@
+@keyframes pulse-black {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
 .localidade {
     height: 5rem;
     background: var(--localidade-background);
     display: flex;
     padding: 1rem;
     align-items: center;
+    position: relative;
 
-    svg {
+    .botao-selecionar-localidade  {
        width: 4rem;
        height: 4rem;
+       cursor: pointer;
+
+       &.carregando {
+         cursor:not-allowed;
+         animation: pulse-black 1s infinite;
+         border-radius: 50%;
+       }
 
        path {
-           fill: var(--localidade-cor-texto);
+          fill: var(--localidade-cor-texto);
+          transition: .3s ease-in-out;
+          -webkit-transition: .3s ease-in-out;
+       }
+
+       &:hover {
+         path {
+           fill: var(--localidade-botao-hover)
+         }
        }
     }
 
