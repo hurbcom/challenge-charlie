@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete';
+import Weather from './components/WeatherCard/Weather';
 
 import './App.css';
 
@@ -145,7 +146,41 @@ function App() {
         <>
           {weather !== null ? (
             <main>
-              
+              <Weather 
+                day="Hoje"
+                className="today"
+                icon={weather.list[0].weather[0].description}
+                temperature={weather.list[0].main.temp}
+                description={weather.list[0].weather[0].description}
+                windDirection={weather.list[0].wind.deg}
+                windVelocity={weather.list[0].wind.speed}
+                humidity={weather.list[0].main.humidity}
+                pressure={weather.list[0].main.pressure}
+              />
+
+              <Weather 
+                day="Amanhã"
+                className="tomorrow"
+                icon={weather.list[1].weather[0].description}
+                temperature={weather.list[1].main.temp}
+                description={weather.list[1].weather[0].description}
+                windDirection={weather.list[1].wind.deg}
+                windVelocity={weather.list[1].wind.speed}
+                humidity={weather.list[1].main.humidity}
+                pressure={weather.list[1].main.pressure}
+              />
+
+              <Weather 
+                day="Depois de Amanhã"
+                className="after_tomorrow"
+                icon={weather.list[2].weather[0].description}
+                temperature={weather.list[2].main.temp}
+                description={weather.list[2].weather[0].description}
+                windDirection={weather.list[2].wind.deg}
+                windVelocity={weather.list[2].wind.speed}
+                humidity={weather.list[2].main.humidity}
+                pressure={weather.list[2].main.pressure}
+              />
             </main>
           ) : null}
         </>

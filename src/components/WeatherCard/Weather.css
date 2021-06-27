@@ -1,0 +1,106 @@
+.icon:before {
+    font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+    font-style: normal;
+}
+
+.weather_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.5rem 2rem;
+    color: var(--white);
+}
+
+.weather_card .icon {
+    font-size: 16rem;
+} 
+
+.weather_card .box_weather_data {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: space-around;
+    margin-left: 4rem;
+}
+
+.weather_card .box_weather_data h2,
+.weather_card .box_weather_data strong {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+} 
+
+.weather_card .box_weather_data h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.weather_card .box_weather_data strong {
+    cursor: pointer;
+}
+
+.weather_card .box_weather_data .box_more_info {
+    display: block;
+}
+
+.weather_card .box_weather_data .box_more_info .weather_list_extra_data { 
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.weather_card .box_weather_data .box_more_info .weather_list_extra_data li {
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+
+.weather_card.tomorrow .box_more_info,
+.weather_card.after_tomorrow .box_more_info {
+    display: none;
+}
+
+.weather_card.tomorrow .icon,
+.weather_card.after_tomorrow .icon {
+    font-size: 6rem;
+    width: 24.5%;
+    text-align: center;
+}
+
+.weather_card.today.yellow {
+    background: var(--yellow-100);
+}
+
+.weather_card.today.blue {
+    background: var(--blue-100);
+}
+
+.weather_card.today.red {
+    background: var(--red-100);
+}
+
+.weather_card.tomorrow.yellow {
+    background: var(--yellow-300);
+}
+
+.weather_card.tomorrow.blue {
+    background: var(--blue-300);
+}
+
+.weather_card.tomorrow.red {
+    background: var(--red-300);
+}
+
+.weather_card.after_tomorrow.yellow {
+    background: var(--yellow-500);
+}
+
+.weather_card.after_tomorrow.blue {
+    background: var(--blue-500);
+}
+
+.weather_card.after_tomorrow.red {
+    background: var(--red-500);
+}
