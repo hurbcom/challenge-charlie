@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+.wrapper {
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header .content {
+    max-width: 1120px;
+    margin: 0 auto;
+    background: var(--gray-100);
+
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header .content .icon {
+    font-size: 3rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header .content .icon:before {
+    font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+    font-style: normal;
 }
 
-.App-link {
-  color: #61dafb;
+header .content .input_box {
+    width: 100%;
+    position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+header .content .input_box .address_input_search {
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: var(--gray-300);
+}
+
+header .content .input_box .box_select {
+    position: absolute;
+    top: 85px;
+    left: -64px;
+    width: 1120px;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--gray-300);
+    background: transparent;
+}
+
+header .content .input_box .box_select .loading {
+    background: var(--gray-100);
+}
+
+header .content .input_box .box_select .suggestion-item {
+    margin-bottom: 1rem;
+}
+
+header .content .input_box .box_select .suggestion.active {
+    background: var(--gray-100);
+}
+
+main {
+    max-width: 1120px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.loader_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.loader_container p {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--white);
 }
