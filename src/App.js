@@ -136,10 +136,20 @@ function App() {
           </PlacesAutocomplete>
         </div>
       </header>
-
-      <main>
-        
-      </main>
+      
+      {loading ? (
+        <div className="loader_container">
+          <p>{ err === null ? "Aguarde, carregando seus dados..." : err }</p>
+        </div>
+      ) : (
+        <>
+          {weather !== null ? (
+            <main>
+              
+            </main>
+          ) : null}
+        </>
+      )}
 
     </div>
   );
