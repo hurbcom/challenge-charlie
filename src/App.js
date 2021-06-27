@@ -93,8 +93,54 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <header></header>
+    <div className="wrapper" style={{ backgroundImage: `url(${bg})` }}>
+      <header>
+        <div className="content">
+          <i className="icon" data-icon="("></i>
+          <PlacesAutocomplete
+            value={address}
+            onChange={handleChange}
+            onSelect={handleSelect}
+          >
+
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div className="input_box">
+                <input {...getInputProps({
+                  placeholder: 'Digite sua cidade...',
+                  className: 'address_input_search',
+                })} />
+                <div className="box_select">
+                  {loading ? <div className="loading">...carregando dados</div> : null}
+                  {suggestions.map((suggestion) => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#f3eeeb', cursor: 'pointer' };
+                    
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style,
+                      })}
+                      >
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+        </div>
+      </header>
+
+      <main>
+        
+      </main>
+
     </div>
   );
 }
