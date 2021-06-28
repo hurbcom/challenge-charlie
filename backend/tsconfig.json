@@ -22,9 +22,6 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@repositories/*": [
-        "./src/repositories/*"
-      ],
       "@services/*": [
         "./src/services/*"
       ],
