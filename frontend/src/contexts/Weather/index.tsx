@@ -96,6 +96,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
       temperatureInCelsius: getCelsiusByFahrenheit(
         day.temperatureInFahrenheit,
       ),
+      temperatureInFahrenheit: Math.round(day.temperatureInFahrenheit),
     }))
     : []
   ), [weatherData]);
