@@ -35,7 +35,8 @@ const CitiesInput: React.FC = () => {
 
     if (
       lastSearch?.searched !== value
-        && value !== pretty
+      && value !== pretty
+      && value !== ''
     ) {
       fetchWeatherByLocation({
         cityName: value,

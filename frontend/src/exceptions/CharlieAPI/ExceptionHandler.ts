@@ -16,17 +16,12 @@ class ExceptionHandler extends Error {
     },
     {
       error:
-        'latitude param must be a integer number',
+        'latitude param must be a number',
       locale: 'As coordenadas informadas não são válidas',
     },
     {
       error:
-        'longitude param must be a integer number',
-      locale: 'As coordenadas informadas não são válidas',
-    },
-    {
-      error:
-        'longitude param must be a integer number',
+        'longitude param must be a number',
       locale: 'As coordenadas informadas não são válidas',
     },
     {

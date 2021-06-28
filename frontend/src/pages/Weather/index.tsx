@@ -4,6 +4,7 @@ import React, {
 
 import { WeatherContext } from '@contexts/Weather';
 
+import BrowserGeolocationAPI from '@libraries/BrowserGeolocationAPI';
 import Day from './components/Day';
 import CitiesInput from './components/CitiesInput';
 
@@ -15,17 +16,25 @@ const WeatherCard: React.FC = () => {
 
   const [unitOfMeasure, setUnitOfMeasure] = useState<'ºF' | 'ºC'>('ºC');
 
-  useEffect(() => {
-    // TODO get from browser API the coordinates or not fetch
-    fetchWeatherByLocation({
-      cityName: 'São Paulo',
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const onClickInTemperature = useCallback(() => {
     setUnitOfMeasure(unitOfMeasure === 'ºF' ? 'ºC' : 'ºF');
   }, [unitOfMeasure]);
+
+  const fetchInitialLocation = useCallback(async () => {
+    const coordinates = await BrowserGeolocationAPI.getActualCoordinates();
+
+    if (typeof coordinates === 'boolean') {
+      return;
+    }
+
+    if ('latitude' in coordinates && 'longitude' in coordinates) {
+      fetchWeatherByLocation(coordinates);
+    }
+  }, [fetchWeatherByLocation]);
+
+  useEffect(() => {
+    fetchInitialLocation();
+  }, [fetchInitialLocation]);
 
   const [today, tomorrow, afterTomorrow] = weatherData.weatherByDays;
 

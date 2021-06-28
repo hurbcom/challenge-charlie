@@ -28,6 +28,7 @@ class CharlieAPI {
     params: GetWeatherByLocationParams,
   ): Promise<GetWeatherByLocationResponse> {
     try {
+      console.log('params', params);
       const response = await this.axios.get<GetWeatherByLocationResponse>(
         '/weather-location', {
           params,
