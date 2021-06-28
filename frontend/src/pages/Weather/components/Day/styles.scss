@@ -53,6 +53,7 @@
 
     &.--disabled {
       background: rgba($disabled, .7);
+      filter: blur(0.5px);
     }
 
     .details {
@@ -110,6 +111,7 @@
 
     &.--disabled {
       background: $disabled;
+      filter: blur(0.5px);
     }
   }
 
@@ -126,6 +128,7 @@
 
     &.--disabled {
       background: darken($disabled, 16%);
+      filter: blur(0.5px);
     }
   }
 

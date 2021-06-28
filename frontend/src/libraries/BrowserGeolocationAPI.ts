@@ -53,6 +53,31 @@ class BrowserGeolocationAPI {
       longitude: coords.longitude,
     };
   }
+
+  public async grantPermissions(): Promise<boolean> {
+    if (!this.checkIfBrowserSupports()) {
+      return false;
+    }
+
+    const result = await navigator.permissions.query({ name: 'geolocation' });
+
+    result.onchange = () => {
+      console.log(result.state);
+    };
+
+    if (result.state === 'granted') {
+      console.log('granted', result.state);
+      return false;
+    } if (result.state === 'prompt') {
+      console.log('prompt', result.state);
+      return true;
+    } if (result.state === 'denied') {
+      console.log('denied', result.state);
+      return false;
+    }
+
+    return true;
+  }
 }
 
 export default new BrowserGeolocationAPI();

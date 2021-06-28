@@ -21,6 +21,10 @@ const WeatherCard: React.FC = () => {
   }, [unitOfMeasure]);
 
   const fetchInitialLocation = useCallback(async () => {
+    const granted = await BrowserGeolocationAPI.grantPermissions();
+
+    if (!granted) return;
+
     const coordinates = await BrowserGeolocationAPI.getActualCoordinates();
 
     if (typeof coordinates === 'boolean') {
