@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import ExceptionHandler from '@exceptions/CharlieAPI/ExceptionHandler';
 
 import {
   GetWeatherByLocationParams,
@@ -26,13 +27,17 @@ class CharlieAPI {
   public async getWeather(
     params: GetWeatherByLocationParams,
   ): Promise<GetWeatherByLocationResponse> {
-    const response = await this.axios.get<GetWeatherByLocationResponse>(
-      '/weather-location', {
-        params,
-      },
-    );
+    try {
+      const response = await this.axios.get<GetWeatherByLocationResponse>(
+        '/weather-location', {
+          params,
+        },
+      );
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      throw new ExceptionHandler(error.response.data);
+    }
   }
 }
 

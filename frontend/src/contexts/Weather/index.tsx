@@ -31,9 +31,16 @@ type WeatherState = {
 
 type FetchWeatherByLocationPàrams = GetWeatherByLocationParams;
 
+type Status = {
+  type: 'Normal' | 'Error';
+  message: string;
+}
+
 type WeatherContextData = {
   isFetching: boolean;
   weatherData: WeatherState;
+  status: Status,
+
   fetchWeatherByLocation(data: FetchWeatherByLocationPàrams): Promise<void>;
 };
 
@@ -49,15 +56,38 @@ export const WeatherProvider: React.FC = ({ children }) => {
 
   const [isFetching, setIsFetching] = useState(false);
 
+  const [status, setStatus] = useState<Status>({
+    type: 'Normal',
+    message: '',
+  });
+
   const fetchWeatherByLocation = useCallback(async (
     params: GetWeatherByLocationParams,
   ): Promise<void> => {
-    setIsFetching(true);
+    try {
+      setIsFetching(true);
 
-    const data = await CharlieAPI.getWeather(params);
-    setWeatherData(data);
+      setStatus({
+        type: 'Normal',
+        message: 'Buscando...',
+      });
 
-    setIsFetching(false);
+      setWeatherData({} as WeatherState);
+      const data = await CharlieAPI.getWeather(params);
+      setWeatherData(data);
+
+      setStatus({
+        type: 'Normal',
+        message: '',
+      });
+    } catch (error) {
+      setStatus({
+        type: 'Error',
+        message: error.message,
+      });
+    } finally {
+      setIsFetching(false);
+    }
   }, []);
 
   const weatherByDays = useMemo(() => (weatherData.weatherByDays
@@ -77,6 +107,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
           ...weatherData,
           weatherByDays,
         },
+        status,
         fetchWeatherByLocation,
         isFetching,
       }}

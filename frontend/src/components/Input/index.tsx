@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 type Props = {
   type: string;
@@ -22,6 +22,12 @@ const Input: React.FC<Props> = ({
 
     onChangeCallback(e);
   }, [onChangeCallback]);
+
+  useEffect(() => {
+    if (value !== inputValue) {
+      setInputValue(value);
+    }
+  }, [value]);
 
   return (
     <input

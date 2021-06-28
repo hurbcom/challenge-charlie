@@ -14,8 +14,6 @@ const Layout: React.FC = ({ children }) => {
     updateBackgroundImage();
   }, []);
 
-  console.log(imageURL);
-
   return (
     <div className="layout">
       <img

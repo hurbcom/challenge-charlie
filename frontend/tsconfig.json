@@ -31,6 +31,12 @@
       ],
       "@utils/*": [
         "./src/utils/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@exceptions/*": [
+        "./src/exceptions/*"
       ]
     },
     "esModuleInterop": true,

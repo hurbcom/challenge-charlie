@@ -36,11 +36,13 @@ class GetWeatherByLocationValidator {
 
       latitude: yup
         .number()
-        .integer(),
+        .integer('latitude param must be a integer number')
+        .typeError('latitude param must be a integer number'),
 
       longitude: yup
         .number()
-        .integer()
+        .integer('longitude param must be a integer number')
+        .typeError('longitude param must be a integer number')
     })
   }
 

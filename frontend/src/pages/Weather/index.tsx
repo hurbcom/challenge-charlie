@@ -19,7 +19,8 @@ const WeatherCard: React.FC = () => {
     fetchWeatherByLocation({
       cityName: 'São Paulo',
     });
-  }, [fetchWeatherByLocation]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClickInTemperature = useCallback(() => {
     setUnitOfMeasure(unitOfMeasure === 'ºF' ? 'ºC' : 'ºF');
@@ -31,14 +32,7 @@ const WeatherCard: React.FC = () => {
     <div className="weather">
       <div className="darkness --right" />
       <main>
-        <CitiesInput
-          value="Rio de Janeiro, Rio de Janeiro"
-          onChange={(e: any) => {
-            const target = e.target as HTMLInputElement;
-
-            console.log(target.value);
-          }}
-        />
+        <CitiesInput />
 
         <Day
           day="Hoje"
