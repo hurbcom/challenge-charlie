@@ -43,6 +43,18 @@
     padding-top: .8rem;
     padding-bottom: 0;
 
+    &.--hot {
+      background: rgba($danger, .7);
+    }
+
+    &.--cold {
+      background: rgba($cold, .7);
+    }
+
+    &.--disabled {
+      background: rgba($disabled, .7);
+    }
+
     .details {
       display: flex;
       flex-direction: column;
@@ -87,11 +99,36 @@
 
   &.--tomorrow {
     background: $primaryColor;
+
+    &.--hot {
+      background: $danger;
+    }
+
+    &.--cold {
+      background: $cold;
+    }
+
+    &.--disabled {
+      background: $disabled;
+    }
   }
 
   &.--after-tomorrow {
     background: $primaryColorDark1;
+
+    &.--hot {
+      background: darken($hot, 16%);
+    }
+
+    &.--cold {
+      background: darken($cold, 16%);
+    }
+
+    &.--disabled {
+      background: darken($disabled, 16%);
+    }
   }
+
 
   @media (max-width: 724px) {
     grid-gap: 0;

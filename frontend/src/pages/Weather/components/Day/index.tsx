@@ -74,8 +74,20 @@ const Day: React.FC<Props> = ({
     [weather],
   );
 
+  const colorVariant = useMemo(() => {
+    if (typeof weather?.temperatureInCelsius === 'undefined') {
+      return '--disabled';
+    } if (weather.temperatureInCelsius < 15) {
+      return '--cold';
+    } if (weather.temperatureInCelsius > 35) {
+      return '--hot';
+    }
+
+    return '';
+  }, [weather]);
+
   return (
-    <div className={`day ${variant || ''}`} data-testid="day">
+    <div className={`day ${variant || ''} ${colorVariant}`} data-testid="day">
       {variant === '--today' ? <i data-icon="B" className="icon" /> : <i />}
 
       <div>
@@ -85,6 +97,7 @@ const Day: React.FC<Props> = ({
           type="button"
           className="temperature"
           onClick={onClickInTemperature}
+          data-testid="temperature"
         >
           {
          unitOfMeasure === 'ºF'
