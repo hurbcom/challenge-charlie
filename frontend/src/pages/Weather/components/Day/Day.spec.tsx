@@ -87,10 +87,3 @@ describe('Day component', () => {
     expect(screen.getByTestId('day')).toHaveClass('--disabled');
   });
 });
-/**
- * Regras para implementar + testes:
- * [ ] - Para temperaturas abaixo de 15ºC deve ser usado tons de azul
- * [ ] - para temperaturas acima de 35ºC deve ser usado tons de vermelho
- * [ ] - use tons de amarelo para as demais temperaturas.
- * [ ] - Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê.
- */
