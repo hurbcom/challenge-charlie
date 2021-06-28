@@ -4,7 +4,6 @@ import GetWeatherByLocationService from '@services/GetWeatherByLocationService'
 import OpenWeatherAPI from '@libraries/OpenWeatherAPI'
 import GetWeatherByLocationValidator from '@validators/GetWeatherByLocationValidator'
 import OpenCageAPI from '@libraries/OpenCageAPI'
-import HttpException from '@libraries/HttpException'
 
 class WeatherController {
   public async getWeatherByLocation (request: Request, response: Response, next: NextFunction) {

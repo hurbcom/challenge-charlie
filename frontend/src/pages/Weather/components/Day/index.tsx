@@ -4,6 +4,7 @@ import {
   getClassificationTranslation,
   getWindDirectionByAzimuthDegrees,
   getKmByHourFromMetersBySecond,
+  getIconByClassificationAndPeriod,
 } from '@utils/functions';
 
 import {
@@ -74,6 +75,13 @@ const Day: React.FC<Props> = ({
     [weather],
   );
 
+  const todayIcon: string = useMemo<string>(
+    () => (
+      getIconByClassificationAndPeriod(weather?.classification)
+    ),
+    [weather],
+  );
+
   const colorVariant = useMemo(() => {
     if (typeof weather?.temperatureInCelsius === 'undefined') {
       return '--disabled';
@@ -88,7 +96,13 @@ const Day: React.FC<Props> = ({
 
   return (
     <div className={`day ${variant || ''} ${colorVariant}`} data-testid="day">
-      {variant === '--today' ? <i data-icon="B" className="icon" /> : <i />}
+      {variant === '--today' ? (
+        <i
+          data-testid="icon"
+          data-icon={todayIcon}
+          className="icon"
+        />
+      ) : <i />}
 
       <div>
         <p className="text">{day}</p>

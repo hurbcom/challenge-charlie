@@ -85,4 +85,27 @@ describe('Day component', () => {
 
     expect(screen.getByTestId('day')).toHaveClass('--disabled');
   });
+
+  it('should render icon B or C when classification is Clear', () => {
+    render(
+      <Day
+        day="Hoje"
+        unitOfMeasure="ºC"
+        weather={{
+          classification: 'Clear',
+        }}
+        variant="--today"
+        onClickInTemperature={() => undefined}
+      />,
+    );
+
+    const hour = new Date().getHours();
+    const isNight = hour < 6 && hour > 20;
+
+    if (isNight) {
+      expect(screen.getByTestId('icon')).toHaveAttribute('data-icon', 'C');
+    } else {
+      expect(screen.getByTestId('icon')).toHaveAttribute('data-icon', 'B');
+    }
+  });
 });
