@@ -13,9 +13,10 @@ const WeatherCard: React.FC = () => {
     weatherData,
   } = useContext(WeatherContext);
 
-  const [unitOfMeasure, setUnitOfMeasure] = useState<'ºF' | 'ºC'>('ºF');
+  const [unitOfMeasure, setUnitOfMeasure] = useState<'ºF' | 'ºC'>('ºC');
 
   useEffect(() => {
+    // TODO get from browser API the coordinates or not fetch
     fetchWeatherByLocation({
       cityName: 'São Paulo',
     });
