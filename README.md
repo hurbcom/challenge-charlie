@@ -2,7 +2,7 @@
 
 > descrever objetivo de forma clara
 
-O [Readme.md original](./docs/CHALLENGE.md) do desafio no momento em que iniciei esse projeto pode ser consultado [clicando nesse link](./docs/CHALLENGE.md).
+O [Readme.md original](./docs/CHALLENGE.md) do desafio no momento em que iniciei esse projeto pode ser consultado [clicando nesse link](./docs/CHALLENGE.md)
 
 O [repositório original](https://github.com/hurbcom/challenge-charlie) está disponível no link [https://github.com/hurbcom/challenge-charlie](https://github.com/hurbcom/challenge-charlie)
 
@@ -55,3 +55,13 @@ Para testar a build de produção localmente:
 
 para usar os icones Meteocons basta adicionar uma propriedade `data-icon="IdDoÍcone"`. Is data-icon disponíveis estão listados abaixo dos ícones nessa imagem:
 <img src="./docs/assets/meteocons-icons.png" alt="Imagem com os ícones disponíveis"/>
+
+
+## Vulnerabilidades
+
+- Nenhuma proteção a nível de aplicação contra ataques DDOS
+  - Após realizar o deploy, seria importante restringir o CORS apenas para o domínio em que o site estivesse disponível para evitar que "redes zumbi" de botnets sejam usadas pra esse tipo de ataque
+- Os endpoints são públicos
+
+// destacar vulnerabilidades das libs no momento
+

@@ -67,8 +67,6 @@ const WeatherCard: React.FC = () => {
           variant="--after-tomorrow"
           onClickInTemperature={onClickInTemperature}
         />
-
-        <div className="darkness --bottom" />
       </main>
       <div className="darkness --left" />
     </div>

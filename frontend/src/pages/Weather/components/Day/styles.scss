@@ -4,7 +4,7 @@
   padding-right: 1rem;
 
   display: grid;
-  grid-template-columns: 5fr 4fr;
+  grid-template-columns: 7fr 5fr;
   grid-gap: 1rem;
 
   background: $primaryColor;
@@ -25,7 +25,7 @@
     text-transform: uppercase;
 
     &.text {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       line-height: 1.2;
     }
 
@@ -89,7 +89,7 @@
       align-items: center;
 
       color: $white;
-      font-size: 18rem;
+      font-size: 17rem;
 
       @media (max-width: 724px) {
         font-size: 42vw;
