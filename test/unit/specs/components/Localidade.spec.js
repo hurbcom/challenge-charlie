@@ -3,6 +3,9 @@ import sinon from 'sinon'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
 import Localidade from '@/components/Previsao/Localidade/Localidade.vue'
+import IconeEnsolarado from '@/components/Icones/IconeEnsolarado.vue'
+import state from '@/state/state'
+import OpenWeatherCurrentDataService from '@/services/OpenWeatherCurrentDataService'
 import MockApiOpenCage from '../../../mocks/openCageData.json'
 import MockApiWeatherCurrentData from '../../../mocks/openWeather.json'
 
@@ -66,18 +69,21 @@ describe('Localidade.vue', () => {
 
     const {
       main: { temp, pressure, humidity },
-      wind: { speed, deg }
+      wind: { speed, deg },
+      weather
     } = MockApiWeatherCurrentData
 
-    expect(instanciaComponente.emitted().change[0]).toEqual([{
+    expect(state.dadosGeograficos).toEqual({
       humidade: humidity,
       pressao: pressure,
+      icone: IconeEnsolarado,
       temperatura: temp,
+      tempo: weather[0].description,
       vento: {
-        direcao: deg,
+        direcao: (new OpenWeatherCurrentDataService()).obterDescricaoDirecaoVento(deg),
         velocidade: speed
       }
-    }])
+    })
 
     expect(stubApiWeatherCurrentData.calledOnce).toBe(true)
   })

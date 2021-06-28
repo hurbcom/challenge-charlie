@@ -3,6 +3,7 @@ import Previsao from '@/components/Previsao/Previsao.vue'
 import SemLocalizacao from '@/components/Previsao/SemLocalizacao/SemLocalizacao.vue'
 import PrevisaoAtual from '@/components/Previsao/PrevisaoAtual/PrevisaoAtual.vue'
 import PrevisaoFutura from '@/components/Previsao/PrevisaoFutura/PrevisaoFutura.vue'
+import state from '@/state/state'
 
 describe('Previsao.vue', () => {
   let instanciaComponente
@@ -27,9 +28,8 @@ describe('Previsao.vue', () => {
   })
 
   it('Deve renderizar previsão atual e futura quando tiver dados Geograficos', async () => {
-    await instanciaComponente.setData({
-      dadosGeograficos: {}
-    })
+    state.dadosGeograficos = {}
+    await instanciaComponente.vm.$nextTick()
 
     const componentePrevisaoAtual = instanciaComponente.findComponent(PrevisaoAtual)
     const componentePrevisaoFutura = instanciaComponente.findComponent(PrevisaoFutura)

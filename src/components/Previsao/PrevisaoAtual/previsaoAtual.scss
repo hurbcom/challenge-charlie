@@ -9,6 +9,8 @@
 
     svg {
         height: auto;
+        max-width: 40%;
+        padding: 0 5%;
 
         path {
             fill: var(--previsao-cor-texto);
@@ -18,11 +20,16 @@
     .texto-destaque {
         font-size: 2.2rem;
         margin: 1.5rem 0;
+        text-transform: capitalize;
     }
 
     .texto-detalhe {
         font-size: 1.4rem;
         line-height: 1.8rem;
+    }
+
+    .temperatura {
+      cursor: pointer;
     }
 
     @include breakpoint(mobileonly) {

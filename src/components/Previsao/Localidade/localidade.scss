@@ -57,3 +57,32 @@
         color: var(--localidade-cor-texto);
     }
 }
+
+.carregando {
+  overflow: hidden;
+
+  &::after {
+    height: 3px;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--cinza);
+    display: flex;
+    content: '';
+    -webkit-animation: infinite-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: infinite-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@-webkit-keyframes infinite-progress {
+0% { margin-left: 0px; margin-right: 100%; }
+50% { margin-left: 25%; margin-right: 0%; }
+100% { margin-left: 100%; margin-right: 0; }
+}
+@keyframes infinite-progress {
+0% { margin-left: 0px; margin-right: 100%; }
+50% { margin-left: 25%; margin-right: 0%; }
+100% { margin-left: 100%; margin-right: 0; }
+}

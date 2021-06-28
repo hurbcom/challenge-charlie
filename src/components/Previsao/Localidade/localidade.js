@@ -3,7 +3,9 @@ import debounce from '@/utils/Debounce'
 import SugestoesLocalidade from './SugestoesLocalidade/SugestoesLocalidade.vue'
 import LocalizacaoUsuarioService from '@/services/LocalizacaoUsuarioService'
 import OpenCageService from '@/services/OpenCageService'
-import OpenWeatherCurrentDataService from '../../../services/OpenWeatherCurrentDataService'
+import OpenWeatherCurrentDataService from '@/services/OpenWeatherCurrentDataService'
+import conversorEscalaTermometricas from '@/utils/ConversorEscalaTermometricas'
+import state from '@/state/state'
 
 export default {
   name: 'localidade',
@@ -11,7 +13,8 @@ export default {
   data: () => ({
     localidades: [],
     cidadePesquisada: null,
-    obtendoLocalizacaoUsuario: false
+    obtendoLocalizacaoUsuario: false,
+    buscandoDadosCidade: false
   }),
 
   components: {
@@ -31,12 +34,21 @@ export default {
 
   methods: {
     async obterDadosGeograficosPorCidade (cidade) {
+      this.buscandoDadosCidade = true
       try {
         const dadosGeograficos = await (new OpenWeatherCurrentDataService()).obterDadosGeograficosPorCidade(cidade)
-        this.$emit('change', dadosGeograficos)
+        state.dadosGeograficos = dadosGeograficos
+        conversorEscalaTermometricas.atualizarStateTemperatura(dadosGeograficos.temperatura)
+        this.buscandoDadosCidade = false
       } catch (error) {
-        this.$emit('change', null)
+        this.limparDadosState()
+        this.buscandoDadosCidade = false
       }
+    },
+
+    limparDadosState () {
+      state.dadosGeograficos = {}
+      state.temperatura = null
     },
 
     selecionarLocalidade (localidade) {
@@ -64,6 +76,11 @@ export default {
 
   watch: {
     cidadePesquisada: debounce(function (cidade) {
+      if (!cidade) {
+        this.limparDadosState()
+        return
+      }
+
       this.obterDadosGeograficosPorCidade(cidade)
     })
   }
