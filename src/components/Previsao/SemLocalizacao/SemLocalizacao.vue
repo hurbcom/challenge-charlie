@@ -6,5 +6,5 @@
   </section>
 </template>
 
-<style src="./semLocalizacao.scss" lang="scss"></style>
+<style src="./semLocalizacao.scss" lang="scss" scoped></style>
 <script src="./semLocalizacao.js"></script>
