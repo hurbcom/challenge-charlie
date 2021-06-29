@@ -1,5 +1,5 @@
 <h1 align="center">
-   CHALLENGE-CHARLIE
+   HURB/CHALLENGE-CHARLIE
 </h1>
 
 ## 💻 Sobre o projeto
