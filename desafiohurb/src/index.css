@@ -206,3 +206,72 @@ body {
 .background-none {
     background-color: rgba(112, 128, 144, 0.8);
 }
+
+.error {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error h1 {
+    margin: 0;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .today__icon span {
+        font-size: 250px;
+    }
+    .container {
+        width: 600px;
+    }
+    .after__text {
+        width: 55%;
+    }
+    .tomorow__text {
+        width: 55%;
+    }
+    .today__box--data {
+        width: 65%;
+    }
+}
+
+@media (max-width: 600px) {
+    .temperature span {
+        font-size: 25px;
+    }
+
+    .climate span.climate__description {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 100%;
+    }
+    .tomorow__text {
+        font-size: 25px;
+    }
+    .after__text {
+        font-size: 25px;
+    }
+
+    @media (max-width: 555px) {
+        .today__icon span {
+            font-size: 165px;
+        }
+        .tomorow__text {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .after__text {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .climate span {
+            font-size: 16px;
+        }
+    }
+}
