@@ -1,0 +1,23 @@
+# Base
+FROM node:14 AS back_base
+WORKDIR /app
+COPY ./backend/package.json .
+
+# Dependencies
+FROM back_base AS back_dependencies
+RUN yarn --no-progress
+
+# Development
+FROM back_dependencies AS back_development
+COPY --from=back_dependencies /app/node_modules ./node_modules
+COPY ./backend .
+EXPOSE 3333
+CMD yarn dev
+
+# Production
+FROM back_dependencies AS back_production
+COPY --from=back_dependencies /app/node_modules ./node_modules
+COPY ./backend .
+RUN yarn build
+EXPOSE 3333
+CMD yarn start

@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  redis:
+    extends:
+      file: ../common-services.yml
+      service: charlieRedis
+
+  development:
+    extends:
+      file: ../common-services.yml
+      service: charlieAPIDev
+    depends_on:
+      - redis
+
+  production:
+    extends:
+      file: ../common-services.yml
+      service: charlieAPIProd
+    depends_on:
+      - redis

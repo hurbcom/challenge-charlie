@@ -1,0 +1,69 @@
+services:
+  charlieRedis:
+    image: redis
+    container_name: charlieRedis
+    ports:
+      - "6379:6379"
+
+  charlieAPIDev:
+    image: node:14
+    container_name: charlieAPIDev
+    working_dir: /app
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+      target: back_development
+    ports:
+      - 3333:3333
+    volumes:
+      - "/app/node_modules"
+      - ./backend:/app/:rw
+    environment:
+      - REDIS_HOST=host.docker.internal
+      - NODE_ENV=development
+
+  charlieAPIProd:
+    image: node:14
+    container_name: charlieAPIProd
+    working_dir: /app
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+      target: back_production
+    ports:
+      - 3333:3333
+    volumes:
+      - "/app/node_modules"
+      - ./backend:/app/:rw
+    environment:
+      - REDIS_HOST=host.docker.internal
+      - NODE_ENV=production
+
+  charlieFrontDev:
+    container_name: charlieFrontDev
+    build:
+      context: .
+      dockerfile: Dockerfile.front
+      target: front_development
+    volumes:
+      - "/app/node_modules"
+      - ./frontend:/app/:rw
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+
+  charlieFrontProd:
+    container_name: charlieFrontProd
+    build:
+      context: .
+      dockerfile: Dockerfile.front
+      target: front_production
+    volumes:
+      - "/app/node_modules"
+      - ./frontend:/app/:rw
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production

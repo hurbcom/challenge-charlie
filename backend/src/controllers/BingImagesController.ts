@@ -2,9 +2,12 @@ import { NextFunction, Request, Response } from 'express'
 
 import GetBingImageService from '@services/GetBingImageService'
 import BingAPI from '@libraries/BingAPI'
+import { getRedisKey } from '@utils/functions'
+
+import Redis from '@libraries/Redis'
 
 class BingImagesController {
-  public async getImage (_: Request, res: Response, next: NextFunction) {
+  public async getImage (request: Request, res: Response, next: NextFunction) {
     try {
       const bingAPI = new BingAPI()
 
@@ -13,6 +16,12 @@ class BingImagesController {
       )
 
       const url = await getBingImageService.execute()
+
+      const key = getRedisKey(request)
+      Redis.saveInRedis(
+        key,
+        { url }
+      )
 
       return res.json({ url })
     } catch (error) {

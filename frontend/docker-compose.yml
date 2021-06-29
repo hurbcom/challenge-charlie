@@ -1,24 +1,12 @@
-version: '3.7'
+version: '3.8'
 
 services:
-
   development:
-    container_name: hurb-challenge-charlie-development
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - '/app/node_modules'
-      - .:/app/:rw
-    ports:
-      - 3000:3000
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+    extends:
+      file: ../common-services.yml
+      service: charlieFrontDev
 
   production:
-    container_name: hurb-challenge-charlie-production
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
-    ports:
-      - '80:80'
+    extends:
+      file: ../common-services.yml
+      service: charlieFrontProd

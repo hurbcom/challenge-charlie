@@ -1,0 +1,23 @@
+# Base
+FROM node:14 AS front_base
+WORKDIR /app
+COPY ./frontend/package.json .
+
+# Dependencies
+FROM front_base AS front_dependencies
+RUN yarn --no-progress
+
+# Development
+FROM front_dependencies AS front_development
+COPY --from=front_dependencies /app/node_modules ./node_modules
+COPY ./frontend .
+EXPOSE 3000
+CMD yarn dev
+
+# Production
+FROM front_dependencies AS front_production
+COPY --from=front_dependencies /app/node_modules ./node_modules
+COPY ./frontend .
+RUN yarn build
+EXPOSE 3000
+CMD yarn start

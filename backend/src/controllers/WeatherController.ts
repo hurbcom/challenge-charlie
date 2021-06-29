@@ -1,9 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
 
+import GetWeatherByLocationValidator from '@validators/GetWeatherByLocationValidator'
 import GetWeatherByLocationService from '@services/GetWeatherByLocationService'
 import OpenWeatherAPI from '@libraries/OpenWeatherAPI'
-import GetWeatherByLocationValidator from '@validators/GetWeatherByLocationValidator'
 import OpenCageAPI from '@libraries/OpenCageAPI'
+
+import Redis from '@libraries/Redis'
+import { getRedisKey } from '@utils/functions'
 
 class WeatherController {
   public async getWeatherByLocation (request: Request, response: Response, next: NextFunction) {
@@ -21,6 +24,13 @@ class WeatherController {
       )
 
       const weatherData = await getWeatherLocationService.execute(expectedParams)
+
+      const key = getRedisKey(request)
+
+      Redis.saveInRedis(
+        key,
+        weatherData
+      )
 
       return response.json(weatherData)
     } catch (error) {
