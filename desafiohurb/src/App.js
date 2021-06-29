@@ -89,6 +89,22 @@ function App() {
         });
     }, [coords]);
 
+    useEffect(() => {
+        if (!textInput) {
+            setToday({});
+            setTomorow("");
+            setAfterTomorow("");
+            setError(true);
+            setLoading(true);
+            return;
+        } else {
+            setError(true);
+        }
+
+        debounceText(textInput);
+
+    }, [textInput, debounceText]);
+
     function changeTemperature() {
         if (isCelsius) {
             setToday({
