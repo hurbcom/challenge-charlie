@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
 import { toFahrenheit, toCelsius } from './utils/utils';
+import { OpenWeatherService } from './services/openweathermap';
 import { OpenCageService } from './services/opencagedata';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     const [isCelsius, setIsCelsius] = useState(true);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+
 
 
     useEffect(() => {
