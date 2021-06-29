@@ -1,13 +1,178 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: "MeteoconsRegular";
+    src: url("./assets/fonts/meteocons-webfont.eot");
+    src: url("./assets/fonts/meteocons-webfont.eot?#iefix")
+            format("embedded-opentype"),
+        url("./assets/fonts/meteocons-webfont.woff") format("woff"),
+        url("./assets/fonts/meteocons-webfont.ttf") format("truetype"),
+        url("./assets/fonts/meteocons-webfont.svg#MeteoconsRegular")
+            format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+.App {
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    max-width: 715px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.container section {
+    width: 100%;
+}
+
+.container section input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.search {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+}
+
+.search__input {
+    outline: none;
+    border: none;
+    font-size: 24px;
+    color: grey;
+    font-weight: 600;
+}
+
+.search:before {
+    content: "(";
+    font-family: "MeteoconsRegular";
+    color: grey;
+    font-size: 35px;
+    padding: 0 15px;
+}
+
+.today {
+    height: 50%;
+}
+
+.today__icon {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today__icon span {
+    font-family: "MeteoconsRegular";
+    color: white;
+    font-size: 300px;
+}
+
+.tomorow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 20%;
+}
+.tomorow__text {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    height: 90%;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+}
+
+.tomorow__text span {
+    transition: ease-in-out 0.3s;
+}
+
+.after-tomorow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 20%;
+}
+
+.after__text {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    height: 90%;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+}
+
+.after__text span {
+    transition: ease-in-out 0.3s;
+}
+
+.today__box {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.today__box--data {
+    width: 45%;
+    color: white;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.temperature span {
+    font-size: 30px;
+    transition: ease-in-out 0.3s;
+}
+
+.temperature--action:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.climate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.climate span.climate__description {
+    font-size: 32px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.climate span {
+    font-size: 20px;
 }
