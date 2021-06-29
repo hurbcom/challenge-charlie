@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
 import debounce from 'lodash.debounce';
 import jsonListIcon from './json/icon-list.json';
+import api from './services/api';
 import { verifyTemperature, toFahrenheit, toCelsius, loadPosition } from './utils/utils';
 import { OpenWeatherService } from './services/openweathermap';
 import { OpenCageService } from './services/opencagedata';
@@ -61,6 +62,11 @@ function App() {
             setError(true);
             setLoading(false);
         }
+
+        // https://cors-anywhere.herokuapp.com/corsdemo
+        api.get("https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR").then(response => {
+            setBackgroundImage(`${baseUrl}${response.data.images[0].url}`);
+        });
 
         loadPosition().then(response => {
             setCoords({
