@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
 import { toFahrenheit, toCelsius } from './utils/utils';
+import { OpenCageService } from './services/opencagedata';
 
 function App() {
     const [textInput, setTextInput] = useState('');
@@ -15,6 +16,16 @@ function App() {
     const [isCelsius, setIsCelsius] = useState(true);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        if (!coords.latitude || !coords.longitude) {
+            return;
+        }
+        OpenCageService.getCityByLongitude(coords).then(response => {
+            setTextInput(response);
+        });
+    }, [coords]);
 
     function changeTemperature() {
         if (isCelsius) {
