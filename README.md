@@ -1,21 +1,10 @@
-# Solução para o Desafio Charlie
+# Desafio Charlie
+## ✨ O Projeto
+O projeto consiste em uma aplicação React client-side para exibir a previsão do tempo filtrando por localidade ou coordenadas geográficas e uma API em Node que provê a integração com API's de terceiros devido a restrições de CORS presentes nos navegadores.
 
-> descrever objetivo de forma clara
+Veja quais foram os [requisitos para esse desafio](./docs/CHALLENGE.md). 
 
-O [Readme.md original](./docs/CHALLENGE.md) do desafio no momento em que iniciei esse projeto pode ser consultado [clicando nesse link](./docs/CHALLENGE.md)
-
-O [repositório original](https://github.com/hurbcom/challenge-charlie) está disponível no link [https://github.com/hurbcom/challenge-charlie](https://github.com/hurbcom/challenge-charlie)
-
-> escrever outras partes do readme
-
-
-Considerações:
-
-- Achei interessante criar o projeto react com webpack, fica bem mais flexível, já havia usado webpack mas na época que eu nem usava react ainda, até o momento só hávia criado projetos react pra web com o create react-app
-- Não encontrei a fonte correta, então selecionei uma semelhante.
-
-
-## Manual de execução
+## 📜 Manual de execução
 
 Para rodar essa aplicação localmente você pode seguir uma das três opções descritas a seguir.
 
@@ -111,23 +100,52 @@ Para testar a build de produção localmente:
 
 `docker run -it --rm -p 80:80 hurb-challenge-charlie:prod`
 
-## Problemas conhecidos
+## 🕵️ Vulnerabilidades
 
-- Não descobri por que o modo watch não está funcionando enquanto uso docker, o volume funciona, porém o webpack não re-compila. Acredito estar associado a usar as versões mais novas de todas as libs...
+- Não foi implementado nenhuma proteção a nível de aplicação contra ataques DDOS
+  - Após realizar o deploy, seria importante restringir o CORS apenas para o domínio em que o site estivesse disponível para evitar que "redes zumbi" de botnets sejam usadas pra esse tipo de ataque contra nossa API.
+- Por utilizar as bibliotecas em suas versões mais atualizadas, comandos como yarn audit não retornaram nenhuma vulnerábilidade, por isso é importante sempre manter as bibliotecas sempre atualizadas.
+
+## ⌛ Tempo decorrido para execução das tarefas
+
+> Tempo levado para finalizar: 42h 32m
+
+- Configurar estrutura inicial do projeto (pastas + scripts webpack + testes) - 8h 15m
+
+- Adicionar redis para cache de resposta (invalidar a cada uma hora)  - 1h
+
+- Implementar design dos componentes (responsivo) - 6h 24m 
+
+- Integração com api Bing para obter plano de fundo - 1h 40m
+
+- Trocar ícone com base na classificação - 35m
+
+- Integração com API OpenWeather/OpenCage para dados do clima + troca para fahrenheit. 16h 30m
+
+- Obter coordenadas do browser e usar para fazer a primeira consulta ou não fazer a consulta - 1h
+
+- Criar funcionalidade para o input de cidade - 1h 30m
+
+- Abrir popup pedindo permissão para geolocalizaçao - 40m
+
+- Fazer aplicação toda rodar em Docker com um simples comando - 3h
+
+- Melhorar Readme.md - 2h
 
 
+## Instruções para desenvolvedores
 
-## Ícones
+Selecionei algumas informações importantes e adicionei no arquivo [CONTRIBUTING.md](./docs/CONTRIBUTING.md) para o próximo que for manutenir ou implementar algo nesse projeto.
 
-para usar os icones Meteocons basta adicionar uma propriedade `data-icon="IdDoÍcone"`. Is data-icon disponíveis estão listados abaixo dos ícones nessa imagem:
-<img src="./docs/assets/meteocons-icons.png" alt="Imagem com os ícones disponíveis"/>
+## Considerações finais
 
+- Achei interessante criar o projeto react com webpack, fica bem mais flexível, já havia usado webpack mas na época que eu nem usava react ainda, até o momento só hávia criado projetos react pra web com o create react-app
 
-## Vulnerabilidades
+- Não encontrei a fonte correta, então selecionei uma semelhante.
 
-- Nenhuma proteção a nível de aplicação contra ataques DDOS
-  - Após realizar o deploy, seria importante restringir o CORS apenas para o domínio em que o site estivesse disponível para evitar que "redes zumbi" de botnets sejam usadas pra esse tipo de ataque
-- Os endpoints são públicos
+- Não descobri por que o modo watch não está funcionando enquanto uso docker, as alterações na maquina são refletidas dentro do docker pelo volume, porém o webpack não re-compila quando ocorre as alterações.
 
-// destacar vulnerabilidades das libs no momento
+Fico a disposição para tirar dúvidas e sempre estarei aberto a criticas construtivas e sugestões de melhorias, obrigado pela atenção!
 
+Contato: gabrieldnrodrigues@gmail.com
+Linkedin: https://www.linkedin.com/feed/
