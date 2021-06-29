@@ -22,3 +22,32 @@ export function loadPosition() {
         }
     });
 }
+
+export function verifyTemperature(temperature, isCelsius) {
+
+    let temp = temperature;
+
+    if (!isCelsius) {
+        temp = toCelsius(temp);
+    }
+
+    if (temp === undefined) {
+        return "background-none";
+    }
+
+    if (temp < 5) {
+        return `background-5`;
+    }
+
+    if (temp > 40) {
+        return `background-40`;
+    }
+
+    const roundedTemperature = Math.ceil(temp / 5) * 5;
+
+    return `background-${roundedTemperature}`;
+
+}
+
+
+

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
 import debounce from 'lodash.debounce';
 import jsonListIcon from './json/icon-list.json';
-import { toFahrenheit, toCelsius, loadPosition } from './utils/utils';
+import { verifyTemperature, toFahrenheit, toCelsius, loadPosition } from './utils/utils';
 import { OpenWeatherService } from './services/openweathermap';
 import { OpenCageService } from './services/opencagedata';
 
@@ -115,7 +115,7 @@ function App() {
                     <input data-icon="(" placeholder="Digite uma cidade..." className="search__input" type="text" value={textInput} onChange={handleChange} />
                 </section>
                 {error ? (<section className={`error background-none`}><h1>{loading ? "Carregando..." : "Pesquise outra cidade!"}</h1></section>) : <>
-                    <section className={`today `}>
+                    <section className={`today ${verifyTemperature(today.temp, isCelsius)}`}>
                         <div className="today__box">
                             <div className="today__icon">
                                 <span>{today.icon}</span>
@@ -123,7 +123,7 @@ function App() {
                             <div className="today__box--data">
                                 <div className="temperature">
                                     <span>HOJE</span>
-                                    <span className="temperature--action" onClick={changeTemperature} >{today.temp}{isCelsius ? "ºC" : "ºF"}</span>
+                                    <span className="temperature--action" onClick={changeTemperature}>{today.temp}{isCelsius ? "ºC" : "ºF"}</span>
                                 </div>
                                 <div className="climate">
                                     <span className="climate__description">{today.description}</span>
@@ -135,14 +135,14 @@ function App() {
                         </div>
                     </section>
 
-                    <section className={`tomorow`}>
+                    <section className={`tomorow ${verifyTemperature(tomorow, isCelsius)}`}>
                         <div className="tomorow__text">
                             <span>AMANHÃ</span>
-                            <span className="temperature--action" onClick={changeTemperature} >{tomorow}{isCelsius ? "ºC" : "ºF"}</span>
+                            <span className="temperature--action" onClick={changeTemperature}>{tomorow}{isCelsius ? "ºC" : "ºF"}</span>
                         </div>
                     </section>
 
-                    <section className={`after-tomorow`}>
+                    <section className={`after-tomorow ${verifyTemperature(afterTomorow, isCelsius)}`}>
                         <div className="after__text">
                             <span>DEPOIS DE AMANHÃ</span>
                             <span className="temperature--action" onClick={changeTemperature}>{afterTomorow}{isCelsius ? "ºC" : "ºF"}</span>
