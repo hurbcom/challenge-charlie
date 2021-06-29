@@ -25,8 +25,10 @@ function App() {
         (city) => {
             OpenWeatherService.getWeather(city).then(response => {
                 setError(false);
-                setIsCelsius(false);
-                changeTemperature();
+                setIsCelsius(true);
+                if (!isCelsius) {
+                    changeTemperature();
+                }
                 setToday({
                     humidity: response.main.humidity,
                     pressure: response.main.pressure,
