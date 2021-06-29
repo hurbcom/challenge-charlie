@@ -15,15 +15,81 @@ Considerações:
 - Não encontrei a fonte correta, então selecionei uma semelhante.
 
 
-Rodar o projeto com docker:
+## Manual de execução
 
-Use docker-compose
+Para rodar essa aplicação localmente você pode seguir uma das três opções descritas a seguir.
 
-Para testar durante o desenvolvimento em modo watch
-`docker-compose up development`
+### Opção 1) Rodando com docker compose
 
-Para testar a build de produção localmente
-`docker-compose up production`
+Requisitos de ambiente:
+- [Docker](https://www.docker.com/products/docker-desktop) versão 20.10.7 ou superior
+
+Após instalar os pré-requisitos, na raiz do projeto você pode rodar o seguinte comando para subir a aplicação:
+
+```sh
+docker compose up
+```
+> Espere subir os 3 containers e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
+
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas entre nas pastas frontend e backend e execute individualmente em cada pasta o comando `docker compose up production`, respectivamente.
+
+### Opção 2) Rodando manualmente
+
+Requisitos de ambiente:
+- [Node](https://nodejs.org/en/) versão 14.17.1 ou superior
+- [Yarn](https://yarnpkg.com/) versão 1.22.10 ou superior
+
+Primeiro, rode o comando `yarn` dentro das pastas /frontend e /backend para instalar as dependências
+
+Após ter as dependências instaladas, para subir o backend, entre na pasta /backend e execute o comando `yarn dev`
+
+Para o frontend é praticamente a mesma coisa, então entre na pasta /frontend e execute o comando `yarn dev`
+
+> Espere a aplicação subir e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
+
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas entre nas pastas frontend e backend e execute individualmente em cada pasta o comando `yarn build` e após `yarn start`, respectivamente.
+
+### Opção 3) Rodando com docker run
+
+Requisitos de ambiente:
+- [Docker](https://www.docker.com/products/docker-desktop) versão 20.10.7 ou superior
+
+Essa é pra quem gosta de ativar o modo raiz nível 4 😅 ou pra quando houver alguma restrição à usar o compose. Mas se você só quer rodar local mesmo recomendo usar a opção 1.
+
+Primeiro precisaremos fazer a build da imagem do backend, pra isso rode:
+
+```sh
+docker build --file Dockerfile.back --tag backend --target back_development .
+```
+
+Agora vamos precisar repetir o mesmo processo mas agora para gerar a build da imagem frontend:
+
+```sh
+docker build --file Dockerfile.front --tag frontend --target front_development . 
+```
+
+Opcionalmente você pode subir uma instância de redis com o seguinte comando:
+```sh
+docker run --name charlieRedis  -p 6379:6379 -d redis redis-server --bind '0.0.0.0' 
+```
+> Caso você não suba essa instância a aplicação funcionará normalmente, porém sem os benefícios na velocidade da resposta da API com cache.
+
+Após finalizar as builds, está na hora de subir os containers.
+
+Para subir o backend, na raiz do projeto execute:
+```sh
+docker run -it --rm -v ${PWD}/backend:/app -v /app/node_modules -p 3333:3333 -e REDIS_HOST=host.docker.internal -e NODE_ENV=development backend
+```
+
+E por fim, para subir o frontend, na raiz do projeto abra outro terminal e execute:
+```sh
+docker run -it --rm -v ${PWD}/frontend:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true -e NODE_ENV=development frontend
+```
+
+> Espere subir os 2 containers e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
+
+
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas troque o --target para `back_production` ou `front_production` quando for gerar a imagem, o resto do processo é o mesmo.
 
 
 Ou use o cli do docker de forma mais manual:
