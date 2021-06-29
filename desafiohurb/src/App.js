@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
+import debounce from 'lodash.debounce';
+import jsonListIcon from './json/icon-list.json';
 import { toFahrenheit, toCelsius, loadPosition } from './utils/utils';
 import { OpenWeatherService } from './services/openweathermap';
 import { OpenCageService } from './services/opencagedata';
@@ -17,6 +19,40 @@ function App() {
     const [isCelsius, setIsCelsius] = useState(true);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const loadWeather = useCallback(
+        (city) => {
+            OpenWeatherService.getWeather(city).then(response => {
+                setError(false);
+                setIsCelsius(false);
+                changeTemperature();
+                setToday({
+                    humidity: response.main.humidity,
+                    pressure: response.main.pressure,
+                    temp: response.main.temp.toFixed(0),
+                    wind: response.wind.speed,
+                    description: response.weather[0].description,
+                    icon: jsonListIcon[response.weather[0].icon]
+                });
+            }).catch(e => console.log('Faltou a cidade válida!', e));;
+
+
+            OpenWeatherService.getForecast(city).then(response => {
+
+                const tomorow = response.list[6].main.temp.toFixed(0);
+                const afterTomorow = response.list[14].main.temp.toFixed(0);
+                setTomorow(tomorow);
+                setAfterTomorow(afterTomorow);
+            }).catch(e => console.log('Faltou a cidade válida!', e));
+            setLoading(false);
+        },
+        [],
+
+    );
+
+    // LODASH
+    const debounceText = useCallback(debounce(loadWeather, 1000), [loadWeather]);
+
 
     const baseUrl = "https://www.bing.com/";
     useEffect(() => {
