@@ -132,6 +132,37 @@ Para testar a build de produção localmente:
 
 - Melhorar Readme.md - 2h
 
+## Pontos tratados que considero importantes
+
+### Resiliência e tolerância a falhas
+
+- Se a aplicação backend não conseguir se conectar com o Redis para aumentar a performance nos endpoints, o fluxo continua normalmente obtendo os dados das API's OpenCage e OpenWeather.
+
+### Melhorias de UX
+
+- [implementado] Quando o usuário buscar por uma cidade, foi adicionado um efeito de rotação no ícone à esquerda do input e uma mensagem logo abaixo dizendo o status da busca (se não encontrou, se está buscando etc.).
+
+- [sugestão] O contraste da cor branca da fonte sobre o fundo amarelo no tom especificado no design não está ideal e pode prejudicar a leitura do usuário, sugiro uma melhoria na cor desse amarelo ou alteração na cor da fonte e utilizar uma ferramenta como a [contrastchecker.com](https://contrastchecker.com/) para verificar se está atendendo as normas.
+
+- [sugestão] As cores vermelho, azul e amarelo podem ser difíceis de trabalhar para não prejudicar a leitura de pessoas com daltonismo, preencher os fundos com essas cores não parece ser uma boa opção.
+
+- [sugestão] Um input deve parecer um input, nos testes que realizei com pessoas próximas ninguém percebeu que o lugar onde altera o nome da cidade era um input, parece mais um "header" com um título apenas, o que prejudica a usabilidade.
+
+### Testes unitários e testes de integração
+
+Para a maioria dos casos eu utilizei da prática TDD criando os testes antes de criar a funcionalidade. Tanto no frontend quanto no backend implementei os testes que ao meu ver faziam sentido sem implementados.
+
+- Para gerar cobertura de testes rode `yarn test --coverage`
+
+
+**Cobertura de testes do back-end:**
+
+<img src="./docs/assets/coverage-backend.png" style="margin: auto; width:100%;">
+
+---
+
+**Cobertura de testes do front-end:**
+<img src="./docs/assets/coverage-frontend.png" style="margin: auto; width:100%;">
 
 ## Instruções para desenvolvedores
 
