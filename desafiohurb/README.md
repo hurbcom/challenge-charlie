@@ -10,6 +10,8 @@ Criar uma aplicação que ao digitar o nome de uma cidade ou identificar a posi�
 
 Foi excelente para treinar a base e até o intermediário no React, usando algumas bibliotecas conhecidas com o axios e o lodash.
 
+O desafio pedia para usar Docker, mas no momento da criação, ainda não conheço o conceito, mas já está na lista de proximos estudos =D
+
 ---
 
 ## 🚀 Como rodar o projeto
@@ -19,6 +21,10 @@ Foi excelente para treinar a base e até o intermediário no React, usando algum
 Necessário ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 
+_Detalhe:_ Existe um problema de CORS na API do Bing para pegar imagem de fundo do projeto.
+Provavelmente também faz parte do desafio corrigir esse erro.
+Basta acessar esse link e liberar o acesso: [CORS](https://cors-anywhere.herokuapp.com/corsdemo).
+
 #### 🧭 Rodando a aplicação
 
 ```bash
@@ -27,6 +33,7 @@ Necessário ter instalado em sua máquina as seguintes ferramentas:
  git clone https://github.com/Willjunger/challenge-charlie.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
+ cd challenge-charlie
  cd desafiohurb
 
 # Instale as dependências
