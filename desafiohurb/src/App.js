@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
+import { toFahrenheit, toCelsius } from './utils/utils';
 
 function App() {
     const [textInput, setTextInput] = useState('');
@@ -15,6 +16,24 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    function changeTemperature() {
+        if (isCelsius) {
+            setToday({
+                ...today,
+                temp: toFahrenheit(today.temp).toFixed(0),
+            });
+            setTomorow(toFahrenheit(tomorow).toFixed(0));
+            setAfterTomorow(toFahrenheit(afterTomorow).toFixed(0));
+        } else {
+            setToday({
+                ...today,
+                temp: toCelsius(today.temp).toFixed(0),
+            });
+            setTomorow(toCelsius(tomorow).toFixed(0));
+            setAfterTomorow(toCelsius(afterTomorow).toFixed(0));
+        }
+        setIsCelsius(!isCelsius);
+    }
 
     function handleChange(e) {
         var text = e.target.value;
@@ -29,7 +48,7 @@ function App() {
                     <input data-icon="(" placeholder="Digite uma cidade..." className="search__input" type="text" value={textInput} onChange={handleChange} />
                 </section>
                 {error ? (<section className={`error background-none`}><h1>{loading ? "Carregando..." : "Pesquise outra cidade!"}</h1></section>) : <>
-                    <section className={`today }`}>
+                    <section className={`today `}>
                         <div className="today__box">
                             <div className="today__icon">
                                 <span>{today.icon}</span>
@@ -37,7 +56,7 @@ function App() {
                             <div className="today__box--data">
                                 <div className="temperature">
                                     <span>HOJE</span>
-                                    <span className="temperature--action" >{today.temp}{isCelsius ? "ºC" : "ºF"}</span>
+                                    <span className="temperature--action" onClick={changeTemperature} >{today.temp}{isCelsius ? "ºC" : "ºF"}</span>
                                 </div>
                                 <div className="climate">
                                     <span className="climate__description">{today.description}</span>
@@ -52,14 +71,14 @@ function App() {
                     <section className={`tomorow`}>
                         <div className="tomorow__text">
                             <span>AMANHÃ</span>
-                            <span className="temperature--action" >{tomorow}{isCelsius ? "ºC" : "ºF"}</span>
+                            <span className="temperature--action" onClick={changeTemperature} >{tomorow}{isCelsius ? "ºC" : "ºF"}</span>
                         </div>
                     </section>
 
                     <section className={`after-tomorow`}>
                         <div className="after__text">
                             <span>DEPOIS DE AMANHÃ</span>
-                            <span className="temperature--action">{afterTomorow}{isCelsius ? "ºC" : "ºF"}</span>
+                            <span className="temperature--action" onClick={changeTemperature}>{afterTomorow}{isCelsius ? "ºC" : "ºF"}</span>
                         </div>
                     </section>
                 </>}
