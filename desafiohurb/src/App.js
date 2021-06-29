@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './App.css';
-import { toFahrenheit, toCelsius } from './utils/utils';
+import { toFahrenheit, toCelsius, loadPosition } from './utils/utils';
 import { OpenWeatherService } from './services/openweathermap';
 import { OpenCageService } from './services/opencagedata';
 
@@ -18,7 +18,25 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    const baseUrl = "https://www.bing.com/";
+    useEffect(() => {
+        setLoading(true);
+        if (textInput !== '') {
+            setError(true);
+            setLoading(false);
+        }
 
+        loadPosition().then(response => {
+            setCoords({
+                latitude: response.latitude,
+                longitude: response.longitude
+            });
+        }).catch(error => {
+            // setError(true);
+        });;
+
+
+    }, []);
 
     useEffect(() => {
         if (!coords.latitude || !coords.longitude) {
