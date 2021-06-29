@@ -148,6 +148,14 @@ Para testar a build de produção localmente:
 
 - [sugestão] Um input deve parecer um input, nos testes que realizei com pessoas próximas ninguém percebeu que o lugar onde altera o nome da cidade era um input, parece mais um "header" com um título apenas, o que prejudica a usabilidade.
 
+### Escolhas Técnicas
+
+- Utilizei o próprio Context API do React ao invés de usar Redux porque se trata de uma aplicação pequena e não houve necessidade de espelhar um estado em diversos componentes, usar Redux nesse projeto só aumentaria a complexidade.
+
+- Utilizei Typescript como linguagem de programação no front e no back para utilizar das de features mais novas e ter o apoio do intelisense durante o desenvolvimento, evitando erros e comportamentos indesejados.
+
+- Mantive a arquitetura bem simples, utilizando no backend alguns patterns do Domain Drive Design (DDD) como Service Pattern, controllers, middlewares, etc. No frontend usando Custom Hooks e na estilização mantendo ao máximo próximo dos padrões ITCSS e RSCSS.
+
 ### Testes unitários e testes de integração
 
 Para a maioria dos casos eu utilizei da prática TDD criando os testes antes de criar a funcionalidade. Tanto no frontend quanto no backend implementei os testes que ao meu ver faziam sentido sem implementados.
