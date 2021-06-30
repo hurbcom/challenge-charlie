@@ -80,26 +80,6 @@ docker run -it --rm -v ${PWD}/frontend:/app -v /app/node_modules -p 3000:3000 -e
 
 **Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas troque o --target para `back_production` ou `front_production` quando for gerar a imagem, o resto do processo é o mesmo.
 
-
-Ou use o cli do docker de forma mais manual:
-
-
-Para testar durante o desenvolvimento em modo watch:
-
-Na raiz do projeto, para gerar a imagem docker rode o comando:
-
-`docker build -t hurb-challenge-charlie:dev .`
-
-Logo após a build da imagem finalizar, para criar o container a partir dessa imagem rode:
-
-`docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true hurb-challenge-charlie:dev`
-
-Para testar a build de produção localmente:
-
-`docker build -f Dockerfile.prod -t hurb-challenge-charlie:prod .`
-
-`docker run -it --rm -p 80:80 hurb-challenge-charlie:prod`
-
 ## 🕵️ Vulnerabilidades
 
 - Não foi implementado nenhuma proteção a nível de aplicação contra ataques DDOS
