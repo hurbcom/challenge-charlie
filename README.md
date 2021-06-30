@@ -167,4 +167,4 @@ Selecionei algumas informações importantes e adicionei no arquivo [CONTRIBUTIN
 Fico a disposição para tirar dúvidas e sempre estarei aberto a criticas construtivas e sugestões de melhorias, obrigado pela atenção!
 
 Contato: gabrieldnrodrigues@gmail.com
-Linkedin: https://www.linkedin.com/feed/
+Linkedin: https://www.linkedin.com/in/gabrieldissotti/
