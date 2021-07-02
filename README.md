@@ -1,6 +1,6 @@
 # Pokedex
 
-Pokedex é um micro site criado em ReactJS para exibir seus pokemons favoritos [Create React App](https://github.com/facebook/create-react-app).
+Pokedex é um micro site criado em ReactJS para exibir seus pokemons favoritos [Ver projeto online](https://eager-roentgen-5ba934.netlify.app).
 
 ## Requisitos para execução da aplicação
 
