@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledWeather } from "./WeatherStyles";
+import { convertCelsiusToFahrenheit } from "../../utils";
+
 const Weather = (props) => {
+    const [isFahrenheit, setIsFahrenheit] = useState(false);
+    const [fahrenheitTemperature, setFahrenheitTemperature] = useState("");
+
+    const convertTemperature = () => {
+        setIsFahrenheit((prevIsFahrenheit) => !prevIsFahrenheit);
+        setFahrenheitTemperature(convertCelsiusToFahrenheit(props.temperature));
+    };
+
     return (
         <StyledWeather
             style={{
@@ -11,7 +21,11 @@ const Weather = (props) => {
             <div className="info">
                 <div className="day">
                     <h2>{props.day}</h2>
-                    <p>{props.temperature}</p>
+                    <p className="temperature" onClick={convertTemperature}>
+                        {isFahrenheit
+                            ? fahrenheitTemperature + "°F"
+                            : props.temperature + "°C"}
+                    </p>
                 </div>
                 <div className="details">
                     <h3>{props.description}</h3>

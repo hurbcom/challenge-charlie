@@ -13,28 +13,30 @@ import { setIcon, setWindDirection, setWeatherBackground } from "../../utils";
 const WeatherSearch = (props) => {
     const [address, setAddress] = useState("");
     //Informações do clima
-    const [iconToday, setIconToday] = useState();
-    const [iconTomorrow, setIconTomorrow] = useState();
-    const [iconAfterTomorrow, setIconAfterTomorrow] = useState();
-    const [todayTemperature, setTodayTemperature] = useState();
-    const [tomorrowTemperature, setTomorrowTemperature] = useState();
-    const [afterTomorrowTemperature, setAfterTomorrowTemperature] = useState();
-    const [todayDescription, setTodayDescription] = useState();
-    const [tomorrowDescription, setTomorrowDescription] = useState();
-    const [afterTomorrowDescription, setAfterTomorrowDescription] = useState();
-    const [todayWindDirection, setTodayWindDirection] = useState();
-    const [tomorrowWindDirection, setTomorrowWindDirection] = useState();
+    const [iconToday, setIconToday] = useState("");
+    const [iconTomorrow, setIconTomorrow] = useState("");
+    const [iconAfterTomorrow, setIconAfterTomorrow] = useState("");
+    const [todayTemperature, setTodayTemperature] = useState("");
+    const [tomorrowTemperature, setTomorrowTemperature] = useState("");
+    const [afterTomorrowTemperature, setAfterTomorrowTemperature] =
+        useState("");
+    const [todayDescription, setTodayDescription] = useState("");
+    const [tomorrowDescription, setTomorrowDescription] = useState("");
+    const [afterTomorrowDescription, setAfterTomorrowDescription] =
+        useState("");
+    const [todayWindDirection, setTodayWindDirection] = useState("");
+    const [tomorrowWindDirection, setTomorrowWindDirection] = useState("");
     const [afterTomorrowWindDirection, setAfterTomorrowWindDirection] =
-        useState();
-    const [todayWindSpeed, setTodayWindSpeed] = useState();
-    const [tomorrowWindSpeed, setTomorrowWindSpeed] = useState();
-    const [afterTomorrowWindSpeed, setAfterTomorrowWindSpeed] = useState();
-    const [todayHumidity, setTodayHumidity] = useState();
-    const [tomorrowHumidity, setTomorrowHumidity] = useState();
-    const [afterTomorrowHumidity, setAfterTomorrowHumidity] = useState();
-    const [todayPressure, setTodayPressure] = useState();
-    const [tomorrowPressure, setTomorrowPressure] = useState();
-    const [afterTomorrowPressure, setAfterTomorrowPressure] = useState();
+        useState("");
+    const [todayWindSpeed, setTodayWindSpeed] = useState("");
+    const [tomorrowWindSpeed, setTomorrowWindSpeed] = useState("");
+    const [afterTomorrowWindSpeed, setAfterTomorrowWindSpeed] = useState("");
+    const [todayHumidity, setTodayHumidity] = useState("");
+    const [tomorrowHumidity, setTomorrowHumidity] = useState("");
+    const [afterTomorrowHumidity, setAfterTomorrowHumidity] = useState("");
+    const [todayPressure, setTodayPressure] = useState("");
+    const [tomorrowPressure, setTomorrowPressure] = useState("");
+    const [afterTomorrowPressure, setAfterTomorrowPressure] = useState("");
 
     //Funções de requisição das APIs de localização e clima
     const keyLocationAPI = process.env.REACT_APP_OPENCAGE_KEY;
@@ -99,7 +101,6 @@ const WeatherSearch = (props) => {
                     )
                 );
                 const dataLocation = await responseLocation.json();
-                console.log(dataLocation);
                 const locationName =
                     dataLocation.results[0].components.city +
                     ", " +

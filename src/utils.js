@@ -1,3 +1,4 @@
+//Define o ícone com base na descrição do clima
 export const setIcon = (description) => {
     switch (description) {
         case "chuva fraca":
@@ -16,6 +17,7 @@ export const setIcon = (description) => {
     }
 };
 
+//Define a direção do vento com base nos graus
 export const setWindDirection = (deg) => {
     switch (true) {
         case 0:
@@ -40,14 +42,15 @@ export const setWindDirection = (deg) => {
     }
 };
 
+//Definine a cor de fundo do bloco de clima com base na temperatura
 export const setWeatherBackground = (temp) => {
     switch (true) {
         case temp <= 15:
             //azul
-            return "rgba(0, 0, 100, .9) 0%,rgba(0, 0, 150, .9) 100%";
+            return "rgba(0, 0, 100, .9) 0%, rgba(0, 0, 150, .9) 100%";
         case temp >= 35:
             //vermelho
-            return "rgba(100, 0, 0, .9) 0%,rgba(150, 0, 0, .9) 100%";
+            return "rgba(100, 0, 0, .9) 0%, rgba(150, 0, 0, .9) 100%";
         case temp > 15 && temp < 35:
             //amarelo
             return "rgba(170, 140, 12, 0.9) 0%, rgba(190, 160, 18, 0.9) 100%";
@@ -55,4 +58,9 @@ export const setWeatherBackground = (temp) => {
             //cinza
             return "rgba(40, 40, 40, .9) 0%, rgba(70, 70, 70, 0.9) 100%";
     }
+};
+
+//Converte temperatura de Celsius para Fahrenheit
+export const convertCelsiusToFahrenheit = (temp) => {
+    return Math.round(temp * 1.8 + 32);
 };

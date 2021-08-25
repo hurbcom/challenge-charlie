@@ -41,6 +41,9 @@ export const StyledWeather = styled.div`
         @media (min-width: 1024px) {
             width: 345px;
         }
+        .temperature {
+            cursor: pointer;
+        }
         .details {
             margin-top: 30px;
             @media (min-width: 1024px) {
