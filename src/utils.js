@@ -42,10 +42,10 @@ export const setWindDirection = (deg) => {
 
 export const setWeatherBackground = (temp) => {
     switch (true) {
-        case temp < 15:
+        case temp <= 15:
             //azul
             return "rgba(0, 0, 100, .9) 0%,rgba(0, 0, 150, .9) 100%";
-        case temp > 35:
+        case temp >= 35:
             //vermelho
             return "rgba(100, 0, 0, .9) 0%,rgba(150, 0, 0, .9) 100%";
         case temp > 15 && temp < 35:

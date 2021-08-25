@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyledWeather } from "./WeatherStyles";
 const Weather = (props) => {
     return (

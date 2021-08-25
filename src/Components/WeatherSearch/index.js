@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PlacesAutocomplete, {
     geocodeByAddress,
-    getLatLng,
 } from "react-places-autocomplete";
 import {
     StyledInputContainer,
@@ -13,8 +12,6 @@ import { setIcon, setWindDirection, setWeatherBackground } from "../../utils";
 
 const WeatherSearch = (props) => {
     const [address, setAddress] = useState("");
-    const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
-
     //Informações do clima
     const [iconToday, setIconToday] = useState();
     const [iconTomorrow, setIconTomorrow] = useState();
@@ -58,9 +55,38 @@ const WeatherSearch = (props) => {
 
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
-        const latLng = await getLatLng(results[0]);
         setAddress(value);
-        setCoordinates(latLng);
+        const responseWeather = await fetch(
+            weatherURL(results[0].formatted_address)
+        );
+        const dataWeather = await responseWeather.json();
+
+        //Preenchendo as informações do clima com base nos dados da API
+        setIconToday(dataWeather.list[0].weather[0].description);
+        setIconTomorrow(dataWeather.list[1].weather[0].description);
+        setIconAfterTomorrow(dataWeather.list[2].weather[0].description);
+        setTodayDescription(dataWeather.list[0].weather[0].description);
+        setTomorrowDescription(dataWeather.list[1].weather[0].description);
+        setAfterTomorrowDescription(dataWeather.list[2].weather[0].description);
+        setTodayTemperature(Math.round(dataWeather.list[0].main.temp));
+        setTomorrowTemperature(Math.round(dataWeather.list[1].main.temp));
+        setAfterTomorrowTemperature(Math.round(dataWeather.list[2].main.temp));
+        setTodayWindDirection(setWindDirection(dataWeather.list[0].wind.deg));
+        setTomorrowWindDirection(
+            setWindDirection(dataWeather.list[1].wind.deg)
+        );
+        setAfterTomorrowWindDirection(
+            setWindDirection(dataWeather.list[2].wind.deg)
+        );
+        setTodayWindSpeed(Math.round(dataWeather.list[0].wind.speed));
+        setTomorrowWindSpeed(Math.round(dataWeather.list[1].wind.speed));
+        setAfterTomorrowWindSpeed(Math.round(dataWeather.list[2].wind.speed));
+        setTodayHumidity(dataWeather.list[0].main.humidity);
+        setTomorrowHumidity(dataWeather.list[1].main.humidity);
+        setAfterTomorrowHumidity(dataWeather.list[2].main.humidity);
+        setTodayPressure(dataWeather.list[0].main.pressure);
+        setTomorrowPressure(dataWeather.list[1].main.pressure);
+        setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
     };
 
     useEffect(() => {
@@ -73,7 +99,7 @@ const WeatherSearch = (props) => {
                     )
                 );
                 const dataLocation = await responseLocation.json();
-
+                console.log(dataLocation);
                 const locationName =
                     dataLocation.results[0].components.city +
                     ", " +
@@ -130,6 +156,7 @@ const WeatherSearch = (props) => {
                 setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
