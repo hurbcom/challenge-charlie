@@ -13,8 +13,10 @@ import { setIcon, setWindDirection, setWeatherBackground } from "../../utils";
 
 const WeatherSearch = (props) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isActive, setIsActive] = useState(true);
     const [address, setAddress] = useState("");
-    //Informações do clima
+
+    //Inicializando estados das informações do clima
     const [iconToday, setIconToday] = useState("");
     const [iconTomorrow, setIconTomorrow] = useState("");
     const [iconAfterTomorrow, setIconAfterTomorrow] = useState("");
@@ -57,6 +59,7 @@ const WeatherSearch = (props) => {
         keyWeatherAPI +
         "&lang=pt&units=metric&cnt=3";
 
+    //Ao selecionar uma localização, preenche as informações do clima com base nos dados da API
     const handleSelect = async (value) => {
         setIsLoading(true);
         const results = await geocodeByAddress(value);
@@ -67,7 +70,7 @@ const WeatherSearch = (props) => {
         const dataWeather = await responseWeather.json();
         setIsLoading(false);
 
-        //Preenchendo as informações do clima com base nos dados da API
+        //Preenchendo as informações do clima
         setIconToday(dataWeather.list[0].weather[0].description);
         setIconTomorrow(dataWeather.list[1].weather[0].description);
         setIconAfterTomorrow(dataWeather.list[2].weather[0].description);
@@ -95,7 +98,12 @@ const WeatherSearch = (props) => {
         setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
     };
 
+    const removeActive = () => {
+        setIsActive(false);
+    };
+
     useEffect(() => {
+        //Pede permissão de localização do usuário, caso aceita, preenche as informações do clima com base nos dados da API
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 setIsLoading(true);
@@ -210,6 +218,7 @@ const WeatherSearch = (props) => {
             <Weather
                 icon={setIcon(iconToday)}
                 day="hoje"
+                active={isActive}
                 description={todayDescription}
                 temperature={todayTemperature}
                 windDirection={todayWindDirection}
@@ -228,6 +237,7 @@ const WeatherSearch = (props) => {
                 humidity={tomorrowHumidity}
                 pressure={tomorrowPressure}
                 backgroundColor={setWeatherBackground(tomorrowTemperature)}
+                onMouseEnter={removeActive}
             />
             <Weather
                 icon={setIcon(iconAfterTomorrow)}
@@ -239,6 +249,7 @@ const WeatherSearch = (props) => {
                 humidity={afterTomorrowHumidity}
                 pressure={afterTomorrowPressure}
                 backgroundColor={setWeatherBackground(afterTomorrowTemperature)}
+                onMouseEnter={removeActive}
             />
         </React.Fragment>
     );

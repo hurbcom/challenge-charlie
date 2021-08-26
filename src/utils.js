@@ -10,6 +10,7 @@ export const setIcon = (description) => {
             return "B";
         case "nuvens dispersas":
             return "S";
+        case "nublado":
         case "nuvens quebradas":
             return "Y";
         default:

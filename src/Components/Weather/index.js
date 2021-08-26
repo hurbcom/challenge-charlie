@@ -16,6 +16,8 @@ const Weather = (props) => {
             style={{
                 background: `linear-gradient(to right, ${props.backgroundColor})`,
             }}
+            active={props.active}
+            onMouseEnter={props.onMouseEnter}
         >
             <div className="icon" data-icon={props.icon}></div>
             <div className="info">

@@ -73,8 +73,20 @@ export const StyledWeather = styled.div`
     }
     .details,
     .icon {
-        display: none;
+        display: ${(props) => (props.active ? "block" : "none")};
     }
+    & {
+        ${(props) => {
+            if (props.active) {
+                return `
+            padding-bottom: 70px;
+            @media (min-width: 1366px) {
+                padding-bottom: 125px;
+            }
+            }
+        `;
+            }
+        }}
     &:hover {
         padding-bottom: 70px;
         @media (min-width: 1366px) {
