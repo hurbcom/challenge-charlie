@@ -7,10 +7,12 @@ import {
     StyledDropdown,
     StyledSuggestions,
 } from "./WeatherSearchStyles.js";
+import Loader from "../Loader";
 import Weather from "../Weather";
 import { setIcon, setWindDirection, setWeatherBackground } from "../../utils";
 
 const WeatherSearch = (props) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [address, setAddress] = useState("");
     //Informações do clima
     const [iconToday, setIconToday] = useState("");
@@ -56,12 +58,14 @@ const WeatherSearch = (props) => {
         "&lang=pt&units=metric&cnt=3";
 
     const handleSelect = async (value) => {
+        setIsLoading(true);
         const results = await geocodeByAddress(value);
         setAddress(value);
         const responseWeather = await fetch(
             weatherURL(results[0].formatted_address)
         );
         const dataWeather = await responseWeather.json();
+        setIsLoading(false);
 
         //Preenchendo as informações do clima com base nos dados da API
         setIconToday(dataWeather.list[0].weather[0].description);
@@ -94,6 +98,7 @@ const WeatherSearch = (props) => {
     useEffect(() => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
+                setIsLoading(true);
                 const responseLocation = await fetch(
                     locationURL(
                         position.coords.latitude,
@@ -110,6 +115,7 @@ const WeatherSearch = (props) => {
 
                 const responseWeather = await fetch(weatherURL(locationName));
                 const dataWeather = await responseWeather.json();
+                setIsLoading(false);
 
                 setAddress(locationName);
 
@@ -162,6 +168,7 @@ const WeatherSearch = (props) => {
 
     return (
         <React.Fragment>
+            <Loader visible={isLoading} />
             <PlacesAutocomplete
                 value={address}
                 onChange={setAddress}
@@ -184,7 +191,7 @@ const WeatherSearch = (props) => {
                         </StyledInputContainer>
 
                         <StyledDropdown>
-                            {loading ? <div>...carregando</div> : null}
+                            {loading ? <div>Carregando...</div> : null}
 
                             {suggestions.map((suggestion) => {
                                 return (

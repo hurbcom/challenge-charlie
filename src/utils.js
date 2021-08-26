@@ -19,7 +19,7 @@ export const setIcon = (description) => {
 
 //Define a direção do vento com base nos graus
 export const setWindDirection = (deg) => {
-    switch (true) {
+    switch (deg && true) {
         case 0:
         case 360:
             return "N";
@@ -38,13 +38,13 @@ export const setWindDirection = (deg) => {
         case deg > 270 && deg < 360:
             return "NW";
         default:
-            return "-";
+            return "";
     }
 };
 
 //Definine a cor de fundo do bloco de clima com base na temperatura
 export const setWeatherBackground = (temp) => {
-    switch (true) {
+    switch (temp && true) {
         case temp <= 15:
             //azul
             return "rgba(0, 0, 100, .9) 0%, rgba(0, 0, 150, .9) 100%";
