@@ -6,6 +6,7 @@ const Weather = (props) => {
     const [isFahrenheit, setIsFahrenheit] = useState(false);
     const [fahrenheitTemperature, setFahrenheitTemperature] = useState("");
 
+    //Converte a temperatura de Celsius para Fahrenheit e altera o valor do estado isFahrenheit para o contrário do valor anterior
     const convertTemperature = () => {
         setIsFahrenheit((prevIsFahrenheit) => !prevIsFahrenheit);
         setFahrenheitTemperature(convertCelsiusToFahrenheit(props.temperature));

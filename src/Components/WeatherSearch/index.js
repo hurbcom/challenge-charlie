@@ -115,12 +115,13 @@ const WeatherSearch = (props) => {
         }
     };
 
+    //Esconde as informações detalhadas do dia de hoje, que por padrão vêm expostas
     const removeActive = () => {
         setIsActive(false);
     };
 
     useEffect(() => {
-        //Pede permissão de localização do usuário, caso aceita, preenche as informações do clima com base nos dados da API
+        //Pede permissão de localização do usuário, caso concedida, preenche as informações do clima com base nos dados da API
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 setIsLoading(true);
@@ -205,8 +206,46 @@ const WeatherSearch = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    //Propriedades do componentes de clima dos dias de hoje, amanhã e depois de amanhã
+    const todayProps = {
+        icon: setIcon(iconToday),
+        day: "hoje",
+        active: isActive,
+        description: todayDescription,
+        temperature: todayTemperature,
+        windDirection: todayWindDirection,
+        windSpeed: todayWindSpeed,
+        humidity: todayHumidity,
+        pressure: todayPressure,
+        backgroundColor: setWeatherBackground(todayTemperature),
+    };
+    const tomorrowProps = {
+        icon: setIcon(iconTomorrow),
+        day: "amanhã",
+        description: tomorrowDescription,
+        temperature: tomorrowTemperature,
+        windDirection: tomorrowWindDirection,
+        windSpeed: tomorrowWindSpeed,
+        humidity: tomorrowHumidity,
+        pressure: tomorrowPressure,
+        backgroundColor: setWeatherBackground(tomorrowTemperature),
+        onMouseEnter: removeActive,
+    };
+    const afterTomorrowProps = {
+        icon: setIcon(iconAfterTomorrow),
+        day: "depois de amanhã",
+        description: afterTomorrowDescription,
+        temperature: afterTomorrowTemperature,
+        windDirection: afterTomorrowWindDirection,
+        windSpeed: afterTomorrowWindSpeed,
+        humidity: afterTomorrowHumidity,
+        pressure: afterTomorrowPressure,
+        backgroundColor: setWeatherBackground(afterTomorrowTemperature),
+        onMouseEnter: removeActive,
+    };
+
     return (
-        <React.Fragment>
+        <>
             <Loader visible={isLoading} />
             <PlacesAutocomplete
                 value={address}
@@ -247,55 +286,18 @@ const WeatherSearch = (props) => {
                 )}
             </PlacesAutocomplete>
             {!hasError ? (
-                <React.Fragment>
-                    <Weather
-                        icon={setIcon(iconToday)}
-                        day="hoje"
-                        active={isActive}
-                        description={todayDescription}
-                        temperature={todayTemperature}
-                        windDirection={todayWindDirection}
-                        windSpeed={todayWindSpeed}
-                        humidity={todayHumidity}
-                        pressure={todayPressure}
-                        backgroundColor={setWeatherBackground(todayTemperature)}
-                    />
-                    <Weather
-                        icon={setIcon(iconTomorrow)}
-                        day="amanhã"
-                        description={tomorrowDescription}
-                        temperature={tomorrowTemperature}
-                        windDirection={tomorrowWindDirection}
-                        windSpeed={tomorrowWindSpeed}
-                        humidity={tomorrowHumidity}
-                        pressure={tomorrowPressure}
-                        backgroundColor={setWeatherBackground(
-                            tomorrowTemperature
-                        )}
-                        onMouseEnter={removeActive}
-                    />
-                    <Weather
-                        icon={setIcon(iconAfterTomorrow)}
-                        day="depois de amanhã"
-                        description={afterTomorrowDescription}
-                        temperature={afterTomorrowTemperature}
-                        windDirection={afterTomorrowWindDirection}
-                        windSpeed={afterTomorrowWindSpeed}
-                        humidity={afterTomorrowHumidity}
-                        pressure={afterTomorrowPressure}
-                        backgroundColor={setWeatherBackground(
-                            afterTomorrowTemperature
-                        )}
-                        onMouseEnter={removeActive}
-                    />
-                </React.Fragment>
+                <>
+                    <Weather {...todayProps} />
+                    <Weather {...tomorrowProps} />
+                    <Weather {...afterTomorrowProps} />
+                </>
             ) : (
                 <StyledError>
                     Desculpe, não foi possível encontrar as informações de
                     previsão do clima.
                 </StyledError>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

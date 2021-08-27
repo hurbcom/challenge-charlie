@@ -3,7 +3,7 @@ import { StyledLoader, StyledContainer } from "./LoaderStyles";
 
 const Loader = (props) => {
     return (
-        <React.Fragment>
+        <>
             <StyledContainer visible={props.visible}>
                 <StyledLoader>
                     <div className="cloud"></div>
@@ -13,7 +13,7 @@ const Loader = (props) => {
                     <div className="rain"></div>
                 </StyledLoader>
             </StyledContainer>
-        </React.Fragment>
+        </>
     );
 };
 

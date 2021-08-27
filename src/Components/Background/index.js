@@ -8,6 +8,7 @@ const Background = (props) => {
     const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
+        //Pega a imagem de fundo da api do Bing
         async function getBackground() {
             const corsUrl = "https://api.allorigins.win/get?url=";
             const bingUrl = "https://www.bing.com";
@@ -21,8 +22,8 @@ const Background = (props) => {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                const convertedData = JSON.parse(data.contents);
-                const imageUrl = bingUrl + convertedData.images[0].url;
+                const JSONdata = JSON.parse(data.contents);
+                const imageUrl = bingUrl + JSONdata.images[0].url;
                 setBackground(imageUrl);
             } catch {
                 //Colocando cor de fundo caso haja algum erro na requisição da imagem do Bing
@@ -36,7 +37,7 @@ const Background = (props) => {
     }, []);
 
     return (
-        <React.Fragment>
+        <>
             <Loader visible={isLoading} />
             <StyledBackground
                 style={{
@@ -45,7 +46,7 @@ const Background = (props) => {
             >
                 {props.children}
             </StyledBackground>
-        </React.Fragment>
+        </>
     );
 };
 
