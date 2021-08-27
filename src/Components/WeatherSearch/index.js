@@ -6,6 +6,7 @@ import {
     StyledInputContainer,
     StyledDropdown,
     StyledSuggestions,
+    StyledError,
 } from "./WeatherSearchStyles.js";
 import Loader from "../Loader";
 import Weather from "../Weather";
@@ -14,6 +15,7 @@ import { setIcon, setWindDirection, setWeatherBackground } from "../../utils";
 const WeatherSearch = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isActive, setIsActive] = useState(true);
+    const [hasError, setHasError] = useState(false);
     const [address, setAddress] = useState("");
 
     //Inicializando estados das informações do clima
@@ -62,40 +64,55 @@ const WeatherSearch = (props) => {
     //Ao selecionar uma localização, preenche as informações do clima com base nos dados da API
     const handleSelect = async (value) => {
         setIsLoading(true);
-        const results = await geocodeByAddress(value);
-        setAddress(value);
-        const responseWeather = await fetch(
-            weatherURL(results[0].formatted_address)
-        );
-        const dataWeather = await responseWeather.json();
-        setIsLoading(false);
+        try {
+            const results = await geocodeByAddress(value);
+            setAddress(value);
+            const responseWeather = await fetch(
+                weatherURL(results[0].formatted_address)
+            );
+            const dataWeather = await responseWeather.json();
 
-        //Preenchendo as informações do clima
-        setIconToday(dataWeather.list[0].weather[0].description);
-        setIconTomorrow(dataWeather.list[1].weather[0].description);
-        setIconAfterTomorrow(dataWeather.list[2].weather[0].description);
-        setTodayDescription(dataWeather.list[0].weather[0].description);
-        setTomorrowDescription(dataWeather.list[1].weather[0].description);
-        setAfterTomorrowDescription(dataWeather.list[2].weather[0].description);
-        setTodayTemperature(Math.round(dataWeather.list[0].main.temp));
-        setTomorrowTemperature(Math.round(dataWeather.list[1].main.temp));
-        setAfterTomorrowTemperature(Math.round(dataWeather.list[2].main.temp));
-        setTodayWindDirection(setWindDirection(dataWeather.list[0].wind.deg));
-        setTomorrowWindDirection(
-            setWindDirection(dataWeather.list[1].wind.deg)
-        );
-        setAfterTomorrowWindDirection(
-            setWindDirection(dataWeather.list[2].wind.deg)
-        );
-        setTodayWindSpeed(Math.round(dataWeather.list[0].wind.speed));
-        setTomorrowWindSpeed(Math.round(dataWeather.list[1].wind.speed));
-        setAfterTomorrowWindSpeed(Math.round(dataWeather.list[2].wind.speed));
-        setTodayHumidity(dataWeather.list[0].main.humidity);
-        setTomorrowHumidity(dataWeather.list[1].main.humidity);
-        setAfterTomorrowHumidity(dataWeather.list[2].main.humidity);
-        setTodayPressure(dataWeather.list[0].main.pressure);
-        setTomorrowPressure(dataWeather.list[1].main.pressure);
-        setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
+            //Preenchendo as informações do clima
+            setIconToday(dataWeather.list[0].weather[0].description);
+            setIconTomorrow(dataWeather.list[1].weather[0].description);
+            setIconAfterTomorrow(dataWeather.list[2].weather[0].description);
+            setTodayDescription(dataWeather.list[0].weather[0].description);
+            setTomorrowDescription(dataWeather.list[1].weather[0].description);
+            setAfterTomorrowDescription(
+                dataWeather.list[2].weather[0].description
+            );
+            setTodayTemperature(Math.round(dataWeather.list[0].main.temp));
+            setTomorrowTemperature(Math.round(dataWeather.list[1].main.temp));
+            setAfterTomorrowTemperature(
+                Math.round(dataWeather.list[2].main.temp)
+            );
+            setTodayWindDirection(
+                setWindDirection(dataWeather.list[0].wind.deg)
+            );
+            setTomorrowWindDirection(
+                setWindDirection(dataWeather.list[1].wind.deg)
+            );
+            setAfterTomorrowWindDirection(
+                setWindDirection(dataWeather.list[2].wind.deg)
+            );
+            setTodayWindSpeed(Math.round(dataWeather.list[0].wind.speed));
+            setTomorrowWindSpeed(Math.round(dataWeather.list[1].wind.speed));
+            setAfterTomorrowWindSpeed(
+                Math.round(dataWeather.list[2].wind.speed)
+            );
+            setTodayHumidity(dataWeather.list[0].main.humidity);
+            setTomorrowHumidity(dataWeather.list[1].main.humidity);
+            setAfterTomorrowHumidity(dataWeather.list[2].main.humidity);
+            setTodayPressure(dataWeather.list[0].main.pressure);
+            setTomorrowPressure(dataWeather.list[1].main.pressure);
+            setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
+
+            setHasError(false);
+        } catch {
+            setHasError(true);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const removeActive = () => {
@@ -107,68 +124,82 @@ const WeatherSearch = (props) => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 setIsLoading(true);
-                const responseLocation = await fetch(
-                    locationURL(
-                        position.coords.latitude,
-                        position.coords.longitude
-                    )
-                );
-                const dataLocation = await responseLocation.json();
-                const locationName =
-                    dataLocation.results[0].components.city +
-                    ", " +
-                    dataLocation.results[0].components.state_code +
-                    ", " +
-                    dataLocation.results[0].components.country;
+                try {
+                    const responseLocation = await fetch(
+                        locationURL(
+                            position.coords.latitude,
+                            position.coords.longitude
+                        )
+                    );
+                    const dataLocation = await responseLocation.json();
+                    const locationName =
+                        dataLocation.results[0].components.city +
+                        ", " +
+                        dataLocation.results[0].components.state_code +
+                        ", " +
+                        dataLocation.results[0].components.country;
+                    const responseWeather = await fetch(
+                        weatherURL(locationName)
+                    );
 
-                const responseWeather = await fetch(weatherURL(locationName));
-                const dataWeather = await responseWeather.json();
-                setIsLoading(false);
+                    const dataWeather = await responseWeather.json();
+                    setIsLoading(false);
 
-                setAddress(locationName);
+                    setAddress(locationName);
 
-                //Preenchendo as informações do clima com base nos dados da API
-                setIconToday(dataWeather.list[0].weather[0].description);
-                setIconTomorrow(dataWeather.list[1].weather[0].description);
-                setIconAfterTomorrow(
-                    dataWeather.list[2].weather[0].description
-                );
-                setTodayDescription(dataWeather.list[0].weather[0].description);
-                setTomorrowDescription(
-                    dataWeather.list[1].weather[0].description
-                );
-                setAfterTomorrowDescription(
-                    dataWeather.list[2].weather[0].description
-                );
-                setTodayTemperature(Math.round(dataWeather.list[0].main.temp));
-                setTomorrowTemperature(
-                    Math.round(dataWeather.list[1].main.temp)
-                );
-                setAfterTomorrowTemperature(
-                    Math.round(dataWeather.list[2].main.temp)
-                );
-                setTodayWindDirection(
-                    setWindDirection(dataWeather.list[0].wind.deg)
-                );
-                setTomorrowWindDirection(
-                    setWindDirection(dataWeather.list[1].wind.deg)
-                );
-                setAfterTomorrowWindDirection(
-                    setWindDirection(dataWeather.list[2].wind.deg)
-                );
-                setTodayWindSpeed(Math.round(dataWeather.list[0].wind.speed));
-                setTomorrowWindSpeed(
-                    Math.round(dataWeather.list[1].wind.speed)
-                );
-                setAfterTomorrowWindSpeed(
-                    Math.round(dataWeather.list[2].wind.speed)
-                );
-                setTodayHumidity(dataWeather.list[0].main.humidity);
-                setTomorrowHumidity(dataWeather.list[1].main.humidity);
-                setAfterTomorrowHumidity(dataWeather.list[2].main.humidity);
-                setTodayPressure(dataWeather.list[0].main.pressure);
-                setTomorrowPressure(dataWeather.list[1].main.pressure);
-                setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
+                    //Preenchendo as informações do clima com base nos dados da API
+                    setIconToday(dataWeather.list[0].weather[0].description);
+                    setIconTomorrow(dataWeather.list[1].weather[0].description);
+                    setIconAfterTomorrow(
+                        dataWeather.list[2].weather[0].description
+                    );
+                    setTodayDescription(
+                        dataWeather.list[0].weather[0].description
+                    );
+                    setTomorrowDescription(
+                        dataWeather.list[1].weather[0].description
+                    );
+                    setAfterTomorrowDescription(
+                        dataWeather.list[2].weather[0].description
+                    );
+                    setTodayTemperature(
+                        Math.round(dataWeather.list[0].main.temp)
+                    );
+                    setTomorrowTemperature(
+                        Math.round(dataWeather.list[1].main.temp)
+                    );
+                    setAfterTomorrowTemperature(
+                        Math.round(dataWeather.list[2].main.temp)
+                    );
+                    setTodayWindDirection(
+                        setWindDirection(dataWeather.list[0].wind.deg)
+                    );
+                    setTomorrowWindDirection(
+                        setWindDirection(dataWeather.list[1].wind.deg)
+                    );
+                    setAfterTomorrowWindDirection(
+                        setWindDirection(dataWeather.list[2].wind.deg)
+                    );
+                    setTodayWindSpeed(
+                        Math.round(dataWeather.list[0].wind.speed)
+                    );
+                    setTomorrowWindSpeed(
+                        Math.round(dataWeather.list[1].wind.speed)
+                    );
+                    setAfterTomorrowWindSpeed(
+                        Math.round(dataWeather.list[2].wind.speed)
+                    );
+                    setTodayHumidity(dataWeather.list[0].main.humidity);
+                    setTomorrowHumidity(dataWeather.list[1].main.humidity);
+                    setAfterTomorrowHumidity(dataWeather.list[2].main.humidity);
+                    setTodayPressure(dataWeather.list[0].main.pressure);
+                    setTomorrowPressure(dataWeather.list[1].main.pressure);
+                    setAfterTomorrowPressure(dataWeather.list[2].main.pressure);
+                } catch {
+                    setHasError(true);
+                } finally {
+                    setIsLoading(false);
+                }
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -215,42 +246,55 @@ const WeatherSearch = (props) => {
                     </div>
                 )}
             </PlacesAutocomplete>
-            <Weather
-                icon={setIcon(iconToday)}
-                day="hoje"
-                active={isActive}
-                description={todayDescription}
-                temperature={todayTemperature}
-                windDirection={todayWindDirection}
-                windSpeed={todayWindSpeed}
-                humidity={todayHumidity}
-                pressure={todayPressure}
-                backgroundColor={setWeatherBackground(todayTemperature)}
-            />
-            <Weather
-                icon={setIcon(iconTomorrow)}
-                day="amanhã"
-                description={tomorrowDescription}
-                temperature={tomorrowTemperature}
-                windDirection={tomorrowWindDirection}
-                windSpeed={tomorrowWindSpeed}
-                humidity={tomorrowHumidity}
-                pressure={tomorrowPressure}
-                backgroundColor={setWeatherBackground(tomorrowTemperature)}
-                onMouseEnter={removeActive}
-            />
-            <Weather
-                icon={setIcon(iconAfterTomorrow)}
-                day="depois de amanhã"
-                description={afterTomorrowDescription}
-                temperature={afterTomorrowTemperature}
-                windDirection={afterTomorrowWindDirection}
-                windSpeed={afterTomorrowWindSpeed}
-                humidity={afterTomorrowHumidity}
-                pressure={afterTomorrowPressure}
-                backgroundColor={setWeatherBackground(afterTomorrowTemperature)}
-                onMouseEnter={removeActive}
-            />
+            {!hasError ? (
+                <React.Fragment>
+                    <Weather
+                        icon={setIcon(iconToday)}
+                        day="hoje"
+                        active={isActive}
+                        description={todayDescription}
+                        temperature={todayTemperature}
+                        windDirection={todayWindDirection}
+                        windSpeed={todayWindSpeed}
+                        humidity={todayHumidity}
+                        pressure={todayPressure}
+                        backgroundColor={setWeatherBackground(todayTemperature)}
+                    />
+                    <Weather
+                        icon={setIcon(iconTomorrow)}
+                        day="amanhã"
+                        description={tomorrowDescription}
+                        temperature={tomorrowTemperature}
+                        windDirection={tomorrowWindDirection}
+                        windSpeed={tomorrowWindSpeed}
+                        humidity={tomorrowHumidity}
+                        pressure={tomorrowPressure}
+                        backgroundColor={setWeatherBackground(
+                            tomorrowTemperature
+                        )}
+                        onMouseEnter={removeActive}
+                    />
+                    <Weather
+                        icon={setIcon(iconAfterTomorrow)}
+                        day="depois de amanhã"
+                        description={afterTomorrowDescription}
+                        temperature={afterTomorrowTemperature}
+                        windDirection={afterTomorrowWindDirection}
+                        windSpeed={afterTomorrowWindSpeed}
+                        humidity={afterTomorrowHumidity}
+                        pressure={afterTomorrowPressure}
+                        backgroundColor={setWeatherBackground(
+                            afterTomorrowTemperature
+                        )}
+                        onMouseEnter={removeActive}
+                    />
+                </React.Fragment>
+            ) : (
+                <StyledError>
+                    Desculpe, não foi possível encontrar as informações de
+                    previsão do clima.
+                </StyledError>
+            )}
         </React.Fragment>
     );
 };

@@ -73,3 +73,20 @@ export const StyledSuggestions = styled.div`
         font-size: 20px;
     }
 `;
+
+export const StyledError = styled.div`
+    width: 100%;
+    height: 160px;
+    font-size: 16px;
+    color: #ff3e48;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        to right,
+        rgba(40, 40, 40, 0.9) 0%,
+        rgba(70, 70, 70, 0.9) 100%
+    );
+    padding: 0 10%;
+`;

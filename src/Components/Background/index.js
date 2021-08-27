@@ -3,11 +3,12 @@ import { StyledBackground } from "./BackgroundStyles";
 import Loader from "../Loader";
 
 const Background = (props) => {
-    const [backgroundImage, setBackgroundImage] = useState();
+    const [background, setBackground] = useState();
     const [isLoading, setIsLoading] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
-        async function getBackgroundImage() {
+        async function getBackground() {
             const corsUrl = "https://api.allorigins.win/get?url=";
             const bingUrl = "https://www.bing.com";
             const url =
@@ -17,21 +18,30 @@ const Background = (props) => {
                         "/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR"
                 );
             setIsLoading(true);
-            const response = await fetch(url);
-            const data = await response.json();
-            const convertedData = JSON.parse(data.contents);
-            const imageUrl = bingUrl + convertedData.images[0].url;
-            setBackgroundImage(imageUrl);
-            setIsLoading(false);
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const convertedData = JSON.parse(data.contents);
+                const imageUrl = bingUrl + convertedData.images[0].url;
+                setBackground(imageUrl);
+            } catch {
+                //Colocando cor de fundo caso haja algum erro na requisição da imagem do Bing
+                setHasError(true);
+                setBackground("#969696");
+            } finally {
+                setIsLoading(false);
+            }
         }
-        getBackgroundImage();
+        getBackground();
     }, []);
 
     return (
         <React.Fragment>
             <Loader visible={isLoading} />
             <StyledBackground
-                style={{ backgroundImage: `url(${backgroundImage})` }}
+                style={{
+                    background: !hasError ? `url(${background})` : background,
+                }}
             >
                 {props.children}
             </StyledBackground>
