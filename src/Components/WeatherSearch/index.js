@@ -73,9 +73,9 @@ const WeatherSearch = (props) => {
             const dataWeather = await responseWeather.json();
 
             //Preenchendo as informações do clima
-            setIconToday(dataWeather.list[0].weather[0].description);
-            setIconTomorrow(dataWeather.list[1].weather[0].description);
-            setIconAfterTomorrow(dataWeather.list[2].weather[0].description);
+            setIconToday(dataWeather.list[0].weather[0].main);
+            setIconTomorrow(dataWeather.list[1].weather[0].main);
+            setIconAfterTomorrow(dataWeather.list[2].weather[0].main);
             setTodayDescription(dataWeather.list[0].weather[0].description);
             setTomorrowDescription(dataWeather.list[1].weather[0].description);
             setAfterTomorrowDescription(
@@ -149,11 +149,9 @@ const WeatherSearch = (props) => {
                     setAddress(locationName);
 
                     //Preenchendo as informações do clima com base nos dados da API
-                    setIconToday(dataWeather.list[0].weather[0].description);
-                    setIconTomorrow(dataWeather.list[1].weather[0].description);
-                    setIconAfterTomorrow(
-                        dataWeather.list[2].weather[0].description
-                    );
+                    setIconToday(dataWeather.list[0].weather[0].main);
+                    setIconTomorrow(dataWeather.list[1].weather[0].main);
+                    setIconAfterTomorrow(dataWeather.list[2].weather[0].main);
                     setTodayDescription(
                         dataWeather.list[0].weather[0].description
                     );

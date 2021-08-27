@@ -1,17 +1,15 @@
 //Define o ícone com base na descrição do clima
 export const setIcon = (description) => {
     switch (description) {
-        case "chuva fraca":
-            return "Q";
-        case "céu pouco nublado":
-            return "H";
-        case "céu limpo":
-        case "ensolarado":
+        case "Thunderstorm":
+            return "P";
+        case "Rain":
+            return "R";
+        case "Snow":
+            return "W";
+        case "Clear":
             return "B";
-        case "nuvens dispersas":
-            return "S";
-        case "nublado":
-        case "nuvens quebradas":
+        case "Clouds":
             return "Y";
         default:
             return "";
