@@ -4,8 +4,8 @@ services:
         container_name: challenge-charlie
         build:
             context: .
-            dockerfile: Dockerfile.prod
+            dockerfile: Dockerfile.dev
         ports:
-            - "8080:80"
+            - "3000:3000"
         volumes:
             - ./src:/challenge-charlie/src

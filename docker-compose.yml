@@ -1,14 +1,6 @@
 version: "3.7"
 services:
-    app:
-        container_name: challenge-charlie
+    react-app:
         build:
             context: .
-            dockerfile: Dockerfile
-        volumes:
-            - ".:/challenge-charlie"
-            - "/challenge-charlie/node_modules"
-        ports:
-            - "3001:3000"
-        environment:
-            - NODE_ENV=development
+            dockerfile: Dockerfile.dev
