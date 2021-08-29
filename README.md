@@ -13,7 +13,11 @@ O projeto é uma aplicação com o objetivo de informar a previsão do tempo par
 -   npm install
 -   npm start
 
-    -   Em um container Docker
+
+
+
+
+    - Em um container Docker
 
 -   git clone
 -   cd challenge-charlie
