@@ -6,7 +6,7 @@ O projeto é uma aplicação com o objetivo de informar a previsão do tempo par
 
 ## Como executar o projeto
 
-    - Na sua máquina
+### Na sua máquina
 
 -   git clone
 -   cd challenge-charlie
@@ -17,7 +17,17 @@ O projeto é uma aplicação com o objetivo de informar a previsão do tempo par
 
 
 
-    - Em um container Docker
+
+
+
+
+
+
+
+
+
+
+### Em um container Docker
 
 -   git clone
 -   cd challenge-charlie
