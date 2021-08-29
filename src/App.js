@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Geolocation } from '../src/components/geolocation/Geolocation';
 import './App.css';
 
 function App() {
 
+  const { position, error } = Geolocation();
+  console.log('position', position);
   //UseState is used so that state variables are preserved.
   const [background, setBackground] = useState('');
   const [isLoading, setIsLoading] = useState(true);
