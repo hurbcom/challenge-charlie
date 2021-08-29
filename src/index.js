@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './assets/fonts/Meteocons/meteocons-webfont.eot';
+import './assets/fonts/Meteocons/meteocons-webfont.svg';
+import './assets/fonts/Meteocons/meteocons-webfont.ttf';
+import './assets/fonts/Meteocons/meteocons-webfont.woff';
+
 
 ReactDOM.render(
   <React.StrictMode>

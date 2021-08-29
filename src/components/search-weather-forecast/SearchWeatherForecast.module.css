@@ -1,0 +1,62 @@
+.Container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.FlexSearch{
+    overflow: hidden;
+}
+
+.SearchInput{
+    opacity: 0.94;
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.168);
+}
+
+.Flex{
+    --w: 142vw;
+    width: calc((var(--w) / 3));
+    --h: 100%;
+    height: calc((var(--h) / 3));
+}
+
+.SearchBox {   
+    appearance: none;
+    background: none; 
+    border: 0 none;
+    outline: 0;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    
+    --f:18vh;
+    font-size:calc((var(--f) / 3));
+
+    --w:70vw;
+    --h:13vh;
+    height:var(--h);
+    width:var(--w);
+
+    --p: 12vw;
+    padding-left: calc(var(--p) / 2);
+    color: #808080;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.Icon{
+    display: flex;   
+    margin-top: 3vh;
+    padding-left: 1vw;
+    font-family: "MeteoconsRegular";
+    content: attr(data-icon);
+    --h:30vh;
+    font-size:calc((var(--h) / 4));
+    color: gray;
+    font-style: normal;
+    position: absolute;
+
+}

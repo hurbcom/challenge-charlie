@@ -8,7 +8,7 @@ export const Geolocation = () => {
     const [error, setError] = useState(null);
 
     const onChange = ({ coords }) => {
-        //access key for Oopencagedata API
+        //access key for Opencagedata API
         let apiKey = REACT_APP_API_KEY_CURRENT_POSITION;
         fetch(`https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude}+${coords.longitude}&key=${apiKey}`)
             .then(response => {

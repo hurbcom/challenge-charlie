@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Geolocation } from '../src/components/geolocation/Geolocation';
+import SearchWeatherForecast from './components/search-weather-forecast/SearchWeatherForecast';
 import './App.css';
 
 function App() {
 
-  const { position, error } = Geolocation();
-  console.log('position', position);
+
   //UseState is used so that state variables are preserved.
   const [background, setBackground] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +53,12 @@ function App() {
         backgroundImage: `linear-gradient(to top, transparent, #8c8c8c), url("https://bing.com/${background}")`
       }} data-testid="background" >
         <div>
-      </div>
+        </div>
+        <div>
+          <main>
+            <SearchWeatherForecast />
+          </main>
+        </div>
       </div>
     </div>
   );

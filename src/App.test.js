@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('should render the text on the footer', async () => {
+  const { getByText } = render(<App />);
+  await waitFor(() => {
+    expect(getByText(/Page created by Jéssica Alonso/i)).toBeInTheDocument();
+  })
+})

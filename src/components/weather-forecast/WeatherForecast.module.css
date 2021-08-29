@@ -1,0 +1,80 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Box{
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+}
+
+.Icon{
+    display: flex;
+    font-family: "MeteoconsRegular";
+    content: attr(data-icon);
+
+    --h:192vh;
+    font-size:calc((var(--h) / 4));
+    
+    font-style: normal;
+    color: white;
+}
+
+.NextTemp{
+    --f: 11vh;
+    font-size: calc((var(--f) / 3));
+    font-weight: bold;
+    color: white;
+}
+
+.Button{
+    background:none; 
+    border:none;  
+    cursor: pointer;
+    padding: 0;
+}
+
+.Button > p {
+    --f:10vh;
+    font-size:calc((var(--f) / 3));
+    margin-top: 1px;
+    color: white;
+}
+
+.Container > div:first-child > div:first-child {
+     align-items: center;
+}
+
+.Container > div:first-child > div:nth-child(2){
+    display: flex;
+    flex-flow: column;
+    --pl:144vh;
+    padding-left: calc((var(--pl) / 3));
+}
+
+.Container > div:first-child > div:nth-child(3){
+    display: flex;
+    flex-flow: column;
+    --pl:144vh;
+    padding-left: calc((var(--pl) / 3));
+}
+
+.Container > div:first-child > div:first-child > div:nth-child(2)  > p {   
+    flex-wrap: wrap;
+    margin: 0;
+    --f: 10vh;
+    font-size: calc((var(--f) / 3));
+    text-align: left;
+    font-weight: bold;
+    color: white;
+}
+
+.Container > div:first-child > div:first-child > div:nth-child(2)  > div {
+    --f: 17vh;
+    font-size: calc((var(--f) / 3));
+    text-align: left;
+    color: white;
+}
