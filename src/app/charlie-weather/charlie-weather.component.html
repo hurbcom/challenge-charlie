@@ -1,0 +1,58 @@
+<div class="content" [ngStyle]="{'background-image': showBackgroundImage}">
+    <main class="main-content" [formGroup]="cityInputForm">
+        <div class="input-container">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"
+                xml:space="preserve">
+                <path fill="#8d8a86" d="M256,0C114.604,0,0,114.604,0,256c0,141.375,114.604,256,256,256c141.375,0,256-114.625,256-256
+                C512,114.604,397.375,0,256,0z M256,448c-105.875,0-192-86.125-192-192S150.125,64,256,64s192,86.125,192,192S361.875,448,256,448
+                z M160,352l128-64l64-128l-128,64L160,352z" />
+            </svg>
+            <input *ngIf="!loading" class="city-input" formControlName="cityInput" type="text">
+            <div *ngIf="loading" class="spinner">
+                <app-loading-spinner class="spinner-content"></app-loading-spinner>
+            </div>
+        </div>
+        <div class="search-results" [ngClass]="{'show': showSearchResults}">
+            <ul *ngIf="isQueryResults">
+                <li *ngFor="let city of possibleCities" (click)=citySelection(city.formatted) class="list-item">{{city.formatted}}</li>
+            </ul>
+        </div>
+        <div *ngIf="!isQueryResults" class="search-results" [ngClass]="{'show': showSearchResults}">
+            <p>No results found.</p>
+        </div>
+        <div class="today" [ngStyle]="{'background-color': colorCalculation(temperatureTodayC)}">
+            <div class="weather-icon">
+                <img *ngIf="!loading" src="../../assets/icons-svg/{{weatherType}}.svg" alt="">
+            </div>
+            <div class="weather-info">
+                <p>HOJE</p>
+                <div *ngIf="!loading">
+                    <div (click)="changeTempUnit()" class="degrees">{{temperatureUnit ? temperatureTodayF + 'ºF': temperatureTodayC + 'ºC'}}</div>
+                    <div class="weather-main">{{weatherType}}</div>
+                    <div class="weather-desc">
+                        <div>Vento: {{weatherInfo.wind_speed}}</div>
+                        <div>Humidade: {{weatherInfo.humidity}}%</div>
+                        <div>Pressão: {{weatherInfo.pressure}}hPA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tomorrow" [ngStyle]="{'background-color': colorCalculation(temperatureTomorrowC)}">
+            <div class="weather-icon">
+
+            </div>
+            <div class="weather-info">
+                <p>AMANHÃ</p>
+                <div *ngIf="!loading" (click)="changeTempUnit()" class="degrees">{{temperatureUnit ? temperatureTomorrowF + 'ºF': temperatureTomorrowC + 'ºC'}}</div>
+            </div>
+        </div>
+        <div class="after-tomorrow" [ngStyle]="{'background-color': colorCalculation(temperatureDayAfterTomorrowC)}">
+            <div class="weather-icon"></div>
+            <div class="weather-info">
+                <p>DEPOIS DE AMANHÃ</p>
+                <div *ngIf="!loading" (click)="changeTempUnit()" class="degrees">{{temperatureUnit ? temperatureDayAfterTomorrowF + 'ºF': temperatureDayAfterTomorrowC + 'ºC'}}</div>
+            </div>
+        </div>
+    </main>
+</div>

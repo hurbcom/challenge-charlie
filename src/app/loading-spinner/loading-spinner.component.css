@@ -1,0 +1,113 @@
+
+.svg-spinner {
+    width: 6.25rem;
+    height: 6.25rem;
+    animation: mat-progress-spinner-linear-rotate 2000ms linear infinite;
+  }
+  
+  .svg-spinner circle {
+    animation-name: mat-progress-spinner-stroke-rotate-100;
+    stroke-dasharray: 17.625rem;
+    stroke-width: 10%;
+    transition-property: stroke;
+    animation-duration: 4000ms;
+    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+    animation-iteration-count: infinite;
+    fill: transparent;
+    transform-origin: center;
+    transition: stroke-dashoffset 225ms linear;
+    stroke: #3f51b5;
+  }
+  
+  @keyframes mat-progress-spinner-stroke-rotate-100 {
+    0% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotate(0);
+    }
+  
+    12.5% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotate(0);
+    }
+  
+    12.5001% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotateX(180deg) rotate(72.5deg);
+    }
+  
+    25% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotateX(180deg) rotate(72.5deg);
+    }
+  
+    25.0001% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotate(270deg);
+    }
+  
+    37.5% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotate(270deg);
+    }
+  
+    37.5001% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotateX(180deg) rotate(161.5deg);
+    }
+  
+    50% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotateX(180deg) rotate(161.5deg);
+    }
+  
+    50.0001% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotate(180deg);
+    }
+  
+    62.5% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotate(180deg);
+    }
+  
+    62.5001% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotateX(180deg) rotate(251.5deg);
+    }
+  
+    75% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotateX(180deg) rotate(251.5deg);
+    }
+  
+    75.0001% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotate(90deg);
+    }
+  
+    87.5% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotate(90deg);
+    }
+  
+    87.5001% {
+      stroke-dashoffset: 3.5rem;
+      transform: rotateX(180deg) rotate(341.5deg);
+    }
+  
+    100% {
+      stroke-dashoffset: 16.75rem;
+      transform: rotateX(180deg) rotate(341.5deg);
+    }
+  }
+  
+  @keyframes mat-progress-spinner-linear-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
