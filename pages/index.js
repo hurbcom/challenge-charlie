@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import Head from "next/head"
+
 import BackgroundCover from '../src/components/BackgroundCover';
 import BigBox from '../src/components/BigBox';
 import Box from '../src/components/Box';
 import BoxInfo from '../src/components/BoxInfo';
 import Column from '../src/components/Column';
 import FakeBody from '../src/components/FakeBody';
+import Form from '../src/components/Form';
 import GenericBoxInfo from '../src/components/GenericBoxInfo';
 import Icon from '../src/components/Icon';
 import Loading from '../src/components/Loading';
+
 
 export default function Home() {
   const TOKENS = {
@@ -24,11 +28,38 @@ export default function Home() {
 
   const fadedColor = '#cecece80';
 
+  const getIconById = (id) => {
+    if(id < 299){
+      return 'clouds-flash';
+    } else if(id < 399){
+      return 'drizzle';
+    } else if(id < 599){
+      return 'rain';
+    } else if(id == 600 || id == 601 || id == 612 || id == 613 || id == 615 || id == 620){
+      return 'snow';
+    } else if(id == 602 || id == 611 || id == 616 || id == 621 || id == 622){
+      return 'snow-heavy';
+    } else if(id == 701){
+      return 'mist';
+    } else if(id == 711){
+      return 'fog-cloud';
+    } else if(id == 721 || id == 731 || id == 741 || id == 751 || id == 761 || id == 762 || id == 771 || id == 781){
+      return 'fog';
+    } else if(id == 801 || id == 802){
+      return 'cloud';
+    } else if(id == 803 || id == 804){
+      return 'clouds';
+    } else {
+      return 'sun';
+    }
+  }
+
   const getWeather = async (coords) => {
     const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=hourly,minutely,alerts&units=metric&lang=pt_br&appid=${TOKENS.weather}`);
     const weatherDataObject = await weatherDataResponse.json();
     setWeather({
       today: {
+        icon: getIconById(weatherDataObject.current.weather[0].id),
         temp: Math.round(weatherDataObject.current.temp),
         pressure: weatherDataObject.current.pressure,
         humidity: weatherDataObject.current.humidity,
@@ -36,13 +67,18 @@ export default function Home() {
           speed: weatherDataObject.current.wind_speed, 
           deg: weatherDataObject.current.wind_deg
         },
-        weather: weatherDataObject.current.weather
+        weather: weatherDataObject.current.weather,
+        color: Math.round(weatherDataObject.current.temp) < 15 ? '0, 110, 144' : Math.round(weatherDataObject.current.temp) > 35 ? '231, 111, 81' : '233, 196, 106'
       },
       tomorrow: {
-        temp: Math.round(weatherDataObject.daily[1].temp.day)
+        icon: getIconById(weatherDataObject.daily[1].weather[0].id),
+        temp: Math.round(weatherDataObject.daily[1].temp.day),
+        color: Math.round(weatherDataObject.daily[1].temp.day) < 15 ? '0, 110, 144' : Math.round(weatherDataObject.daily[1].temp.day) > 35 ? '231, 111, 81' : '233, 196, 106'
       },
       after_tomorrow: {
-        temp: Math.round(weatherDataObject.daily[2].temp.day)
+        icon: getIconById(weatherDataObject.daily[2].weather[0].id),
+        temp: Math.round(weatherDataObject.daily[2].temp.day),
+        color: Math.round(weatherDataObject.daily[2].temp.day) < 15 ? '0, 110, 144' : Math.round(weatherDataObject.daily[2].temp.day) > 35 ? '231, 111, 81' : '233, 196, 106'
       }
     });
   }
@@ -142,6 +178,12 @@ export default function Home() {
   
   return(
     <>
+    <Head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Aplicativo Clima</title>
+    </Head>
     {
       !!background &&
       <FakeBody style={{ 
@@ -149,26 +191,37 @@ export default function Home() {
         backgroundSize: 'cover', 
         backgroundPosition: 'center' 
       }}>
-        <BackgroundCover style={{ background: `${fadedColor}` }}>
+        <BackgroundCover style={
+          !!weather &&
+          !!weather.today &&
+          !!weather.today.color 
+          ?
+          {background: `rgba(${weather.today.color}, 0.50)`}
+          :
+          {background: `rgba(83, 83, 83, 0.50)`}
+        }>
         {
           <Column>
-            <form onSubmit={(e) => {
+            <Form onSubmit={(e) => {
               e.preventDefault();
               const formData = new FormData(e.target);
               const newCity = formData.get('city');
-              getCityByName(newCity);
+              getCityByName(!!newCity ? newCity : 'Niterói');
             }}>
+              <div className="iconPositioner">
+                <Icon name="compass" styles={{fontSize: '32px', color: '#535353'}} />
+              </div>
               <input 
                 placeholder={city} 
                 name="city" 
                 aria-label={city}
                 type="text"
               />
-              <button>Buscar cidade</button>
-            </form>
+              <button>Buscar</button>
+            </Form>
             {
               !!loading ?
-              <Loading />
+              <Loading backgroundColor={`rgb(0, 110, 144)`}/>
               :
               !navigatorLocationAvailability &&
               !city &&
@@ -178,33 +231,20 @@ export default function Home() {
                 <GenericBoxInfo />
               </BigBox>
               :
-              !navigatorLocationAvailability &&
-              !!city &&
-              !!weather &&
-              !!weather.today
-              ?
-              <>
-                <BigBox>
-                  <Icon name="compass" styles={{fontSize: '48px'}}/>
-                  <BoxInfo data={weather.today} city={city} day="Hoje" onClick={() => changeUnitSystem()} unit={unit}/>
-                </BigBox>
-              </>
-              :
-              !!navigatorLocationAvailability &&
               !!city &&
               !!weather &&
               !!weather.today &&
               <>
-                <BigBox>
-                  <Icon name="compass" styles={{fontSize: '100px'}}/>
+                <BigBox style={{background: `rgba(${weather.today.color}, 0.87)`}}>
+                  <Icon name={weather.today.icon}/>
                   <BoxInfo data={weather.today} day="Hoje" onClick={() => changeUnitSystem()} unit={unit}/>
                 </BigBox>
-                <Box>
-                  <Icon name="compass" styles={{fontSize: '44px'}}/>
+                <Box style={{background: `rgba(${weather.tomorrow.color}, 0.87)`}}>
+                  <Icon name={weather.tomorrow.icon}/>
                   <BoxInfo data={weather.tomorrow} day="Amanhã" onClick={() => changeUnitSystem()}  unit={unit}/>
                 </Box>
-                <Box>
-                  <Icon name="compass" styles={{fontSize: '44px'}}/>
+                <Box style={{background: `rgba(${weather.after_tomorrow.color}, 0.87)`}}>
+                  <Icon name={weather.after_tomorrow.icon}/>
                   <BoxInfo data={weather.after_tomorrow} day="Depois de amanhã" onClick={() => changeUnitSystem()}  unit={unit}/>
                 </Box>
               </>
