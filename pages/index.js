@@ -51,6 +51,7 @@ export default function Home() {
   }
 
   const getCityByName = (cityName) => {
+    setLoading(true);
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&limit=1&language=pr-BR&key=${TOKENS.location}`)
     .then(serverResponse => serverResponse.json())
     .then((response) => {
@@ -72,10 +73,12 @@ export default function Home() {
         });
       }, (error) => {
         setNavigatorLocationAvailability(false);
+        setLoading(false);
         console.error(error);
       });
     } else {
       setNavigatorLocationAvailability(false);
+      setLoading(false);
     }
   }
 
@@ -108,8 +111,8 @@ export default function Home() {
   }, [coords]);
 
   useEffect(async () => {
-    setLoading(true);
     if (!!city) {
+      setLoading(true);
       await getWeather(city, unit);
       setLoading(false);
     }
@@ -120,39 +123,115 @@ export default function Home() {
     {
       !loading &&
       !!background &&
+      !!navigatorLocationAvailability &&
       <FakeBody style={{ 
         background: `url(${background}) no-repeat`, 
         backgroundSize: 'cover', 
         backgroundPosition: 'center' 
       }}>
+        <BackgroundCover style={{ background: `${fadedColor}` }}>
         {
-          !!coords &&
-          !!navigatorLocationAvailability &&
-          !!city &&
-          !!todayWeather &&
-          <BackgroundCover style={{ background: `${fadedColor}` }}>
-            <Column>
-              <form onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target);
-                const newCity = formData.get('city');
-                getCityByName(newCity);
-              }}>
-                <input 
-                  placeholder={city} 
-                  name="city" 
-                  aria-label={city}
-                  type="text"
-                />
-                <button>Buscar cidade</button>
-              </form>
-              <BigBox>
-                <Icon name="compass" styles={{fontSize: '48px'}}/>
-                <BoxInfo data={todayWeather} city={city} day="Hoje"/>
-              </BigBox>
-            </Column>
-          </BackgroundCover>
+          <Column>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const newCity = formData.get('city');
+              getCityByName(newCity);
+            }}>
+              <input 
+                placeholder={city} 
+                name="city" 
+                aria-label={city}
+                type="text"
+              />
+              <button>Buscar cidade</button>
+            </form>
+            {
+              !!coords &&
+              !!city &&
+              !!todayWeather &&
+              <>
+                <BigBox>
+                  <Icon name="compass" styles={{fontSize: '48px'}}/>
+                  <BoxInfo data={todayWeather} city={city} day="Hoje"/>
+                </BigBox>
+              </>
+            }
+          </Column>
         }
+        </BackgroundCover>
+      </FakeBody>
+    }
+    {
+      !loading &&
+      !!background &&
+      !navigatorLocationAvailability &&
+      <FakeBody style={{ 
+        background: `url(${background}) no-repeat`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center' 
+      }}>
+        <BackgroundCover style={{ background: `${fadedColor}` }}>
+        {
+          <Column>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const newCity = formData.get('city');
+              getCityByName(newCity);
+            }}>
+              <input 
+                placeholder={city} 
+                name="city" 
+                aria-label={city}
+                type="text"
+              />
+              <button>Buscar cidade</button>
+            </form>
+            {
+              !!coords &&
+              !!city &&
+              !!todayWeather &&
+              <>
+                <BigBox>
+                  <Icon name="compass" styles={{fontSize: '48px'}}/>
+                  <BoxInfo data={todayWeather} city={city} day="Hoje"/>
+                </BigBox>
+              </>
+            }
+          </Column>
+        }
+        </BackgroundCover>
+      </FakeBody>
+    }
+    {
+      !!loading &&
+      <FakeBody style={{ 
+        background: `url(${background}) no-repeat`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center' 
+      }}>
+        <BackgroundCover style={{ background: `${fadedColor}` }}>
+        {
+          <Column>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const newCity = formData.get('city');
+              getCityByName(newCity);
+            }}>
+              <input 
+                placeholder={city} 
+                name="city" 
+                aria-label={city}
+                type="text"
+              />
+              <button>Buscar cidade</button>
+            </form>
+            <div>Carregando</div>
+          </Column>
+        }
+        </BackgroundCover>
       </FakeBody>
     }
     </>
