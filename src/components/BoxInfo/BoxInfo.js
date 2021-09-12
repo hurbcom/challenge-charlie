@@ -1,30 +1,46 @@
 import React from 'react';
 
 const BoxInfo = (props) => {
-  const data = props.data;
-  const day = props.day;
 
   return(
-    <div>
-      <p>{day}</p>
-      <p><b>{data.temp}°C</b></p>
-      {
-        <h3>
+    <>
+      { 
+        !!props.data && 
+        !!props.data.weather &&
+        !!props.data.weather.length &&
+        !!props.day &&
+        props.day === 'Hoje'
+        ?
+        <div>
+          <p>{props.day}</p>
+          <p><b>{props.data.temp}°C</b></p>
           {
-            data.weather.map((item, index) => {
-              if(index < (data.weather.length - 1)){
-                return `${item.description} / `
-              } else{
-                return `${item.description}`
+            <h3>
+              {
+                props.data.weather.map((item, index) => {
+                  if(index < (props.data.weather.length - 1)){
+                    return `${item.description} / `
+                  } else{
+                    return `${item.description}`
+                  }
+                })
               }
-            })
+            </h3>
           }
-        </h3>
+          <p>Vento: {`${props.data.wind.deg}° / ${props.data.wind.speed}km/h`}</p>
+          <p>Umidade: {`${props.data.humidity}%`}</p>
+          <p>Pressão: {`${props.data.pressure}hPA`}</p>
+        </div>
+        :
+        !!props.data && 
+        !!props.data.temp &&
+        !!props.day &&
+        <div>
+          <p>{props.day}</p>
+          <p><b>{props.data.temp}</b></p>
+        </div>
       }
-      <p>Vento: {`${data.wind.deg}° / ${data.wind.speed}km/h`}</p>
-      <p>Umidade: {`${data.humidity}%`}</p>
-      <p>Pressão: {`${data.pressure}hPA`}</p>
-    </div>
+    </>
   )
 }
 

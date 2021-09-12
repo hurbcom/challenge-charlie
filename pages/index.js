@@ -5,7 +5,9 @@ import Box from '../src/components/Box';
 import BoxInfo from '../src/components/BoxInfo';
 import Column from '../src/components/Column';
 import FakeBody from '../src/components/FakeBody';
+import GenericBoxInfo from '../src/components/GenericBoxInfo';
 import Icon from '../src/components/Icon';
+import Loading from '../src/components/Loading';
 
 export default function Home() {
   const TOKENS = {
@@ -18,25 +20,40 @@ export default function Home() {
   const [city, setCity] = useState('');
   const [background, setBackground] = useState();
   const [unit, setUnit] = useState('metric');
-  const [todayWeather, setTodayWeather] = useState();
+  const [weather, setWeather] = useState();
 
   const fadedColor = '#cecece80';
 
-  const getWeather = async (city, unit) => {
-    const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&lang=pt_br&appid=${TOKENS.weather}`);
+  const getWeather = async (coords, unit) => {
+    const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=hourly,minutely,alerts&units=${unit}&lang=pt_br&appid=${TOKENS.weather}`);
     const weatherDataObject = await weatherDataResponse.json();
-    setTodayWeather({
-      temp: Math.round(weatherDataObject.main.temp),
-      pressure: weatherDataObject.main.pressure,
-      humidity: weatherDataObject.main.humidity,
-      wind: {
-        speed: weatherDataObject.wind.speed, 
-        deg: weatherDataObject.wind.deg
+    setWeather({
+      today: {
+        temp: Math.round(weatherDataObject.current.temp),
+        pressure: weatherDataObject.current.pressure,
+        humidity: weatherDataObject.current.humidity,
+        wind: {
+          speed: weatherDataObject.current.wind_speed, 
+          deg: weatherDataObject.current.wind_deg
+        },
+        weather: weatherDataObject.current.weather
       },
-      weather: weatherDataObject.weather
+      tomorrow: {
+        temp: Math.round(weatherDataObject.daily[1].temp.day)
+      },
+      after_tomorrow: {
+        temp: Math.round(weatherDataObject.daily[2].temp.day)
+      }
     });
   }
 
+  const changeUnitSystem = () => {
+    if(unit === 'metric'){
+      setUnit('imperial');
+    } else {
+      setUnit('metric');
+    }
+  }
 
   const getCityByCoordinates = (latitude, longitude) => {
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&limit=1&language=pr-BR&key=${TOKENS.location}`)
@@ -113,17 +130,20 @@ export default function Home() {
   useEffect(async () => {
     if (!!city) {
       setLoading(true);
-      await getWeather(city, unit);
+      getWeather(coords, unit);
+    }
+  }, [city]);
+
+  useEffect(() => {
+    if(!!weather && !!weather.today){
       setLoading(false);
     }
-  }, [city])
+  }, [weather])
   
   return(
     <>
     {
-      !loading &&
       !!background &&
-      !!navigatorLocationAvailability &&
       <FakeBody style={{ 
         background: `url(${background}) no-repeat`, 
         backgroundSize: 'cover', 
@@ -147,88 +167,48 @@ export default function Home() {
               <button>Buscar cidade</button>
             </form>
             {
-              !!coords &&
+              !!loading ?
+              <Loading />
+              :
+              !navigatorLocationAvailability &&
+              !city &&
+              !weather 
+              ?
+              <BigBox>
+                <GenericBoxInfo />
+              </BigBox>
+              :
+              !navigatorLocationAvailability &&
               !!city &&
-              !!todayWeather &&
+              !!weather &&
+              !!weather.today
+              ?
               <>
                 <BigBox>
                   <Icon name="compass" styles={{fontSize: '48px'}}/>
-                  <BoxInfo data={todayWeather} city={city} day="Hoje"/>
+                  <BoxInfo data={weather.today} city={city} day="Hoje" onClick={() => changeUnitSystem()}/>
                 </BigBox>
               </>
-            }
-          </Column>
-        }
-        </BackgroundCover>
-      </FakeBody>
-    }
-    {
-      !loading &&
-      !!background &&
-      !navigatorLocationAvailability &&
-      <FakeBody style={{ 
-        background: `url(${background}) no-repeat`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
-      }}>
-        <BackgroundCover style={{ background: `${fadedColor}` }}>
-        {
-          <Column>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target);
-              const newCity = formData.get('city');
-              getCityByName(newCity);
-            }}>
-              <input 
-                placeholder={city} 
-                name="city" 
-                aria-label={city}
-                type="text"
-              />
-              <button>Buscar cidade</button>
-            </form>
-            {
-              !!coords &&
+              :
+              !!navigatorLocationAvailability &&
               !!city &&
-              !!todayWeather &&
+              !!weather &&
+              !!weather.today &&
               <>
                 <BigBox>
-                  <Icon name="compass" styles={{fontSize: '48px'}}/>
-                  <BoxInfo data={todayWeather} city={city} day="Hoje"/>
+                  <Icon name="compass" styles={{fontSize: '100px'}}/>
+                  <BoxInfo data={weather.today} day="Hoje" onClick={() => changeUnitSystem()}/>
                 </BigBox>
+                <Box>
+                  <Icon name="compass" styles={{fontSize: '44px'}}/>
+                  <BoxInfo data={weather.tomorrow} day="Amanhã" onClick={() => changeUnitSystem()} />
+                </Box>
+                <Box>
+                  <Icon name="compass" styles={{fontSize: '44px'}}/>
+                  <BoxInfo data={weather.after_tomorrow} day="Depois de amanhã" onClick={() => changeUnitSystem()} />
+                </Box>
               </>
             }
-          </Column>
-        }
-        </BackgroundCover>
-      </FakeBody>
-    }
-    {
-      !!loading &&
-      <FakeBody style={{ 
-        background: `url(${background}) no-repeat`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
-      }}>
-        <BackgroundCover style={{ background: `${fadedColor}` }}>
-        {
-          <Column>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target);
-              const newCity = formData.get('city');
-              getCityByName(newCity);
-            }}>
-              <input 
-                placeholder={city} 
-                name="city" 
-                aria-label={city}
-                type="text"
-              />
-              <button>Buscar cidade</button>
-            </form>
-            <div>Carregando</div>
           </Column>
         }
         </BackgroundCover>
