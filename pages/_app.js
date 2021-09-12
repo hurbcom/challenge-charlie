@@ -1,4 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import '../src/assets/fonts/meteocons/css/fontello.css';
 
 const GlobalStyle = createGlobalStyle`
   * {
