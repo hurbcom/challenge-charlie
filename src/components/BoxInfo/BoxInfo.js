@@ -1,7 +1,6 @@
 import React from 'react';
 
 const BoxInfo = (props) => {
-
   return(
     <>
       { 
@@ -13,7 +12,15 @@ const BoxInfo = (props) => {
         ?
         <div>
           <p>{props.day}</p>
-          <p><b>{props.data.temp}°C</b></p>
+          <p onClick={props.onClick}><b>
+            {
+              props.unit == 'metric'
+              ?
+              `${props.data.temp} °C`
+              :
+              `${(props.data.temp * 1.8) + 32} °F`
+            }
+          </b></p>
           {
             <h3>
               {
@@ -37,7 +44,15 @@ const BoxInfo = (props) => {
         !!props.day &&
         <div>
           <p>{props.day}</p>
-          <p><b>{props.data.temp}</b></p>
+          <p onClick={props.onClick}><b>
+            {
+              props.unit == 'metric'
+              ?
+              `${props.data.temp} °C`
+              :
+              `${(props.data.temp * 1.8) + 32} °F`
+            }
+          </b></p>
         </div>
       }
     </>

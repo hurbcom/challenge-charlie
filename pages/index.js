@@ -24,8 +24,8 @@ export default function Home() {
 
   const fadedColor = '#cecece80';
 
-  const getWeather = async (coords, unit) => {
-    const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=hourly,minutely,alerts&units=${unit}&lang=pt_br&appid=${TOKENS.weather}`);
+  const getWeather = async (coords) => {
+    const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=hourly,minutely,alerts&units=metric&lang=pt_br&appid=${TOKENS.weather}`);
     const weatherDataObject = await weatherDataResponse.json();
     setWeather({
       today: {
@@ -130,7 +130,7 @@ export default function Home() {
   useEffect(async () => {
     if (!!city) {
       setLoading(true);
-      getWeather(coords, unit);
+      getWeather(coords);
     }
   }, [city]);
 
@@ -186,7 +186,7 @@ export default function Home() {
               <>
                 <BigBox>
                   <Icon name="compass" styles={{fontSize: '48px'}}/>
-                  <BoxInfo data={weather.today} city={city} day="Hoje" onClick={() => changeUnitSystem()}/>
+                  <BoxInfo data={weather.today} city={city} day="Hoje" onClick={() => changeUnitSystem()} unit={unit}/>
                 </BigBox>
               </>
               :
@@ -197,15 +197,15 @@ export default function Home() {
               <>
                 <BigBox>
                   <Icon name="compass" styles={{fontSize: '100px'}}/>
-                  <BoxInfo data={weather.today} day="Hoje" onClick={() => changeUnitSystem()}/>
+                  <BoxInfo data={weather.today} day="Hoje" onClick={() => changeUnitSystem()} unit={unit}/>
                 </BigBox>
                 <Box>
                   <Icon name="compass" styles={{fontSize: '44px'}}/>
-                  <BoxInfo data={weather.tomorrow} day="Amanhã" onClick={() => changeUnitSystem()} />
+                  <BoxInfo data={weather.tomorrow} day="Amanhã" onClick={() => changeUnitSystem()}  unit={unit}/>
                 </Box>
                 <Box>
                   <Icon name="compass" styles={{fontSize: '44px'}}/>
-                  <BoxInfo data={weather.after_tomorrow} day="Depois de amanhã" onClick={() => changeUnitSystem()} />
+                  <BoxInfo data={weather.after_tomorrow} day="Depois de amanhã" onClick={() => changeUnitSystem()}  unit={unit}/>
                 </Box>
               </>
             }
