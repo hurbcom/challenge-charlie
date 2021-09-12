@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import BackgroundCover from '../src/components/BackgroundCover';
 import BigBox from '../src/components/BigBox';
@@ -10,14 +9,33 @@ import Icon from '../src/components/Icon';
 
 export default function Home() {
   const TOKENS = {
-    location: 'c63386b4f77e46de817bdf94f552cddf'
+    location: 'c63386b4f77e46de817bdf94f552cddf',
+    weather: '7ba73e0eb8efe773ed08bfd0627f07b8'
   }
   const [loading, setLoading] = useState(true);
   const [coords, setCoords] = useState({latitude: '', longitude: ''});
   const [navigatorLocationAvailability, setNavigatorLocationAvailability] = useState(false);
   const [city, setCity] = useState('');
   const [background, setBackground] = useState();
-  const fadedColor = '#cecece80'
+  const [unit, setUnit] = useState('metric');
+  const [todayWeather, setTodayWeather] = useState();
+
+  const fadedColor = '#cecece80';
+
+  const getWeather = async (city, unit) => {
+    const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&lang=pt_br&appid=${TOKENS.weather}`);
+    const weatherDataObject = await weatherDataResponse.json();
+    setTodayWeather({
+      temp: weatherDataObject.main.temp,
+      pressure: weatherDataObject.main.pressure,
+      humidity: weatherDataObject.main.humidity,
+      wind: {
+        speed: weatherDataObject.wind.speed, 
+        deg: weatherDataObject.wind.deg
+      },
+      weather: weatherDataObject.weather
+    });
+  }
 
   const getCity = (latitude, longitude, token) => {
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${token}`)
@@ -50,7 +68,6 @@ export default function Home() {
     const urlCORS = "https://api.allorigins.win/get?url=";
     const urlBing = "https://www.bing.com";
     const url = urlCORS + encodeURIComponent(urlBing + "/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR");
-    setLoading(true);
     try {
       const serverResponse = await fetch(url);
       const dados = await serverResponse.json();
@@ -58,9 +75,9 @@ export default function Home() {
       const imageUrl = urlBing + JSONdata.images[0].url;
       setBackground(imageUrl);
     } catch {
-      console.log('erro')
+      console.log('erro');
     } finally {
-      setLoading(false);
+      console.log('imagem funcionando');
     }
   }
 
@@ -72,10 +89,15 @@ export default function Home() {
   useEffect(() => {
     if(!!coords.latitude && !!coords.longitude){
       getCity(coords.latitude, coords.longitude, TOKENS.location);
-
-      setLoading(false);
     }
   }, [coords]);
+
+  useEffect(async () => {
+    if (!!city) {
+      await getWeather(city, unit);
+      setLoading(false);
+    }
+  }, [city])
   
   return(
     <>
