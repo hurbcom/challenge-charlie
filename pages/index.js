@@ -26,7 +26,7 @@ export default function Home() {
     const weatherDataResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&lang=pt_br&appid=${TOKENS.weather}`);
     const weatherDataObject = await weatherDataResponse.json();
     setTodayWeather({
-      temp: weatherDataObject.main.temp,
+      temp: Math.round(weatherDataObject.main.temp),
       pressure: weatherDataObject.main.pressure,
       humidity: weatherDataObject.main.humidity,
       wind: {
@@ -37,12 +37,27 @@ export default function Home() {
     });
   }
 
-  const getCity = (latitude, longitude, token) => {
-    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${token}`)
+
+  const getCityByCoordinates = (latitude, longitude) => {
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&limit=1&language=pr-BR&key=${TOKENS.location}`)
     .then(serverResponse => serverResponse.json())
     .then((response) => {
-      console.log(response);
-      setCity(response.results[0].components.city);
+      if(!!response.results[0].components.city){
+        setCity(response.results[0].components.city);
+      } else {
+        setCity(response.results[0].components.town);
+      }
+    });
+  }
+
+  const getCityByName = (cityName) => {
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&limit=1&language=pr-BR&key=${TOKENS.location}`)
+    .then(serverResponse => serverResponse.json())
+    .then((response) => {
+      setCoords({
+        latitude: response.results[0].geometry.lat,
+        longitude: response.results[0].geometry.lng
+      });
     });
   }
 
@@ -88,11 +103,12 @@ export default function Home() {
 
   useEffect(() => {
     if(!!coords.latitude && !!coords.longitude){
-      getCity(coords.latitude, coords.longitude, TOKENS.location);
+      getCityByCoordinates(coords.latitude, coords.longitude);
     }
   }, [coords]);
 
   useEffect(async () => {
+    setLoading(true);
     if (!!city) {
       await getWeather(city, unit);
       setLoading(false);
@@ -113,20 +129,27 @@ export default function Home() {
           !!coords &&
           !!navigatorLocationAvailability &&
           !!city &&
+          !!todayWeather &&
           <BackgroundCover style={{ background: `${fadedColor}` }}>
             <Column>
-            <BigBox>
-              <Icon name="compass" styles={{fontSize: '48px'}}/>
-              <BoxInfo />
-            </BigBox>
-            <Box>
-              <Icon />
-              <BoxInfo />
-            </Box>
-            <Box>
-              <Icon />
-              <BoxInfo />
-            </Box>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const newCity = formData.get('city');
+                getCityByName(newCity);
+              }}>
+                <input 
+                  placeholder={city} 
+                  name="city" 
+                  aria-label={city}
+                  type="text"
+                />
+                <button>Buscar cidade</button>
+              </form>
+              <BigBox>
+                <Icon name="compass" styles={{fontSize: '48px'}}/>
+                <BoxInfo data={todayWeather} city={city} day="Hoje"/>
+              </BigBox>
             </Column>
           </BackgroundCover>
         }
