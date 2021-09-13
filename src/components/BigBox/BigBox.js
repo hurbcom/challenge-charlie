@@ -7,6 +7,7 @@ const BigBox = styled.div`
   color: #FFF;
   padding: 20px 32px 32px 20px;
   margin: 16px 0;
+  border-radius: 4px;
 
   div{
     min-width: 180px;
