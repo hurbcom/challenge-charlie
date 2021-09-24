@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid1 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-1 MuiGrid-grid-sm-1 MuiGrid-grid-md-1 MuiGrid-grid-lg-1 MuiGrid-grid-xl-1"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid2 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-2 MuiGrid-grid-sm-2 MuiGrid-grid-md-2 MuiGrid-grid-lg-2 MuiGrid-grid-xl-2"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid3 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-3 MuiGrid-grid-sm-3 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 MuiGrid-grid-xl-3"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid4 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-sm-4 MuiGrid-grid-md-4 MuiGrid-grid-lg-4 MuiGrid-grid-xl-4"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid5 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-5 MuiGrid-grid-lg-5 MuiGrid-grid-xl-5"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid6 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-md-6 MuiGrid-grid-lg-6 MuiGrid-grid-xl-6"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid7 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-7 MuiGrid-grid-sm-7 MuiGrid-grid-md-7 MuiGrid-grid-lg-7 MuiGrid-grid-xl-7"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid8 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-sm-8 MuiGrid-grid-md-8 MuiGrid-grid-lg-8 MuiGrid-grid-xl-8"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid9 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-9 MuiGrid-grid-sm-9 MuiGrid-grid-md-9 MuiGrid-grid-lg-9 MuiGrid-grid-xl-9"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid10 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-sm-10 MuiGrid-grid-md-10 MuiGrid-grid-lg-10 MuiGrid-grid-xl-10"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid11 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-11 MuiGrid-grid-sm-11 MuiGrid-grid-md-11 MuiGrid-grid-lg-11 MuiGrid-grid-xl-11"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`Grid12 Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-12 MuiGrid-grid-lg-12 MuiGrid-grid-xl-12"
+>
+  <div
+    id="test"
+  />
+</div>
+`;
+
+exports[`GridNumber Component 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-1 MuiGrid-grid-sm-1 MuiGrid-grid-md-1 MuiGrid-grid-lg-1 MuiGrid-grid-xl-1"
+  number={1}
+>
+  <div
+    id="test"
+  />
+</div>
+`;

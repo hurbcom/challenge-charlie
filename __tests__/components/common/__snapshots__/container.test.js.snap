@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container Component 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-1"
+>
+  <div
+    id="test"
+  />
+</div>
+`;

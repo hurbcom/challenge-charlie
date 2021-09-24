@@ -1,0 +1,2 @@
+//Init
+export const initRouter = "/"
