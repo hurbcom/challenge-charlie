@@ -7,10 +7,6 @@
       "esnext"
     ],
     "baseUrl": "./src",
-    "paths": {
-        "components/*": ["components/*"],
-        "services/*": ["services/*"]
-    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -28,5 +24,7 @@
   "include": [
     "src"
   ],
-  "exclude": ["node-modules"]
+  "exclude": [
+    "node-modules"
+  ]
 }

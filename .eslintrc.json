@@ -36,6 +36,7 @@
         "import/no-unresolved": "off",
         "no-empty-function": "off",
         "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-empty-function": "off"
+        "@typescript-eslint/no-empty-function": "off",
+        "import/prefer-default-export": "off"
     }
 }
