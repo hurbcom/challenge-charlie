@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const WeatherHolder = styled.div`
     display: flex;
@@ -20,11 +20,18 @@ export const Grid = styled.div`
 
 // today weather
 export const statusWrapper = styled.div`
+    display: flex;
     flex-direction: column;
-    opacity: 70%;
+    opacity: 85%;
     height: 100%;
-    background: #ffd717;
+    background: #edb915;
     padding: 0 5px 0 5px;
+    justify-content: center;
+    @media screen and (max-width: 768px) {
+        p:first-child {
+            padding: 0;
+        }
+    }
 `;
 
 export const TomorrowWrapper = styled.div`
@@ -32,7 +39,7 @@ export const TomorrowWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     background: #facc05;
-    opacity: 90%;
+    opacity: 93%;
     padding: 0 5px 0 5px;
     @media screen and (max-width: 425px) {
         p {
@@ -68,14 +75,20 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     opacity: ${({ opacity }) => opacity || '1'};
 `;
 
-type TextProps = {
+type textProps = {
     fontSize?: string;
     fontWeight?: string;
     fontFamily?: string;
     padding?: string;
+    breakpoints?: {
+        mobile?: {
+            fontSize?: string;
+            fontWeight?: string;
+        };
+    };
 };
 
-export const Text = styled.p<TextProps>`
+export const Text = styled.p<textProps>`
     color: #fff;
     font-size: ${({ fontSize }) => fontSize || '14px'};
     font-weight: ${({ fontWeight }) => fontWeight || '400'};
@@ -83,4 +96,12 @@ export const Text = styled.p<TextProps>`
         fontFamily ||
         "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif"};
     padding: ${({ padding }) => padding || 0};
+    ${({ breakpoints }) =>
+        breakpoints?.mobile &&
+        css`
+            @media screen and (max-width: 768px) {
+                font-size: ${breakpoints?.mobile?.fontSize || '14px'};
+                font-weight: ${breakpoints?.mobile?.fontWeight || '400'};
+            }
+        `};
 `;

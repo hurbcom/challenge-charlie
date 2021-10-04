@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import ImageService from 'services/ImageService';
 import * as S from './styles';
-// imagem mockada para testar o componente
-import sunset from '../../assets/img/sunset.jpg';
 
 type MainProps = {
     children: React.ReactNode;
 };
 
 const Main = ({ children }: MainProps) => {
-    return <S.Container bgImage={sunset}>{children}</S.Container>;
+    const [bgImage, setBgImage] = useState<string | undefined>();
+
+    const getBgImage = async () => {
+        try {
+            const image = await ImageService.getImageFromBing();
+            setBgImage(image);
+        } catch (error) {
+            console.error('ocorreu um erro ao buscar a imagem de fundo');
+        }
+    };
+
+    useEffect(() => {
+        getBgImage();
+    }, []);
+
+    return <S.Container bgImage={bgImage}>{children}</S.Container>;
 };
 
 export default Main;

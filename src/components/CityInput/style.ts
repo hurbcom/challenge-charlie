@@ -8,7 +8,7 @@ export const InputHolder = styled.div`
     align-items: center;
     justify-content: flex-start;
     height: 50px;
-    opacity: 70%;
+    opacity: 85%;
     box-shadow: 0 1px 5px #888888;
     z-index: 1;
 `;
