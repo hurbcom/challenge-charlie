@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CityInput /> should render input 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #fff;
+  border: none;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  height: 50px;
+  opacity: 85%;
+  box-shadow: 0 1px 5px #888888;
+  z-index: 1;
+}
+
+.c1 {
+  padding: 0 5px 0 5px;
+}
+
+.c2 {
+  width: 100%;
+}
+
+.c3 {
+  width: 90%;
+  border: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #8d8986;
+}
+
+.c3:focus {
+  outline: none;
+}
+
+<div
+  class="c0"
+  data-testid="city-input-holder"
+>
+  <div
+    class="c1"
+  >
+    <svg
+      color="8d8986"
+      fill="currentColor"
+      height="50px"
+      stroke="currentColor"
+      stroke-width="0"
+      viewBox="0 0 24 24"
+      width="50px"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
+      />
+      <path
+        d="m8 16 5.991-2L16 8l-6 2z"
+      />
+    </svg>
+  </div>
+  <div
+    class="c2"
+  >
+    <input
+      class="c3"
+      data-testid="city-input"
+      placeholder="São Paulo, São Paulo"
+      type="text"
+    />
+  </div>
+</div>
+`;

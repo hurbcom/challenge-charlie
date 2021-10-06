@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-export const InputHolder = styled.div`
+export const InputHolder = styled.div<{ border: boolean }>`
     display: flex;
     flex: 1;
     background: #fff;
+    border: ${({ border }) => (border ? '3px solid #ff0000' : 'none')};
     width: 100%;
     align-items: center;
     justify-content: flex-start;

@@ -1,0 +1,496 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherBox /> should be rendered 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #fff;
+  border: none;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  height: 50px;
+  opacity: 85%;
+  box-shadow: 0 1px 5px #888888;
+  z-index: 1;
+}
+
+.c2 {
+  padding: 0 5px 0 5px;
+}
+
+.c3 {
+  width: 100%;
+}
+
+.c4 {
+  width: 90%;
+  border: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #8d8986;
+}
+
+.c4:focus {
+  outline: none;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex: 8;
+  -ms-flex: 8;
+  flex: 8;
+  width: 100%;
+  height: auto;
+}
+
+.c6 {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: 3fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  opacity: 85%;
+  height: 100%;
+  background: #edb915;
+  padding: 0 5px 0 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  background: #facc05;
+  opacity: 93%;
+  padding: 0 5px 0 5px;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  background: #b89503;
+  padding: 0 5px 0 5px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  background: #EDB915;
+  opacity: 85%;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  background: #facc05;
+  opacity: 93%;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  background: #B79404;
+  opacity: 1;
+}
+
+.c9 {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  padding: 8px 0 3px 0;
+}
+
+.c10 {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: 'Open Sans';
+  padding: 0;
+}
+
+.c11 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  padding: 16px 0 10px 0;
+}
+
+.c12 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  padding: 0;
+}
+
+.c15 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  padding: 8px 0 3px 0;
+}
+
+.c16 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: 'Open Sans';
+  padding: 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+}
+
+@media screen and (max-width:768px) {
+  .c8 p:first-child {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .c14 p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .c18 p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c9 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c10 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c11 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c12 {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+    data-testid="city-input-holder"
+  >
+    <div
+      class="c2"
+    >
+      <svg
+        color="8d8986"
+        fill="currentColor"
+        height="50px"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="50px"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
+        />
+        <path
+          d="m8 16 5.991-2L16 8l-6 2z"
+        />
+      </svg>
+    </div>
+    <div
+      class="c3"
+    >
+      <input
+        class="c4"
+        data-testid="city-input"
+        placeholder=""
+        type="text"
+      />
+    </div>
+  </div>
+  <div
+    class="c5"
+  >
+    <div
+      class="c6"
+    >
+      <div
+        class="c7"
+        opacity="85%"
+      >
+        <svg
+          color="#fff"
+          fill="none"
+          height="80%"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="color: rgb(255, 255, 255);"
+          viewBox="0 0 24 24"
+          width="80%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="5"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="1"
+            y2="3"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="21"
+            y2="23"
+          />
+          <line
+            x1="4.22"
+            x2="5.64"
+            y1="4.22"
+            y2="5.64"
+          />
+          <line
+            x1="18.36"
+            x2="19.78"
+            y1="18.36"
+            y2="19.78"
+          />
+          <line
+            x1="1"
+            x2="3"
+            y1="12"
+            y2="12"
+          />
+          <line
+            x1="21"
+            x2="23"
+            y1="12"
+            y2="12"
+          />
+          <line
+            x1="4.22"
+            x2="5.64"
+            y1="19.78"
+            y2="18.36"
+          />
+          <line
+            x1="18.36"
+            x2="19.78"
+            y1="5.64"
+            y2="4.22"
+          />
+        </svg>
+      </div>
+      <div
+        class="c8"
+      >
+        <p
+          class="c9"
+          font-size="1.8rem"
+        >
+          HOJE
+        </p>
+        <p
+          class="c10"
+          font-family="'Open Sans'"
+          font-size="1.8rem"
+        >
+          32ºC
+        </p>
+        <p
+          class="c11"
+          font-size="2rem"
+        >
+          Ensolarado
+        </p>
+        <p
+          class="c12"
+          font-size="1.4rem"
+        >
+          Vento: NO 6.4Km/h
+        </p>
+        <p
+          class="c12"
+          font-size="1.4rem"
+        >
+          Humidade: 78%
+        </p>
+        <p
+          class="c12"
+          font-size="1.4rem"
+        >
+          Pressão: 1003hPA
+        </p>
+      </div>
+      <div
+        class="c13"
+        opacity="93%"
+      />
+      <div
+        class="c14"
+      >
+        <p
+          class="c15"
+          font-size="1.5rem"
+        >
+          AMANHÃ
+        </p>
+        <p
+          class="c16"
+          font-family="'Open Sans'"
+          font-size="1.5rem"
+        >
+          25ºC
+        </p>
+      </div>
+      <div
+        class="c17"
+      />
+      <div
+        class="c18"
+      >
+        <p
+          class="c15"
+          font-size="1.5rem"
+        >
+          DEPOIS DE AMANHÃ
+        </p>
+        <p
+          class="c16"
+          font-family="'Open Sans'"
+          font-size="1.5rem"
+        >
+          22ºC
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
