@@ -4,6 +4,7 @@ import WeatherStatus from 'components/WeatherStatus';
 
 import GeoLocationService from 'services/GeoLocationService';
 import CacheService from 'services/CacheService';
+import WeatherService, { returnDailyWeather } from 'services/WeatherService';
 import * as S from './styles';
 
 export type locationProps = {
@@ -24,7 +25,11 @@ const WeatherBox = () => {
         stateCode: '',
         country: ''
     });
+    const [currentWeather, setCurrentWeather] =
+        useState<returnDailyWeather | null>(null);
 
+    // utilizado para tratar o retorno de sucesso nos casos em que
+    // foi possível pegar a localização do browser
     const handleSuccess = useCallback(
         async (pos: { coords: { latitude: number; longitude: number } }) => {
             try {
@@ -57,6 +62,7 @@ const WeatherBox = () => {
         []
     );
 
+    // utilizada para tratar exceções do serviço de geolocalização
     const handleError = useCallback(
         (err: { code: number; message: string }) => {
             // colocando como default as coordenadas default caso
@@ -78,6 +84,7 @@ const WeatherBox = () => {
         [handleSuccess]
     );
 
+    // função que ao iniciar o componente tenta pegar a posição atual do usuário
     const handlePosition = useCallback(() => {
         const localLocation = CacheService.getCookie(
             GeoLocationService.cacheLocationKey
@@ -89,6 +96,7 @@ const WeatherBox = () => {
         }
     }, [handleError, handleSuccess]);
 
+    // callback que retorna a localização completa do usuário baseada no que ele escreveu
     const handleChangeCity = useCallback((newLocation: locationProps) => {
         CacheService.setCookie(
             GeoLocationService.cacheLocationKey,
@@ -98,9 +106,30 @@ const WeatherBox = () => {
         setCurrentLocation({ ...newLocation });
     }, []);
 
+    const getWeatherInfos = useCallback(async () => {
+        try {
+            const { lat, lng } = currentLocation;
+            if (lat && lng) {
+                const response = await WeatherService.getWeatherNextDays(
+                    lat,
+                    lng
+                );
+                if (response) {
+                    setCurrentWeather(response);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }, [currentLocation]);
+
     useEffect(() => {
         handlePosition();
     }, []);
+
+    useEffect(() => {
+        getWeatherInfos();
+    }, [getWeatherInfos]);
 
     return (
         <S.BoxWrapper>
@@ -109,7 +138,7 @@ const WeatherBox = () => {
                 city={currentLocation?.city}
                 onChangeCity={handleChangeCity}
             />
-            <WeatherStatus />
+            <WeatherStatus dailyWeather={currentWeather} />
         </S.BoxWrapper>
     );
 };

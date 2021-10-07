@@ -87,7 +87,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   flex-direction: column;
   opacity: 85%;
   height: 100%;
-  background: #edb915;
+  background: #606060;
   padding: 0 5px 0 5px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -104,7 +104,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
-  background: #facc05;
+  background: #3D3D3D;
   opacity: 93%;
   padding: 0 5px 0 5px;
 }
@@ -118,7 +118,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
-  background: #b89503;
+  background: #262626;
   padding: 0 5px 0 5px;
 }
 
@@ -136,7 +136,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   height: 100%;
-  background: #EDB915;
+  background: #606060;
   opacity: 85%;
 }
 
@@ -154,7 +154,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   height: 100%;
-  background: #facc05;
+  background: #3D3D3D;
   opacity: 93%;
 }
 
@@ -172,11 +172,12 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   height: 100%;
-  background: #B79404;
+  background: #262626;
   opacity: 1;
 }
 
 .c9 {
+  cursor: auto;
   color: #fff;
   font-size: 1.8rem;
   font-weight: 400;
@@ -185,6 +186,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
 }
 
 .c10 {
+  cursor: pointer;
   color: #fff;
   font-size: 1.8rem;
   font-weight: 400;
@@ -193,6 +195,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
 }
 
 .c11 {
+  cursor: auto;
   color: #fff;
   font-size: 2rem;
   font-weight: 400;
@@ -201,6 +204,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
 }
 
 .c12 {
+  cursor: auto;
   color: #fff;
   font-size: 1.4rem;
   font-weight: 400;
@@ -209,6 +213,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
 }
 
 .c15 {
+  cursor: auto;
   color: #fff;
   font-size: 1.5rem;
   font-weight: 400;
@@ -217,6 +222,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
 }
 
 .c16 {
+  cursor: auto;
   color: #fff;
   font-size: 1.5rem;
   font-weight: 400;
@@ -338,78 +344,12 @@ exports[`<WeatherBox /> should be rendered 1`] = `
     >
       <div
         class="c7"
+        data-testid="weather-icon"
         opacity="85%"
-      >
-        <svg
-          color="#fff"
-          fill="none"
-          height="80%"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="color: rgb(255, 255, 255);"
-          viewBox="0 0 24 24"
-          width="80%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="12"
-            cy="12"
-            r="5"
-          />
-          <line
-            x1="12"
-            x2="12"
-            y1="1"
-            y2="3"
-          />
-          <line
-            x1="12"
-            x2="12"
-            y1="21"
-            y2="23"
-          />
-          <line
-            x1="4.22"
-            x2="5.64"
-            y1="4.22"
-            y2="5.64"
-          />
-          <line
-            x1="18.36"
-            x2="19.78"
-            y1="18.36"
-            y2="19.78"
-          />
-          <line
-            x1="1"
-            x2="3"
-            y1="12"
-            y2="12"
-          />
-          <line
-            x1="21"
-            x2="23"
-            y1="12"
-            y2="12"
-          />
-          <line
-            x1="4.22"
-            x2="5.64"
-            y1="19.78"
-            y2="18.36"
-          />
-          <line
-            x1="18.36"
-            x2="19.78"
-            y1="5.64"
-            y2="4.22"
-          />
-        </svg>
-      </div>
+      />
       <div
         class="c8"
+        data-testid="today-weather"
       >
         <p
           class="c9"
@@ -419,34 +359,40 @@ exports[`<WeatherBox /> should be rendered 1`] = `
         </p>
         <p
           class="c10"
+          cursor="pointer"
+          data-testid="temperature"
           font-family="'Open Sans'"
           font-size="1.8rem"
         >
-          32ºC
+          0ºC
         </p>
         <p
           class="c11"
           font-size="2rem"
+        />
+        <p
+          class="c12"
+          data-testid="wind"
+          font-size="1.4rem"
         >
-          Ensolarado
+          Vento: 
+          
         </p>
         <p
           class="c12"
+          data-testid="humidity"
           font-size="1.4rem"
         >
-          Vento: NO 6.4Km/h
+          Humidade: 
+          %
         </p>
         <p
           class="c12"
+          data-testid="pressure"
           font-size="1.4rem"
         >
-          Humidade: 78%
-        </p>
-        <p
-          class="c12"
-          font-size="1.4rem"
-        >
-          Pressão: 1003hPA
+          Pressão: 
+          hPA
         </p>
       </div>
       <div
@@ -455,6 +401,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
       />
       <div
         class="c14"
+        data-testid="tomorrow-weather"
       >
         <p
           class="c15"
@@ -467,7 +414,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
           font-family="'Open Sans'"
           font-size="1.5rem"
         >
-          25ºC
+          0ºC
         </p>
       </div>
       <div
@@ -475,6 +422,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
       />
       <div
         class="c18"
+        data-testid="aftertomorrow-weather"
       >
         <p
           class="c15"
@@ -487,7 +435,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
           font-family="'Open Sans'"
           font-size="1.5rem"
         >
-          22ºC
+          0ºC
         </p>
       </div>
     </div>

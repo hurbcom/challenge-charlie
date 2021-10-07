@@ -19,12 +19,12 @@ export const Grid = styled.div`
 `;
 
 // today weather
-export const statusWrapper = styled.div`
+export const statusWrapper = styled.div<{ bgColor: string }>`
     display: flex;
     flex-direction: column;
     opacity: 85%;
     height: 100%;
-    background: #edb915;
+    background: ${({ bgColor }) => bgColor};
     padding: 0 5px 0 5px;
     justify-content: center;
     @media screen and (max-width: 768px) {
@@ -34,11 +34,11 @@ export const statusWrapper = styled.div`
     }
 `;
 
-export const TomorrowWrapper = styled.div`
+export const TomorrowWrapper = styled.div<{ bgColor: string }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: #facc05;
+    background: ${({ bgColor }) => bgColor};
     opacity: 93%;
     padding: 0 5px 0 5px;
     @media screen and (max-width: 425px) {
@@ -48,11 +48,11 @@ export const TomorrowWrapper = styled.div`
     }
 `;
 
-export const AfterTomorrowWrapper = styled.div`
+export const AfterTomorrowWrapper = styled.div<{ bgColor: string }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: #b89503;
+    background: ${({ bgColor }) => bgColor};
     padding: 0 5px 0 5px;
     @media screen and (max-width: 425px) {
         p {
@@ -76,6 +76,7 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 `;
 
 type textProps = {
+    cursor?: string;
     fontSize?: string;
     fontWeight?: string;
     fontFamily?: string;
@@ -89,6 +90,7 @@ type textProps = {
 };
 
 export const Text = styled.p<textProps>`
+    cursor: ${({ cursor }) => cursor || 'auto'};
     color: #fff;
     font-size: ${({ fontSize }) => fontSize || '14px'};
     font-weight: ${({ fontWeight }) => fontWeight || '400'};
