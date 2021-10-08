@@ -2,23 +2,25 @@
 
 ## Sumário
 
--   [Demonstração da aplicação em produção](#Demo-da-aplicação)
--   [Requisitos para rodar o projeto](#Requisitos-para-rodar-o-projeto)
--   [Instalação das dependencias](#Instalação-das-dependências)
--   [Executar o projeto](#Executar-o-projeto)
--   [Documentação do Processo de Desenvolvimento](#Documentação-do-Processo-de-Desenvolvimento)
+-   [Demonstração da aplicação em produção](#Demo-da-Aplicação)
+-   [Requisitos para rodar o projeto](#Requisitos-Para-Rodar-o-Projeto)
+-   [Instalação das dependencias](#Instalação-das-Dependências)
+-   [Executar o projeto](#Executar-o-Projeto)
+-   [Processo de desenvolvimento](#Processo-de-Desenvolvimento)
+-   [Mudanças no layout](#Mudanças-no-Layout)
+-   [Problemas encontrados](#Problemas-Encontrados)
 
 ---
 
-## Demo da aplicação
+## Demo da Aplicação
 
 A build de produção está rodando na netlify no link:
 
-[https://61607f53da38de000835b30f--thirsty-roentgen-8cfd09.netlify.app](https://61607f53da38de000835b30f--thirsty-roentgen-8cfd09.netlify.app)
+[https://thirsty-roentgen-8cfd09.netlify.app](https://thirsty-roentgen-8cfd09.netlify.app)
 
 ---
 
-## Requisitos para rodar o projeto
+## Requisitos Para Rodar o Projeto
 
 -   [Node](https://nodejs.org/)
 -   [Yarn](https://yarnpkg.com/)
@@ -26,7 +28,7 @@ A build de produção está rodando na netlify no link:
 
 ---
 
-## Instalação das dependências
+## Instalação das Dependências
 
 ### Clone o repositório
 
@@ -50,7 +52,7 @@ $ npm install
 
 ---
 
-## Executar o projeto
+## Executar o Projeto
 
 Você pode executar o projeto de duas formas:
 
@@ -80,7 +82,7 @@ Foram criados stages para produção e desenvolvimento.
     $ yarn dev
     ```
 
-    Sua aplicação vai estar disponivel em [http://localhost:3000](http://localhost:3000)
+    Sua aplicação vai estar disponível em [http://localhost:3000](http://localhost:3000)
 
 -   Para gerar a imagem de produção basta rodar o comando abaixo:
 
@@ -94,7 +96,7 @@ Foram criados stages para produção e desenvolvimento.
     $ yarn prod
     ```
 
-    Sua aplicação vai estar disponivel em [http://localhost](http://localhost)
+    Sua aplicação vai estar disponível em [http://localhost](http://localhost)
 
 ---
 
@@ -104,9 +106,9 @@ Foram criados stages para produção e desenvolvimento.
 
 Utilizei o React atravez do _create-react-app_ como base da minha aplicação. Hoje trabalho e sou bastante familiarizado com o _Next Js_ também, mas como não especificava ele no escopo do desafio e pela simplicidade do projeto, acabei optando pelo react puro mesmo.
 
-Para os estililos optei pelo [styled-components](https://styled-components) por conta da facilidade de trabalhar os modulos de estilos e tema global.
+Para os estililos optei pelo [styled-components](https://styled-components) por conta da facilidade de trabalhar os módulos de estilos e tema global.
 
-Tive problema para baixar o pacote de ícones que foi solicitado no projeto e para contornar o problema, utilizei a lib [react-icons](https://react-icons.github.io/react-icons) e tentei importar os ícones mais parecidos possível dos requeridos no projeto.
+Tive problema para baixar o pacote de ícones que foi solicitado no projeto e para contornar o problema, utilizei a lib [react-icons](https://react-icons.github.io/react-icons) e tentei importar os ícones mais parecidos possíveis dos requisitados no projeto.
 
 Nos 🔬testes utilizei o _Jest_ integrado com a 🐙 [testing-library](https://testing-library.com) para realizar os testes nos componentes. Dentro de cada página é possível visualizar o teste (_componente_.test.tsx) e snapshot gerado.
 
@@ -126,16 +128,16 @@ Para melhorar a qualidade do código utilizei o 🐶[husky](https://github.com/t
 
 ---
 
-## mudanças no layout
+## Mudanças no Layout
 
 Não fiz grandes mudanças visuais na aplicação, apenas ajustei as fontes para visualização mobile e deixei a escala cinza somente enquanto o usuário não habilita a localização, se ele negar deixei como padrão o centro da cidade do Rio de Janeiro.
 
 Quando o usuário digita uma cidade que não é encontrada pelo openCage o input fica com a borda avermelhada e as informações de temperatura somem.
 
-Também adicionei às informações da localização do usuário nos cookies por 30 minutos para não precisar ficar consultando a api do openCage à todo momento, quando o cache reseta voltam as informações do centro do Rio de Janeiro.
+Também adicionei as informações da localização do usuário nos cookies por 30 minutos para não precisar ficar consultando a api do openCage a todo momento, quando o cache reseta voltam as informações do centro do Rio de Janeiro.
 
 ---
 
-## Problemas encontrados
+## Problemas Encontrados
 
-Além do problema com o pacote de ícones que mencionei acima, tive um problema em pegar a imagem de fundo da api do bing. Requests vindos de aplicações que rodam no browser estão tendo problema de cors como mencionado nessa [issue](https://github.com/hurbcom/challenge-charlie/issues/29) do próprio desafio. Como é descrito que faz parte do teste utilizei um proxy para conseguir fazer a chamada para a api, porêm é preciso habilitar esse seriço diariamente. Para contornar isso apenas deixei uma cor de fundo quando não é possível realizar o request.
+Além do problema com o pacote de ícones que mencionei acima, tive um problema em pegar a imagem de fundo da api do bing. Requests vindos de aplicações que rodam no browser estão tendo problema de cors como mencionado nessa [issue](https://github.com/hurbcom/challenge-charlie/issues/29) do próprio desafio. Como é descrito que faz parte do teste utilizei um proxy para conseguir fazer a chamada para a api, porêm é preciso habilitar esse serviço diariamente. Para contornar isso apenas deixei uma cor de fundo quando não é possível realizar o request.
