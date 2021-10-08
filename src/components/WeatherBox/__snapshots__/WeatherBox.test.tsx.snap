@@ -46,6 +46,22 @@ exports[`<WeatherBox /> should be rendered 1`] = `
   outline: none;
 }
 
+.c4::-webkit-input-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c4::-moz-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c4:-ms-input-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c4::placeholder {
+  color: rgb(183,183,183);
+}
+
 .c5 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -331,6 +347,7 @@ exports[`<WeatherBox /> should be rendered 1`] = `
       <input
         class="c4"
         data-testid="city-input"
+        name="city-input"
         placeholder=""
         type="text"
       />

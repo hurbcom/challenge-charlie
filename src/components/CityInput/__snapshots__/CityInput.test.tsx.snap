@@ -46,6 +46,22 @@ exports[`<CityInput /> should render input 1`] = `
   outline: none;
 }
 
+.c3::-webkit-input-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c3::-moz-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c3:-ms-input-placeholder {
+  color: rgb(183,183,183);
+}
+
+.c3::placeholder {
+  color: rgb(183,183,183);
+}
+
 <div
   class="c0"
   data-testid="city-input-holder"
@@ -77,6 +93,7 @@ exports[`<CityInput /> should render input 1`] = `
     <input
       class="c3"
       data-testid="city-input"
+      name="city-input"
       placeholder="São Paulo, São Paulo"
       type="text"
     />

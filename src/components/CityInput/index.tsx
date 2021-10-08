@@ -59,6 +59,7 @@ const CityInput = ({
             <S.InputWrapper>
                 <S.CustomInput
                     type="text"
+                    name="city-input"
                     data-testid="city-input"
                     onChange={handleChange}
                     placeholder={cityPlaceHolder}

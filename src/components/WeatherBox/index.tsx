@@ -51,7 +51,7 @@ const WeatherBox = () => {
                     CacheService.setCookie(
                         GeoLocationService.cacheLocationKey,
                         JSON.stringify(location),
-                        5
+                        30
                     );
                     setCurrentLocation(location);
                 }
@@ -70,8 +70,8 @@ const WeatherBox = () => {
             if (err.code === 1) {
                 handleSuccess({
                     coords: {
-                        latitude: -22.91430764816798,
-                        longitude: -47.058726209516394
+                        latitude: -22.906317019006217,
+                        longitude: -43.17866581297037
                     }
                 });
             } else {
@@ -101,7 +101,7 @@ const WeatherBox = () => {
         CacheService.setCookie(
             GeoLocationService.cacheLocationKey,
             JSON.stringify(newLocation),
-            5
+            30
         );
         setCurrentLocation({ ...newLocation });
     }, []);
@@ -125,7 +125,7 @@ const WeatherBox = () => {
 
     useEffect(() => {
         handlePosition();
-    }, []);
+    }, [handlePosition]);
 
     useEffect(() => {
         getWeatherInfos();

@@ -31,4 +31,7 @@ export const CustomInput = styled.input`
     :focus {
         outline: none;
     }
+    ::placeholder {
+        color: rgb(183, 183, 183);
+    }
 `;
