@@ -12,4 +12,12 @@ describe('<Main />', () => {
         expect(screen.getByText(/testing/i)).toBeInTheDocument();
         expect(container.firstChild).toMatchSnapshot();
     });
+
+    it('should be render background', () => {
+        const { container } = render(<Main>teste</Main>);
+
+        expect(container.firstChild).toHaveStyle({
+            background: 'linear-gradient(#6698CB, #69B4C9)'
+        });
+    });
 });

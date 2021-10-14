@@ -72,7 +72,8 @@ const WeatherStatus = ({ dailyWeather }: WeatherStatusProps) => {
             Drizzle: <BsCloudDrizzle color="#fff" size="80%" />,
             Clouds: <BsClouds color="#fff" size="80%" />,
             Clear: <FiSun color="#fff" size="80%" />,
-            Fog: <BsCloudFog2 color="#fff" size="80%" />
+            Fog: <BsCloudFog2 color="#fff" size="80%" />,
+            Mist: <BsCloudFog2 color="#fff" size="80%" />
         };
         if (icon) return iconList[icon];
         return null;

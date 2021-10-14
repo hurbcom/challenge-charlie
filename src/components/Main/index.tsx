@@ -22,7 +22,11 @@ const Main = ({ children }: MainProps) => {
         getBgImage();
     }, []);
 
-    return <S.Container bgImage={bgImage}>{children}</S.Container>;
+    return (
+        <S.Container data-testid="bg-image" bgImage={bgImage}>
+            {children}
+        </S.Container>
+    );
 };
 
 export default Main;
