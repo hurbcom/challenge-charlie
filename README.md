@@ -136,8 +136,10 @@ Quando o usuário digita uma cidade que não é encontrada pelo openCage o input
 
 Também adicionei as informações da localização do usuário nos cookies por 30 minutos para não precisar ficar consultando a api do openCage a todo momento, quando o cache reseta voltam as informações do centro do Rio de Janeiro.
 
+A imagem de fundo também fica salva nos cookies por 2 horas, para que da próxima vez que o usuário acesse o link não haja troca da cor de fundo padrão para a imagem, ajudando a melhorar consequentemente o SEO.
+
 ---
 
 ## Problemas Encontrados
 
-Além do problema com o pacote de ícones que mencionei acima, tive um problema em pegar a imagem de fundo da api do bing. Requests vindos de aplicações que rodam no browser estão tendo problema de cors como mencionado nessa [issue](https://github.com/hurbcom/challenge-charlie/issues/29) do próprio desafio. Como é descrito que faz parte do teste utilizei um proxy para conseguir fazer a chamada para a api, porêm é preciso habilitar esse serviço diariamente. Para contornar isso apenas deixei uma cor de fundo quando não é possível realizar o request.
+Além do problema com o pacote de ícones que mencionei acima, tive um problema em pegar a imagem de fundo da api do bing. Requests vindos de aplicações que rodam no browser estão tendo problema de cors como mencionado nessa [issue](https://github.com/hurbcom/challenge-charlie/issues/29) do próprio desafio. Como é descrito que faz parte do teste, inicialmente utilizei esse [proxy](https://github.com/Rob--W/cors-anywhere) para conseguir pegar a imagem, porêm é preciso habilitar esse serviço diariamente. Para contornar isso, criei uma api bem simples que retorna apenas essa imagem. O código pode ser visto aqui [https://github.com/FranciscoBBC/fran-bing-proxy](https://github.com/FranciscoBBC/fran-bing-proxy), ela está rodando no heroku e o link para viasualizar o retorno da api é [esse](https://fran-bing-proxy.herokuapp.com).
