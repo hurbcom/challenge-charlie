@@ -5,10 +5,13 @@
         "node": true
     },
     "extends": [
+        "next",
         "eslint:recommended",
         "plugin:react/recommended",
+        "next/core-web-vitals",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "prettier",
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -19,26 +22,29 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier"
+        "prettier",
+        "@typescript-eslint"
     ],
+    "globals": {
+        "React": true,
+        "JSX": true
+    },
     "rules": {
+        "prettier/prettier": [
+            "warn",
+            {
+                "usePrettierrc": false,
+                "singleQuote": true
+            }
+        ],
         "quotes": [
             "error",
             "single"
         ],
-        "prettier/prettier": [
-            "warn",
-            {
-                "singleQuote": true,
-                "semi": true
-            }
-        ],
         "import/prefer-default-export": "off",
         "jsx-quotes": [
             "error",
-            "prefer-single"
+            "prefer-double"
         ],
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": [

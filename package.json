@@ -2,7 +2,6 @@
   "name": "challenge-charlie",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,6 +15,7 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.29",
+    "@types/tailwindcss": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "autoprefixer": "^10.3.7",
@@ -23,7 +23,10 @@
     "eslint": "8.0.1",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.1",
     "jsx-runtime": "^1.2.0",
     "postcss": "^8.3.9",
