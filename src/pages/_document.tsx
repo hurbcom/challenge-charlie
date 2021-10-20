@@ -10,7 +10,9 @@ class PageDocument extends Document {
   render() {
     return (
       <Html lang="pt-BR">
-        <Head />
+        <Head>
+          <meta charSet="UTF-8" />
+        </Head>
         <body>
           <Main />
           <NextScript />
