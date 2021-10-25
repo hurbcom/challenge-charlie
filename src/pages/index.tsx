@@ -30,6 +30,21 @@ const HomePage = ({ imageBackground }: Props) => {
   const [city, setCity] = useState<string>()
   const [isLoading, setLoading] = useState<boolean>(false)
   const [messageError, setMessageError] = useState<string>('')
+  const [isCelsius, setCelsius] = useState<boolean>(true)
+
+
+  const showTemp = (formatedTemp: string): React.ReactNode => {
+    return <span className="cursor-pointer" onClick={() => setCelsius(!isCelsius)}>{formatedTemp}</span>
+  }
+
+  const formatTemp = ({temp, isCelsius}: {temp: number, isCelsius}) => {
+    const symbol = `°${isCelsius ? 'C' : 'F'}`
+    if (!temp) {
+      return showTemp(`-- ${symbol}`)
+    }
+    const _temp = isCelsius ? temp : (temp * 9 / 5) + 32;
+    return showTemp(`${_temp}${symbol}`)
+  }
 
 
   const findWeatherAfterDays = ({lat, long} : {lat: string, long: string}) => {
@@ -46,7 +61,8 @@ const HomePage = ({ imageBackground }: Props) => {
   const getLatLong = async () => {
     const result = await findLocalization()
     if (!result) {
-        return
+      setShowInput(true)
+      return
     }
     setLocation(`${result.city}, ${result.state}`)
     findWeather(result.city)
@@ -182,7 +198,7 @@ const HomePage = ({ imageBackground }: Props) => {
               >
                 <CardInfoWeather>
                   <p>HOJE</p>
-                  <p className="mb-3">{weather?.temp || '--'}°C</p>
+                  <p className="mb-3">{formatTemp({temp: weather?.temp, isCelsius: isCelsius})}</p>
                   <p className="mb-2">{weather?.weatherDescription}</p>
                   <div className="text-xl">
                     <p>Vento: {weather?.wind || '--'}km/h</p>
@@ -205,7 +221,7 @@ const HomePage = ({ imageBackground }: Props) => {
                     }
                   >
                     <p>{showDay(_weather.dt)}</p>
-                    <p>{_weather.temp.day}°C</p>
+                    <p>{formatTemp({temp: _weather.temp.day, isCelsius: isCelsius})}</p>
                   </WeatherDay>
                 </div>
               ))}
