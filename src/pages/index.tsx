@@ -236,7 +236,7 @@ export async function getServerSideProps() {
     }
   } catch (error) {
     const err = error as AxiosError
-    console.info(err.code, err.message)
+    console.error(err.code, err.message)
     return {
       props: {
         imageBackground: '/assets/images/image-background.jpg'

@@ -1,0 +1,15 @@
+FROM node:alpine as build-step
+
+WORKDIR /src
+
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install -j4 --retry 3
+
+ENV NEXT_PUBLIC_APi_URL_IMAGE "http://bing.com/"
+
+COPY . ./
+
+EXPOSE 3000
+
+CMD yarn dev
