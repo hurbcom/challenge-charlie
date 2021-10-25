@@ -8,6 +8,11 @@ import { removeSpecialChar } from '../utils/string-utils'
 import { CardInfoWeather } from '../components/card-info-weather'
 import SunnyDay from '../../public/assets/icons/weather/wi-day-sunny.svg'
 import Compass from '../../public/assets/icons/compass-solid.svg'
+import SunnyOvercast from '../../public/assets/icons/weather/wi-day-sunny-overcast.svg'
+import DayRain from '../../public/assets/icons/weather/wi-day-rain.svg'
+import Clouds from '../../public/assets/icons/weather/wi-cloud.svg'
+import { WeatherDay } from '../components/weather-day'
+import { WeatherDays } from '../services/api/weather/types'
 interface Props {
   imageBackground: string
 }
@@ -17,26 +22,82 @@ interface Weather {
   wind: number
   pressure: number
   humidity: number
+  icon: string
 }
 
 const HomePage = ({ imageBackground }: Props) => {
   const [location, setLocation] = useState<string>()
   const [weather, setWeather] = useState<Weather>()
+  const [weatherDays, setWeatherDays] = useState<WeatherDays>()
+
   const getLatLong = async () => {
     const result = await findLocalization()
     setLocation(`${result.city} - ${result.state}`)
-    WeatherApi.show({ q: removeSpecialChar(result.city.toLowerCase()) }).then(
-      ({ data }) => {
-        console.info(data)
-        setWeather({
-          temp: data.main.temp,
-          weatherDescription: data.weather[0].description,
-          wind: data.wind.speed,
-          humidity: data.main.humidity,
-          pressure: data.main.pressure
-        })
-      }
-    )
+    WeatherApi.show({
+      q: removeSpecialChar(result.city.toLowerCase()),
+      units: 'metric'
+    }).then(({ data }) => {
+      console.info(data)
+      setWeather({
+        temp: data.main.temp,
+        weatherDescription: data.weather[0].description,
+        wind: data.wind.speed,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+        icon: data.weather[0].icon
+      })
+    })
+    WeatherApi.weatherDays({
+      exclude: ['hourly', 'minutely'],
+      lat: result.latitude,
+      lon: result.longitude,
+      units: 'metric'
+    }).then(result => {
+      console.info(result)
+      setWeatherDays(result.data)
+    })
+  }
+
+  const showDay = (unixTimestamp: number) => {
+    const day = new Date(unixTimestamp * 1000)
+    const today = new Date().getDay()
+    switch (day.getDay()) {
+      case today:
+        return 'Hoje'
+      case today + 1:
+        return 'Amanhã'
+      case today + 2:
+        return 'Depois de amanhã'
+      default:
+        return ''
+    }
+  }
+  const backgroundSelected = (temp?: number) => {
+    if (!temp) {
+      return 'rgba(54,54,54, 0.7)'
+    }
+    const hot = 35
+    const cool = 15
+
+    const red = temp > cool ? 240 : 0
+    const green = temp > cool && temp < hot ? 221 : 100
+    const blue = temp < cool ? 220 : 0
+
+    return `rgba(${red}, ${green}, ${blue}, 0.7)`
+  }
+
+  const weatherIcon = (icon: string) => {
+    const classname = 'fill-current text-white w-full h-full'
+    switch (icon) {
+      case '10d':
+        return <DayRain className={classname} />
+      case '04d':
+        return <SunnyOvercast className={classname} />
+      case '04n':
+        return <Clouds className={classname} />
+      default:
+        return <SunnyDay className={classname} />
+    }
   }
 
   useEffect(() => {
@@ -62,22 +123,17 @@ const HomePage = ({ imageBackground }: Props) => {
                   {location}
                 </div>
               </div>
-              <div
-                className="p-4 grid grid-cols-12 text-white pb-10"
+              <WeatherDay
+                icon={
+                  <div className="col-span-8 w-52">
+                    {weatherIcon(weather?.icon)}
+                  </div>
+                }
+                className="text-white pb-10"
                 style={{
-                  backgroundColor: 'rgba(252, 248, 18, 0.8)',
-                  textShadow: 'text-shadow: 2px 2px #a3a3a3'
+                  backgroundColor: backgroundSelected(weather?.temp)
                 }}
               >
-                <div className="col-span-8 max-h-40">
-                  {/* <Image
-                    src="/assets/icons/weather/wi-day-sunny.svg"
-                    width="100%"
-                    height="100%"
-                    alt="ícone tempo"
-                  /> */}
-                  <SunnyDay className="fill-current text-white w-full h-full" />
-                </div>
                 <CardInfoWeather>
                   <p>HOJE</p>
                   <p className="mb-3">{weather?.temp || '--'}°C</p>
@@ -88,31 +144,25 @@ const HomePage = ({ imageBackground }: Props) => {
                     <p>Pressão: {weather?.pressure || '--'}hPA</p>
                   </div>
                 </CardInfoWeather>
-              </div>
-              <div className="bg-yellow-300 bg-opacity-75 p-4 grid grid-cols-12 text-white pb-10">
-                <div className="col-span-8">
-                  <span className="opacity-100">
-                    <p>Amanhã</p>
-                    <p>°C</p>
-                  </span>
+              </WeatherDay>
+              {weatherDays?.daily?.slice(1, 3).map(_weather => (
+                <div key={_weather.dt.toString()}>
+                  <WeatherDay
+                    className="text-white"
+                    style={{
+                      backgroundColor: backgroundSelected(_weather.temp.day)
+                    }}
+                    icon={
+                      <div className="col-span-8 w-20">
+                        {weatherIcon(_weather.weather[0]?.icon)}
+                      </div>
+                    }
+                  >
+                    <p>{showDay(_weather.dt)}</p>
+                    <p>{_weather.temp.day}°C</p>
+                  </WeatherDay>
                 </div>
-                <CardInfoWeather>Amanhã</CardInfoWeather>
-              </div>
-              <div
-                className="bg-yellow-400 opacity-80 p-4 grid grid-cols-12 text-white pb-10"
-                style={{
-                  textShadow: 'text-shadow: 1px 1px #a3a3a3'
-                }}
-              >
-                <div className="col-span-8">
-                  <p>Depois Amanhã</p>
-                  <p>°C</p>
-                </div>
-                <CardInfoWeather>
-                  <p>Depois Amanhã</p>
-                  <p> °C</p>
-                </CardInfoWeather>
-              </div>
+              ))}
             </div>
           </div>
         </div>
