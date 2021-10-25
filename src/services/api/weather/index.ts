@@ -14,7 +14,11 @@ const show = (params: { q: string; units: Units }) =>
 
 const weatherDays = (params: ParamsWeather) =>
   axios.get<WeatherDays>('onecall', {
-    params: { ...params, APPID: KEY_WEATHER }
+    params: {
+      ...params,
+      exclude: params?.exclude?.toString(),
+      APPID: KEY_WEATHER
+    }
   })
 
 export const WeatherApi = { show, weatherDays }

@@ -6,13 +6,10 @@ import { findLocalization } from '../utils/geolocation'
 import { WeatherApi } from '../services/api/weather'
 import { removeSpecialChar } from '../utils/string-utils'
 import { CardInfoWeather } from '../components/card-info-weather'
-import SunnyDay from '../../public/assets/icons/weather/wi-day-sunny.svg'
 import Compass from '../../public/assets/icons/compass-solid.svg'
-import SunnyOvercast from '../../public/assets/icons/weather/wi-day-sunny-overcast.svg'
-import DayRain from '../../public/assets/icons/weather/wi-day-rain.svg'
-import Clouds from '../../public/assets/icons/weather/wi-cloud.svg'
 import { WeatherDay } from '../components/weather-day'
 import { WeatherDays } from '../services/api/weather/types'
+import { WeatherIcon } from '../components/weather-icon'
 interface Props {
   imageBackground: string
 }
@@ -29,33 +26,30 @@ const HomePage = ({ imageBackground }: Props) => {
   const [location, setLocation] = useState<string>()
   const [weather, setWeather] = useState<Weather>()
   const [weatherDays, setWeatherDays] = useState<WeatherDays>()
+  const [isShowInput, setShowInput] = useState<boolean>(false)
+  const [city, setCity] = useState<string>()
+  const [isLoading, setLoading] = useState<boolean>(false)
+  const [messageError, setMessageError] = useState<string>('')
+
+
+  const findWeatherAfterDays = ({lat, long} : {lat: string, long: string}) => {
+    WeatherApi.weatherDays({
+        exclude: ['hourly', 'minutely'],
+        lat: lat,
+        lon: long,
+        units: 'metric'
+      }).then(result => {
+        setWeatherDays(result.data)
+      })
+  }
 
   const getLatLong = async () => {
     const result = await findLocalization()
-    setLocation(`${result.city} - ${result.state}`)
-    WeatherApi.show({
-      q: removeSpecialChar(result.city.toLowerCase()),
-      units: 'metric'
-    }).then(({ data }) => {
-      console.info(data)
-      setWeather({
-        temp: data.main.temp,
-        weatherDescription: data.weather[0].description,
-        wind: data.wind.speed,
-        humidity: data.main.humidity,
-        pressure: data.main.pressure,
-        icon: data.weather[0].icon
-      })
-    })
-    WeatherApi.weatherDays({
-      exclude: ['hourly', 'minutely'],
-      lat: result.latitude,
-      lon: result.longitude,
-      units: 'metric'
-    }).then(result => {
-      console.info(result)
-      setWeatherDays(result.data)
-    })
+    if (!result) {
+        return
+    }
+    setLocation(`${result.city}, ${result.state}`)
+    findWeather(result.city)
   }
 
   const showDay = (unixTimestamp: number) => {
@@ -86,18 +80,33 @@ const HomePage = ({ imageBackground }: Props) => {
     return `rgba(${red}, ${green}, ${blue}, 0.7)`
   }
 
-  const weatherIcon = (icon: string) => {
-    const classname = 'fill-current text-white w-full h-full'
-    switch (icon) {
-      case '10d':
-        return <DayRain className={classname} />
-      case '04d':
-        return <SunnyOvercast className={classname} />
-      case '04n':
-        return <Clouds className={classname} />
-      default:
-        return <SunnyDay className={classname} />
-    }
+  const findWeather = (city: string) => {
+    setLoading(true)
+
+    WeatherApi.show({
+        q: removeSpecialChar(city.toLowerCase()),
+        units: 'metric'
+        }).then(({ data }) => {
+            setMessageError(undefined)
+            setWeather({
+                temp: data.main.temp,
+                weatherDescription: data.weather[0].description,
+                wind: data.wind.speed,
+                humidity: data.main.humidity,
+                pressure: data.main.pressure,
+                icon: data.weather[0].icon
+            })
+            setLocation(data.name)
+            findWeatherAfterDays({long: String(data.coord.lon), lat: String(data.coord.lat)})
+        }).catch(() => {
+            setWeather(undefined)
+            setWeatherDays(undefined)
+            setMessageError('Cidade não encontrado')
+        })
+        .finally(() =>{
+            setLoading(false)
+        })
+
   }
 
   useEffect(() => {
@@ -120,13 +129,50 @@ const HomePage = ({ imageBackground }: Props) => {
                   <i className="mr-3">
                     <Compass className="h-12" />
                   </i>
-                  {location}
+                  {!isShowInput && (
+                    <span
+                      onClick={() => setShowInput(true)}
+                      className="cursor-pointer"
+                    >
+                      {location}
+                    </span>
+                  )}
+
+                  {isShowInput && (
+                    <div className="flex flex-col">
+                        <div className="flex flex-1 text-base gap-4 items-center justify-between">
+                            <div className="flex gap-4">
+                                <input
+                                type="text"
+                                className="px-4 py-2"
+                                placeholder="Digite a cidade"
+                                onChange={value => setCity(value.target.value)}
+                                />
+                                <button
+                                    className="bg-green-800 px-4 py-2 text-white"
+                                    onClick={() => findWeather(city)} disabled={isLoading}>
+                                {isLoading ? 'carregando...':' Buscar previsão'}
+                                </button>
+                            </div>
+                            <button
+                            className="bg-yellow-700 px-4 py-2 text-white"
+                                onClick={() => setShowInput(false)}
+                            >
+                                esconder
+                            </button>
+                        </div>
+                        {messageError && (
+                            <span className="text-red-600 text-xs">{messageError}</span>
+                        )}
+                    </div>
+
+                  )}
                 </div>
               </div>
               <WeatherDay
                 icon={
                   <div className="col-span-8 w-52">
-                    {weatherIcon(weather?.icon)}
+                    <WeatherIcon codeIcon={weather?.icon} />
                   </div>
                 }
                 className="text-white pb-10"
@@ -154,7 +200,7 @@ const HomePage = ({ imageBackground }: Props) => {
                     }}
                     icon={
                       <div className="col-span-8 w-20">
-                        {weatherIcon(_weather.weather[0]?.icon)}
+                        <WeatherIcon codeIcon={_weather.weather[0]?.icon} />
                       </div>
                     }
                   >
