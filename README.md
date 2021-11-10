@@ -1,6 +1,6 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
 
-[[English](README.md) | [English](README.pt.md)]
+[[English](README.md) | [Portuguese](README.pt.md)]
 
 Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./example.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
 
