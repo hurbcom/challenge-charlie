@@ -1,0 +1,5 @@
+.icon:before {
+    font-family: "MeteoconsRegular";
+    content: attr(data-icon);
+    font-size: 3rem;
+}
