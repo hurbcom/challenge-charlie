@@ -1,0 +1,39 @@
+{
+  "name": "challenge-charlie",
+  "version": "1.0.0",
+  "description": "It is a challenge for Hurb",
+  "main": "main.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --mode production",
+    "serve": "webpack-dev-server --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiagourbano/challenge-charlie.git"
+  },
+  "author": "Tiago Urbano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiagourbano/challenge-charlie/issues"
+  },
+  "homepage": "https://github.com/tiagourbano/challenge-charlie#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "node-sass": "^6.0.1",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^12.3.0",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
+    "vue-style-loader": "^4.1.3",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  }
+}
