@@ -1,10 +1,7 @@
 <template>
-  <div class="wrapper-app">
+  <div class="wrapper-app" :style="backgroundProps">
     <div class="container d-flex flex-column">
-        <div class="wrapper-form-field d-flex">
-            <span class="icon" data-icon="("></span>
-            <input type="text">
-        </div>
+        <Search />
 
         <div class="wrapper-weather d-flex flex-column">
             <div class="d-flex today-weather">
@@ -45,7 +42,36 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+
+import Search from './components/Search.vue';
+
+export default {
+    name: 'App',
+    components: {
+        Search,
+    },
+    data: () => ({
+        baseApiImageBackground: 'http://www.bing.com',
+        urlForBackgroundImage: '',
+    }),
+    methods: {
+        async getImageBackground() {
+            const apiUrl = `${this.baseApiImageBackground}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
+            const { data: { images } } = await axios.get(apiUrl);
+            const { url } = images[0];
+            this.urlForBackgroundImage = `${this.baseApiImageBackground}${url}`;
+        }
+    },
+    computed: {
+        backgroundProps() {
+            return {'background-image': `url(${this.urlForBackgroundImage})`}
+        }
+    },
+    created() {
+        this.getImageBackground();
+    }
+};
 </script>
 
 <style lang="scss">
@@ -78,26 +104,6 @@ export default {};
             min-width: 505px;
             margin: 0 auto;
             background-color: #fff;
-
-            .wrapper-form-field {
-                padding: 10px;
-                height: 15vh;
-                align-items: center;
-
-                .icon {
-                    color: #7d7978;
-                }
-
-                input {
-                    margin-left: 20px;
-                    width: 100%;
-                    border: none;
-                    color: #7d7978;
-                    font-weight: 500;
-                    font-size: 2rem;
-                    outline: none;
-                }
-            }
 
             .wrapper-weather {
                 > div {
@@ -145,7 +151,6 @@ export default {};
                 .tomorrow-weather { background-color:rgb(235, 223, 59); }
                 .after-tomorrow-weather { background-color:rgb(165, 156, 26); }
             }
-
         }
     }
 </style>
