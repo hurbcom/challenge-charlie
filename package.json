@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && webpack --mode production",
-    "serve": "webpack-dev-server --mode development"
+    "serve": "webpack-dev-server --mode development",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,18 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
+    "@vue/test-utils": "^1.3.0",
+    "@vue/vue2-jest": "^27.0.0-alpha.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.3.1",
+    "jsdom-global": "^3.0.2",
     "node-sass": "^6.0.1",
+    "regenerator-runtime": "^0.13.9",
     "rimraf": "^3.0.2",
     "sass-loader": "^12.3.0",
     "vue": "^2.6.14",
@@ -38,5 +46,25 @@
   },
   "dependencies": {
     "axios": "^0.21.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.vue$": "@vue/vue2-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "testEnvironment": "jsdom"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
