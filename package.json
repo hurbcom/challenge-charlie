@@ -29,6 +29,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
+    "flush-promises": "^1.0.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
     "jsdom-global": "^3.0.2",
