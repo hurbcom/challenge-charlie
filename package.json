@@ -25,9 +25,14 @@
     "@vue/test-utils": "^1.3.0",
     "@vue/vue2-jest": "^27.0.0-alpha.3",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "eslint": "^6.7.2",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-vue": "^8.1.1",
     "file-loader": "^6.2.0",
     "flush-promises": "^1.0.2",
     "html-webpack-plugin": "^5.5.0",
@@ -46,7 +51,8 @@
     "webpack-dev-server": "^4.5.0"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "vuex": "^3.6.2"
   },
   "jest": {
     "moduleFileExtensions": [
