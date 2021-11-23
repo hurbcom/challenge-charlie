@@ -4,72 +4,63 @@
         <Search />
 
         <div class="wrapper-weather d-flex flex-column">
-            <div class="d-flex today-weather">
-                <div class="icon icon-weather">
-                    <span class="icon" data-icon="B"></span>
-                </div>
+            <Weather
+                v-if="weathers[0]"
+                title="Hoje"
+                :weather="weathers[0]"
+                :showCelsius="showCelsius"
+                @changeTemperatureType="changeTemperatureType"
+            />
 
-                <div class="details-weather d-flex flex-column">
-                    <p class="date">Hoje</p>
-                    <p class="temperature">32º</p>
+            <Weather
+                v-if="weathers[1]"
+                title="Amanhã"
+                :weather="weathers[1]"
+                :showCelsius="showCelsius"
+                @changeTemperatureType="changeTemperatureType"
+            />
 
-                    <p class="state">Ensolarado</p>
+            <Weather
+                v-if="weathers[2]"
+                title="Depois de Amanhã"
+                :weather="weathers[2]"
+                :showCelsius="showCelsius"
+                @changeTemperatureType="changeTemperatureType"
+            />
 
-                    <p class="wind">Vento: NO 6.4km/h</p>
-                    <p class="humidty">Humidade: 78%</p>
-                    <p class="pressure">Pressão: 1003hPa</p>
-                </div>
-            </div>
-
-            <div class="d-flex tomorrow-weather">
-                <div class="icon icon-weather"></div>
-                <div class="details-weather d-flex flex-column">
-                    <p class="date">Amanhã</p>
-                    <p class="temperature">25º</p>
-                </div>
-            </div>
-
-            <div class="d-flex after-tomorrow-weather">
-                <div class="icon icon-weather"></div>
-                <div class="details-weather d-flex flex-column">
-                    <p class="date">Depois de Amanhã</p>
-                    <p class="temperature">22º</p>
-                </div>
-            </div>
         </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 import Search from './components/Search.vue';
+import Weather from './components/Weather.vue';
 
 export default {
     name: 'App',
     components: {
         Search,
+        Weather,
     },
     data: () => ({
-        baseApiImageBackground: 'http://www.bing.com',
-        urlForBackgroundImage: '',
+        showCelsius: true,
     }),
     methods: {
-        async getImageBackground() {
-            const apiUrl = `${this.baseApiImageBackground}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
-            const { data: { images } } = await axios.get(apiUrl);
-            const { url } = images[0];
-            this.urlForBackgroundImage = `${this.baseApiImageBackground}${url}`;
-        }
+        changeTemperatureType(type) {
+            this.showCelsius = (type === 'C');
+        },
     },
     computed: {
         backgroundProps() {
-            return {'background-image': `url(${this.urlForBackgroundImage})`}
+            return {'background-image': `url(${this.$store.state.urlForBackgroundImage})`}
+        },
+        weathers() {
+            return this.$store.state.search.weathers;
         }
     },
     created() {
-        this.getImageBackground();
+        this.$store.dispatch('getImageBackground');
     }
 };
 </script>
@@ -103,54 +94,6 @@ export default {
             width: 50vw;
             min-width: 505px;
             margin: 0 auto;
-            background-color: #fff;
-
-            .wrapper-weather {
-                > div {
-                    padding: 10px 0 20px 0;
-                    height: 20vh;
-
-                    &:first-child {
-                        height: 45vh;
-                    }
-                }
-
-                .icon-weather {
-                    width: 60%;
-                    text-align: center;
-
-                    .icon::before {
-                        font-size: 15rem;
-                        color: #fff;
-                    }
-                }
-
-                .details-weather {
-                    p {
-                        color: #fff;
-                        font-size: 1.3rem;
-                        font-weight: 400;
-
-                        &.date {
-                            text-transform: uppercase;
-                        }
-
-                        &.state {
-                            padding: 15px 0 20px;
-                        }
-
-                        &.wind,
-                        &.humidty,
-                        &.pressure {
-                            font-size: 1rem;
-                        }
-                    }
-                }
-
-                .today-weather { background-color:rgb(212, 198, 0); }
-                .tomorrow-weather { background-color:rgb(235, 223, 59); }
-                .after-tomorrow-weather { background-color:rgb(165, 156, 26); }
-            }
         }
     }
 </style>

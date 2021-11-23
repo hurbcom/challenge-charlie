@@ -1,36 +1,41 @@
 <template>
     <div class="wrapper-form-field d-flex">
-        <span class="icon" data-icon="("></span>
-        <input type="text" v-model="userLocation" />
+        <span
+            class="icon"
+            :class="{ 'rotating': searching }"
+            data-icon="("
+            @click="fetchWeatherInformation"
+        ></span>
+
+        <input
+            type="text"
+            ref="searchLocation"
+            v-model="userLocation"
+            @blur="fetchWeatherInformation"
+            @keypress.enter="fetchWeatherInformation"
+            placeholder="Cidade, Estado"
+        />
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     name: 'Search',
-    data: () => ({
-        userLocation: '',
-    }),
+    computed: {
+        userLocation() {
+            return this.$store.state.search.userLocation;
+        },
+        searching() {
+            return this.$store.state.search.searching;
+        }
+    },
     methods: {
         getUserCurrentLatLong() {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    this.convertLatLongInLocation(position.coords.latitude, position.coords.longitude);
-                },
-                error => {
-                    console.log(error.message);
-                },
-            )
+            this.$store.dispatch('search/getUserCurrentPosition');
         },
-        async convertLatLongInLocation(lat, long) {
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat},${long}&key=c63386b4f77e46de817bdf94f552cddf&language=en`;
-            const { data: { results } } = await axios.get(url);
-            const [result] = results;
-            const { components: location } = result;
-            this.userLocation = `${location.village}, ${location.state} - ${location.country}`;
-        },
+        fetchWeatherInformation() {
+            this.$store.dispatch('search/fetchWeatherInformation')
+        }
     },
     created() {
         this.getUserCurrentLatLong();
@@ -39,13 +44,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import url('./../sass/animations.scss');
+
     .wrapper-form-field {
         padding: 10px;
         height: 15vh;
         align-items: center;
+        background-color: #fff;
 
         .icon {
             color: #7d7978;
+
+            &.rotating {
+                -webkit-animation: rotating .5s linear infinite;
+                -moz-animation: rotating .5s linear infinite;
+                -ms-animation: rotating .5s linear infinite;
+                -o-animation: rotating .5s linear infinite;
+                animation: rotating .5s linear infinite;
+            }
         }
 
         input {
