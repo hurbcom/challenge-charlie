@@ -4,15 +4,14 @@
             class="icon"
             :class="{ 'rotating': searching }"
             data-icon="("
-            @click="fetchWeatherInformation"
+            @click="fetchWeatherInformation()"
         ></span>
 
         <input
             type="text"
-            ref="searchLocation"
             v-model="userLocation"
-            @blur="fetchWeatherInformation"
-            @keypress.enter="fetchWeatherInformation"
+            @blur="fetchWeatherInformation()"
+            @keypress.enter="fetchWeatherInformation()"
             placeholder="Cidade, Estado"
         />
     </div>
