@@ -12,6 +12,7 @@ const search = {
     state: {
         latLong: {},
         userLocation: '',
+        prevUserLocation: '',
         searching: false,
         weathers: [],
     },
@@ -21,6 +22,9 @@ const search = {
         },
         SET_USER_LOCATION(state, payload) {
             state.userLocation = payload;
+        },
+        SET_PREV_USER_LOCATION(state, payload) {
+            state.prevUserLocation = payload;
         },
         SET_SEARCHING(state, payload) {
             state.searching = payload;
@@ -74,27 +78,32 @@ const search = {
             const weathers = [];
 
             try {
-                const params = {
-                    q: state.userLocation,
-                    lang: 'pt_br',
-                    APPID: '7ba73e0eb8efe773ed08bfd0627f07b8'
-                };
-                const url = `https://api.openweathermap.org/data/2.5/forecast`
+                if (state.prevUserLocation !== state.userLocation) {
+                    const params = {
+                        q: state.userLocation,
+                        lang: 'pt_br',
+                        APPID: '7ba73e0eb8efe773ed08bfd0627f07b8'
+                    };
+                    const url = `https://api.openweathermap.org/data/2.5/forecast`
 
-                const { data } = await axios.get(url, {params });
-                data.list.forEach((info, key) => {
-                    if (key === 0 || info.dt_txt.includes('12:00:00')) {
-                        weathers.push({
-                            tempC: kelvinToCelsius(info.main.temp),
-                            tempF: kelvinToFahrenheit(info.main.temp),
-                            description: info.weather[0].description,
-                            pressure: `${info.main.pressure}hPa`,
-                            humidity: `${info.main.humidity}%`,
-                            wind: `${degreeToDirection(info.wind.deg)} ${metersPerSecondToKilometerPerHour(info.wind.speed)}Km/h`,
-                            dt_txt: info.dt_txt,
-                        });
-                    }
-                });
+                    const { data } = await axios.get(url, {params });
+                    data.list.forEach((info, key) => {
+                        if (key === 0 || info.dt_txt.includes('12:00:00')) {
+                            weathers.push({
+                                tempC: kelvinToCelsius(info.main.temp),
+                                tempF: kelvinToFahrenheit(info.main.temp),
+                                description: info.weather[0].description,
+                                pressure: `${info.main.pressure}hPa`,
+                                humidity: `${info.main.humidity}%`,
+                                wind: `${degreeToDirection(info.wind.deg)} ${metersPerSecondToKilometerPerHour(info.wind.speed)}Km/h`,
+                                dt_txt: info.dt_txt,
+                            });
+                        }
+                    });
+
+                    commit('SET_PREV_USER_LOCATION', state.userLocation);
+                    commit('SET_WEATHERS', weathers);
+                }
 
             } catch (error) {
                 for (let i = 0; i <= 2; i++) {
@@ -109,9 +118,9 @@ const search = {
                 }
 
                 alert('Por favor, verifique o Nome da Cidade e Estado, pois não conseguimos fazer a busca.');
+                commit('SET_WEATHERS', weathers);
             }
 
-            commit('SET_WEATHERS', weathers);
             commit('SET_SEARCHING', false);
         },
     },

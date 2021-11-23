@@ -22,8 +22,13 @@
 export default {
     name: 'Search',
     computed: {
-        userLocation() {
-            return this.$store.state.search.userLocation;
+        userLocation: {
+            get() {
+                return this.$store.state.search.userLocation;
+            },
+            set(value) {
+                this.$store.commit('search/SET_USER_LOCATION', value);
+            }
         },
         searching() {
             return this.$store.state.search.searching;
@@ -34,7 +39,7 @@ export default {
             this.$store.dispatch('search/getUserCurrentPosition');
         },
         fetchWeatherInformation() {
-            this.$store.dispatch('search/fetchWeatherInformation')
+            this.$store.dispatch('search/fetchWeatherInformation');
         }
     },
     created() {
