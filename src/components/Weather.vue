@@ -82,7 +82,7 @@ export default {
         backgroundColorProps() {
             let color = 'gray';
 
-            if (!this.weather.tempC) {
+            if (this.weather.tempC === null) {
                 return this.generateColorTones(color);
             }
 
@@ -106,11 +106,11 @@ export default {
         toggleTemperature(type) {
             this.$emit('changeTemperatureType', type);
         },
-        generateIcon(temperature) {
+        generateIcon(temperatureDescription) {
             let icon = ')';
 
             Object.keys(temperatureIcons).forEach(temperatureLabel => {
-                if (temperature.includes(temperatureLabel)) {
+                if (temperatureDescription.includes(temperatureLabel)) {
                     icon = temperatureIcons[temperatureLabel];
                 }
             })
