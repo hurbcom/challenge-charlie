@@ -1,63 +1,29 @@
 import 'regenerator-runtime/runtime';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import flushPromises from 'flush-promises';
-import * as axios from '../__mocks__/axios';
 
 import App from '@/App.vue';
 import Search from '@/components/Search.vue';
 import Weather from '@/components/Weather.vue';
 
+import appStore from '@/store/modules/app';
+import searchStore from '@/store/modules/search';
+
 const localVue = createLocalVue();
 localVue.use(Vuex);
-
-// jest.mock('axios', () => ({
-//     get: Promise.resolve({
-//         data: {
-//             images: [
-//                 { url: '/value' }
-//             ]
-//         }
-//     })
-// }));
-// jest.mock('axios', () => jest.fn(() => Promise.resolve({ data: { images: [ { url: '/value' } ] } })));
 
 describe('App Component', () => {
     let component;
     let store;
-    let appStore = {
-        state: {
-            urlForBackgroundImage: '',
-        },
-        mutations: {
-            SET_URL_BACKGROUND_IMAGE(state, payload) {
-                state.urlForBackgroundImage = payload;
-            },
-        },
-        actions: {
-            getImageBackground: jest.fn()
-        }
-    };
-
-    const searchModule = {
-        namespaced: true,
-        state: {
-            weathers: [],
-        },
-        mutations: {
-            SET_WEATHERS(state, payload) {
-                state.weathers = payload;
-            }
-        }
-    }
 
     beforeAll(() => {
         store = new Vuex.Store({
-            ...appStore,
             modules: {
-                search: searchModule
+                app: appStore,
+                search: searchStore
             },
         });
+        store.dispatch = jest.fn();
 
         component = shallowMount(App, { store, localVue });
     });
@@ -89,18 +55,21 @@ describe('App Component', () => {
             });
 
             test('should change backgroundProps', async () => {
-                const backgroundImage = 'http://www.test.com/image.png';
-                store.commit('SET_URL_BACKGROUND_IMAGE', backgroundImage);
+                const backgroundImage = '/new-image.png';
+                store.commit('app/SET_URL_BACKGROUND_IMAGE', backgroundImage);
 
                 await component.vm.$nextTick();
 
-                expect(component.vm.backgroundProps).toEqual({'background-image': `url(${backgroundImage})`});
+                expect(component.vm.backgroundProps)
+                    .toEqual({
+                        'background-image': `url(${appStore.state.baseApiImageBackground}${backgroundImage})`
+                    });
             });
         });
 
         describe('On create component', () => {
             test('should dispatch getImageBackground', () => {
-                expect(appStore.actions.getImageBackground).toHaveBeenCalled();
+                expect(store.dispatch).toHaveBeenCalledWith('app/getImageBackground');
             });
         });
     });

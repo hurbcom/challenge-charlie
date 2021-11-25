@@ -53,14 +53,16 @@ export default {
     },
     computed: {
         backgroundProps() {
-            return {'background-image': `url(${this.$store.state.urlForBackgroundImage})`}
+            return {
+                'background-image': `url(${this.$store.getters['app/backgroundImageUrl']})`
+            };
         },
         weathers() {
             return this.$store.state.search.weathers;
         }
     },
     created() {
-        this.$store.dispatch('getImageBackground');
+        this.$store.dispatch('app/getImageBackground');
     }
 };
 </script>
