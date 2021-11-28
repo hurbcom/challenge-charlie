@@ -1,0 +1,105 @@
+.weather {
+  &App {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include desktop {
+      max-width: 767px;
+    }
+  }
+
+  &Field {
+    width: 100%;
+    height: 60px;
+    background: white;
+    box-shadow: 0 0 5px $shadow-color;
+
+    &Box {
+      border: none;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: $text-input;
+    }
+  }
+
+  &Info {
+    width: 100%;
+
+    &Data {
+      width: 50%;
+    }
+
+    ul {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    li {
+      padding: 40px;
+      display: flex;
+      justify-content: space-around;
+      opacity: .8;
+
+      .icon {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        text-transform: uppercase;
+        font-weight: 700;
+        color: black;
+        line-height: 24px;
+
+        span {
+          display: block;
+          font-size: 22px;
+        }
+
+        &.spotlight {
+          margin: 15px 0;
+        }
+
+        &.details {
+          text-transform: none;
+        }
+      }
+    }
+
+    &Today {
+      background: yellow;
+
+      .icon {
+        font-size: 150px;
+      }
+    }
+
+    &Tomorrow {
+      background: orange;
+
+      .icon {
+        font-size: 50px;
+      }
+    }
+
+    &After {
+      background: yellow;
+
+      .icon {
+        font-size: 50px;
+      }
+    }
+  }
+}

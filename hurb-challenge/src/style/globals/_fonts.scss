@@ -1,2 +1,15 @@
 // Importação de fontes
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700;900&display=swap');
+
+// Importação dos ícones
+@font-face {
+  font-family: 'weathericons';
+  src: url('../../assets/fonts/weathericons-regular-webfont.eot');
+  src: url('../../assets/fonts/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../../assets/fonts/weathericons-regular-webfont.woff2') format('woff2'),
+       url('../../assets/fonts/weathericons-regular-webfont.woff') format('woff'),
+       url('../../assets/fonts/weathericons-regular-webfont.ttf') format('truetype'),
+       url('../../assets/fonts/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -4,5 +4,10 @@
 @import 'globals/variables.scss';
 @import 'globals/mixins.scss';
 
+// ICONS
+@import 'globals/icons.scss';
+
 // LAYOUT
 @import 'globals/general.scss';
+@import 'components/wallpaper.scss';
+@import 'components/weather.scss';
