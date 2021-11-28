@@ -1,0 +1,14 @@
+Ícones:
+- https://erikflowers.github.io/weather-icons/
+
+Checklist:
+[x] Setup inicial utilizando create-react-app
+[x] Adição de sass
+[x] Estrutura inicial da aplicação
+[x] Importação dos ícones de clima
+[ ] Testar a responsividade da aplicação
+[ ] Utilizar API do Bing para inserir imagem de fundo
+[ ] Ver como as APIs retornam os dados de tempo
+[ ] Deixar input editável e salvar informação em um state
+[ ] Componetizar listagem do clima da aplicação
+[ ] Ver funcionamento da geolocalização
