@@ -1,4 +1,4 @@
-function WeatherInfo() {
+function WeatherInfo({ weather }) {
   return (
     <div className="weatherInfo">
       <ul>
@@ -8,15 +8,15 @@ function WeatherInfo() {
           </div>
           <div className="weatherInfoData">
             <p>
-              Hoje <span>32ºC</span>
+              Hoje <span>{Math.round(weather.main.temp)}ºC</span>
             </p>
             <p className="spotlight">
-              Ensolarado
+              {weather.weather[0].description}
             </p>
             <p className="details">
-              Vento: NO 6.4km/h<br />
-              Humidade: 78%<br />
-              Pressão: 1003hPA
+              Vento: NO {weather.wind.speed}km/h<br />
+              Humidade: {weather.main.humidity}%<br />
+              Pressão: {weather.main.pressure}hPA
             </p>
           </div>
         </li>

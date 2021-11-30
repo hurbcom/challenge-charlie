@@ -8,7 +8,12 @@ Checklist:
 [x] Importação dos ícones de clima
 [ ] Testar a responsividade da aplicação
 [ ] Utilizar API do Bing para inserir imagem de fundo
-[ ] Ver como as APIs retornam os dados de tempo
-[ ] Deixar input editável e salvar informação em um state
+[x] Ver como as APIs retornam os dados de tempo
+[x] Deixar input editável e salvar informação em um state
 [ ] Componetizar listagem do clima da aplicação
-[ ] Ver funcionamento da geolocalização
+[x] Ver funcionamento da geolocalização
+[ ] Ver informação da previsão do tempo para os próximos dias
+[ ] Listagem de ícones
+[ ] Padrão de cores de acordo com o tempo
+[ ] Fazer um loader para a página
+[ ] Atualização de dados quando busca cidade/estado no campo
