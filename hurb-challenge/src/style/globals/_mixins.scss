@@ -1,5 +1,10 @@
+// Responsive methods
 @mixin desktop {
   @media screen and (min-width: 767px) {
     @content;
   }
+}
+
+@mixin toRem($property, $value) {
+  #{$property}: ($value / 16) + rem;
 }

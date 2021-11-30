@@ -25,12 +25,13 @@ function App() {
 
   // Get the info from the geolocation
   let getWeather = async (lat, long) => {
-    let res = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
+    let res = await axios.get('https://api.openweathermap.org/data/2.5/onecall', {
       params: {
         lat: lat,
         lon: long,
+        exclude: 'hourly,minutely',
         appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
-        lang: 'pt',
+        lang: 'pt_br',
         units: 'metric'
       }
     });
@@ -49,12 +50,6 @@ function App() {
     setLocation(value)
   }
 
-  if (!weather) {
-    return (
-      <p>Carregando!</p>
-    )
-  }
-
   return (
     <div className="weatherWallpaper" style={{ backgroundImage: `url(${wallpaper})` }}>
       <div className="weatherApp">
@@ -63,9 +58,7 @@ function App() {
           handleChange={(e) => handleChange(e)}
         />
 
-        <WeatherInfo
-          weather={weather}
-        />
+        { !weather ? <p>Carregando...</p> : <WeatherInfo weather={weather} /> }
       </div>
     </div>
   )

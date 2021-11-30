@@ -3,13 +3,12 @@
 
 // Importação dos ícones
 @font-face {
-  font-family: 'weathericons';
-  src: url('../../assets/fonts/weathericons-regular-webfont.eot');
-  src: url('../../assets/fonts/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../../assets/fonts/weathericons-regular-webfont.woff2') format('woff2'),
-       url('../../assets/fonts/weathericons-regular-webfont.woff') format('woff'),
-       url('../../assets/fonts/weathericons-regular-webfont.ttf') format('truetype'),
-       url('../../assets/fonts/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
+  font-family: 'MeteoconsRegular';
+  src: url('../../assets/fonts/meteocons-webfont.eot');
+  src: url('../../assets/fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../../assets/fonts/meteocons-webfont.woff') format('woff'),
+       url('../../assets/fonts/meteocons-webfont.ttf') format('truetype'),
+       url('../../assets/fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
