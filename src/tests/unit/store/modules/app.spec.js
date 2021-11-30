@@ -10,19 +10,19 @@ const imageUrl = '/image-url.jpg';
 jest.mock('axios', () => ({
     get: (_url) => {
         return new Promise((resolve) => {
-          if (mockError) {
-              throw new Error('Failed to get the background image.');
-          }
-
-          url = _url;
-
-          resolve({
-            data: {
-                images: [
-                    { url: imageUrl }
-                ]
+            if (mockError) {
+                throw new Error('Failed to get the background image.');
             }
-          });
+
+            url = _url;
+
+            resolve({
+                data: {
+                    images: [
+                        { url: imageUrl }
+                    ]
+                }
+            });
         });
     }
 }));

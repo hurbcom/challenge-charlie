@@ -53,7 +53,7 @@ const search = {
                     timeout: 5000,
                     enableHighAccuracy: true
                 }
-            )
+            );
         },
         async convertLatLongInLocation({ commit, dispatch, state }) {
             const params = {
@@ -63,14 +63,18 @@ const search = {
             };
             const url = 'https://api.opencagedata.com/geocode/v1/json';
 
-            const { data } = await axios.get(url, { params });
-            const { components: location } = data.results[0];
+            try {
+                const { data } = await axios.get(url, { params });
+                const { components: location } = data.results[0];
 
-            if (location.city) {
-                commit('SET_USER_LOCATION', `${location.city},${location.state}`);
-                dispatch('fetchWeatherInformation');
-            } else {
-                alert('Não conseguimos recuperar sua localização com precisão, por favor faça uma busca pelo Nome da Cidade, Estado');
+                if (location.city) {
+                    commit('SET_USER_LOCATION', `${location.city},${location.state}`);
+                    dispatch('fetchWeatherInformation');
+                } else {
+                    window.alert('Não conseguimos recuperar sua localização com precisão, por favor faça uma busca pelo Nome da Cidade, Estado');
+                }
+            } catch (_) {
+                window.alert('Não conseguimos recuperar sua localização com precisão, por favor faça uma busca pelo Nome da Cidade, Estado');
             }
         },
         async fetchWeatherInformation({ commit, state }) {
@@ -104,7 +108,6 @@ const search = {
                     commit('SET_PREV_USER_LOCATION', state.userLocation);
                     commit('SET_WEATHERS', weathers);
                 }
-
             } catch (error) {
                 for (let i = 0; i <= 2; i++) {
                     weathers.push({
@@ -117,7 +120,7 @@ const search = {
                     });
                 }
 
-                alert('Por favor, verifique o Nome da Cidade e Estado, pois não conseguimos fazer a busca.');
+                window.alert('Por favor, verifique o Nome da Cidade e Estado, pois não conseguimos fazer a busca.');
                 commit('SET_WEATHERS', weathers);
             }
 
