@@ -10,7 +10,6 @@
         <input
             type="text"
             v-model="userLocation"
-            @blur="fetchWeatherInformation()"
             @keypress.enter="fetchWeatherInformation()"
             placeholder="Cidade, Estado"
         />

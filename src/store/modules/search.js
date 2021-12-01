@@ -11,6 +11,7 @@ const search = {
     namespaced: true,
     state: {
         latLong: {},
+        placeholderUserLocation: 'Buscando sua localização...',
         userLocation: '',
         prevUserLocation: '',
         searching: false,
@@ -34,7 +35,10 @@ const search = {
         }
     },
     actions: {
-        getUserCurrentPosition({ commit, dispatch }) {
+        getUserCurrentPosition({ commit, dispatch, state }) {
+            commit('SET_USER_LOCATION', state.placeholderUserLocation);
+            commit('SET_SEARCHING', true);
+
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const latLong = {

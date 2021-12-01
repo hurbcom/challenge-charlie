@@ -127,10 +127,16 @@ describe('Store modules/search', () => {
                     lat: 0.0,
                     long: 0.0
                 };
+                const state = {
+                    placeholderUserLocation: 'Buscando sua localização...',
+                }
 
-                await searchStore.actions.getUserCurrentPosition({ commit, dispatch });
+                await searchStore.actions.getUserCurrentPosition({ commit, dispatch, state });
 
+                expect(commit).toHaveBeenCalledWith('SET_USER_LOCATION', state.placeholderUserLocation);
+                expect(commit).toHaveBeenCalledWith('SET_SEARCHING', true);
                 expect(commit).toHaveBeenCalledWith('SET_LAT_LONG', latLong);
+                expect(commit).toHaveBeenCalledTimes(3);
                 expect(dispatch).toHaveBeenCalledWith('convertLatLongInLocation');
             });
         });
