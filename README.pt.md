@@ -58,3 +58,26 @@ Boa sorte e boa viagem! ;)
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
+
+
+## Baixando o projeto
+- git clone tiagourbano/challenge-chalie
+- cd challenge-charlie
+
+## Rodando o microsite localmente
+- npm install
+- npm run serve
+
+## Rodando o microsite em um ambiente de stage com Docker
+1. Crie a imagem
+    - docker build -t hurb/challenge-charlie .
+2. Rode a imagem
+    - docker run -it -p 8080:8080 --rm --name challenge-charlie hurb/challenge-charlie
+3. Acesse a url: http://localhost:8080
+
+## Rodando o microsite em um ambiente de produção com Docker
+1. Crie a imagem de produção
+    - docker build -t hurb/challenge-charlie-production -f Dockerfile.production .
+2. Rode a imagem
+    - docker run -it -p 80:80 --rm --name challenge-charlie-production hurb/challenge-charlie-production
+3. Acesse a url: http://localhost
