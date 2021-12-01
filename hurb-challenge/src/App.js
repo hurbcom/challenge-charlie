@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import WeatherFieldLocation from './components/WeatherFieldLocation';
 import WeatherInfo from './components/WeatherInfo';
+import Loading from './components/Loading';
 
 function App() {
   const [wallpaper, setWallpaper] = useState('')
-  const [geolocation, setGeolocation] = useState(false)
   const [location, setLocation] = useState('')
   const [weather, setWeather] = useState()
 
@@ -19,7 +19,6 @@ function App() {
   useEffect(()=> {
     navigator.geolocation.getCurrentPosition((position)=> {
       getWeather(position.coords.latitude, position.coords.longitude);
-      setGeolocation(true)
     })
   }, [])
 
@@ -58,7 +57,7 @@ function App() {
           handleChange={(e) => handleChange(e)}
         />
 
-        { !weather ? <p>Carregando...</p> : <WeatherInfo weather={weather} /> }
+        { !weather ? <Loading /> : <WeatherInfo weather={weather} /> }
       </div>
     </div>
   )

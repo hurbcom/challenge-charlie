@@ -1,9 +1,28 @@
+import { useEffect, useState } from "react";
+
 function WeatherInfo({ weather }) {
   const getNextDays = weather.daily.slice(0, 2)
+  const [weatherColors, setWeatherColors] = useState('')
+
+  useEffect(() => {
+    const currentWeather = Math.round(weather.current.temp)
+
+    switch(true) {
+      case currentWeather < 15 :
+        setWeatherColors('coldWeather');
+        break;
+      case currentWeather > 35 :
+        setWeatherColors('hotWeather');
+        break;
+      default:
+        setWeatherColors('');
+        break;
+    }
+  }, [])
 
   return (
     <div className="weatherInfo">
-      <ul>
+      <ul className={weatherColors}>
         <li className="weatherInfoToday">
           <div className="icon">
             <i className="icon" data-icon="B"></i>
@@ -30,7 +49,7 @@ function WeatherInfo({ weather }) {
               </div>
               <div className="weatherInfoData">
                 <p>
-                  { key == 0 ? 'Amanhã' : 'Depois de amanhã' }
+                  { key === 0 ? 'Amanhã' : 'Depois de amanhã' }
                   <span>{Math.round(elem.temp.day)}ºC</span>
                 </p>
               </div>

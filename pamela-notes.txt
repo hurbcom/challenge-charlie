@@ -1,6 +1,3 @@
-Ícones:
-- https://erikflowers.github.io/weather-icons/
-
 Checklist:
 [x] Setup inicial utilizando create-react-app
 [x] Adição de sass
@@ -12,8 +9,17 @@ Checklist:
 [x] Deixar input editável e salvar informação em um state
 [ ] Componetizar listagem do clima da aplicação
 [x] Ver funcionamento da geolocalização
-[ ] Ver informação da previsão do tempo para os próximos dias
+[x] Ver informação da previsão do tempo para os próximos dias
 [ ] Listagem de ícones
 [ ] Padrão de cores de acordo com o tempo
 [ ] Fazer um loader para a página
 [ ] Atualização de dados quando busca cidade/estado no campo
+
+Requisitos
+- abaixo de 15º: tons de azul
+- na média: tons de amarelo
+- acima de 35º: tons de vermelho
+- quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê
+
+Condições para ícones:
+https://openweathermap.org/weather-conditions
