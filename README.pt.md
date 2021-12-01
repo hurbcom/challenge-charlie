@@ -38,16 +38,16 @@ O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melh
 
 ## Critério de avaliação
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome enigmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura etc, é a melhor escolha para a aplicação?
+-   [x] **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
+-   [x] **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
+-   [x] **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
+-   [x] **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
+-   [x] **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome enigmático? Comentários no código ajudam a explicar o fluxo?
+-   [x] **Segurança**: Existe alguma vulnerabilidade clara?
+-   [x] **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
+-   [x] **Histórico de commits** Qualidade e estrutura dos commits.
+-   [x] **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
+-   [x] **Escolhas técnicas**: A escolha das bibliotecas, arquitetura etc, é a melhor escolha para a aplicação?
 
 ## Dúvidas
 
@@ -58,6 +58,18 @@ Boa sorte e boa viagem! ;)
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
+
+
+# Desafio Charlie
+Este é um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto. Essa caixa de texto é um campo de entrada de dados, aonde o usuário pode trocar a localidade. Com a mudança da localidade, são carregadas as informações de previsão do tempo referentes à localidade fornecida pelo usuário.
+
+Assim que a página é carregada, são coletadas as coordenadas geográficas do usuário pela API do navegador e então descobrimos o nome da cidade via _reverse geocode_.
+
+Ao mesmo tempo em que a página é acessada pela primeira vez é carregado uma imagem de fundo de tela, essa imagem é a imagem de destaque do Bing (algumas vezes essa imagem não pode ser carregada devido a problemas com o CORS).
+
+Após a previsão ser carregada, exibimos a previsão para 3 dias (hoje, amanhã e depois de amanhã).
+De acordo com a temperatura exibimos um fundo de cor diferente, essas cores variam de Azul para temperaturas abaixo de 15 graus, Amarelo para temperaturas entre 15 e 35 graus e Vermelho para temperaturas acima de 35 graus, esses fundos possuem 4 variantes para cada cor, sendo elas exibidas randomicamente e todas com um certo grau de opacidade.
+A previsão de hoje é levado em conta o horário atual, já a previsão para amanhã e depois de amanhã é considerado a previsão para as 12:00.
 
 
 ## Baixando o projeto
