@@ -73,7 +73,7 @@ A previsão de hoje é levado em conta o horário atual, já a previsão para am
 
 
 ## Baixando o projeto
-- git clone tiagourbano/challenge-chalie
+- git clone [https://github.com/tiagourbano/challenge-charlie.git](https://github.com/tiagourbano/challenge-charlie.git)
 - cd challenge-charlie
 
 ## Rodando o microsite localmente
