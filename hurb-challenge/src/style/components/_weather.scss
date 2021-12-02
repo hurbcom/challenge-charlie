@@ -14,7 +14,6 @@
 
   &Field {
     width: 100%;
-    @include toRem(height, 60);
     opacity: .8;
     background: white;
     box-shadow: 0 0 5px $shadow-color;

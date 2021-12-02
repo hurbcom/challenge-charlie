@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
 function WeatherInfo({ weather }) {
-  console.log(weather)
-
   const getNextDays = weather.daily.slice(0, 2)
   const [weatherColors, setWeatherColors] = useState('')
 
