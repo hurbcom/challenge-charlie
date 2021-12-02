@@ -7,13 +7,15 @@ Checklist:
 [ ] Utilizar API do Bing para inserir imagem de fundo
 [x] Ver como as APIs retornam os dados de tempo
 [x] Deixar input editável e salvar informação em um state
-[ ] Componetizar listagem do clima da aplicação
+[ ] Componetizar melhor a listagem do clima da aplicação
 [x] Ver funcionamento da geolocalização
 [x] Ver informação da previsão do tempo para os próximos dias
-[ ] Listagem de ícones
+[x] Listagem de ícones
 [ ] Padrão de cores de acordo com o tempo
 [ ] Fazer um loader para a página
-[ ] Atualização de dados quando busca cidade/estado no campo
+[ ] Atualização de dados quando busca por cidade/estado no input
+[ ] Incluir um botão de pesquisar no input
+[ ] Converter Celsius para Fahrenheit e vice-versa
 
 Requisitos
 - abaixo de 15º: tons de azul

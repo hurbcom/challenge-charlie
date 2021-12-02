@@ -7,8 +7,11 @@ import Loading from './components/Loading';
 
 function App() {
   const [wallpaper, setWallpaper] = useState('')
+  const [geolocation, setGeolocation] = useState(false)
+  const [geoInfo, setGeoInfo] = useState({})
   const [location, setLocation] = useState('')
   const [weather, setWeather] = useState()
+  const [fullLocation, setFullLocation] = useState()
 
   // Updating the wallpaper
   useEffect(() => {
@@ -19,6 +22,8 @@ function App() {
   useEffect(()=> {
     navigator.geolocation.getCurrentPosition((position)=> {
       getWeather(position.coords.latitude, position.coords.longitude);
+      getAddress(position.coords.latitude, position.coords.longitude);
+      setGeolocation(true)
     })
   }, [])
 
@@ -37,14 +42,29 @@ function App() {
     setWeather(res.data);
   }
 
-  // Only testing the returns
+  // Get the full info from the location
+  let getAddress = async (lat, long) => {
+    let res = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
+      params: {
+        q: lat + ',' + long,
+        key: process.env.REACT_APP_OPEN_CAGE_DATA_KEY,
+        language: 'pt_br'
+      }
+    });
+    setFullLocation(res.data.results);
+  }
+
+  // Updating input according with the geolocation
   useEffect(() => {
-    console.log('weather: ', weather)
-    console.log('location', location)
-  }, [location, weather])
+    if (!geolocation) {
+      setLocation('Buscando localização...')
+    }
+
+    setLocation('Florianópolis, Santa Catarina')
+  }, [fullLocation])
 
   // Get location from weather field box
-  function handleChange(event) {
+  let handleChange = (event) => {
     const { value } = event.target
     setLocation(value)
   }

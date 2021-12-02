@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 
 function WeatherInfo({ weather }) {
+  console.log(weather)
+
   const getNextDays = weather.daily.slice(0, 2)
   const [weatherColors, setWeatherColors] = useState('')
 
+  // Colors of the background
   useEffect(() => {
     const currentWeather = Math.round(weather.current.temp)
 
@@ -18,14 +21,42 @@ function WeatherInfo({ weather }) {
         setWeatherColors('');
         break;
     }
-  }, [])
+  }, [weather])
+
+  // Bringing the correct icon
+  let getIcon = (id) => {
+    switch(true) {
+      case id === '01d':
+        return 'B'
+      case id === '01n':
+        return 'C'
+      case id === '02d':
+        return 'H'
+      case id === '02n':
+        return 'I'
+      case id === '03d' || id === '03n':
+        return 'N'
+      case id === '04d' || id === '04n':
+        return 'Y'
+      case id === '09d' || id === '09n' || id === '10d' || id === '10n':
+        return 'R'
+      case id === '11d' || id === '11n':
+        return 'P'
+      case id === '13d' || id === '13n':
+          return 'W'
+      case id === '50d' || id === '50n':
+        return 'M'
+      default:
+        return 'A'
+    }
+  }
 
   return (
     <div className="weatherInfo">
       <ul className={weatherColors}>
         <li className="weatherInfoToday">
           <div className="icon">
-            <i className="icon" data-icon="B"></i>
+            <i className="icon" data-icon={getIcon(weather.current.weather[0].icon)}></i>
           </div>
           <div className="weatherInfoData">
             <p>
@@ -45,7 +76,7 @@ function WeatherInfo({ weather }) {
           return (
             <li key={key} className="weatherInfoAfter">
               <div className="icon">
-                <i className="icon" data-icon="B"></i>
+                <i className="icon" data-icon={getIcon(elem.weather[0].icon)}></i>
               </div>
               <div className="weatherInfoData">
                 <p>

@@ -101,7 +101,7 @@
 
     &Today {
       .icon {
-        @include toRem(font-size, 150);
+        @include toRem(font-size, 120);
       }
     }
 
