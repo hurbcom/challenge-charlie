@@ -1,6 +1,6 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { CityInput } from 'components';
-import { styled } from 'utils';
+import { styled, getGeolocation } from 'utils';
 
 const Container = styled.div`
   position: absolute;
@@ -21,6 +21,7 @@ const Container = styled.div`
 
 function WeatherModal() {
   const [city, setCity] = useState('');
+  const [position, setPosition] = useState({});
 
   const onChangeCity = ({
     target: { value: city },
@@ -31,6 +32,14 @@ function WeatherModal() {
   const onSubmitCity = (event: FormEvent<HTMLInputElement>) => {
     // get city coordinates
   };
+
+  useEffect(() => {
+    getGeolocation(setPosition);
+  }, []);
+
+  useEffect(() => {
+    console.log(position);
+  }, [position]);
 
   return (
     <Container>
