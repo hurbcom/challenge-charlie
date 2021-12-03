@@ -1,13 +1,12 @@
-import styled from 'styled-components/macro';
 import React, { useState, useEffect } from 'react';
-import getBackgroundUrl from '../utils/get_background';
-import WeatherModal from '../components/WeatherModal';
+import { WeatherModal } from 'components';
+import { styled, getBackgroundUrl } from 'utils';
 
-interface HomeStyleProps {
+interface Props {
   backgroundUrl: string;
 }
 
-const HomePage = styled.div<HomeStyleProps>`
+const HomePage = styled.div<Props>`
   background-image: url(${({ backgroundUrl }) => backgroundUrl});
   background-size: cover;
   height: 100vh;

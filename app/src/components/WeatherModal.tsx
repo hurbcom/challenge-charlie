@@ -1,19 +1,22 @@
-import styled from 'styled-components/macro';
-import React, { useState, useEffect } from 'react';
-import { FormEvent, ChangeEvent } from 'react';
-import getBackgroundUrl from '../utils/get_background';
-import CityInput from '../components/CityInput';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
+import { CityInput } from 'components';
+import { styled } from 'utils';
 
 const Container = styled.div`
   position: absolute;
   margin: auto;
   text-align: center;
   inset: 0% 25%;
+  min-width: 200px;
   background-color: rgba(102, 255, 102, 0.9);
   display: flex;
   align-items: stretch;
   flex-direction: column;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    inset: 0% 15%;
+  }
 `;
 
 function WeatherModal() {
