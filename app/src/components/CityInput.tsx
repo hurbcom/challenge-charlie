@@ -19,7 +19,7 @@ const Container = styled.div`
 
 const Input = styled.input`
   border: 0;
-  font-size: 0.8em;
+  font-size: 0.75em;
   padding: 0 10px;
   font-weight: bold;
   height: 100%;
