@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { CityInput } from 'components';
+import { LocationInput } from 'components';
 import { styled, getGeolocation, reverseGeocode } from 'utils';
 
 const Container = styled.div`
@@ -20,17 +20,17 @@ const Container = styled.div`
 `;
 
 function WeatherModal() {
-  const [address, setAddress] = useState('');
+  const [location, setLocation] = useState('');
   const [position, setPosition] = useState<GeolocationPosition>();
 
-  const onChangeAddress = ({
-    target: { value: address },
+  const onChangeLocation = ({
+    target: { value: location },
   }: ChangeEvent<HTMLInputElement>) => {
-    setAddress(address);
+    setLocation(location);
   };
 
-  const onSubmitAddress = (event: FormEvent<HTMLInputElement>) => {
-    // get city coordinates
+  const onSubmitLocation = (event: FormEvent<HTMLInputElement>) => {
+    // get location coordinates
   };
 
   useEffect(() => {
@@ -38,21 +38,20 @@ function WeatherModal() {
   }, []);
 
   useEffect(() => {
-    console.log(position);
     if (position) {
       const {
         coords: { latitude, longitude },
       } = position;
-      reverseGeocode({ latitude, longitude, setAddress });
+      reverseGeocode({ latitude, longitude, setLocation });
     }
   }, [position]);
 
   return (
     <Container>
-      <CityInput
-        value={address}
-        onChange={onChangeAddress}
-        onSubmit={onSubmitAddress}
+      <LocationInput
+        value={location}
+        onChange={onChangeLocation}
+        onSubmit={onSubmitLocation}
       />
     </Container>
   );

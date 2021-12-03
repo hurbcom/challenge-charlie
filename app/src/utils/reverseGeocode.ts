@@ -3,10 +3,10 @@ import axios from 'axios';
 interface Props {
   latitude: number;
   longitude: number;
-  setAddress: Function;
+  setLocation: Function;
 }
 
-const reverseGeocode = ({ latitude, longitude, setAddress }: Props) => {
+const reverseGeocode = ({ latitude, longitude, setLocation }: Props) => {
   const urls = `${process.env.OPEN_CAGE_URL}?q=${latitude},${longitude}&key=${process.env.OPEN_CAGE_API_KEY}&language=en`;
   axios.get(urls).then((res) => {
     const {
@@ -16,7 +16,7 @@ const reverseGeocode = ({ latitude, longitude, setAddress }: Props) => {
         },
       ],
     } = res.data;
-    setAddress(`${city}, ${state}`);
+    setLocation(`${city}, ${state}`);
   });
 };
 export default reverseGeocode;

@@ -1,4 +1,4 @@
-import CityInput from './CityInput';
+import LocationInput from './LocationInput';
 import WeatherModal from './WeatherModal';
 
-export { CityInput, WeatherModal };
+export { LocationInput, WeatherModal };

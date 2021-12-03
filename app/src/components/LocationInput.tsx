@@ -38,12 +38,12 @@ const Icon = styled.i`
   margin: 10px;
 `;
 
-function CityInput({ value, onChange, onSubmit }: Props) {
+function LocationInput({ value, onChange, onSubmit }: Props) {
   return (
     <Container>
       <Icon data-icon='(' />
       <Input
-        name='city'
+        name='location'
         type='text'
         value={value}
         onChange={onChange}
@@ -53,4 +53,4 @@ function CityInput({ value, onChange, onSubmit }: Props) {
   );
 }
 
-export default CityInput;
+export default LocationInput;
