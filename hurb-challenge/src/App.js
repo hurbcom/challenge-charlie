@@ -98,8 +98,8 @@ function App() {
 
   useEffect(() => {
     if (geolocation && fullLocation) {
-      const { city, state } = fullLocation[0].components
-      setLocation(`${city}, ${state}`)
+      const { city } = fullLocation[0].components
+      setLocation(`${city}`)
     }
   }, [geolocation, fullLocation])
 

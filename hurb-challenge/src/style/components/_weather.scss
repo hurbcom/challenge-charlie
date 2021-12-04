@@ -18,6 +18,10 @@
     background: white;
     box-shadow: 0 0 5px $shadow-color;
 
+    form {
+      display: flex;
+    }
+
     &Box {
       border: none;
       width: 100%;
@@ -27,6 +31,17 @@
       @include toRem(font-size, 20);
       font-weight: 700;
       color: $text-input;
+    }
+
+    &Button {
+      border: none;
+      cursor: pointer;
+      background: $button-color;
+      padding: 0 20px;
+      color: white;
+      font-family: $font-principal;
+      font-weight: 600;
+      @include toRem(font-size, 18);
     }
   }
 
@@ -43,6 +58,12 @@
       display: flex;
       flex-direction: column;
       opacity: .8;
+    }
+
+    li {
+      @include toRem(padding, 30);
+      display: flex;
+      justify-content: space-around;
       background-image: linear-gradient(yellow, orange);
 
       &.coldWeather {
@@ -63,12 +84,6 @@
           color: white;
         }
       }
-    }
-
-    li {
-      @include toRem(padding, 30);
-      display: flex;
-      justify-content: space-around;
 
       .icon {
         width: 50%;

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 function WeatherInfo({ weather }) {
   const getNextDays = weather.daily.slice(0, 2)
   const [weatherColors, setWeatherColors] = useState('')
+  const [updateWeather, setUpdateWeather] = useState('')
+  const [unit, setUnit] = useState('C')
 
   // Colors of the background
   useEffect(() => {
@@ -49,16 +51,28 @@ function WeatherInfo({ weather }) {
     }
   }
 
+  let convert = (temp) => {
+    if (unit === 'C') {
+      const newTemp = temp * 1.8 + 32;
+      setUpdateWeather(Math.round(newTemp))
+      setUnit('F')
+    }
+
+    if (unit === 'F') {
+      setUnit('C')
+    }
+  }
+
   return (
     <div className="weatherInfo">
       <ul className={weatherColors}>
-        <li className="weatherInfoToday">
+        <li className="weatherInfoToday" onClick={() => convert(weather.current.temp)}>
           <div className="icon">
             <i className="icon" data-icon={getIcon(weather.current.weather[0].icon)}></i>
           </div>
           <div className="weatherInfoData">
             <p>
-              Hoje <span>{Math.round(weather.current.temp)}ºC</span>
+              Hoje <span>{unit === 'C'? Math.round(weather.current.temp) + 'º' + unit : updateWeather + 'º' + unit}</span>
             </p>
             <p className="spotlight">
               {weather.current.weather[0].description}

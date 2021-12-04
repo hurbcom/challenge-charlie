@@ -10,6 +10,8 @@ function WeatherFieldLocation({ location, handleSubmit, handleChange }) {
           value={location}
           onChange={handleChange}
         />
+
+        <button type="submit" className="weatherFieldButton">Buscar</button>
       </form>
     </div>
   )

@@ -1,6 +1,8 @@
 function Loading() {
   return (
-    <p>Carregando...</p>
+    <div className="loaderContainer">
+      <div className="loaderSpin"></div>
+    </div>
   )
 }
 
