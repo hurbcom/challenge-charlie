@@ -4,7 +4,7 @@ Checklist:
 [x] Estrutura inicial da aplicação
 [x] Importação dos ícones de clima
 [ ] Testar a responsividade da aplicação
-[ ] Utilizar API do Bing para inserir imagem de fundo
+[x] Utilizar API do Bing para inserir imagem de fundo
 [x] Ver como as APIs retornam os dados de tempo
 [x] Deixar input editável e salvar informação em um state
 [ ] Componetizar melhor a listagem do clima da aplicação

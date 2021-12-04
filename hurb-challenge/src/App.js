@@ -15,8 +15,25 @@ function App() {
   const [fullLocation, setFullLocation] = useState()
 
   // Updating the wallpaper
+  let getWallpaper = async () => {
+    const urlCORS = "https://api.allorigins.win/get?url=";
+    const urlBing = "https://www.bing.com";
+    const fullURL = urlCORS + encodeURIComponent(urlBing + '/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR');
+
+    try {
+      const serverResponse = await fetch(fullURL);
+      const data = await serverResponse.json();
+      const dataIntoJSON = JSON.parse(data.contents);
+      const imageUrl = urlBing + dataIntoJSON.images[0].url;
+      setWallpaper(imageUrl);
+    } catch {
+      toast.error('Erro ao carregar a imagem de fundo')
+      setWallpaper('')
+    }
+  }
+
   useEffect(() => {
-    setWallpaper('https://www.bing.com/th?id=OHR.RainbowMountain_ROW1744297553_1920x1080.jpg&rf=LaDigue_1920x1080.jpg')
+    getWallpaper()
   }, [wallpaper])
 
   // Get the geolocation from the navigator
