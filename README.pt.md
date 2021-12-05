@@ -1,7 +1,7 @@
 ## <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Hurb Challenge | Pamela Santos
 Aplicação que exibe a previsão do tempo de acordo com a geolocalização que for ativada através do navegador ou caso o usuário não queira ativá-la, a localização poderá ser digitado por ele.
 
-<img src="./exemplo.jpg" alt="Hurb Challenge" />
+<img src="./application.png" alt="Hurb Challenge" />
 
 #### APIs utilizadas
 - [Open Weather](https://openweathermap.org/api)

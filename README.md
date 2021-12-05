@@ -3,7 +3,7 @@
 ## <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Hurb Challenge | Pamela Santos
 Aplication that shows the forecast according to the geolocation of the browser or if the user doesn't want to active it, the location can be typed by him.
 
-<img src="./exemplo.jpg" alt="Hurb Challenge" />
+<img src="./application.png" alt="Hurb Challenge" />
 
 #### APIs
 - [Open Weather](https://openweathermap.org/api)
