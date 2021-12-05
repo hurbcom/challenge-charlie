@@ -1,0 +1,2 @@
+Regras:
+    - [x] Se caso a requisição for completada, seu status deve retornar 200.

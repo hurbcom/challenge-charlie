@@ -1,0 +1,5 @@
+Regras:
+    - [x] Se caso a temperatura seja abaixo de 15ºC, deve retornar azul.
+    - [x] Se caso a temperatura seja acima de 35ºC, deve retornar vermelho.
+    - [x] Se caso a temperatura for acima de 15ºC e abaixo de 35ºC, deve retornar amarelo.
+    - [x] Quando não houver temperatura, deve retornar cinza.

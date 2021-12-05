@@ -1,0 +1,2 @@
+Regras:
+    - [x] Se caso a requisição for completada, a propriedade 'images' deve conter o comprimento de array maior que 0.
