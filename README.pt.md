@@ -1,7 +1,7 @@
 ## <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Hurb Challenge | Pamela Santos
-Aplicação que exibe a previsão do tempo de acordo com a geolocalização que for ativada através do navegador ou caso o usuário não queira ativá-la, a localização poderá ser escolhida manualmente.
+Aplicação que exibe a previsão do tempo de acordo com a geolocalização que for ativada através do navegador ou caso o usuário não queira ativá-la, a localização poderá ser digitado por ele.
 
-<img src="./application.png" alt="Hurb Challenge" />
+<img src="./exemplo.jpg" alt="Hurb Challenge" />
 
 #### APIs utilizadas
 - [Open Weather](https://openweathermap.org/api)
@@ -23,9 +23,10 @@ Aplicação que exibe a previsão do tempo de acordo com a geolocalização que 
 
     REACT_APP_OPEN_WEATHER_KEY="{#value}"
   REACT_APP_OPEN_CAGE_DATA_KEY="{#value}"
+- Rodar o comando `npm install` para instalar todas as dependências utilizadas na aplicação
 - O projeto abrirá em localhost na porta `:3000` após rodar `npm start`
 - Para gerar os arquivos para produção, necessário rodar `npm build`
 
 #### Problemas ocorridos
-- Não consegui deixar a aplicação rodando com o Docker. Tive alguns problemas na instalação e por não ter muito conhecimento sobre esse tópico não consegui fazer funcionar com outras alternativas similares ao Docker Desktop.
+- Não consegui deixar a aplicação rodando com o Docker. Tive alguns problemas na instalação e não tenho muito conhecimento nesse tópico.
 - Para extrair a imagem de fundo da API do Bing, ocorreram alguns problemas de CORS, mas consegui ajustar buscando uma alternativa na internet que permite a extração desses dados.
