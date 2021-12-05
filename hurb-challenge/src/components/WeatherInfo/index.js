@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from 'react';
+import cx from 'classnames';
 
 function WeatherInfo({ weather }) {
   const getNextDays = weather.daily.slice(0, 2)
-  const [weatherColors, setWeatherColors] = useState('')
-  const [updateWeather, setUpdateWeather] = useState('')
-  const [unit, setUnit] = useState('C')
+  const [conversion, setConversion] = useState(true)
 
   // Colors of the background
-  useEffect(() => {
-    const currentWeather = Math.round(weather.current.temp)
+  let weatherColors = (temp) => {
+    const currentWeather = Math.round(temp)
 
     switch(true) {
       case currentWeather < 15 :
-        setWeatherColors('coldWeather');
-        break;
+        return 'coldWeather';
       case currentWeather > 35 :
-        setWeatherColors('hotWeather');
-        break;
+        return 'hotWeather';
       default:
-        setWeatherColors('');
-        break;
+        return '';
     }
-  }, [weather])
+  }
 
   // Bringing the correct icon
   let getIcon = (id) => {
@@ -51,28 +47,21 @@ function WeatherInfo({ weather }) {
     }
   }
 
-  let convert = (temp) => {
-    if (unit === 'C') {
-      const newTemp = temp * 1.8 + 32;
-      setUpdateWeather(Math.round(newTemp))
-      setUnit('F')
-    }
-
-    if (unit === 'F') {
-      setUnit('C')
-    }
-  }
+  let celsiusToFahrenheit = celsius => celsius * 9/5 + 32;
 
   return (
     <div className="weatherInfo">
-      <ul className={weatherColors}>
-        <li className="weatherInfoToday" onClick={() => convert(weather.current.temp)}>
+      <ul>
+        <li
+          className={cx('weatherInfoToday', weatherColors(weather.current.temp))}
+          onClick={() => setConversion(!conversion)}
+        >
           <div className="icon">
             <i className="icon" data-icon={getIcon(weather.current.weather[0].icon)}></i>
           </div>
           <div className="weatherInfoData">
             <p>
-              Hoje <span>{unit === 'C'? Math.round(weather.current.temp) + 'º' + unit : updateWeather + 'º' + unit}</span>
+              Hoje <span>{conversion ? Math.round(weather.current.temp) + 'ºC' : Math.round(celsiusToFahrenheit(weather.current.temp)) + 'ºF'}</span>
             </p>
             <p className="spotlight">
               {weather.current.weather[0].description}
@@ -86,14 +75,18 @@ function WeatherInfo({ weather }) {
         </li>
         {getNextDays.map((elem, key) => {
           return (
-            <li key={key} className="weatherInfoAfter">
+            <li
+              key={key}
+              className={cx('weatherInfoAfter', weatherColors(elem.temp.day))}
+              onClick={() => setConversion(!conversion)}
+            >
               <div className="icon">
                 <i className="icon" data-icon={getIcon(elem.weather[0].icon)}></i>
               </div>
               <div className="weatherInfoData">
                 <p>
                   { key === 0 ? 'Amanhã' : 'Depois de amanhã' }
-                  <span>{Math.round(elem.temp.day)}ºC</span>
+                  <span>{conversion ? Math.round(elem.temp.day) + 'ºC' : Math.round(celsiusToFahrenheit(elem.temp.day)) + 'ºF'}</span>
                 </p>
               </div>
             </li>

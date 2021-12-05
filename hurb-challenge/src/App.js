@@ -66,6 +66,25 @@ function App() {
     })
   }
 
+  // Get the full info from the location
+  let getAddress = async (lat, long) => {
+    let res = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
+      params: {
+        q: lat + ',' + long,
+        key: process.env.REACT_APP_OPEN_CAGE_DATA_KEY,
+        language: 'pt_br'
+      }
+    })
+    setFullLocation(res.data.results);
+  }
+
+  useEffect(() => {
+    if (geolocation && fullLocation) {
+      const { city } = fullLocation[0].components
+      setLocation(`${city}`)
+    }
+  }, [geolocation, fullLocation])
+
   // Get the info from the input
   let handleChange = (event) => {
     const { value } = event.target
@@ -100,25 +119,6 @@ function App() {
       getWeather(typedLocation.coord.lat, typedLocation.coord.lon)
     }
   }, [typedLocation])
-
-  // Get the full info from the location
-  let getAddress = async (lat, long) => {
-    let res = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
-      params: {
-        q: lat + ',' + long,
-        key: process.env.REACT_APP_OPEN_CAGE_DATA_KEY,
-        language: 'pt_br'
-      }
-    })
-    setFullLocation(res.data.results);
-  }
-
-  useEffect(() => {
-    if (geolocation && fullLocation) {
-      const { city } = fullLocation[0].components
-      setLocation(`${city}`)
-    }
-  }, [geolocation, fullLocation])
 
   return (
     <div className="weatherWallpaper" style={{ backgroundImage: `url(${wallpaper})` }}>

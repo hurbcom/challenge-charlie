@@ -11,11 +11,11 @@ Checklist:
 [x] Ver funcionamento da geolocalização
 [x] Ver informação da previsão do tempo para os próximos dias
 [x] Listagem de ícones
-[ ] Padrão de cores de acordo com o tempo
+[x] Padrão de cores de acordo com o tempo
 [x] Fazer um loader para a página
 [x] Atualização de dados quando busca por cidade/estado no input
 [x] Incluir um botão de pesquisar no input
-[ ] Converter Celsius para Fahrenheit e vice-versa
+[x] Converter Celsius para Fahrenheit e vice-versa
 
 Requisitos
 - abaixo de 15º: tons de azul
