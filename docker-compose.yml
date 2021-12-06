@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+    app:
+        container_name: challenge-charlie
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - '.:/app'
+            - '/app/node_modules'
+        ports:
+            - '3000:3000'
