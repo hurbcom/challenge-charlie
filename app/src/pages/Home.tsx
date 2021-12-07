@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { WeatherModal } from 'components';
+import { ForecastModal, Overlay } from 'components';
 import { styled, getBackgroundUrl } from 'utils';
 
 interface Props {
@@ -21,9 +21,8 @@ function Home() {
 
   return (
     <HomePage className='Home' backgroundUrl={backgroundUrl}>
-      {/* <header className='Home-header'></header> */}
-      <WeatherModal />
-      {/* <footer className='Home-footer'></footer> */}
+      <Overlay />
+      <ForecastModal />
     </HomePage>
   );
 }

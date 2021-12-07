@@ -2,12 +2,12 @@ import React, { FormEventHandler, ChangeEventHandler } from 'react';
 import { styled, colors } from 'utils';
 
 interface Props {
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  onSubmit?: FormEventHandler<HTMLInputElement>;
-  value?: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  value: string;
 }
 
-const Container = styled.div`
+const Container = styled.form`
   font-size: 2em;
   height: 75px;
   display: flex;
@@ -40,15 +40,9 @@ const Icon = styled.i`
 
 function LocationInput({ value, onChange, onSubmit }: Props) {
   return (
-    <Container>
+    <Container onSubmit={onSubmit}>
       <Icon data-icon='(' />
-      <Input
-        name='location'
-        type='text'
-        value={value}
-        onChange={onChange}
-        onSubmit={onSubmit}
-      />
+      <Input name='location' type='text' value={value} onChange={onChange} />
     </Container>
   );
 }

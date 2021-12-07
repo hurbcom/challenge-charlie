@@ -1,7 +1,14 @@
-const getGeolocation = (setPosition: Function) => {
+const getGeolocation = (setPosition: Function, setSubmit: Function) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
-      setPosition(position);
+      const {
+        coords: { latitude, longitude },
+      } = position;
+      setPosition({
+        latitude,
+        longitude,
+      });
+      setSubmit();
     });
   }
 };

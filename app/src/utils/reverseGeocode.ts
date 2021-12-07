@@ -16,7 +16,7 @@ const reverseGeocode = ({ latitude, longitude, setLocation }: Props) => {
         },
       ],
     } = res.data;
-    setLocation(`${city}, ${state}`);
+    setLocation(city && state ? `${city}, ${state}` : state);
   });
 };
 export default reverseGeocode;
