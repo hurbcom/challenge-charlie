@@ -24,8 +24,8 @@ interface WeatherDataProps {
   windSpeed?: number;
   humidity?: number;
   pressure?: number;
-  weatherDescription: string;
-  weatherIcon: string;
+  description: string;
+  icon: string;
 }
 
 const Container = styled.div<Props>`

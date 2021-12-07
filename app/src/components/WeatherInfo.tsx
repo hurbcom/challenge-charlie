@@ -8,8 +8,8 @@ interface WeatherDataProps {
   windSpeed?: number;
   humidity?: number;
   pressure?: number;
-  weatherDescription: string;
-  weatherIcon: string;
+  description: string;
+  icon: string;
 }
 
 interface Props {
@@ -72,8 +72,8 @@ function WeatherInfo({ infos }: Props) {
             onClick={changeMetric}
             label={'Hoje'}
             temp={getTempLabel(infos[0].temp)}
-            icon={infos[0].weatherIcon}
-            description={infos[0].weatherDescription}
+            icon={infos[0].icon}
+            description={infos[0].description}
             windSpeed={infos[0].windSpeed}
             humidity={infos[0].humidity}
             pressure={infos[0].pressure}

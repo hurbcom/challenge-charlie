@@ -18,8 +18,8 @@ interface WeatherDataProps {
   windSpeed?: number;
   humidity?: number;
   pressure?: number;
-  weatherDescription: string;
-  weatherIcon: string;
+  description: string;
+  icon: string;
 }
 
 const getIcon = (key: string) => {
@@ -68,12 +68,11 @@ const getWeather = ({ latitude, longitude, setWeathers }: Props) => {
     const weathers: WeatherDataProps[] = [data.current, ...daily].map(
       (d, i) => ({
         ...d,
-        label: labels[i],
         temp: { C: Math.floor(d.temp), F: convertToF(Math.floor(d.temp)) },
         humidity: Math.floor(d.humidity),
         windSpeed: d.wind_speed,
-        weatherDescription: d.weather[0].description,
-        weatherIcon: getIcon(d.weather[0].icon).day,
+        description: d.weather[0].description,
+        icon: getIcon(d.weather[0].icon).day,
       })
     );
     setWeathers(weathers);
