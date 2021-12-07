@@ -1,5 +1,6 @@
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var { EnvironmentPlugin } = require('webpack')
 
 module.exports = {
     entry: './index.js',
@@ -10,13 +11,18 @@ module.exports = {
     module: {
         rules: [
             { test: /\.(js)$/, use: 'babel-loader' },
-            { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] }
         ]
     },
     mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
+        }),
+        new EnvironmentPlugin({
+            OPENCAGE_KEY: 'c63386b4f77e46de817bdf94f552cddf',
+            OPENWEATHER_KEY: '7ba73e0eb8efe773ed08bfd0627f07b8'
         })
+
     ]
 }

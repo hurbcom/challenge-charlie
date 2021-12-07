@@ -1,34 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import GlobalStyle from './globalStyles';
+import { Section } from "./layout";
+// import { fetchData } from './services/Resource';
 
 const App = () => {
 
-  const fetchData = async (lat, long) => {
-    const key = 'c63386b4f77e46de817bdf94f552cddf'
-    let content;
-
-    try {
-      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=${key}`)
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-      } else {
-        content = await response.json()
-      }
-
-      return content
-    } catch (e) {
-      return null
-    }
-  };
+  const [pathBackground, setPathBackground] = useState('');
 
   useEffect(() => {
-    fetchData('-3.7634893', '-38.4922015').then(res => console.log(res))
+    // const { images } = await fetchData('https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR');
+    // setPathBackground(images[0].url);
   }, []);
 
   return (
-    <div>
-      <p>Bem-vindo!</p>
-    </div>
+    <Fragment>
+      <Router>
+        <GlobalStyle path={pathBackground} />
+        <Section />
+      </Router>
+    </Fragment>
   );
 };
 
