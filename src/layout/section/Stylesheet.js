@@ -9,5 +9,4 @@ export const Container = styled.div`
 export const Card = styled.div`
     width: 800px;
     height: 100vh;
-    background-color: aquamarine;
 `;

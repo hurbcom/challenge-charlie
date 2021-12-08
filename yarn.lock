@@ -1873,6 +1873,14 @@ babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
+babel-plugin-transform-react-handled-props@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-handled-props/-/babel-plugin-transform-react-handled-props-2.1.0.tgz#11ca76679f7143637d418579f7f021879d4f721e"
+  integrity sha512-Bm7Eqw+hBsKZPyRB6QnnH7FOln/kR2Wgpt9G7pl5S7Nw5Dy5U1DUijLzLwHtOw3/YNc9nvccpCf+QhyA/i0HoA==
+  dependencies:
+    "@babel/types" "^7.4.4"
+    lodash "^4.17.11"
+
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.1.tgz#b4399239b89b2a011f9ddbe3e4f401fc40cff73b"

@@ -10,9 +10,8 @@ export default function Section() {
     return (
         <Container>
             <Card>
-                {geolocation && geolocation.city}
                 <Input setGeolocation={setGeolocation} />
-                <Weather />
+                <Weather city={geolocation?.city} />
             </Card>
         </Container>
     )

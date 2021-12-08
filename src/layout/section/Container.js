@@ -20,7 +20,7 @@ const useContainer = () => {
     }, []);
 
     const getPosition = async (latitude, longitude) => {
-        const { results } = await fetchData(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_KEY}`);
+        const { results } = await fetchData(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&lng=pt_br&key=${OPENCAGE_KEY}`);
         setGeolocation({
             latitude,
             longitude,
