@@ -7,6 +7,6 @@ const getBackgroundUrl = (setBackgroundUrl: Function) => {
     'Access-Control-Allow-Headers': 'Content-Type',
   };
   const url = `${process.env.API_BASE_URL}/background`;
-  axios.get(url, { headers }).then((res) => setBackgroundUrl(res.data));
+  axios.get(url, { headers }).then((res) => setBackgroundUrl(res.data.url));
 };
 export default getBackgroundUrl;

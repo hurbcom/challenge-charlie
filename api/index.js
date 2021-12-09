@@ -13,7 +13,7 @@ app.get('/background', function (req, res) {
     .get(url)
     .then(function (response) {
       var backgroundImageUrl = BING_BASE_URL + response.data.images[0].url;
-      return res.send(backgroundImageUrl);
+      return res.json({ url: backgroundImageUrl });
     })
     .catch(function (err) {
       return res.send({
