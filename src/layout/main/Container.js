@@ -32,8 +32,8 @@ const useContainer = () => {
         });
 
         setGeolocation({
-            lat,
-            lng,
+            lat: parseInt(lat),
+            lng: parseInt(lng),
             city: results[0].components.city,
             state_code: results[0].components.state_code,
             country: results[0].components.country,

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 import { Search } from "../../components";
 import { Today, Tomorrow, AfterTomorrow, Icon } from "./Stylesheet";
 import useContainer from "./Container";
@@ -6,6 +7,7 @@ import useContainer from "./Container";
 const Component = (props) => {
 
     const { location } = props;
+
     const { weather, convertUnit } = useContainer(location);
 
     const unit = weather?.type == 'metric' ? '°C' : '°F';
@@ -61,6 +63,17 @@ const Component = (props) => {
             }
         </Fragment>
     );
+};
+
+Component.propTypes = {
+    location: PropTypes.shape({
+        city: PropTypes.string,
+        country: PropTypes.string,
+        lat: PropTypes.number,
+        lng: PropTypes.number,
+        state: PropTypes.string,
+        state_code: PropTypes.string
+    })
 };
 
 export default Component;
