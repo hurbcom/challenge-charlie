@@ -1,10 +1,10 @@
 export const getLocation = () => {
     const url = new URL(window.location.href);
     const lat = url.searchParams.get("lat");
-    const lon = url.searchParams.get("lon");
+    const lng = url.searchParams.get("lng");
 
     return {
         lat,
-        lon
+        lng
     }
 };

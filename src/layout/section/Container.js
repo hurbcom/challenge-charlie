@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { getLocation } from '../../utils';
 import { fetchData } from '../../services/Resource';
 
 const useContainer = () => {
@@ -7,23 +8,32 @@ const useContainer = () => {
     let history = useHistory();
 
     const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
+    const OPENCAGE_URI = 'https://api.opencagedata.com/geocode/v1/json';
+
+    const { lat, lng } = getLocation();
 
     const [geolocation, setGeolocation] = useState(null);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(position => {
-            history.push({
-                search: `?lat=${position.coords.latitude}&lon=${position.coords.longitude}`
-            })
-            getPosition(position.coords.latitude, position.coords.longitude);
-        });
+        if (lat || lng) {
+            getPosition(lat, lng);
+        } else {
+            navigator.geolocation.getCurrentPosition(position => {
+                getPosition(position.coords.latitude, position.coords.longitude);
+            });
+        }
     }, []);
 
-    const getPosition = async (latitude, longitude) => {
-        const { results } = await fetchData(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&lng=pt_br&key=${OPENCAGE_KEY}`);
+    const getPosition = async (lat, lng) => {
+        const { results } = await fetchData(`${OPENCAGE_URI}?q=${lat}+${lng}&lng=pt_br&key=${OPENCAGE_KEY}`);
+
+        history.push({
+            search: `?lat=${lat}&lng=${lng}`
+        })
+
         setGeolocation({
-            latitude,
-            longitude,
+            lat,
+            lng,
             city: results[0].components.city,
             state_code: results[0].components.state_code
         })

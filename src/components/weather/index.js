@@ -4,7 +4,8 @@ import useContainer from "./Container";
 
 const Weather = (props) => {
 
-    const { weather, convertUnit } = useContainer(props);
+    const { location } = props;
+    const { weather, convertUnit } = useContainer(location);
 
     const unit = weather?.type == 'metric' ? '°C' : '°F';
 
@@ -13,8 +14,8 @@ const Weather = (props) => {
             <Today color={weather?.colors[0]} className="p-vertical__40">
                 {weather &&
                     <Fragment>
-                        <div class="text-align___center">
-                            <h2>{props.city}</h2>
+                        <div className="text-align___center">
+                            <h2>{location?.city}</h2>
                             <h4>Hoje</h4>
                         </div>
                         <div className="flex-direction__row flex-justify__center">

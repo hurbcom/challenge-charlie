@@ -11,7 +11,7 @@ export default function Section() {
         <Container>
             <Card>
                 <Search />
-                <Weather city={geolocation?.city} />
+                <Weather location={geolocation} />
             </Card>
         </Container>
     )
