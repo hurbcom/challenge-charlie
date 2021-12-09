@@ -24,7 +24,6 @@ const GlobalStyle = createGlobalStyle`
       transform: translateY(-50%);
       height: 60vh;
       width: 700px;
-      border: 1px solid red
     }
 
     //padding
@@ -33,6 +32,9 @@ const GlobalStyle = createGlobalStyle`
     }
     .p-horizontal__20 {
       padding: 0 20px;
+    }
+    .p-bottom__20 {
+      padding-bottom: 20px;
     }
 
     //flexbox

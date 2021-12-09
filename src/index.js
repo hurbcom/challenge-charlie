@@ -2,7 +2,7 @@ import React, { useEffect, Fragment, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import GlobalStyle from './globalStyles';
-import { Section } from "./layout";
+import { Main } from "./layout";
 // import { fetchData } from './services/Resource';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
     <Fragment>
       <Router>
         <GlobalStyle path={pathBackground} />
-        <Section />
+        <Main />
       </Router>
     </Fragment>
   );

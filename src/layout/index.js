@@ -1,3 +1,3 @@
-import Section from './section';
+import Main from './main';
 
-export { Section };
+export { Main };
