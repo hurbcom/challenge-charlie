@@ -1,4 +1,4 @@
-# Challenge-Charlie
+# Challenge-Charlie - App
 
 The objective is to create a React App to use [OpenWeather API](https://openweathermap.org/api) to show the forecast for any city.
 
