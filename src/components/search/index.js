@@ -1,17 +1,15 @@
 import React from "react";
+import useContainer from './Container';
 import { Input } from './Stylesheet';
 
-const Component = (props) => {
-    const handleSubmit = (e) => {
-        e.preventDefault();
+const Component = () => {
 
-        console.log('enviou')
-    };
+    const { handleSubmit } = useContainer();
 
     return (
         <div className="text-align___center">
             <form onSubmit={handleSubmit}>
-                <Input type="text" placeholder="Digite aqui" />
+                <Input type="text" name="search" placeholder="Digite aqui" />
             </form>
         </div>
     );

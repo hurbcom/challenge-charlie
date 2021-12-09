@@ -29,7 +29,7 @@ const useContainer = () => {
 
         history.push({
             search: `?lat=${lat}&lng=${lng}`
-        })
+        });
 
         setGeolocation({
             lat,
