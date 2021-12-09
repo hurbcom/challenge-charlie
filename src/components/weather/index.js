@@ -19,7 +19,7 @@ const Component = (props) => {
                             <Search />
                         </div>
                         <div className="text-align___center">
-                            <h2>{location?.city}</h2>
+                            <h2>{location?.city || location?.state || location?.country}</h2>
                             <h4>Hoje</h4>
                         </div>
                         <div className="flex-direction__row flex-justify__center">

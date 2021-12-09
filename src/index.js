@@ -14,9 +14,8 @@ const App = () => {
   }, []);
 
   const fetchBackground = async () => {
-    const response = await fetchData('https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR');
-    console.log(response)
-    // setPathBackground(images[0].url);
+    const { images } = await fetchData('https://thingproxy.freeboard.io/fetch/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR');
+    setPathBackground(images[0].url);
   }
 
   return (

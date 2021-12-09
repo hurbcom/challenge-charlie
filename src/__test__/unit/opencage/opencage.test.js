@@ -1,4 +1,4 @@
-import { fetchData } from '../../__mocks__/request'
+import { fetchData } from '../../../__mocks__/request';
 
 const unmockedFetch = global.fetch
 
