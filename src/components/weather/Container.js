@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getLocation, getWindDirection, getBackgroundColor } from '../../utils';
+import { getLocation, getWindDirection, getBackgroundColor, getIcon } from '../../utils';
 import { fetchData } from '../../services/Resource';
 
 const useContainer = () => {
@@ -25,15 +25,18 @@ const useContainer = () => {
                 wind_deg: getWindDirection(current.wind_deg),
                 humidity: `${current.humidity}%`,
                 pressure: `${current.pressure}hPA`,
+                icon: getIcon(current.weather[0].icon)
             },
             tomorrow: {
                 temp: parseInt(daily[1].temp.day),
+                icon: getIcon(daily[1].weather[0].icon)
             },
             afterTomorrow: {
                 temp: parseInt(daily[2].temp.day),
+                icon: getIcon(daily[2].weather[0].icon)
             },
             type: unit,
-            colors: getBackgroundColor(unit, [current.temp, daily[1].temp.day, daily[2].temp.day])
+            colors: getBackgroundColor(unit, [current.temp, daily[1].temp.day, daily[2].temp.day]),
         });
     };
 

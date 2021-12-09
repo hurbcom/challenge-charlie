@@ -30,8 +30,7 @@ const useContainer = () => {
     };
 
     return {
-        geolocation,
-        setGeolocation
+        geolocation
     }
 };
 

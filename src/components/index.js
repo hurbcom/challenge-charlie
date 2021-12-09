@@ -1,4 +1,4 @@
-import Input from './input';
+import Search from './search';
 import Weather from './weather';
 
-export { Input, Weather };
+export { Search, Weather };
