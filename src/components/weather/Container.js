@@ -12,7 +12,7 @@ const useContainer = (props) => {
 
     useEffect(() => {
         getWeather();
-    }, [props]);
+    }, [props, unit]);
 
     const getWeather = async () => {
         if (props) {

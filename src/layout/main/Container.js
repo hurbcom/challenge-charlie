@@ -36,7 +36,7 @@ const useContainer = () => {
             lng,
             city: results[0].components.city,
             state_code: results[0].components.state_code
-        })
+        });
     };
 
     return {

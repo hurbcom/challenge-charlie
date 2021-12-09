@@ -1,11 +1,20 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { Input } from './Stylesheet';
 
-const Input = (props) => {
+const Component = (props) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('enviou')
+    };
+
     return (
-        <Fragment>
-            <input type="text" />
-        </Fragment>
+        <div className="text-align___center">
+            <form onSubmit={handleSubmit}>
+                <Input type="text" placeholder="Digite aqui" />
+            </form>
+        </div>
     );
 };
 
-export default Input;
+export default Component;

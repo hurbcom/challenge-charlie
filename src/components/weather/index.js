@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
+import { Search } from "../../components";
 import { Today, Tomorrow, AfterTomorrow, Icon } from "./Stylesheet";
 import useContainer from "./Container";
 
-const Weather = (props) => {
+const Component = (props) => {
 
     const { location } = props;
     const { weather, convertUnit } = useContainer(location);
@@ -11,9 +12,12 @@ const Weather = (props) => {
 
     return (
         <Fragment>
-            <Today color={weather?.colors[0]} className="p-vertical__40">
-                {weather &&
-                    <Fragment>
+            {weather &&
+                <Fragment>
+                    <Today color={weather?.colors[0]} className="p-vertical__40">
+                        <div className="p-bottom__20">
+                            <Search />
+                        </div>
                         <div className="text-align___center">
                             <h2>{location?.city}</h2>
                             <h4>Hoje</h4>
@@ -30,12 +34,8 @@ const Weather = (props) => {
                                 <p>Pressão: <strong>{weather.today.pressure}</strong></p>
                             </div>
                         </div>
-                    </Fragment>
-                }
-            </Today>
-            <Tomorrow color={weather?.colors[1]}>
-                {weather &&
-                    <Fragment>
+                    </Today>
+                    <Tomorrow color={weather?.colors[1]}>
                         <div>
                             <h2>Amanhã</h2>
                         </div>
@@ -45,12 +45,8 @@ const Weather = (props) => {
                         <div>
                             <Icon height={35} src={weather.tomorrow.icon} alt={"Tomorrow"} />
                         </div>
-                    </Fragment>
-                }
-            </Tomorrow>
-            <AfterTomorrow color={weather?.colors[2]}>
-                {weather &&
-                    <Fragment>
+                    </Tomorrow>
+                    <AfterTomorrow color={weather?.colors[2]}>
                         <div>
                             <h2>Depois de amanhã</h2>
                         </div>
@@ -60,11 +56,11 @@ const Weather = (props) => {
                         <div>
                             <Icon height={35} src={weather.afterTomorrow.icon} alt={"After tomorrow"} />
                         </div>
-                    </Fragment>
-                }
-            </AfterTomorrow>
+                    </AfterTomorrow>
+                </Fragment>
+            }
         </Fragment>
     );
 };
 
-export default Weather;
+export default Component;

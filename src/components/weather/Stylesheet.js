@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const styleExtend = styled.div`
-    height: 80px;
+    height: auto;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 30px;
 	display: flex;
     flex-direction: row;
     background-color: ${props => props.color};    
@@ -25,6 +25,8 @@ const styleExtend = styled.div`
 
 export const Today = styled.div`
     height: auto;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px; 
     background-color: ${props => props.color};
 `;
 
