@@ -23,7 +23,6 @@ interface WeatherDataProps {
 }
 
 const getIcon = (key: string) => {
-  console.log('key', key);
   switch (key) {
     case '01d':
     case '01n':
@@ -54,7 +53,6 @@ const getIcon = (key: string) => {
 const convertToF = (celsius: number) => {
   return (celsius * 9) / 5 + 32;
 };
-const labels = ['Hoje', 'Amanhã', 'Depois de Amanhã'];
 
 const getWeather = ({ latitude, longitude, setWeathers }: Props) => {
   const urls = `${process.env.OPEN_WEATHER_URL}?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&exclude=minutely,hourly,alerts&lang=pt_BR&units=metric`;

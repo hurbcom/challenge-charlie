@@ -68,7 +68,6 @@ function ForecastModal() {
 
   const onSubmitLocation = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Submit');
     setSubmit(!submit);
   };
 
@@ -79,7 +78,6 @@ function ForecastModal() {
   useEffect(() => {
     if (position?.latitude && position?.longitude) {
       const { latitude, longitude } = position;
-      console.log(position);
       reverseGeocode({ latitude, longitude, setLocation });
       getWeather({ latitude, longitude, setWeathers });
     }
