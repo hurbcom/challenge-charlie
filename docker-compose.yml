@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+    app:
+        build:
+            context: "./app"
+            dockerfile: Dockerfile
+        command: ["yarn", "start"]
+        volumes:
+            - /app/node_modules
+            - ./app:/app
+        ports:
+            - 8080:3000
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        depends_on:
+            - api
+    api:
+        build:
+            context: "./api"
+            dockerfile: Dockerfile
+        command: ["yarn", "start"]
+        volumes:
+            - /api/node_modules
+            - ./api:/api
+        ports:
+            - 8081:3001
