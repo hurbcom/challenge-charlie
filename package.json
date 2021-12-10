@@ -10,15 +10,18 @@
     ],
     "plugins": [
       "@babel/transform-runtime"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "@babel/plugin-transform-modules-commonjs"
-        ]
-      }
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^.+.(svg)$": "jest-transform-stub"
     }
   },
+  "type": "module",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open",
@@ -47,6 +50,7 @@
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "eslint": "^8.3.0",
@@ -57,6 +61,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.3",
+    "jest-transform-stub": "^2.0.0",
     "prettier": "^2.5.1",
     "style-loader": "^3.3.1",
     "svg-url-loader": "^7.1.1",

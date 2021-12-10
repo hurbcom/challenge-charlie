@@ -1,4 +1,1 @@
 node_modules
-.dockerignore
-Dockerfile
-Dockerfile.prod
