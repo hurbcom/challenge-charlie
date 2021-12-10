@@ -1,7 +1,5 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
----
-
 ## Projeto
 
 O projeto utiliza o *webpack* como *module bundler* e o babel como *compiler/transpiler*. Para manter a qualidade do código foi acrescentado o *eslint* com a *Airbnb Style Guide*, junto como *Prettier* para auxiliar na formatação. A folha de estilo está estruturada com *Styled Components*.
@@ -11,8 +9,6 @@ O projeto utiliza o *webpack* como *module bundler* e o babel como *compiler/tra
  Neste momento, todas as API`s estão sendo consumidas, entre elas: Bing, OpenCage e OpenWeather.
  
  Para finalizar, o projeto também está rodando dentro de um Container Docker.
-
----
 
 ## Apresentação
 
