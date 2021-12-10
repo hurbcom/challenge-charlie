@@ -13,5 +13,29 @@ O projeto utiliza o *webpack* como *module bundler* e o babel como *compiler/tra
 ## Apresentação
 
   <img alt="apresentacao" title="Challenge Charlie" src="https://github.com/andrecoliveira/challenge-charlie/blob/master/src/assets/icons/interface.gif" width="600px">
+  
+## Executar o projeto localmente
+```bash
+$ git clone https://github.com/andrecoliveira/challenge-charlie.git
+$ cd challenge-charlie
+$ npm install
+$ npm start
 
----
+#Executar testes unitários
+$ npm test
+```
+
+## Executar o projeto no Container 
+```bash
+#imagem desenvolvimento
+$ docker build -t challenge-charlie:dev .
+#imagem produção
+$ docker build -f Dockerfile.prod -t challenge-charlie:prod .
+
+#rodar container para desenvolvimento:
+$ docker-compose up -d --build
+#rodar container para produção:
+$ docker-compose -f docker-compose-prod.yml up --build  
+```
+
+
