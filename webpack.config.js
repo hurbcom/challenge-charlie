@@ -5,7 +5,7 @@ var { EnvironmentPlugin } = require('webpack')
 module.exports = {
     entry: './index.js',
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
     module: {
