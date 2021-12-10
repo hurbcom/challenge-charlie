@@ -31,6 +31,11 @@ export const getBackgroundColor = (unit, number) => {
     if (gradientColors) {
         return gradientColors;
     } else {
-        return number.map(color => checkColors(color))
+        console.log('aqui', unit, number)
+        return unit === 'imperial' ? (
+            number.map(color => checkColors(convertFtoC(color)))
+        ) : (
+            number.map(color => checkColors(color))
+        )
     }
 };

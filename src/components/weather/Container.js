@@ -37,7 +37,7 @@ const useContainer = (props) => {
                     icon: getIcon(daily[2].weather[0].icon)
                 },
                 type: unit,
-                colors: getBackgroundColor(unit, [current.temp, daily[1].temp.day, daily[2].temp.day]),
+                colors: getBackgroundColor(unit, [parseInt(current.temp), parseInt(daily[1].temp.day), parseInt(daily[2].temp.day)]),
             });
         };
     };

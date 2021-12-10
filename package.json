@@ -21,7 +21,6 @@
       "^.+.(svg)$": "jest-transform-stub"
     }
   },
-  "type": "module",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open",
