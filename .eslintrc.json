@@ -1,0 +1,20 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "google",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ]
+}
