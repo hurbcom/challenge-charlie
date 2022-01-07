@@ -9,7 +9,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.2"
+    "styled-components": "^5.3.3",
+    "use-axios-client": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,9 +38,9 @@
   },
   "devDependencies": {
     "eslint": "6.8.0",
-    "prettier": "2.5.1",
-    "eslint-plugin-react": "^7.28.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^8.3.0"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "2.5.1"
   }
 }
