@@ -10,9 +10,9 @@ export const tempColors = {
         low: '#b09914e3',
     },
     coldColors: {
-        high: '#0bc1ee',
-        medium: '#1583a5',
-        low: '#13548c',
+        high: '#0bc1eed1',
+        medium: '#1583a5d6',
+        low: '#13548ce0',
     },
     defaultColors: {
         high: '#596364',

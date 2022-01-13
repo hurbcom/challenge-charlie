@@ -1,17 +1,15 @@
 import React from 'react'
 import { useAxios } from 'use-axios-client'
-
+import './index.css'
 import Content from '../content'
 import Loading from '../loading'
 import { Container } from './styles'
 
-const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'
-const REQUEST_IMAGE_URL =
-    'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR'
-
 const Main = () => {
     const { data, loading } = useAxios({
-        url: PROXY_URL + REQUEST_IMAGE_URL,
+        url:
+            process.env.REACT_APP_PROXY_URL +
+            process.env.REACT_APP_REQUEST_IMAGE_URL,
     })
 
     return (

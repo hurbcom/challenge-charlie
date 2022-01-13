@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.__react_component_tooltip {
+  font-size: 10px !important;
+}

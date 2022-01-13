@@ -7,11 +7,6 @@ import { Current, Upcoming } from '../days'
 
 import { Container } from './styles'
 
-const OPEN_CAGE_KEY = 'c63386b4f77e46de817bdf94f552cddf'
-const OPEN_WEATHER_KEY = '7ba73e0eb8efe773ed08bfd0627f07b8'
-const OPEN_CAGE_URL = 'https://api.opencagedata.com/geocode/v1/json'
-const OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/onecall'
-
 const Content = () => {
     const [latitude, setLatitude] = useState()
     const [location, setLocation] = useState()
@@ -21,6 +16,7 @@ const Content = () => {
     const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [loading, setLoading] = useState(false)
     const [isCelsius, setIsCelsius] = useState(true)
+    const [firstRender, setFirstRender] = useState(true)
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
     useEffect(() => {
@@ -31,20 +27,22 @@ const Content = () => {
     }, [])
 
     useEffect(() => {
-        if (latitude && longitude) fetchLocation()
+        if (latitude && longitude && firstRender) fetchLocation()
     }, [latitude, longitude])
 
     useEffect(() => {
-        if (location) fetchWeather()
+        if (location && firstRender) {
+            fetchWeather().finally(() => setFirstRender(false))
+        }
     }, [location])
 
     const fetchLocation = async () => {
         setLoading(true)
         await axios
-            .get(OPEN_CAGE_URL, {
+            .get(process.env.REACT_APP_OPEN_CAGE_URL, {
                 params: {
                     q: `${latitude}, ${longitude}`,
-                    key: OPEN_CAGE_KEY,
+                    key: process.env.REACT_APP_OPEN_CAGE_KEY,
                 },
             })
             .then(({ data }) => {
@@ -59,20 +57,19 @@ const Content = () => {
             .finally(() => setLoading(false))
     }
 
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat = latitude, lon = longitude) => {
         setLoading(true)
         await axios
-            .get(OPEN_WEATHER_URL, {
+            .get(process.env.REACT_APP_OPEN_WEATHER_URL, {
                 params: {
-                    lat: latitude,
-                    lon: longitude,
+                    lat,
+                    lon,
                     lang: 'pt_br',
-                    appid: OPEN_WEATHER_KEY,
+                    appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
                     exclude: 'minutely,hourly,alerts',
                 },
             })
             .then(({ data }) => {
-                console.log('DATA', data)
                 setCurrentData(data.current)
                 setTomorrowData(data.daily[1])
                 setAfterTomorrowData(data.daily[2])
@@ -97,6 +94,10 @@ const Content = () => {
                                 isCelsius={isCelsius}
                                 setColor={setColorScale}
                                 city={location.split(',')[0]}
+                                changeLocation={(city, lat, lon) => {
+                                    setLocation(city)
+                                    fetchWeather(lat, lon)
+                                }}
                                 setIsCelsius={() => setIsCelsius(!isCelsius)}
                             />
                         )}

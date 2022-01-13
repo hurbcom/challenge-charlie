@@ -1,4 +1,8 @@
+import axios from 'axios'
+import ReactTooltip from 'react-tooltip'
 import React, { useEffect, useState } from 'react'
+
+import searchIcon from '../../assets/search.svg'
 import inputIcon from '../../assets/input-icon.svg'
 
 import {
@@ -6,6 +10,8 @@ import {
     CurrentSection,
     InputContainer,
     StyledInput,
+    InputSearch,
+    InputIcon,
     Today,
 } from './styles'
 
@@ -19,7 +25,15 @@ import {
 
 import Title from './title'
 
-const Current = ({ data, color, setColor, city, isCelsius, setIsCelsius }) => {
+const Current = ({
+    data,
+    color,
+    setColor,
+    city,
+    isCelsius,
+    setIsCelsius,
+    changeLocation,
+}) => {
     const [icon, setIcon] = useState()
     const [humidity, setHumidity] = useState()
     const [pressure, setPressure] = useState()
@@ -27,6 +41,27 @@ const Current = ({ data, color, setColor, city, isCelsius, setIsCelsius }) => {
     const [temperature, setTemperature] = useState()
     const [windDegrees, setWindDegrees] = useState()
     const [description, setDescription] = useState('')
+
+    const searchLocation = async (city) => {
+        await axios
+            .get(process.env.REACT_APP_OPEN_CAGE_URL, {
+                params: {
+                    q: city,
+                    key: process.env.REACT_APP_OPEN_CAGE_KEY,
+                },
+            })
+            .then(({ data }) => {
+                const location = data.results[0]
+                changeLocation(
+                    location.formatted,
+                    location.geometry.lat,
+                    location.geometry.lng
+                )
+            })
+            .catch((e) => {
+                console.log('TRATAR ERRO LOCATION', e)
+            })
+    }
 
     useEffect(() => {
         const now = new Date(data.dt * 1000)
@@ -42,14 +77,34 @@ const Current = ({ data, color, setColor, city, isCelsius, setIsCelsius }) => {
         setIcon(getTempIcon(data.weather[0].id, now.getHours()))
     }, [])
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        searchLocation(e.target[0].value)
+    }
+
+    const searchClicked = () => {
+        searchLocation(document.getElementById('search-input').value)
+    }
+
     return (
         <CurrentSection color={color}>
-            <InputContainer>
-                <img src={inputIcon} alt='input-icon' />
+            <InputContainer onSubmit={handleSubmit}>
+                <InputIcon
+                    src={inputIcon}
+                    alt='input-icon'
+                    data-tip='Para resultados mais precisos, digite cidade e estado separados por vírgula.'
+                />
+                <ReactTooltip effect='solid' />
                 <StyledInput
                     type='text'
                     name='location'
+                    id='search-input'
                     placeholder='Digite a cidade'
+                />
+                <InputSearch
+                    src={searchIcon}
+                    alt='search-icon'
+                    onClick={searchClicked}
                 />
             </InputContainer>
             <Title
