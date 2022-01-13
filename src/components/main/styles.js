@@ -7,7 +7,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: calc(8px + 2vmin);
+    font-size: calc(8px + 1.5vmin);
     background: ${(props) =>
         props.image ? `url(https://bing.com/${props.image})` : '#7bb6dd'};
 `

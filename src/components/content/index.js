@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 
 import Loading from '../loading'
 import { tempColors } from '../../utils'
-import CurrentWeatherArea from './currentWeatherArea'
+import { Current, Upcoming } from '../days'
 
-import { AfterTomorrowSection, Container, TomorrowSection } from './styles'
+import { Container } from './styles'
 
 const OPEN_CAGE_KEY = 'c63386b4f77e46de817bdf94f552cddf'
 const OPEN_WEATHER_KEY = '7ba73e0eb8efe773ed08bfd0627f07b8'
@@ -14,11 +14,13 @@ const OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/onecall'
 
 const Content = () => {
     const [latitude, setLatitude] = useState()
-    const [longitude, setLongitude] = useState()
     const [location, setLocation] = useState()
+    const [longitude, setLongitude] = useState()
+    const [currentData, setCurrentData] = useState()
+    const [tomorrowData, setTomorrowData] = useState()
+    const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [loading, setLoading] = useState(false)
     const [isCelsius, setIsCelsius] = useState(true)
-    const [currentData, setCurrentData] = useState()
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
     useEffect(() => {
@@ -72,6 +74,8 @@ const Content = () => {
             .then(({ data }) => {
                 console.log('DATA', data)
                 setCurrentData(data.current)
+                setTomorrowData(data.daily[1])
+                setAfterTomorrowData(data.daily[2])
             })
             .catch((e) => {
                 console.log('TRATAR ERRO clima', e)
@@ -87,21 +91,34 @@ const Content = () => {
                 ) : (
                     <>
                         {currentData && (
-                            <CurrentWeatherArea
+                            <Current
                                 data={currentData}
-                                color={colorScale}
+                                color={colorScale.high}
                                 isCelsius={isCelsius}
                                 setColor={setColorScale}
                                 city={location.split(',')[0]}
                                 setIsCelsius={() => setIsCelsius(!isCelsius)}
                             />
                         )}
-                        <TomorrowSection color={colorScale.medium}>
-                            AMANHÃ
-                        </TomorrowSection>
-                        <AfterTomorrowSection color={colorScale.low}>
-                            DEPOIS DE AMANHÃ
-                        </AfterTomorrowSection>
+                        {tomorrowData && (
+                            <Upcoming
+                                label='Amanhã'
+                                data={tomorrowData}
+                                isCelsius={isCelsius}
+                                color={colorScale.medium}
+                                setIsCelsius={() => setIsCelsius(!isCelsius)}
+                            />
+                        )}
+                        {afterTomorrowData && (
+                            <Upcoming
+                                lastSection
+                                isCelsius={isCelsius}
+                                color={colorScale.low}
+                                label='Depois de amanhã'
+                                data={afterTomorrowData}
+                                setIsCelsius={() => setIsCelsius(!isCelsius)}
+                            />
+                        )}
                     </>
                 )}
             </Container>

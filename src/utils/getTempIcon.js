@@ -20,8 +20,9 @@ const tempIcons = {
     thunderstorm: thunderstormIcon,
 }
 
-export const getTempIcon = (weatherId, hour) => {
+export const getTempIcon = (weatherId, hour = 0) => {
     if (weatherId === 800) {
+        if (!hour) return tempIcons.clear.day
         return hour > 18 ? tempIcons.clear.night : tempIcons.clear.day
     }
     if (weatherId > 800) return tempIcons.clouds

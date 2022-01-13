@@ -6,28 +6,20 @@ import {
     CurrentSection,
     InputContainer,
     StyledInput,
-    Title,
     Today,
 } from './styles'
 
 import {
-    capitalizeFirstLetter,
     getWindDirection,
     kelvinToCelsius,
     getTempScale,
     convertWindSpeed,
     getTempIcon,
-    celsiusToFahrenheit,
 } from '../../utils'
 
-const CurrentWeatherArea = ({
-    data,
-    color,
-    setColor,
-    city,
-    isCelsius,
-    setIsCelsius,
-}) => {
+import Title from './title'
+
+const Current = ({ data, color, setColor, city, isCelsius, setIsCelsius }) => {
     const [icon, setIcon] = useState()
     const [humidity, setHumidity] = useState()
     const [pressure, setPressure] = useState()
@@ -38,7 +30,7 @@ const CurrentWeatherArea = ({
 
     useEffect(() => {
         const now = new Date(data.dt * 1000)
-        const temp = kelvinToCelsius(data.temp).toFixed()
+        const temp = kelvinToCelsius(data.temp)
 
         setTemperature(temp)
         setHumidity(data.humidity)
@@ -51,7 +43,7 @@ const CurrentWeatherArea = ({
     }, [])
 
     return (
-        <CurrentSection color={color.high}>
+        <CurrentSection color={color}>
             <InputContainer>
                 <img src={inputIcon} alt='input-icon' />
                 <StyledInput
@@ -60,20 +52,15 @@ const CurrentWeatherArea = ({
                     placeholder='Digite a cidade'
                 />
             </InputContainer>
-            <Title>
-                <h4>{city} - Hoje</h4>
-                <h5>
-                    <span onClick={setIsCelsius}>
-                        {isCelsius
-                            ? `${temperature} °C`
-                            : `${celsiusToFahrenheit(temperature)} °F`}
-                    </span>
-                    {' - '}
-                    {capitalizeFirstLetter(description)}
-                </h5>
-            </Title>
+            <Title
+                isCelsius={isCelsius}
+                label={`${city} - Hoje`}
+                temperature={temperature}
+                description={description}
+                onTemperatureClick={setIsCelsius}
+            />
             <Today>
-                <img src={icon} alt='temperature-icon' />
+                <img src={icon} alt='today-temperature-icon' />
                 <TodayInformation>
                     <p>
                         Vento: {getWindDirection(windDegrees)} {windSpeed}
@@ -91,4 +78,4 @@ const CurrentWeatherArea = ({
     )
 }
 
-export default CurrentWeatherArea
+export default Current
