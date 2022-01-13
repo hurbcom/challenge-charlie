@@ -13,6 +13,7 @@ const Main = () => {
     const [openSnackbar] = useSnackbar(snackbarOptions)
     const [loading, setLoading] = useState(true)
 
+    // load the background image from BING API
     useEffect(() => {
         fetchImage().finally(() => setLoading(false))
     }, [])

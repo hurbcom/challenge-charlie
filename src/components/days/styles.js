@@ -1,33 +1,5 @@
 import styled from 'styled-components'
 
-export const StyledInput = styled.input`
-    width: -webkit-fill-available;
-    height: 30px;
-    border: none;
-    padding: 5px;
-    background-color: #ffffffba;
-
-    :focus-visible {
-        outline: none;
-    }
-`
-export const InputContainer = styled.form`
-    display: flex;
-    margin-bottom: 20px;
-`
-export const InputIcon = styled.img`
-    width: 25px;
-    padding: 0 10px;
-    background-color: #ffffffba;
-    border-radius: 8px 0 0 8px;
-`
-export const InputSearch = styled.img`
-    width: 25px;
-    cursor: pointer;
-    padding: 0 10px;
-    background-color: #ffffffba;
-    border-radius: 0 8px 8px 0;
-`
 export const Today = styled.div`
     display: flex;
     justify-content: space-around;
@@ -37,7 +9,6 @@ export const Today = styled.div`
         margin-top: -20px;
     }
 `
-
 export const Title = styled.div`
     padding: 20px;
     span {

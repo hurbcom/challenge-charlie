@@ -20,12 +20,12 @@ const Content = () => {
     const [firstRender, setFirstRender] = useState(true)
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
+    // get user current coordinates
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 setLatitude(position.coords.latitude)
                 setLongitude(position.coords.longitude)
-                setIsEmpty(false)
             },
             (error) => {
                 if (error.code === 1) {
@@ -37,18 +37,23 @@ const Content = () => {
                         'Não conseguimos carregar sua localização atual. Tente buscar abaixo.'
                     )
                 }
+                setFirstRender(false)
                 setLoading(false)
             },
             { maximumAge: 900000 }
         )
     }, [navigator])
 
+    // get user location based on coordinates
+    // that's why there's a first render verification
     useEffect(() => {
         if (latitude && longitude && firstRender) fetchLocation()
     }, [latitude, longitude])
 
+    // get weather based on location found above
     useEffect(() => {
-        if (location && firstRender && latitude && longitude) {
+        if (location && firstRender) {
+            console.log('ENTREI?')
             fetchWeather().finally(() => setFirstRender(false))
         }
     }, [location])
@@ -101,6 +106,7 @@ const Content = () => {
             .finally(() => setLoading(false))
     }
 
+    // this Content component is divided by the days displayed
     return (
         <Container>
             {loading ? (
