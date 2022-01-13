@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useSnackbar } from 'react-simple-snackbar'
 
 import Loading from '../loading'
-import { tempColors } from '../../utils'
-import { Current, Upcoming } from '../days'
-
 import { Container } from './styles'
+import { Current, Upcoming } from '../days'
+import { snackbarOptions, tempColors } from '../../utils'
 
 const Content = () => {
     const [latitude, setLatitude] = useState()
@@ -13,25 +13,42 @@ const Content = () => {
     const [longitude, setLongitude] = useState()
     const [currentData, setCurrentData] = useState()
     const [tomorrowData, setTomorrowData] = useState()
-    const [afterTomorrowData, setAfterTomorrowData] = useState()
-    const [loading, setLoading] = useState(false)
+    const [openSnackbar] = useSnackbar(snackbarOptions)
+    const [loading, setLoading] = useState(true)
     const [isCelsius, setIsCelsius] = useState(true)
+    const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [firstRender, setFirstRender] = useState(true)
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-        })
-    }, [])
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLatitude(position.coords.latitude)
+                setLongitude(position.coords.longitude)
+                setIsEmpty(false)
+            },
+            (error) => {
+                if (error.code === 1) {
+                    openSnackbar(
+                        'Você precisa permitir acesso a sua localização para carregamento dos dados iniciais.'
+                    )
+                } else {
+                    openSnackbar(
+                        'Não conseguimos carregar sua localização atual. Tente buscar abaixo.'
+                    )
+                }
+                setLoading(false)
+            },
+            { maximumAge: 900000 }
+        )
+    }, [navigator])
 
     useEffect(() => {
         if (latitude && longitude && firstRender) fetchLocation()
     }, [latitude, longitude])
 
     useEffect(() => {
-        if (location && firstRender) {
+        if (location && firstRender && latitude && longitude) {
             fetchWeather().finally(() => setFirstRender(false))
         }
     }, [location])
@@ -51,8 +68,10 @@ const Content = () => {
                 const country = data.results[0].components.country_code
                 setLocation(`${city}, ${state}, ${country}`)
             })
-            .catch((e) => {
-                console.log('TRATAR ERRO LOCATION', e)
+            .catch(() => {
+                openSnackbar(
+                    'Ops, algo deu errado. Por favor, tente novamente.'
+                )
             })
             .finally(() => setLoading(false))
     }
@@ -65,8 +84,8 @@ const Content = () => {
                     lat,
                     lon,
                     lang: 'pt_br',
-                    appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
                     exclude: 'minutely,hourly,alerts',
+                    appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
                 },
             })
             .then(({ data }) => {
@@ -74,56 +93,51 @@ const Content = () => {
                 setTomorrowData(data.daily[1])
                 setAfterTomorrowData(data.daily[2])
             })
-            .catch((e) => {
-                console.log('TRATAR ERRO clima', e)
+            .catch(() => {
+                openSnackbar(
+                    'Ops, algo deu errado. Por favor, tente novamente.'
+                )
             })
             .finally(() => setLoading(false))
     }
 
     return (
-        <>
-            <Container>
-                {loading || !location ? (
-                    <Loading />
-                ) : (
-                    <>
-                        {currentData && (
-                            <Current
-                                data={currentData}
-                                color={colorScale.high}
-                                isCelsius={isCelsius}
-                                setColor={setColorScale}
-                                city={location.split(',')[0]}
-                                changeLocation={(city, lat, lon) => {
-                                    setLocation(city)
-                                    fetchWeather(lat, lon)
-                                }}
-                                setIsCelsius={() => setIsCelsius(!isCelsius)}
-                            />
-                        )}
-                        {tomorrowData && (
-                            <Upcoming
-                                label='Amanhã'
-                                data={tomorrowData}
-                                isCelsius={isCelsius}
-                                color={colorScale.medium}
-                                setIsCelsius={() => setIsCelsius(!isCelsius)}
-                            />
-                        )}
-                        {afterTomorrowData && (
-                            <Upcoming
-                                lastSection
-                                isCelsius={isCelsius}
-                                color={colorScale.low}
-                                label='Depois de amanhã'
-                                data={afterTomorrowData}
-                                setIsCelsius={() => setIsCelsius(!isCelsius)}
-                            />
-                        )}
-                    </>
-                )}
-            </Container>
-        </>
+        <Container>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Current
+                        data={currentData}
+                        isCelsius={isCelsius}
+                        setLoading={setLoading}
+                        color={colorScale.high}
+                        setColor={setColorScale}
+                        changeLocation={(city, lat, lon) => {
+                            setLocation(city)
+                            fetchWeather(lat, lon)
+                        }}
+                        setIsCelsius={() => setIsCelsius(!isCelsius)}
+                        city={location ? location.split(',')[0] : ''}
+                    />
+                    <Upcoming
+                        label='Amanhã'
+                        data={tomorrowData}
+                        isCelsius={isCelsius}
+                        color={colorScale.medium}
+                        setIsCelsius={() => setIsCelsius(!isCelsius)}
+                    />
+                    <Upcoming
+                        lastSection
+                        isCelsius={isCelsius}
+                        color={colorScale.low}
+                        label='Depois de amanhã'
+                        data={afterTomorrowData}
+                        setIsCelsius={() => setIsCelsius(!isCelsius)}
+                    />
+                </>
+            )}
+        </Container>
     )
 }
 

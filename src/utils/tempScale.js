@@ -1,8 +1,8 @@
 export const tempColors = {
     hotColors: {
-        high: '#ef1c1c',
-        medium: '#7e2121',
-        low: '#451212',
+        high: '#ef1c1cc7',
+        medium: '#7e2121d9',
+        low: '#451212ed',
     },
     niceColors: {
         high: '#f5ee0be6',
@@ -15,9 +15,9 @@ export const tempColors = {
         low: '#13548ce0',
     },
     defaultColors: {
-        high: '#596364',
-        medium: '#3f4447',
-        low: '#303437',
+        high: '#596364de',
+        medium: '#3f4447eb',
+        low: '#303437e0',
     },
 }
 

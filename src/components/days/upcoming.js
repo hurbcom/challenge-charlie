@@ -17,23 +17,30 @@ const Upcoming = ({
     const [description, setDescription] = useState('')
 
     useEffect(() => {
-        const temp = kelvinToCelsius(data.temp.day)
-
-        setTemperature(temp)
-        setDescription(data.weather[0].description)
-        setIcon(getTempIcon(data.weather[0].id))
-    }, [])
+        if (data) {
+            const temp = kelvinToCelsius(data.temp.day)
+            setTemperature(temp)
+            setDescription(data.weather[0].description)
+            setIcon(getTempIcon(data.weather[0].id))
+        }
+    }, [data])
 
     return (
         <NextDaysSection color={color} applyBorder={lastSection}>
-            <img src={icon} alt='tomorrow-temperature-icon' />
-            <Title
-                label={label}
-                isCelsius={isCelsius}
-                temperature={temperature}
-                description={description}
-                onTemperatureClick={setIsCelsius}
-            />
+            {data ? (
+                <>
+                    <img src={icon} alt='tomorrow-temperature-icon' />
+                    <Title
+                        label={label}
+                        isCelsius={isCelsius}
+                        temperature={temperature}
+                        description={description}
+                        onTemperatureClick={setIsCelsius}
+                    />
+                </>
+            ) : (
+                <div>{label}</div>
+            )}
         </NextDaysSection>
     )
 }

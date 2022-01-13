@@ -1,4 +1,5 @@
 import { getTempIcon } from './getTempIcon'
+import { snackbarOptions } from './snackbarOptions'
 import { getTempScale, tempColors } from './tempScale'
 import { capitalizeFirstLetter } from './capitalizeFirstLetter'
 import { getWindDirection } from './getWindDirection'
@@ -14,6 +15,7 @@ export {
     getTempIcon,
     getTempScale,
     tempColors,
+    snackbarOptions,
     capitalizeFirstLetter,
     getWindDirection,
     convertWindSpeed,

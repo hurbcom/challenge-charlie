@@ -1,6 +1,7 @@
 import axios from 'axios'
 import ReactTooltip from 'react-tooltip'
 import React, { useEffect, useState } from 'react'
+import { useSnackbar } from 'react-simple-snackbar'
 
 import searchIcon from '../../assets/search.svg'
 import inputIcon from '../../assets/input-icon.svg'
@@ -21,6 +22,7 @@ import {
     getTempScale,
     convertWindSpeed,
     getTempIcon,
+    snackbarOptions,
 } from '../../utils'
 
 import Title from './title'
@@ -33,6 +35,7 @@ const Current = ({
     isCelsius,
     setIsCelsius,
     changeLocation,
+    setLoading,
 }) => {
     const [icon, setIcon] = useState()
     const [humidity, setHumidity] = useState()
@@ -40,9 +43,11 @@ const Current = ({
     const [windSpeed, setWindSpeed] = useState()
     const [temperature, setTemperature] = useState()
     const [windDegrees, setWindDegrees] = useState()
+    const [openSnackbar] = useSnackbar(snackbarOptions)
     const [description, setDescription] = useState('')
 
     const searchLocation = async (city) => {
+        setLoading(true)
         await axios
             .get(process.env.REACT_APP_OPEN_CAGE_URL, {
                 params: {
@@ -51,6 +56,10 @@ const Current = ({
                 },
             })
             .then(({ data }) => {
+                if (data.results.length === 0) {
+                    openSnackbar('Não encontramos resultado para sua busca.')
+                    return
+                }
                 const location = data.results[0]
                 changeLocation(
                     location.formatted,
@@ -58,24 +67,29 @@ const Current = ({
                     location.geometry.lng
                 )
             })
-            .catch((e) => {
-                console.log('TRATAR ERRO LOCATION', e)
+            .catch(() => {
+                openSnackbar(
+                    'Ops, algo deu errado. Por favor, tente novamente.'
+                )
             })
+            .finally(() => setLoading(false))
     }
 
     useEffect(() => {
-        const now = new Date(data.dt * 1000)
-        const temp = kelvinToCelsius(data.temp)
+        if (data) {
+            const now = new Date(data.dt * 1000)
+            const temp = kelvinToCelsius(data.temp)
 
-        setTemperature(temp)
-        setHumidity(data.humidity)
-        setPressure(data.pressure)
-        setColor(getTempScale(temp))
-        setWindDegrees(data.wind_deg)
-        setDescription(data.weather[0].description)
-        setWindSpeed(convertWindSpeed(data.wind_speed))
-        setIcon(getTempIcon(data.weather[0].id, now.getHours()))
-    }, [])
+            setTemperature(temp)
+            setHumidity(data.humidity)
+            setPressure(data.pressure)
+            setColor(getTempScale(temp))
+            setWindDegrees(data.wind_deg)
+            setDescription(data.weather[0].description)
+            setWindSpeed(convertWindSpeed(data.wind_speed))
+            setIcon(getTempIcon(data.weather[0].id, now.getHours()))
+        }
+    }, [data])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -83,7 +97,8 @@ const Current = ({
     }
 
     const searchClicked = () => {
-        searchLocation(document.getElementById('search-input').value)
+        const value = document.getElementById('search-input').value
+        if (value) searchLocation(value)
     }
 
     return (
@@ -107,28 +122,35 @@ const Current = ({
                     onClick={searchClicked}
                 />
             </InputContainer>
-            <Title
-                isCelsius={isCelsius}
-                label={`${city} - Hoje`}
-                temperature={temperature}
-                description={description}
-                onTemperatureClick={setIsCelsius}
-            />
-            <Today>
-                <img src={icon} alt='today-temperature-icon' />
-                <TodayInformation>
-                    <p>
-                        Vento: {getWindDirection(windDegrees)} {windSpeed}
-                        {'km/h'}
-                    </p>
-                    <p>
-                        Humidade: {humidity} {'%'}
-                    </p>
-                    <p>
-                        Pressão: {pressure} {'hPA'}
-                    </p>
-                </TodayInformation>
-            </Today>
+            {data ? (
+                <>
+                    <Title
+                        isCelsius={isCelsius}
+                        label={`${city} - Hoje`}
+                        temperature={temperature}
+                        description={description}
+                        onTemperatureClick={setIsCelsius}
+                    />
+                    <Today>
+                        <img src={icon} alt='today-temperature-icon' />
+                        <TodayInformation>
+                            <p>
+                                Vento: {getWindDirection(windDegrees)}{' '}
+                                {windSpeed}
+                                {'km/h'}
+                            </p>
+                            <p>
+                                Humidade: {humidity} {'%'}
+                            </p>
+                            <p>
+                                Pressão: {pressure} {'hPA'}
+                            </p>
+                        </TodayInformation>
+                    </Today>
+                </>
+            ) : (
+                <div>Hoje</div>
+            )}
         </CurrentSection>
     )
 }

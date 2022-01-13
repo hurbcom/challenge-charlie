@@ -1,6 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import SnackbarProvider from 'react-simple-snackbar'
 
 import Main from './components/main'
 
-ReactDOM.render(<Main />, document.getElementById('root'))
+ReactDOM.render(
+    <SnackbarProvider>
+        <Main />
+    </SnackbarProvider>,
+    document.getElementById('root')
+)
