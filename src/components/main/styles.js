@@ -5,9 +5,8 @@ export const Container = styled.div`
     min-height: 100vh;
     text-align: center;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    font-size: calc(8px + 1.5vmin);
+    font-size: calc(8px + 1vmin);
     background: ${(props) =>
         props.image ? `url(https://bing.com/${props.image})` : '#7bb6dd'};
 `

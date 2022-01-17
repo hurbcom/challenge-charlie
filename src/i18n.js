@@ -5,12 +5,12 @@ import { en, pt } from './translations'
 
 const resources = {
     en,
-    pt,
+    pt_br: pt,
 }
 
 i18n.use(initReactI18next).init({
     resources,
-    lng: 'pt',
+    lng: 'pt_br',
     interpolation: {
         escapeValue: false, // react already safes from xss
     },

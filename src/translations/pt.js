@@ -17,5 +17,7 @@ export const pt = {
             'Você precisa permitir acesso a sua localização para carregamento dos dados iniciais.',
         currentLocationNotFound:
             'Não conseguimos carregar sua localização atual. Tente buscar abaixo.',
+        language: 'Idioma',
+        changeLangHint: 'Clique para alterar',
     },
 }

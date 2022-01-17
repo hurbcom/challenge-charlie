@@ -72,7 +72,7 @@ const Current = ({
                                 {'km/h'}
                             </p>
                             <p>
-                                {t('Humidity')}: {humidity} {'%'}
+                                {t('humidity')}: {humidity} {'%'}
                             </p>
                             <p>
                                 {t('pressure')}: {pressure} {'hPA'}

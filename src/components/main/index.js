@@ -8,6 +8,7 @@ import Content from '../content'
 import Loading from '../loading'
 import { Container } from './styles'
 import { snackbarOptions } from '../../utils'
+import { LanguageSelect } from '../languageSelect'
 
 const Main = () => {
     const { t } = useTranslation()
@@ -38,6 +39,7 @@ const Main = () => {
         <Loading fullHeight />
     ) : (
         <Container image={image}>
+            <LanguageSelect />
             <Content />
         </Container>
     )

@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     width: 40%;
+    margin-top: 30px;
     border-radius: 16px;
+    font-size: calc(8px + 1.5vmin);
 `
 
 export const StyledInput = styled.input`

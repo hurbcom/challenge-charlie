@@ -9,7 +9,7 @@ import { Current, Upcoming } from '../days'
 import { snackbarOptions, tempColors } from '../../utils'
 
 const Content = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const [latitude, setLatitude] = useState()
     const [location, setLocation] = useState()
     const [longitude, setLongitude] = useState()
@@ -21,6 +21,10 @@ const Content = () => {
     const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [firstRender, setFirstRender] = useState(true)
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
+
+    useEffect(() => {
+        if (latitude && longitude) fetchWeather()
+    }, [t])
 
     // get user current coordinates
     useEffect(() => {
@@ -83,7 +87,7 @@ const Content = () => {
                 params: {
                     lat,
                     lon,
-                    lang: 'pt_br',
+                    lang: i18n.language,
                     exclude: 'minutely,hourly,alerts',
                     appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
                 },

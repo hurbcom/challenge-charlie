@@ -17,5 +17,7 @@ export const en = {
             'You need to allow access to your location to load initial data.',
         currentLocationNotFound:
             'We were unable to load your current location. Try searching below.',
+        language: 'Language',
+        changeLangHint: 'Click to change',
     },
 }
