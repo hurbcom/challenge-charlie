@@ -30,17 +30,19 @@ export const LanguageSelect = () => {
 
     return (
         <Container isPortuguese={isPortuguese} isMobile={width < 545}>
-            <Content>
+            <Content
+                data-for='language-hint'
+                onClick={changeLanguage}
+                data-tip={t('changeLangHint')}
+            >
                 {t('language')}
                 {':'}
                 <img
                     alt='language-icon'
-                    onClick={changeLanguage}
-                    data-tip={t('changeLangHint')}
                     src={isPortuguese ? portugueseIcon : englishIcon}
                 />
-                <ReactTooltip effect='solid' />
             </Content>
+            <ReactTooltip effect='solid' id='language-hint' />
         </Container>
     )
 }

@@ -57,8 +57,13 @@ const SearchInput = ({ setLoading, changeLocation, emptySearch }) => {
 
     return (
         <Container onSubmit={handleSubmit}>
-            <Icon src={inputIcon} alt='input-icon' data-tip={t('inputHint')} />
-            <ReactTooltip effect='solid' />
+            <Icon
+                src={inputIcon}
+                alt='input-icon'
+                data-tip={t('inputHint')}
+                data-for='input-hint'
+            />
+            <ReactTooltip effect='solid' id='input-hint' />
             <StyledInput
                 type='text'
                 name='location'

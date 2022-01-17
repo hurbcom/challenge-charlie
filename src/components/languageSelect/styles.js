@@ -16,9 +16,9 @@ export const Content = styled.div`
     margin-right: 10px;
     display: flex;
     padding: 6px;
+    cursor: pointer;
 
     img {
-        cursor: pointer;
         margin-left: 5px;
         width: ${(props) => (props.isMobile ? '20' : '25')}px;
         margin-top: ${(props) =>
