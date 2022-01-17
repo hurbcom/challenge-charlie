@@ -7,6 +7,7 @@ import Loading from '../loading'
 import { Container } from './styles'
 import { Current, Upcoming } from '../days'
 import { snackbarOptions, tempColors } from '../../utils'
+import { Skeleton } from '../days/skeleton'
 
 const Content = () => {
     const { t, i18n } = useTranslation()
@@ -17,13 +18,14 @@ const Content = () => {
     const [tomorrowData, setTomorrowData] = useState()
     const [openSnackbar] = useSnackbar(snackbarOptions)
     const [loading, setLoading] = useState(true)
+    const [isEmpty, setIsEmpty] = useState(false)
     const [isCelsius, setIsCelsius] = useState(true)
     const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [firstRender, setFirstRender] = useState(true)
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
     useEffect(() => {
-        if (latitude && longitude) fetchWeather()
+        if (latitude && longitude && !isEmpty) fetchWeather()
     }, [t])
 
     // get user current coordinates
@@ -39,6 +41,7 @@ const Content = () => {
                 } else {
                     openSnackbar(t('currentLocationNotFound'))
                 }
+                setIsEmpty(true)
                 setFirstRender(false)
                 setLoading(false)
             },
@@ -93,6 +96,7 @@ const Content = () => {
                 },
             })
             .then(({ data }) => {
+                setIsEmpty(false)
                 setCurrentData(data.current)
                 setTomorrowData(data.daily[1])
                 setAfterTomorrowData(data.daily[2])
@@ -103,6 +107,19 @@ const Content = () => {
             .finally(() => setLoading(false))
     }
 
+    const onEmptySearch = () => {
+        setIsEmpty(true)
+        setCurrentData(null)
+        setTomorrowData(null)
+        setAfterTomorrowData(null)
+    }
+
+    const onChangeLocation = (city, lat, lon) => {
+        setLatitude(lat)
+        setLongitude(lon)
+        setLocation(city)
+        fetchWeather(lat, lon)
+    }
     // this Content component is divided by the days displayed
     return (
         <Container>
@@ -110,42 +127,45 @@ const Content = () => {
                 <Loading />
             ) : (
                 <>
-                    <Current
-                        data={currentData}
-                        isCelsius={isCelsius}
-                        setLoading={setLoading}
-                        color={colorScale.high}
-                        setColor={setColorScale}
-                        emptySearch={() => {
-                            setCurrentData(null)
-                            setTomorrowData(null)
-                            setAfterTomorrowData(null)
-                            setColorScale(tempColors.defaultColors)
-                        }}
-                        changeLocation={(city, lat, lon) => {
-                            setLatitude(lat)
-                            setLongitude(lon)
-                            setLocation(city)
-                            fetchWeather(lat, lon)
-                        }}
-                        setIsCelsius={() => setIsCelsius(!isCelsius)}
-                        city={location ? location.split(',')[0] : ''}
-                    />
-                    <Upcoming
-                        data={tomorrowData}
-                        label={t('tomorrow')}
-                        isCelsius={isCelsius}
-                        color={colorScale.medium}
-                        setIsCelsius={() => setIsCelsius(!isCelsius)}
-                    />
-                    <Upcoming
-                        lastSection
-                        isCelsius={isCelsius}
-                        color={colorScale.low}
-                        data={afterTomorrowData}
-                        label={t('dayAfterTomorrow')}
-                        setIsCelsius={() => setIsCelsius(!isCelsius)}
-                    />
+                    {currentData && (
+                        <Current
+                            data={currentData}
+                            isCelsius={isCelsius}
+                            setLoading={setLoading}
+                            color={colorScale.high}
+                            setColor={setColorScale}
+                            emptySearch={onEmptySearch}
+                            changeLocation={onChangeLocation}
+                            setIsCelsius={() => setIsCelsius(!isCelsius)}
+                            city={location ? location.split(',')[0] : ''}
+                        />
+                    )}
+                    {tomorrowData && (
+                        <Upcoming
+                            data={tomorrowData}
+                            label={t('tomorrow')}
+                            isCelsius={isCelsius}
+                            color={colorScale.medium}
+                            setIsCelsius={() => setIsCelsius(!isCelsius)}
+                        />
+                    )}
+                    {afterTomorrowData && (
+                        <Upcoming
+                            lastSection
+                            isCelsius={isCelsius}
+                            color={colorScale.low}
+                            data={afterTomorrowData}
+                            label={t('dayAfterTomorrow')}
+                            setIsCelsius={() => setIsCelsius(!isCelsius)}
+                        />
+                    )}
+                    {isEmpty && (
+                        <Skeleton
+                            setLoading={setLoading}
+                            emptySearch={onEmptySearch}
+                            changeLocation={onChangeLocation}
+                        />
+                    )}
                 </>
             )}
         </Container>

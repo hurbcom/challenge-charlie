@@ -35,19 +35,17 @@ const Current = ({
     const [description, setDescription] = useState('')
 
     useEffect(() => {
-        if (data) {
-            const now = new Date(data.dt * 1000)
-            const temp = kelvinToCelsius(data.temp)
-            setColor(getTempScale(temp))
-            setTemperature(temp)
-            setHumidity(data.humidity)
-            setPressure(data.pressure)
-            setWindDegrees(data.wind_deg)
-            setDescription(data.weather[0].description)
-            setWindSpeed(convertWindSpeed(data.wind_speed))
-            setIcon(getTempIcon(data.weather[0].id, now.getHours()))
-        }
-    }, [data])
+        const now = new Date(data.dt * 1000)
+        const temp = kelvinToCelsius(data.temp)
+        setColor(getTempScale(temp))
+        setTemperature(temp)
+        setHumidity(data.humidity)
+        setPressure(data.pressure)
+        setWindDegrees(data.wind_deg)
+        setDescription(data.weather[0].description)
+        setWindSpeed(convertWindSpeed(data.wind_speed))
+        setIcon(getTempIcon(data.weather[0].id, now.getHours()))
+    })
 
     return (
         <CurrentSection color={color}>
@@ -56,35 +54,28 @@ const Current = ({
                 emptySearch={emptySearch}
                 changeLocation={changeLocation}
             />
-            {data ? (
-                <>
-                    <Title
-                        isCelsius={isCelsius}
-                        temperature={temperature}
-                        description={description}
-                        onTemperatureClick={setIsCelsius}
-                        label={`${city} - ${t('today')}`}
-                    />
-                    <Today>
-                        <img src={icon} alt='today-temperature-icon' />
-                        <TodayInformation>
-                            <p>
-                                {t('wind')}: {getWindDirection(windDegrees)}{' '}
-                                {windSpeed}
-                                {'km/h'}
-                            </p>
-                            <p>
-                                {t('humidity')}: {humidity} {'%'}
-                            </p>
-                            <p>
-                                {t('pressure')}: {pressure} {'hPA'}
-                            </p>
-                        </TodayInformation>
-                    </Today>
-                </>
-            ) : (
-                <div>{t('today')}</div>
-            )}
+            <Title
+                isCelsius={isCelsius}
+                temperature={temperature}
+                description={description}
+                onTemperatureClick={setIsCelsius}
+                label={`${city} - ${t('today')}`}
+            />
+            <Today>
+                <img src={icon} alt='today-temperature-icon' />
+                <TodayInformation>
+                    <p>
+                        {t('wind')}: {getWindDirection(windDegrees)} {windSpeed}
+                        {'km/h'}
+                    </p>
+                    <p>
+                        {t('humidity')}: {humidity} {'%'}
+                    </p>
+                    <p>
+                        {t('pressure')}: {pressure} {'hPA'}
+                    </p>
+                </TodayInformation>
+            </Today>
         </CurrentSection>
     )
 }
