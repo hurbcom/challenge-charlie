@@ -23,6 +23,7 @@ const Current = ({
     setIsCelsius,
     changeLocation,
     setLoading,
+    emptySearch,
 }) => {
     const { t } = useTranslation()
     const [icon, setIcon] = useState()
@@ -52,6 +53,7 @@ const Current = ({
         <CurrentSection color={color}>
             <SearchInput
                 setLoading={setLoading}
+                emptySearch={emptySearch}
                 changeLocation={changeLocation}
             />
             {data ? (

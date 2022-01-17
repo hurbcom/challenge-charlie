@@ -11,7 +11,7 @@ import inputIcon from '../../assets/input-icon.svg'
 import { snackbarOptions } from '../../utils'
 import { Container, StyledInput, Button, Icon } from './styles'
 
-const SearchInput = ({ setLoading, changeLocation }) => {
+const SearchInput = ({ setLoading, changeLocation, emptySearch }) => {
     const { t } = useTranslation()
     const [openSnackbar] = useSnackbar(snackbarOptions)
 
@@ -29,6 +29,7 @@ const SearchInput = ({ setLoading, changeLocation }) => {
             .then(({ data }) => {
                 if (data.results.length === 0) {
                     openSnackbar(t('noSearchResults'))
+                    emptySearch()
                     return
                 }
                 const location = data.results[0]

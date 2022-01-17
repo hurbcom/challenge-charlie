@@ -116,7 +116,15 @@ const Content = () => {
                         setLoading={setLoading}
                         color={colorScale.high}
                         setColor={setColorScale}
+                        emptySearch={() => {
+                            setCurrentData(null)
+                            setTomorrowData(null)
+                            setAfterTomorrowData(null)
+                            setColorScale(tempColors.defaultColors)
+                        }}
                         changeLocation={(city, lat, lon) => {
+                            setLatitude(lat)
+                            setLongitude(lon)
                             setLocation(city)
                             fetchWeather(lat, lon)
                         }}

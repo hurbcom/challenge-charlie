@@ -21,8 +21,9 @@ export const LanguageSelect = () => {
     const changeLanguage = () => {
         const newLang = isPortuguese ? 'en' : 'pt_br'
         i18n.changeLanguage(newLang, (error) => {
-            if (error) openSnackbar(t('requestError'))
-            setIsPortuguese(i18n.language === 'pt_br')
+            error
+                ? openSnackbar(t('requestError'))
+                : setIsPortuguese(i18n.language === 'pt_br')
         })
     }
 
