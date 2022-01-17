@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next'
 import React, { useEffect, useState } from 'react'
 import { useSnackbar } from 'react-simple-snackbar'
 
-import { Container } from './styles'
+import { Container, Content } from './styles'
 
 import englishIcon from '../../assets/englishIcon.jpg'
 import portugueseIcon from '../../assets/portugueseIcon.png'
-import { snackbarOptions } from '../../utils'
+import { snackbarOptions, useWindowSize } from '../../utils'
 
 export const LanguageSelect = () => {
+    const { width } = useWindowSize()
     const { t, i18n } = useTranslation()
     const [openSnackbar] = useSnackbar(snackbarOptions)
     const [isPortuguese, setIsPortuguese] = useState(true)
@@ -28,8 +29,8 @@ export const LanguageSelect = () => {
     }
 
     return (
-        <Container isPortuguese={isPortuguese}>
-            <div>
+        <Container isPortuguese={isPortuguese} isMobile={width < 545}>
+            <Content>
                 {t('language')}
                 {':'}
                 <img
@@ -39,7 +40,7 @@ export const LanguageSelect = () => {
                     src={isPortuguese ? portugueseIcon : englishIcon}
                 />
                 <ReactTooltip effect='solid' />
-            </div>
+            </Content>
         </Container>
     )
 }

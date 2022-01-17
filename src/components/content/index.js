@@ -6,10 +6,11 @@ import { useSnackbar } from 'react-simple-snackbar'
 import Loading from '../loading'
 import { Container } from './styles'
 import { Current, Upcoming } from '../days'
-import { snackbarOptions, tempColors } from '../../utils'
 import { Skeleton } from '../days/skeleton'
+import { snackbarOptions, tempColors, useWindowSize } from '../../utils'
 
 const Content = () => {
+    const { width } = useWindowSize()
     const { t, i18n } = useTranslation()
     const [latitude, setLatitude] = useState()
     const [location, setLocation] = useState()
@@ -22,8 +23,19 @@ const Content = () => {
     const [isCelsius, setIsCelsius] = useState(true)
     const [afterTomorrowData, setAfterTomorrowData] = useState()
     const [firstRender, setFirstRender] = useState(true)
+    const [containerSize, setContainerSize] = useState('40%')
     const [colorScale, setColorScale] = useState(tempColors.defaultColors)
 
+    // decide container size based on window width
+    useEffect(() => {
+        if (width > 990) setContainerSize('40%')
+        else if (width <= 990 && width > 690) setContainerSize('50%')
+        else if (width <= 690 && width > 545) setContainerSize('60%')
+        else if (width <= 545 && width > 390) setContainerSize('80%')
+        else if (width <= 390) setContainerSize('90%')
+    }, [width])
+
+    // fetch weather in case of language change to get new description
     useEffect(() => {
         if (latitude && longitude && !isEmpty) fetchWeather()
     }, [t])
@@ -122,7 +134,7 @@ const Content = () => {
     }
     // this Content component is divided by the days displayed
     return (
-        <Container>
+        <Container size={containerSize}>
             {loading ? (
                 <Loading />
             ) : (

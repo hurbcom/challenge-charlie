@@ -4,6 +4,7 @@ import { getTempScale, tempColors } from './tempScale'
 import { capitalizeFirstLetter } from './capitalizeFirstLetter'
 import { getWindDirection } from './getWindDirection'
 import { convertWindSpeed } from './convertWindSpeed'
+import { useWindowSize } from './useWindowSize'
 import {
     kelvinToCelsius,
     celsiusToFahrenheit,
@@ -21,4 +22,5 @@ export {
     convertWindSpeed,
     celsiusToFahrenheit,
     fahrenheitToCelsius,
+    useWindowSize,
 }

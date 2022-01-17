@@ -6,6 +6,7 @@ export const Container = styled.div`
     text-align: center;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
     font-size: calc(8px + 1vmin);
     background: ${(props) =>
         props.image ? `url(https://bing.com/${props.image})` : '#7bb6dd'};
