@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import ReactTooltip from 'react-tooltip'
+import { useTranslation } from 'react-i18next'
+
 import { useSnackbar } from 'react-simple-snackbar'
 
 import searchIcon from '../../assets/search.svg'
@@ -10,6 +12,7 @@ import { snackbarOptions } from '../../utils'
 import { Container, StyledInput, Button, Icon } from './styles'
 
 const SearchInput = ({ setLoading, changeLocation }) => {
+    const { t } = useTranslation()
     const [openSnackbar] = useSnackbar(snackbarOptions)
 
     // this methods search the location based on the input value
@@ -25,7 +28,7 @@ const SearchInput = ({ setLoading, changeLocation }) => {
             })
             .then(({ data }) => {
                 if (data.results.length === 0) {
-                    openSnackbar('Não encontramos resultado para sua busca.')
+                    openSnackbar(t('noSearchResults'))
                     return
                 }
                 const location = data.results[0]
@@ -36,9 +39,7 @@ const SearchInput = ({ setLoading, changeLocation }) => {
                 )
             })
             .catch(() => {
-                openSnackbar(
-                    'Ops, algo deu errado. Por favor, tente novamente.'
-                )
+                openSnackbar(t('requestError'))
             })
             .finally(() => setLoading(false))
     }
@@ -55,17 +56,13 @@ const SearchInput = ({ setLoading, changeLocation }) => {
 
     return (
         <Container onSubmit={handleSubmit}>
-            <Icon
-                src={inputIcon}
-                alt='input-icon'
-                data-tip='Para resultados mais precisos, digite cidade e estado separados por vírgula.'
-            />
+            <Icon src={inputIcon} alt='input-icon' data-tip={t('inputHint')} />
             <ReactTooltip effect='solid' />
             <StyledInput
                 type='text'
                 name='location'
                 id='search-input'
-                placeholder='Digite a cidade'
+                placeholder={t('inputPlaceholder')}
             />
             <Button
                 src={searchIcon}

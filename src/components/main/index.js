@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 import React, { useEffect, useState } from 'react'
 import { useSnackbar } from 'react-simple-snackbar'
 
@@ -9,6 +10,7 @@ import { Container } from './styles'
 import { snackbarOptions } from '../../utils'
 
 const Main = () => {
+    const { t } = useTranslation()
     const [image, setImage] = useState()
     const [openSnackbar] = useSnackbar(snackbarOptions)
     const [loading, setLoading] = useState(true)
@@ -28,7 +30,7 @@ const Main = () => {
                 setImage(data.images[0]?.url)
             })
             .catch(() => {
-                openSnackbar('Não conseguimos carregar a imagem do Bing.')
+                openSnackbar(t('bingImageFailed'))
             })
     }
 

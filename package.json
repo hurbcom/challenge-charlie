@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "i18next": "^21.6.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.3",
     "react-scripts": "5.0.0",
     "react-simple-snackbar": "^1.1.11",
     "styled-components": "^5.3.3"

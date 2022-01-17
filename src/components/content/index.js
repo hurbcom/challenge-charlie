@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 import React, { useEffect, useState } from 'react'
 import { useSnackbar } from 'react-simple-snackbar'
 
@@ -8,6 +9,7 @@ import { Current, Upcoming } from '../days'
 import { snackbarOptions, tempColors } from '../../utils'
 
 const Content = () => {
+    const { t } = useTranslation()
     const [latitude, setLatitude] = useState()
     const [location, setLocation] = useState()
     const [longitude, setLongitude] = useState()
@@ -29,13 +31,9 @@ const Content = () => {
             },
             (error) => {
                 if (error.code === 1) {
-                    openSnackbar(
-                        'Você precisa permitir acesso a sua localização para carregamento dos dados iniciais.'
-                    )
+                    openSnackbar(t('allowLocationError'))
                 } else {
-                    openSnackbar(
-                        'Não conseguimos carregar sua localização atual. Tente buscar abaixo.'
-                    )
+                    openSnackbar(t('currentLocationNotFound'))
                 }
                 setFirstRender(false)
                 setLoading(false)
@@ -53,7 +51,6 @@ const Content = () => {
     // get weather based on location found above
     useEffect(() => {
         if (location && firstRender) {
-            console.log('ENTREI?')
             fetchWeather().finally(() => setFirstRender(false))
         }
     }, [location])
@@ -74,9 +71,7 @@ const Content = () => {
                 setLocation(`${city}, ${state}, ${country}`)
             })
             .catch(() => {
-                openSnackbar(
-                    'Ops, algo deu errado. Por favor, tente novamente.'
-                )
+                openSnackbar(t('requestError'))
             })
             .finally(() => setLoading(false))
     }
@@ -99,9 +94,7 @@ const Content = () => {
                 setAfterTomorrowData(data.daily[2])
             })
             .catch(() => {
-                openSnackbar(
-                    'Ops, algo deu errado. Por favor, tente novamente.'
-                )
+                openSnackbar(t('requestError'))
             })
             .finally(() => setLoading(false))
     }
@@ -127,8 +120,8 @@ const Content = () => {
                         city={location ? location.split(',')[0] : ''}
                     />
                     <Upcoming
-                        label='Amanhã'
                         data={tomorrowData}
+                        label={t('tomorrow')}
                         isCelsius={isCelsius}
                         color={colorScale.medium}
                         setIsCelsius={() => setIsCelsius(!isCelsius)}
@@ -137,8 +130,8 @@ const Content = () => {
                         lastSection
                         isCelsius={isCelsius}
                         color={colorScale.low}
-                        label='Depois de amanhã'
                         data={afterTomorrowData}
+                        label={t('dayAfterTomorrow')}
                         setIsCelsius={() => setIsCelsius(!isCelsius)}
                     />
                 </>

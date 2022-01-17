@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import React, { useEffect, useState } from 'react'
 
 import { TodayInformation, CurrentSection, Today } from './styles'
@@ -23,6 +24,7 @@ const Current = ({
     changeLocation,
     setLoading,
 }) => {
+    const { t } = useTranslation()
     const [icon, setIcon] = useState()
     const [humidity, setHumidity] = useState()
     const [pressure, setPressure] = useState()
@@ -56,30 +58,30 @@ const Current = ({
                 <>
                     <Title
                         isCelsius={isCelsius}
-                        label={`${city} - Hoje`}
                         temperature={temperature}
                         description={description}
                         onTemperatureClick={setIsCelsius}
+                        label={`${city} - ${t('today')}`}
                     />
                     <Today>
                         <img src={icon} alt='today-temperature-icon' />
                         <TodayInformation>
                             <p>
-                                Vento: {getWindDirection(windDegrees)}{' '}
+                                {t('wind')}: {getWindDirection(windDegrees)}{' '}
                                 {windSpeed}
                                 {'km/h'}
                             </p>
                             <p>
-                                Humidade: {humidity} {'%'}
+                                {t('Humidity')}: {humidity} {'%'}
                             </p>
                             <p>
-                                Pressão: {pressure} {'hPA'}
+                                {t('pressure')}: {pressure} {'hPA'}
                             </p>
                         </TodayInformation>
                     </Today>
                 </>
             ) : (
-                <div>Hoje</div>
+                <div>{t('today')}</div>
             )}
         </CurrentSection>
     )
