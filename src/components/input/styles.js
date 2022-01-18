@@ -7,8 +7,18 @@ export const StyledInput = styled.input`
     padding: 5px;
     background-color: #ffffffba;
 
+    /* Firefox */
+    width: -moz-available;
+
+    /* Safari */
+    margin: 0;
+    outline: none;
+
     :focus-visible {
         outline: none;
+    }
+
+    :focus {
     }
 `
 export const Container = styled.form`
