@@ -13,8 +13,3 @@ Cypress.Commands.add('verifyEmptyContent', (lang = 'pt') => {
         lang === 'pt' ? 'Depois de amanhã' : 'Day after tomorrow'
     )
 })
-
-// // create this custom get to avoid timeout since the application has asynchronous requests
-// Cypress.Commands.add('customGet', (element) => {
-//     cy.get(element, { timeout: 5000 })
-// })
