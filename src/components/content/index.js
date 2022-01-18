@@ -108,12 +108,14 @@ const Content = () => {
                 },
             })
             .then(({ data }) => {
+                console.log('DATA', data)
                 setIsEmpty(false)
                 setCurrentData(data.current)
                 setTomorrowData(data.daily[1])
                 setAfterTomorrowData(data.daily[2])
             })
-            .catch(() => {
+            .catch((e) => {
+                console.log('OIE', e)
                 openSnackbar(t('requestError'))
             })
             .finally(() => setLoading(false))

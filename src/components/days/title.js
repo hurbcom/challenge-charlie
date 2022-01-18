@@ -6,6 +6,7 @@ import { Title as Container } from './styles'
 import { capitalizeFirstLetter, celsiusToFahrenheit } from '../../utils'
 
 const Title = ({
+    city,
     label,
     isCelsius,
     temperature,
@@ -14,10 +15,11 @@ const Title = ({
 }) => {
     const { t } = useTranslation()
     return (
-        <Container>
-            <h4>{label}</h4>
+        <Container data-cy={`title-${label}`}>
+            <h4>{city ? `${city} - ${label}` : label}</h4>
             <h5>
                 <span
+                    data-cy={`temperature-${label}`}
                     onClick={onTemperatureClick}
                     data-tip={t('convertTempUnitHint')}
                 >
@@ -27,7 +29,9 @@ const Title = ({
                 </span>
                 <ReactTooltip effect='solid' />
                 {' - '}
-                {capitalizeFirstLetter(description)}
+                <span data-cy={`description-${label}`}>
+                    {capitalizeFirstLetter(description)}
+                </span>
             </h5>
         </Container>
     )

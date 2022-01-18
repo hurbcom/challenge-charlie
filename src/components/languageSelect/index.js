@@ -29,10 +29,11 @@ export const LanguageSelect = () => {
     }
 
     return (
-        <Container isPortuguese={isPortuguese} isMobile={width < 545}>
+        <Container isMobile={width < 545} isPortuguese={isPortuguese}>
             <Content
                 data-for='language-hint'
                 onClick={changeLanguage}
+                data-cy='languageSelector'
                 data-tip={t('changeLangHint')}
             >
                 {t('language')}

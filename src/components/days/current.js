@@ -55,21 +55,23 @@ const Current = ({
                 changeLocation={changeLocation}
             />
             <Title
+                city={city}
+                label={t('today')}
                 isCelsius={isCelsius}
                 temperature={temperature}
                 description={description}
                 onTemperatureClick={setIsCelsius}
-                label={`${city} - ${t('today')}`}
             />
             <Today>
                 <img src={icon} alt='today-temperature-icon' />
-                <TodayInformation>
+                <TodayInformation data-cy='weatherInformation'>
                     <p>
                         {t('wind')}: {getWindDirection(windDegrees)} {windSpeed}
                         {'km/h'}
                     </p>
                     <p>
-                        {t('humidity')}: {humidity} {'%'}
+                        {t('humidity')}: {humidity}
+                        {'%'}
                     </p>
                     <p>
                         {t('pressure')}: {pressure} {'hPA'}

@@ -68,11 +68,13 @@ const SearchInput = ({ setLoading, changeLocation, emptySearch }) => {
                 type='text'
                 name='location'
                 id='search-input'
+                data-cy='searchInput'
                 placeholder={t('inputPlaceholder')}
             />
             <Button
                 src={searchIcon}
                 alt='search-icon'
+                data-cy='searchButton'
                 onClick={searchClicked}
             />
         </Container>
