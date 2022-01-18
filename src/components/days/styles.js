@@ -11,7 +11,8 @@ export const Today = styled.div`
 `
 export const Title = styled.div`
     padding: 20px;
-    span {
+
+    span:first-child {
         cursor: pointer;
     }
     > h4,
