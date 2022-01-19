@@ -40,6 +40,7 @@ Foi criado um pequeno script na raiz do projeto para executar o projeto dentro d
 Para o ambiente de dev:
 ```
 $ ./run-app.sh --dev
+# O projeto irá rodar na porta 3001
 ```
 Prod:
 ```
