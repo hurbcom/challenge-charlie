@@ -2,6 +2,9 @@
   "name": "challenge-charlie",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "jest-watch-typeahead": "^0.6.5"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
