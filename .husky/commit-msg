@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx --no -- commitlint --edit $1
+docker exec challenge-charlie-weather-forecast sh -c "npx --no -- commitlint --edit $1"

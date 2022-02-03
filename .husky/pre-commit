@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged && npm test -- --watchAll=false
+docker exec challenge-charlie-weather-forecast sh -c 'export GIT_COMMITTER_EMAIL="fakeuser@fake" && \
+     export GIT_AUTHOR_EMAIL="fakeuser@fake" && \
+     npx lint-staged && npm test -- --watchAll=false'
