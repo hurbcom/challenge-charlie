@@ -17,3 +17,6 @@ docker-run:
 
 docker-stop:
 	docker stop $(NAME)
+
+storybook:
+	docker exec -it challenge-charlie-weather-forecast npm run storybook
