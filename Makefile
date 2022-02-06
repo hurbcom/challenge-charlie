@@ -10,6 +10,7 @@ docker-run:
 		-ti \
 		-d \
 		-p 3000:3000 \
+		-p 6006:6006 \
 		-v $(PWD):/app \
 		-v /app/node_modules \
 		--rm \
