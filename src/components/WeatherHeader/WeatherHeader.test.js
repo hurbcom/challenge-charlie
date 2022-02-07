@@ -4,9 +4,9 @@ import WeatherHeader from './WeatherHeader'
 
 describe('WeatherHeader', () => {
   test('matches snapshot', () => {
-    const { conatiner } = render(
+    const { container } = render(
       <WeatherHeader cityName="Rio de Janeiro" stateName="Rio de Janeiro" />
     )
-    expect(conatiner).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 })
