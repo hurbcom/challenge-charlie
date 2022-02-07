@@ -11,7 +11,7 @@ const WeatherForecast = ({
   afterTomorrow,
 }) => {
   return (
-    <div styled={{ maxWidth: 400 }}>
+    <div style={{ maxWidth: 400 }}>
       <WeatherHeader cityName={cityName} stateName={stateName} />
       <WeatherToday {...today} />
       <WeatherTomorrow {...tomorrow} />
