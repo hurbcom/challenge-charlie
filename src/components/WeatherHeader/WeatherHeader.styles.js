@@ -8,7 +8,8 @@ export const WeatherHeaderContainer = styled(Container)`
 `
 
 export const WeatherHeaderIcon = styled.div`
-  min-width: 50px;
+  width: auto;
+  margin-right: 8px;
 `
 
 export const WeatherHeaderText = styled.div`
