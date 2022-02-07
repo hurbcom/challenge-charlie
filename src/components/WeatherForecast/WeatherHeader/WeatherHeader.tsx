@@ -9,18 +9,18 @@ import {
 } from './WeatherHeader.styles'
 
 interface WeatherHeaderProps {
-  cityName: string
-  stateName: string
+  city: string
+  state: string
 }
 
-const WeatherHeader = ({ cityName, stateName }: WeatherHeaderProps) => {
+const WeatherHeader = ({ city, state }: WeatherHeaderProps) => {
   return (
     <WeatherHeaderContainer>
       <WeatherHeaderIcon>
         <RiCompassLine />
       </WeatherHeaderIcon>
       <WeatherHeaderText>
-        {cityName}, {stateName}
+        {city}, {state}
       </WeatherHeaderText>
     </WeatherHeaderContainer>
   )
