@@ -12,7 +12,7 @@ export const WeatherHeaderIcon = styled.div`
   margin-right: 8px;
 `
 
-export const WeatherHeaderText = styled.div`
+export const WeatherHeaderText = styled.span`
   width: 100%;
   text-align: start;
   white-space: nowrap;
