@@ -9,14 +9,7 @@ export default {
   },
 }
 
-const Wrapper = ({ children }) => (
-  <div style={{ maxWidth: 300 }}>{children}</div>
-)
-const Template = (args) => (
-  <Wrapper>
-    <WeatherHeader {...args} />
-  </Wrapper>
-)
+const Template = (args) => <WeatherHeader {...args} />
 
 export const Default = Template.bind({})
 Default.storyName = 'Default'
