@@ -1,8 +1,8 @@
 import React from 'react'
-import { WeatherForecastAnotherDay } from '.'
+import { WeatherAnotherDay } from '.'
 
 export default {
-  title: 'WeatherForecastAnotherDay',
+  title: 'WeatherAnotherDay',
   args: {
     dayLabel: 'Amanhã',
     temperature: 30,
@@ -10,7 +10,7 @@ export default {
   },
 }
 
-const Template = (args) => <WeatherForecastAnotherDay {...args} />
+const Template = (args) => <WeatherAnotherDay {...args} />
 
 export const Default = Template.bind({})
 Default.storyName = 'Default'
