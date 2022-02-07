@@ -1,7 +1,14 @@
 import React from 'react'
 import { WeatherForecast as WeatherForecastUI } from '../../components'
+import { useLocation } from '../../hooks'
+
+export type positionProps = {
+  latitude: number
+  longitude: number
+}
 
 const WeatherForecast = () => {
+  const location = useLocation()
   const today = {
     temperature: 30,
     dayFeeling: 'Ensolarado',
@@ -19,8 +26,7 @@ const WeatherForecast = () => {
 
   return (
     <WeatherForecastUI
-      cityName="Rio de Janeiro"
-      stateName="Rio de Janeiro"
+      location={location.data}
       today={today}
       tomorrow={tomorrow}
       afterTomorrow={afterTomorrow}
