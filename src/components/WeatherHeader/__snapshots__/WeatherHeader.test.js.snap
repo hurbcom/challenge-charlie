@@ -3,10 +3,10 @@
 exports[`WeatherHeader matches snapshot 1`] = `
 <div>
   <div
-    class="sc-bdvvtL dbSOFc"
+    class="sc-bdvvtL sc-dkPtRN coxDVs kpxoth"
   >
     <div
-      class="sc-gsDKAQ fhJohV"
+      class="sc-hKwDye EBFZq"
     >
       <svg
         fill="currentColor"
@@ -29,7 +29,7 @@ exports[`WeatherHeader matches snapshot 1`] = `
       </svg>
     </div>
     <div
-      class="sc-dkPtRN jinKnS"
+      class="sc-eCImPb kaQHRl"
     >
       Rio de Janeiro
       , 
