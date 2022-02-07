@@ -1,1 +1,0 @@
-export { WeatherHeader } from './WeatherHeader'

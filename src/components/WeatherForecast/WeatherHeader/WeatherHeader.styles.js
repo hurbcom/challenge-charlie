@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container } from '../../UI/'
+import { Container } from '../../../UI'
 
 export const WeatherHeaderContainer = styled(Container)`
   color: rgb(126, 126, 124);

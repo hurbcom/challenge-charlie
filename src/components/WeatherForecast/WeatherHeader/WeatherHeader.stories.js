@@ -1,5 +1,5 @@
 import React from 'react'
-import { WeatherHeader } from './'
+import { WeatherHeader } from '.'
 
 export default {
   title: 'WeatherHeader',
