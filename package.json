@@ -20,6 +20,7 @@
     "webpack": "^5.68.0"
   },
   "dependencies": {
+    "@base-sdk/base": "0.1.0-5",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
