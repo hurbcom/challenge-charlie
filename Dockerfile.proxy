@@ -1,0 +1,5 @@
+FROM node:14.15
+WORKDIR /app
+RUN npm install cors-proxy-server
+
+CMD ["npx", "cors-proxy-server"]

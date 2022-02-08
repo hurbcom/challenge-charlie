@@ -1,4 +1,5 @@
 NAME = challenge-charlie-weather-forecast
+PROXY_NAME = challenge-charlie-proxy
 VERSION := latest
 
 docker-build:
@@ -21,3 +22,18 @@ docker-stop:
 
 storybook:
 	docker exec -it challenge-charlie-weather-forecast npm run storybook
+
+docker-proxy-build:
+	docker build -t $(PROXY_NAME) . -f Dockerfile.proxy
+
+docker-proxy-run:
+	docker run \
+		--name $(PROXY_NAME) \
+		-ti \
+		-d \
+		-p 9090:9090 \
+		--rm \
+		$(PROXY_NAME):$(VERSION)
+
+docker-proxy-stop:
+	docker stop $(PROXY_NAME)
