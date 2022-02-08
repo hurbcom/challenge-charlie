@@ -29,7 +29,7 @@ const WeatherToday = ({
   airHumidity,
   airPressure,
 }: WeatherTodayProps) => {
-  const backgroundColor = useBackgroundColor('celsius', temperature, 0)
+  const backgroundColor = useBackgroundColor('celsius', temperature, 0, 0.92)
   const temperatureString = temperature.toString().toUpperCase()
   return (
     <IconContext.Provider value={{ size: '120' }}>

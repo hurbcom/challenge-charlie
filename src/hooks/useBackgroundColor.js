@@ -3,7 +3,8 @@ import React from 'react'
 export const useBackgroundColor = (
   measurement,
   temperature,
-  lightnessLevel
+  lightnessLevel,
+  opacity = 1
 ) => {
   const [backgroundColor, setBackgroundColor] = React.useState(null)
 
@@ -32,7 +33,7 @@ export const useBackgroundColor = (
         hs = '219, 64%'
         break
       case 'yellow':
-        hs = '53deg, 100%'
+        hs = '45deg, 89%'
         break
       case 'red':
         hs = '0deg, 100%'
@@ -42,11 +43,11 @@ export const useBackgroundColor = (
         hs = '0deg, 1%'
         break
     }
-    return `hsl(${hs}, ${lightness}%)`
+    return `hsl(${hs}, ${lightness}%, ${opacity})`
   }
 
   const colorLightnesses = {
-    yellow: [60, 45, 30],
+    yellow: [49, 39, 29],
     blue: [60, 45, 30],
     red: [60, 45, 30],
     gray: [60, 45, 30],

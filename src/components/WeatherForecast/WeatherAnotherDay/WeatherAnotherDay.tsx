@@ -14,17 +14,20 @@ interface WeatherTomorrowProps {
 interface WeatherAnotherDayProps extends WeatherTomorrowProps {
   dayLabel: string
   lightnessLevel: number
+  opacity: number
 }
 
 const WeatherAnotherDay = ({
   dayLabel,
   temperature,
   lightnessLevel,
+  opacity,
 }: WeatherAnotherDayProps) => {
   const backgroundColor = useBackgroundColor(
     'celsius',
     temperature,
-    lightnessLevel
+    lightnessLevel,
+    opacity
   )
   const temperatureString = temperature.toString().toUpperCase()
   return (
@@ -43,6 +46,7 @@ export const WeatherTomorrow = ({ temperature }: WeatherTomorrowProps) => (
     dayLabel="Amanhã"
     temperature={temperature}
     lightnessLevel={1}
+    opacity={0.95}
   />
 )
 
@@ -51,6 +55,7 @@ export const WeatherAfterTomorrow = ({ temperature }: WeatherTomorrowProps) => (
     dayLabel="Depois de amanhã"
     temperature={temperature}
     lightnessLevel={2}
+    opacity={0.97}
   />
 )
 
