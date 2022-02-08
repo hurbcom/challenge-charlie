@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  font-family: 'Trebuchet MS';
   color: white;
   background-color: ${(props) => props.backgroundColor};
   display: flex;
