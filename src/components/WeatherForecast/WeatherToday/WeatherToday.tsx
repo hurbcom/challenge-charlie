@@ -1,5 +1,15 @@
 import React from 'react'
 import { ImSun } from 'react-icons/im'
+import { WiCloudyWindy } from 'react-icons/wi'
+import {
+  BsCloudFog,
+  BsClouds,
+  BsCloudDrizzle,
+  BsCloudSnow,
+  BsCloudRain,
+  BsCloudLightningRain,
+} from 'react-icons/bs'
+
 import { IconContext } from 'react-icons'
 import { useBackgroundColor } from '../../../hooks/useBackgroundColor'
 import {
@@ -19,6 +29,7 @@ interface WeatherTodayProps {
   windSpeed: number
   airHumidity: number
   airPressure: number
+  dayFeelingIconName: string
 }
 
 const WeatherToday = ({
@@ -28,15 +39,14 @@ const WeatherToday = ({
   windSpeed,
   airHumidity,
   airPressure,
+  dayFeelingIconName,
 }: WeatherTodayProps) => {
   const backgroundColor = useBackgroundColor('celsius', temperature, 0, 0.92)
   return (
-    <IconContext.Provider value={{ size: '120' }}>
+    <IconContext.Provider value={{ size: '80%' }}>
       <WeatherTodayContainer backgroundColor={backgroundColor}>
         <WeatherTodayBox>
-          <Icon>
-            <ImSun />
-          </Icon>
+          <Icon>{WeatherIcon(dayFeelingIconName)}</Icon>
         </WeatherTodayBox>
         <WeatherTodayBox>
           <Day>HOJE</Day>
@@ -51,6 +61,24 @@ const WeatherToday = ({
       </WeatherTodayContainer>
     </IconContext.Provider>
   )
+}
+
+const WeatherIcon = (iconName: string) => {
+  const iconList = {
+    Atmosphere: <WiCloudyWindy />,
+    Clear: <ImSun />,
+    Clouds: <BsClouds />,
+    Drizzle: <BsCloudDrizzle />,
+    Fog: <BsCloudFog />,
+    Mist: <BsCloudFog />,
+    Rain: <BsCloudRain />,
+    Snow: <BsCloudSnow />,
+    Thunderstorm: <BsCloudLightningRain />,
+  }
+  if (iconName) {
+    return (iconList as any)[iconName]
+  }
+  return <></>
 }
 
 export default WeatherToday
