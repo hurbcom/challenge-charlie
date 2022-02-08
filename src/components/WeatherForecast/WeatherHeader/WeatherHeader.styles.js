@@ -3,7 +3,7 @@ import { Container } from '../../../UI'
 
 export const WeatherHeaderContainer = styled(Container)`
   color: rgb(126, 126, 124);
-  background-color: rgba(243, 238, 236, 0.5);
+  background-color: rgba(243, 238, 236, 0.92);
   height: initial;
 `
 
