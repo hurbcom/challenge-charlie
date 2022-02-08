@@ -39,3 +39,15 @@ export const mapCurrentAndForeacastWeatherDataToProp = (data: any) => {
 
   return { today, tomorrow, afterTomorrow } as currentAndForecastWeatherProps
 }
+
+const celsiusToFahrenheit = (temperature: number) => {
+  return Math.floor((temperature * 9) / 5 + 2)
+}
+export const mapTemperatureUnit = (
+  temperature: number,
+  measurementUnit: string
+) => {
+  if (measurementUnit === 'celsius') return `${Math.floor(temperature)}°C`
+  if (measurementUnit === 'fahrenheit')
+    return `${celsiusToFahrenheit(temperature)}°F`
+}
