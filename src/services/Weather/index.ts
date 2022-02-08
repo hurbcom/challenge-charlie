@@ -1,30 +1,38 @@
 import { request } from '../'
-import { getWeatherReturn } from '../../types/weather'
+import {
+  getOpenWeatherOneCallReturn,
+  getCurrentAndForecastWeatherReturn,
+} from '../../types/weather'
 import { OPENWEATHER_BASE_URL, OPENWEATHER_APIKEY } from '../../config'
 
 class Weather {
   private static openWeatherBaseURL = OPENWEATHER_BASE_URL
   private static openWeatherApiKey = OPENWEATHER_APIKEY
 
-  public static getTodayForecast = async (
-    city: string
-  ): Promise<getWeatherReturn | null> => {
+  public static getCurrentAndForecastWeather = async (
+    lat: number,
+    lon: number
+  ): Promise<getCurrentAndForecastWeatherReturn | null> => {
     try {
-      const { data } = await request.get(`${this.openWeatherBaseURL}/weather`, {
+      const { data } = await request.get(`${this.openWeatherBaseURL}/onecall`, {
         params: {
-          q: city,
+          lat,
+          lon,
           appid: this.openWeatherApiKey,
+          exclude: 'minutely,hourly,alerts',
           units: 'metric',
           lang: 'pt_br',
         },
       })
-
-      if (!data.weather) return null
-
-      const { weather, main, wind } = data
-      return { weather, main, wind } as getWeatherReturn
-    } catch (e) {
-      throw new Error('Não foi possível obter o clima de hoje.')
+      if (!data.current || !data.daily) return null
+      const { daily, current } = data as getOpenWeatherOneCallReturn
+      return {
+        today: current,
+        tomorrow: daily[1],
+        afterTomorrow: daily[2],
+      }
+    } catch (err) {
+      throw new Error('Não foi possível obter as informações do clima.')
     }
   }
 }

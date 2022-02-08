@@ -2,8 +2,8 @@ import React from 'react'
 import { Main, WeatherForecast as WeatherForecastUI } from '../../components'
 import { useLocation } from '../../hooks'
 import { Weather } from '../../services'
-import { getWeatherReturn } from '../../types/weather'
-import { mapTodayWeatherDataToProp } from '../../helpers/weather'
+import { currentAndForecastWeatherProps } from '../../types/weather'
+import { mapCurrentAndForeacastWeatherDataToProp } from '../../helpers/weather'
 
 export type positionProps = {
   latitude: number
@@ -12,17 +12,19 @@ export type positionProps = {
 
 const WeatherForecast = () => {
   const location = useLocation()
-  const [todayWeather, setTodayWeather] =
-    React.useState<getWeatherReturn | null>(null)
+  const [weather, setWeather] =
+    React.useState<currentAndForecastWeatherProps | null>(null)
 
   React.useEffect(() => {
-    const city = location && location.data?.city
+    const lat = location?.data?.latitude
+    const lon = location?.data?.longitude
     ;(async () => {
       try {
-        if (city) {
-          const result = await Weather.getTodayForecast(city)
-          const mappedWeather = mapTodayWeatherDataToProp(result)
-          setTodayWeather(mappedWeather)
+        if (lat && lon) {
+          const result = await Weather.getCurrentAndForecastWeather(lat, lon)
+          const mappedDataProps =
+            mapCurrentAndForeacastWeatherDataToProp(result)
+          setWeather(mappedDataProps)
         }
       } catch (e) {
         console.error({ e })
@@ -30,20 +32,13 @@ const WeatherForecast = () => {
     })()
   }, [location])
 
-  const tomorrow = {
-    temperature: 15,
-  }
-  const afterTomorrow = {
-    temperature: 15,
-  }
-
   return (
     <Main>
       <WeatherForecastUI
         location={location.data}
-        today={todayWeather}
-        tomorrow={tomorrow}
-        afterTomorrow={afterTomorrow}
+        today={weather?.today}
+        tomorrow={weather?.tomorrow}
+        afterTomorrow={weather?.afterTomorrow}
       />
     </Main>
   )

@@ -5,7 +5,7 @@ type StateType = {
   loading?: boolean
   error?: boolean
   errorMessage?: string
-  data?: { city: string; state: string }
+  data?: { city: string; state: string; latitude?: number; longitude?: number }
 }
 
 export const useLocation = () => {
@@ -29,12 +29,10 @@ export const useLocation = () => {
     coords: { latitude: number; longitude: number }
   }) => {
     try {
-      const location = await Geocoding.reverse(
-        data.coords.latitude,
-        data.coords.longitude
-      )
+      const { longitude, latitude } = data.coords
+      const location = await Geocoding.reverse(latitude, longitude)
       if (location !== null) {
-        setState({ data: { ...location } })
+        setState({ data: { ...location, latitude, longitude } })
       }
     } catch (e: any) {
       setState({ loading: false, error: true, errorMessage: e.message })
