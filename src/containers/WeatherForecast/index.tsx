@@ -12,6 +12,7 @@ export type positionProps = {
 
 const WeatherForecast = () => {
   const location = useLocation()
+  const [measurementUnit, setMeasurmentUnit] = React.useState('celsius')
   const [weather, setWeather] =
     React.useState<currentAndForecastWeatherProps | null>(null)
 
@@ -32,9 +33,17 @@ const WeatherForecast = () => {
     })()
   }, [location])
 
+  const handleUnitMeasurementChange = () => {
+    setMeasurmentUnit((prevState) => {
+      return prevState === 'celsius' ? 'fahrenheit' : 'celsius'
+    })
+  }
+
   return (
     <Main>
       <WeatherForecastUI
+        measurementUnit={measurementUnit}
+        onMeasurementUnitChange={handleUnitMeasurementChange}
         location={location.data}
         today={weather?.today}
         tomorrow={weather?.tomorrow}
