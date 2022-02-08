@@ -1,5 +1,6 @@
 import React from 'react'
 import { ImSun } from 'react-icons/im'
+import { IconContext } from 'react-icons'
 import { WiCloudyWindy } from 'react-icons/wi'
 import {
   BsCloudFog,
@@ -9,9 +10,8 @@ import {
   BsCloudRain,
   BsCloudLightningRain,
 } from 'react-icons/bs'
-
-import { IconContext } from 'react-icons'
 import { useBackgroundColor } from '../../../hooks/useBackgroundColor'
+import { mapTemperatureUnit } from '../../../helpers/weather'
 import {
   WeatherTodayContainer,
   WeatherTodayBox,
@@ -23,13 +23,15 @@ import {
 } from './WeatherToday.styles'
 
 interface WeatherTodayProps {
-  temperature: string
+  temperature: number
   dayFeeling: string
   windDirection: string
   windSpeed: number
   airHumidity: number
   airPressure: number
   dayFeelingIconName: string
+  measurementUnit: string
+  onMeasurementUnitChange: Function
 }
 
 const WeatherToday = ({
@@ -40,6 +42,8 @@ const WeatherToday = ({
   airHumidity,
   airPressure,
   dayFeelingIconName,
+  measurementUnit,
+  onMeasurementUnitChange,
 }: WeatherTodayProps) => {
   const backgroundColor = useBackgroundColor('celsius', temperature, 0, 0.92)
   return (
@@ -50,7 +54,9 @@ const WeatherToday = ({
         </WeatherTodayBox>
         <WeatherTodayBox>
           <Day>HOJE</Day>
-          <Temperature>{temperature}</Temperature>
+          <Temperature onClick={onMeasurementUnitChange}>
+            {mapTemperatureUnit(temperature, measurementUnit)}
+          </Temperature>
           <DayFeeling>{dayFeeling}</DayFeeling>
           <OtherInfo>
             Vento: {windDirection} {windSpeed && `${windSpeed}km/h`}

@@ -6,9 +6,12 @@ import {
   Day,
   Temperature,
 } from './WeatherAnotherDay.styles'
+import { mapTemperatureUnit } from '../../../helpers/weather'
 
 interface WeatherTomorrowProps {
   temperature: number
+  measurementUnit: string
+  onMeasurementUnitChange: Function
 }
 
 interface WeatherAnotherDayProps extends WeatherTomorrowProps {
@@ -22,6 +25,8 @@ const WeatherAnotherDay = ({
   temperature,
   lightnessLevel,
   opacity,
+  measurementUnit,
+  onMeasurementUnitChange,
 }: WeatherAnotherDayProps) => {
   const backgroundColor = useBackgroundColor(
     'celsius',
@@ -34,27 +39,41 @@ const WeatherAnotherDay = ({
       <WeatherAnotherDayBox></WeatherAnotherDayBox>
       <WeatherAnotherDayBox>
         <Day>{dayLabel.toUpperCase()}</Day>
-        <Temperature>{temperature}</Temperature>
+        <Temperature onClick={onMeasurementUnitChange}>
+          {mapTemperatureUnit(temperature, measurementUnit)}
+        </Temperature>
       </WeatherAnotherDayBox>
     </WeatherAnotherDayContainer>
   )
 }
 
-export const WeatherTomorrow = ({ temperature }: WeatherTomorrowProps) => (
+export const WeatherTomorrow = ({
+  temperature,
+  onMeasurementUnitChange,
+  measurementUnit,
+}: WeatherTomorrowProps) => (
   <WeatherAnotherDay
     dayLabel="Amanhã"
     temperature={temperature}
     lightnessLevel={1}
     opacity={0.95}
+    measurementUnit={measurementUnit}
+    onMeasurementUnitChange={onMeasurementUnitChange}
   />
 )
 
-export const WeatherAfterTomorrow = ({ temperature }: WeatherTomorrowProps) => (
+export const WeatherAfterTomorrow = ({
+  temperature,
+  onMeasurementUnitChange,
+  measurementUnit,
+}: WeatherTomorrowProps) => (
   <WeatherAnotherDay
     dayLabel="Depois de amanhã"
     temperature={temperature}
     lightnessLevel={2}
     opacity={0.97}
+    measurementUnit={measurementUnit}
+    onMeasurementUnitChange={onMeasurementUnitChange}
   />
 )
 
