@@ -1,5 +1,5 @@
 import React from 'react'
-import { WeatherForecast as WeatherForecastUI } from '../../components'
+import { Main, WeatherForecast as WeatherForecastUI } from '../../components'
 import { useLocation } from '../../hooks'
 
 export type positionProps = {
@@ -25,12 +25,14 @@ const WeatherForecast = () => {
   }
 
   return (
-    <WeatherForecastUI
-      location={location.data}
-      today={today}
-      tomorrow={tomorrow}
-      afterTomorrow={afterTomorrow}
-    />
+    <Main>
+      <WeatherForecastUI
+        location={location.data}
+        today={today}
+        tomorrow={tomorrow}
+        afterTomorrow={afterTomorrow}
+      />
+    </Main>
   )
 }
 
