@@ -14,6 +14,7 @@ docker-run:
 		-p 6006:6006 \
 		-v $(PWD):/app \
 		-v /app/node_modules \
+		-e HTTPS=true \
 		--rm \
 		$(NAME):$(VERSION)
 
