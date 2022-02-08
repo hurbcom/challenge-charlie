@@ -29,13 +29,12 @@ const WeatherAnotherDay = ({
     lightnessLevel,
     opacity
   )
-  const temperatureString = temperature.toString().toUpperCase()
   return (
     <WeatherAnotherDayContainer backgroundColor={backgroundColor}>
       <WeatherAnotherDayBox></WeatherAnotherDayBox>
       <WeatherAnotherDayBox>
         <Day>{dayLabel.toUpperCase()}</Day>
-        <Temperature>{temperatureString}</Temperature>
+        <Temperature>{temperature}</Temperature>
       </WeatherAnotherDayBox>
     </WeatherAnotherDayContainer>
   )
