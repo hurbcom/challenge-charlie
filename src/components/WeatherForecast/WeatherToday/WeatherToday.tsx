@@ -16,9 +16,9 @@ interface WeatherTodayProps {
   temperature: string
   dayFeeling: string
   windDirection: string
-  windSpeed: string
-  airHumidity: string
-  airPressure: string
+  windSpeed: number
+  airHumidity: number
+  airPressure: number
 }
 
 const WeatherToday = ({
@@ -30,7 +30,6 @@ const WeatherToday = ({
   airPressure,
 }: WeatherTodayProps) => {
   const backgroundColor = useBackgroundColor('celsius', temperature, 0, 0.92)
-  const temperatureString = temperature.toString().toUpperCase()
   return (
     <IconContext.Provider value={{ size: '120' }}>
       <WeatherTodayContainer backgroundColor={backgroundColor}>
@@ -41,13 +40,13 @@ const WeatherToday = ({
         </WeatherTodayBox>
         <WeatherTodayBox>
           <Day>HOJE</Day>
-          <Temperature>{temperatureString}</Temperature>
+          <Temperature>{temperature}</Temperature>
           <DayFeeling>{dayFeeling}</DayFeeling>
           <OtherInfo>
-            Vento: {windDirection} {windSpeed}
+            Vento: {windDirection} {windSpeed && `${windSpeed}km/h`}
           </OtherInfo>
-          <OtherInfo>Humidade: {airHumidity}</OtherInfo>
-          <OtherInfo>Pressão: {airPressure}</OtherInfo>
+          <OtherInfo>Humidade: {airHumidity && `${airHumidity}%`}</OtherInfo>
+          <OtherInfo>Pressão: {airPressure && `${airPressure}hPA`}</OtherInfo>
         </WeatherTodayBox>
       </WeatherTodayContainer>
     </IconContext.Provider>
