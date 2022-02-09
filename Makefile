@@ -1,7 +1,12 @@
 NAME = challenge-charlie-weather-forecast
+NAME_PROD = challenge-charlie-weather-forecast-prod
 PROXY_NAME = challenge-charlie-proxy
 VERSION := latest
-PROD := prod
+
+proxy: docker-proxy-build docker-proxy-run
+dev: docker-build docker-run
+prod: docker-prod-build docker-prod-deploy
+stop: docker-prod-stop docker-stop docker-proxy-stop
 
 docker-build:
 	docker build -t $(NAME) .
@@ -20,7 +25,7 @@ docker-run:
 		$(NAME):$(VERSION)
 
 docker-stop:
-	docker stop $(NAME)
+	-docker stop $(NAME)
 
 storybook:
 	docker exec -it $(NAME) npm run storybook
@@ -40,11 +45,14 @@ docker-proxy-run:
 docker-proxy-stop:
 	-docker stop $(PROXY_NAME)
 
-build-prod:
-	docker build -f Dockerfile.prod -t $(NAME):$(PROD) .
+docker-prod-build:
+	docker build -f Dockerfile.prod -t $(NAME_PROD) .
 
-deploy-prod:
-	docker run -it -p 8080:80 --rm $(NAME):$(PROD)
+docker-prod-deploy:
+	docker run -it -p 8080:80 --rm $(NAME_PROD):$(VERSION)
+
+docker-prod-stop:
+	-docker stop $(NAME_PROD)
 
 make test:
 	docker exec $(NAME) npm test -- --watchAll=false
