@@ -11,7 +11,7 @@ export type positionProps = {
 }
 
 const WeatherForecast = () => {
-  const location = useLocation()
+  const [location, setLocation] = useLocation()
   const [measurementUnit, setMeasurmentUnit] = React.useState('celsius')
   const [weather, setWeather] =
     React.useState<currentAndForecastWeatherProps | null>(null)

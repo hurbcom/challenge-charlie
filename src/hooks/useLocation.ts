@@ -42,5 +42,5 @@ export const useLocation = () => {
     setState({ loading: false, error: true, errorMessage: err.message })
   }
 
-  return state
+  return [state, setState]
 }
