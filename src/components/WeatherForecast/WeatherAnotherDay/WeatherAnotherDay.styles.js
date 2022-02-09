@@ -21,6 +21,7 @@ export const Day = styled(Text)`
   line-height: initial;
   @media (max-width: 600px) {
     font-size: 1rem;
+    line-height: 1.25rem;
   }
   @media (max-width: 414px) {
     font-size: 0.875rem;
