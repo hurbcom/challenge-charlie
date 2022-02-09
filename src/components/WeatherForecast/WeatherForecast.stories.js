@@ -4,8 +4,12 @@ import { WeatherForecast } from './'
 export default {
   title: 'WeatherForecast',
   args: {
-    cityName: 'Rio de Janeiro',
-    stateName: 'Rio de Janeiro',
+    location: {
+      city: 'Rio de Janeiro',
+      state: 'Rio de Janeiro',
+    },
+    onMeasurementUnitChange: () => {},
+    measurementUnit: 'celsius',
   },
 }
 
@@ -18,9 +22,9 @@ Default.args = {
     temperature: 25,
     dayFeeling: 'Ensolarado',
     windDirection: 'NO',
-    windSpeed: '25km/h',
-    airHumidity: '30%',
-    airPressure: '10kpmhg',
+    windSpeed: 25,
+    airHumidity: 30,
+    airPressure: 1200,
   },
   tomorrow: {
     temperature: 30,

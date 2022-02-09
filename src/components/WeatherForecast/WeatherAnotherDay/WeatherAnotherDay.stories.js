@@ -7,6 +7,8 @@ export default {
     dayLabel: 'Amanhã',
     temperature: 30,
     lightnessLevel: 1,
+    onMeasurementUnitChange: () => {},
+    measurementUnit: 'celsius',
   },
 }
 

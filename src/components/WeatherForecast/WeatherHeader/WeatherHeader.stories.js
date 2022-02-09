@@ -6,6 +6,7 @@ export default {
   args: {
     cityName: 'Rio de Janeiro',
     stateName: 'Rio de Janeiro',
+    onCityInputChange: () => {},
   },
 }
 
