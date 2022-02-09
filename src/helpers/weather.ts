@@ -47,7 +47,8 @@ export const mapTemperatureUnit = (
   temperature: number,
   measurementUnit: string
 ) => {
-  if (measurementUnit === 'celsius') return `${Math.floor(temperature)}°C`
+  if (measurementUnit === 'celsius')
+    return temperature ? `${Math.floor(temperature)}°C` : ''
   if (measurementUnit === 'fahrenheit')
-    return `${celsiusToFahrenheit(temperature)}°F`
+    return temperature ? `${celsiusToFahrenheit(temperature)}°F` : ''
 }
