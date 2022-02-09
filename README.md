@@ -44,13 +44,15 @@ make proxy
 make dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [https://localhost:3000](https://localhost:3000) to view it in the browser.
 
 ### Storybook
 
 ```bash
 make storybook
 ```
+
+Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 
 ### Testing
 
