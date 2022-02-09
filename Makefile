@@ -23,7 +23,7 @@ docker-stop:
 	docker stop $(NAME)
 
 storybook:
-	docker exec -it challenge-charlie-weather-forecast npm run storybook
+	docker exec -it $(NAME) npm run storybook
 
 docker-proxy-build:
 	docker build -t $(PROXY_NAME) . -f Dockerfile.proxy
