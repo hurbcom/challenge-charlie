@@ -4,12 +4,21 @@ import { WeatherAnotherDayBox } from '../WeatherAnotherDay/WeatherAnotherDay.sty
 
 export const WeatherTodayContainer = styled(Container)`
   min-height: 160px;
+  height: initial;
 `
 export const WeatherTodayBox = WeatherAnotherDayBox
 
 export const Icon = styled.div`
   min-width: 50px;
   padding: 16px 0;
+  @media (max-width: ${(props) => props.theme.breakpoint.sm}) {
+    max-width: 220px;
+  }
+  @media (max-width: ${(props) =>
+      props.theme.breakpoint.xs}) or (orientation: landscape) {
+    font-size: 0.875rem;
+    max-width: 160px;
+  }
 `
 
 export const Day = styled(Text)`
@@ -19,7 +28,8 @@ export const Day = styled(Text)`
   @media (max-width: ${(props) => props.theme.breakpoint.sm}) {
     font-size: 1rem;
   }
-  @media (max-width: ${(props) => props.theme.breakpoint.xs}) {
+  @media (max-width: ${(props) =>
+      props.theme.breakpoint.xs}) or (orientation: landscape) {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }

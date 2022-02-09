@@ -5,7 +5,6 @@ const Container = styled.div`
   background-color: ${(props) => props.backgroundColor};
   display: flex;
   flex-direction: row;
-  height: 42px;
   align-items: center;
   text-align: center;
   padding: 8px;
