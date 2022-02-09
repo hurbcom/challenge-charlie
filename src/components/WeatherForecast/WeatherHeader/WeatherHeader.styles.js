@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container } from '../../../UI'
+import { Container } from '../../UI'
 import { EditText } from 'react-edit-text'
 
 export const WeatherHeaderContainer = styled(Container)`

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { Template } from '../../../UI'
+import { Template } from '../../UI'
 import WeatherHeader from './WeatherHeader'
 
 describe('WeatherHeader', () => {

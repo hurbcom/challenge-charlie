@@ -4,7 +4,7 @@ import { useLocation } from '../../hooks'
 import { Weather, Geocoding } from '../../services'
 import { currentAndForecastWeatherProps } from '../../types/weather'
 import { mapCurrentAndForeacastWeatherDataToProp } from '../../helpers/weather'
-import { Template } from '../../UI'
+import { Template } from '../../components/UI'
 
 export type positionProps = {
   latitude: number

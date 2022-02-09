@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { Template } from '../'
+import { Template } from '..'
 import Text from './Text'
 
 describe('Test', () => {

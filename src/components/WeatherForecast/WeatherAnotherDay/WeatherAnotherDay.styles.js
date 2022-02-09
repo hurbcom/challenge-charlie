@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text, Container } from '../../../UI'
+import { Text, Container } from '../../UI'
 
 export const WeatherAnotherDayContainer = Container
 
