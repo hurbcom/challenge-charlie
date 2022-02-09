@@ -28,11 +28,11 @@ exports[`WeatherHeader matches snapshot 1`] = `
         </g>
       </svg>
     </div>
-    <span
-      class="sc-eCImPb kaQHRl"
+    <div
+      class="_1EEDX _3sXmF _3qwMT sc-eCImPb dthfNd"
     >
-      , 
-    </span>
+      Informe sua cidade
+    </div>
   </div>
 </div>
 `;

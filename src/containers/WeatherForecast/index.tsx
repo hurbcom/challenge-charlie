@@ -1,7 +1,7 @@
 import React from 'react'
 import { Main, WeatherForecast as WeatherForecastUI } from '../../components'
 import { useLocation } from '../../hooks'
-import { Weather } from '../../services'
+import { Weather, Geocoding } from '../../services'
 import { currentAndForecastWeatherProps } from '../../types/weather'
 import { mapCurrentAndForeacastWeatherDataToProp } from '../../helpers/weather'
 
@@ -17,8 +17,8 @@ const WeatherForecast = () => {
     React.useState<currentAndForecastWeatherProps | null>(null)
 
   React.useEffect(() => {
-    const lat = location?.data?.latitude
-    const lon = location?.data?.longitude
+    const lat = (location as any)?.data?.latitude
+    const lon = (location as any)?.data?.longitude
     ;(async () => {
       try {
         if (lat && lon) {
@@ -33,6 +33,12 @@ const WeatherForecast = () => {
     })()
   }, [location])
 
+  const handleCityInputChange = async (value: string) => {
+    const city = value && value.split(',')[0]
+    const coords = await Geocoding.foward(city)
+    if (coords) (setLocation as any)({ data: { ...coords }, loading: false })
+  }
+
   const handleUnitMeasurementChange = () => {
     setMeasurmentUnit((prevState) => {
       return prevState === 'celsius' ? 'fahrenheit' : 'celsius'
@@ -42,9 +48,10 @@ const WeatherForecast = () => {
   return (
     <Main>
       <WeatherForecastUI
+        onCityInputChange={handleCityInputChange}
         measurementUnit={measurementUnit}
         onMeasurementUnitChange={handleUnitMeasurementChange}
-        location={location.data}
+        location={(location as any)?.data}
         today={weather?.today}
         tomorrow={weather?.tomorrow}
         afterTomorrow={weather?.afterTomorrow}

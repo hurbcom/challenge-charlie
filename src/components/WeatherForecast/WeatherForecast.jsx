@@ -5,6 +5,7 @@ import { WeatherTomorrow, WeatherAfterTomorrow } from './WeatherAnotherDay'
 import { WeatherContainer } from './WeatherContainer'
 
 const WeatherForecast = ({
+  onCityInputChange,
   location,
   today,
   tomorrow,
@@ -14,7 +15,11 @@ const WeatherForecast = ({
 }) => {
   return (
     <WeatherContainer>
-      <WeatherHeader city={location.city} state={location.state} />
+      <WeatherHeader
+        city={location.city}
+        state={location.state}
+        onCityInputChange={onCityInputChange}
+      />
       <WeatherToday
         {...today}
         measurementUnit={measurementUnit}
