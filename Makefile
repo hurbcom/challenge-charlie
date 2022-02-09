@@ -58,4 +58,4 @@ make test:
 	docker exec $(NAME) npm test -- --watchAll=false
 
 make coverage-test:
-	docker exec $(NAME) npm test:coverage
+	docker exec $(NAME) npm run test:coverage
