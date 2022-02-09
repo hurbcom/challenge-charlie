@@ -38,10 +38,16 @@ docker-proxy-run:
 		$(PROXY_NAME):$(VERSION)
 
 docker-proxy-stop:
-	docker stop $(PROXY_NAME)
+	-docker stop $(PROXY_NAME)
 
 build-prod:
 	docker build -f Dockerfile.prod -t $(NAME):$(PROD) .
 
 deploy-prod:
 	docker run -it -p 8080:80 --rm $(NAME):$(PROD)
+
+make test:
+	docker exec $(NAME) npm test -- --watchAll=false
+
+make coverage-test:
+	docker exec $(NAME) npm test:coverage

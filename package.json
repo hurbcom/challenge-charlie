@@ -46,10 +46,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/**/*.d.ts",
+      "!<rootDir>/**/*.stories.{js,jsx,ts,tsx}"
+    ]
   },
   "eslintConfig": {
     "extends": [
