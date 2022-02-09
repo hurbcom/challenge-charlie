@@ -39,4 +39,41 @@ describe('Geocoding test suit', () => {
       }).rejects.toThrow('Não foi possível')
     })
   })
+  describe('reverse coords', () => {
+    const mockSuccessResponse = {
+      results: [
+        {
+          components: {
+            city: 'Rio de Janeiro',
+            state: 'Rio de Janeiro',
+          },
+        },
+      ],
+    }
+    const mockFetchPromise = Promise.resolve({
+      data: mockSuccessResponse,
+    })
+
+    beforeEach(() => {
+      mockAxios.get.mockImplementation((url, query) => {
+        const { q: coords } = query.params
+        if (coords === '10,20') return mockFetchPromise
+      })
+    })
+
+    it('should return city and state when coord is found', async () => {
+      const result = await Geocoding.reverse(10, 20)
+
+      expect(result).toEqual({
+        city: 'Rio de Janeiro',
+        state: 'Rio de Janeiro',
+      })
+    })
+    it('should return error when no coords is found', async () => {
+      expect.assertions(1)
+      await expect(async () => {
+        await Geocoding.foward(20, 10)
+      }).rejects.toThrow('Não foi possível')
+    })
+  })
 })
