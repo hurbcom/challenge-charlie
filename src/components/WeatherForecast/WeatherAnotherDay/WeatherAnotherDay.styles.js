@@ -17,7 +17,15 @@ export const WeatherAnotherDayBox = styled.div`
 
 export const Day = styled(Text)`
   width: 100%;
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  line-height: initial;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 414px) {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
 `
 
 export const Temperature = Text

@@ -14,15 +14,19 @@ export const WeatherHeaderIcon = styled.div`
 `
 
 export const WeatherHeaderInputText = styled(EditText)`
-  width: 90%;
+  width: 85%;
   text-align: start;
+  font-size: 1.625rem;
+  font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 26px;
-  font-weight: bold;
   border: none;
-  :focus {
-    outline: none;
+  @media (max-width: ${(props) => props.theme.breakpoint.sm}) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: ${(props) => props.theme.breakpoint.xs}) {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
   }
 `

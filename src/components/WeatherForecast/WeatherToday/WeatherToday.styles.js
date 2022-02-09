@@ -14,7 +14,15 @@ export const Icon = styled.div`
 
 export const Day = styled(Text)`
   width: 100%;
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  line-height: initial;
+  @media (max-width: ${(props) => props.theme.breakpoint.sm}) {
+    font-size: 1rem;
+  }
+  @media (max-width: ${(props) => props.theme.breakpoint.xs}) {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 `
 
 export const Temperature = Text
@@ -24,5 +32,13 @@ export const DayFeeling = styled(Text)`
 `
 
 export const OtherInfo = styled(Text)`
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  line-height: initial;
+  @media (max-width: ${(props) => props.theme.breakpoint.sm}) {
+    font-size: 1rem;
+  }
+  @media (max-width: ${(props) => props.theme.breakpoint.xs}) {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 `

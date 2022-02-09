@@ -4,6 +4,7 @@ import { useLocation } from '../../hooks'
 import { Weather, Geocoding } from '../../services'
 import { currentAndForecastWeatherProps } from '../../types/weather'
 import { mapCurrentAndForeacastWeatherDataToProp } from '../../helpers/weather'
+import { Template } from '../../UI'
 
 export type positionProps = {
   latitude: number
@@ -46,17 +47,19 @@ const WeatherForecast = () => {
   }
 
   return (
-    <Main>
-      <WeatherForecastUI
-        onCityInputChange={handleCityInputChange}
-        measurementUnit={measurementUnit}
-        onMeasurementUnitChange={handleUnitMeasurementChange}
-        location={(location as any)?.data}
-        today={weather?.today}
-        tomorrow={weather?.tomorrow}
-        afterTomorrow={weather?.afterTomorrow}
-      />
-    </Main>
+    <Template>
+      <Main>
+        <WeatherForecastUI
+          onCityInputChange={handleCityInputChange}
+          measurementUnit={measurementUnit}
+          onMeasurementUnitChange={handleUnitMeasurementChange}
+          location={(location as any)?.data}
+          today={weather?.today}
+          tomorrow={weather?.tomorrow}
+          afterTomorrow={weather?.afterTomorrow}
+        />
+      </Main>
+    </Template>
   )
 }
 
