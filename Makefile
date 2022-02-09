@@ -1,6 +1,7 @@
 NAME = challenge-charlie-weather-forecast
 PROXY_NAME = challenge-charlie-proxy
 VERSION := latest
+PROD := prod
 
 docker-build:
 	docker build -t $(NAME) .
@@ -38,3 +39,9 @@ docker-proxy-run:
 
 docker-proxy-stop:
 	docker stop $(PROXY_NAME)
+
+build-prod:
+	docker build -f Dockerfile.prod -t $(NAME):$(PROD) .
+
+deploy-prod:
+	docker run -it -p 8080:80 --rm $(NAME):$(PROD)
