@@ -41,7 +41,7 @@ export const mapCurrentAndForeacastWeatherDataToProp = (data: any) => {
 }
 
 const celsiusToFahrenheit = (temperature: number) => {
-  return Math.floor((temperature * 9) / 5 + 2)
+  return Math.floor((temperature * 9) / 5 + 32)
 }
 export const mapTemperatureUnit = (
   temperature: number,
