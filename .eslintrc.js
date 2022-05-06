@@ -20,5 +20,7 @@ module.exports = {
     rules: {
         'no-console': 'error',
         indent: ['error', 4],
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'react/jsx-indent': ['error', 4],
     },
 };
