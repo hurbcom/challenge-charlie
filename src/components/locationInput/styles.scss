@@ -2,8 +2,9 @@
     display: flex;
     background-color: white;
     border: 0.1rem #8a8a8a solid;
-    border-radius: 6px 6px 0 0;
     input {
+        font-weight: bold;
+        color: #7b7b7b;
         background-color: transparent;
         display: inline-flex;
         width: 100%;
@@ -21,9 +22,11 @@
         height: 3rem;
         border: none;
         line-height: normal;
-
         span {
             color: #5a5a5a;
         }
+    }
+    button:hover {
+        background-color: #e9e9e9;
     }
 }

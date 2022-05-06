@@ -1,0 +1,14 @@
+#today-panel {
+    display: flex;
+    flex-direction: row;
+    height: 40vh;
+    color: white;
+    div.weather-icon {
+        overflow: hidden;
+        padding: 2rem;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
