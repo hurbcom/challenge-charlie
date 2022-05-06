@@ -15,7 +15,9 @@ function LocationInput() {
             locationService.fetchLocation(position.coords.latitude, position.coords.longitude)
                 .then((locationString) => {
                     dispatch(updateLocation(locationString));
+                    return weatherService.fetchWeather(locationString);
                 })
+                .then((result) => dispatch(updateWeather(result)))
                 // TODO: error treatment
                 .catch((error) => console.log(error));
         }, (error) => {
@@ -26,18 +28,30 @@ function LocationInput() {
 
     useEffect(getCurrentPosition, []);
 
-    function handleInput(event) {
+    function handleUpdateWeather(location) {
+        weatherService.fetchWeather(location)
+            .then((result) => {
+                dispatch(updateWeather(result));
+                return locationService.fetchLocation(result.coord.lat, result.coord.lon);
+            })
+            .then((locationString) => {
+                dispatch(updateLocation(locationString));
+            })
+            // TODO: error treatment
+            .catch((error) => console.log(error));
+    }
+
+    function handleInputChange(event) {
         dispatch(updateLocation(event.target.value));
+    }
+    function handleInputKeyUp(event) {
+        if (event.key === 'Enter') {
+            handleUpdateWeather(event.target.value);
+        }
     }
 
     function handleClickSearch() {
-        weatherService.fetchWeather(location)
-            .then((result) => locationService
-                .fetchLocation(result.coord.lat, result.coord.lon)
-                .then((locationString) => {
-                    dispatch(updateLocation(locationString));
-                    dispatch(updateWeather(result));
-                }));
+        handleUpdateWeather(location);
     }
 
     function handleClickLocation() {
@@ -46,7 +60,7 @@ function LocationInput() {
 
     return (
         <div id="location-input">
-            <input name="search" placeholder="Search for a city..." value={location} onChange={handleInput} />
+            <input name="search" placeholder="Search for a city..." value={location} onChange={handleInputChange} onKeyUp={handleInputKeyUp} />
             <button type="button" onClick={handleClickSearch}>
                 <span className="material-symbols-outlined">
                     search
