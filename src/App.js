@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './app.scss';
-import locationService from './services/locationService';
 
 function App() {
     const [backgroundUrl, setBackgroundUrl] = useState('');
