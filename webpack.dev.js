@@ -19,6 +19,14 @@ module.exports = merge(common, {
                 target: process.env.REACT_APP_BING_URL,
                 changeOrigin: true,
             },
+            '/geocode/v1/json': {
+                target: process.env.REACT_APP_LOCATION_URL,
+                changeOrigin: true,
+            },
+            '/data/2.5/weather': {
+                target: process.env.REACT_APP_WEATHER_URL,
+                changeOrigin: true,
+            },
         },
     },
 });
