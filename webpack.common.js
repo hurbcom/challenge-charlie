@@ -1,19 +1,10 @@
+require('dotenv').config();
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devServer: {
-        historyApiFallback: true,
-        static: {
-            directory: path.resolve(__dirname, './dist'),
-        },
-        open: true,
-        compress: true,
-        hot: true,
-        port: 8080,
-    },
     entry: {
         main: path.resolve(__dirname, './src/index.js'),
     },
@@ -28,6 +19,9 @@ module.exports = {
             filename: 'index.html', // output file
         }),
         new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
+        }),
     ],
     module: {
         rules: [

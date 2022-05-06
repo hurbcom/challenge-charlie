@@ -1,0 +1,7 @@
+services:
+    app:
+        container_name: challenge-charlie
+        restart: always
+        build: .
+        ports:
+            - ${PORT}:80
