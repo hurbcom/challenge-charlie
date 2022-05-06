@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './app.scss';
+import WeatherBox from './components/weatherBox';
 
 function App() {
     const [backgroundUrl, setBackgroundUrl] = useState('');
@@ -20,10 +21,7 @@ function App() {
               id="background"
               style={{ backgroundImage: `url("${backgroundUrl}")` }}
             >
-                <div style={{
-                    width: '20%',
-                }}
-                />
+                <WeatherBox />
             </div>
         </div>
     );

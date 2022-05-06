@@ -1,0 +1,29 @@
+#location-input {
+    display: flex;
+    background-color: white;
+    border: 0.1rem #8a8a8a solid;
+    border-radius: 6px 6px 0 0;
+    input {
+        background-color: transparent;
+        display: inline-flex;
+        width: 100%;
+        height: 3rem;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.5rem;
+        box-sizing: border-box;
+        border: none;
+    }
+    button {
+        cursor: pointer;
+        background-color: transparent;
+        width: 3rem;
+        min-width: 3rem;
+        height: 3rem;
+        border: none;
+        line-height: normal;
+
+        span {
+            color: #5a5a5a;
+        }
+    }
+}
