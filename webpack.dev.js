@@ -13,5 +13,12 @@ module.exports = merge(common, {
         compress: true,
         hot: true,
         port: process.env.PORT,
+        https: true,
+        proxy: {
+            '/HPImageArchive': {
+                target: process.env.REACT_APP_BING_URL,
+                changeOrigin: true,
+            },
+        },
     },
 });
