@@ -1,9 +1,15 @@
 #forecast-panel {
+    @media (max-device-height: 500px) and (orientation: landscape)  {
+        padding: .5rem;
+    }
     padding: 1rem;
     color: white;
     display: flex;
     justify-content: end;
     .right-content {
+        @media (max-device-height: 500px) and (orientation: landscape)  {
+            width: 50%;
+        }
         width: 40%;
     }
     .icon-temp {

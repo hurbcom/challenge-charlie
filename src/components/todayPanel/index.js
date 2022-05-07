@@ -26,28 +26,28 @@ function TodayPanel() {
                     : <div />}
             </div>
             <div className="weather-info">
-                <div>
-                    <p>HOJE </p>
-                    { isEmpty || loading || (
-                        <>
-                            <p>
-                                <Temperature temperature={temperature} />
-                            </p>
-                            <br />
-                        </>
-                    )}
-                </div>
-                <div>
-                    { (isEmpty || loading) || (
-                        <>
-                            <p className="description">{description}</p>
+                <p>HOJE </p>
+                <div className="weather-info-content">
+                    <div className="weather-info-left">
+                        { isEmpty || loading || (
+                            <>
+                                <p>
+                                    <Temperature temperature={temperature} />
+                                </p>
+                                <br />
+                                <p className="description">{description}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        { (isEmpty || loading) || (
                             <div className="details">
                                 <p>{`Vento: ${wind.direction} ${wind.speed} km/h`}</p>
                                 <p>{`Humidade: ${humidity}%`}</p>
                                 <p>{`Pressão: ${pressure} hPA`}</p>
                             </div>
-                        </>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
