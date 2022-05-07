@@ -60,7 +60,7 @@ function LocationInput() {
 
     return (
         <div id="location-input">
-            <input name="search" placeholder="Search for a city..." value={location} onChange={handleInputChange} onKeyUp={handleInputKeyUp} />
+            <input name="search" placeholder="Digite para buscar uma cidade..." value={location} onChange={handleInputChange} onKeyUp={handleInputKeyUp} />
             <button type="button" onClick={handleClickSearch}>
                 <span className="material-symbols-outlined">
                     search
