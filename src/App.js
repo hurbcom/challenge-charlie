@@ -20,7 +20,8 @@ function App() {
             <div
               id="background"
               style={{ backgroundImage: `url("${backgroundUrl}")` }}
-            >
+            />
+            <div>
                 <WeatherBox />
             </div>
         </div>

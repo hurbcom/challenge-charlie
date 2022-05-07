@@ -1,4 +1,6 @@
 #app {
+    width: 100vw;
+    height: 100vh;
     #background {
         background-size: cover;
         background-position: center center;
@@ -7,5 +9,6 @@
         width: 100%;
         z-index: -100;
         position: absolute;
-    }
+        filter: brightness(0.7);
+    }   
 }
