@@ -15,7 +15,7 @@ function TodayPanel() {
     const pressure = useSelector((state) => state.weather.pressure);
 
     return (
-        <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature.celsius)[0] }}>
+        <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature)[0] }}>
             <div className="weather-icon">
                 {icon
                                 ? <img src={require(`../../static/svg/${icon}.svg`)} alt={description} />
@@ -24,7 +24,9 @@ function TodayPanel() {
             <div className="weather-info">
                 <div>
                     <p>HOJE </p>
-                    <Temperature temperature={temperature} />
+                    <p>
+                        <Temperature temperature={temperature} />
+                    </p>
                     <br />
                 </div>
                 <div>

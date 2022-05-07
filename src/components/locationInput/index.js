@@ -28,8 +28,8 @@ function LocationInput() {
 
     useEffect(getCurrentPosition, []);
 
-    function handleUpdateWeather(location) {
-        weatherService.fetchWeather(location)
+    function handleUpdateWeather(searchLocation) {
+        weatherService.fetchWeather(searchLocation)
             .then((result) => {
                 dispatch(updateWeather(result));
                 return locationService.fetchLocation(result.coord.lat, result.coord.lon);

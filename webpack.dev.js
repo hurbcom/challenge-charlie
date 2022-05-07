@@ -30,7 +30,7 @@ module.exports = merge(common, {
                 target: process.env.REACT_APP_WEATHER_URL,
                 changeOrigin: true,
             },
-            '/data/2.5/daily': {
+            '/data/2.5/onecall': {
                 target: process.env.REACT_APP_WEATHER_URL,
                 changeOrigin: true,
             },
