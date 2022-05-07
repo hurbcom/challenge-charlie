@@ -1,6 +1,7 @@
 import React from 'react';
 import LocationInput from '../locationInput';
 import TodayPanel from '../todayPanel';
+import ForecastPanel from '../forecastPanel';
 import './styles.scss';
 
 function WeatherBox() {
@@ -10,6 +11,8 @@ function WeatherBox() {
                 <div className="content">
                     <LocationInput />
                     <TodayPanel />
+                    <ForecastPanel day={0} />
+                    <ForecastPanel day={1} />
                 </div>
             </div>
         </div>

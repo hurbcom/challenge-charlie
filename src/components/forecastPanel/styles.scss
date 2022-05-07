@@ -1,0 +1,13 @@
+#forecast-panel {
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: end;
+    .right-content {
+        width: 40%;
+    }
+    .icon-temp {
+        font-size: 29px;
+        vertical-align: bottom;
+    }
+}
