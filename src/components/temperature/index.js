@@ -24,16 +24,24 @@ function Temperature({ temperature }) {
     }
 
     return (
-        <span id="temperature" role="button" tabIndex="0" onClick={handleClick} onKeyUp={handleKey}>
-            {unit === 'celsius' ? Math.round(temperature) : Math.round(fahrenheit)}
-            &deg;
-            {unit === 'celsius' ? 'C' : 'F'}
-        </span>
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <>
+            { temperature !== undefined && temperature !== null && (
+            <span id="temperature" role="button" tabIndex="0" onClick={handleClick} onKeyUp={handleKey}>
+                {unit === 'celsius' ? Math.round(temperature) : Math.round(fahrenheit)}
+                &deg;
+                {unit === 'celsius' ? 'C' : 'F'}
+            </span>
+            )}
+        </>
     );
 }
 
 Temperature.propTypes = {
-    temperature: PropTypes.number.isRequired,
+    temperature: PropTypes.number,
+};
+Temperature.defaultProps = {
+    temperature: null,
 };
 
 export default Temperature;

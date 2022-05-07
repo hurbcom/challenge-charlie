@@ -4,31 +4,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import locationService from '../../services/locationService';
 import weatherService from '../../services/weatherService';
 import { update as updateLocation } from '../../store/slices/locationSlice';
-import { update as updateWeather } from '../../store/slices/weatherSlice';
+import { update as updateWeather, reset as resetWeather } from '../../store/slices/weatherSlice';
+import { update as updateLoading } from '../../store/slices/loadingSlice';
 
 function LocationInput() {
     const location = useSelector((state) => state.location.value);
     const dispatch = useDispatch();
 
     function getCurrentPosition() {
+        dispatch(updateLoading(true));
+        dispatch(resetWeather());
         navigator.geolocation.getCurrentPosition((position) => {
             locationService.fetchLocation(position.coords.latitude, position.coords.longitude)
                 .then((locationString) => {
                     dispatch(updateLocation(locationString));
                     return weatherService.fetchWeather(locationString);
                 })
-                .then((result) => dispatch(updateWeather(result)))
-                // TODO: error treatment
-                .catch((error) => console.log(error));
+                .then((result) => {
+                    dispatch(updateWeather(result));
+                    dispatch(updateLoading(false));
+                })
+                .catch((error) => {
+                    // TODO: error treatment
+                    dispatch(updateLoading(false));
+                });
         }, (error) => {
             // TODO: error treatment
-            console.log(error);
+            dispatch(updateLoading(false));
         });
     }
 
     useEffect(getCurrentPosition, []);
 
     function handleUpdateWeather(searchLocation) {
+        dispatch(updateLoading(true));
+        dispatch(resetWeather());
         weatherService.fetchWeather(searchLocation)
             .then((result) => {
                 dispatch(updateWeather(result));
@@ -36,9 +46,12 @@ function LocationInput() {
             })
             .then((locationString) => {
                 dispatch(updateLocation(locationString));
+                dispatch(updateLoading(false));
             })
-            // TODO: error treatment
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                // TODO: error treatment
+                dispatch(updateLoading(false));
+            });
     }
 
     function handleInputChange(event) {

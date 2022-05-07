@@ -2,20 +2,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { formatWeatherDescription, getWindDirection } from '../../utils';
 
+const initialState = {
+    isEmpty: true,
+    temperature: null,
+    pressure: '',
+    humidity: '',
+    wind: {
+        speed: '',
+        direction: '',
+    },
+    icon: null,
+    description: null,
+    forecast: [],
+};
+
 export const weatherSlice = createSlice({
     name: 'weather',
-    initialState: {
-        temperature: null,
-        pressure: null,
-        humidity: null,
-        wind: {
-            speed: null,
-            direction: null,
-        },
-        icon: null,
-        description: null,
-        forecast: [],
-    },
+    initialState,
     reducers: {
         update: (state, action) => {
             state.temperature = action.payload.main.temp;
@@ -26,11 +29,17 @@ export const weatherSlice = createSlice({
             state.icon = action.payload.weather[0].icon;
             state.description = formatWeatherDescription(action.payload.weather[0].description);
             state.forecast = [action.payload.daily[1].temp, action.payload.daily[2].temp];
+            state.isEmpty = false;
+        },
+        reset: (state) => {
+            Object.keys(initialState).forEach((key) => {
+                state[key] = initialState[key];
+            });
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { update } = weatherSlice.actions;
+export const { update, reset } = weatherSlice.actions;
 
 export default weatherSlice.reducer;

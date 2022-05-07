@@ -1,8 +1,10 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getWeatherColors } from '../../utils';
+import Loading from '../loading';
 import Temperature from '../temperature';
 import './styles.scss';
 
@@ -13,29 +15,39 @@ function TodayPanel() {
     const wind = useSelector((state) => state.weather.wind);
     const humidity = useSelector((state) => state.weather.humidity);
     const pressure = useSelector((state) => state.weather.pressure);
+    const isEmpty = useSelector((state) => state.weather.isEmpty);
+    const loading = useSelector((state) => state.loading.value);
 
     return (
-        <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature)[0] }}>
+        <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature, loading)[0] }}>
             <div className="weather-icon">
-                {icon
-                                ? <img src={require(`../../static/svg/${icon}.svg`)} alt={description} />
-                                : <div />}
+                {loading ? <Loading /> : icon
+                    ? <img src={require(`../../static/svg/${icon}.svg`)} alt={description} />
+                    : <div />}
             </div>
             <div className="weather-info">
                 <div>
                     <p>HOJE </p>
-                    <p>
-                        <Temperature temperature={temperature} />
-                    </p>
-                    <br />
+                    { isEmpty || loading || (
+                        <>
+                            <p>
+                                <Temperature temperature={temperature} />
+                            </p>
+                            <br />
+                        </>
+                    )}
                 </div>
                 <div>
-                    <p className="description">{description}</p>
-                    <div className="details">
-                        <p>{`Vento: ${wind.direction} ${wind.speed} km/h`}</p>
-                        <p>{`Humidade: ${humidity}%`}</p>
-                        <p>{`Pressão: ${pressure} hPA`}</p>
-                    </div>
+                    { (isEmpty || loading) || (
+                        <>
+                            <p className="description">{description}</p>
+                            <div className="details">
+                                <p>{`Vento: ${wind.direction} ${wind.speed} km/h`}</p>
+                                <p>{`Humidade: ${humidity}%`}</p>
+                                <p>{`Pressão: ${pressure} hPA`}</p>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

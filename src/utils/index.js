@@ -10,7 +10,7 @@ export function formatWeatherDescription(desc) {
     return desc.charAt(0).toUpperCase() + desc.slice(1);
 }
 
-export function getWeatherColors(celsiusTemperature) {
+export function getWeatherColors(celsiusTemperature, isGrey = false) {
     const yellow = [
         'rgba(255, 202, 40, 0.85)',
         'rgba(255, 213, 79, 0.85)',
@@ -26,12 +26,12 @@ export function getWeatherColors(celsiusTemperature) {
         'rgba(229, 115, 115, 0.85)',
         'rgba(244, 67, 54, 0.85)',
     ];
-    const white = [
+    const grey = [
         'rgba(189, 189, 189, 0.85)',
         'rgba(224, 224, 224, 0.85)',
         'rgba(158, 158, 158, 0.85)',
     ];
-    if (celsiusTemperature == null) return white;
+    if (celsiusTemperature == null || isGrey) return grey;
     if (celsiusTemperature < 15) return blue;
     if (celsiusTemperature > 35) return red;
     return yellow;
