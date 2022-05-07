@@ -1,7 +1,9 @@
 export function getWindDirection(deg) {
-    const val = Math.floor((deg / 22.5) + 0.5);
-    const arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
-    return arr[(val % 16)];
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
+    const degrees = Math.round((deg * 16) / 360, 0);
+    const idx = (degrees + 16) % 16;
+
+    return directions[idx];
 }
 
 export function formatWeatherDescription(desc) {
