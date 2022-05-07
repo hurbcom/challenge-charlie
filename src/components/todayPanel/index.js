@@ -13,6 +13,15 @@ function TodayPanel() {
         celsius: null,
         fahrenheit: null,
     });
+    const [wind, setWind] = useState();
+    const [humidity, setHumidity] = useState();
+    const [pressure, setPressure] = useState();
+
+    function formatDirection(deg) {
+        const val = Math.floor((deg / 22.5) + 0.5);
+        const arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
+        return arr[(val % 16)];
+    }
 
     useEffect(() => {
         if (weather && weather.weather) {
@@ -24,6 +33,9 @@ function TodayPanel() {
                 celsius: Math.round(weather.main.temp),
                 fahrenheit: Math.round((weather.main.temp) * (9 / 5) + 32),
             });
+            setWind(`${formatDirection(weather.wind.deg)} ${(weather.wind.speed * 3.6).toFixed(1)}`);
+            setHumidity(weather.main.humidity);
+            setPressure(weather.main.pressure);
         } else {
             setIcon();
             setDescription();
@@ -31,6 +43,9 @@ function TodayPanel() {
                 celsius: null,
                 fahrenheit: null,
             });
+            setWind();
+            setHumidity();
+            setPressure();
         }
     }, [weather]);
 
@@ -59,9 +74,9 @@ function TodayPanel() {
                         <div>
                             <p className="description">{description}</p>
                             <div className="details">
-                                <p>{`Vento: ${1}`}</p>
-                                <p>{`Humidade: ${1}`}</p>
-                                <p>{`Pressão: ${1}`}</p>
+                                <p>{`Vento: ${wind} km/h`}</p>
+                                <p>{`Humidade: ${humidity}%`}</p>
+                                <p>{`Pressão: ${pressure} hPA`}</p>
                             </div>
                         </div>
                     </div>
