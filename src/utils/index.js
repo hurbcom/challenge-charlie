@@ -1,5 +1,4 @@
 export function getWindDirection(deg) {
-    console.log(deg);
     const val = Math.floor((deg / 22.5) + 0.5);
     const arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
     return arr[(val % 16)];
