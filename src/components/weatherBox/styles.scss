@@ -5,12 +5,22 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center;
+        @media screen and (orientation: portrait) {
+            align-items: center;
+        }          
 
         div.content {
-            width: 50%;
+            @media screen and (orientation: landscape) {
+                margin-top: 3rem;
+            }              
+            min-width: 50%;
             display: flex;
             flex-direction: column;
         }
+    }
+    p {
+        font-size: 28px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0.5em;
     }
 }

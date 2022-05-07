@@ -1,14 +1,27 @@
 #today-panel {
     display: flex;
     flex-direction: row;
-    height: 40vh;
     color: white;
+    padding: 1rem;
     div.weather-icon {
-        overflow: hidden;
-        padding: 2rem;
+        width: 60%;
+        padding: 1rem 2rem;
+        align-self: center;
         img {
-            height: 100%;
             width: 100%;
+            max-height: 33vh;
+        }
+    }
+    div.weather-info {
+        width: 40%;
+        align-self: center; 
+    }
+    .description {
+        font-size: 32px;
+    }
+    .details {
+        p {
+            font-size: 20px;
         }
     }
 }
