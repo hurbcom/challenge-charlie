@@ -22,7 +22,13 @@ function TodayPanel() {
         <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature, loading)[0] }}>
             <div className="weather-icon">
                 {loading ? <Loading /> : icon
-                    ? <img src={require(`../../static/svg/${icon}.svg`)} alt={description} />
+                    ? (
+                        <img
+                          title={description}
+                          src={require(`../../static/svg/${icon}.svg`)}
+                          alt={description}
+                        />
+)
                     : <div />}
             </div>
             <div className="weather-info">

@@ -35,9 +35,12 @@
                 display: flex;
                 flex-direction: row;
                 .weather-info-left {
-                    width: 60%;
+                    width: 40%;
                 }
             }
+        }
+        @media (max-device-height: 500px) and (orientation: landscape)  {
+            width: 50%;
         }
         width: 40%;
     }

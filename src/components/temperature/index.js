@@ -27,7 +27,14 @@ function Temperature({ temperature }) {
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             { temperature !== undefined && temperature !== null && (
-            <span id="temperature" role="button" tabIndex="0" onClick={handleClick} onKeyUp={handleKey}>
+            <span
+              title={unit === 'celsius' ? 'Mudar temperatura para Fahrenheit' : 'Mudar temperatura para Celsius'}
+              id="temperature"
+              role="button"
+              tabIndex="0"
+              onClick={handleClick}
+              onKeyUp={handleKey}
+            >
                 {unit === 'celsius' ? Math.round(temperature) : Math.round(fahrenheit)}
                 &deg;
                 {unit === 'celsius' ? 'C' : 'F'}
