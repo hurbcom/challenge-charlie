@@ -8,6 +8,7 @@
         align-items: center;
 
         div.content {
+            margin: 2rem;
             min-width: 50%;
             display: flex;
             flex-direction: column;
@@ -16,7 +17,10 @@
     p {
         @media (max-device-height: 500px) and (orientation: landscape)  {
             font-size: 22px;
-        }    
+        }
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            font-size: 36px;
+        }
         font-size: 26px;
         margin-block-start: 0.5em;
         margin-block-end: 0.5em;

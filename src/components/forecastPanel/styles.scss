@@ -2,6 +2,9 @@
     @media (max-device-height: 500px) and (orientation: landscape)  {
         padding: .5rem;
     }
+    @media (max-device-width: 500px) and (orientation: portrait)  {
+        padding: 4rem;
+    }    
     padding: 1rem;
     color: white;
     display: flex;
@@ -13,7 +16,13 @@
         width: 40%;
     }
     .icon-temp {
-        font-size: 29px;
+        @media (max-device-height: 500px) and (orientation: landscape)  {
+            font-size: 25.6px;
+        }
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            font-size: 41.6px;
+        }    
+        font-size: 30.4px;
         vertical-align: bottom;
     }
 }
