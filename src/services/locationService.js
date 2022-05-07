@@ -1,6 +1,12 @@
 function fetchLocation(latitude, longitude) {
     return new Promise((resolve, reject) => {
-        fetch(`/geocode/v1/json?q=${latitude},${longitude}&key=c63386b4f77e46de817bdf94f552cddf&language=en`)
+        const params = {
+            q: `${latitude},${longitude}`,
+            key: process.env.REACT_APP_LOCATION_APIKEY,
+            language: 'pt',
+        };
+
+        fetch(`/geocode/v1/json?${new URLSearchParams(params).toString()}`)
             .then((response) => response.json())
             .then((json) => {
                 const { city, state_code: stateCode, country } = json.results[0].components;
