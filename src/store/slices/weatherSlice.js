@@ -1,14 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-
-function getWindDirection(deg) {
-    const val = Math.floor((deg / 22.5) + 0.5);
-    const arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
-    return arr[(val % 16)];
-}
-function formatDescription(desc) {
-    return desc.charAt(0).toUpperCase() + desc.slice(1);
-}
+import { formatWeatherDescription, getWindDirection } from '../../utils';
 
 export const weatherSlice = createSlice({
     name: 'weather',
@@ -33,9 +25,9 @@ export const weatherSlice = createSlice({
             state.pressure = action.payload.main.pressure;
             state.humidity = action.payload.main.humidity;
             state.wind.speed = (action.payload.wind.speed * 3.6).toFixed(1);
-            state.wind.direction = getWindDirection(state.wind.deg);
+            state.wind.direction = getWindDirection(action.payload.wind.deg);
             state.icon = action.payload.weather[0].icon;
-            state.description = formatDescription(action.payload.weather[0].description);
+            state.description = formatWeatherDescription(action.payload.weather[0].description);
         },
     },
 });

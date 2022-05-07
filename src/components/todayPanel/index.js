@@ -1,7 +1,8 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { getWeatherColors } from '../../utils';
 import Temperature from '../temperature';
 import './styles.scss';
 
@@ -13,15 +14,8 @@ function TodayPanel() {
     const humidity = useSelector((state) => state.weather.humidity);
     const pressure = useSelector((state) => state.weather.pressure);
 
-    function getColor() {
-        if (temperature.celsius == null) return 'rgba(255, 255, 255, 0.85)';
-        if (temperature.celsius < 15) return 'rgba(41, 182, 246, 0.85)';
-        if (temperature.celsius > 35) return 'rgba(239, 83, 80, 0.85)';
-        return 'rgba(255, 202, 40, 0.85)';
-    }
-
     return (
-        <div id="today-panel" style={{ backgroundColor: getColor() }}>
+        <div id="today-panel" style={{ backgroundColor: getWeatherColors(temperature.celsius)[0] }}>
             <div className="weather-icon">
                 {icon
                                 ? <img src={require(`../../static/svg/${icon}.svg`)} alt={description} />
