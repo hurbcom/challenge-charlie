@@ -1,7 +1,7 @@
 import React from 'react';
 import LocationInput from '../locationInput';
-import TodayPanel from '../todayPanel';
-import ForecastPanel from '../forecastPanel';
+import TodayPanel from '../panels/todayPanel';
+import ForecastPanel from '../panels/forecastPanel';
 import './styles.scss';
 
 function WeatherBox() {

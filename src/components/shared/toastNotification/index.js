@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './styles.scss';
-import { update as updateNotification } from '../../store/slices/notificationSlice';
+import { update as updateNotification } from '../../../store/slices/notificationSlice';
 
 function ToastNotification() {
     const notification = useSelector((state) => state.notification.value);

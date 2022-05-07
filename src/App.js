@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.scss';
 import Background from './components/background';
-import ToastNotification from './components/toastNotification';
+import ToastNotification from './components/shared/toastNotification';
 import WeatherBox from './components/weatherBox';
 
 function App() {

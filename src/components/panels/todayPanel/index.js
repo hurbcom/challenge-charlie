@@ -3,9 +3,9 @@
 /* eslint-disable global-require */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getWeatherColors } from '../../utils';
-import Loading from '../loading';
-import Temperature from '../temperature';
+import { getWeatherColors } from '../../../utils';
+import Loading from '../../shared/loading';
+import Temperature from '../../shared/temperature';
 import './styles.scss';
 
 function TodayPanel() {
@@ -25,7 +25,7 @@ function TodayPanel() {
                     ? (
                         <img
                           title={description}
-                          src={require(`../../static/svg/${icon}.svg`)}
+                          src={require(`../../../static/svg/${icon}.svg`)}
                           alt={description}
                         />
 )

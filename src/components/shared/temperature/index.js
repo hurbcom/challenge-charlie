@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggle } from '../../store/slices/unitSlices';
+import { toggle } from '../../../store/slices/unitSlices';
 
 function Temperature({ temperature }) {
     const unit = useSelector((state) => state.unit.value);

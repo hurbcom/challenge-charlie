@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getWeatherColors } from '../../utils';
-import Temperature from '../temperature';
+import { getWeatherColors } from '../../../utils';
+import Temperature from '../../shared/temperature';
 import './styles.scss';
 
 function ForecastPanel({ day }) {
