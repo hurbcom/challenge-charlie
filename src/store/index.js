@@ -3,6 +3,7 @@ import locationReducer from './slices/locationSlice';
 import unitReducer from './slices/unitSlices';
 import weatherReducer from './slices/weatherSlice';
 import loadingReducer from './slices/loadingSlice';
+import notificationReducer from './slices/notificationSlice';
 
 export default configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
         weather: weatherReducer,
         unit: unitReducer,
         loading: loadingReducer,
+        notification: notificationReducer,
     },
 });

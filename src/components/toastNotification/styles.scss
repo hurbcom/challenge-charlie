@@ -1,0 +1,37 @@
+#toast-notification {
+    @media (max-device-width: 500px) and (orientation: portrait)  {
+        font-size: xx-large;
+    }
+    font-size: large;
+    position: fixed;
+    color: white;
+    background-color: rgba(50, 50, 50);
+    text-shadow: 1px 1px 16px black;
+    text-align: center;
+    right: 2rem;
+    top: 30px;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    .text {
+        margin-right: 1rem;
+    }
+    button {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 100%;
+        width: 2rem;
+        height: 2rem;
+        &:hover {
+            background-color: rgba(80, 80, 80);
+        }
+
+        span {
+            font-size: large;
+        }
+    }
+}

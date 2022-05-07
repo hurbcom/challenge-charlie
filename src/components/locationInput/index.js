@@ -6,11 +6,22 @@ import weatherService from '../../services/weatherService';
 import { update as updateLocation } from '../../store/slices/locationSlice';
 import { update as updateWeather, reset as resetWeather } from '../../store/slices/weatherSlice';
 import { update as updateLoading } from '../../store/slices/loadingSlice';
+import { update as updateNotification } from '../../store/slices/notificationSlice';
 
 function LocationInput() {
     const location = useSelector((state) => state.location.value);
     const dispatch = useDispatch();
 
+    function handleError(error) {
+        if (error?.cod === '400') return;
+        if (error?.cod === '404') {
+            dispatch(updateNotification('Cidade não encontrada.'));
+        } else if (error?.code === 1) {
+            dispatch(updateNotification('Geolocalização não está ativada.'));
+        } else {
+            dispatch(updateNotification('Something went wrong. Please try again later.'));
+        }
+    }
     function getCurrentPosition() {
         dispatch(updateLoading(true));
         dispatch(resetWeather());
@@ -25,11 +36,11 @@ function LocationInput() {
                     dispatch(updateLoading(false));
                 })
                 .catch((error) => {
-                    // TODO: error treatment
+                    handleError(error);
                     dispatch(updateLoading(false));
                 });
         }, (error) => {
-            // TODO: error treatment
+            handleError(error);
             dispatch(updateLoading(false));
         });
     }
@@ -50,6 +61,7 @@ function LocationInput() {
             })
             .catch((error) => {
                 // TODO: error treatment
+                handleError(error);
                 dispatch(updateLoading(false));
             });
     }
@@ -73,14 +85,29 @@ function LocationInput() {
 
     return (
         <div id="location-input">
-            <input name="search" placeholder="Digite para buscar uma cidade..." value={location} onChange={handleInputChange} onKeyUp={handleInputKeyUp} />
-            <button type="button" onClick={handleClickSearch}>
+            <input
+              title="Digite para buscar uma cidade"
+              name="search"
+              placeholder="Digite para buscar uma cidade"
+              value={location}
+              onChange={handleInputChange}
+              onKeyUp={handleInputKeyUp}
+            />
+            <button
+              title="Buscar"
+              type="button"
+              onClick={handleClickSearch}
+            >
                 <span className="material-symbols-outlined">
                     search
                 </span>
             </button>
             <hr />
-            <button type="button" onClick={handleClickLocation}>
+            <button
+              title="Minha localização"
+              type="button"
+              onClick={handleClickLocation}
+            >
                 <span className="material-symbols-outlined">
                     my_location
                 </span>
