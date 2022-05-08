@@ -20,9 +20,6 @@ A responsive microsite to display the weather forecast.
  - [Installation](#installation)
  - [Usage](#usage)
  - [Testing](#testing)
-   - [Unit tests](#unit-tests)
-   - [Integration tests](#integration-tests)
-   - [Stress tests](#stress-tests)
  - [Screenshots](#screenshots)
 
 ## Description
@@ -83,14 +80,6 @@ To run the automated tests, start the application and run
 
 ## Screenshots
 
-### Empty city
-
-![Empty city](./images/empty.jpeg?raw=true "Empty city")
-
-### City not found
-
-![City not found](./images/not-found.jpeg?raw=true "City not found")
-
 ### Yellow temperature
 
 ![Yellow temperature](./images/yellow.jpeg?raw=true "Yellow temperature")
@@ -102,3 +91,11 @@ To run the automated tests, start the application and run
 ### Red temperature
 
 ![Red temperature](./images/red.jpeg?raw=true "Red temperature")
+
+### City not found
+
+![City not found](./images/not-found.jpeg?raw=true "City not found")
+
+### Empty city
+
+![Empty city](./images/empty.jpeg?raw=true "Empty city")
