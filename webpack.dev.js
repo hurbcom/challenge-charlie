@@ -18,7 +18,11 @@ module.exports = merge(common, {
         hot: true,
         port: process.env.PORT,
         proxy: {
-            '/HPImageArchive': {
+            '/HPImageArchive.aspx': {
+                target: process.env.REACT_APP_BING_URL,
+                changeOrigin: true,
+            },
+            '/th': {
                 target: process.env.REACT_APP_BING_URL,
                 changeOrigin: true,
             },

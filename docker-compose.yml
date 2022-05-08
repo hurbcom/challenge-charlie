@@ -2,6 +2,11 @@ services:
     app:
         container_name: challenge-charlie
         restart: always
-        build: .
+        build:
+            context: .
+            args:
+                REACT_APP_LOCATION_APIKEY: ${REACT_APP_LOCATION_APIKEY}
+                REACT_APP_WEATHER_APIKEY: ${REACT_APP_WEATHER_APIKEY}
         ports:
             - ${PORT}:80
+        env_file: .env

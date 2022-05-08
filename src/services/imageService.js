@@ -8,7 +8,7 @@ function fetchBackgroundImageUrl() {
         };
         fetch(`/HPImageArchive.aspx?${new URLSearchParams(params).toString()}`)
             .then((response) => response.json())
-            .then((json) => resolve(`${process.env.REACT_APP_BING_URL}/${json.images[0].url}`))
+            .then((json) => resolve(`${json.images[0].url}`))
             .catch((error) => reject(error));
     });
 }
