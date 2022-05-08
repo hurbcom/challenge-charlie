@@ -1,0 +1,28 @@
+.forecast-panel {
+    @media (max-device-height: 500px) and (orientation: landscape)  {
+        padding: .5rem;
+    }
+    @media (max-device-width: 500px) and (orientation: portrait)  {
+        padding: 4rem;
+    }    
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: end;
+    .right-content {
+        @media (max-device-height: 500px) and (orientation: landscape)  {
+            width: 50%;
+        }
+        width: 40%;
+    }
+    .icon-temp {
+        @media (max-device-height: 500px) and (orientation: landscape)  {
+            font-size: 25.6px;
+        }
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            font-size: 41.6px;
+        }    
+        font-size: 30.4px;
+        vertical-align: bottom;
+    }
+}

@@ -1,0 +1,55 @@
+#location-input {
+    display: flex;
+    background-color: white;
+    input {
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            height: 5rem;
+            font-size: 2.5rem;
+        }
+        font-weight: bold;
+        color: #6b6b6b;
+        background-color: transparent;
+        display: inline-flex;
+        width: 100%;
+        height: 3rem;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.5rem;
+        box-sizing: border-box;
+        border: none;
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ababab;
+            opacity: 1; /* Firefox */
+        }  
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #ababab;
+        }          
+        &::-ms-input-placeholder { /* Microsoft Edge */
+            color: #ababab;
+        } 
+    }
+    button {
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            width: 5rem;
+            min-width: 5rem;
+            height: 5rem;
+        }
+        cursor: pointer;
+        background-color: transparent;
+        width: 3rem;
+        min-width: 3rem;
+        height: 3rem;
+        border: none;
+        line-height: normal;
+        span {
+            color: #5a5a5a;
+        }
+        @media (max-device-width: 500px) and (orientation: portrait)  {
+            .material-symbols-outlined {
+                font-size: 40px;   
+            }
+        }
+    }
+    button:hover {
+        background-color: #e9e9e9;
+    }
+}

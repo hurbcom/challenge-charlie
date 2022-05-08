@@ -1,59 +1,101 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 
-[[English](README.md) | [Portuguese](README.pt.md)]
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./example.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+A responsive microsite to display the weather forecast.
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+## Contents
+ - [Description](#description)
+ - [Technologies](#technologies)
+ - [Requirements](#requirements)
+ - [Installation](#installation)
+ - [Usage](#usage)
+ - [Testing](#testing)
+ - [Screenshots](#screenshots)
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+## Description
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+This website displays weather information based on your location. You can also search for any other city.
+It shows weather information for the current day (temperature, pressure, humidity and wind) for today and forecast temperatures for the next two days.
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+:warning: This website retrieves weather forecast from [OpenWeather - Current Weather Data](https://openweathermap.org/current) and [OpenWeather - One Call API](https://openweathermap.org/api/one-call-api).
+It also retrieves location from [OpenCage](https://opencagedata.com/api) and backgound image from [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US). 
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+:bulb: For a better UX, buttons for `search` and `retrieve location` were added.
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+## Technologies
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+This project is currently using:
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+ - React 18.1.0
+ - React Redux 8.0.1
+ - Sass 1.51.0
+ - Cypress 9.6.0
+ - Docker 20.10.14
+ - Nginx 1.21.6
+ - Webpack 5.72.0
+ - Babel 7.17.10
+ - ESLint 8.2.0
 
 ## Requirements
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+ - Docker 20
+ 
+## Installation
 
-## Evaluation criteria
+To install the project, run
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+    docker-compose build
 
-## Doubts
+:gear: This project was made using Docker multi-stage builds. Nginx serves the built files for production environment.
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+## Usage
 
-Godspeed! ;)
+To run the project, run
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+    docker-compose up
+
+:heavy_check_mark: Done, now you'll be able to open the website at [http://localhost:8080](http://localhost:8080/).
+
+## Testing
+
+To run the automated tests, start the application and run
+
+    npm test
+
+:robot: This project is using Cypress for integration tests. A future improvement should be including Unit tests using Jest and React Testing Library.
+
+### Cypress results
+
+![Integration tests](./images/cypress.jpeg?raw=true "Integration tests")
+
+## Screenshots
+
+### Yellow temperature
+
+![Yellow temperature](./images/yellow.jpeg?raw=true "Yellow temperature")
+
+### Blue temperature
+
+![Blue temperature](./images/blue.jpeg?raw=true "Blue temperature")
+
+### Red temperature
+
+![Red temperature](./images/red.jpeg?raw=true "Red temperature")
+
+### City not found
+
+![City not found](./images/not-found.jpeg?raw=true "City not found")
+
+### Empty city
+
+![Empty city](./images/empty.jpeg?raw=true "Empty city")

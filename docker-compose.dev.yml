@@ -1,0 +1,13 @@
+services:
+    app:
+        container_name: challenge-charlie
+        command: npm start
+        restart: always
+        build:
+            context: .
+            target: development
+        ports:
+            - ${PORT}:${PORT}
+        volumes:
+            - ./:/usr/src/app
+            - /usr/src/app/node_modules
