@@ -29,7 +29,7 @@ function Temperature({ temperature }) {
             { temperature !== undefined && temperature !== null && (
             <span
               title={unit === 'celsius' ? 'Mudar temperatura para Fahrenheit' : 'Mudar temperatura para Celsius'}
-              id="temperature"
+              className="temperature"
               role="button"
               tabIndex="0"
               onClick={handleClick}

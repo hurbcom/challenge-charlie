@@ -12,7 +12,7 @@ function ForecastPanel({ day }) {
     const loading = useSelector((state) => state.loading.value);
 
     return (
-        <div id="forecast-panel" style={{ backgroundColor: getWeatherColors(temperature, loading)[day + 1] }}>
+        <div className="forecast-panel" style={{ backgroundColor: getWeatherColors(temperature, loading)[day + 1] }}>
             <div className="right-content">
                 <p>{ day === 0 ? 'AMANHÃ' : 'DEPOIS DE AMANHÃ'}</p>
                 { isEmpty || loading || (

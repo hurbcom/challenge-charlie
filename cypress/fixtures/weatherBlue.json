@@ -1,0 +1,43 @@
+{
+    "coord": {
+        "lon": 10,
+        "lat": 53.55
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "céu limpo",
+            "icon": "01n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 4.66,
+        "feels_like": 3.51,
+        "temp_min": 3.27,
+        "temp_max": 5.57,
+        "pressure": 1026,
+        "humidity": 89
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 1.54,
+        "deg": 310
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1651973892,
+    "sys": {
+        "type": 1,
+        "id": 1263,
+        "country": "DE",
+        "sunrise": 1651980707,
+        "sunset": 1652036473
+    },
+    "timezone": 7200,
+    "id": 2911298,
+    "name": "Hamburg",
+    "cod": 200
+}

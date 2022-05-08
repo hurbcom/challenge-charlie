@@ -1,0 +1,44 @@
+{
+    "coord": {
+        "lon": -101.1167,
+        "lat": 27.85
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "céu limpo",
+            "icon": "01d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 37.89,
+        "feels_like": 35.93,
+        "temp_min": 37.89,
+        "temp_max": 37.89,
+        "pressure": 1000,
+        "humidity": 17,
+        "sea_level": 1000,
+        "grnd_level": 964
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 8.9,
+        "deg": 118,
+        "gust": 12.64
+    },
+    "clouds": {
+        "all": 2
+    },
+    "dt": 1651972552,
+    "sys": {
+        "country": "MX",
+        "sunrise": 1651924807,
+        "sunset": 1651972913
+    },
+    "timezone": -18000,
+    "id": 3988333,
+    "name": "Sabinas",
+    "cod": 200
+}

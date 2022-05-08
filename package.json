@@ -4,10 +4,12 @@
   "description": "[[English](README.md) | [Portuguese](README.pt.md)]",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run cypress:run",
     "lint": "npx eslint --fix --ext .js .",
     "build": "webpack",
-    "start": "webpack serve --config ./webpack.dev.js"
+    "start": "webpack serve --config ./webpack.dev.js",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -26,8 +28,10 @@
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "cypress": "^9.6.0",
     "eslint": "^8.14.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",

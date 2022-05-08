@@ -2,10 +2,12 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        'cypress/globals': true,
     },
     extends: [
         'plugin:react/recommended',
         'airbnb',
+        'plugin:cypress/recommended',
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -16,6 +18,7 @@ module.exports = {
     },
     plugins: [
         'react',
+        'cypress',
     ],
     rules: {
         'no-console': 'error',
