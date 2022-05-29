@@ -1,8 +1,27 @@
-:root {
-  --blue1: #004d94;
-  --blue2: #00386c;
-  --yellow1: #facb05;
-  --yellow2: #b59504;
-  --red1: #a80000;
-  --red2: #952a2a;
+:root { 
+  --p1: rgba(250, 203, 5, 0.6);
+  --p2: #facb05;
+  --p3: #b59504;
+  --text: #000;
+}
+
+:root.blue {
+  --p1: rgba(0, 77, 148, 0.82);
+  --p2: #004d94;
+  --p3: #00386c;
+  --text: #fff;
+}
+
+:root.red {
+  --p1: rgba(168, 0, 0, 0.8);
+  --p2: #a80000;
+  --p3: #952a2a;
+  --text: #fff;
+}
+
+:root.grey {
+  --p1: rgba(205, 205, 205, 0.6);
+  --p2: #cdcdcd;
+  --p3: #acacac;
+  --text: #000;
 }
