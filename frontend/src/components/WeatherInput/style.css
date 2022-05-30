@@ -1,0 +1,18 @@
+.input-area {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 20px;
+  gap: 40px;
+}
+
+.input-area img {
+  width: 80px;
+}
+
+.weather-input {
+  border: none;
+  background: transparent;
+  font-size: 3rem;
+  flex: 1;
+}

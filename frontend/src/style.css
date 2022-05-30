@@ -1,5 +1,5 @@
 :root { 
-  --p1: rgba(250, 203, 5, 0.6);
+  --p1: rgba(250, 203, 5, 0.8);
   --p2: #facb05;
   --p3: #b59504;
   --text: #000;
@@ -24,4 +24,27 @@
   --p2: #cdcdcd;
   --p3: #acacac;
   --text: #000;
+}
+
+
+h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text);
 }

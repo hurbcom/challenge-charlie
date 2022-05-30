@@ -1,0 +1,14 @@
+.today {
+  background-color: var(--p1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.today-info {
+  padding: 40px 20px 40px 80px;
+}
+
+.today img {
+  width: 420px;
+  padding: 60px;
+}

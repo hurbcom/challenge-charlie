@@ -1,0 +1,16 @@
+.tomorrow {
+  background: var(--p2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.after-tomorrow {
+  background: var(--p3);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.content {
+  grid-column: 2;
+  padding: 40px 20px 40px 80px;
+}
