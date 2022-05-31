@@ -108,6 +108,13 @@ let getWeatherForecast = (city) => {
       .catch(err => console.log(err))
   }
 
+// Pegando a localização que o usuário escolheu e atuaizando a previsão do tempo
+// O parametro 'location' vai ser passado pelo componente 'Search'
+let getUserNewLocation = (location) => {
+  getWeatherForecast(location)
+  getNextDaysForecast(location)
+}
+
 
   return (
     <div className="container" style={{backgroundImage: `url(${bingWallpaper})`}}>
@@ -117,6 +124,7 @@ let getWeatherForecast = (city) => {
             curSuburb = {userLocation.suburb}
             curState = {userLocation.state}
             curCountry = {userLocation.country}
+            setLocation = {getUserNewLocation}
           />
           <Content 
             humidity = {weatherinfo.humidity}

@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useState}  from "react";
 import './style.css'
 import Bussola from '../download (1).png'
 
 export default function Search (props){
 
+const [ newLocation,setNewLocation ] = useState('');
+
 const locationRecieved= props.curCity && props.curState ? 
                         props.curCity + ', ' + props.curState:
                         'Carregando..';
 
+
+// Pegando a cidade que o usuário informou
+let handleChange = (event) => {
+    setNewLocation(event.target.value)
+}
+
+// Enviando a informação da localidade escolhida pelo usuário para fora do componente Search
+// Vou usar a informação do novo lugar para chamar, novamente, a função de previsão do tempo
+let handleSubmit =(event) => {
+    if(newLocation != ''){
+        event.preventDefault()
+        props.setLocation(newLocation)
+    }else{
+        event.preventDefault()
+    }
+}
+
     return (
-        <section className="search__container">
+        <form onSubmit={handleSubmit} className="search__container">
             <i className="search__icon" data-icon="("></i>
-            <input type="text" placeholder={locationRecieved}/>
-        </section>
+            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={locationRecieved}/>
+        </form>
     )
 }
