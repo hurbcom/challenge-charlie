@@ -19,3 +19,10 @@
     grid-column: 1 / span 2;
     justify-self: center;
   } 
+
+  .icon:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+    font-size: 150px;
+    color: white;
+}

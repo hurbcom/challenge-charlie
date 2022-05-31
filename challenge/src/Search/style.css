@@ -7,8 +7,12 @@
     opacity: .7;
   }
   
-  .search__icon{
-    width: 40px;
+.search__icon:before {
+    display: block;
+    font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+    font-size: 3rem;
+    color: grey;
   }
   
   input{

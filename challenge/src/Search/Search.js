@@ -10,7 +10,7 @@ const locationRecieved= props.curCity && props.curState ?
 
     return (
         <section className="search__container">
-            <img className="search__icon" src={Bussola}/>
+            <i className="search__icon" data-icon="("></i>
             <input type="text" placeholder={locationRecieved}/>
         </section>
     )

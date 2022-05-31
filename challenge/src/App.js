@@ -10,6 +10,7 @@ export default function App (){
 const [ bingWallpaper, setBingWallpaper] = useState();
 const [ userLocation, setUserLocation ] = useState({});
 const [ weatherinfo, setWeatherInfo ] = useState({});
+const [ nextDaysForecast, setNextDaysForecast ] = useState({});
 
 
 // Pegando o papel de parede do bing (alo alo CORS!)
@@ -59,6 +60,7 @@ useEffect(() => {
             country: info.results[0].components.country
         })
         getWeatherForecast(info.results[0].components.municipality)
+        getNextDaysForecast(info.results[0].components.municipality)
     })
         .catch(err => console.log(err))
   }
@@ -90,6 +92,23 @@ let getWeatherForecast = (city) => {
 }
 
 
+  //Pegando a previsão de um dia depois e dois dias depois
+  let getNextDaysForecast = (city) => {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}
+            &lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER}&units=metric&cnt=16`)
+      .then(res => res.json())
+      .then(data => {
+          setNextDaysForecast({
+            tomorrowTemp: data.list[0].main.temp,
+            afterTomorrowTemp: data.list[8].main.temp,
+            tomorrowIcon: data.list[0].weather[0].icon,
+            afterTomorrowIcon: data.list[8].weather[0].icon,
+          })
+        })
+      .catch(err => console.log(err))
+  }
+
+
   return (
     <div className="container" style={{backgroundImage: `url(${bingWallpaper})`}}>
       <div className="main__container">
@@ -107,6 +126,7 @@ let getWeatherForecast = (city) => {
             windDir = {weatherinfo.windDirection}
             pressure = {weatherinfo.pressure}
             temp = {weatherinfo.temp}
+            nextdaysForecast = {nextDaysForecast}
           />
       </div>
     </div>
