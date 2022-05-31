@@ -1,6 +1,5 @@
 import React, { useState}  from "react";
 import './style.css'
-import Bussola from '../download (1).png'
 
 export default function Search (props){
 
@@ -19,7 +18,7 @@ let handleChange = (event) => {
 // Enviando a informação da localidade escolhida pelo usuário para fora do componente Search
 // Vou usar a informação do novo lugar para chamar, novamente, a função de previsão do tempo
 let handleSubmit =(event) => {
-    if(newLocation != ''){
+    if(newLocation !== ''){
         event.preventDefault()
         props.setLocation(newLocation)
     }else{
@@ -30,7 +29,7 @@ let handleSubmit =(event) => {
     return (
         <form onSubmit={handleSubmit} className="search__container">
             <i className="search__icon" data-icon="("></i>
-            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={locationRecieved}/>
+            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={props.gotCurrentLocation ? locationRecieved : "Usuário não ativou locaização.."}/>
         </form>
     )
 }

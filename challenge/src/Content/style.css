@@ -3,7 +3,6 @@
   }
   
   .forecast__subcontainer{
-    background: linear-gradient(to bottom, rgb(255, 255, 6), rgb(214, 214, 88));
     opacity: .8;
     padding: .5rem 0;
     display: grid;

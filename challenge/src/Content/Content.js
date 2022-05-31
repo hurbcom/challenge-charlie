@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './style.css'
-import Icon from '../download.png'
 import WeatherTheme from '../WeatherTheme'
 
 export default function Content (props){
@@ -41,15 +40,17 @@ let getWeatherIcon = (iconId) => {
     }
 }
 
+// Tema que será usado quando não for possível capturar a localização do usuário
+const noLocation = [{background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))'}]
 
+// Mudando a unidade de medida quando o usuário clicar na temperatura
 let hanleClick = () => {
     setIsCelsius(!isCelsius)
 }
 
-
     return (
         <section className="content__container">
-            <div className="forecast__subcontainer" style={defTheme[0]}>
+            <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__icon"> 
                     <i className="icon" data-icon={getWeatherIcon(props.icon)}></i>
                 </div>
@@ -58,8 +59,8 @@ let hanleClick = () => {
                     <ul>
                         <li onClick={hanleClick}>
                             {isCelsius ?
-                            Math.round(props.temp) + '°C':
-                            (Math.round(props.temp) * 9/5) + 32 + '°F'}
+                            Math.round(props.temp ? props.temp : '' ) + '°C':
+                            (Math.round(props.temp ? (props.temp * 9/5) + 32  : '') )+ '°F'}
                         </li>
                         <li>{props.weather}</li>
                         <li>Vento: NO {props.wind}km/h</li>
@@ -68,23 +69,23 @@ let hanleClick = () => {
                     </ul>
                 </div>
             </div>
-            <div className="forecast__subcontainer" style={defTheme[0]}>
+            <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__data">
                     <h3>AMANHÃ</h3>
                     <p onClick={hanleClick}>
                         {isCelsius ?
-                        Math.round(props.temp) + '°C':
-                        (Math.round(props.temp) * 9/5) + 32 + '°F'}
+                        Math.round(props.nextdaysForecast.tomorrowTemp ? props.nextdaysForecast.tomorrowTemp : '' ) + '°C':
+                        (Math.round(props.nextdaysForecast.tomorrowTemp ? (props.nextdaysForecast.tomorrowTemp * 9/5) + 32  : '') )+ '°F'}
                     </p>
                 </div>
             </div>
-            <div className="forecast__subcontainer" style={defTheme[0]}>
+            <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__data">
                     <h3>DEPOIS DE AMANHÃ</h3>
                     <p onClick={hanleClick}>
                         {isCelsius ?
-                        Math.round(props.nextdaysForecast.tomorrowTemp) + '°C':
-                        (Math.round(props.nextdaysForecast.tomorrowTemp) * 9/5) + 32 + '°F'}
+                        Math.round(props.nextdaysForecast.afterTomorrowTemp ? props.nextdaysForecast.afterTomorrowTemp : '' ) + '°C':
+                        (Math.round(props.nextdaysForecast.afterTomorrowTemp ? (props.nextdaysForecast.afterTomorrowTemp * 9/5) + 32  : '') )+ '°F'}
                     </p>
                 </div>
             </div>

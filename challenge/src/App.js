@@ -10,7 +10,8 @@ export default function App (){
 const [ bingWallpaper, setBingWallpaper] = useState();
 const [ userLocation, setUserLocation ] = useState({});
 const [ weatherinfo, setWeatherInfo ] = useState({});
-const [ nextDaysForecast, setNextDaysForecast ] = useState({});
+const [ nextDaysForecast, setNextDaysForecast ] = useState({})
+const [ gotCurLocation, setGotCurLocation ] = useState(false);
 
 
 // Pegando o papel de parede do bing (alo alo CORS!)
@@ -41,6 +42,7 @@ useEffect(() => {
         const lat = userPosition.coords.latitude
         const lng = userPosition.coords.longitude
       getCurrentLocation(lat,lng)
+      setGotCurLocation(true)
     },
     (err) => console.log(err))
   },[])
@@ -125,6 +127,7 @@ let getUserNewLocation = (location) => {
             curState = {userLocation.state}
             curCountry = {userLocation.country}
             setLocation = {getUserNewLocation}
+            gotCurrentLocation = {gotCurLocation}
           />
           <Content 
             humidity = {weatherinfo.humidity}
@@ -135,6 +138,7 @@ let getUserNewLocation = (location) => {
             pressure = {weatherinfo.pressure}
             temp = {weatherinfo.temp}
             nextdaysForecast = {nextDaysForecast}
+            gotCurrentLocation = {gotCurLocation}
           />
       </div>
     </div>
