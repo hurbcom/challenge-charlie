@@ -43,7 +43,7 @@ useEffect(() => {
     (err) => console.log(err))
   },[])
 
-  console.log(userLocation);
+console.log(userLocation);
   // Transformando as coordenadas do usuário em uma localizaçao, de fato.
     let getCurrentLocation = (lat, lng) => {
 
@@ -52,10 +52,10 @@ useEffect(() => {
         .then(res => res.json())
         .then(info => {
           setUserLocation({
-            city: info.results[0].components.city, 
+            city: info.results[0].components.municipality, 
             suburb: info.results[0].components.suburb,
             state: info.results[0].components.state,
-            country: info.results[0].components.county
+            country: info.results[0].components.country
         })
     })
         .catch(err => console.log(err))
