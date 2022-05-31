@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './style.css'
 import Icon from '../download.png'
 import WeatherTheme from '../WeatherTheme'
 
 export default function Content (props){
+
+const [ isCelsius, setIsCelsius] = useState(true);
 
 // Condicionando tema de acordo com a temperatura da localidade
 const defTheme = props.temp < 15 ? WeatherTheme.coldSWeather
@@ -39,6 +41,12 @@ let getWeatherIcon = (iconId) => {
     }
 }
 
+
+let hanleClick = () => {
+    setIsCelsius(!isCelsius)
+}
+
+
     return (
         <section className="content__container">
             <div className="forecast__subcontainer" style={defTheme[0]}>
@@ -48,8 +56,10 @@ let getWeatherIcon = (iconId) => {
                 <div className="forecast__data">  
                     <h3>HOJE</h3>
                     <ul>
-                        <li>
-                            {Math.round(props.temp) + '°C'}
+                        <li onClick={hanleClick}>
+                            {isCelsius ?
+                            Math.round(props.temp) + '°C':
+                            (Math.round(props.temp) * 9/5) + 32 + '°F'}
                         </li>
                         <li>{props.weather}</li>
                         <li>Vento: NO {props.wind}km/h</li>
@@ -61,13 +71,21 @@ let getWeatherIcon = (iconId) => {
             <div className="forecast__subcontainer" style={defTheme[0]}>
                 <div className="forecast__data">
                     <h3>AMANHÃ</h3>
-                    <p>{Math.round(props.nextdaysForecast.tomorrowTemp) + '°C'}</p>
+                    <p onClick={hanleClick}>
+                        {isCelsius ?
+                        Math.round(props.temp) + '°C':
+                        (Math.round(props.temp) * 9/5) + 32 + '°F'}
+                    </p>
                 </div>
             </div>
             <div className="forecast__subcontainer" style={defTheme[0]}>
                 <div className="forecast__data">
                     <h3>DEPOIS DE AMANHÃ</h3>
-                    <p>{Math.round(props.nextdaysForecast.afterTomorrowTemp) + '°C'}</p>
+                    <p onClick={hanleClick}>
+                        {isCelsius ?
+                        Math.round(props.nextdaysForecast.tomorrowTemp) + '°C':
+                        (Math.round(props.nextdaysForecast.tomorrowTemp) * 9/5) + 32 + '°F'}
+                    </p>
                 </div>
             </div>
         </section>
