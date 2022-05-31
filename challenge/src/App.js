@@ -9,7 +9,8 @@ export default function App (){
 // Área dos states
 const [ bingWallpaper, setBingWallpaper] = useState();
 
-  // Pegando o papel de parede do bing (alo alo CORS!)
+
+// Pegando o papel de parede do bing (alo alo CORS!)
 useEffect(() => {
   let getWallpaper = async () => {
     const allOriginsUrl = 'http://api.allorigins.win/get?url=';
@@ -29,6 +30,20 @@ useEffect(() => {
   getWallpaper();
   
 }, []) 
+
+
+// Pegando as coordenadas da localização atual do usuário.
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((userPosition) => {
+        console.log(userPosition);
+    },
+    (err) => console.log(err))
+  },[])
+
+
+
+
+
 
   return (
     <div className="container" style={{backgroundImage: `url(${bingWallpaper})`}}>

@@ -10,47 +10,4 @@
   justify-content: center;
 }
 
-.search__container{
-  padding: .5rem;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  opacity: .7;
-}
 
-.search__icon{
-  width: 40px;
-}
-
-input{
-  width: 100%;
-  border: none;
-  height: 50px;
-}
-
-input:focus{
-  outline: 0;
-}
-
-.content__container{
-  width: 600px;
-}
-
-.forecast__subcontainer{
-  background: linear-gradient(to bottom, rgb(255, 255, 6), rgb(214, 214, 88));
-  opacity: .8;
-  padding: .5rem 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.forecast__data{
-  grid-column: 3;
-  padding: 1rem 0;
-}
-
-.forecast__icon{
-  grid-column: 1 / span 2;
-  justify-self: center;
-} 
