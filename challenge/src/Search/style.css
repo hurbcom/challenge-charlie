@@ -1,0 +1,24 @@
+.search__container{
+    padding: .5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    opacity: .7;
+  }
+  
+  .search__icon{
+    width: 40px;
+  }
+  
+  input{
+    width: 100%;
+    border: none;
+    height: 50px;
+  }
+  
+  input:focus{
+    outline: 0;
+  }
+  
+
