@@ -46,6 +46,7 @@ h3{
   }
   
   .forecast__icon{
+    align-self: center;
     grid-column: 1;
     justify-self: center;
     margin-left: -30px;
@@ -54,6 +55,6 @@ h3{
   .icon:before {
 	font-family: 'MeteoconsRegular';
 	content: attr(data-icon);
-    font-size: 150px;
+    font-size: 140px;
     color: white;
   }

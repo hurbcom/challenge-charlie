@@ -14,7 +14,7 @@ const defTheme = props.temp < 15 ? WeatherTheme.coldSWeather
 
 // Pegando os ícones indicativos do tempo de forma dinâmica
 let getWeatherIcon = (iconId) => { 
-    switch(iconId){
+    switch(true){
         case '01d':
             return 'B'
         case '01n':
@@ -23,17 +23,17 @@ let getWeatherIcon = (iconId) => {
             return 'H'
         case '02n':
             return 'I'
-        case iconId ===  '03d' || '03n':
+        case iconId === '03d' || iconId === '03n':
             return 'N'
-        case iconId ===  '04d' || '04n':
+        case iconId === '04d' || iconId === '04n':
             return 'Y'
-        case iconId ===  '11d' || '11n':
+        case iconId === '11d' || iconId === '11n':
             return 'P'
-        case iconId ===  '13d' || '13n':
+        case iconId === '13d' || iconId === '13n':
             return 'W'
-        case iconId ===  '50d' || '50n':
+        case iconId === '50d' || iconId === '50n':
             return 'M'
-        case iconId ===  '09d' || '09n' || '10d' || '10n':
+        case iconId === '09d' || iconId === '09n' || iconId === '10d' || iconId === '10n':
             return 'R'
         default:
             return 'A'
@@ -47,7 +47,7 @@ const noLocation = [{background: 'linear-gradient(to bottom, rgb(109, 94, 94) , 
 let hanleClick = () => {
     setIsCelsius(!isCelsius)
 }
-
+console.log(props.icon);
     return (
         <section className="content__container">
             <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
