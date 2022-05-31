@@ -61,13 +61,13 @@ let getWeatherIcon = (iconId) => {
             <div className="forecast__subcontainer" style={defTheme[0]}>
                 <div className="forecast__data">
                     <h3>AMANHÃ</h3>
-                    <p>25°C</p>
+                    <p>{Math.round(props.nextdaysForecast.tomorrowTemp) + '°C'}</p>
                 </div>
             </div>
             <div className="forecast__subcontainer" style={defTheme[0]}>
                 <div className="forecast__data">
                     <h3>DEPOIS DE AMANHÃ</h3>
-                    <p>25°C</p>
+                    <p>{Math.round(props.nextdaysForecast.afterTomorrowTemp) + '°C'}</p>
                 </div>
             </div>
         </section>
