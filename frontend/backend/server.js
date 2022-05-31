@@ -13,6 +13,8 @@ app.get('/image', async (req, res)=>{
   request('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR', function (error, response, body) {
       res.status(200).send(body)
   });
-})
+});
 
-app.listen(PORT, HOST)
+app.listen(PORT, HOST, function() {
+  console.log(`BACKEND RUNNING ON PORT ${PORT}`);
+});
