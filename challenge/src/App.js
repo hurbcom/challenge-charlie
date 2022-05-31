@@ -8,6 +8,7 @@ export default function App (){
 
 // Área dos states
 const [ bingWallpaper, setBingWallpaper] = useState();
+const [ userLocation, setUserLocation ] = useState({});
 
 
 // Pegando o papel de parede do bing (alo alo CORS!)
@@ -35,14 +36,30 @@ useEffect(() => {
 // Pegando as coordenadas da localização atual do usuário.
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((userPosition) => {
-        console.log(userPosition);
+        const lat = userPosition.coords.latitude
+        const lng = userPosition.coords.longitude
+      getCurrentLocation(lat,lng)
     },
     (err) => console.log(err))
   },[])
 
+  console.log(userLocation);
+  // Transformando as coordenadas do usuário em uma localizaçao, de fato.
+    let getCurrentLocation = (lat, lng) => {
 
-
-
+      fetch(`https://api.opencagedata.com/geocode/v1/json?q=
+              ${lat}+${lng}&key=${process.env.REACT_APP_OPEN_CAGE}`)
+        .then(res => res.json())
+        .then(info => {
+          setUserLocation({
+            city: info.results[0].components.city, 
+            suburb: info.results[0].components.suburb,
+            state: info.results[0].components.state,
+            country: info.results[0].components.county
+        })
+    })
+        .catch(err => console.log(err))
+  }
 
 
   return (
