@@ -10,9 +10,9 @@ const locationRecieved= props.curCity && props.curState ?
                         'Carregando..';
 
 
-// Pegando a cidade que o usuário informou
+// Pegando a cidade que o usuário informou (sem considerar acentos pois a API não aceita acentos)
 let handleChange = (event) => {
-    setNewLocation(event.target.value)
+    setNewLocation(event.target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
 }
 
 // Enviando a informação da localidade escolhida pelo usuário para fora do componente Search
