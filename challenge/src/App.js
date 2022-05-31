@@ -93,8 +93,21 @@ let getWeatherForecast = (city) => {
   return (
     <div className="container" style={{backgroundImage: `url(${bingWallpaper})`}}>
       <div className="main__container">
-          <Search />
-          <Content />
+          <Search 
+            curCity = {userLocation.city}
+            curSuburb = {userLocation.suburb}
+            curState = {userLocation.state}
+            curCountry = {userLocation.country}
+          />
+          <Content 
+            humidity = {weatherinfo.humidity}
+            weather = {weatherinfo.weather}
+            icon = {weatherinfo.icon}
+            wind = {weatherinfo.wind}
+            windDir = {weatherinfo.windDirection}
+            pressure = {weatherinfo.pressure}
+            temp = {weatherinfo.temp}
+          />
       </div>
     </div>
   )

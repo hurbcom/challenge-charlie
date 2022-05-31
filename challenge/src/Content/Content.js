@@ -2,7 +2,7 @@ import React from "react";
 import './style.css'
 import Icon from '../download.png'
 
-export default function Content (){
+export default function Content (props){
     return (
         <section className="content__container">
             <div className="forecast__subcontainer">
