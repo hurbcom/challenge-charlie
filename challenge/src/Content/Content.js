@@ -12,11 +12,13 @@ export default function Content (props){
                 <div className="forecast__data">  
                     <h3>HOJE</h3>
                     <ul>
-                        <li>32°C</li>
-                        <li>ENSOLARADO</li>
-                        <li>Vento: NO 6.4km/h</li>
-                        <li>Humidade: 78%</li>
-                        <li>Pressão: 1003hPA</li>
+                        <li>
+                            {Math.round(props.temp) + '°C'}
+                        </li>
+                        <li>{props.weather}</li>
+                        <li>Vento: NO {props.wind}km/h</li>
+                        <li>Humidade: {props.humidity}%</li>
+                        <li>Pressão: {props.pressure}hPA</li>
                     </ul>
                 </div>
             </div>
