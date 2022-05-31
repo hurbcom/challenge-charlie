@@ -9,6 +9,7 @@ export default function App (){
 // Área dos states
 const [ bingWallpaper, setBingWallpaper] = useState();
 const [ userLocation, setUserLocation ] = useState({});
+const [ weatherinfo, setWeatherInfo ] = useState({});
 
 
 // Pegando o papel de parede do bing (alo alo CORS!)
@@ -43,7 +44,7 @@ useEffect(() => {
     (err) => console.log(err))
   },[])
 
-console.log(userLocation);
+
   // Transformando as coordenadas do usuário em uma localizaçao, de fato.
     let getCurrentLocation = (lat, lng) => {
 
@@ -57,9 +58,36 @@ console.log(userLocation);
             state: info.results[0].components.state,
             country: info.results[0].components.country
         })
+        getWeatherForecast(info.results[0].components.municipality)
     })
         .catch(err => console.log(err))
   }
+
+
+
+// Pegando a previsão do tempo para a localização usuário
+let getWeatherForecast = (city) => {
+  fetch(`http://api.openweathermap.org/data/2.5/weather?q=
+          ${city}&lang=pt_br&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER}`)
+    .then(res => res.json())
+    .then(info =>  {
+      setWeatherInfo({
+        humidity: info.main.humidity,
+        weather: info.weather[0].description[0].toUpperCase() + info.weather[0].description.slice(1),
+        icon: info.weather[0].icon,
+        wind: info.wind.speed,
+        windDirection: info.wind.deg,
+        pressure: info.main.pressure,
+        temp: info.main.temp
+      })
+      console.log(info);
+    })
+    .catch(err => {
+        console.log(err)
+        alert("Cidade não encontrada! Tente digitar de uma outra forma.")
+      })
+
+}
 
 
   return (
