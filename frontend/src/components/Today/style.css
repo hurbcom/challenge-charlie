@@ -2,6 +2,7 @@
   background-color: var(--p1);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
 }
 
 .today-info {
@@ -11,4 +12,64 @@
 .today img {
   width: 420px;
   padding: 60px;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+  .today img {
+    width: 300px;
+  }
+}
+
+@media (max-width: 850px) {
+  .today img {
+    width: 200px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .today h2 {
+    font-size: 1.75rem;
+  }
+  .today h3 {
+    font-size: 1.5rem;
+  }
+  .today p, .today button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .today img {
+    width: 150px;
+    padding: 10px;
+  }
+  .today h2 {
+    font-size: 1.5rem;
+  }
+  .today h3 {
+    font-size: 1.25rem;
+  }
+  .today-info {
+    padding: 40px 20px 40px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .today img {
+    width: 100px;
+    padding: 10px;
+  }
+  .today h2 {
+    font-size: 1.25rem;
+  }
+  .today h3 {
+    font-size: 1rem;
+  }
+  .today-info {
+    padding: 20px 10px 20px 20px;
+  }
 }

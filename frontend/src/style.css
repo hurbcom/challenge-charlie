@@ -25,6 +25,9 @@
   --p3: #acacac;
   --text: #000;
 }
+body {
+  box-sizing: border-box;
+}
 
 
 h2 {

@@ -1,6 +1,7 @@
 .container {
   margin: 0 auto;
   max-width: 1074px;
+  padding: 0px 20px;
   color: var(--text);
   font-family: 'Roboto', sans-serif;
 }

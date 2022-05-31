@@ -16,3 +16,36 @@
   font-size: 3rem;
   flex: 1;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .weather-input {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .weather-input {
+    font-size: 1.75rem;
+  }
+  .input-area img {
+    width: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .weather-input {
+    font-size: 1.5rem;
+  }
+  .input-area img {
+    width: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .weather-input {
+    font-size: 1rem;
+    flex: initial;
+  }
+}

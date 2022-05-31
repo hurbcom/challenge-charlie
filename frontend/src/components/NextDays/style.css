@@ -14,3 +14,40 @@
   grid-column: 2;
   padding: 40px 20px 40px 80px;
 }
+
+
+@media (max-width: 650px) {
+  .tomorrow h2, .after-tomorrow h2 {
+    font-size: 1.75rem;
+  }
+  .tomorrow h3, .after-tomorrow h3 {
+    font-size: 1.5rem;
+  }
+  .tomorrow button, .after-tomorrow button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .tomorrow h2, .after-tomorrow h2 {
+    font-size: 1.5rem;
+  }
+  .tomorrow h3, .after-tomorrow h3 {
+    font-size: 1.25rem;
+  }
+  .content {
+    padding: 40px 20px 40px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .tomorrow h2, .after-tomorrow h2 {
+    font-size: 1.25rem;
+  }
+  .tomorrow h3, .after-tomorrow h3 {
+    font-size: 1rem;
+  }
+  .content {
+    padding: 20px 10px 20px 20px;
+  }
+}
