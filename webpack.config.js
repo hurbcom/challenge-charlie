@@ -12,7 +12,7 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".scss"],
     modules: ["src", "node_modules"],
   },
   devServer: {
@@ -25,6 +25,10 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: "/node_modules",
         loader: "babel-loader",
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
