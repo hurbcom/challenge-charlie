@@ -14,17 +14,20 @@
 <h1 align="center"> Como executar: </h1>
 <ul>
     <li>Clonar o repositório;</li>
-    <li>cd frontend;</li>
-    <li>yarn install ou npm install;</li>
+    <li>Acessar a pasta backend: cd backend;</li>
+    <li>Rodar o comando: npm install;</li>
     <ul>
       <li>Instala todas as dependências necessárias;</li>
     </ul>
-    <li>cd backend;</li>
-    <li>node server;</li>
+    <li>Rodar o comando: npm start;</li>
     <ul>
       <li>Inicializa o servidor para contornar o problema com o consumo da API do Bing;</li>
     </ul>
-    <li>cd ../</li>
+    <li>Acessar a pasta frontend: cd ../frontend</li>
+    <li>Rodar o comando: npm install ou yarn install;</li>
+    <ul>
+      <li>Instala todas as dependências necessárias;</li>
+    </ul>
     <li>yarn start ou npm start;</li>
     <ul>
       <li>Inicializa a aplicação;</li>
@@ -35,22 +38,22 @@
 <h1 align="center"> Como executar DOCKER: </h1>
 <ul>
     <h3>Subindo o backend:</h3>
-    <li>Acesse a pasta backend: cd backend</li>
+    <li>Acessar a pasta backend: cd backend</li>
     <li>docker build --file Dockerfile.back --tag backend .</li>
     <ul><li>Para criar a imagem;</li></ul>
     <li>docker run -v ${pwd}:/app -v /app/node_modules -p 3003:3003 --rm backend</li>
-    <ul><li>Cria o container;</li></ul>
+    <ul><li>Cria o container e inicializa o backend;</li></ul>
     <br>
     <h3>Executando a aplicação:</h3>
-    <li>Acesse a pasta frontend: cd ../frontend</li>
+    <li>Acessar a pasta frontend: cd ../frontend</li>
     <li>docker build --file Dockerfile.front --tag frontend .</li>
     <ul><li>Para criar a imagem;</li></ul>
     <li>
     docker run -v ${pwd}:/app -v /app/node_modules -p 3000:3000 --rm frontend
     </li>
-    <ul><li>Cria o container;</li></ul>
+    <ul><li>Cria o container e inicializa a aplicação;</li></ul>
 <br>
-    Acesse a aplicação em: http://localhost:3000/    
+    Pode acessar a aplicação em: http://localhost:3000/    
 </ul>
 <br>
 

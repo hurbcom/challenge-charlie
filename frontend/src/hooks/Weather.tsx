@@ -63,6 +63,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
     Thunderstorm: 'Tempestade'
   }
 
+  // Função para converter temperatura
   function convertTemperature(unit: string) {
     if (unit === '°C') {
       setTodayWeather({ ...todayWeather, temperature: ((convertTemperatureArray[0]) * 1.8 + 32) });
@@ -91,6 +92,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
   };
 
+  // Função que pega as coordenadas pelo navegador do usuário
   async function getCoordinates() {
     navigator.geolocation.getCurrentPosition(async (pos: GeolocationPosition) => {
       const coords: Coordinates = {
@@ -101,6 +103,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
     }, error, options);
   }
 
+  // Utilizando a latitude e longitude é capaz de entregar o nome da cidade e estado
   async function getGeocode(lat: number, long: number) {
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat},${long}&key=c63386b4f77e46de817bdf94f552cddf&language=en`)
       .then(res => res.json())
@@ -111,6 +114,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
   }
 
 
+  // Busca a previsão do tempo
   async function getWeather(cityName: string) {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${units.unitForm}&appid=772920597e4ec8f00de8d376dfb3f094`)
       .then(res => res.json())
@@ -128,7 +132,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
       )
   }
 
-
+  // Busca a previsão do tempo dos próximos dias 
   async function getNextWeather(wId: number) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${wId}&units=${units.unitForm}&appid=772920597e4ec8f00de8d376dfb3f094&cnt=2`)
       .then(res => res.json())
@@ -141,7 +145,8 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
       });
 
   }
-
+  
+  // Busca a previsão do tempo da cidade que o usuário digitar no input
   async function getWeatherByInput(city: string) {
     setUnits({
       unitForm: 'metric',
@@ -156,6 +161,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
       })
   }
 
+  // Extrai a imagem da API do Bing
   function fetchUrl() {
     let headers = {
       'Access-Control-Allow-Origin': '*',
@@ -172,6 +178,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
 
   }
 
+  // Muda as cores conforme a temperatura
   function getColor(temp: number) {
     if (units.metricLetter === '°C') {
       if (inputValue === '') {
@@ -194,6 +201,7 @@ export function WeatherContextProvider({ children }: WeatherContextProps) {
     }    
   }
 
+  // Detecta quando o usuário para de digitar no input para executar a função getWeatherByInput
   const inputChanged = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
     let city = e.currentTarget.value;
