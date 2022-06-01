@@ -31,6 +31,29 @@
     </ul>
 </ul>
 <br>
+
+<h1 align="center"> Como executar DOCKER: </h1>
+<ul>
+    <h3>Subindo o backend:</h3>
+    <li>Acesse a pasta backend: cd backend</li>
+    <li>docker build --file Dockerfile.back --tag backend .</li>
+    <ul><li>Para criar a imagem;</li></ul>
+    <li>docker run -v ${pwd}:/app -v /app/node_modules -p 3003:3003 --rm backend</li>
+    <ul><li>Cria o container;</li></ul>
+    <br>
+    <h3>Executando a aplicação:</h3>
+    <li>Acesse a pasta frontend: cd ../frontend</li>
+    <li>docker build --file Dockerfile.front --tag frontend .</li>
+    <ul><li>Para criar a imagem;</li></ul>
+    <li>
+    docker run -v ${pwd}:/app -v /app/node_modules -p 3000:3000 --rm frontend
+    </li>
+    <ul><li>Cria o container;</li></ul>
+<br>
+    Acesse a aplicação em: http://localhost:3000/    
+</ul>
+<br>
+
 <h1 align="center">Resumo: </h1>
     <ul>
     <li>Todas as API's foram consumidas com sucesso;</li>
@@ -40,6 +63,7 @@
             <li>Criação de servidor para consumo da API do Bing;</li>
         </ul>
     </li>
+    <li>O projeto serviu como um grande aprendizado, principalmente no que diz respeito a docker que é algo que eu ainda não havia utilizado na prática.</li>
 </ul>
 <br>
 
