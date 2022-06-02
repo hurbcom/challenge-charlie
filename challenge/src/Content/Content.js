@@ -6,10 +6,13 @@ export default function Content (props){
 
 const [ isCelsius, setIsCelsius] = useState(true);
 
-// Condicionando tema de acordo com a temperatura da localidade
+// Condicionando tema de acordo com a temperatura da localidade do usuário
 const defTheme = props.temp < 15 ? WeatherTheme.coldSWeather
                     : props.temp > 35 ? WeatherTheme.warmWeather
                     : WeatherTheme.defaultWeather;
+
+// Tema que será usado quando não for possível capturar a localização do usuário
+const noLocation = [{background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))'}]
 
 
 // Pegando os ícones indicativos do tempo de forma dinâmica
@@ -40,14 +43,12 @@ let getWeatherIcon = (iconId) => {
     }
 }
 
-// Tema que será usado quando não for possível capturar a localização do usuário
-const noLocation = [{background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))'}]
-
 // Mudando a unidade de medida quando o usuário clicar na temperatura
 let hanleClick = () => {
     setIsCelsius(!isCelsius)
 }
-console.log(props.icon);
+
+
     return (
         <section className="content__container">
             <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>

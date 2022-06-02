@@ -11,7 +11,8 @@ const [ bingWallpaper, setBingWallpaper] = useState();
 const [ userLocation, setUserLocation ] = useState({});
 const [ weatherinfo, setWeatherInfo ] = useState({});
 const [ nextDaysForecast, setNextDaysForecast ] = useState({})
-const [ gotCurLocation, setGotCurLocation ] = useState(false);
+const [ gotUserLocation, setGotUserLocation ] = useState(false);
+const [ isGeolocationAllowed, setIsGeolocationAllowed  ] = useState(true);
 
 
 // Pegando o papel de parede do bing (alo alo CORS!)
@@ -42,9 +43,12 @@ useEffect(() => {
         const lat = userPosition.coords.latitude
         const lng = userPosition.coords.longitude
       getCurrentLocation(lat,lng)
-      setGotCurLocation(true)
+      setGotUserLocation(true)
     },
-    (err) => console.log(err))
+    (err) => {
+      console.log(err)
+      setIsGeolocationAllowed(false)
+    })
   },[])
 
 
@@ -57,9 +61,7 @@ useEffect(() => {
         .then(info => {
           setUserLocation({
             city: info.results[0].components.municipality, 
-            suburb: info.results[0].components.suburb,
             state: info.results[0].components.state,
-            country: info.results[0].components.country
         })
         getWeatherForecast(info.results[0].components.municipality)
         getNextDaysForecast(info.results[0].components.municipality)
@@ -80,11 +82,9 @@ let getWeatherForecast = (city) => {
         weather: info.weather[0].description[0].toUpperCase() + info.weather[0].description.slice(1),
         icon: info.weather[0].icon,
         wind: info.wind.speed,
-        windDirection: info.wind.deg,
         pressure: info.main.pressure,
         temp: info.main.temp
       })
-      console.log(info);
     })
     .catch(err => {
         console.log(err)
@@ -103,8 +103,6 @@ let getWeatherForecast = (city) => {
           setNextDaysForecast({
             tomorrowTemp: data.list[0].main.temp,
             afterTomorrowTemp: data.list[8].main.temp,
-            tomorrowIcon: data.list[0].weather[0].icon,
-            afterTomorrowIcon: data.list[8].weather[0].icon,
           })
         })
       .catch(err => console.log(err))
@@ -115,6 +113,7 @@ let getWeatherForecast = (city) => {
 let getUserNewLocation = (location) => {
   getWeatherForecast(location)
   getNextDaysForecast(location)
+  setGotUserLocation(true)
 }
 
 
@@ -123,22 +122,19 @@ let getUserNewLocation = (location) => {
       <div className="main__container">
           <Search 
             curCity = {userLocation.city}
-            curSuburb = {userLocation.suburb}
             curState = {userLocation.state}
-            curCountry = {userLocation.country}
             setLocation = {getUserNewLocation}
-            gotCurrentLocation = {gotCurLocation}
+            isGeolocAllowed = {isGeolocationAllowed}
           />
           <Content 
             humidity = {weatherinfo.humidity}
             weather = {weatherinfo.weather}
             icon = {weatherinfo.icon}
             wind = {weatherinfo.wind}
-            windDir = {weatherinfo.windDirection}
             pressure = {weatherinfo.pressure}
             temp = {weatherinfo.temp}
             nextdaysForecast = {nextDaysForecast}
-            gotCurrentLocation = {gotCurLocation}
+            gotCurrentLocation = {gotUserLocation}
           />
       </div>
     </div>

@@ -22,14 +22,14 @@ let handleSubmit =(event) => {
         event.preventDefault()
         props.setLocation(newLocation)
     }else{
-        event.preventDefault()
+        return
     }
 }
-
     return (
         <form onSubmit={handleSubmit} className="search__container">
             <i className="search__icon" data-icon="("></i>
-            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={props.gotCurrentLocation ? locationRecieved : "Usuário não ativou locaização.."}/>
+
+            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={props.isGeolocAllowed ? locationRecieved : 'Digite uma localidade..'}/>
         </form>
     )
 }
