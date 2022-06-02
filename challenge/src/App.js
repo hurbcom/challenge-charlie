@@ -28,11 +28,9 @@ export default function App() {
         throw new Error('Not able to load wallpaper');
       }
     }
-
     getWallpaper();
 
   }, [])
-
 
   // Pegando as coordenadas da localização atual do usuário.
   useEffect(() => {
@@ -48,9 +46,8 @@ export default function App() {
       })
   }, [])
 
-
   // Transformando as coordenadas do usuário em uma localizaçao, de fato.
-  let getCurrentLocation = (lat, lng) => {
+  const getCurrentLocation = (lat, lng) => {
 
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=
               ${lat}+${lng}&key=${process.env.REACT_APP_OPEN_CAGE}`)
@@ -67,7 +64,7 @@ export default function App() {
   }
 
   // Pegando a previsão do tempo para a localização usuário
-  let getWeatherForecast = (city) => {
+  const getWeatherForecast = (city) => {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=
           ${city}&lang=pt_br&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER}`)
       .then(res => res.json())
@@ -88,7 +85,7 @@ export default function App() {
   }
 
   //Pegando a previsão de um dia depois e dois dias depois
-  let getNextDaysForecast = (city) => {
+  const getNextDaysForecast = (city) => {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}
             &lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER}&units=metric&cnt=16`)
       .then(res => res.json())
@@ -103,12 +100,11 @@ export default function App() {
 
   // Pegando a localização que o usuário escolheu e atuaizando a previsão do tempo
   // O parametro 'location' vai ser passado pelo componente 'Search'
-  let getUserNewLocation = (location) => {
+  const getUserNewLocation = (location) => {
     getWeatherForecast(location)
     getNextDaysForecast(location)
     setGotUserLocation(true)
   }
-
 
   return (
     <div className="container" style={{ backgroundImage: `url(${bingWallpaper})` }}>

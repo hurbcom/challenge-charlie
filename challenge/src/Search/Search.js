@@ -11,13 +11,13 @@ export default function Search(props) {
 
 
     // Pegando a cidade que o usuário informou (sem considerar acentos pois a API não aceita acentos)
-    let handleChange = (event) => {
+    const handleChange = (event) => {
         setNewLocation(event.target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
     }
 
     // Enviando a informação da localidade escolhida pelo usuário para fora do componente Search
     // Vou usar a informação do novo lugar para chamar, novamente, a função de previsão do tempo
-    let handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         if (newLocation !== '') {
             event.preventDefault()
             props.setLocation(newLocation)

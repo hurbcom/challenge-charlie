@@ -1,6 +1,4 @@
-h3,
-li,
-p {
+h3, li, p {
   color: white;
 }
 
@@ -25,8 +23,7 @@ h3 {
 
 @media screen and (min-height: 420px) {
 
-  ul>li:first-child,
-  ul>li:nth-child(2) {
+  ul>li:first-child, ul>li:nth-child(2) {
     padding: .5rem 0;
   }
 

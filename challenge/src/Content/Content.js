@@ -14,9 +14,8 @@ export default function Content(props) {
     // Tema que será usado quando não for possível capturar a localização do usuário
     const noLocation = [{ background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))' }]
 
-
     // Pegando os ícones indicativos do tempo de forma dinâmica
-    let getWeatherIcon = (iconId) => {
+    const getWeatherIcon = (iconId) => {
         switch (true) {
             case '01d':
                 return 'B'
@@ -44,10 +43,9 @@ export default function Content(props) {
     }
 
     // Mudando a unidade de medida quando o usuário clicar na temperatura
-    let hanleClick = () => {
+    const hanleClick = () => {
         setIsCelsius(!isCelsius)
     }
-
 
     return (
         <section className="content__container">
