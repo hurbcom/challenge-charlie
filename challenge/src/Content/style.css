@@ -1,60 +1,64 @@
-h3, li, p{
-    color: white;
+h3,
+li,
+p {
+  color: white;
 }
 
-h3{
-    font-size: .9rem;
+h3 {
+  font-size: .9rem;
 }
 
 
-.content__container{
-    width: 360px;
+.content__container {
+  width: 360px;
+}
+
+@media screen and (min-width: 500px) {
+  .content__container {
+    width: 450px;
   }
 
-  @media screen and (min-width: 500px){
-    .content__container{
-        width: 450px;
-      }
+  h3 {
+    font-size: unset;
+  }
+}
 
-      h3{
-          font-size: unset;
-      }
+@media screen and (min-height: 420px) {
+
+  ul>li:first-child,
+  ul>li:nth-child(2) {
+    padding: .5rem 0;
   }
 
-  @media screen and (min-height: 420px){
-    ul > li:first-child ,ul > li:nth-child(2){
-        padding: .5rem 0 ;
-    }
-
-    .forecast__subcontainer{
-        padding: .5rem 0;
-    }
+  .forecast__subcontainer {
+    padding: .5rem 0;
   }
+}
 
 
-  
-  
-  .forecast__subcontainer{
-    opacity: .8;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .forecast__data{
-    grid-column: 2;
-    padding: 1rem 0;
-  }
-  
-  .forecast__icon{
-    align-self: center;
-    grid-column: 1;
-    justify-self: center;
-    margin-left: -30px;
-  }
 
-  .icon:before {
-	font-family: 'MeteoconsRegular';
-	content: attr(data-icon);
-    font-size: 140px;
-    color: white;
-  }
+
+.forecast__subcontainer {
+  opacity: .8;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.forecast__data {
+  grid-column: 2;
+  padding: 1rem 0;
+}
+
+.forecast__icon {
+  align-self: center;
+  grid-column: 1;
+  justify-self: center;
+  margin-left: -30px;
+}
+
+.icon:before {
+  font-family: 'MeteoconsRegular';
+  content: attr(data-icon);
+  font-size: 140px;
+  color: white;
+}

@@ -1,34 +1,34 @@
-.search__container{
-    padding: .5rem;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    opacity: .7;
-  }
-  
-  .search__icon:before {
-    display: block;
-    font-family: 'MeteoconsRegular';
-    content: attr(data-icon);
-    font-size: 3rem;
-    color: grey;
-  }
-  
-  input{
-    width: 100%;
-    border: none;
-    height: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    }
+.search__container {
+  padding: .5rem;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  opacity: .7;
+}
 
-    @media screen and (min-width: 500px){
-      input{
-        font-size: 1.2rem;
-        }
-    }
-  
-  input:focus{
-    outline: 0;
+.search__icon:before {
+  display: block;
+  font-family: 'MeteoconsRegular';
+  content: attr(data-icon);
+  font-size: 3rem;
+  color: grey;
+}
+
+input {
+  width: 100%;
+  border: none;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 500px) {
+  input {
+    font-size: 1.2rem;
   }
+}
+
+input:focus {
+  outline: 0;
+}
