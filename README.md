@@ -8,7 +8,7 @@ Esse é um microsite responsivo que entrega a previsão do tempo para a localiza
 ## APIs utilizadas na construção da aplicação
 
 - [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) -> Para pegar a imagem de fundo da aplicação (imagem dinâmica)
-- [OpemWeather](https://openweathermap.org/) -> Para pegar a previsão do tempo
+- [OpenWeather](https://openweathermap.org/) -> Para pegar a previsão do tempo
 - [OpenCage](https://opencagedata.com/api) -> Para transformar coordenadas geográficas em uma localidade
 
 ##  Tecnologias utilizadas na construção da aplicação
