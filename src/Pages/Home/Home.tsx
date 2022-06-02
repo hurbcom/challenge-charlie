@@ -1,9 +1,10 @@
 import React from "react";
 
-import "pages/home/Home.scss";
+import "pages/Home/Home.scss";
+import Background from "components/Background/Background";
 
 const Home = () => {
-  return <h1>Teste</h1>;
+  return <Background />;
 };
 
 export default Home;

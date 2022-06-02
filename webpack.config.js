@@ -4,15 +4,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
     app: ["./src/index.tsx"],
-    vendor: ["react", "react-dom"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].bundle.js",
   },
-  devtool: "source-map",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".scss"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".scss", ".jpg"],
     modules: ["src", "node_modules"],
   },
   devServer: {
@@ -30,11 +28,16 @@ module.exports = {
         test: /\.(scss|css)$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      filename: "index.html",
     }),
   ],
 };
