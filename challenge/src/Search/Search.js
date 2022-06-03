@@ -5,8 +5,8 @@ export default function Search(props) {
 
     const [newLocation, setNewLocation] = useState('');
 
-    const locationRecieved = props.curCity && props.curState ?
-        props.curCity + ', ' + props.curState :
+    const locationRecieved = props.userLocation.city && props.userLocation.state ?
+        props.userLocation.city + ', ' + props.userLocation.state :
         'Carregando..';
 
 
@@ -28,8 +28,13 @@ export default function Search(props) {
     return (
         <form onSubmit={handleSubmit} className="search__container">
             <i className="search__icon" data-icon="("></i>
-
-            <input autoFocus={true} onChange={handleChange} value={newLocation} type="text" placeholder={props.isGeolocAllowed ? locationRecieved : 'Digite uma localidade..'} />
+            <input 
+                autoFocus={true} 
+                onChange={handleChange} 
+                value={newLocation} 
+                type="text" 
+                placeholder={props.isGeolocAllowed ? locationRecieved : 'Digite uma localidade..'} 
+            />
         </form>
     )
 }

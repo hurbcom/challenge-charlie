@@ -7,7 +7,7 @@ export default function App() {
   // Área dos states
   const [bingWallpaper, setBingWallpaper] = useState();
   const [userLocation, setUserLocation] = useState({});
-  const [weatherinfo, setWeatherInfo] = useState({});
+  const [weatherInfo, setWeatherInfo] = useState({});
   const [nextDaysForecast, setNextDaysForecast] = useState({})
   const [gotUserLocation, setGotUserLocation] = useState(false);
   const [isGeolocationAllowed, setIsGeolocationAllowed] = useState(true);
@@ -110,20 +110,14 @@ export default function App() {
     <div className="container" style={{ backgroundImage: `url(${bingWallpaper})` }}>
       <div className="main__container">
         <Search
-          curCity={userLocation.city}
-          curState={userLocation.state}
+          userLocation={userLocation}
           setLocation={getUserNewLocation}
           isGeolocAllowed={isGeolocationAllowed}
         />
         <Content
-          humidity={weatherinfo.humidity}
-          weather={weatherinfo.weather}
-          icon={weatherinfo.icon}
-          wind={weatherinfo.wind}
-          pressure={weatherinfo.pressure}
-          temp={weatherinfo.temp}
           nextdaysForecast={nextDaysForecast}
           gotCurrentLocation={gotUserLocation}
+          weatherInfo={weatherInfo}
         />
       </div>
     </div>

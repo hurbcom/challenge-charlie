@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './style.css'
 import WeatherTheme from '../WeatherTheme'
 
@@ -7,8 +7,8 @@ export default function Content(props) {
     const [isCelsius, setIsCelsius] = useState(true);
 
     // Condicionando tema de acordo com a temperatura da localidade do usuário
-    const defTheme = props.temp < 15 ? WeatherTheme.coldSWeather
-        : props.temp > 35 ? WeatherTheme.warmWeather
+    const defTheme = props.weatherInfo.temp < 15 ? WeatherTheme.coldSWeather
+        : props.weatherInfo.temp > 35 ? WeatherTheme.warmWeather
             : WeatherTheme.defaultWeather;
 
     // Tema que será usado quando não for possível capturar a localização do usuário
@@ -51,20 +51,20 @@ export default function Content(props) {
         <section className="content__container">
             <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__icon">
-                    <i className="icon" data-icon={getWeatherIcon(props.icon)}></i>
+                    <i className="icon" data-icon={getWeatherIcon(props.weatherInfo.icon)}></i>
                 </div>
-                <div className="forecast__data">
+                <div className="forecast__weatherInfo">
                     <h3>HOJE</h3>
                     <ul>
                         <li onClick={hanleClick}>
                             {isCelsius ?
-                                Math.round(props.temp ? props.temp : '') + '°C' :
-                                (Math.round(props.temp ? (props.temp * 9 / 5) + 32 : '')) + '°F'}
+                                Math.round(props.weatherInfo.temp ? props.weatherInfo.temp : '') + '°C' :
+                                (Math.round(props.weatherInfo.temp ? (props.weatherInfo.temp * 9 / 5) + 32 : '')) + '°F'}
                         </li>
-                        <li>{props.weather}</li>
-                        <li>Vento: NO {props.wind}km/h</li>
-                        <li>Humidade: {props.humidity}%</li>
-                        <li>Pressão: {props.pressure}hPA</li>
+                        <li>{props.weatherInfo.weather}</li>
+                        <li>Vento: NO {props.weatherInfo.wind}km/h</li>
+                        <li>Humidade: {props.weatherInfo.humidity}%</li>
+                        <li>Pressão: {props.weatherInfo.pressure}hPA</li>
                     </ul>
                 </div>
             </div>
