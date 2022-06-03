@@ -10,7 +10,16 @@ module.exports = {
     filename: "js/[name].bundle.js",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".scss", ".jpg"],
+    extensions: [
+      ".ts",
+      ".tsx",
+      ".js",
+      ".jsx",
+      ".json",
+      ".scss",
+      ".jpg",
+      ".svg",
+    ],
     modules: ["src", "node_modules"],
   },
   devServer: {
@@ -25,12 +34,16 @@ module.exports = {
         loader: "babel-loader",
       },
       {
-        test: /\.(scss|css)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: "asset/inline",
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },

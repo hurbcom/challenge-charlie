@@ -1,0 +1,12 @@
+.nextdays {
+  background-color: darken(#dbaf0d, 5%);
+  &__right {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    width: 33.33%;
+    p {
+      color: #ffffff;
+    }
+  }
+}
