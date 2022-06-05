@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Search from './Search/Search';
-import Content from './Content/Content';
+import Search from './components/Search/Search';
+import Content from './components/Content/Content';
 
 export default function App() {
 

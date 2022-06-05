@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './style.css'
-import WeatherTheme from '../WeatherTheme'
+import WeatherTheme from '../../helpers/WeatherTheme'
 
 export default function Content(props) {
 
@@ -13,17 +13,17 @@ export default function Content(props) {
 
     // Tema que será usado quando não for possível capturar a localização do usuário
     const noLocation = [{ background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))' }]
-
+    console.log(props.weatherInfo.icon);
     // Pegando os ícones indicativos do tempo de forma dinâmica
     const getWeatherIcon = (iconId) => {
         switch (true) {
-            case '01d':
+            case iconId === '01d':
                 return 'B'
-            case '01n':
+            case iconId === '01n':
                 return 'C'
-            case '02d':
+            case iconId === '02d':
                 return 'H'
-            case '02n':
+            case iconId === '02n':
                 return 'I'
             case iconId === '03d' || iconId === '03n':
                 return 'N'
