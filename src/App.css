@@ -1,0 +1,27 @@
+.wrapper {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgCinza {
+    background: rgba(88, 88, 88, 0.8);
+}
+
+.bgBlue {
+    background: rgb(8, 4, 246, .8);
+}
+
+.bgRed {
+    background: rgb(246, 4, 4, .8);
+}
+
+.bgYellow {
+    background: rgba(246,227,4, .8);
+}
+
+input.form-control,
+input.form-control:focus,
+button#basic-addon2 {
+    background-color: transparent;
+    color: #ffffff;
+}
