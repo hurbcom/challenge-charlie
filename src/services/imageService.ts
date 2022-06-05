@@ -8,8 +8,8 @@ const fetchBackgroundImageUrl = async (): Promise<string> => {
   });
   const imageUrl = await fetch(corsUrl + bingUrl, { headers })
     .then((response) => response.json())
-    .then((data) => {
-      return data.images[0].url as string;
+    .then((apiData) => {
+      return apiData.images[0].url as string;
     })
     .catch((error) => {
       return error as string;

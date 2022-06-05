@@ -1,5 +1,5 @@
 export interface UserLocation {
-  latitude: number | null;
-  longitude: number | null;
-  place?: string | "";
+  latitude: number;
+  longitude: number;
+  place?: string;
 }
