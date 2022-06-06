@@ -2,12 +2,12 @@ import { Weather } from "interfaces/Weather";
 
 export const formatWeatherProperties = (weather: any) => {
   const formattedWeather: Weather = {
-    temperature: weather.main.temp.toFixed(0),
+    temperature: Math.round(weather.main.temp),
     mood: formatMood(weather.weather[0].description),
-    windSpeed: weather.wind.speed.toFixed(0),
+    windSpeed: Math.round(weather.wind.speed),
     windDirection: getWindDirection(weather.wind.deg),
-    humidity: weather.main.humidity.toFixed(0),
-    pressure: weather.main.pressure.toFixed(0),
+    humidity: Math.round(weather.main.humidity),
+    pressure: Math.round(weather.main.pressure),
   };
   return formattedWeather;
 };
@@ -62,4 +62,14 @@ export const shadeColor = (color: string, percent: number) => {
     b.toString(16).length === 1 ? `0${b.toString(16)}` : b.toString(16);
 
   return `#${rr}${gg}${bb}`;
+};
+
+export const convertCelsiusFahrenheit = (
+  temperature: number,
+  isCelsius: boolean
+) => {
+  if (isCelsius) {
+    return (temperature * 9) / 5 + 32;
+  }
+  return ((temperature - 32) * 5) / 9;
 };

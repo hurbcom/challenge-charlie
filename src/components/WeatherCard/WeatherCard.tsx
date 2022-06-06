@@ -8,7 +8,11 @@ import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
 import { fetchWeather, fetchNextWeather } from "services/weatherService";
-import { formatWeatherProperties, shadeColor } from "utils/utils";
+import {
+  convertCelsiusFahrenheit,
+  formatWeatherProperties,
+  shadeColor,
+} from "utils/utils";
 import { Weather } from "interfaces/Weather";
 
 const WeatherCard = () => {
@@ -65,7 +69,7 @@ const WeatherCard = () => {
         (apiData) => {
           apiData.daily.map((weather, index) => {
             if (index < 2)
-              addNextDayWeather({ temperature: weather.temp.day.toFixed(0) });
+              addNextDayWeather({ temperature: Math.round(weather.temp.day) });
           });
         }
       );
@@ -84,8 +88,16 @@ const WeatherCard = () => {
     }
   }, [locationWeather.temperature]);
 
-  const handleToggleCelsius = () => {
-    toggleCelsius(!isCelsius);
+  const handleToggleCelsius = async () => {
+    await toggleCelsius(!isCelsius);
+    const convertedTemperature = convertCelsiusFahrenheit(
+      locationWeather.temperature,
+      isCelsius
+    );
+    setLocationWeather({
+      ...locationWeather,
+      temperature: Math.round(convertedTemperature),
+    });
   };
 
   return (
