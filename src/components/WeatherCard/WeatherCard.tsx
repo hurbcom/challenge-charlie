@@ -8,9 +8,12 @@ import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
 import fetchWeather from "services/weatherService";
+import { formatWeatherProperties } from "utils/utils";
+import { Weather } from "interfaces/Weather";
 
 const WeatherCard = () => {
-  const { userLocation, setUserLocation } = useStore();
+  const { userLocation, setUserLocation, locationWeather, setLocationWeather } =
+    useStore();
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -38,7 +41,15 @@ const WeatherCard = () => {
   useEffect(() => {
     if (userLocation.place) {
       fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
-        console.log(weather);
+        const formattedWeather: Weather = formatWeatherProperties(weather);
+        setLocationWeather({
+          temperature: formattedWeather.temperature,
+          mood: formattedWeather.mood,
+          windSpeed: formattedWeather.windSpeed,
+          windDirection: formattedWeather.windDirection,
+          humidity: formattedWeather.humidity,
+          pressure: formattedWeather.pressure,
+        });
       });
     }
   }, [userLocation.place]);
@@ -46,7 +57,7 @@ const WeatherCard = () => {
   return (
     <div className="card">
       <WeatherInput location={userLocation.place} />
-      <WeatherToday />
+      <WeatherToday weather={locationWeather} />
       <WeatherNextDays />
       <WeatherNextDays />
     </div>

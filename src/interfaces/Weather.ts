@@ -1,7 +1,8 @@
 export interface Weather {
-  temperature: string;
+  temperature: number;
   mood: string;
-  wind: string;
-  humidity: string;
-  pressure: string;
+  windSpeed: number;
+  windDirection: string;
+  humidity: number;
+  pressure: number;
 }

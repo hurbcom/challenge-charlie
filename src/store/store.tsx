@@ -8,7 +8,7 @@ interface State {
   userLocation: UserLocation;
   setUserLocation: (userLocation: UserLocation) => void;
   locationWeather: Weather;
-  setLocationWeather: (locationWeather: Weather) => void;
+  setLocationWeather: (weather: Weather) => void;
 }
 
 export const useStore = create<State>((set) => ({
