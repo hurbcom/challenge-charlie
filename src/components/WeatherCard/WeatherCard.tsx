@@ -21,6 +21,8 @@ const WeatherCard = () => {
     addNextDayWeather,
     setBackgroundColor,
     backgroundColor,
+    isCelsius,
+    toggleCelsius,
   } = useStore();
   useEffect(() => {
     if (navigator.geolocation) {
@@ -62,7 +64,8 @@ const WeatherCard = () => {
       fetchNextWeather(userLocation.latitude, userLocation.longitude).then(
         (apiData) => {
           apiData.daily.map((weather, index) => {
-            if (index < 2) addNextDayWeather({ temperature: weather.temp.day });
+            if (index < 2)
+              addNextDayWeather({ temperature: weather.temp.day.toFixed(0) });
           });
         }
       );
@@ -81,22 +84,31 @@ const WeatherCard = () => {
     }
   }, [locationWeather.temperature]);
 
+  const handleToggleCelsius = () => {
+    toggleCelsius(!isCelsius);
+  };
+
   return (
     <div className="card">
       <WeatherInput location={userLocation.place} />
       <WeatherToday
         weather={locationWeather}
         color={shadeColor(backgroundColor, 1.1)}
+        isCelsius={isCelsius}
+        toggleCelsius={handleToggleCelsius}
       />
       {nextDaysWeather.length > 0 &&
         nextDaysWeather.map((nextWeather, index) => {
           return (
             <WeatherNextDays
+              key={index}
               weather={nextWeather}
               day={index}
               color={
                 index == 0 ? backgroundColor : shadeColor(backgroundColor, 1.8)
               }
+              isCelsius={isCelsius}
+              toggleCelsius={handleToggleCelsius}
             />
           );
         })}

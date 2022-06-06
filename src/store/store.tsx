@@ -13,6 +13,8 @@ interface State {
   addNextDayWeather: (nextWeather: WeatherForecast) => void;
   backgroundColor: string;
   setBackgroundColor: (bgColor: string) => void;
+  isCelsius: boolean;
+  toggleCelsius: (newIsCelsius: boolean) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -37,4 +39,6 @@ export const useStore = create<State>((set) => ({
     set((prevState) => ({
       nextDaysWeather: [...prevState.nextDaysWeather, temperature],
     })),
+  isCelsius: true,
+  toggleCelsius: (newIsCelsius) => set({ isCelsius: newIsCelsius }),
 }));

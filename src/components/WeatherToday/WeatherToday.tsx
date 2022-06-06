@@ -7,6 +7,8 @@ import { Weather } from "interfaces/Weather";
 type ownProps = {
   weather: Weather;
   color: string;
+  isCelsius: boolean;
+  toggleCelsius: Function;
 };
 
 const WeatherToday = (props: ownProps) => {
@@ -17,8 +19,13 @@ const WeatherToday = (props: ownProps) => {
       </div>
       <div className="today__right">
         <p className="today__right__day">Hoje</p>
-        <p className="today__right__temperature">
-          {props.weather.temperature} C
+        <p
+          className="today__right__temperature"
+          onClick={() => {
+            props.toggleCelsius();
+          }}
+        >
+          {`${props.weather.temperature} ${props.isCelsius ? "C" : "F"}`}
         </p>
         <p className="today__right__mood">{props.weather.mood}</p>
         <p className="today__right__wind">{`Vento: ${props.weather.windDirection} ${props.weather.windSpeed}km/h`}</p>
