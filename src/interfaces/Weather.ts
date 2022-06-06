@@ -6,3 +6,5 @@ export interface Weather {
   humidity: number;
   pressure: number;
 }
+
+export type WeatherForecast = Pick<Weather, "temperature">;
