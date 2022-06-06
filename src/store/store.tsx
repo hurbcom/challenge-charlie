@@ -1,4 +1,5 @@
 import { UserLocation } from "interfaces/UserLocation";
+import { Weather } from "interfaces/Weather";
 import create from "zustand";
 
 interface State {
@@ -6,6 +7,8 @@ interface State {
   setBackgroundImageUrl: (imageUrl: string) => void;
   userLocation: UserLocation;
   setUserLocation: (userLocation: UserLocation) => void;
+  locationWeather: Weather;
+  setLocationWeather: (locationWeather: Weather) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -13,8 +16,12 @@ export const useStore = create<State>((set) => ({
   setBackgroundImageUrl: (imageUrl: string) => {
     set({ backgroundImageUrl: imageUrl });
   },
-  userLocation: { latitude: null, longitude: null },
+  userLocation: {} as UserLocation,
   setUserLocation: (newUserLocation: UserLocation) => {
     set({ userLocation: newUserLocation });
+  },
+  locationWeather: {} as Weather,
+  setLocationWeather: (weather: Weather) => {
+    set({ locationWeather: weather });
   },
 }));

@@ -7,6 +7,7 @@ import fetchUserLocation from "services/locationService";
 import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
+import fetchWeather from "services/weatherService";
 
 const WeatherCard = () => {
   const { userLocation, setUserLocation } = useStore();
@@ -33,6 +34,14 @@ const WeatherCard = () => {
       );
     }
   }, [userLocation.latitude]);
+
+  useEffect(() => {
+    if (userLocation.place) {
+      fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
+        console.log(weather);
+      });
+    }
+  }, [userLocation.place]);
 
   return (
     <div className="card">
