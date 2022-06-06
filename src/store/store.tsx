@@ -11,12 +11,18 @@ interface State {
   setLocationWeather: (weather: Weather) => void;
   nextDaysWeather: WeatherForecast[];
   addNextDayWeather: (nextWeather: WeatherForecast) => void;
+  backgroundColor: string;
+  setBackgroundColor: (bgColor: string) => void;
 }
 
 export const useStore = create<State>((set) => ({
   backgroundImageUrl: "",
   setBackgroundImageUrl: (imageUrl: string) => {
     set({ backgroundImageUrl: imageUrl });
+  },
+  backgroundColor: "#dbd3b4",
+  setBackgroundColor: (bgColor: string) => {
+    set({ backgroundColor: bgColor });
   },
   userLocation: {} as UserLocation,
   setUserLocation: (newUserLocation: UserLocation) => {
@@ -27,7 +33,6 @@ export const useStore = create<State>((set) => ({
     set({ locationWeather: weather });
   },
   nextDaysWeather: [],
-
   addNextDayWeather: (temperature: WeatherForecast) =>
     set((prevState) => ({
       nextDaysWeather: [...prevState.nextDaysWeather, temperature],

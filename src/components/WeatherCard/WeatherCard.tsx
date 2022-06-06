@@ -8,8 +8,8 @@ import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
 import { fetchWeather, fetchNextWeather } from "services/weatherService";
-import { formatWeatherProperties } from "utils/utils";
-import { Weather, WeatherForecast } from "interfaces/Weather";
+import { formatWeatherProperties, shadeColor } from "utils/utils";
+import { Weather } from "interfaces/Weather";
 
 const WeatherCard = () => {
   const {
@@ -19,6 +19,8 @@ const WeatherCard = () => {
     setLocationWeather,
     nextDaysWeather,
     addNextDayWeather,
+    setBackgroundColor,
+    backgroundColor,
   } = useStore();
   useEffect(() => {
     if (navigator.geolocation) {
@@ -67,13 +69,36 @@ const WeatherCard = () => {
     }
   }, [userLocation.place]);
 
+  useEffect(() => {
+    if (locationWeather.temperature) {
+      if (locationWeather.temperature < 15) {
+        setBackgroundColor("#0080cd");
+      }
+      if (locationWeather.temperature > 35) {
+        setBackgroundColor("#cc3923");
+      }
+      setBackgroundColor("#faca04");
+    }
+  }, [locationWeather.temperature]);
+
   return (
     <div className="card">
       <WeatherInput location={userLocation.place} />
-      <WeatherToday weather={locationWeather} />
+      <WeatherToday
+        weather={locationWeather}
+        color={shadeColor(backgroundColor, 1.1)}
+      />
       {nextDaysWeather.length > 0 &&
         nextDaysWeather.map((nextWeather, index) => {
-          return <WeatherNextDays weather={nextWeather} day={index} />;
+          return (
+            <WeatherNextDays
+              weather={nextWeather}
+              day={index}
+              color={
+                index == 0 ? backgroundColor : shadeColor(backgroundColor, 1.8)
+              }
+            />
+          );
         })}
     </div>
   );

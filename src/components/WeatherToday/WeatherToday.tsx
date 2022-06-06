@@ -6,11 +6,12 @@ import { Weather } from "interfaces/Weather";
 
 type ownProps = {
   weather: Weather;
+  color: string;
 };
 
 const WeatherToday = (props: ownProps) => {
   return (
-    <div className="today">
+    <div className="today" style={{ backgroundColor: props.color }}>
       <div className="today__left">
         <img className="today__left__icon" src={SunIcon} alt="icon-sun"></img>
       </div>

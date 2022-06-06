@@ -6,11 +6,12 @@ import { WeatherForecast } from "interfaces/Weather";
 type ownProps = {
   weather: WeatherForecast;
   day: number;
+  color: string;
 };
 
 const WeatherNextDays = (props: ownProps) => {
   return (
-    <div className="nextdays">
+    <div className="nextdays" style={{ backgroundColor: props.color }}>
       <div className="nextdays__right">
         <p className="nextdays__right__day">
           {props.day === 0 ? "Amanhã" : "Depois de amanhã"}
