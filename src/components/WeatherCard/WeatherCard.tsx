@@ -7,13 +7,19 @@ import fetchUserLocation from "services/locationService";
 import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
-import fetchWeather from "services/weatherService";
+import { fetchWeather, fetchNextWeather } from "services/weatherService";
 import { formatWeatherProperties } from "utils/utils";
-import { Weather } from "interfaces/Weather";
+import { Weather, WeatherForecast } from "interfaces/Weather";
 
 const WeatherCard = () => {
-  const { userLocation, setUserLocation, locationWeather, setLocationWeather } =
-    useStore();
+  const {
+    userLocation,
+    setUserLocation,
+    locationWeather,
+    setLocationWeather,
+    nextDaysWeather,
+    addNextDayWeather,
+  } = useStore();
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -51,6 +57,13 @@ const WeatherCard = () => {
           pressure: formattedWeather.pressure,
         });
       });
+      fetchNextWeather(userLocation.latitude, userLocation.longitude).then(
+        (apiData) => {
+          apiData.daily.map((weather, index) => {
+            if (index < 2) addNextDayWeather({ temperature: weather.temp.day });
+          });
+        }
+      );
     }
   }, [userLocation.place]);
 
@@ -58,8 +71,10 @@ const WeatherCard = () => {
     <div className="card">
       <WeatherInput location={userLocation.place} />
       <WeatherToday weather={locationWeather} />
-      <WeatherNextDays />
-      <WeatherNextDays />
+      {nextDaysWeather.length > 0 &&
+        nextDaysWeather.map((nextWeather, index) => {
+          return <WeatherNextDays weather={nextWeather} day={index} />;
+        })}
     </div>
   );
 };

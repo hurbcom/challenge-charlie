@@ -1,5 +1,5 @@
 import { UserLocation } from "interfaces/UserLocation";
-import { Weather } from "interfaces/Weather";
+import { Weather, WeatherForecast } from "interfaces/Weather";
 import create from "zustand";
 
 interface State {
@@ -9,6 +9,8 @@ interface State {
   setUserLocation: (userLocation: UserLocation) => void;
   locationWeather: Weather;
   setLocationWeather: (weather: Weather) => void;
+  nextDaysWeather: WeatherForecast[];
+  addNextDayWeather: (nextWeather: WeatherForecast) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -24,4 +26,10 @@ export const useStore = create<State>((set) => ({
   setLocationWeather: (weather: Weather) => {
     set({ locationWeather: weather });
   },
+  nextDaysWeather: [],
+
+  addNextDayWeather: (temperature: WeatherForecast) =>
+    set((prevState) => ({
+      nextDaysWeather: [...prevState.nextDaysWeather, temperature],
+    })),
 }));
