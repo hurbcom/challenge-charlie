@@ -27,6 +27,7 @@ const WeatherCard = () => {
     backgroundColor,
     isCelsius,
     toggleCelsius,
+    updateNextDayWeather,
   } = useStore();
   useEffect(() => {
     if (navigator.geolocation) {
@@ -69,7 +70,10 @@ const WeatherCard = () => {
         (apiData) => {
           apiData.daily.map((weather, index) => {
             if (index < 2)
-              addNextDayWeather({ temperature: Math.round(weather.temp.day) });
+              addNextDayWeather({
+                temperature: weather.temp.day,
+                id: index,
+              });
           });
         }
       );
@@ -96,7 +100,14 @@ const WeatherCard = () => {
     );
     setLocationWeather({
       ...locationWeather,
-      temperature: Math.round(convertedTemperature),
+      temperature: convertedTemperature,
+    });
+    nextDaysWeather.map((nextDay) => {
+      const nextDayConvertedTemperature = convertCelsiusFahrenheit(
+        nextDay.temperature,
+        isCelsius
+      );
+      updateNextDayWeather(nextDay, nextDayConvertedTemperature);
     });
   };
 

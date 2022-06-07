@@ -2,12 +2,12 @@ import { Weather } from "interfaces/Weather";
 
 export const formatWeatherProperties = (weather: any) => {
   const formattedWeather: Weather = {
-    temperature: Math.round(weather.main.temp),
+    temperature: weather.main.temp,
     mood: formatMood(weather.weather[0].description),
-    windSpeed: Math.round(weather.wind.speed),
+    windSpeed: weather.wind.speed,
     windDirection: getWindDirection(weather.wind.deg),
-    humidity: Math.round(weather.main.humidity),
-    pressure: Math.round(weather.main.pressure),
+    humidity: weather.main.humidity,
+    pressure: weather.main.pressure,
   };
   return formattedWeather;
 };

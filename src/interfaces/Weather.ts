@@ -5,6 +5,10 @@ export interface Weather {
   windDirection: string;
   humidity: number;
   pressure: number;
+  id?: string;
 }
 
-export type WeatherForecast = Pick<Weather, "temperature">;
+export interface WeatherForecast {
+  temperature: number;
+  id: number;
+}

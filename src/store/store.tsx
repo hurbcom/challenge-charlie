@@ -11,6 +11,10 @@ interface State {
   setLocationWeather: (weather: Weather) => void;
   nextDaysWeather: WeatherForecast[];
   addNextDayWeather: (nextWeather: WeatherForecast) => void;
+  updateNextDayWeather: (
+    nextWeather: WeatherForecast,
+    newTemperature: number
+  ) => void;
   backgroundColor: string;
   setBackgroundColor: (bgColor: string) => void;
   isCelsius: boolean;
@@ -38,6 +42,19 @@ export const useStore = create<State>((set) => ({
   addNextDayWeather: (temperature: WeatherForecast) =>
     set((prevState) => ({
       nextDaysWeather: [...prevState.nextDaysWeather, temperature],
+    })),
+  updateNextDayWeather: (nextDay, newTemperature) =>
+    set((state) => ({
+      nextDaysWeather: state.nextDaysWeather.map((item) => {
+        if (item.id === nextDay.id) {
+          return {
+            ...item,
+            temperature: newTemperature,
+          };
+        } else {
+          return item;
+        }
+      }),
     })),
   isCelsius: true,
   toggleCelsius: (newIsCelsius) => set({ isCelsius: newIsCelsius }),
