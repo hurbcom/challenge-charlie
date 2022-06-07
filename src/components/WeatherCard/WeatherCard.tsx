@@ -17,6 +17,7 @@ import {
   shadeColor,
 } from "utils/utils";
 import { Weather } from "interfaces/Weather";
+import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
 const WeatherCard = () => {
   const {
@@ -31,9 +32,12 @@ const WeatherCard = () => {
     isCelsius,
     toggleCelsius,
     updateNextDayWeather,
+    isLoading,
+    setIsLoading,
   } = useStore();
 
   useEffect(() => {
+    setIsLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         setUserLocation({
@@ -63,6 +67,7 @@ const WeatherCard = () => {
 
   useEffect(() => {
     if (userLocation.place) {
+      setIsLoading(true);
       fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
         const formattedWeather: Weather = formatWeatherProperties(weather);
         setLocationWeather({
@@ -75,8 +80,8 @@ const WeatherCard = () => {
           icon: formattedWeather.icon,
         });
       });
-      fetchNextWeather(userLocation.latitude, userLocation.longitude).then(
-        (apiData) => {
+      fetchNextWeather(userLocation.latitude, userLocation.longitude)
+        .then((apiData) => {
           apiData.daily.map((weather, index) => {
             if (index < 2)
               addNextDayWeather({
@@ -84,8 +89,8 @@ const WeatherCard = () => {
                 id: index,
               });
           });
-        }
-      );
+        })
+        .finally(() => setIsLoading(false));
     }
   }, [userLocation.place]);
 
@@ -136,35 +141,44 @@ const WeatherCard = () => {
 
   return (
     <div className="card">
-      {userLocation.place && (
-        <WeatherInput
-          location={userLocation.place}
-          handleInputChange={(location: string) => handleInputChange(location)}
-        />
-      )}
-
-      <WeatherToday
-        weather={locationWeather}
-        color={shadeColor(backgroundColor, 1.1)}
-        isCelsius={isCelsius}
-        toggleCelsius={handleToggleCelsius}
-        location={userLocation.place}
-      />
-      {nextDaysWeather.length > 0 &&
-        nextDaysWeather.map((nextWeather, index) => {
-          return (
-            <WeatherNextDays
-              key={index}
-              weather={nextWeather}
-              day={index}
-              color={
-                index == 0 ? backgroundColor : shadeColor(backgroundColor, 1.8)
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {userLocation.place && (
+            <WeatherInput
+              location={userLocation.place}
+              handleInputChange={(location: string) =>
+                handleInputChange(location)
               }
-              isCelsius={isCelsius}
-              toggleCelsius={handleToggleCelsius}
             />
-          );
-        })}
+          )}
+          <WeatherToday
+            weather={locationWeather}
+            color={shadeColor(backgroundColor, 1.1)}
+            isCelsius={isCelsius}
+            toggleCelsius={handleToggleCelsius}
+            location={userLocation.place}
+          />
+          {nextDaysWeather.length > 0 &&
+            nextDaysWeather.map((nextWeather, index) => {
+              return (
+                <WeatherNextDays
+                  key={index}
+                  weather={nextWeather}
+                  day={index}
+                  color={
+                    index == 0
+                      ? backgroundColor
+                      : shadeColor(backgroundColor, 1.8)
+                  }
+                  isCelsius={isCelsius}
+                  toggleCelsius={handleToggleCelsius}
+                />
+              );
+            })}
+        </>
+      )}
     </div>
   );
 };
