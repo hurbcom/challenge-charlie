@@ -28,7 +28,7 @@ const WeatherToday = (props: ownProps) => {
             }}
           >
             {`${props.weather.temperature ? props.weather.temperature : 0} ${
-              props.isCelsius ? "C" : "F"
+              props.isCelsius ? "°C" : "°F"
             }`}
           </p>
         </div>

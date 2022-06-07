@@ -70,7 +70,7 @@ export const convertCelsiusFahrenheit = (
   isCelsius: boolean
 ) => {
   if (isCelsius) {
-    return (temperature * 9) / 5 + 32;
+    return Math.round((temperature * 9) / 5 + 32);
   }
-  return ((temperature - 32) * 5) / 9;
+  return Math.round(((temperature - 32) * 5) / 9);
 };

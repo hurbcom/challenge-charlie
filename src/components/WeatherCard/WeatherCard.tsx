@@ -66,7 +66,7 @@ const WeatherCard = () => {
       fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
         const formattedWeather: Weather = formatWeatherProperties(weather);
         setLocationWeather({
-          temperature: formattedWeather.temperature,
+          temperature: Math.round(formattedWeather.temperature),
           mood: formattedWeather.mood,
           windSpeed: formattedWeather.windSpeed,
           windDirection: formattedWeather.windDirection,
@@ -80,7 +80,7 @@ const WeatherCard = () => {
           apiData.daily.map((weather, index) => {
             if (index < 2)
               addNextDayWeather({
-                temperature: weather.temp.day,
+                temperature: Math.round(weather.temp.day),
                 id: index,
               });
           });

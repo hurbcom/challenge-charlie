@@ -22,7 +22,7 @@ const WeatherNextDays = (props: ownProps) => {
             props.toggleCelsius();
           }}
         >
-          {`${props.weather.temperature} ${props.isCelsius ? "C" : "F"}`}
+          {`${props.weather.temperature} ${props.isCelsius ? "°C" : "°F"}`}
         </p>
       </div>
     </div>
