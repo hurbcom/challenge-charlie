@@ -14,12 +14,10 @@ type ownProps = {
 const WeatherNextDays = (props: ownProps) => {
   return (
     <div className="nextdays" style={{ backgroundColor: props.color }}>
-      <div className="nextdays__right">
-        <p className="nextdays__right__day">
-          {props.day === 0 ? "Amanhã" : "Depois de amanhã"}
-        </p>
+      <div className="nextdays__wrapper">
+        <p>{props.day === 0 ? "Amanhã" : "Depois de amanhã"}</p>
         <p
-          className="nextdays__right__temperature"
+          className="nextdays__wrapper__temperature"
           onClick={() => {
             props.toggleCelsius();
           }}

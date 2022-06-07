@@ -1,12 +1,19 @@
 .nextdays {
-  opacity: 0.9;
-  &__right {
+  opacity: 0.95;
+  &__wrapper {
+    margin: 20px 50px;
     display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    width: 33.33%;
+    flex-direction: row;
+    justify-content: space-between;
     p {
       color: #ffffff;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 28px;
+    }
+    &__temperature:hover {
+      cursor: pointer;
+      color: #d3d3d3;
     }
   }
 }

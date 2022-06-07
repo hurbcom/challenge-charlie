@@ -9,36 +9,45 @@ type ownProps = {
   color: string;
   isCelsius: boolean;
   toggleCelsius: Function;
+  location: string;
 };
 
 const WeatherToday = (props: ownProps) => {
   return (
     <div className="today" style={{ backgroundColor: props.color }}>
-      <div className="today__left">
-        <img
-          className="today__left__icon"
-          src={iconList[props.weather.icon]}
-          alt="icon-sun"
-        />
+      <div className="today__featured">
+        <h1 className="today__featured__title">
+          Tempo agora em {props.location ? props.location.split(",")[0] : ""}
+        </h1>
+        <p className="today__featured__mood">{props.weather.mood}</p>
+        <div className="today__featured__temperature">
+          <img src={iconList[props.weather.icon]} alt="icon-sun" />
+          <p
+            onClick={() => {
+              props.toggleCelsius();
+            }}
+          >
+            {`${props.weather.temperature ? props.weather.temperature : 0} ${
+              props.isCelsius ? "C" : "F"
+            }`}
+          </p>
+        </div>
       </div>
-      <div className="today__right">
-        <p className="today__right__day">Hoje</p>
-        <p
-          className="today__right__temperature"
-          onClick={() => {
-            props.toggleCelsius();
-          }}
-        >
-          {`${props.weather.temperature} ${props.isCelsius ? "C" : "F"}`}
-        </p>
-        <p className="today__right__mood">{props.weather.mood}</p>
-        <p className="today__right__wind">{`Vento: ${props.weather.windDirection} ${props.weather.windSpeed}km/h`}</p>
-        <p className="today__right__humidity">
-          Humidade: {props.weather.humidity}
-        </p>
-        <p className="today__right__pressure">
-          Pressão: {props.weather.pressure}
-        </p>
+      <div className="today__details">
+        <div className="today__details__item">
+          <p>Vento: </p>
+          <p>{`${props.weather.windDirection} ${
+            props.weather.windSpeed ? props.weather.windSpeed : 0
+          }km/h`}</p>
+        </div>
+        <div className="today__details__item">
+          <p>Humidade: </p>
+          <p>{props.weather.humidity ? props.weather.humidity : 0}%</p>
+        </div>
+        <div className="today__details__item">
+          <p>Pressão:</p>
+          <p>{props.weather.pressure ? props.weather.pressure : 0}hPA</p>
+        </div>
       </div>
     </div>
   );

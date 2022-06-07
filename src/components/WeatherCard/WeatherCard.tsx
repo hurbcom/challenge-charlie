@@ -148,6 +148,7 @@ const WeatherCard = () => {
         color={shadeColor(backgroundColor, 1.1)}
         isCelsius={isCelsius}
         toggleCelsius={handleToggleCelsius}
+        location={userLocation.place}
       />
       {nextDaysWeather.length > 0 &&
         nextDaysWeather.map((nextWeather, index) => {
