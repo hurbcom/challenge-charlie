@@ -72,6 +72,7 @@ const WeatherCard = () => {
           windDirection: formattedWeather.windDirection,
           humidity: formattedWeather.humidity,
           pressure: formattedWeather.pressure,
+          icon: formattedWeather.icon,
         });
       });
       fetchNextWeather(userLocation.latitude, userLocation.longitude).then(
@@ -141,6 +142,7 @@ const WeatherCard = () => {
           handleInputChange={(location: string) => handleInputChange(location)}
         />
       )}
+
       <WeatherToday
         weather={locationWeather}
         color={shadeColor(backgroundColor, 1.1)}

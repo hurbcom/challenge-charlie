@@ -8,6 +8,7 @@ export const formatWeatherProperties = (weather: any) => {
     windDirection: getWindDirection(weather.wind.deg),
     humidity: weather.main.humidity,
     pressure: weather.main.pressure,
+    icon: weather.weather[0].icon,
   };
   return formattedWeather;
 };

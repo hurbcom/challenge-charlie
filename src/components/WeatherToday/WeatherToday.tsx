@@ -1,8 +1,8 @@
 import React from "react";
 
 import "components/WeatherToday/WeatherToday.scss";
-import ClearSky from "assets/ClearSky.svg";
 import { Weather } from "interfaces/Weather";
+import { iconList } from "utils/iconList";
 
 type ownProps = {
   weather: Weather;
@@ -15,7 +15,11 @@ const WeatherToday = (props: ownProps) => {
   return (
     <div className="today" style={{ backgroundColor: props.color }}>
       <div className="today__left">
-        <img className="today__left__icon" src={ClearSky} alt="icon-sun"></img>
+        <img
+          className="today__left__icon"
+          src={iconList[props.weather.icon]}
+          alt="icon-sun"
+        />
       </div>
       <div className="today__right">
         <p className="today__right__day">Hoje</p>

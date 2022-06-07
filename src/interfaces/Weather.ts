@@ -5,7 +5,7 @@ export interface Weather {
   windDirection: string;
   humidity: number;
   pressure: number;
-  id?: string;
+  icon: string;
 }
 
 export interface WeatherForecast {
