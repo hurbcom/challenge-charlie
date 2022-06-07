@@ -3,10 +3,16 @@ import { Weather, WeatherForecast } from "interfaces/Weather";
 import create from "zustand";
 
 interface State {
+  //general state
   backgroundImageUrl: string;
   setBackgroundImageUrl: (imageUrl: string) => void;
   userLocation: UserLocation;
   setUserLocation: (userLocation: UserLocation) => void;
+  backgroundColor: string;
+  setBackgroundColor: (bgColor: string) => void;
+  isCelsius: boolean;
+  toggleCelsius: (newIsCelsius: boolean) => void;
+  //weather
   locationWeather: Weather;
   setLocationWeather: (weather: Weather) => void;
   nextDaysWeather: WeatherForecast[];
@@ -15,10 +21,6 @@ interface State {
     nextWeather: WeatherForecast,
     newTemperature: number
   ) => void;
-  backgroundColor: string;
-  setBackgroundColor: (bgColor: string) => void;
-  isCelsius: boolean;
-  toggleCelsius: (newIsCelsius: boolean) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -40,10 +42,15 @@ export const useStore = create<State>((set) => ({
   },
 
   nextDaysWeather: [],
-  addNextDayWeather: (temperature: WeatherForecast) =>
+  addNextDayWeather: (temperature: WeatherForecast) => {
     set((prevState) => ({
-      nextDaysWeather: [...prevState.nextDaysWeather, temperature],
-    })),
+      nextDaysWeather:
+        prevState.nextDaysWeather.length == 2
+          ? [temperature]
+          : [...prevState.nextDaysWeather, temperature],
+    }));
+  },
+
   updateNextDayWeather: (nextDay, newTemperature) =>
     set((state) => ({
       nextDaysWeather: state.nextDaysWeather.map((item) => {

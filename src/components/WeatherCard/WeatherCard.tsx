@@ -3,7 +3,10 @@ import React, { useEffect } from "react";
 import WeatherInput from "components/WeatherInput/WeatherInput";
 import WeatherToday from "components/WeatherToday/WeatherToday";
 import WeatherNextDays from "components/WeatherNextDays/WeatherNextDays";
-import fetchUserLocation from "services/locationService";
+import {
+  fetchUserLocation,
+  fetchCoordinatesByLocation,
+} from "services/locationService";
 import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
 import { FormattedLocation } from "interfaces/FormattedLocation";
@@ -29,6 +32,10 @@ const WeatherCard = () => {
     toggleCelsius,
     updateNextDayWeather,
   } = useStore();
+
+  // console.log("UL", userLocation);
+  // console.log("LocationWeather", locationWeather);
+  // console.log("nextDaysWeather", nextDaysWeather);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -53,7 +60,7 @@ const WeatherCard = () => {
     }
   }, [userLocation.latitude]);
 
-  const fetchWeatherBasedOnLocation = () => {
+  useEffect(() => {
     if (userLocation.place) {
       fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
         const formattedWeather: Weather = formatWeatherProperties(weather);
@@ -78,21 +85,22 @@ const WeatherCard = () => {
         }
       );
     }
-  };
-
-  useEffect(() => {
-    fetchWeatherBasedOnLocation();
   }, [userLocation.place]);
 
   useEffect(() => {
     if (locationWeather.temperature) {
+      if (
+        locationWeather.temperature < 35 &&
+        locationWeather.temperature > 15
+      ) {
+        setBackgroundColor("#faca04");
+      }
       if (locationWeather.temperature < 15) {
         setBackgroundColor("#0080cd");
       }
       if (locationWeather.temperature > 35) {
         setBackgroundColor("#cc3923");
       }
-      setBackgroundColor("#faca04");
     }
   }, [locationWeather.temperature]);
 
@@ -116,7 +124,12 @@ const WeatherCard = () => {
   };
 
   const handleInputChange = (location: string) => {
-    console.log(location);
+    fetchCoordinatesByLocation(location).then((position) => {
+      setUserLocation({
+        latitude: position.latitude,
+        longitude: position.longitude,
+      });
+    });
   };
 
   return (
