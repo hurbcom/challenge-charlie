@@ -53,7 +53,7 @@ const WeatherCard = () => {
     }
   }, [userLocation.latitude]);
 
-  useEffect(() => {
+  const fetchWeatherBasedOnLocation = () => {
     if (userLocation.place) {
       fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
         const formattedWeather: Weather = formatWeatherProperties(weather);
@@ -78,6 +78,10 @@ const WeatherCard = () => {
         }
       );
     }
+  };
+
+  useEffect(() => {
+    fetchWeatherBasedOnLocation();
   }, [userLocation.place]);
 
   useEffect(() => {
@@ -111,9 +115,18 @@ const WeatherCard = () => {
     });
   };
 
+  const handleInputChange = (location: string) => {
+    console.log(location);
+  };
+
   return (
     <div className="card">
-      <WeatherInput location={userLocation.place} />
+      {userLocation.place && (
+        <WeatherInput
+          location={userLocation.place}
+          handleInputChange={(location: string) => handleInputChange(location)}
+        />
+      )}
       <WeatherToday
         weather={locationWeather}
         color={shadeColor(backgroundColor, 1.1)}

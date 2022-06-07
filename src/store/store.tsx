@@ -38,6 +38,7 @@ export const useStore = create<State>((set) => ({
   setLocationWeather: (weather: Weather) => {
     set({ locationWeather: weather });
   },
+
   nextDaysWeather: [],
   addNextDayWeather: (temperature: WeatherForecast) =>
     set((prevState) => ({
