@@ -33,9 +33,6 @@ const WeatherCard = () => {
     updateNextDayWeather,
   } = useStore();
 
-  // console.log("UL", userLocation);
-  // console.log("LocationWeather", locationWeather);
-  // console.log("nextDaysWeather", nextDaysWeather);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -53,7 +50,11 @@ const WeatherCard = () => {
         (formattedLocation: FormattedLocation) => {
           setUserLocation({
             ...userLocation,
-            place: `${formattedLocation.city}, ${formattedLocation.state}, ${formattedLocation.country}`,
+            place: `${
+              formattedLocation.city ? formattedLocation.city + "," : ""
+            } ${formattedLocation.state ? formattedLocation.state + "," : ""} ${
+              formattedLocation.country
+            }`,
           });
         }
       );

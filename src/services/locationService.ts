@@ -12,9 +12,9 @@ export const fetchUserLocation = async (
     .then((apiData) => {
       const location = apiData.results[0].components;
       const formattedLocation: FormattedLocation = {
-        city: location.city,
-        state: location.state,
-        country: location.country,
+        city: location.city ?? "",
+        state: location.state ?? "",
+        country: location.country ?? "",
       };
       return formattedLocation;
     })
