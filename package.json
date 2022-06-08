@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/Lucasmick1/challenge-charlie/issues"
   },
-  "homepage": "https://github.com/Lucasmick1/challenge-charlie#readme"
+  "homepage": "https://github.com/Lucasmick1/challenge-charlie#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5"
+  }
 }
