@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -7,5 +8,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Challenge Chalie - Lucas Monteiro', 
+            template: path.resolve(__dirname, './src/html/template.html'), 
+            filename: 'index.html', 
+        }),
+    ]
 }
