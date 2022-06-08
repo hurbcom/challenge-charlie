@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "npx webpack serve --config webpack.config.js --mode development"
+    "start": "webpack serve --config webpack.config.js --host 0.0.0.0 --mode development",
+    "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",

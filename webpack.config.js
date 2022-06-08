@@ -24,7 +24,12 @@ module.exports = {
   },
   devServer: {
     static: "./dist",
-    port: 8000,
+    port: 3000,
+    compress: false,
+    host: "0.0.0.0",
+  },
+  watchOptions: {
+    poll: 1000,
   },
   module: {
     rules: [

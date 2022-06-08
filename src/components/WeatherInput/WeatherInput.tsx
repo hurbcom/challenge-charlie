@@ -10,7 +10,7 @@ type ownProps = {
 };
 
 const WeatherInput = (props: ownProps) => {
-  const [displayValue, setDisplayValue] = useState(props.location);
+  const [displayValue, setDisplayValue] = useState(props.location ?? "");
   const debouncedChange = useDebounce(props.handleInputChange, 1000);
 
   const handleChange = (event) => {

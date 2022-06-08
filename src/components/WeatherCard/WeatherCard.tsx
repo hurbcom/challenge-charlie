@@ -145,14 +145,12 @@ const WeatherCard = () => {
         <LoadingSpinner />
       ) : (
         <>
-          {userLocation.place && (
-            <WeatherInput
-              location={userLocation.place}
-              handleInputChange={(location: string) =>
-                handleInputChange(location)
-              }
-            />
-          )}
+          <WeatherInput
+            location={userLocation.place}
+            handleInputChange={(location: string) =>
+              handleInputChange(location)
+            }
+          />
           <WeatherToday
             weather={locationWeather}
             color={shadeColor(backgroundColor, 1.1)}

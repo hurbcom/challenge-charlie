@@ -37,16 +37,16 @@ const WeatherToday = (props: ownProps) => {
         <div className="today__details__item">
           <p>Vento: </p>
           <p>{`${props.weather.windDirection} ${
-            props.weather.windSpeed ? props.weather.windSpeed : 0
+            props.weather.windSpeed ?? 0
           }km/h`}</p>
         </div>
         <div className="today__details__item">
           <p>Humidade: </p>
-          <p>{props.weather.humidity ? props.weather.humidity : 0}%</p>
+          <p>{props.weather.humidity ?? 0}%</p>
         </div>
         <div className="today__details__item">
           <p>Pressão:</p>
-          <p>{props.weather.pressure ? props.weather.pressure : 0}hPA</p>
+          <p>{props.weather.pressure ?? 0}hPA</p>
         </div>
       </div>
     </div>
