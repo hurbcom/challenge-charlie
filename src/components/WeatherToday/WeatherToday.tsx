@@ -58,7 +58,7 @@ const WeatherToday = (props: ownProps) => {
           className="today-undefined"
           style={{ backgroundColor: props.color }}
         >
-          <p>Desculpa, não encontramos resultados para a sua busca</p>
+          <p>Desculpe, não encontramos resultados para a sua busca</p>
         </div>
       )}
     </>

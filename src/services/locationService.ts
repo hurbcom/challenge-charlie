@@ -33,8 +33,10 @@ export const fetchCoordinatesByLocation = async (
   const userLocation = await fetch(`${openCageUrl}&q=${location}`)
     .then((response) => response.json())
     .then((apiData) => {
-      const locationApi = apiData.results[0].geometry;
-      return { latitude: locationApi.lat, longitude: locationApi.lng };
+      if (apiData.results.length > 0) {
+        const locationApi = apiData.results[0].geometry;
+        return { latitude: locationApi.lat, longitude: locationApi.lng };
+      }
     })
     .catch((error) => {
       return error;

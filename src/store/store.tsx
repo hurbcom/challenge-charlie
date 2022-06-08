@@ -14,6 +14,8 @@ interface State {
   toggleCelsius: (newIsCelsius: boolean) => void;
   isLoading: boolean;
   setIsLoading: (newIsLoading: boolean) => void;
+  toastMessage: string;
+  setToastMessage: (newToastMessage: string) => void;
   //weather
   locationWeather: Weather;
   setLocationWeather: (weather: Weather) => void;
@@ -26,7 +28,7 @@ interface State {
 }
 
 export const useStore = create<State>((set) => ({
-  backgroundImageUrl: "",
+  backgroundImageUrl: null,
   setBackgroundImageUrl: (imageUrl: string) => {
     set({ backgroundImageUrl: imageUrl });
   },
@@ -38,6 +40,8 @@ export const useStore = create<State>((set) => ({
   toggleCelsius: (newIsCelsius) => set({ isCelsius: newIsCelsius }),
   isLoading: false,
   setIsLoading: (newIsLoading) => set({ isLoading: newIsLoading }),
+  toastMessage: null,
+  setToastMessage: (newToastMessage) => set({ toastMessage: newToastMessage }),
   userLocation: {} as UserLocation,
   setUserLocation: (newUserLocation: UserLocation) => {
     set({ userLocation: newUserLocation });

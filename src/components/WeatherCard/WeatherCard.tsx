@@ -19,6 +19,7 @@ import {
 } from "utils/utils";
 import { Weather } from "interfaces/Weather";
 import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
+import CustomToast from "components/CustomToast/CustomToast";
 
 const WeatherCard = () => {
   const {
@@ -35,6 +36,8 @@ const WeatherCard = () => {
     updateNextDayWeather,
     isLoading,
     setIsLoading,
+    toastMessage,
+    setToastMessage,
   } = useStore();
 
   useEffect(() => {
@@ -51,8 +54,8 @@ const WeatherCard = () => {
 
   useEffect(() => {
     if (userLocation.latitude) {
-      fetchUserLocation(userLocation.latitude, userLocation.longitude).then(
-        (formattedLocation: FormattedLocation) => {
+      fetchUserLocation(userLocation.latitude, userLocation.longitude)
+        .then((formattedLocation: FormattedLocation) => {
           setUserLocation({
             ...userLocation,
             place: `${
@@ -61,29 +64,34 @@ const WeatherCard = () => {
               formattedLocation.country
             }`,
           });
-        }
-      );
+        })
+        .catch((error) => {
+          setToastMessage("Não foi possível encontrar sua cidade");
+        });
     }
   }, [userLocation.latitude]);
 
   useEffect(() => {
     if (userLocation.place) {
-      setIsLoading(true);
-      fetchWeather(userLocation.place.split(" ")[0]).then((weather) => {
-        const formattedWeather: Weather = formatWeatherProperties(weather);
-        setLocationWeather({
-          temperature: Math.round(formattedWeather.temperature),
-          mood: formattedWeather.mood,
-          windSpeed: formattedWeather.windSpeed,
-          windDirection: formattedWeather.windDirection,
-          humidity: formattedWeather.humidity,
-          pressure: formattedWeather.pressure,
-          icon: formattedWeather.icon,
+      fetchWeather(userLocation.place.split(",")[0])
+        .then((weather) => {
+          const formattedWeather: Weather = formatWeatherProperties(weather);
+          setLocationWeather({
+            temperature: Math.round(formattedWeather.temperature),
+            mood: formattedWeather.mood,
+            windSpeed: formattedWeather.windSpeed,
+            windDirection: formattedWeather.windDirection,
+            humidity: formattedWeather.humidity,
+            pressure: formattedWeather.pressure,
+            icon: formattedWeather.icon,
+          });
+          setBackgroundColor(
+            defineBackgroundColor(formattedWeather.temperature, isCelsius)
+          );
+        })
+        .catch((error) => {
+          setToastMessage("Não foi possível definir o clima da sua cidade");
         });
-        setBackgroundColor(
-          defineBackgroundColor(formattedWeather.temperature, isCelsius)
-        );
-      });
       fetchNextWeather(userLocation.latitude, userLocation.longitude)
         .then((apiData) => {
           apiData.daily.map((weather, index) => {
@@ -94,12 +102,16 @@ const WeatherCard = () => {
               });
           });
         })
+        .catch((error) => {
+          setToastMessage("Não foi definir o clima dos próximos dias");
+        })
         .finally(() => setIsLoading(false));
     }
-    if (!userLocation.place) {
-      setBackgroundColor("#dbd3b4");
-    }
   }, [userLocation.place]);
+
+  useEffect(() => {
+    setBackgroundColor("#dbd3b4");
+  }, [userLocation.place === undefined]);
 
   const handleToggleCelsius = async () => {
     await toggleCelsius(!isCelsius);
@@ -121,12 +133,20 @@ const WeatherCard = () => {
   };
 
   const handleInputChange = (location: string) => {
-    fetchCoordinatesByLocation(location).then((position) => {
-      setUserLocation({
-        latitude: position.latitude,
-        longitude: position.longitude,
+    fetchCoordinatesByLocation(location)
+      .then((position) => {
+        setUserLocation({
+          latitude: position.latitude,
+          longitude: position.longitude,
+        });
+      })
+      .catch((error) => {
+        setUserLocation({
+          latitude: null,
+          longitude: null,
+        });
+        setToastMessage("Não foi possível encontrar sua cidade");
       });
-    });
   };
 
   return (
@@ -168,6 +188,7 @@ const WeatherCard = () => {
             })}
         </>
       )}
+      {toastMessage && <CustomToast toastMessage={toastMessage} />}
     </div>
   );
 };
