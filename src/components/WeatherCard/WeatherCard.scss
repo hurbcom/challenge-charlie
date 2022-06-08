@@ -5,3 +5,9 @@
   padding: 32px;
   width: 550px;
 }
+
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+  }
+}

@@ -27,6 +27,7 @@ module.exports = {
     port: 3000,
     compress: false,
     host: "0.0.0.0",
+    hot: true,
   },
   watchOptions: {
     poll: 1000,

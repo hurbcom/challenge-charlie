@@ -25,3 +25,12 @@
     outline: none;
   }
 }
+
+@media (max-width: 480px) {
+  .input {
+    &__value {
+      font-size: 18px;
+      line-height: 20px;
+    }
+  }
+}

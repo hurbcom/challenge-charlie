@@ -17,3 +17,14 @@
     }
   }
 }
+
+@media (max-width: 480px) {
+  .nextdays {
+    &__wrapper {
+      p {
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
+  }
+}
