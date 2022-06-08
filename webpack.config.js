@@ -1,8 +1,20 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
+    mode: 'development',
+    devServer: {
+        historyApiFallback: true,
+        static: {
+            directory: path.join(__dirname, "dist")
+        },
+        open: true,
+        compress: true,
+        hot: true,
+        port: 3005,
+    },
     entry: {
         main: path.resolve(__dirname, './src/index.js')
     },
@@ -17,6 +29,7 @@ module.exports = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules: [
@@ -36,7 +49,7 @@ module.exports = {
             {
                 test: /\.(scss|css)$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
-              }
+            }
         ],
     }
 }
