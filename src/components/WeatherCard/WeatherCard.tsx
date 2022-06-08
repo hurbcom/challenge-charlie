@@ -80,6 +80,9 @@ const WeatherCard = () => {
           pressure: formattedWeather.pressure,
           icon: formattedWeather.icon,
         });
+        setBackgroundColor(
+          defineBackgroundColor(formattedWeather.temperature, isCelsius)
+        );
       });
       fetchNextWeather(userLocation.latitude, userLocation.longitude)
         .then((apiData) => {
@@ -93,15 +96,10 @@ const WeatherCard = () => {
         })
         .finally(() => setIsLoading(false));
     }
-  }, [userLocation.place]);
-
-  useEffect(() => {
-    if (locationWeather.temperature) {
-      setBackgroundColor(
-        defineBackgroundColor(locationWeather.temperature, isCelsius)
-      );
+    if (!userLocation.place) {
+      setBackgroundColor("#dbd3b4");
     }
-  }, [locationWeather.temperature]);
+  }, [userLocation.place]);
 
   const handleToggleCelsius = async () => {
     await toggleCelsius(!isCelsius);
@@ -157,6 +155,7 @@ const WeatherCard = () => {
                   key={index}
                   weather={nextWeather}
                   day={index}
+                  location={userLocation.place}
                   color={
                     index == 0
                       ? backgroundColor

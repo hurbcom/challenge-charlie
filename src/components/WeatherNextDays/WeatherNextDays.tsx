@@ -9,6 +9,7 @@ type ownProps = {
   color: string;
   isCelsius: boolean;
   toggleCelsius: Function;
+  location: string;
 };
 
 const WeatherNextDays = (props: ownProps) => {
@@ -22,7 +23,9 @@ const WeatherNextDays = (props: ownProps) => {
             props.toggleCelsius();
           }}
         >
-          {`${props.weather.temperature} ${props.isCelsius ? "°C" : "°F"}`}
+          {`${props.location !== undefined ? props.weather.temperature : 0} ${
+            props.isCelsius ? "°C" : "°F"
+          }`}
         </p>
       </div>
     </div>

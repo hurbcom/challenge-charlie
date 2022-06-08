@@ -61,3 +61,17 @@
     }
   }
 }
+
+.today-undefined {
+  opacity: 0.95;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: 30vh;
+  p {
+    text-align: center;
+    align-self: center;
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
