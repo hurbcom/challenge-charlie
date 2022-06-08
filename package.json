@@ -1,0 +1,24 @@
+{
+  "name": "challenge-charlie",
+  "version": "1.0.0",
+  "description": "Desafio desenvolvido por Lucas Monteiro :P",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucasmick1/challenge-charlie.git"
+  },
+  "keywords": [
+    "Javascript",
+    "React",
+    "Weather"
+  ],
+  "author": "Lucas Monteiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lucasmick1/challenge-charlie/issues"
+  },
+  "homepage": "https://github.com/Lucasmick1/challenge-charlie#readme"
+}
