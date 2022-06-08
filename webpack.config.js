@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -11,9 +12,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Challenge Chalie - Lucas Monteiro', 
-            template: path.resolve(__dirname, './src/html/template.html'), 
-            filename: 'index.html', 
+            title: 'Challenge Chalie - Lucas Monteiro',
+            template: path.resolve(__dirname, './src/html/template.html'),
+            filename: 'index.html',
         }),
+        new CleanWebpackPlugin(),
     ]
 }
