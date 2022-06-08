@@ -74,3 +74,40 @@ export const convertCelsiusFahrenheit = (
   }
   return Math.round(((temperature - 32) * 5) / 9);
 };
+
+export const defineBackgroundColor = (
+  temperature: number,
+  isCelsius: boolean
+) => {
+  let backgroundColor: string = "";
+  if (isCelsius) {
+    if (temperature < 35 && temperature > 15) {
+      backgroundColor = "#faca04";
+      return backgroundColor;
+    }
+    if (temperature < 15) {
+      backgroundColor = "#0080cd";
+      return backgroundColor;
+    }
+    if (temperature > 35) {
+      backgroundColor = "#cc3923";
+      return backgroundColor;
+    }
+  }
+  if (!isCelsius) {
+    if (temperature < 95 && temperature > 59) {
+      backgroundColor = "#faca04";
+      return backgroundColor;
+    }
+    if (temperature < 59) {
+      backgroundColor = "#0080cd";
+      return backgroundColor;
+    }
+    if (temperature > 95) {
+      backgroundColor = "#cc3923";
+      return backgroundColor;
+    }
+  }
+
+  return backgroundColor;
+};

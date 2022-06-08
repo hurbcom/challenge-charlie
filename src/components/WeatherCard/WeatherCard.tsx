@@ -13,6 +13,7 @@ import { FormattedLocation } from "interfaces/FormattedLocation";
 import { fetchWeather, fetchNextWeather } from "services/weatherService";
 import {
   convertCelsiusFahrenheit,
+  defineBackgroundColor,
   formatWeatherProperties,
   shadeColor,
 } from "utils/utils";
@@ -96,18 +97,9 @@ const WeatherCard = () => {
 
   useEffect(() => {
     if (locationWeather.temperature) {
-      if (
-        locationWeather.temperature < 35 &&
-        locationWeather.temperature > 15
-      ) {
-        setBackgroundColor("#faca04");
-      }
-      if (locationWeather.temperature < 15) {
-        setBackgroundColor("#0080cd");
-      }
-      if (locationWeather.temperature > 35) {
-        setBackgroundColor("#cc3923");
-      }
+      setBackgroundColor(
+        defineBackgroundColor(locationWeather.temperature, isCelsius)
+      );
     }
   }, [locationWeather.temperature]);
 
