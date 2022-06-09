@@ -6,13 +6,12 @@ export default function Search(props) {
     const [newLocation, setNewLocation] = useState('');
 
     const locationRecieved = props.userLocation.city && props.userLocation.state ?
-        props.userLocation.city + ', ' + props.userLocation.state :
-        'Carregando..';
-
+                             props.userLocation.city + ', ' + props.userLocation.state :
+                             'Carregando..';
 
     // Pegando a cidade que o usuário informou (sem considerar acentos pois a API não aceita acentos)
     const handleChange = (event) => {
-        setNewLocation(event.target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+        setNewLocation(event.target.value)
     }
 
     // Enviando a informação da localidade escolhida pelo usuário para fora do componente Search

@@ -8,7 +8,6 @@ export default function App() {
   const [bingWallpaper, setBingWallpaper] = useState();
   const [userLocation, setUserLocation] = useState({});
   const [weatherInfo, setWeatherInfo] = useState({});
-  const [nextDaysForecast, setNextDaysForecast] = useState({})
   const [gotUserLocation, setGotUserLocation] = useState(false);
   const [isGeolocationAllowed, setIsGeolocationAllowed] = useState(true);
 
@@ -35,9 +34,9 @@ export default function App() {
   // Pegando as coordenadas da localização atual do usuário.
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((userPosition) => {
-      const lat = userPosition.coords.latitude
-      const lng = userPosition.coords.longitude
-      getCurrentLocation(lat, lng)
+      const lat = userPosition.coords.latitude;
+      const lng = userPosition.coords.longitude;
+      getCurrentLocation(lat, lng);
       setGotUserLocation(true)
     },
       (err) => {
@@ -58,24 +57,24 @@ export default function App() {
           state: info.results[0].components.state,
         })
         getWeatherForecast(info.results[0].components.municipality)
-        getNextDaysForecast(info.results[0].components.municipality)
       })
       .catch(err => console.log(err))
   }
 
   // Pegando a previsão do tempo para a localização usuário
   const getWeatherForecast = (city) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=
-          ${city}&lang=pt_br&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER}&units=metric&cnt=16`)
       .then(res => res.json())
-      .then(info => {
+      .then(info => {console.log(info)
         setWeatherInfo({
-          humidity: info.main.humidity,
-          weather: info.weather[0].description[0].toUpperCase() + info.weather[0].description.slice(1),
-          icon: info.weather[0].icon,
-          wind: info.wind.speed,
-          pressure: info.main.pressure,
-          temp: info.main.temp
+          humidity: info.list[0].main.humidity,
+          pressure: info.list[0].main.pressure,
+          temp: info.list[0].main.temp,
+          weather: info.list[0].weather[0].description[0].toUpperCase() + info.list[1].weather[0].description.slice(1),
+          icon: info.list[0].weather[0].icon,
+          wind: info.list[0].wind.speed,
+          tomorrowTemp: info.list[7].main.temp,
+          afterTomorrowTemp: info.list[15].main.temp
         })
       })
       .catch(err => {
@@ -84,25 +83,11 @@ export default function App() {
       })
   }
 
-  //Pegando a previsão de um dia depois e dois dias depois
-  const getNextDaysForecast = (city) => {
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}
-            &lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER}&units=metric&cnt=16`)
-      .then(res => res.json())
-      .then(data => {
-        setNextDaysForecast({
-          tomorrowTemp: data.list[0].main.temp,
-          afterTomorrowTemp: data.list[8].main.temp
-        })
-      })
-      .catch(err => console.log(err))
-  }
-
   // Pegando a localização que o usuário escolheu e atuaizando a previsão do tempo
   // O parametro 'location' vai ser passado pelo componente 'Search'
   const getUserNewLocation = (location) => {
     getWeatherForecast(location)
-    getNextDaysForecast(location)
+    console.log(location)
     setGotUserLocation(true)
   }
 
@@ -115,7 +100,6 @@ export default function App() {
           isGeolocAllowed={isGeolocationAllowed}
         />
         <Content
-          nextdaysForecast={nextDaysForecast}
           gotCurrentLocation={gotUserLocation}
           weatherInfo={weatherInfo}
         />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './style.css'
 import WeatherTheme from '../../helpers/WeatherTheme'
 
@@ -13,7 +13,8 @@ export default function Content(props) {
 
     // Tema que será usado quando não for possível capturar a localização do usuário
     const noLocation = [{ background: 'linear-gradient(to bottom, rgb(109, 94, 94) , rgb(126, 118, 118))' }]
-    console.log(props.weatherInfo.icon);
+
+
     // Pegando os ícones indicativos do tempo de forma dinâmica
     const getWeatherIcon = (iconId) => {
         switch (true) {
@@ -73,8 +74,8 @@ export default function Content(props) {
                     <h3>AMANHÃ</h3>
                     <p onClick={hanleClick}>
                         {isCelsius ?
-                            Math.round(props.nextdaysForecast.tomorrowTemp ? props.nextdaysForecast.tomorrowTemp : '') + '°C' :
-                            (Math.round(props.nextdaysForecast.tomorrowTemp ? (props.nextdaysForecast.tomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
+                            Math.round(props.weatherInfo.tomorrowTemp ? props.weatherInfo.tomorrowTemp : '') + '°C' :
+                            (Math.round(props.weatherInfo.tomorrowTemp ? (props.weatherInfo.tomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
                     </p>
                 </div>
             </div>
@@ -83,8 +84,8 @@ export default function Content(props) {
                     <h3>DEPOIS DE AMANHÃ</h3>
                     <p onClick={hanleClick}>
                         {isCelsius ?
-                            Math.round(props.nextdaysForecast.afterTomorrowTemp ? props.nextdaysForecast.afterTomorrowTemp : '') + '°C' :
-                            (Math.round(props.nextdaysForecast.afterTomorrowTemp ? (props.nextdaysForecast.afterTomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
+                            Math.round(props.weatherInfo.afterTomorrowTemp ? props.weatherInfo.afterTomorrowTemp : '') + '°C' :
+                            (Math.round(props.weatherInfo.afterTomorrowTemp ? (props.weatherInfo.afterTomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
                     </p>
                 </div>
             </div>
