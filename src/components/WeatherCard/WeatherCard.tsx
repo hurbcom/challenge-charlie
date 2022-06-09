@@ -94,7 +94,7 @@ const WeatherCard = () => {
         });
       fetchNextWeather(userLocation.latitude, userLocation.longitude)
         .then((apiData) => {
-          apiData.daily.map((weather, index) => {
+          apiData.daily.map((weather: any, index: number) => {
             if (index < 2)
               addNextDayWeather({
                 temperature: Math.round(weather.temp.day),

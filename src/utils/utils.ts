@@ -37,7 +37,7 @@ export const getWindDirection = (deg: number) => {
     "NNW",
     "N",
   ];
-  return compassSector[(deg / 22.5).toFixed(0)];
+  return compassSector[(deg / 22.5).toFixed(0) as any];
 };
 
 export const shadeColor = (color: string, percent: number) => {

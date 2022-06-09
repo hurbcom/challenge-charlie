@@ -13,7 +13,7 @@ const WeatherInput = (props: ownProps) => {
   const [displayValue, setDisplayValue] = useState(props.location ?? "");
   const debouncedChange = useDebounce(props.handleInputChange, 1000);
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setDisplayValue(event.target.value);
     debouncedChange(event.target.value);
   };

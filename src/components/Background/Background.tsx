@@ -4,7 +4,7 @@ import fetchBackgroundImageUrl from "services/imageService";
 import { useStore } from "store/store";
 import "components/Background/Background.scss";
 
-const Background = ({ children }) => {
+const Background = ({ children }: any) => {
   const { backgroundImageUrl, setBackgroundImageUrl } = useStore();
 
   useEffect(() => {

@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "CommonJS",
-    "jsx": "react",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "removeComments": true,
+    "outDir": "./dist/",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "preserveConstEnums": true,
-    "baseUrl": "src"
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "baseUrl": "src",
+    "esModuleInterop": true
   },
-  "include": ["./src/**/*"]
+  "exclude": ["node_modules"]
 }

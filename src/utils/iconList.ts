@@ -10,7 +10,7 @@ import Thunderstorm from "assets/Thunderstorm.svg";
 import Snow from "assets/Snow.svg";
 import Mist from "assets/Mist.svg";
 
-export const iconList = {
+export const iconList: { [key: string]: string } = {
   "01d": ClearSky,
   "01n": ClearSky,
   "02d": FewClouds,
