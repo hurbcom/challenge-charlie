@@ -32,3 +32,7 @@ input {
 input:focus {
   outline: 0;
 }
+
+p{
+  color: black;
+}

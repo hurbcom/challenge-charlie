@@ -70,7 +70,7 @@ export default function App() {
           humidity: info.list[0].main.humidity,
           pressure: info.list[0].main.pressure,
           temp: info.list[0].main.temp,
-          weather: info.list[0].weather[0].description[0].toUpperCase() + info.list[1].weather[0].description.slice(1),
+          weather: info.list[0].weather[0].description[0].toUpperCase() + info.list[0].weather[0].description.slice(1),
           icon: info.list[0].weather[0].icon,
           wind: info.list[0].wind.speed,
           tomorrowTemp: info.list[7].main.temp,
