@@ -25,8 +25,8 @@ Esse é um microsite responsivo que entrega a previsão do tempo para a localiza
 
 - Ter o [node.js](https://nodejs.org/en/) instalado na sua máquina
 - Acessar a aplicação, localizada na pasta [challenge](https://github.com/JPougano/challenge-charlie/tree/master/challenge)
-- Preencher o arquivo template `envy.env` que irá conter todas as suas chaves de API
-- Dentro do arquivo template `envy.env`, preencher as duas chaves de API chamadas
+- Preencher o arquivo template `.env` que irá conter todas as suas chaves de API
+- Dentro do arquivo template `.env`, preencher as duas chaves de API chamadas
     -    `REACT_APP_OPEN_CAGE={api_key}` que irá conter a sua chave de API da OpenCage (citada acima)
     -    `REACT_APP_OPEN_WEATHER={api_key}` que irá conter a sua chave de API da OpenWeather (citada acima)
 - Rodar o comando `npm install` para instalar as dependencias do projeto.
