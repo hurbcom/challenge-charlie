@@ -1,14 +1,20 @@
-h3, li, p {
+li, p {
   color: white;
+  font-size: .9rem;
+}
+
+.forecast__temp:hover{
+  cursor: pointer;
 }
 
 h3 {
   font-size: .9rem;
+  color: white;
 }
 
 
 .content__container {
-  width: 360px;
+  width: 320px;
 }
 
 @media screen and (min-width: 500px) {
@@ -16,7 +22,7 @@ h3 {
     width: 450px;
   }
 
-  h3 {
+  h3, p, li {
     font-size: unset;
   }
 }

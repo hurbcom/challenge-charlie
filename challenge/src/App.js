@@ -43,11 +43,11 @@ export default function App() {
         console.log(err)
         setIsGeolocationAllowed(false)
       })
+      // eslint-disable-next-line
   }, [])
 
   // Transformando as coordenadas do usuário em uma localizaçao, de fato.
   const getCurrentLocation = (lat, lng) => {
-
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=
               ${lat}+${lng}&key=${process.env.REACT_APP_OPEN_CAGE}`)
       .then(res => res.json())
@@ -65,7 +65,7 @@ export default function App() {
   const getWeatherForecast = (city) => {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER}&units=metric&cnt=16`)
       .then(res => res.json())
-      .then(info => {console.log(info)
+      .then(info => {
         setWeatherInfo({
           humidity: info.list[0].main.humidity,
           pressure: info.list[0].main.pressure,

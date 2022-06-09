@@ -3,13 +3,9 @@ import './style.css'
 
 export default function Search(props) {
 
-    const [newLocation, setNewLocation] = useState('');
+    const [newLocation, setNewLocation] = useState(props.userLocation.city);
 
-    const locationRecieved = props.userLocation.city && props.userLocation.state ?
-                             props.userLocation.city + ', ' + props.userLocation.state :
-                             'Carregando..';
-
-    // Pegando a cidade que o usuário informou (sem considerar acentos pois a API não aceita acentos)
+    // Pegando a cidade que o usuário informou
     const handleChange = (event) => {
         setNewLocation(event.target.value)
     }
@@ -24,15 +20,15 @@ export default function Search(props) {
             return
         }
     }
+
     return (
         <form onSubmit={handleSubmit} className="search__container">
             <i className="search__icon" data-icon="("></i>
-            <input 
-                autoFocus={true} 
-                onChange={handleChange} 
-                value={newLocation} 
-                type="text" 
-                placeholder={props.isGeolocAllowed ? locationRecieved : 'Digite uma localidade..'} 
+            <input
+                onChange={handleChange}
+                value={newLocation}
+                type="text"
+                placeholder="Digite uma localidade.."
             />
         </form>
     )

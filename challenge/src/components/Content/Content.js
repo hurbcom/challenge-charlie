@@ -57,7 +57,7 @@ export default function Content(props) {
                 <div className="forecast__weatherInfo">
                     <h3>HOJE</h3>
                     <ul>
-                        <li onClick={hanleClick}>
+                        <li className="forecast__temp" onClick={hanleClick}>
                             {isCelsius ?
                                 Math.round(props.weatherInfo.temp ? props.weatherInfo.temp : '') + '°C' :
                                 (Math.round(props.weatherInfo.temp ? (props.weatherInfo.temp * 9 / 5) + 32 : '')) + '°F'}
@@ -72,7 +72,7 @@ export default function Content(props) {
             <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__data">
                     <h3>AMANHÃ</h3>
-                    <p onClick={hanleClick}>
+                    <p className="forecast__temp" onClick={hanleClick}>
                         {isCelsius ?
                             Math.round(props.weatherInfo.tomorrowTemp ? props.weatherInfo.tomorrowTemp : '') + '°C' :
                             (Math.round(props.weatherInfo.tomorrowTemp ? (props.weatherInfo.tomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
@@ -82,7 +82,7 @@ export default function Content(props) {
             <div className="forecast__subcontainer" style={props.gotCurrentLocation ? defTheme[0] : noLocation[0]}>
                 <div className="forecast__data">
                     <h3>DEPOIS DE AMANHÃ</h3>
-                    <p onClick={hanleClick}>
+                    <p className="forecast__temp" onClick={hanleClick}>
                         {isCelsius ?
                             Math.round(props.weatherInfo.afterTomorrowTemp ? props.weatherInfo.afterTomorrowTemp : '') + '°C' :
                             (Math.round(props.weatherInfo.afterTomorrowTemp ? (props.weatherInfo.afterTomorrowTemp * 9 / 5) + 32 : '')) + '°F'}
