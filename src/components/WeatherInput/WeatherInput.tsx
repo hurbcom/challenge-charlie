@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import CompassIcon from "assets/compass.svg";
 import "components/WeatherInput/WeatherInput.scss";
@@ -13,7 +13,7 @@ const WeatherInput = (props: ownProps) => {
   const [displayValue, setDisplayValue] = useState(props.location ?? "");
   const debouncedChange = useDebounce(props.handleInputChange, 1000);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(event.target.value);
     debouncedChange(event.target.value);
   };

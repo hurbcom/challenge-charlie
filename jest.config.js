@@ -2,6 +2,7 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   moduleDirectories: ["node_modules", "src"],
+  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   transform: {
     "\\.tsx?$": "ts-jest",
     ".+\\.(styl|less|png|jpg|svg|ttf|woff|woff2)$": "jest-transform-stub",

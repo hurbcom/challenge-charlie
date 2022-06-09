@@ -24,7 +24,10 @@ const WeatherToday = (props: ownProps) => {
             </h1>
             <p className="today__featured__mood">{props.weather.mood}</p>
             <div className="today__featured__temperature">
-              <img src={iconList[props.weather.icon]} alt="icon-sun" />
+              <img
+                src={iconList[props.weather.icon]}
+                alt={props.weather.mood}
+              />
               <p
                 onClick={() => {
                   props.toggleCelsius();

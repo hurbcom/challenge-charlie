@@ -28,7 +28,7 @@ export const fetchCoordinatesByLocation = async (
   location: string
 ): Promise<{ latitude: number; longitude: number }> => {
   const openCageUrl =
-    "https://api.opencagedata.com/geocode/v1/json?key=c63386b4f77e46de817bdf94f552cddf&lang=pt_br&limit=1";
+    "https://api.opencagedata.com/geocode/v1/json?key=0e69ec22195b43bd868e9568f93e69c2&lang=pt_br&limit=1";
 
   const userLocation = await fetch(`${openCageUrl}&q=${location}`)
     .then((response) => response.json())
