@@ -1,22 +1,16 @@
-import { FormattedLocation } from "interfaces/FormattedLocation";
-
 const openCageUrl =
   "https://api.opencagedata.com/geocode/v1/json?key=0e69ec22195b43bd868e9568f93e69c2&lang=pt_br&limit=1";
 
 export const fetchUserLocation = async (
   latitude: number,
   longitude: number
-): Promise<FormattedLocation> => {
+): Promise<string> => {
   const userLocation = await fetch(`${openCageUrl}&q=${latitude},${longitude}`)
     .then((response) => response.json())
     .then((apiData) => {
-      const location = apiData.results[0].components;
-      const formattedLocation: FormattedLocation = {
-        city: location.city ?? "",
-        state: location.state ?? "",
-        country: location.country ?? "",
-      };
-      return formattedLocation;
+      return apiData.results[0].components.city
+        ? apiData.results[0].components.city
+        : apiData.results[0].components.state;
     })
     .catch((error) => {
       return error;

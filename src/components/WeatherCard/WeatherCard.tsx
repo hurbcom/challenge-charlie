@@ -9,7 +9,6 @@ import {
 } from "services/locationService";
 import "components/WeatherCard/WeatherCard.scss";
 import { useStore } from "store/store";
-import { FormattedLocation } from "interfaces/FormattedLocation";
 import { fetchWeather, fetchNextWeather } from "services/weatherService";
 import {
   convertCelsiusFahrenheit,
@@ -40,29 +39,36 @@ const WeatherCard = () => {
     setToastMessage,
   } = useStore();
 
+  const success = (position: any) => {
+    setUserLocation({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    });
+  };
+
+  const error = (error: any) => {
+    setUserLocation({
+      latitude: 0,
+      longitude: 0,
+      place: undefined,
+    });
+    setToastMessage("Você não aceitou a geolocalização");
+  };
+
   useEffect(() => {
-    setIsLoading(true);
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setUserLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      });
+      navigator.geolocation.getCurrentPosition(success, error);
     }
   }, []);
 
   useEffect(() => {
     if (userLocation.latitude) {
+      setIsLoading(true);
       fetchUserLocation(userLocation.latitude, userLocation.longitude)
-        .then((formattedLocation: FormattedLocation) => {
+        .then((location: string) => {
           setUserLocation({
             ...userLocation,
-            place: `${
-              formattedLocation.city ? formattedLocation.city + "," : ""
-            } ${formattedLocation.state ? formattedLocation.state + "," : ""} ${
-              formattedLocation.country
-            }`,
+            place: location,
           });
         })
         .catch((error) => {
@@ -73,7 +79,7 @@ const WeatherCard = () => {
 
   useEffect(() => {
     if (userLocation.place) {
-      fetchWeather(userLocation.place.split(",")[0])
+      fetchWeather(userLocation.place)
         .then((weather) => {
           const formattedWeather: Weather = formatWeatherProperties(weather);
           setLocationWeather({
@@ -91,6 +97,11 @@ const WeatherCard = () => {
         })
         .catch((error) => {
           setToastMessage("Não foi possível definir o clima da sua cidade");
+          setUserLocation({
+            latitude: 0,
+            longitude: 0,
+            place: undefined,
+          });
         });
       fetchNextWeather(userLocation.latitude, userLocation.longitude)
         .then((apiData) => {
