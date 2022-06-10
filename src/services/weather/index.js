@@ -4,7 +4,7 @@ const fetchWeatherDataByLocale = async locale => {
     if (locale !== '') {
         const localeEncoded = encodeURIComponent(locale)
         try {
-            const url = `https://api.openweathermap.org/data/2.5/forecast?units=metric&q=${localeEncoded}&appid=${process.env.OPEN_WEATHER_API_KEY}`
+            const url = `https://api.openweathermap.org/data/2.5/forecast?lang=pt_br&units=metric&q=${localeEncoded}&appid=${process.env.OPEN_WEATHER_API_KEY}`
 
             const { data } = await axios.get(url)
             if (data && data.list) {
