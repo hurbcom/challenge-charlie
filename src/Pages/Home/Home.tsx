@@ -1,6 +1,5 @@
 import React from "react";
 
-import "pages/Home/Home.scss";
 import Background from "components/Background/Background";
 import WeatherCard from "components/WeatherCard/WeatherCard";
 
