@@ -23,8 +23,7 @@ const parseData = data => {
      * the code below is to parse and collect only the first 3 days
      */
 
-    const { list, city } = data
-    const { lat, lon } = city.coord
+    const { list } = data
     const days = {}
     list.reverse().forEach(w => {
         const date = new Date(w.dt_txt)
@@ -32,14 +31,14 @@ const parseData = data => {
         days[day] = w
     })
 
-    const dataParsed = []
+    const weatherDataParsed = []
     Object.keys(days).forEach((v, i) => {
         if (i < 3) {
-            dataParsed.push(days[v])
+            weatherDataParsed.push(days[v])
         }
     })
 
-    return { data: dataParsed, lat, lon }
+    return { weatherDataParsed }
 }
 
 export {
