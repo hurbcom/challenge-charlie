@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
     "sourceMap": true,
     "module": "es6",
     "target": "es5",
