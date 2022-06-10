@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  app:
+    container_name: challenge-charlie-prod
+    image: challenge-charlie-prod
+    build:
+      context: .
+      target: production

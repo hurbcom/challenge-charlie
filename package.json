@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "NODE_ENV=production webpack --config webpack.prod.js",
+    "build": "webpack --mode production --config webpack.prod.js",
     "test": "npx jest"
   },
   "devDependencies": {
