@@ -13,7 +13,7 @@ uma mudança nesse sentido. O componente principal (que mostra as informações 
 o ícone que representa o clima naquele momento. Informações que são mais específicas como o vento, humidade e pressão são mostrados abaixo da temperatura.
 Eu utilizei como inspiração os layouts dos principais sites de previsão do tempo, como: ClimaTempo, Weather.com, Widget de previsão do tempo do Google.
 
-![Screenshot](documentation/niterói.png)
+![Screenshot](documentation/niteroi.png)
 
 # Tecnologias
 
@@ -81,11 +81,15 @@ Resultados dos testes
 
 Cidade encontrada, clima ameno
 
-![Screenshot](documentation/niterói.png)
+![Screenshot](documentation/niteroi.png)
 
 Cidade encontrada, clima frio
 
 ![Screenshot](documentation/ushuaia.png)
+
+Cidade encontrada, clima quente
+
+![Screenshot](documentation/aljahra.png)
 
 Cidade não encontrada
 
