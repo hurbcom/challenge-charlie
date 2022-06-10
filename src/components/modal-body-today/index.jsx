@@ -16,6 +16,7 @@ const ModalBodyToday = props => {
     const [windSpeedInKilometers, setWindSpeedInKilometers] = useState('')
     const [windSpeedInMiles, setWindSpeedInMiles] = useState('')
     const [isSpeedInKilometers, setIsSpeedInKilometers] = useState(true)
+    const [pressure, setPressure] = useState('')
 
     const celsiusToFahrenheit = (celsiusTemp) => {
         return (celsiusTemp * 9 / 5 + 32).toFixed(0)
@@ -38,8 +39,8 @@ const ModalBodyToday = props => {
         const positions = [
             "N", "NNE", "NE", "ENE",
             "E", "ESE", "SE", "SSE",
-            "S", "SSW", "SW", "WSW", "W",
-            "WNW", "NW", "NNW"
+            "S", "SSW", "SW", "WSW",
+            "W", "WNW", "NW", "NNW"
         ]
         const index = Math.floor((value % 16))
         const position = positions[index]
@@ -69,6 +70,7 @@ const ModalBodyToday = props => {
             setWindSpeedInMiles(
                 windSpeedMetersToMiles(data?.wind?.speed)
             )
+            setPressure(data?.main?.pressure)
         }
     })
 
@@ -109,7 +111,7 @@ const ModalBodyToday = props => {
                             <span>Humidade: {humidity ? `${humidity}%` : 'N/A'}</span>
                         </div>
                         <div className="modal-body-today-sky-press">
-                            <span>Pressão: 1003hPA</span>
+                            <span>Pressão: {pressure ? `${pressure}hPA` : 'N/A'}</span>
                         </div>
                     </div>
                 </div>
