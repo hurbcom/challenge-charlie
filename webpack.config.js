@@ -56,6 +56,9 @@ module.exports = env => {
                     use: ['style-loader', 'css-loader', 'sass-loader'],
                 }
             ],
+        },
+        resolve:{
+            extensions: ['.js', '.jsx']
         }
 
     }
