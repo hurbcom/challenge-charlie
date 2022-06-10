@@ -18,7 +18,6 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "dotenv": "^16.0.1",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
