@@ -50,13 +50,7 @@
                     cursor: pointer;
                     font-size: 26px;
                     font-weight: 550;
-                    /*
-                        User can't select the text
-                    */
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    user-select: none;
+
                 }
             }
 
@@ -66,6 +60,11 @@
                 .modal-body-today-sky-title {
                     font-size: 24px;
                     margin-bottom: 8px;
+                }
+
+                .modal-body-today-sky-wind {
+                    cursor: pointer;
+
                 }
 
                 .modal-body-today-sky-wind,
@@ -79,6 +78,16 @@
 
 }
 
+.modal-body-today-temp-value,
+.modal-body-today-sky-wind {
+    /*
+                        User can't select the text
+                    */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 [data-icon]:before {
     font-family: 'MeteoconsRegular';
