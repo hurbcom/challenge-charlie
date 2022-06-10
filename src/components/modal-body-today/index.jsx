@@ -1,12 +1,16 @@
 
 import React, { useEffect, useState } from "react"
+import { capitalize } from '../../utils/string'
+
 import './style.scss'
+
 const ModalBodyToday = props => {
     const { data } = props
 
     const [celsiusTemp, setCelsiusTemp] = useState('')
     const [fahrenheitTemp, setFahrenheitTemp] = useState('')
     const [isCelsiusTemp, setIsCelsiusTemp] = useState(true)
+    const [weatherDescription, setWeatherDescription] = useState('')
 
     const celsiusToFahrenheit = (celsiusTemp) => {
         return (celsiusTemp * 9 / 5 + 32).toFixed(0)
@@ -22,9 +26,11 @@ const ModalBodyToday = props => {
         if (data.main) {
             const celsius = data.main.temp.toFixed(0)
             const fahrenheit = celsiusToFahrenheit(celsius)
+            const descriptionCapitalized = capitalize(data?.weather[0]?.description || '')
+
             setFahrenheitTemp(fahrenheit)
             setCelsiusTemp(celsius)
-
+            setWeatherDescription(descriptionCapitalized)
         }
     })
 
@@ -48,7 +54,7 @@ const ModalBodyToday = props => {
                             </div>
                             <div className="modal-body-today-sky-status">
                                 <div className="modal-body-today-sky-title">
-                                    <span>Ensolarado</span>
+                                    <span>{weatherDescription || 'N/A'}</span>
                                 </div>
                                 <div className="modal-body-today-sky-wind">
                                     <span>Vento: NO 6.4 km/h</span>
