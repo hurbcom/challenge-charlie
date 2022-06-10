@@ -1,17 +1,14 @@
 # :sunny: Challenge Charlie | Matheus Baldas
 
-O microsite "Challenge Charlie" é um microsite com o objetivo de fornecer a previsão do tempo. No primeiro momento, o usuário é informado
-da previsão do tempo para o local onde se encontra, ao fornecer seus dados de localização via browser. Existe um input caso o usuário queira
-informações de outros lugares fora o seu próprio. São fornecidas informações mais detalhadas do dia atual, e dos próximos dois dias são fornecidas
-as temperaturas.
+O microsite "Challenge Charlie" tem o objetivo de fornecer a previsão do tempo. No primeiro momento, o usuário é informado
+da previsão do tempo para o local onde se encontra ao fornecer seus dados de localização via browser. Existe um input caso o usuário queira
+informações de outros lugares fora o seu próprio. São fornecidas informações mais detalhadas do dia atual, além da previsão de temperatura para os próximos dois dias.
 
 # :recycle: Mudanças propostas
 
 O layout da forma que foi proposto trata todas as informações com o mesmo grau de importância. Entretanto, quando um usuário entra num site
-de previsão do tempo, a informação que ele quer obter é, na maioria das vezes, sobre a temperatura do local. Por esse motivo, eu propus
-uma mudança nesse sentido. O componente principal (que mostra as informações do clima hoje) tem um destaque para a temperatura e para
-o ícone que representa o clima naquele momento. Informações que são mais específicas como o vento, humidade e pressão são mostrados abaixo da temperatura.
-Eu utilizei como inspiração os layouts dos principais sites de previsão do tempo, como: ClimaTempo, Weather.com, Widget de previsão do tempo do Google.
+de previsão do tempo a informação que ele quer obter é, na maioria das vezes, sobre a temperatura do local. Por esse motivo, eu propus
+uma mudança nesse sentido que consiste no destaque da temperatura e do ícone do clima no componente principal. Informações que são mais específicas como o vento, humidade e pressão são mostrados abaixo da temperatura. Eu utilizei como inspiração os layouts dos principais sites de previsão do tempo, como: ClimaTempo, Weather.com e o Widget de previsão do tempo do Google.
 
 ![Screenshot](documentation/niteroi.png)
 
@@ -34,10 +31,10 @@ Eu utilizei como inspiração os layouts dos principais sites de previsão do te
 
 # :wrench: Instalação
 
-Antes de tudo, esse projeto utilizou do cors anywhere para fazer uma requisição, então antes de instalar peça acesso temporário
+Antes de tudo, esse projeto utilizou do cors anywhere para fazer uma requisição, então antes de instalar é necessário solicitar acesso temporário
 a ferramenta no link: https://cors-anywhere.herokuapp.com/corsdemo.
 
-Para rodar localmente
+Para rodar localmente:
 
 ```bash
   git clone https://github.com/mbaldas/challenge-charlie
@@ -49,7 +46,7 @@ Para rodar localmente
   npm start
 ```
 
-Para rodar com docker
+Para rodar com docker:
 
 ```bash
   git clone https://github.com/mbaldas/challenge-charlie
@@ -60,18 +57,18 @@ Para rodar com docker
   docker-compose -f docker-compose.dev.yml up
 ```
 
-Esse projeto utilizou de multistage building, então além do docker compose referente ao ambiente de desenvolvimento que foi utilizado acima,
+Foi utilizado multistage building, então além do docker compose referente ao ambiente de desenvolvimento que foi utilizado acima,
 existe também o docker compose de produção.
 
 # :robot: Testes
 
-Para rodar os Testes
+Para rodar os testes:
 
 ```bash
   npm run test
 ```
 
-Esse projeto utilizou o Jest como motor de testes e react testing library como ferramenta auxiliar para o desenvolvimentos dos testes.
+A ferramenta utilizada foi o Jest como motor de testes e react testing library como ferramenta auxiliar para o desenvolvimentos dos mesmos.
 
 Resultados dos testes
 
@@ -79,19 +76,19 @@ Resultados dos testes
 
 # :framed_picture: Funcionamento
 
-Cidade encontrada, clima ameno
+Cidade encontrada, clima ameno.
 
 ![Screenshot](documentation/niteroi.png)
 
-Cidade encontrada, clima frio
+Cidade encontrada, clima frio.
 
 ![Screenshot](documentation/ushuaia.png)
 
-Cidade encontrada, clima quente
+Cidade encontrada, clima quente.
 
 ![Screenshot](documentation/aljahra.png)
 
-Cidade não encontrada
+Cidade não encontrada.
 
 ![Screenshot](documentation/inexistente.png)
 
@@ -99,10 +96,10 @@ Cidade não encontrada
 
 - Webpack
 
-  - Minhas maiores dificuldades no projeto foram relacionadas a configurações do Webpack. Todos os projetos que trabalhei até hoje com react, tanto profissionais quanto meus projetos pessoais, eu tinha utilizado CRA para iniciar a aplicação então todas as configurações para o Webpack funcionar (loader de sass, svg, typescript) foram complexos de se configurar no início.
+  - Minhas maiores dificuldades no projeto foram relacionadas a configurações do Webpack. Todos os projetos que trabalhei até hoje com react, tanto profissionais quanto projetos pessoais, tinha utilizado CRA para iniciar a aplicação, então todas as configurações para o Webpack funcionar (loader de sass, svg, typescript) foram complexas de se configurar no início.
 
 - CORS
-  - Outro ponto de atenção fica em relação a forma com que o CORS foi tratado. Utilizei de uma API que ultrapassa o CORS ao invés de "ultrapassar por conta própria", algo que não é ideal para produção, no futuro o ideal seria configurar um proxy para que as requisições funcionem corretamente.
+  - Outro ponto de atenção fica em relação a forma com que o CORS foi tratado. Utilizei de uma API para ultrapassar o CORS ao invés de "ultrapassar por conta própria", algo que não é ideal para produção. No futuro o ideal seria configurar um proxy para que as requisições funcionem corretamente.
 
 # Licença
 
