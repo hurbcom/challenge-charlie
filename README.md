@@ -1,11 +1,11 @@
-# Challenge Charlie | Matheus Baldas
+# :sunny: Challenge Charlie | Matheus Baldas
 
 O microsite "Challenge Charlie" é um microsite com o objetivo de fornecer a previsão do tempo. No primeiro momento, o usuário é informado
 da previsão do tempo para o local onde se encontra, ao fornecer seus dados de localização via browser. Existe um input caso o usuário queira
 informações de outros lugares fora o seu próprio. São fornecidas informações mais detalhadas do dia atual, e dos próximos dois dias são fornecidas
 as temperaturas.
 
-# Mudanças propostas
+# :recycle: Mudanças propostas
 
 O layout da forma que foi proposto trata todas as informações com o mesmo grau de importância. Entretanto, quando um usuário entra num site
 de previsão do tempo, a informação que ele quer obter é, na maioria das vezes, sobre a temperatura do local. Por esse motivo, eu propus
@@ -15,7 +15,7 @@ Eu utilizei como inspiração os layouts dos principais sites de previsão do te
 
 ![Screenshot](documentation/niteroi.png)
 
-# Tecnologias
+# :hammer: Tecnologias
 
 - [React](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -26,13 +26,13 @@ Eu utilizei como inspiração os layouts dos principais sites de previsão do te
 - [Docker](https://www.docker.com/)
 - [Jest](https://jestjs.io/)
 
-## API's utilizadas
+## :white_check_mark: API's utilizadas
 
 - [Open Cage](https://opencagedata.com/api)
 - [Open Weather](https://openweathermap.org/api)
 - [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
 
-# Instalação
+# :wrench: Instalação
 
 Antes de tudo, esse projeto utilizou do cors anywhere para fazer uma requisição, então antes de instalar peça acesso temporário
 a ferramenta no link: https://cors-anywhere.herokuapp.com/corsdemo.
@@ -63,7 +63,7 @@ Para rodar com docker
 Esse projeto utilizou de multistage building, então além do docker compose referente ao ambiente de desenvolvimento que foi utilizado acima,
 existe também o docker compose de produção.
 
-# Testes
+# :robot: Testes
 
 Para rodar os Testes
 
@@ -77,7 +77,7 @@ Resultados dos testes
 
 ![Screenshot](documentation/tests.png)
 
-# Funcionamento
+# :framed_picture: Funcionamento
 
 Cidade encontrada, clima ameno
 
@@ -95,7 +95,7 @@ Cidade não encontrada
 
 ![Screenshot](documentation/inexistente.png)
 
-# Dificuldades e Melhorias
+# :construction: Dificuldades e Melhorias
 
 - Webpack
 
