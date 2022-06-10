@@ -11,7 +11,8 @@ const ModalBodyToday = props => {
     const [fahrenheitTemp, setFahrenheitTemp] = useState('')
     const [isCelsiusTemp, setIsCelsiusTemp] = useState(true)
     const [weatherDescription, setWeatherDescription] = useState('')
-
+    const [humidity, setHumidity] = useState('')
+    const [windPosition, setWindPosition] = useState('')
     const celsiusToFahrenheit = (celsiusTemp) => {
         return (celsiusTemp * 9 / 5 + 32).toFixed(0)
 
@@ -21,16 +22,37 @@ const ModalBodyToday = props => {
         setIsCelsiusTemp(!isCelsiusTemp)
     }
 
+    const windDegreeToCompassDirection = degree => {
+        /**
+         * Convert wind degree unit to compass direction
+         */
+        const value = Number((degree/22.5)+.5)
+        const positions = [
+            "N", "NNE", "NE", "ENE",
+            "E", "ESE", "SE", "SSE",
+            "S", "SSW", "SW", "WSW", "W",
+            "WNW", "NW", "NNW"
+        ]
+        const index = Math.floor((value % 16))
+        const position = positions[index]
+        return position
+    }
+
     useEffect(() => {
 
         if (data.main) {
-            const celsius = data.main.temp.toFixed(0)
+            
+            const celsius = data?.main?.temp?.toFixed(0)
             const fahrenheit = celsiusToFahrenheit(celsius)
             const descriptionCapitalized = capitalize(data?.weather[0]?.description || '')
+            const windPositionConverted = windDegreeToCompassDirection(data?.wind?.deg)
 
             setFahrenheitTemp(fahrenheit)
             setCelsiusTemp(celsius)
             setWeatherDescription(descriptionCapitalized)
+            setHumidity(data?.main?.humidity)
+            setWindPosition(windPositionConverted)
+            
         }
     })
 
@@ -60,7 +82,7 @@ const ModalBodyToday = props => {
                                     <span>Vento: NO 6.4 km/h</span>
                                 </div>
                                 <div className="modal-body-today-sky-hum">
-                                    <span>Humidade: 78%</span>
+                                    <span>Humidade: {humidity ? `${humidity}%` : 'N/A'}</span>
                                 </div>
                                 <div className="modal-body-today-sky-press">
                                     <span>Pressão: 1003hPA</span>
