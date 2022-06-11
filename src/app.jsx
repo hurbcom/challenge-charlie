@@ -18,9 +18,10 @@ const App = () => {
     const [todayWeatherData, setTodayWeatherData] = useState([])
     const [tomorrowWeatherData, setTomorrowWeatherData] = useState([])
     const [nextDaywWeatherData, setNextDayWeatherData] = useState([])
-
+    const [loading, setLoading] = useState(true)
+    
     const getGeolocation = newLocation => {
-
+        setLoading(true)
         if (!newLocation && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(({ coords }) => {
                 const { latitude, longitude } = coords
@@ -47,6 +48,7 @@ const App = () => {
             setTodayWeatherData(today)
             setTomorrowWeatherData(tomorrow)
             setNextDayWeatherData(nextDay)
+            setLoading(false)
         }
     }
 
@@ -68,6 +70,9 @@ const App = () => {
         getWeaterData(currentLocale)
     }, [currentLocale])
 
+    useEffect(()=>{
+        setTimeout(()=>setLoading(false), 5000)
+    })
 
     return (
 
@@ -85,16 +90,19 @@ const App = () => {
                 <MainWeather
                     data={todayWeatherData}
                     colorLevel="lt"
+                    loading={loading}
                 />
                 <NextDayWeather
                     data={tomorrowWeatherData}
                     title="AMANHÃ"
                     colorLevel="md"
+                    loading={loading}
                 />
                 <NextDayWeather
                     data={nextDaywWeatherData}
                     title="DEPOIS DE AMANHÃ"
                     colorLevel="hd"
+                    loading={loading}
                 />
 
             </Modal>
