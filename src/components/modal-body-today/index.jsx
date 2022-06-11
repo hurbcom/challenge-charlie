@@ -36,9 +36,9 @@ const ModalBodyToday = props => {
     const selectWeatherColor = temp => {
         const tempToNumber = Number(temp)
         const colors = {
-            cold: ({ backgroundColor: "rgba(29, 29, 212, 0.384)" }),
-            nice: ({ backgroundColor: "rgba(197, 212, 29, 0.384)" }),
-            hot: ({ backgroundColor: "rgba(212, 66, 29, 0.384)" })
+            cold: ({ backgroundColor: "rgba(29, 29, 212, 0.634)" }),
+            nice: ({ backgroundColor: "rgba(230, 185, 21, 0.634)" }),
+            hot: ({ backgroundColor: "rgba(212, 66, 29, 0.634)" })
 
         }
 
