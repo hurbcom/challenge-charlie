@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react"
 import { capitalize } from '../../utils/string'
-
+import { getIconRef } from '../../utils/icons'
 import './style.scss'
 
 const ModalBodyToday = props => {
@@ -17,6 +17,8 @@ const ModalBodyToday = props => {
     const [windSpeedInMiles, setWindSpeedInMiles] = useState('')
     const [isSpeedInKilometers, setIsSpeedInKilometers] = useState(true)
     const [pressure, setPressure] = useState('')
+    const [weatherIcon, setWeatherIcon] = useState(')')
+    const [weatherColor, setWeatherColor] = useState({})
 
     const celsiusToFahrenheit = (celsiusTemp) => {
         return (celsiusTemp * 9 / 5 + 32).toFixed(0)
@@ -29,6 +31,24 @@ const ModalBodyToday = props => {
 
     const changeCurrentSpeedScale = () => {
         setIsSpeedInKilometers(!isSpeedInKilometers)
+    }
+
+    const selectWeatherColor = temp => {
+        const tempToNumber = Number(temp)
+        const colors = {
+            cold: ({ backgroundColor: "rgba(29, 29, 212, 0.384)" }),
+            nice: ({ backgroundColor: "rgba(197, 212, 29, 0.384)" }),
+            hot: ({ backgroundColor: "rgba(212, 66, 29, 0.384)" })
+
+        }
+
+        if (tempToNumber < 15) {
+            return colors['cold']
+        } else if (tempToNumber > 35) {
+            return colors['hot']
+        } else {
+            return colors['nice']
+        }
     }
 
     const windDegreeToCompassDirection = degree => {
@@ -53,12 +73,12 @@ const ModalBodyToday = props => {
     useEffect(() => {
 
         if (data.main) {
-
+            console.log(data)
             const celsius = data?.main?.temp?.toFixed(0)
             const fahrenheit = celsiusToFahrenheit(celsius)
-            const descriptionCapitalized = capitalize(data?.weather[0]?.description || '')
+            const descriptionCapitalized = capitalize(data?.weather[0]?.description)
             const windPositionConverted = windDegreeToCompassDirection(data?.wind?.deg)
-
+            const weatherIconRef = getIconRef(data?.weather[0]?.main)
             setFahrenheitTemp(fahrenheit)
             setCelsiusTemp(celsius)
             setWeatherDescription(descriptionCapitalized)
@@ -71,14 +91,19 @@ const ModalBodyToday = props => {
                 windSpeedMetersToMiles(data?.wind?.speed)
             )
             setPressure(data?.main?.pressure)
+            setWeatherIcon(weatherIconRef)
+            setWeatherColor(
+                selectWeatherColor(celsius)
+            )
         }
-    })
+
+    }, [data.main])
 
     return (
-        <div className="modal-body-today-container">
+        <div className="modal-body-today-container" style={weatherColor}>
             <div className="modal-body-today-content">
                 <div className="modal-body-today-temp-icon">
-                    <a data-icon="B" className="modal-body-today-sun-status"></a>
+                    <a data-icon={weatherIcon} className="modal-body-today-sun-status"></a>
                 </div>
                 <div className="modal-body-today-weather-infos">
                     <div className="modal-body-today-temp-status">
@@ -86,8 +111,9 @@ const ModalBodyToday = props => {
                             <span>HOJE</span>
                         </div>
                         <div className="modal-body-today-temp-value" onClick={changeCurrentTempScale}>
+                            <span>{!celsiusTemp && !fahrenheitTemp ? '--' : ''}</span>
                             <span>{isCelsiusTemp ? celsiusTemp : fahrenheitTemp}</span>
-                            <span>{isCelsiusTemp ? 'ºC' : 'ºF'}</span>
+                            <span>{!celsiusTemp && !fahrenheitTemp ? '--' : isCelsiusTemp ? 'ºC' : 'ºF'}</span>
                         </div>
                     </div>
                     <div className="modal-body-today-sky-status">

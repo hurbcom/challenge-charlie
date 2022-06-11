@@ -2,9 +2,8 @@
     width: 100%;
     height: 50% !important;
     box-sizing: border-box;
-
-    background-color: rgba(22, 22, 156, 0.678);
-
+    background-color: rgba(56, 56, 56, 0.384);
+    
     .modal-body-today-content {
         display: flex;
         height: 100%;
@@ -16,10 +15,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: green;
 
             .modal-body-today-sun-status {
-                font-size: 240px;
+                font-size: 216px;
                 color: white;
             }
         }
@@ -33,7 +31,6 @@
 
 
             font-weight: 600;
-            background-color: red;
 
             .modal-body-today-temp-status {
 
