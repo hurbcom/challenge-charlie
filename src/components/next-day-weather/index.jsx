@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import { celsiusToFahrenheit, selectWeatherColor } from '../../utils/weather'
 import { capitalize } from '../../utils/string'
-
 import { getIconRef } from '../../utils/icons'
+
+import Loader from '../loader'
 
 import './style.scss'
 const NextDayWeather = props => {
-    const { data, title, colorLevel } = props
+    const { data, title, colorLevel, loading } = props
 
     const [isCelsiusTemp, setIsCelsiusTemp] = useState(true)
     const [celsiusTemp, setCelsiusTemp] = useState('')
@@ -41,9 +42,15 @@ const NextDayWeather = props => {
         <div className="next-day-weather-container" style={weatherColor}>
             <div className="next-day-weather-content">
                 <div className="next-day-weather-temp-icon">
-                    <a data-icon={weatherIcon} className="next-day-weather-sun-status"></a>
+                    {
+                        loading ?
+                            <Loader lg /> :
+                            <a data-icon={weatherIcon} className="next-day-weather-sun-status"></a>
+
+                    }
+
                 </div>
-                <div className="next-day-weather-weather-infos">
+                <div className="next-day-weather-infos">
                     <div className="next-day-weather-temp-status">
                         <div className="next-day-weather-temp-title">
                             <span>{title || ''}</span>
@@ -53,9 +60,8 @@ const NextDayWeather = props => {
                             <span>{isCelsiusTemp ? celsiusTemp : fahrenheitTemp}</span>
                             <span>{!celsiusTemp && !fahrenheitTemp ? '--' : isCelsiusTemp ? 'ºC' : 'ºF'}</span>
                         </div>
-                        <div className="moda-body-tomorrow-weather-description">
-                           <span>{weatherDescription || '--'}</span>
-                            
+                        <div className="next-day-weather-description">
+                            <span>{weatherDescription || '--'}</span>
                         </div>
                     </div>
                 </div>
