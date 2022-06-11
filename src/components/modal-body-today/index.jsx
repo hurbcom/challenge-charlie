@@ -28,11 +28,11 @@ const ModalBodyToday = props => {
     const [weatherIcon, setWeatherIcon] = useState(')')
     const [weatherColor, setWeatherColor] = useState(selectWeatherColor(0, colorLevel, true))
 
-    const changeCurrentTempScale = () => {
+    const toggleCurrentTempScale = () => {
         setIsCelsiusTemp(!isCelsiusTemp)
     }
 
-    const changeCurrentSpeedScale = () => {
+    const toggleCurrentSpeedScale = () => {
         setIsSpeedInKilometers(!isSpeedInKilometers)
     }
 
@@ -76,7 +76,7 @@ const ModalBodyToday = props => {
                         <div className="modal-body-today-temp-title">
                             <span>HOJE</span>
                         </div>
-                        <div className="modal-body-today-temp-value" onClick={changeCurrentTempScale}>
+                        <div className="modal-body-today-temp-value" onClick={toggleCurrentTempScale}>
                             <span>{!celsiusTemp && !fahrenheitTemp ? '--' : ''}</span>
                             <span>{isCelsiusTemp ? celsiusTemp : fahrenheitTemp}</span>
                             <span>{!celsiusTemp && !fahrenheitTemp ? '--' : isCelsiusTemp ? 'ºC' : 'ºF'}</span>
@@ -87,7 +87,7 @@ const ModalBodyToday = props => {
                             <span>{weatherDescription || 'N/A'}</span>
                         </div>
                         <div className="modal-body-today-sky-wind">
-                            <span onClick={changeCurrentSpeedScale}>
+                            <span onClick={toggleCurrentSpeedScale}>
                                 Vento:
                                 {windDirection ? ` ${windDirection} ` : ' --'}
                                 {
