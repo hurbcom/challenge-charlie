@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Background from './components/background'
 import Modal from './components/modal'
 import Searcher from './components/searcher'
+import MainWeather from './components/main-weather'
+import NextDayWeather from './components/next-day-weather'
 
 import { fetchLocaleByCoord, fetchCoordByLocale } from './services/locale'
 import { fetchWeatherDataByLocale } from './services/weather'
@@ -13,8 +15,9 @@ const App = () => {
     const [_, { onChange: geolocationOnChange }] = useGeolocation();
 
     const [currentLocale, setCurrentLocale] = useState('')
-    const [currentWeatherData, setCurrentWeatherData] = useState([])
-
+    const [todayWeatherData, setTodayWeatherData] = useState([])
+    const [tomorrowWeatherData, setTomorrowWeatherData] = useState([])
+    const [nextDaywWeatherData, setNextDayWeatherData] = useState([])
 
     const getGeolocation = newLocation => {
 
@@ -39,7 +42,11 @@ const App = () => {
     const getWeaterData = async locale => {
         const data = await fetchWeatherDataByLocale(locale)
         if (data) {
-            setCurrentWeatherData(data.data)
+            const { weatherDataParsed } = data
+            const [today, tomorrow, nextDay] = weatherDataParsed
+            setTodayWeatherData(today)
+            setTomorrowWeatherData(tomorrow)
+            setNextDayWeatherData(nextDay)
         }
     }
 
@@ -73,6 +80,21 @@ const App = () => {
                     defaultPlaceholder="City, State"
                     onSubmit={getNewWeatherData}
                     clearCurrentValue={true}
+                />
+
+                <MainWeather
+                    data={todayWeatherData}
+                    colorLevel="lt"
+                />
+                <NextDayWeather
+                    data={tomorrowWeatherData}
+                    title="AMANHÃ"
+                    colorLevel="md"
+                />
+                <NextDayWeather
+                    data={nextDaywWeatherData}
+                    title="DEPOIS DE AMANHÃ"
+                    colorLevel="hd"
                 />
 
             </Modal>
