@@ -10,10 +10,12 @@ import {
     selectWeatherColor
 } from '../../utils/weather'
 
+import Loader from "../loader"
+
 import './style.scss'
 
 const MainWeather = props => {
-    const { data, colorLevel } = props
+    const { data, colorLevel, loading } = props
 
     const [celsiusTemp, setCelsiusTemp] = useState('')
     const [fahrenheitTemp, setFahrenheitTemp] = useState('')
@@ -69,7 +71,12 @@ const MainWeather = props => {
         <div className="main-weather-container" style={weatherColor} >
             <div className="main-weather-content">
                 <div className="main-weather-temp-icon">
-                    <a data-icon={weatherIcon} className="main-weather-sun-status"></a>
+                    {
+                        loading ?
+                            <Loader xlg /> :
+                            <a data-icon={weatherIcon} className="main-weather-sun-status"></a>
+                    }
+
                 </div>
                 <div className="main-weather-weather-infos">
                     <div className="main-weather-temp-status">
