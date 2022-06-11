@@ -2,6 +2,13 @@
 import React, { useEffect, useState } from "react"
 import { capitalize } from '../../utils/string'
 import { getIconRef } from '../../utils/icons'
+import {
+    celsiusToFahrenheit,
+    windDegreeToCompassDirection,
+    windSpeedMetersToKilometers,
+    windSpeedMetersToMiles
+} from '../../utils/weather'
+
 import './style.scss'
 
 const ModalBodyToday = props => {
@@ -19,11 +26,6 @@ const ModalBodyToday = props => {
     const [pressure, setPressure] = useState('')
     const [weatherIcon, setWeatherIcon] = useState(')')
     const [weatherColor, setWeatherColor] = useState({})
-
-    const celsiusToFahrenheit = (celsiusTemp) => {
-        return (celsiusTemp * 9 / 5 + 32).toFixed(0)
-
-    }
 
     const changeCurrentTempScale = () => {
         setIsCelsiusTemp(!isCelsiusTemp)
@@ -51,29 +53,10 @@ const ModalBodyToday = props => {
         }
     }
 
-    const windDegreeToCompassDirection = degree => {
-        /**
-         * Convert wind degree unit to compass direction
-         */
-        const value = Number((degree / 22.5) + .5)
-        const positions = [
-            "N", "NNE", "NE", "ENE",
-            "E", "ESE", "SE", "SSE",
-            "S", "SSW", "SW", "WSW",
-            "W", "WNW", "NW", "NNW"
-        ]
-        const index = Math.floor((value % 16))
-        const position = positions[index]
-        return position
-    }
-
-    const windSpeedMetersToKilometers = ms => (ms * 3.6).toFixed(2)
-    const windSpeedMetersToMiles = ms => (ms * 2.237).toFixed(2)
-
     useEffect(() => {
 
         if (data.main) {
-            console.log(data)
+            
             const celsius = data?.main?.temp?.toFixed(0)
             const fahrenheit = celsiusToFahrenheit(celsius)
             const descriptionCapitalized = capitalize(data?.weather[0]?.description)
