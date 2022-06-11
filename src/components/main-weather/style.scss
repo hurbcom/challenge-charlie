@@ -1,0 +1,91 @@
+.main-weather-container {
+    width: 100%;
+    height: 58%;
+    box-sizing: border-box;
+
+    .main-weather-content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        .main-weather-temp-icon {
+            width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .main-weather-sun-status {
+                font-size: 216px;
+                color: white;
+            }
+        }
+
+        .main-weather-weather-infos {
+            width: 50%;
+            color: white;
+
+            flex-direction: column;
+            display: flex;
+
+
+            font-weight: 600;
+
+            .main-weather-temp-status {
+
+                margin: 14px 0 0 14px;
+                display: flex;
+                flex-direction: column;
+
+                .main-weather-temp-title {
+                    font-size: 24px;
+                    margin-bottom: 4px;
+                }
+
+                .main-weather-temp-value {
+                    cursor: pointer;
+                    font-size: 26px;
+                    font-weight: 550;
+
+                }
+            }
+
+            .main-weather-sky-status {
+                margin: 14px 0 0 14px;
+
+                .main-weather-sky-title {
+                    font-size: 24px;
+                    margin-bottom: 8px;
+                }
+
+                .main-weather-sky-wind {
+                    cursor: pointer;
+
+                }
+
+                .main-weather-sky-wind,
+                .main-weather-sky-hum,
+                .main-weather-sky-press {
+                    margin-bottom: 4px;
+                }
+            }
+        }
+    }
+
+}
+
+.main-weather-temp-value,
+.main-weather-sky-wind {
+    /*
+        User can't select the text
+    */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+[data-icon]:before {
+    font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+}
