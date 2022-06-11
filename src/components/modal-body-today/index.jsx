@@ -6,13 +6,14 @@ import {
     celsiusToFahrenheit,
     windDegreeToCompassDirection,
     windSpeedMetersToKilometers,
-    windSpeedMetersToMiles
+    windSpeedMetersToMiles,
+    selectWeatherColor
 } from '../../utils/weather'
 
 import './style.scss'
 
 const ModalBodyToday = props => {
-    const { data } = props
+    const { data, colorLevel } = props
 
     const [celsiusTemp, setCelsiusTemp] = useState('')
     const [fahrenheitTemp, setFahrenheitTemp] = useState('')
@@ -25,7 +26,7 @@ const ModalBodyToday = props => {
     const [isSpeedInKilometers, setIsSpeedInKilometers] = useState(true)
     const [pressure, setPressure] = useState('')
     const [weatherIcon, setWeatherIcon] = useState(')')
-    const [weatherColor, setWeatherColor] = useState({})
+    const [weatherColor, setWeatherColor] = useState(selectWeatherColor(0, colorLevel, true))
 
     const changeCurrentTempScale = () => {
         setIsCelsiusTemp(!isCelsiusTemp)
@@ -35,28 +36,10 @@ const ModalBodyToday = props => {
         setIsSpeedInKilometers(!isSpeedInKilometers)
     }
 
-    const selectWeatherColor = temp => {
-        const tempToNumber = Number(temp)
-        const colors = {
-            cold: ({ backgroundColor: "rgba(29, 29, 212, 0.634)" }),
-            nice: ({ backgroundColor: "rgba(230, 185, 21, 0.634)" }),
-            hot: ({ backgroundColor: "rgba(212, 66, 29, 0.634)" })
-
-        }
-
-        if (tempToNumber < 15) {
-            return colors['cold']
-        } else if (tempToNumber > 35) {
-            return colors['hot']
-        } else {
-            return colors['nice']
-        }
-    }
-
     useEffect(() => {
 
         if (data.main) {
-            
+
             const celsius = data?.main?.temp?.toFixed(0)
             const fahrenheit = celsiusToFahrenheit(celsius)
             const descriptionCapitalized = capitalize(data?.weather[0]?.description)
@@ -76,14 +59,14 @@ const ModalBodyToday = props => {
             setPressure(data?.main?.pressure)
             setWeatherIcon(weatherIconRef)
             setWeatherColor(
-                selectWeatherColor(celsius)
+                selectWeatherColor(celsius, colorLevel)
             )
         }
 
     }, [data.main])
 
     return (
-        <div className="modal-body-today-container" style={weatherColor}>
+        <div className="modal-body-today-container" style={weatherColor} >
             <div className="modal-body-today-content">
                 <div className="modal-body-today-temp-icon">
                     <a data-icon={weatherIcon} className="modal-body-today-sun-status"></a>
