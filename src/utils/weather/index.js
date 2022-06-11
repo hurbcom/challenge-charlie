@@ -21,9 +21,50 @@ const windDegreeToCompassDirection = degree => {
 const windSpeedMetersToKilometers = ms => (ms * 3.6).toFixed(2)
 const windSpeedMetersToMiles = ms => (ms * 2.237).toFixed(2)
 
+const selectWeatherColor = (temp, lvl, defaultColor = false) => {
+
+
+    const tempToNumber = Number(temp)
+    const colorLevel = lvl || 'hd'
+    const colors = {
+        lt: {
+            cold: ({ backgroundColor: "rgba(32, 63, 120, 0.2)" }),
+            nice: ({ backgroundColor: "rgba(245, 203, 14, 0.39)" }),
+            hot: ({ backgroundColor: "rgba(158, 52, 26, 0.292)" }),
+            default: ({ backgroundColor: "rgba(81, 80, 79, 0.473)" }),
+        },
+        md: {
+            cold: ({ backgroundColor: "rgba(7, 36, 90, 0.495)" }),
+            nice: ({ backgroundColor: "rgba(188, 153, 26, 0.490)" }),
+            hot: ({ backgroundColor: "rgba(90, 24, 8, 0.473)" }),
+            default: ({ backgroundColor: "rgba(81, 80, 79, 0.632)" })
+        },
+        hd: {
+            cold: ({ backgroundColor: "rgba(4, 19, 48, 0.719)" }),
+            nice: ({ backgroundColor: "rgba(92, 77, 23, 0.725)" }),
+            hot: ({ backgroundColor: "rgba(78, 27, 14, 0.758)" }),
+            default: ({ backgroundColor: "rgba(49, 49, 49, 0.79)" })
+        }
+
+    }
+
+    if (defaultColor) {
+        return colors[colorLevel]['default']
+    }
+
+    if (tempToNumber < 15) {
+        return colors[colorLevel]['cold']
+    } else if (tempToNumber > 35) {
+        return colors[colorLevel]['hot']
+    } else {
+        return colors[colorLevel]['nice']
+    }
+}
+
 export {
     celsiusToFahrenheit,
     windDegreeToCompassDirection,
     windSpeedMetersToKilometers,
-    windSpeedMetersToMiles
+    windSpeedMetersToMiles,
+    selectWeatherColor
 }
