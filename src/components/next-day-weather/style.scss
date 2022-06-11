@@ -1,0 +1,53 @@
+.next-day-weather-container {
+    background-color: green;
+    height: 15%;
+    width: 100%;
+
+    .next-day-weather-content {
+        display: flex;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+
+        .next-day-weather-temp-icon {
+            width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .next-day-weather-sun-status {
+                font-size: 50px;
+                color: white;
+            }
+        }
+
+        .next-day-weather-weather-infos {
+            width: 50%;
+            color: white;
+
+            .next-day-weather-temp-status {
+                margin: 14px 0 0 14px;
+                display: flex;
+                flex-direction: column;
+
+                .next-day-weather-temp-title {
+                    font-size: 20px;
+                    margin-bottom: 4px;
+                    font-weight: 600;
+                }
+
+                .next-day-weather-temp-value {
+                    cursor: pointer;
+                    /*
+                        User can't select the text
+                    */
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+            }
+        }
+    }
+}
