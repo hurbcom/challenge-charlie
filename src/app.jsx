@@ -12,22 +12,17 @@ import { fetchWeatherDataByLocale } from './services/weather'
 import { useGeolocation } from 'beautiful-react-hooks';
 
 const App = () => {
-    const [_, { onChange: geolocationOnChange }] = useGeolocation();
+    const [_, { onChange: geolocationOnChange }] = useGeolocation({ maximumAge: Infinity });
 
     const [currentLocale, setCurrentLocale] = useState('')
     const [todayWeatherData, setTodayWeatherData] = useState([])
     const [tomorrowWeatherData, setTomorrowWeatherData] = useState([])
     const [nextDaywWeatherData, setNextDayWeatherData] = useState([])
     const [loading, setLoading] = useState(true)
-    
+
     const getGeolocation = newLocation => {
         setLoading(true)
-        if (!newLocation && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(({ coords }) => {
-                const { latitude, longitude } = coords
-                getLocale(latitude, longitude)
-            })
-        } else if (newLocation) {
+        if (newLocation.lat && newLocation.lon) {
             getLocale(newLocation.lat, newLocation.lon)
         }
     }
@@ -62,16 +57,17 @@ const App = () => {
     }
 
 
-    geolocationOnChange(async () => {
-        await getGeolocation()
+    geolocationOnChange(async geoInformation => {
+        const { coords } = geoInformation
+        await getGeolocation({ lat: coords.latitude, lon: coords.longitude })
     })
 
     useEffect(() => {
         getWeaterData(currentLocale)
     }, [currentLocale])
 
-    useEffect(()=>{
-        setTimeout(()=>setLoading(false), 5000)
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 5000)
     })
 
     return (
