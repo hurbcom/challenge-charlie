@@ -89,3 +89,24 @@
     font-family: 'MeteoconsRegular';
     content: attr(data-icon);
 }
+
+@media (max-width: 376px) {
+    .main-weather-temp-status {
+        margin: 10px 0 0 8px !important;
+    }
+    .main-weather-sky-status {
+
+        margin: 10px 0 0 8px !important;
+    }
+    .main-weather-sun-status {
+        font-size: 100px !important;
+        margin-right: 10px !important;
+    }
+}
+
+@media (min-width: 425px) {
+    .main-weather-sun-status {
+        font-size: 150px !important;
+    }
+    
+}

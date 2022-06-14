@@ -1,17 +1,15 @@
-@media (min-width:320px) {
 
+.modal-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 500px;
+    height: 600px;
+}
+
+
+@media (max-width: 768px) {
     .modal-container {
-        display: flex;
-        flex-direction: column;
-
-        max-width: 500px ;
-        min-width: 340px;
-        width: 500px;
-
-        min-height: 300px;
-        max-height: 600px;
-        height: 600px;
-    
-        border-radius: 4px;
+        width: 90%;
     }
 }
