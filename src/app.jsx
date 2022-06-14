@@ -19,8 +19,10 @@ const App = () => {
     const [tomorrowWeatherData, setTomorrowWeatherData] = useState([])
     const [nextDaywWeatherData, setNextDayWeatherData] = useState([])
     const [loading, setLoading] = useState(true)
-
+    const [canReloadGeo, setCanReloadGeo] = useState(true)
+    
     const getGeolocation = newLocation => {
+        setCanReloadGeo(false)
         setLoading(true)
         if (newLocation.lat && newLocation.lon) {
             getLocale(newLocation.lat, newLocation.lon)
@@ -58,8 +60,10 @@ const App = () => {
 
 
     geolocationOnChange(async geoInformation => {
-        const { coords } = geoInformation
-        await getGeolocation({ lat: coords.latitude, lon: coords.longitude })
+        if (canReloadGeo) {
+            const { coords } = geoInformation
+            await getGeolocation({ lat: coords.latitude, lon: coords.longitude })
+        }
     })
 
     useEffect(() => {
