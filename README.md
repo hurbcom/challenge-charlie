@@ -127,7 +127,7 @@ Para fazer o build dos arquivos na pasta raiz do projeto:
    ```sh
    npm install
    ```
-2. Execute como desenvolvedor
+2. Execute o script de build
    ```sh
    npm run build
    ```
@@ -146,9 +146,9 @@ Com o [Docker Compose](https://docs.docker.com/compose/gettingstarted/) instalad
    Executando pela primeira vez serão instaladas todas as dependências
 2. Para acessar a aplicação basta abrir no seu navegador http://localhost:8080 
 3. Caso queira parar o container basta executar
-```sh
-   docker-compose stop
-   ```
+    ```sh
+    docker-compose stop
+    ```
 <p align="right">(<a href="#top">Voltar para o topo</a>)</p>
 
 ### Exemplos de uso
@@ -201,7 +201,7 @@ exibida a seguinte mensagem "_challenge-charlie-web-1  | INFO: Accepting connect
 do container, que é mapeada para a 8080, sendo esta a necessária para acessar pelo seu navegador.
 
 * Para realizar a pesquisa é necessário digitar no campo e pressionar a tecla "_Enter_"
-* Ao clicar fora do campo de pesquisa o valor do mesmo é alterado para o valor da última pesquisa caso haja algum valor 
+* Ao clicar fora do campo de pesquisa o valor do mesmo é alterado para o valor da última pesquisa, caso haja algum valor
 sendo digitado no momento
 * Se for digitado apenas o estado ou país no campo de pesquisa, a aplicação exibirá a previsão para o estado ou um estado do país respectivamente.
 * O [cors-anywhere](https://github.com/Rob--W/cors-anywhere) possui um controle anti-automação ( limite de requisições ), caso a aplicação
