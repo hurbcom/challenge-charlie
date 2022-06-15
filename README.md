@@ -120,7 +120,7 @@ Para um desenvolvimento mais produtivo da aplicação, o projeto conta com um ho
 
 ### Iniciando como produção
 
-É possível servir os arquivos diretamente para um servidor utilizando pacotes como o [Serve](https://www.npmjs.com/package/serve) ou [Nginix](https://nginx.org/en/docs/).
+É possível servir os arquivos diretamente para um servidor utilizando pacotes como o [Serve](https://www.npmjs.com/package/serve) ou [Nginx](https://nginx.org/en/docs/).
 Para fazer o build dos arquivos na pasta raiz do projeto:
 
 1. Instale as dependências
