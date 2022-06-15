@@ -30,13 +30,13 @@ const selectWeatherColor = (temp, lvl, defaultColor = false) => {
         lt: {
             cold: ({ backgroundColor: "rgba(32, 63, 120, 0.2)" }),
             nice: ({ backgroundColor: "rgba(245, 203, 14, 0.39)" }),
-            hot: ({ backgroundColor: "rgba(158, 52, 26, 0.292)" }),
+            hot: ({ backgroundColor: "rgba(158, 26, 26, 0.516)" }),
             default: ({ backgroundColor: "rgba(81, 80, 79, 0.473)" }),
         },
         md: {
             cold: ({ backgroundColor: "rgba(7, 36, 90, 0.495)" }),
             nice: ({ backgroundColor: "rgba(188, 153, 26, 0.490)" }),
-            hot: ({ backgroundColor: "rgba(90, 24, 8, 0.473)" }),
+            hot: ({ backgroundColor: "rgba(90, 24, 8, 0.577)" }),
             default: ({ backgroundColor: "rgba(81, 80, 79, 0.632)" })
         },
         hd: {
