@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: blueskiy-weather-prod
+    image: blueskiy-weather-prod
+    build:
+      context: .
+      target: production
+    ports:
+      - 80:80
