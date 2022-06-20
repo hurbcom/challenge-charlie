@@ -2,7 +2,7 @@
 
 [[English](README.md) | [Portuguese](README.pt.md)]
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./example.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
 
 Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
 
