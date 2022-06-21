@@ -43,5 +43,6 @@
     "file-loader": "^6.2.0",
     "husky": "^8.0.1",
     "prettier": "^2.7.1"
-  }
+  },
+  "proxy": "https://www.bing.com"
 }

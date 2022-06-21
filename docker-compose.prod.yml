@@ -8,4 +8,4 @@ services:
       context: .
       target: production
     ports:
-      - 80:80
+      - 3001:3001
