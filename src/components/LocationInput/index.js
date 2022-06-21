@@ -5,7 +5,7 @@ import Compass from '../../assets/svg/compass.svg';
 export const LocationInput = () => {
   return (
     <InputContainer>
-      <img src={Compass} alt="compass" />
+      <img src={Compass} alt="compass icon" />
       <Input />
     </InputContainer>
   );

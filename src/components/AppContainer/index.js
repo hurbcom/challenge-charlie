@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { getBackgroundImage } from '../../services/background';
 import { App } from '../App';
+import { Loading } from '../Loading';
 
 export const AppContainer = () => {
   const [backgroundImage, setBackgroundImage] = useState(undefined);
@@ -17,7 +18,7 @@ export const AppContainer = () => {
           <App />
         </Container>
       ) : (
-        'Loading...'
+        <Loading />
       )}
     </React.Fragment>
   );

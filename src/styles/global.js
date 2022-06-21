@@ -17,6 +17,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #212026;
     -webkit-font-smoothing: antialiased;
   }
 
