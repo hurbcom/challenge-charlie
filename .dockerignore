@@ -2,3 +2,4 @@
 .eslintignore
 .eslintrc.json
 build
+.github/

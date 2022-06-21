@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { getBackgroundImage } from '../../services/background';
+import { App } from '../App';
 
 export const AppContainer = () => {
   const [backgroundImage, setBackgroundImage] = useState(undefined);
@@ -12,7 +13,9 @@ export const AppContainer = () => {
   return (
     <React.Fragment>
       {backgroundImage ? (
-        <Container backgroundImage={backgroundImage} />
+        <Container backgroundImage={backgroundImage}>
+          <App />
+        </Container>
       ) : (
         'Loading...'
       )}
