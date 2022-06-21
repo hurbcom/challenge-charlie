@@ -18,7 +18,7 @@ export const Container = styled.div`
   height: 100vh;
   background-size: cover;
   background-position: center;
-  animation: ${fadeIn} 400ms linear normal;
+  animation: ${fadeIn} 300ms linear normal;
   background-image: ${({ backgroundImage }) =>
     backgroundImage ? `url(${backgroundImage})` : 'none'};
 `;
