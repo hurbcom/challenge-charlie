@@ -1,14 +1,6 @@
 version: "3.8"
 
 services:
-  proxy:
-    container_name: developmentproxy
-    image: developmentproxy
-    build:
-      context: .
-      target: developmentproxy
-    ports:
-      - 80:80
   app:
     container_name: blueskiy-weather-dev
     image: blueskiy-weather-dev
