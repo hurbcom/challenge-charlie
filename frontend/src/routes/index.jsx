@@ -1,26 +1,20 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate
-  } from "react-router-dom";
-
-import {
-    DashBoardStyle,
-    Page
-  } from './styles'
-  
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import HomePage from "../pages/homePage";
+import { DashBoardStyle, Page} from './styles'
+import { useAuth } from "../context/auth";
 const RoutesApp = () => { 
 
+  const { backgroundUrl } = useAuth()
+  
   return(
     <BrowserRouter>
       <DashBoardStyle> 
-          <Page>
+          <Page backgroundUrl={backgroundUrl}>
             <Routes>
-              <Route path="/" element={""} />
+              <Route path="/home" element={<HomePage />} />
               <Route
                 path="*"
-                element={<Navigate to="/" replace />}
+                element={<Navigate to="/home" replace />}
               />
             </Routes>
           </Page>

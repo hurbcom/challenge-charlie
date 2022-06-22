@@ -1,8 +1,13 @@
+import { AuthProvider } from "./context/auth";
+import RoutesApp from "./routes";
+import GlobalStyle from './theme/globalStyles';
+
 function App() {
   return (
-    <div className="App">
-  
-    </div>
+    <AuthProvider>
+      <GlobalStyle />
+      <RoutesApp />
+    </AuthProvider>
   );
 }
 
