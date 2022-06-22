@@ -1,16 +1,13 @@
 name: Trigger auto deployment for Weather App
 
-# When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
   push:
     branches: 
-      [ master ]
+      [master]
     paths:
     - '**'
-    - '.github/workflows/testweather-AutoDeployTrigger-83bbda7d-f376-4084-8508-ae17cc95c242.yml'
+    - '.github/workflows/continuous_deployment.yml'
 
-  # Allow mannually trigger 
   workflow_dispatch:      
 
 jobs:
@@ -40,7 +37,6 @@ jobs:
           context: ./
           target: production
 
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -50,7 +46,6 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.TESTWEATHER_AZURE_CREDENTIALS }}
-
 
       - name: Deploy to containerapp
         uses: azure/CLI@v1
