@@ -30,4 +30,10 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    color: #cfcfcf;
+    font-weight: 400;
+    font-style: italic;
+  }
 `;
