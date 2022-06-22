@@ -6,7 +6,7 @@ export const LocationInput = () => {
   return (
     <InputContainer>
       <img src={Compass} alt="compass icon" />
-      <Input />
+      <Input placeholder="digite uma localização..." />
     </InputContainer>
   );
 };
