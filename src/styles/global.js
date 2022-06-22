@@ -18,9 +18,11 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     display: flex;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     background-color: #212026;
+    font-family: 'Overpass', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -28,14 +30,10 @@ export const GlobalStyle = createGlobalStyle`
   input,
   textarea,
   button {
-    font: 400 1rem sans-serif;
+    font: 400 1rem 'Overpass', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 600;
-  }
-
-  input {
-    font-family: 'Overpass', sans-serif;
   }
 `;
