@@ -23,7 +23,7 @@ export const WeatherContainer = styled.div`
   width: 100%;
   padding: 1rem;
   transition: all 300ms ease-in;
-  height: ${({ isOpen }) => (isOpen ? '33rem' : '10rem')};
+
   cursor: ${({ isOpen }) => (isOpen ? 'default' : 'pointer')};
   ${({ id }) =>
     id === 1
@@ -32,22 +32,25 @@ export const WeatherContainer = styled.div`
 
   ${media.mobileS} {
     flex-direction: column;
-    height: ${({ isOpen }) => (isOpen ? '66%' : '13.3%')};
+    height: ${({ isOpen }) => (isOpen ? '27rem' : '5.3rem')};
   }
 
   ${media.mobileM} {
-    height: ${({ isOpen }) => (isOpen ? '31rem' : '13.3%')};
+    height: ${({ isOpen }) => (isOpen ? '31rem' : '5.85rem')};
+  }
+
+  ${media.tablet} {
+    flex-direction: row;
+    height: ${({ isOpen }) => (isOpen ? '33rem' : '10rem')};
   }
 `;
 
 export const IconWrapper = styled.div`
-  flex: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
 
   img {
-    height: 28rem;
     animation: ${fadeIn} 600ms linear normal;
   }
 
@@ -63,6 +66,14 @@ export const IconWrapper = styled.div`
       height: 16rem;
     }
   }
+
+  ${media.tablet} {
+    flex: 1.5;
+
+    img {
+      height: 28rem;
+    }
+  }
 `;
 
 export const WeatherInfo = styled.div`
@@ -74,19 +85,21 @@ export const WeatherInfo = styled.div`
   flex: 1;
   color: #fff;
   height: 100%;
-  font-size: 2rem;
   position: relative;
-  padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
 
   ${media.mobileS} {
     font-size: 1.1rem;
     margin-top: 0.5rem;
-    padding-bottom: ${({ isOpen }) => (isOpen ? '1.2rem' : '1rem')};
+    padding-bottom: ${({ isOpen }) => (isOpen ? '1.2rem' : '0')};
   }
 
   ${media.mobileM} {
     margin-top: 0;
-    flex-direction: column;
+  }
+
+  ${media.tablet} {
+    font-size: 2rem;
+    padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
   }
 `;
 
@@ -107,7 +120,6 @@ export const TopInfo = styled.div`
   button {
     color: #fff;
     border: none;
-    font-size: 3rem;
     cursor: pointer;
     text-align: left;
     background: transparent;
@@ -123,22 +135,32 @@ export const TopInfo = styled.div`
       font-size: 1.2rem;
     }
   }
+
+  ${media.tablet} {
+    align-items: flex-start;
+    button {
+      font-size: 3rem;
+    }
+  }
 `;
 
 export const MidInfo = styled.div`
   display: flex;
   flex-direction: column;
 
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
   animation: ${fadeIn} 600ms linear normal;
 
   ${media.mobileS} {
-    width: 100%;
     margin: 1rem 0;
     font-weight: bold;
     font-size: 1.3rem;
     align-items: center;
+  }
+
+  ${media.tablet} {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
   }
 `;
 
@@ -150,5 +172,9 @@ export const BottomInfo = styled.div`
   ${media.mobileS} {
     width: 100%;
     align-items: center;
+  }
+
+  ${media.tablet} {
+    align-items: flex-start;
   }
 `;
