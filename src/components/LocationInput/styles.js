@@ -17,7 +17,16 @@ export const InputContainer = styled.div`
     }
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
+    height: 6rem;
+    padding-left: 1rem;
+
+    img {
+      width: 3.8rem;
+    }
+  }
+
+  ${media.desktop} {
     height: 8rem;
     padding-left: 1.3rem;
 
@@ -53,7 +62,12 @@ export const Input = styled.input`
     padding: 1rem 0.8rem 0.8rem 0.8rem;
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
+    font-size: 2.3rem;
+    padding: 1rem 0 0.6rem 1rem;
+  }
+
+  ${media.desktop} {
     font-size: 3.5rem;
     padding: 2rem 1.5rem 1.5rem 1.5rem;
   }
