@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../styles/devices';
 
 export const Container = styled.div`
   display: flex;
@@ -8,4 +9,8 @@ export const Container = styled.div`
   width: 50vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
+
+  ${media.mobileS} {
+    width: 100vw;
+  }
 `;
