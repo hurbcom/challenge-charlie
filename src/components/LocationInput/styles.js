@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../styles/devices';
 
 export const InputContainer = styled.div`
   display: flex;
@@ -11,6 +12,15 @@ export const InputContainer = styled.div`
 
   img {
     width: 5.5rem;
+  }
+
+  ${media.mobileS} {
+    height: 3rem;
+    padding-left: 0.7rem;
+
+    img {
+      width: 2rem;
+    }
   }
 `;
 
@@ -35,5 +45,10 @@ export const Input = styled.input`
     color: #cfcfcf;
     font-weight: 400;
     font-style: italic;
+  }
+
+  ${media.mobileS} {
+    font-size: 1.2rem;
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
   }
 `;

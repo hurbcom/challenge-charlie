@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { media } from '../../styles/devices';
 
 const fadeIn = keyframes`
   from {
@@ -28,6 +29,11 @@ export const WeatherContainer = styled.div`
     id === 1
       ? 'background-color: rgba(255, 234, 5, 0.6);'
       : conditionalBackground};
+
+  ${media.mobileS} {
+    flex-direction: column;
+    height: ${({ isOpen }) => (isOpen ? '66%' : '13.3%')};
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -39,6 +45,13 @@ export const IconWrapper = styled.div`
   img {
     height: 28rem;
     animation: ${fadeIn} 600ms linear normal;
+  }
+
+  ${media.mobileS} {
+    flex: 1;
+    img {
+      height: 11rem;
+    }
   }
 `;
 
@@ -54,6 +67,12 @@ export const WeatherInfo = styled.div`
   font-size: 2rem;
   position: relative;
   padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
+
+  ${media.mobileS} {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    padding-bottom: ${({ isOpen }) => (isOpen ? '1.2rem' : '1rem')};
+  }
 `;
 
 export const TopInfo = styled.div`
@@ -78,6 +97,17 @@ export const TopInfo = styled.div`
     text-align: left;
     background: transparent;
   }
+
+  ${media.mobileS} {
+    width: 100%;
+    padding-top: 0;
+    position: relative;
+    align-items: center;
+
+    button {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export const MidInfo = styled.div`
@@ -87,10 +117,23 @@ export const MidInfo = styled.div`
   font-size: 3rem;
   margin-bottom: 1.5rem;
   animation: ${fadeIn} 600ms linear normal;
+
+  ${media.mobileS} {
+    width: 100%;
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1.3rem;
+    align-items: center;
+  }
 `;
 
 export const BottomInfo = styled.div`
   display: flex;
   flex-direction: column;
   animation: ${fadeIn} 600ms linear normal;
+
+  ${media.mobileS} {
+    width: 100%;
+    align-items: center;
+  }
 `;
