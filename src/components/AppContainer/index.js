@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
-import { useBackground } from '../../services/background';
 import { App, Loading, Error } from '../';
+import { useBackground } from '../../services/hooks/useBackground';
 
 export const AppContainer = () => {
   const { backgroundImage, isLoading, isSuccess, isError } = useBackground();
