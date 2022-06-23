@@ -1,13 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import { fadeIn } from '../../styles/animations';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
