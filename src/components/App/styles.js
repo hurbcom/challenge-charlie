@@ -6,11 +6,14 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
-  width: 50vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
 
   ${media.mobileS} {
     width: 100vw;
+  }
+
+  ${media.tablet} {
+    width: 50vw;
   }
 `;

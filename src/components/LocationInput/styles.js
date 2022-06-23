@@ -6,13 +6,7 @@ export const InputContainer = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 9.1rem;
-  padding-left: 1.3rem;
   background-color: rgba(255, 255, 255, 0.9);
-
-  img {
-    width: 5.5rem;
-  }
 
   ${media.mobileS} {
     height: 3rem;
@@ -20,6 +14,15 @@ export const InputContainer = styled.div`
 
     img {
       width: 2rem;
+    }
+  }
+
+  ${media.tablet} {
+    height: 8rem;
+    padding-left: 1.3rem;
+
+    img {
+      width: 5.5rem;
     }
   }
 `;
@@ -33,9 +36,7 @@ export const Input = styled.input`
   height: 100%;
   border: none;
   font-weight: 600;
-  font-size: 3.5rem;
   background-color: transparent;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
 
   &:focus {
     outline: none;
@@ -50,5 +51,10 @@ export const Input = styled.input`
   ${media.mobileS} {
     font-size: 1.2rem;
     padding: 1rem 0.8rem 0.8rem 0.8rem;
+  }
+
+  ${media.tablet} {
+    font-size: 3.5rem;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
   }
 `;
