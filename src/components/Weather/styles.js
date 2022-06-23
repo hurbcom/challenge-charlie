@@ -11,8 +11,8 @@ const fadeIn = keyframes`
 `;
 
 const conditionalBackground = css`
-  background-color: ${({ id }) =>
-    id === 2 ? 'rgba(255, 221, 0, 0.8);' : 'rgba(204, 177, 0, 0.7);'};
+  background-color: ${({ theme, id }) =>
+    id === 2 ? theme.normal.secondDay : theme.normal.thirdDay};
 `;
 
 export const WeatherContainer = styled.div`
@@ -25,9 +25,10 @@ export const WeatherContainer = styled.div`
   transition: all 300ms ease-in;
 
   cursor: ${({ isOpen }) => (isOpen ? 'default' : 'pointer')};
-  ${({ id }) =>
+
+  ${({ theme, id }) =>
     id === 1
-      ? 'background-color: rgba(255, 234, 5, 0.6);'
+      ? `background-color: ${theme.normal.firstDay}`
       : conditionalBackground};
 
   ${media.mobileS} {
