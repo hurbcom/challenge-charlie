@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { rotate } from '../../styles/animations';
 
-export const LoadingContainer = styled.div`
+export const ErrorContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 
   width: 100vw;
@@ -11,6 +11,11 @@ export const LoadingContainer = styled.div`
 
   img {
     width: 14rem;
-    animation: ${rotate} 17s linear infinite;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #fff;
+    font-size: 2rem;
   }
 `;
