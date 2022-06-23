@@ -40,9 +40,13 @@ export const WeatherContainer = styled.div`
     height: ${({ isOpen }) => (isOpen ? '31rem' : '5.85rem')};
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     flex-direction: row;
     height: ${({ isOpen }) => (isOpen ? '31rem' : '8.6rem')};
+  }
+
+  ${media.laptop} {
+    height: ${({ isOpen }) => (isOpen ? '58vh' : '15vh')};
   }
 
   ${media.desktop} {
@@ -61,7 +65,7 @@ export const IconWrapper = styled.div`
 
   ${media.mobileS} {
     flex: 1;
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
 
     img {
       height: 11rem;
@@ -74,9 +78,9 @@ export const IconWrapper = styled.div`
     }
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     flex: 1.5;
-    display: unset;
+    display: flex;
 
     img {
       height: 23rem;
@@ -111,10 +115,14 @@ export const WeatherInfo = styled.div`
     margin-top: ${({ isOpen }) => (isOpen ? '0' : '0.3rem')};
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     font-size: 1.8rem;
     justify-content: flex-end;
     padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
+  }
+
+  ${media.laptop} {
+    padding-bottom: ${({ isOpen }) => (isOpen ? '3rem' : '1rem')};
   }
 
   ${media.desktop} {
@@ -151,7 +159,7 @@ export const TopInfo = styled.div`
     }
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     top: 0;
     padding-top: 1rem;
     position: absolute;
@@ -160,6 +168,10 @@ export const TopInfo = styled.div`
     button {
       font-size: 2.2rem;
     }
+  }
+
+  ${media.laptop} {
+    ${({ isOpen }) => (isOpen ? 'padding-top: 1rem' : 'padding-top: 0')}
   }
 
   ${media.desktop} {
@@ -183,7 +195,7 @@ export const MidInfo = styled.div`
     align-items: center;
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     font-size: 2.1rem;
     margin-bottom: 1.5rem;
     align-items: flex-start;
@@ -205,7 +217,7 @@ export const BottomInfo = styled.div`
     align-items: center;
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     align-items: flex-start;
   }
 `;

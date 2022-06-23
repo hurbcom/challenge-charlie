@@ -17,7 +17,7 @@ export const InputContainer = styled.div`
     }
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     height: 6rem;
     padding-left: 1rem;
 
@@ -62,7 +62,7 @@ export const Input = styled.input`
     padding: 1rem 0.8rem 0.8rem 0.8rem;
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     font-size: 2.3rem;
     padding: 1rem 0 0.6rem 1rem;
   }

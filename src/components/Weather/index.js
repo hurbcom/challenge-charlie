@@ -19,7 +19,7 @@ export const Weather = props => {
         {isOpen && <img src={SunSVG} alt="sun icon" />}
       </IconWrapper>
       <WeatherInfo isOpen={isOpen}>
-        <TopInfo>
+        <TopInfo isOpen={isOpen}>
           <span>{day}</span>
           <button>32ºC</button>
         </TopInfo>
