@@ -1,11 +1,11 @@
 import React from 'react';
 import SunSVG from '../../assets/svg/sun.svg';
-import { Container } from './styles';
+import { LoadingContainer } from './styles';
 
 export const Loading = () => {
   return (
-    <Container>
+    <LoadingContainer>
       <img src={SunSVG} alt="sun icon" />
-    </Container>
+    </LoadingContainer>
   );
 };

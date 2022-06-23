@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from './styles';
-import { getBackgroundImage } from '../../services/background';
-import { App } from '../App';
-import { Loading } from '../Loading';
+import { useBackground } from '../../services/background';
+import { App, Loading, Error } from '../';
 
 export const AppContainer = () => {
-  const [backgroundImage, setBackgroundImage] = useState(undefined);
+  const { backgroundImage, isLoading, isSuccess, isError } = useBackground();
 
-  useEffect(() => {
-    getBackgroundImage(setBackgroundImage);
-  }, []);
+  if (isLoading) {
+    return <Loading />;
+  }
 
-  return (
-    <React.Fragment>
-      {backgroundImage ? (
-        <Container backgroundImage={backgroundImage}>
-          <App />
-        </Container>
-      ) : (
-        <Loading />
-      )}
-    </React.Fragment>
-  );
+  if (isError) {
+    return <Error />;
+  }
+
+  if (isSuccess) {
+    return (
+      <Container backgroundImage={backgroundImage}>
+        <App />
+      </Container>
+    );
+  }
 };
