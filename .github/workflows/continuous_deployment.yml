@@ -1,16 +1,10 @@
 name: Trigger auto deployment for Weather App
 
 on:
-  push:
-    branches: 
-      [master]
-    paths:
-    - '**'
-    - '.github/workflows/continuous_deployment.yml'
   workflow_run:
     workflows: ['Weather App CI']
-    types:
-      - completed
+    types: [completed]
+    branches: [master]
 
 jobs:
   build:
