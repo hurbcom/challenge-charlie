@@ -13,7 +13,7 @@ export const Container = styled.div`
     width: 100vw;
   }
 
-  ${media.laptop} {
+  ${media.laptopL} {
     width: 70vw;
   }
 
