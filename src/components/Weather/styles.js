@@ -40,8 +40,12 @@ export const WeatherContainer = styled.div`
     height: ${({ isOpen }) => (isOpen ? '31rem' : '5.85rem')};
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
     flex-direction: row;
+    height: ${({ isOpen }) => (isOpen ? '31rem' : '8.6rem')};
+  }
+
+  ${media.desktop} {
     height: ${({ isOpen }) => (isOpen ? '33rem' : '10rem')};
   }
 `;
@@ -57,6 +61,8 @@ export const IconWrapper = styled.div`
 
   ${media.mobileS} {
     flex: 1;
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+
     img {
       height: 11rem;
     }
@@ -68,9 +74,16 @@ export const IconWrapper = styled.div`
     }
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
     flex: 1.5;
+    display: unset;
 
+    img {
+      height: 23rem;
+    }
+  }
+
+  ${media.desktop} {
     img {
       height: 28rem;
     }
@@ -81,7 +94,7 @@ export const WeatherInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
 
   flex: 1;
   color: #fff;
@@ -90,16 +103,21 @@ export const WeatherInfo = styled.div`
 
   ${media.mobileS} {
     font-size: 1.1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     padding-bottom: ${({ isOpen }) => (isOpen ? '1.2rem' : '0')};
   }
 
   ${media.mobileM} {
-    margin-top: 0;
+    margin-top: ${({ isOpen }) => (isOpen ? '0' : '0.3rem')};
   }
 
-  ${media.tablet} {
-    font-size: 2rem;
+  ${media.laptop} {
+    font-size: 1.8rem;
+    justify-content: flex-end;
+    padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
+  }
+
+  ${media.desktop} {
     padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
   }
 `;
@@ -133,11 +151,18 @@ export const TopInfo = styled.div`
     }
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
     top: 0;
     padding-top: 1rem;
     position: absolute;
     align-items: flex-start;
+
+    button {
+      font-size: 2.2rem;
+    }
+  }
+
+  ${media.desktop} {
     button {
       font-size: 3rem;
     }
@@ -158,10 +183,15 @@ export const MidInfo = styled.div`
     align-items: center;
   }
 
-  ${media.tablet} {
-    font-size: 3rem;
+  ${media.laptop} {
+    font-size: 2.1rem;
     margin-bottom: 1.5rem;
     align-items: flex-start;
+  }
+
+  ${media.desktop} {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -175,7 +205,7 @@ export const BottomInfo = styled.div`
     align-items: center;
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
     align-items: flex-start;
   }
 `;

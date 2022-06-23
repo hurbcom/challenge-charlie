@@ -15,7 +15,9 @@ export const Weather = props => {
 
   return (
     <WeatherContainer id={id} onClick={setId(id)} isOpen={isOpen}>
-      <IconWrapper>{isOpen && <img src={SunSVG} alt="sun icon" />}</IconWrapper>
+      <IconWrapper isOpen={isOpen}>
+        {isOpen && <img src={SunSVG} alt="sun icon" />}
+      </IconWrapper>
       <WeatherInfo isOpen={isOpen}>
         <TopInfo>
           <span>{day}</span>

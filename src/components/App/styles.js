@@ -13,7 +13,11 @@ export const Container = styled.div`
     width: 100vw;
   }
 
-  ${media.tablet} {
+  ${media.laptop} {
+    width: 70vw;
+  }
+
+  ${media.desktop} {
     width: 50vw;
   }
 `;
