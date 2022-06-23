@@ -107,10 +107,6 @@ export const TopInfo = styled.div`
   display: flex;
   flex-direction: column;
 
-  position: absolute;
-  top: 0;
-  padding-top: 1rem;
-
   span,
   button {
     font-weight: 600;
@@ -137,6 +133,9 @@ export const TopInfo = styled.div`
   }
 
   ${media.tablet} {
+    top: 0;
+    padding-top: 1rem;
+    position: absolute;
     align-items: flex-start;
     button {
       font-size: 3rem;
@@ -151,6 +150,7 @@ export const MidInfo = styled.div`
   animation: ${fadeIn} 600ms linear normal;
 
   ${media.mobileS} {
+    width: 100%;
     margin: 1rem 0;
     font-weight: bold;
     font-size: 1.3rem;
