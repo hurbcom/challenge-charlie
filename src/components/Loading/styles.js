@@ -1,14 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
+import styled from 'styled-components';
+import { rotate } from '../../styles/animations';
 
 export const Container = styled.div`
   display: flex;
