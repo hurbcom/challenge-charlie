@@ -34,6 +34,10 @@ export const WeatherContainer = styled.div`
     flex-direction: column;
     height: ${({ isOpen }) => (isOpen ? '66%' : '13.3%')};
   }
+
+  ${media.mobileM} {
+    height: ${({ isOpen }) => (isOpen ? '67%' : '13.3%')};
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -51,6 +55,12 @@ export const IconWrapper = styled.div`
     flex: 1;
     img {
       height: 11rem;
+    }
+  }
+
+  ${media.mobileM} {
+    img {
+      height: 16rem;
     }
   }
 `;
@@ -72,6 +82,11 @@ export const WeatherInfo = styled.div`
     font-size: 1.1rem;
     margin-top: 0.5rem;
     padding-bottom: ${({ isOpen }) => (isOpen ? '1.2rem' : '1rem')};
+  }
+
+  ${media.mobileM} {
+    margin-top: 0;
+    flex-direction: column;
   }
 `;
 
