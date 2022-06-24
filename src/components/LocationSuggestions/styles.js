@@ -8,46 +8,6 @@ import {
   ComboboxOption,
 } from '@reach/combobox';
 
-export const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  padding-left: 0;
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.9);
-
-  img {
-    position: absolute;
-  }
-
-  ${media.mobileS} {
-    height: 3.3rem;
-
-    img {
-      width: 2rem;
-      left: 0.5rem;
-    }
-  }
-
-  ${media.laptopL} {
-    height: 6rem;
-
-    img {
-      width: 3.8rem;
-    }
-  }
-
-  ${media.desktop} {
-    height: 8rem;
-
-    img {
-      left: 1.2rem;
-      width: 5.5rem;
-    }
-  }
-`;
-
 export const StyledCombobox = styled(Combobox)`
   width: 100%;
 `;
