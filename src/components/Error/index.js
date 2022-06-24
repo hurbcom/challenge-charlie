@@ -5,7 +5,7 @@ import { ErrorContainer } from './styles';
 export const Error = () => {
   return (
     <ErrorContainer>
-      <img src={ThunderSVG} alt="sun icon" />
+      <img src={ThunderSVG} alt="storm icon" />
       <p>Algo deu errado...</p>
     </ErrorContainer>
   );

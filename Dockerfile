@@ -15,7 +15,9 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install --production
 COPY . .
-RUN yarn build
+RUN --mount=type=secret,id=REACT_APP_GOOGLE_API_KEY \
+  export REACT_APP_GOOGLE_API_KEY=$(cat /run/secrets/REACT_APP_GOOGLE_API_KEY) && \
+  yarn build
 
 FROM nginx:stable-alpine AS production
 ENV NODE_ENV production

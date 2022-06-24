@@ -10,9 +10,8 @@
 /build
 
 # misc
-.DS_Store
 .env
+.env.production
 
-npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
