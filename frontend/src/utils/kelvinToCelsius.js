@@ -1,0 +1,1 @@
+export const convert = (temperature) => (temperature - 273).toFixed()

@@ -1,0 +1,1 @@
+export const convert = (temperature) => ((temperature-32)*5/9).toFixed()

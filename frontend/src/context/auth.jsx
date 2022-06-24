@@ -10,17 +10,17 @@ import getImage from '../service/backgroundBing'
     
     useEffect(() => {
       getImage(setBackgroundUrl)
-    }, [backgroundUrl])
+    }, [])
 
     useEffect(() => {
       navigator.geolocation.getCurrentPosition(function(position) {
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
-      })   
+      })
     }, [])
 
   return (
-    <AuthContext.Provider value={{lat, lon, backgroundUrl}}>
+    <AuthContext.Provider value={{lat, setLat, lon, setLon, backgroundUrl}}>
       {children}
     </AuthContext.Provider>
   )};

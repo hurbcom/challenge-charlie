@@ -1,0 +1,1 @@
+export const convert = (temperature) => (1.8*temperature + 32).toFixed()

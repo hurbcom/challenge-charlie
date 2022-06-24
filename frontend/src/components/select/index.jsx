@@ -1,10 +1,11 @@
+import { MenuItem } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import {
   StyledTextField
-} from './styles';
+} from '../textField/styles';
 
-const TextField = ({
+const Select = ({
   autoComplete,
   autoFocus,
   children,
@@ -45,7 +46,6 @@ const TextField = ({
 }) => {
   return (
     <StyledTextField
-      autoComplete={autoComplete}
       autoFocus={autoFocus}
       classes={classes}
       color={color}
@@ -82,7 +82,7 @@ const TextField = ({
       rows={rows}
       maxRows={maxRows}
       minRows={minRows}
-      select={select}
+      select
       size={size}
       style={style}
       sx={sx}
@@ -90,8 +90,11 @@ const TextField = ({
       value={value}
       variant={variant}
       width={width}
-    />
+    >
+        <MenuItem>Teste</MenuItem>
+        <MenuItem>Teste</MenuItem>
+    </StyledTextField>
   )
 }
 
-export default TextField;
+export default Select;
