@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/combobox": "^0.17.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -11,7 +12,8 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.1",
     "react-scripts": "5.0.1",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "use-places-autocomplete": "^4.0.0"
   },
   "scripts": {
     "dev": "DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.dev.yml up -d",
