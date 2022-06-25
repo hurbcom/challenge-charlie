@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ErrorContainer = styled.div`
-  display: flex;
+  display: ${({ isWeather }) => (isWeather ? 'flex' : 'none')};
   align-items: center;
   flex-direction: column;
   justify-content: center;
 
   width: 100vw;
-  height: 85vh;
+  height: ${({ isWeather }) => (isWeather ? 'auto' : '85vh')};
 
   img {
     width: 14rem;

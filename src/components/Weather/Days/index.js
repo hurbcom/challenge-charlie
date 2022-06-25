@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useWeatherContext } from '../../../contexts/AppDataContext';
-import { useWeatherData } from '../../../services/hooks/useWeather';
+import { useGeolocation, useWeatherData } from '../../../services/hooks';
 import { DayWeather, Loading } from '../../index';
 
 export const Weather = () => {
@@ -8,9 +8,12 @@ export const Weather = () => {
   const setId = id => () => setCurrentId(id);
 
   const { coordinates } = useWeatherContext();
-  const { weatherData, isLoading } = useWeatherData(coordinates);
+  const { userCoordinates, isLoad } = useGeolocation();
 
-  if (isLoading) {
+  const coords = coordinates.lat ? coordinates : userCoordinates;
+  const { weatherData, isLoading, isError } = useWeatherData(coords);
+
+  if (isLoading || !isLoad) {
     return <Loading selectingLocation={true} />;
   }
 
@@ -24,12 +27,13 @@ export const Weather = () => {
             setId={setId}
             currentId={currentId}
             isLoading={isLoading}
-            day={element.day}
-            temperature={element.temperature}
-            description={element.description}
-            wind={element.wind}
-            humidity={element.humidity}
-            pressure={element.pressure}
+            isError={isError}
+            day={element?.day}
+            temperature={element?.temperature}
+            description={element?.description}
+            wind={element?.wind}
+            humidity={element?.humidity}
+            pressure={element?.pressure}
           />
         );
       })}
