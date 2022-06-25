@@ -15,7 +15,7 @@ export const Weather = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       {weatherData.map((element, index) => {
         return (
           <DayWeather
@@ -33,6 +33,6 @@ export const Weather = () => {
           />
         );
       })}
-    </>
+    </React.Fragment>
   );
 };
