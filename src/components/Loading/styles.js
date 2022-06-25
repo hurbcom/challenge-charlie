@@ -6,8 +6,8 @@ export const LoadingContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 100vw;
-  height: 85vh;
+  width: ${({ selectingLocation }) => (selectingLocation ? 'auto' : '100vw')};
+  height: ${({ selectingLocation }) => (selectingLocation ? '50vh' : '85vh')};
 
   img {
     width: 14rem;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { MidInfoContainer } from './styles';
 
-export const MidInfo = () => {
+export const MidInfo = ({ description }) => {
   return (
     <MidInfoContainer>
-      <span>Ensolarado</span>
+      <span>{description}</span>
     </MidInfoContainer>
   );
 };

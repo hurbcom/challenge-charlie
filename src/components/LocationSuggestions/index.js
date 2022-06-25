@@ -10,6 +10,7 @@ import {
 import '@reach/combobox/styles.css';
 import { handleSelect } from './utils/handleSelect';
 import usePlacesAutoComplete from 'use-places-autocomplete';
+import { useWeatherContext } from '../../contexts/AppDataContext';
 
 export const LocationSuggestions = () => {
   const {
@@ -20,7 +21,10 @@ export const LocationSuggestions = () => {
     clearSuggestions,
   } = usePlacesAutoComplete();
 
-  const getCoord = address => handleSelect(setValue, clearSuggestions, address);
+  const { setCoordinates } = useWeatherContext();
+
+  const getCoord = address =>
+    handleSelect(address, setValue, clearSuggestions, setCoordinates);
 
   return (
     <StyledCombobox onSelect={getCoord}>

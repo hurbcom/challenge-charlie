@@ -1,12 +1,16 @@
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 
-export const handleSelect = async (setValue, clearSuggestions, address) => {
+export const handleSelect = async (
+  address,
+  setValue,
+  clearSuggestions,
+  setCoordinates,
+) => {
   setValue(address, false);
   clearSuggestions();
 
   const results = await getGeocode({ address });
-  const { lat, lng } = await getLatLng(results[0]);
+  const { lat, lng } = getLatLng(results[0]);
 
-  // eslint-disable-next-line
-  console.log('lat: ', lat, 'lng: ', lng);
+  setCoordinates({ lat: lat, lng: lng });
 };
