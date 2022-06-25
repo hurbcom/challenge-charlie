@@ -16,6 +16,10 @@ export const MidInfoContainer = styled.div`
 
   animation: ${fadeIn} 600ms linear normal;
 
+  span {
+    text-transform: capitalize;
+  }
+
   ${media.mobileS} {
     width: 100%;
     margin: 1rem 0;

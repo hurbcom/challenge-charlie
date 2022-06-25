@@ -3,4 +3,5 @@ export * from './MidInfo';
 export * from './BottomInfo';
 export * from './WeatherIcon';
 export * from './WeatherInfo';
-export * from './DayInfo';
+export * from './Days';
+export * from './Day';

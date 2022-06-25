@@ -31,6 +31,7 @@ jobs:
           tags: blueskiy/weatherapp:latest
           secrets: |
             "REACT_APP_GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}"
+            "REACT_APP_OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_KEY }}"
           file: ./Dockerfile
           context: ./
           target: production

@@ -2,9 +2,9 @@ import React from 'react';
 import SunSVG from '../../assets/svg/sun.svg';
 import { LoadingContainer } from './styles';
 
-export const Loading = () => {
+export const Loading = ({ selectingLocation }) => {
   return (
-    <LoadingContainer>
+    <LoadingContainer selectingLocation={selectingLocation}>
       <img src={SunSVG} alt="sun icon" />
     </LoadingContainer>
   );
