@@ -1,4 +1,4 @@
-const windDirections = ['N', 'NE', 'L', 'SE', 'S', 'SO', 'O', 'NO'];
+const windDirections = ['N', 'NE', 'L', 'SE', 'S', 'SO', 'O', 'NO', 'N'];
 
 export const formatData = data => {
   const currentDay = [
