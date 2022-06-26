@@ -11,6 +11,7 @@ import '@reach/combobox/styles.css';
 import { handleSelect } from './utils/handleSelect';
 import usePlacesAutoComplete from 'use-places-autocomplete';
 import { useWeatherContext } from '../../contexts/AppDataContext';
+import { useGeolocation } from '../../services/hooks';
 
 export const LocationSuggestions = () => {
   const {
@@ -22,6 +23,7 @@ export const LocationSuggestions = () => {
   } = usePlacesAutoComplete();
 
   const { setCoordinates } = useWeatherContext();
+  const { userLocation } = useGeolocation();
 
   const getCoord = address =>
     handleSelect(address, setValue, clearSuggestions, setCoordinates);
@@ -30,7 +32,7 @@ export const LocationSuggestions = () => {
     <StyledCombobox onSelect={getCoord}>
       <Input
         placeholder="digite uma localização..."
-        value={value}
+        value={userLocation ?? value}
         onChange={e => setValue(e.target.value)}
         disabled={!ready}
       />
