@@ -19,6 +19,5 @@ export const useReverseGeocoding = userCoords => {
   });
 
   const { userLocation } = formatUserLocation(data);
-
   return { userLocation };
 };

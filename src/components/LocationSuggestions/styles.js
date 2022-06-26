@@ -44,7 +44,7 @@ export const Input = styled(ComboboxInput)`
   }
 
   ${media.desktop} {
-    font-size: 3.5rem;
+    font-size: 3.3rem;
     padding: 2rem 1.5rem 1.5rem 7.5rem;
   }
 `;
