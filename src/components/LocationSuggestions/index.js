@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyledCombobox,
   Input,
@@ -28,11 +28,18 @@ export const LocationSuggestions = () => {
   const getCoord = address =>
     handleSelect(address, setValue, clearSuggestions, setCoordinates);
 
+  useEffect(() => {
+    if (userLocation) {
+      setValue(userLocation, false);
+      clearSuggestions();
+    }
+  }, [userLocation]);
+
   return (
     <StyledCombobox onSelect={getCoord}>
       <Input
         placeholder="digite uma localização..."
-        value={userLocation ?? value}
+        value={value}
         onChange={e => setValue(e.target.value)}
         disabled={!ready}
       />
