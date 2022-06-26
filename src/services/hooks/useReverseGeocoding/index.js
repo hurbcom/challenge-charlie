@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { formatUserLocation } from './utils/formatUserLocation';
 
 export const useReverseGeocoding = userCoords => {
   const latitude = userCoords?.lat;
@@ -17,9 +18,7 @@ export const useReverseGeocoding = userCoords => {
     return await axios.get(endpoint);
   });
 
-  const suburb = data?.data.results[0].components.suburb;
-  const city = data?.data.results[0].components.city;
-  const userLocation = suburb && city ? `${suburb}, ${city}` : undefined;
+  const { userLocation } = formatUserLocation(data);
 
   return { userLocation };
 };
