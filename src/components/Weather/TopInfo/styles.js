@@ -30,7 +30,7 @@ export const TopInfoContainer = styled.div`
     }
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     top: 0;
     padding-top: 1rem;
     position: absolute;

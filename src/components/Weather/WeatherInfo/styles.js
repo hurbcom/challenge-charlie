@@ -22,17 +22,9 @@ export const WeatherInfoContainer = styled.div`
     margin-top: ${({ isOpen }) => (isOpen ? '0' : '0.3rem')};
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     font-size: 1.8rem;
     justify-content: flex-end;
-    padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
-  }
-
-  ${media.laptop} {
     padding-bottom: ${({ isOpen }) => (isOpen ? '3rem' : '1rem')};
-  }
-
-  ${media.desktop} {
-    padding-bottom: ${({ isOpen }) => (isOpen ? '8rem' : '1rem')};
   }
 `;

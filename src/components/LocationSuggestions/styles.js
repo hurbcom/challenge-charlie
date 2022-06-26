@@ -38,7 +38,7 @@ export const Input = styled(ComboboxInput)`
     padding: 1rem 0.8rem 0.8rem 3rem;
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     font-size: 2.3rem;
     padding: 1rem 0 0.6rem 5rem;
   }

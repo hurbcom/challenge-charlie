@@ -26,7 +26,7 @@ export const IconWrapper = styled.div`
     }
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     flex: 1.5;
     display: flex;
 
