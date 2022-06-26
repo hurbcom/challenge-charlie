@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useReverseGeocoding } from '../index';
 
 export const useGeolocation = () => {
   const [location, setLocation] = useState({
@@ -33,5 +34,7 @@ export const useGeolocation = () => {
   }, []);
 
   const { userCoordinates, isLoad } = location;
-  return { userCoordinates, isLoad };
+  const { userLocation } = useReverseGeocoding(userCoordinates);
+
+  return { userCoordinates, isLoad, userLocation };
 };
