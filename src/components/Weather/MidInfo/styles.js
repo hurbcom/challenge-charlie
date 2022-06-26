@@ -28,7 +28,7 @@ export const MidInfoContainer = styled.div`
     align-items: center;
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     font-size: 2.1rem;
     margin-bottom: 1.5rem;
     align-items: flex-start;

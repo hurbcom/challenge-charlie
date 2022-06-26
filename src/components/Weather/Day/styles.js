@@ -24,23 +24,11 @@ export const WeatherContainer = styled.div`
 
   ${media.mobileS} {
     flex-direction: column;
-    height: ${({ isOpen }) => (isOpen ? '27rem' : '5.3rem')};
-  }
-
-  ${media.mobileM} {
-    height: ${({ isOpen }) => (isOpen ? '31rem' : '5.85rem')};
-  }
-
-  ${media.laptopL} {
-    flex-direction: row;
-    height: ${({ isOpen }) => (isOpen ? '31rem' : '8.6rem')};
+    height: ${({ isOpen }) => (isOpen ? '66vh' : '12.75vh')};
   }
 
   ${media.laptop} {
-    height: ${({ isOpen }) => (isOpen ? '58vh' : '15vh')};
-  }
-
-  ${media.desktop} {
-    height: ${({ isOpen }) => (isOpen ? '33rem' : '10rem')};
+    flex-direction: row;
+    height: ${({ isOpen }) => (isOpen ? '55.5vh' : '16vh')};
   }
 `;

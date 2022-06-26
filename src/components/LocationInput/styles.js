@@ -22,7 +22,7 @@ export const InputContainer = styled.div`
   }
 
   ${media.mobileS} {
-    height: 3.3rem;
+    height: 8.5vh;
 
     img {
       width: 2rem;
@@ -30,8 +30,8 @@ export const InputContainer = styled.div`
     }
   }
 
-  ${media.laptopL} {
-    height: 6rem;
+  ${media.laptop} {
+    height: 12.5vh;
 
     img {
       width: 3.8rem;
@@ -39,8 +39,6 @@ export const InputContainer = styled.div`
   }
 
   ${media.desktop} {
-    height: 8rem;
-
     img {
       left: 1.2rem;
       width: 5.5rem;
@@ -78,7 +76,7 @@ export const Input = styled(ComboboxInput)`
     padding: 1rem 0.8rem 0.8rem 3rem;
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     font-size: 2.3rem;
     padding: 1rem 0 0.6rem 5rem;
   }

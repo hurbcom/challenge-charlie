@@ -12,7 +12,7 @@ export const BottomInfoContainer = styled.div`
     align-items: center;
   }
 
-  ${media.laptopL} {
+  ${media.laptop} {
     align-items: flex-start;
   }
 `;
