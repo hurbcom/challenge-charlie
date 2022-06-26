@@ -1,7 +1,7 @@
 import React from 'react';
 import { WeatherIcon } from '../WeatherIcon';
 import { WeatherInfo } from '../WeatherInfo';
-import { Loading } from '../../Loading';
+import { Loading, Error } from '../../index';
 import { WeatherContainer } from './styles';
 
 export const DayWeather = ({
@@ -9,6 +9,7 @@ export const DayWeather = ({
   setId,
   currentId,
   isLoading,
+  isError,
   day,
   temperature,
   description,
@@ -20,6 +21,14 @@ export const DayWeather = ({
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return (
+      <WeatherContainer id={id} onClick={setId(id)} isOpen={isOpen}>
+        <Error isWeather={isOpen} />
+      </WeatherContainer>
+    );
   }
 
   return (
