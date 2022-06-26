@@ -24,7 +24,7 @@ export const WeatherInfoContainer = styled.div`
 
   ${media.laptop} {
     font-size: 1.8rem;
-    justify-content: flex-end;
-    padding-bottom: ${({ isOpen }) => (isOpen ? '13vh' : '1rem')};
+    justify-content: flex-start;
+    padding-top: ${({ isOpen }) => (isOpen ? '16vh' : '1rem')};
   }
 `;
