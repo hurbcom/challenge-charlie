@@ -27,6 +27,10 @@ export const WeatherContainer = styled.div`
     height: ${({ isOpen }) => (isOpen ? '31rem' : '8.6rem')};
   }
 
+  ${media.mobileM} {
+    height: ${({ isOpen }) => (isOpen ? '31rem' : '5.85rem')};
+  }
+
   ${media.laptop} {
     flex-direction: row;
     height: ${({ isOpen }) => (isOpen ? '55.5vh' : '16vh')};

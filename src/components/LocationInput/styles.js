@@ -22,7 +22,7 @@ export const InputContainer = styled.div`
   }
 
   ${media.mobileS} {
-    height: 8.5vh;
+    height: 3.3rem;
 
     img {
       width: 2rem;
