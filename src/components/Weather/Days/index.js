@@ -7,11 +7,14 @@ export const Weather = () => {
   const [currentId, setCurrentId] = useState(0);
   const setId = id => () => setCurrentId(id);
 
-  const { coordinates } = useWeatherContext();
+  const { coordinates, setTemperature } = useWeatherContext();
   const { userCoordinates, isLoad } = useGeolocation();
 
   const coords = coordinates.lat ? coordinates : userCoordinates;
-  const { weatherData, isLoading, isError } = useWeatherData(coords);
+  const { weatherData, isLoading, isError } = useWeatherData(
+    coords,
+    setTemperature,
+  );
 
   if (isLoading || !isLoad) {
     return <Loading selectingLocation={true} />;
@@ -24,6 +27,7 @@ export const Weather = () => {
           <DayWeather
             key={index}
             id={index}
+            elementType={typeof element}
             setId={setId}
             currentId={currentId}
             isLoading={isLoading}

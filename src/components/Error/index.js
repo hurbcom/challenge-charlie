@@ -6,7 +6,11 @@ export const Error = ({ isWeather }) => {
   return (
     <ErrorContainer isWeather={isWeather}>
       <img src={ThunderSVG} alt="storm icon" />
-      <p>Algo deu errado...</p>
+      <p>
+        Algo deu errado...
+        {isWeather &&
+          ' Talvez seu navegador não tenha suporte à geolocalização.'}
+      </p>
     </ErrorContainer>
   );
 };

@@ -6,7 +6,7 @@ export const ErrorContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  width: 100vw;
+  width: ${({ isWeather }) => (isWeather ? '70%' : '100vw')};
   height: ${({ isWeather }) => (isWeather ? 'auto' : '85vh')};
 
   img {
@@ -17,5 +17,6 @@ export const ErrorContainer = styled.div`
   p {
     color: #fff;
     font-size: 2rem;
+    text-align: center;
   }
 `;

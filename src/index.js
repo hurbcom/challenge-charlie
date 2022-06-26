@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AppContainer } from './components';
-import { GlobalStyle, theme } from './styles';
-import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { WeatherDataProvider } from './contexts/AppDataContext';
 
@@ -19,10 +18,8 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <WeatherDataProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <AppContainer />
-        </ThemeProvider>
+        <GlobalStyle />
+        <AppContainer />
       </WeatherDataProvider>
     </QueryClientProvider>
   </React.StrictMode>,

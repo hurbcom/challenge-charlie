@@ -16,6 +16,7 @@ export const DayWeather = ({
   wind,
   humidity,
   pressure,
+  elementType,
 }) => {
   const isOpen = id === currentId;
 
@@ -23,7 +24,7 @@ export const DayWeather = ({
     return <Loading />;
   }
 
-  if (isError) {
+  if (isError || elementType === 'number') {
     return (
       <WeatherContainer id={id} onClick={setId(id)} isOpen={isOpen}>
         <Error isWeather={isOpen} />
