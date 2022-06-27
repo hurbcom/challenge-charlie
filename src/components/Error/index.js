@@ -1,11 +1,11 @@
 import React from 'react';
-import ThunderSVG from '../../assets/svg/thunder.svg';
+import ThunderStormSVG from '../../assets/svg/thunderstorm.svg';
 import { ErrorContainer } from './styles';
 
 export const Error = ({ isWeather }) => {
   return (
     <ErrorContainer isWeather={isWeather}>
-      <img src={ThunderSVG} alt="storm icon" />
+      <img src={ThunderStormSVG} alt="storm icon" />
       <p>
         Algo deu errado...
         {isWeather &&

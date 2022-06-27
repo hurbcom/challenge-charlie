@@ -37,7 +37,7 @@ export const IconWrapper = styled.div`
 
   ${media.desktop} {
     img {
-      height: 28rem;
+      height: 25rem;
     }
   }
 `;

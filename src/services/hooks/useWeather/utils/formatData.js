@@ -9,6 +9,7 @@ export const formatData = (data, isError) => {
   const currentDay = [
     {
       day: 'hoje',
+      weatherId: data?.data.current.weather[0].id,
       temperature: data?.data.current.temp.toFixed(0),
       description: data?.data.current.weather[0].description,
       wind: {
@@ -30,6 +31,7 @@ export const formatData = (data, isError) => {
 
     const dayWeather = {
       day,
+      weatherId: curr.weather[0].id,
       temperature: curr.temp.day.toFixed(0),
       description: curr.weather[0].description,
       wind: {
