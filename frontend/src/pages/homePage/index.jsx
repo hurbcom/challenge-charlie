@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Container } from '../../components/container/styles'
 import TextField from '../../components/textField'
 import WeatherResult from '../../components/weatherResult'
-import directionIcon from '../../assets/44.svg'
+import directionIcon from '../../assets/directionIcon.svg'
 import { Icons, Results, Option } from './styles'
 import { useAuth } from '../../context/auth'
 import useDebounce from '../../hooks/useDebounce'
@@ -81,7 +81,6 @@ const HomePage = ( ) => {
             {CheckObj(options) &&
                 <Results>
                     {options.map((item, index) => {
-                        console.log(item)
                         return (
                             <Option key={index} onClick={() => {
                                 setLat(item.geometry.lat)

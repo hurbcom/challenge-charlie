@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '../../context/auth'
-import { convert } from '../../utils/kelvinToCelsius'
+import { convert } from '../../utils/kelvinConvert'
 import { ResultSpace, Labels, Values,
     Today, Tomorrow, AfterTomorrow, 
-    Icon
+    Icon, Columns, NotToday
  } from './styles'
 import { backgroundColor } from '../../utils/backgroundColor'
-import Clear from '../../assets/Clear.svg'
-import Clouds from '../../assets/44.svg'
-import Thunderstorm from '../../assets/44.svg'
-import Drizzle from '../../assets/44.svg'
-import Rain from '../../assets/44.svg'
 
 const WeatherResult = ({city}) => {
 
@@ -21,8 +16,10 @@ const WeatherResult = ({city}) => {
     const [tomorrow, setTomorrow] = useState()
     const [afterTomorrow, setAfterTomorrow] = useState()
     const [color, setColor] = useState('rgba(242, 241, 242, 1)')
+    const [colorTomorrow, setColorTomorrow] = useState('rgba(242, 241, 242, 1)')
+    const [colorAfterTomorrow, setColorAfterTomorrow] = useState('rgba(242, 241, 242, 1)')
     const [iconImg, setIconImg] = useState('Clear')
-    const [temp, setTemp] = useState(1.8*now + 32)
+    const [temp, setTemp] = useState(true) // true for celsius, false for fahrenheit
     
     const fetchWeather = async () => {
         await axios
@@ -38,15 +35,14 @@ const WeatherResult = ({city}) => {
             .then( response => {
                 setNow(response.data.current.temp)
                 setColor(backgroundColor(convert(response.data.current.temp)))
-                console.log(response.data.current.weather[0].main)
+                setColorTomorrow(backgroundColor(convert(response.data.daily[1].temp.day)))
+                setColorAfterTomorrow(backgroundColor(convert(response.data.daily[2].temp.day)))
                 setIconImg(`${response.data.current.weather[0].main}`)
                 setTodayInfos(response.data.daily[0])
                 setTomorrow(response.data.daily[1].temp.day)
                 setAfterTomorrow(response.data.daily[2].temp.day)
             })
     }
-
-    console.log(iconImg)
 
     useEffect(() => { 
         if(lat !== null && lon !== null) {
@@ -56,33 +52,50 @@ const WeatherResult = ({city}) => {
 
     if(city !== null & city !== undefined & city !== 'Carregando...') {
         return (
-            <ResultSpace style={{background: `${color}`}}>
-                <Today>
-                   <Icon src={require(`../../assets/${iconImg}.svg`)} />
-                    <Labels column upper>
-                        Hoje 
-                        <Values>
-                            {now && convert(now)}ºC
-                        </Values>
-                    </Labels>
-                    {todayInfos && 
-                        <Labels>
-                            <Values>
-                            {todayInfos.weather[0].description} <br />
-                             Vento: {todayInfos.humidity}KM/H <br />
-                             Humidade: {todayInfos.humidity}% <br />
-                             Pressão: {todayInfos.pressure}hPA <br />
+            <ResultSpace  style={{background: `${color}`}}>
+                <Today style={{background: `${color}`}}>
+                    <Columns>
+                        <Icon src={require(`../../assets/${iconImg}.svg`)} />
+                    </Columns>
+                    <Columns second>
+                        <Labels column upper>
+                            Hoje 
+                            <Values onClick={() => setTemp(!temp)} pointer>
+                                {now && convert(now, temp)}
                             </Values>
-                        </Labels>}
+                        </Labels>
+                        <Labels>
+                            {todayInfos.weather[0].description} <br />
+                        </Labels>
+                        {todayInfos && 
+                            <Labels>
+                                <Values>
+                                Vento: {todayInfos.humidity}KM/H <br />
+                                Humidade: {todayInfos.humidity}% <br />
+                                Pressão: {todayInfos.pressure}hPA <br />
+                                </Values>
+                            </Labels>}
+                    </Columns>
                 </Today>
-                <Tomorrow>
-                    Amanhã: {tomorrow && convert(tomorrow)}ºC
-                </Tomorrow> 
-    
-                <AfterTomorrow>
-                    Depois de amanhã: {afterTomorrow && convert(afterTomorrow)}ºC
-                </AfterTomorrow> <br />
-                
+                <NotToday>
+                    <Tomorrow style={{background: `${colorTomorrow}`}}>
+                        <Labels notToday upper column>
+                            Amanhã
+                            <Values onClick={() => setTemp(!temp)} pointer big>
+                                {tomorrow && convert(tomorrow, temp)}
+                            </Values>
+                        </Labels>
+                    </Tomorrow> 
+        
+                    <AfterTomorrow  style={{background: `${colorAfterTomorrow}`}}>
+                        <Labels  notToday upper column>
+                            Depois de amanhã 
+                            <Values  onClick={() => setTemp(!temp)} pointer big>
+                                {afterTomorrow && convert(afterTomorrow, temp)}
+                            </Values>
+                        </Labels>
+                    </AfterTomorrow>
+                </NotToday>
             </ResultSpace>
         )
     }
