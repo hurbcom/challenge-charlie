@@ -21,9 +21,10 @@ export const WeatherIcon = ({ isOpen, weatherId }) => {
   };
 
   const handleIcon = weatherId => {
-    const clearSkyCase = weatherId / 100 === 8 && weatherId % 100;
-    const division = (weatherId / 100).toFixed(0);
-    const newKey = clearSkyCase === 0 ? clearSkyCase : division;
+    const module = weatherId % 100;
+    const division = parseInt(weatherId / 100);
+    const clearSkyCase = division === 8 && module === 0;
+    const newKey = clearSkyCase ? module : division;
 
     setIconKey(newKey);
   };
