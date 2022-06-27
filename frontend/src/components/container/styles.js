@@ -8,6 +8,12 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1%;
-    width: auto;
+    width: 60%;
+    min-height: 100vh;
+    @media screen and (max-width: 800px){
+        width: 70%;
+    }
+    @media screen and (max-width: 500px){
+        width: 90%;
+    }
 `

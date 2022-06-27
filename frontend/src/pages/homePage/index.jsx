@@ -3,37 +3,43 @@ import { Container } from '../../components/container/styles'
 import TextField from '../../components/textField'
 import WeatherResult from '../../components/weatherResult'
 import directionIcon from '../../assets/44.svg'
-import { Icons } from './styles'
+import { Icons, Results, Option } from './styles'
 import { useAuth } from '../../context/auth'
+import useDebounce from '../../hooks/useDebounce'
 import axios from 'axios'
-import { Select } from '@mui/material'
 
 const HomePage = ( ) => {
 
-    const { lat, lon } = useAuth()
+    const { lat, lon, setLat, setLon } = useAuth()
     const [state, setState] = useState(null)
-    const [city, setCity] = useState(null)
-    const [select, setSelect] = useState(false)
+    const [city, setCity] = useState('Carregando...')
+    const [newCity, setNewCity] = useState(city)
+    const [control, setControl] = useState(0)
+    const [options, setOptions] = useState([])
+    const debounce = useDebounce(newCity, 500)
+
+    function CheckObj(data){
+        return (typeof(data) === 'object' && data.length > 0)
+    }
 
 
-    function handleChange(event){
-        setCity(event)
-        setTimeout(() => {
+    useEffect(() => {
+        if(control > 0) {
             axios.get(process.env.REACT_APP_API_GEO, {
                 params: {
-                    q: `${event}`,
+                    q: `${newCity}`,
                     key: process.env.REACT_APP_KEY_GEO,
                 },
             }).then(
                 response => {
-                    console.log(response.data.results)
                     if(response.data.results.length > 1) {
-                        setSelect(true)
+                        setOptions(response.data.results)
+                        setControl(0)
                     }
                 }
             )
-        }, 1000)
-    }
+        }
+    }, [debounce])
 
     useEffect(() => { 
         if(lat !== null && lon !== null) {
@@ -44,8 +50,14 @@ const HomePage = ( ) => {
                 },
             }).then(
                 response => {
-                    setState(response.data.results[0].components.state)
-                    setCity(response.data.results[0].components.city)
+                    if(response.data.results[0].components.city !== undefined) {
+                        setCity(response.data.results[0].components.city)
+                    } else if(response.data.results[0].components.town !== undefined){
+                        setCity(response.data.results[0].components.town)
+                    }
+                    if(response.data.results[0].components.state !== undefined) {
+                        setState(response.data.results[0].components.state)
+                    }
                 }
             )
         }
@@ -55,16 +67,34 @@ const HomePage = ( ) => {
     return (
         <Container>
             <TextField 
+                sx={{ m: 1 }}
                 id={"input-with-sx"}
-                startIcon={<Icons src={directionIcon}/>}
-                defaultValue={'Carregando...'}
-                value={(state && `${city}, ${state}`) || (city && `${city}`)}
+                startIcon={<Icons src={directionIcon} />}
+                value={(state && `${city}, ${state}`) || (newCity && `${newCity}`)}
                 onChange={(event) => {
-                    handleChange(event.target.value)
+                    setNewCity(event.target.value)
                     setState(null)
+                    setOptions([])
+                    setControl(1)
                 }}
             />
-            <WeatherResult />
+            {CheckObj(options) &&
+                <Results>
+                    {options.map((item, index) => {
+                        console.log(item)
+                        return (
+                            <Option key={index} onClick={() => {
+                                setLat(item.geometry.lat)
+                                setLon(item.geometry.lng)
+                                setOptions([])
+                            }}>
+                                {item.formatted}
+                            </Option>
+                        )
+                    })}
+                </Results> 
+            }
+            <WeatherResult city={city} />
         </Container>
     )
 }

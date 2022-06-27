@@ -1,5 +1,4 @@
 import InputAdornment from '@mui/material/InputAdornment';
-
 import {
   StyledTextField
 } from './styles';
@@ -15,7 +14,6 @@ const TextField = ({
   endIcon,
   error,
   FormHelperTextProps,
-  fullWidth,
   helperText,
   id,
   InputLabelProps,
@@ -35,7 +33,7 @@ const TextField = ({
   rows,
   startIcon,
   select,
-  size = "small",
+  size = "large",
   style,
   sx,
   type,
@@ -44,53 +42,52 @@ const TextField = ({
   width
 }) => {
   return (
-    <StyledTextField
-      autoComplete={autoComplete}
-      autoFocus={autoFocus}
-      classes={classes}
-      color={color}
-      defaultValue={defaultValue}
-      disabled={disabled}
-      error={error}
-      FormHelperTextProps={FormHelperTextProps}
-      fullWidth={fullWidth}
-      helperText={helperText}
-      id={id}
-      InputLabelProps={InputLabelProps}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start" sx={{ color: 'action.active', mr: 1, my: 0.5 }}>
-            {startIcon}
-          </InputAdornment>
-        ),
-        endAdornment: (
-          <InputAdornment position="end" sx={{ color: 'action.active', mr: 1, my: 0.5 }}>
-            {endIcon}
-          </InputAdornment>
-        ),
-      }}
-      inputProps={inputProps}
-      inputRef={inputRef}
-      label={label}
-      multiline={multiline}
-      name={name}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      onChange={onChange}
-      placeholder={placeholder}
-      required={required}
-      rows={rows}
-      maxRows={maxRows}
-      minRows={minRows}
-      select={select}
-      size={size}
-      style={style}
-      sx={sx}
-      type={type}
-      value={value}
-      variant={variant}
-      width={width}
-    />
+      <StyledTextField
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        classes={classes}
+        color={color}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        error={error}
+        FormHelperTextProps={FormHelperTextProps}
+        helperText={helperText}
+        id={id}
+        InputLabelProps={InputLabelProps}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" sx={{ color: 'action.active', mr: 1, my: 0.5 }}>
+              {startIcon}
+            </InputAdornment>
+          ),
+          endAdornment: (
+            <InputAdornment position="end" sx={{ color: 'action.active', mr: 1, my: 0.5 }}>
+              {endIcon}
+            </InputAdornment>
+          ),
+        }}
+        inputProps={inputProps}
+        inputRef={inputRef}
+        label={label}
+        multiline={multiline}
+        name={name}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required}
+        rows={rows}
+        maxRows={maxRows}
+        minRows={minRows}
+        select={select}
+        size={size}
+        style={style}
+        sx={sx}
+        type={type}
+        value={value}
+        variant={variant}
+        width={400}
+      />
   )
 }
 

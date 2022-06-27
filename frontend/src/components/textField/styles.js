@@ -16,17 +16,16 @@ export const StyledTextField = styled(MTextField)`
 
   & .MuiOutlinedInput-root {
     width: ${({width}) => width ? width : '15.625rem'};
-
     &.Mui-focused fieldset {
-      border-color: #3c2f9d;
+      border-color: none;
     }
 
     & fieldset {
-      border-color: #312783;
+      border-color: none;
     }
 
     &:hover fieldset {
-      border-color: #3c2f9d;
+      border-color: none;
     }
   }
 `;

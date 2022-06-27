@@ -4,9 +4,13 @@ export const Page = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 100%;
+    align-items: center;
+    width: 100%;
     background-image: url(${(props) => props.backgroundUrl});
-`;
+    background-repeat: no-repeat;
+    background-size:100%;
+    background-size: cover;
+    `;
 
 export const DashBoardStyle = styled.div`
     display: flex;
