@@ -13,8 +13,7 @@ export const formatData = (data, isError) => {
       temperature: data?.data.current.temp.toFixed(0),
       description: data?.data.current.weather[0].description,
       wind: {
-        direction:
-          windDirections[(data?.data.current.wind_deg / 45).toFixed(0)],
+        direction: windDirections[parseInt(data?.data.current.wind_deg / 45)],
         speed: (data?.data.current.wind_speed * 3.6).toFixed(1),
       },
       humidity: data?.data.current.humidity,
@@ -35,7 +34,7 @@ export const formatData = (data, isError) => {
       temperature: curr.temp.day.toFixed(0),
       description: curr.weather[0].description,
       wind: {
-        direction: windDirections[(curr.wind_deg / 45).toFixed(0)],
+        direction: windDirections[parseInt(curr.wind_deg / 45)],
         speed: (curr.wind_speed * 3.6).toFixed(1),
       },
       humidity: curr.humidity,
