@@ -47,5 +47,6 @@
     "husky": "^8.0.1",
     "prettier": "^2.7.1"
   },
-  "proxy": "https://www.bing.com"
+  "proxy": "https://www.bing.com",
+  "license": "MIT"
 }
