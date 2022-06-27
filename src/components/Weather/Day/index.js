@@ -11,6 +11,7 @@ export const DayWeather = ({
   isLoading,
   isError,
   day,
+  weatherId,
   temperature,
   description,
   wind,
@@ -34,7 +35,7 @@ export const DayWeather = ({
 
   return (
     <WeatherContainer id={id} onClick={setId(id)} isOpen={isOpen}>
-      <WeatherIcon isOpen={isOpen} />
+      <WeatherIcon isOpen={isOpen} weatherId={weatherId} />
       <WeatherInfo
         isOpen={isOpen}
         day={day}

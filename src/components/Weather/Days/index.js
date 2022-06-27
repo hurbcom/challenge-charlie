@@ -33,6 +33,7 @@ export const Weather = () => {
             isLoading={isLoading}
             isError={isError}
             day={element?.day}
+            weatherId={element?.weatherId}
             temperature={element?.temperature}
             description={element?.description}
             wind={element?.wind}
