@@ -3,7 +3,7 @@ import { media } from '../../../styles/devices';
 
 const conditionalBackground = css`
   background-color: ${({ theme, id }) =>
-    id === 2 ? theme.normal.secondDay : theme.normal.thirdDay};
+    id === 1 ? theme.secondDay : theme.thirdDay};
 `;
 
 export const WeatherContainer = styled.div`
@@ -18,9 +18,7 @@ export const WeatherContainer = styled.div`
   cursor: ${({ isOpen }) => (isOpen ? 'default' : 'pointer')};
 
   ${({ theme, id }) =>
-    id === 1
-      ? `background-color: ${theme.normal.firstDay}`
-      : conditionalBackground};
+    id === 0 ? `background-color: ${theme.firstDay}` : conditionalBackground};
 
   ${media.mobileS} {
     flex-direction: column;

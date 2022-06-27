@@ -1,7 +1,7 @@
 const windDirections = ['N', 'NE', 'L', 'SE', 'S', 'SO', 'O', 'NO', 'N'];
 
 export const formatData = (data, isError) => {
-  if (isError) {
+  if (isError || !data) {
     const weatherData = [1, 2, 3];
     return { weatherData };
   }

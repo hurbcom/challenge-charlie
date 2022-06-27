@@ -5,6 +5,7 @@ export const useWeatherContext = () => React.useContext(WeatherData);
 
 export const WeatherDataProvider = props => {
   const { children, value } = props;
+  const [temperature, setTemperature] = useState(undefined);
   const [coordinates, setCoordinates] = useState({
     lat: undefined,
     lng: undefined,
@@ -14,6 +15,8 @@ export const WeatherDataProvider = props => {
     ...value,
     coordinates,
     setCoordinates,
+    temperature,
+    setTemperature,
   };
 
   return (
