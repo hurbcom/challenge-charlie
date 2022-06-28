@@ -6,7 +6,7 @@ export const useBackground = () => {
   const endpoint = '/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US';
 
   const { data, isLoading, isSuccess, isError } = useQuery(
-    'background',
+    ['background'],
     async () => {
       return await axios.get(endpoint);
     },
