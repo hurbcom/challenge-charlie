@@ -16,8 +16,8 @@ export const formatData = (data, isError) => {
         direction: windDirections[parseInt(data?.data.current.wind_deg / 45)],
         speed: (data?.data.current.wind_speed * 3.6).toFixed(1),
       },
-      humidity: data?.data.current.humidity,
-      pressure: data?.data.current.pressure,
+      humidity: data?.data.current.humidity.toString(),
+      pressure: data?.data.current.pressure.toString(),
     },
   ];
 
@@ -37,8 +37,8 @@ export const formatData = (data, isError) => {
         direction: windDirections[parseInt(curr.wind_deg / 45)],
         speed: (curr.wind_speed * 3.6).toFixed(1),
       },
-      humidity: curr.humidity,
-      pressure: curr.pressure,
+      humidity: curr.humidity.toString(),
+      pressure: curr.pressure.toString(),
     };
 
     return [...stack, dayWeather];
