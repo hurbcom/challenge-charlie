@@ -17,12 +17,12 @@
   "dependencies": {
     "@reach/combobox": "^0.17.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
+    "@testing-library/react": "^13.1.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-query": "^3.39.1",
+    "react-query": "4.0.0-beta.23",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.5",
     "use-places-autocomplete": "^4.0.0"
@@ -33,7 +33,6 @@
     "@babel/preset-react": "^7.18.6",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@testing-library/react-hooks": "^8.0.1",
     "babel-jest": "^28.1.1",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
@@ -43,6 +42,7 @@
     "husky": "^8.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest-styled-components": "^7.0.8",
+    "msw": "^0.42.3",
     "prettier": "^2.7.1",
     "react-test-renderer": "^18.2.0"
   },
