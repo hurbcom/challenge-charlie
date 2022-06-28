@@ -8,10 +8,11 @@
     "start:prod": "yarn build:prod && docker-compose -f docker-compose.prod.yml up -d",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test:lint": "eslint src --max-warnings=0",
+    "test:unit": "jest",
+    "test": "jest && eslint src --max-warnings=0",
     "test:watch": "jest -- --watch",
-    "test:coverage": "jest --collect-coverage",
-    "lint": "eslint src --color"
+    "test:coverage": "jest --collect-coverage"
   },
   "dependencies": {
     "@reach/combobox": "^0.17.0",
