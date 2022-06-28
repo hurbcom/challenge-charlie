@@ -1,4 +1,4 @@
-name: Trigger auto deployment for Weather App
+name: Trigger auto deployment for Blueskiy Weather
 
 on:
   workflow_run:
@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: blueskiy/weatherapp:latest
+          tags: blueskiy/weatherapp-prod:${{ github.sha }}
           secrets: |
             "REACT_APP_GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}"
             "REACT_APP_OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_KEY }}"
@@ -36,6 +36,7 @@ jobs:
           file: ./Dockerfile
           context: ./
           target: production
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,10 +48,11 @@ jobs:
         with:
           creds: ${{ secrets.TESTWEATHER_AZURE_CREDENTIALS }}
 
+
       - name: Deploy to containerapp
         uses: azure/CLI@v1
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
             az containerapp registry set -n testweather -g blue-weather_group --server docker.io --username  ${{ secrets.TESTWEATHER_REGISTRY_USERNAME }} --password ${{ secrets.TESTWEATHER_REGISTRY_PASSWORD }}
-            az containerapp update -n testweather -g blue-weather_group --image blueskiy/weatherapp:latest
+            az containerapp update -n testweather -g blue-weather_group --image blueskiy/weatherapp-prod:${{ github.sha }}
