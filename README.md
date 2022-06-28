@@ -2,10 +2,15 @@
 
 Blueskiy Weather é um microsite que faz consultas à previsão do tempo baseado na localização do usuário ou de qualquer parte do mundo. Confira a aplicação em produção: [Blueskiy Weather](https://testweather.jollyforest-a1557b90.canadacentral.azurecontainerapps.io/).
 
+<p align="center">
+	<b>`O projeto necessita de API Keys para funcionar corretamente.`</b><br>
+  Sem elas, a aplicação apresentará mal funcionamento.
+</p>
+
 ## Scripts
 
 A versão do node usada pelo projeto é a `16.15.1`. Você também precisa ter o [Docker Compose](https://docs.docker.com/compose/install/) instalado.\
-No diretório clonado, você pode rodar:
+No diretório clonado, você deve rodar:
 
 ### `yarn`
 
