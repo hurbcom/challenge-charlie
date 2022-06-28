@@ -10,11 +10,12 @@ import {
 
 export const StyledCombobox = styled(Combobox)`
   width: 100%;
+  height: 100%;
 `;
 
 export const Input = styled(ComboboxInput)`
+  height: 100%;
   display: flex;
-  flex-direction: column;
 
   color: #878787;
   width: 100%;
@@ -35,17 +36,21 @@ export const Input = styled(ComboboxInput)`
 
   ${media.mobileS} {
     font-size: 1.2rem;
-    padding: 1rem 0.8rem 0.8rem 3rem;
+    padding: 0 0 0 3rem;
+  }
+
+  ${media.mobileM} {
+    font-size: 1.5rem;
   }
 
   ${media.laptop} {
     font-size: 2.3rem;
-    padding: 1rem 0 0.6rem 5rem;
+    padding: 0 0 0 5rem;
   }
 
   ${media.desktop} {
     font-size: 3.3rem;
-    padding: 2rem 1.5rem 1.5rem 7.5rem;
+    padding: 0 0 0 7.5rem;
   }
 `;
 
@@ -66,8 +71,8 @@ export const Option = styled(ComboboxOption)`
   }
 
   ${media.mobileS} {
-    font-size: 1rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.5rem;
   }
 
   ${media.desktop} {
