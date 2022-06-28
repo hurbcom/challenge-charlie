@@ -12,7 +12,7 @@ describe('BottomInfo', () => {
     pressure: '1019',
   };
 
-  it('should do A', () => {
+  it('should render without any error', () => {
     const expectValues = {
       wind: `Vento: ${props.wind.direction} ${props.wind.speed}km/h`,
       humidity: `Humidade: ${props.humidity}%`,
