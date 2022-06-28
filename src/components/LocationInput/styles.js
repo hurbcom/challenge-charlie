@@ -23,6 +23,10 @@ export const InputContainer = styled.div`
     }
   }
 
+  ${media.mobileM} {
+    height: 4.3rem;
+  }
+
   ${media.laptop} {
     height: 12.5vh;
 
