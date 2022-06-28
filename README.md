@@ -16,7 +16,7 @@ Instala as dependências necessárias para rodar o projeto.
 Roda o projeto no modo de desenvolvimento num container.\
 Abra [http://localhost:3000](http://localhost:3000) para ver a aplicação.
 
-A página recarrega sempre que você fizer mudanças no código.\
+A página recarrega sempre que você fizer mudanças no código.
 
 ### `yarn build:prod`
 
