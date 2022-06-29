@@ -12,7 +12,7 @@ export const useWeatherData = (coords, setTemperature) => {
     process.env.REACT_APP_OPEN_WEATHER_KEY
   }`;
 
-  const { data, isLoading, isError, isSuccess } = useQuery(
+  const { data, isLoading, isError, isSuccess, isFetching } = useQuery(
     ['lat-lng', coords],
     async () => {
       return await axios.get(endpoint);
@@ -26,5 +26,5 @@ export const useWeatherData = (coords, setTemperature) => {
   );
 
   const { weatherData } = formatData(data, isError);
-  return { weatherData, isLoading, isError, isSuccess };
+  return { weatherData, isLoading, isError, isSuccess, isFetching };
 };

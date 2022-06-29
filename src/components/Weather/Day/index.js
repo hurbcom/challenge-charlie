@@ -9,6 +9,7 @@ export const DayWeather = ({
   setId,
   currentId,
   isLoading,
+  isFetching,
   isError,
   day,
   weatherId,
@@ -21,7 +22,7 @@ export const DayWeather = ({
 }) => {
   const isOpen = id === currentId;
 
-  if (isLoading) {
+  if (isLoading && isFetching) {
     return <Loading />;
   }
 
