@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Root from "./components/Root";
+import Fetcher from "./components/Fetcher/Fetcher";
+import Background from "./components/Background/Background";
 import "./globalStyles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Root />
+    <Fetcher />
+    <Background />
   </React.StrictMode>
 );
