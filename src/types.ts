@@ -16,3 +16,8 @@ export type PossibleLocation = {
   municipality?: string;
   district?: string;
 };
+
+export type BackgroundImage = {
+  url: string;
+  altText: string;
+};

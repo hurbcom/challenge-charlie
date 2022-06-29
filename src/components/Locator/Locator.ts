@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useStore } from "../../state/store";
 import { fetchLocation } from "../../services/fetchService";
 
-const Fetcher = () => {
+const Locator = () => {
   //Zustand hook alias
   const setLocation = useStore((state) => state.setLocation);
   const setCoords = useStore((state) => state.setCoords);
@@ -20,7 +20,6 @@ const Fetcher = () => {
     if (coords.latitude) {
       fetchLocation(coords.latitude, coords.longitude)
         .then((data) => {
-          console.log(data.city, data.district, data.municipality);
           setLocation({
             country: data.country,
             state: data.state,
@@ -44,4 +43,4 @@ const Fetcher = () => {
   useEffect(weatherEffect, [coords.latitude]);
 };
 
-export default Fetcher;
+export default Locator;

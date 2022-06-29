@@ -1,5 +1,10 @@
 import create from "zustand";
-import { Coordinates, Location, PossibleLocation } from "../types";
+import {
+  BackgroundImage,
+  Coordinates,
+  Location,
+  PossibleLocation,
+} from "../types";
 import produce from "immer";
 
 type Store = {
@@ -8,6 +13,8 @@ type Store = {
   setCoords: (geoPosition: GeolocationPosition) => void;
   location: Location;
   setLocation: (newLocation: PossibleLocation) => void;
+  background: BackgroundImage;
+  setBackground: (image: BackgroundImage) => void;
 };
 
 export const useStore = create<Store>((set) => ({
@@ -19,8 +26,7 @@ export const useStore = create<Store>((set) => ({
     latitude: undefined,
     longitude: undefined,
   },
-
-  setCoords: (geoposition) => {
+  setCoords(geoposition) {
     set(
       produce((state) => {
         state.coords.latitude = geoposition.coords.latitude;
@@ -35,7 +41,7 @@ export const useStore = create<Store>((set) => ({
     state: "",
     country: "",
   },
-  setLocation: (newLocation) => {
+  setLocation(newLocation) {
     set(
       produce((state) => {
         state.location.country = newLocation.country;
@@ -49,6 +55,20 @@ export const useStore = create<Store>((set) => ({
             state.location.city = newLocation.district;
           }
         }
+      })
+    );
+  },
+
+  //background image
+  background: {
+    url: "",
+    altText: "",
+  },
+  setBackground(image) {
+    set(
+      produce((state) => {
+        state.background.url = image.url;
+        state.background.altText = image.altText;
       })
     );
   },
