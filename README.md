@@ -34,6 +34,13 @@ Instala as dependências necessárias para rodar o projeto.
 Roda o projeto num container com a build otimizada para produção.\
 Abra [http://localhost](http://localhost) para acessar a aplicação.
 
+Para esse ambiente, as variáveis devem ser criadas dentro de um arquivo `.env.production`.\
+Da seguinte maneira:
+
+REACT_APP_GOOGLE_KEY={{google_api_key}}\
+REACT_APP_OPEN_WEATHER_KEY={{open_weather_api_key}}\
+REACT_APP_OPEN_CAGE_KEY={{open_cage_api_key}}
+
 ### `yarn dev`
 
 Roda o projeto no modo de desenvolvimento num container.\
