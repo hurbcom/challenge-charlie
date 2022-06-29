@@ -9,6 +9,7 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: __dirname + "/build/",
+    filename: "index.bundle.js",
   },
   module: {
     rules: [
@@ -16,9 +17,13 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: [".ts", ".tsx", ".js", ".json"],
+          extensions: [".ts", ".tsx"],
         },
         use: "babel-loader",
+      },
+      {
+        test: /\.svg$/,
+        type: "asset/inline",
       },
       {
         test: /\.css$/,
