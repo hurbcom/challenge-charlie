@@ -15,12 +15,12 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install --production
 COPY . .
-RUN --mount=type=secret,id=REACT_APP_GOOGLE_API_KEY \
-  --mount=type=secret,id=REACT_APP_OPEN_WEATHER_API_KEY \
-  --mount=type=secret,id=REACT_APP_OPEN_CAGE_API_KEY \
-  export REACT_APP_GOOGLE_API_KEY=$(cat /run/secrets/REACT_APP_GOOGLE_API_KEY) && \
-  export REACT_APP_OPEN_WEATHER_API_KEY=$(cat /run/secrets/REACT_APP_OPEN_WEATHER_API_KEY) && \
-  export REACT_APP_OPEN_CAGE_API_KEY=$(cat /run/secrets/REACT_APP_OPEN_CAGE_API_KEY) && \
+RUN --mount=type=secret,id=REACT_APP_GOOGLE_KEY \
+  --mount=type=secret,id=REACT_APP_OPEN_WEATHER_KEY \
+  --mount=type=secret,id=REACT_APP_OPEN_CAGE_KEY \
+  export REACT_APP_GOOGLE_KEY=$(cat /run/secrets/REACT_APP_GOOGLE_KEY) && \
+  export REACT_APP_OPEN_WEATHER_KEY=$(cat /run/secrets/REACT_APP_OPEN_WEATHER_KEY) && \
+  export REACT_APP_OPEN_CAGE_KEY=$(cat /run/secrets/REACT_APP_OPEN_CAGE_KEY) && \
   yarn build
 
 FROM nginx:stable-alpine AS production

@@ -7,7 +7,10 @@ export const useReverseGeocoding = userCoords => {
   const longitude = userCoords.lng;
 
   const baseUrl = 'https://api.opencagedata.com/';
-  const endpoint = `${baseUrl}geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_OPEN_CAGE_API_KEY}`;
+  const endpoint = `${baseUrl}geocode/v1/json?q=${latitude}+${longitude}&key=${
+    process.env.REACT_APP_OPEN_CAGE_API_KEY ||
+    process.env.REACT_APP_OPEN_CAGE_KEY
+  }`;
 
   const { data } = useQuery(
     ['reverse-geocoding', userCoords],

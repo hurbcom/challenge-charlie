@@ -29,16 +29,21 @@ No diretório clonado, você deve rodar:
 
 Instala as dependências necessárias para rodar o projeto.
 
+### `yarn start:prod`
+
+Roda o projeto num container com a build otimizada para produção.\
+Abra [http://localhost](http://localhost) para acessar a aplicação.
+
 ### `yarn dev`
 
 Roda o projeto no modo de desenvolvimento num container.\
-Abra [http://localhost:3000](http://localhost:3000) para ver a aplicação.
+Abra [http://localhost:3000](http://localhost:3000) para acessar a aplicação.
 
 A página recarrega sempre que você fizer mudanças no código.
 
 ### `yarn build:prod`
 
-Monta a imagem da aplicação pronta para produção (com as variáveis de ambiente corretas).
+Monta a imagem da aplicação pronta para produção.
 
 ### `yarn start`
 
