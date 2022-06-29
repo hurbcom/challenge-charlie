@@ -25,7 +25,7 @@ describe('useWeatherData', () => {
     setTemperature: jest.fn(),
   };
 
-  it('should do something', async () => {
+  it('should work without any error', async () => {
     const { result } = renderHook(
       () => useWeatherData(argsMock.coords, argsMock.setTemperature),
       { wrapper: createWrapper() },

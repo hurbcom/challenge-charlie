@@ -18,7 +18,7 @@ Blueskiy Weather é um microsite que faz consultas à previsão do tempo baseado
 
 REACT_APP_GOOGLE_API_KEY={{google_api_key}}\
 REACT_APP_OPEN_WEATHER_API_KEY={{open_weather_api_key}}\
-REACT_APP_OPEN_CAGE_API_KEY={{open_cage_api_key}}\
+REACT_APP_OPEN_CAGE_API_KEY={{open_cage_api_key}}
 
 ## Scripts
 
