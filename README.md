@@ -1,6 +1,6 @@
 # Blueskiy Weather
 
-Blueskiy Weather é um microsite que faz consultas à previsão do tempo baseado na localização do usuário ou de qualquer parte do mundo. Confira a aplicação em produção: [Blueskiy Weather](https://testweather.jollyforest-a1557b90.canadacentral.azurecontainerapps.io/).
+Blueskiy Weather é um microsite que faz consultas à previsão do tempo baseado na localização do usuário ou de qualquer parte do mundo. Confira a aplicação em produção: [Blueskiy Weather](https://weather.thankfulground-0561f328.canadacentral.azurecontainerapps.io/).
 
 <p align="center">
 	<b>O projeto necessita de API Keys para funcionar corretamente.</b><br>
