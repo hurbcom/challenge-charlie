@@ -5,8 +5,6 @@ on:
     workflows: ['Weather App CI']
     types: [completed]
     branches: [master]
-    paths-ignore:
-      - '**.md'
 
 jobs:
   build:
