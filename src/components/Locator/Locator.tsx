@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useStore } from "../../state/store";
+import React, { useEffect } from "react";
+import { useStore } from "../../store/store";
 import { fetchLocation } from "../../services/fetchService";
+import ContentCard from "../content/ContentCard/ContentCard";
 
 const Locator = () => {
   //Zustand hook alias
@@ -32,15 +33,10 @@ const Locator = () => {
     }
   };
 
-  const weatherEffect = () => {
-    if (coords.latitude) {
-      console.log("em construção");
-    }
-  };
-
   useEffect(coordsEffect, []);
   useEffect(locationEffect, [coords.latitude]);
-  useEffect(weatherEffect, [coords.latitude]);
+
+  return <ContentCard />;
 };
 
 export default Locator;

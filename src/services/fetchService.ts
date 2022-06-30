@@ -4,7 +4,7 @@ export const fetchLocation = async (
   latitude: number | undefined,
   longitude: number | undefined
 ) => {
-  const response = await axios.get(process.env.OPEN_CAGE_BASEURL ?? "", {
+  const response = await axios.get(`${process.env.OPEN_CAGE_BASEURL}`, {
     params: {
       q: `${latitude}, ${longitude}`,
       key: `${process.env.OPEN_CAGE_KEY}`,

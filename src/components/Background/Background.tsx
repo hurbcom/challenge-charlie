@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchBackground } from "../../services/fetchService";
-import { useStore } from "../../state/store";
-import WeatherToday from "../content/WeatherToday/WeatherToday";
+import { useStore } from "../../store/store";
+import Locator from "../Locator/Locator";
 
 const Background = () => {
   const background = useStore((state) => state.background);
@@ -29,7 +29,7 @@ const Background = () => {
   useEffect(imageEffect, []);
   useEffect(backgroundEffect, [background.url]);
 
-  return <WeatherToday />;
+  return <Locator />;
 };
 
 export default Background;
