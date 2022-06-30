@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Error } from './index';
 
-describe('Loading', () => {
+describe('Error', () => {
   it('should render partial text when has no prop', () => {
     const Component = renderer.create(<Error />).root;
     expect(Component.findByType('p').children).toEqual(['Algo deu errado...']);
