@@ -28,6 +28,13 @@ No diretório clonado, você deve rodar:
 
 Instala as dependências necessárias para rodar o projeto.
 
+### `yarn dev`
+
+Roda o projeto no modo de desenvolvimento num container.\
+Abra [http://localhost:3000](http://localhost:3000) para acessar a aplicação.
+
+A página recarrega sempre que você fizer mudanças no código.
+
 ### `yarn start:prod`
 
 Roda o projeto num container com a build otimizada para produção.\
@@ -39,13 +46,6 @@ Da seguinte maneira:
 ```sh
 $ echo "REACT_APP_GOOGLE_KEY={{google_api_key}}\\nREACT_APP_OPEN_WEATHER_KEY={{open_weather_api_key}}\\nREACT_APP_OPEN_CAGE_KEY={{open_cage_api_key}}" > .env.production
 ```
-
-### `yarn dev`
-
-Roda o projeto no modo de desenvolvimento num container.\
-Abra [http://localhost:3000](http://localhost:3000) para acessar a aplicação.
-
-A página recarrega sempre que você fizer mudanças no código.
 
 ### `yarn build:prod`
 
