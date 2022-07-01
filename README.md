@@ -13,12 +13,11 @@ Blueskiy Weather é um microsite que faz consultas à previsão do tempo baseado
 2. Gere uma [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 3. Gere uma API key no [OpenWeather](https://openweathermap.org/api/one-call-api).
 4. Gere uma API key no [OpenCage](https://opencagedata.com/).
-5. Na raiz do repositório crie um arquivo `.env`.
-6. Preencha-o com suas API keys como valor das seguintes variáveis:
+5. Substitua os {{}} no seguinte comando pelas suas keys e rode-o na raiz do projeto:
 
-REACT_APP_GOOGLE_API_KEY={{google_api_key}}\
-REACT_APP_OPEN_WEATHER_API_KEY={{open_weather_api_key}}\
-REACT_APP_OPEN_CAGE_API_KEY={{open_cage_api_key}}
+```sh
+$ echo "REACT_APP_GOOGLE_API_KEY={{google_api_key}}\\nREACT_APP_OPEN_WEATHER_API_KEY={{open_weather_api_key}}\\nREACT_APP_OPEN_CAGE_API_KEY={{open_cage_api_key}}" > .env
+```
 
 ## Scripts
 
@@ -34,12 +33,12 @@ Instala as dependências necessárias para rodar o projeto.
 Roda o projeto num container com a build otimizada para produção.\
 Abra [http://localhost](http://localhost) para acessar a aplicação.
 
-Para esse ambiente, as variáveis devem ser criadas dentro de um arquivo `.env.production`.\
+Para esse ambiente, as variáveis `são diferentes` e devem ser criadas dentro de um arquivo `.env.production`.\
 Da seguinte maneira:
 
-REACT_APP_GOOGLE_KEY={{google_api_key}}\
-REACT_APP_OPEN_WEATHER_KEY={{open_weather_api_key}}\
-REACT_APP_OPEN_CAGE_KEY={{open_cage_api_key}}
+```sh
+$ echo "REACT_APP_GOOGLE_KEY={{google_api_key}}\\nREACT_APP_OPEN_WEATHER_KEY={{open_weather_api_key}}\\nREACT_APP_OPEN_CAGE_KEY={{open_cage_api_key}}" > .env.production
+```
 
 ### `yarn dev`
 
