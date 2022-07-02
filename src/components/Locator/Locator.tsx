@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useStore } from "../../store/store";
 import { fetchLocation } from "../../services/fetchService";
-import ContentCard from "../content/ContentCard/ContentCard";
+import ContentCard from "../Forecast/ContentCard/ContentCard";
 
 const Locator = () => {
   //Zustand hook alias
