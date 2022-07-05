@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchBackground } from "../../services/fetchService";
 import { useStore } from "../../store/store";
-import Locator from "../Locator/Locator";
 
 const Background = () => {
   const background = useStore((state) => state.background);
@@ -29,7 +28,7 @@ const Background = () => {
   useEffect(imageEffect, []);
   useEffect(backgroundEffect, [background.url]);
 
-  return <Locator />;
+  return <></>;
 };
 
 export default Background;
