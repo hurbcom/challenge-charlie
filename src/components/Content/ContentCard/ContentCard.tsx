@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { fetchWeather } from "../../../services/fetchService";
 import { useStore } from "../../../store/store";
-import LocationSearch from "../LocationSearch/LocationSearch";
-import WeatherFuture from "../WeatherFuture/WeatherFuture";
-import WeatherToday from "../WeatherToday/WeatherToday";
+import Search from "../../Search/Search";
+import Today from "../Today/Today";
+import Tomorrow from "../Tomorrow/Tomorrow";
+import Overmorrow from "../Overmorrow/Overmorrow";
 
 const ContentCard = () => {
   const coords = useStore((state) => state.coords);
@@ -21,11 +22,11 @@ const ContentCard = () => {
   useEffect(weatherEffect, [coords]);
 
   return (
-    <div className="flex flex-col bg-white mx-[30vw] items-center my-[5vh]">
-      <LocationSearch />
-      <WeatherToday />
-      <WeatherFuture key={"tomorrow"} />
-      <WeatherFuture key={"aftertomorrow"} />
+    <div className="flex flex-col mx-[30vw] items-center my-[5vh] rounded-xl drop-shadow-md">
+      <Search />
+      <Today />
+      <Tomorrow />
+      <Overmorrow />
     </div>
   );
 };
