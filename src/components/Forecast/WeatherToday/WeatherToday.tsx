@@ -1,10 +1,16 @@
 import React from "react";
 
+import { useStore } from "../../../store/store";
+
 const WeatherToday = () => {
+  const forecast = useStore((state) => state.forecast);
   return (
-    <div className="bg-red-500 md:mx-[36vw] before:bg-red-500 ">
-      <p className="text-center p-24">Hoje</p>
-    </div>
+    <p
+      className="
+  bg-red-400 w-full text-center h-[40vh] before:content-[''] "
+    >
+      Teste
+    </p>
   );
 };
 

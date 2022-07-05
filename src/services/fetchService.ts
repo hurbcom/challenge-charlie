@@ -36,7 +36,10 @@ export const fetchBackground = async () => {
   return response.data.images[0];
 };
 
-export const fetchWeather = async (reqLat: number, reqLon: number) => {
+export const fetchWeather = async (
+  reqLat: number | undefined,
+  reqLon: number | undefined
+) => {
   const response = await axios.get(
     "https://api.openweathermap.org/data/3.0/onecall",
     {
@@ -45,10 +48,41 @@ export const fetchWeather = async (reqLat: number, reqLon: number) => {
         lon: reqLon,
         exclude: "minutely,hourly,alerts",
         units: "metric",
-        lang: "pt-br",
-        APPID: `${process.env.OPEN_WEATHER_KEY}`,
+        lang: "pt_br",
+        appid: `${process.env.OPEN_WEATHER_KEY}`,
       },
     }
   );
-  return response.data;
+  return {
+    today: {
+      temp: <number>response.data.current.temp,
+      humidity: <number>response.data.current.humidity,
+      windSpeed: <number>response.data.current.wind_speed,
+      windDirection: <number>response.data.current.wind_deg,
+      pressure: <number>response.data.current.pressure,
+      weather: {
+        id: <number>response.data.current.weather[0].id,
+        main: <string>response.data.current.weather[0].main,
+        description: <string>response.data.current.weather[0].description,
+      },
+    },
+    tomorrow: {
+      maxTemp: <number>response.data.daily[0].temp.max,
+      minTemp: <number>response.data.daily[0].temp.min,
+      weather: {
+        id: <number>response.data.daily[0].weather[0].id,
+        main: <string>response.data.daily[0].weather[0].main,
+        description: <string>response.data.daily[0].weather[0].description,
+      },
+    },
+    afterTomorrow: {
+      maxTemp: <number>response.data.daily[1].temp.max,
+      minTemp: <number>response.data.daily[1].temp.min,
+      weather: {
+        id: <number>response.data.daily[1].weather[0].id,
+        main: <string>response.data.daily[1].weather[0].main,
+        description: <string>response.data.daily[1].weather[0].description,
+      },
+    },
+  };
 };

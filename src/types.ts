@@ -6,12 +6,6 @@ export type Coordinates = {
 export type Location = {
   country: string;
   state: string;
-  city: string;
-};
-
-export type PossibleLocation = {
-  country: string;
-  state: string;
   city?: string;
   municipality?: string;
   district?: string;
@@ -20,4 +14,24 @@ export type PossibleLocation = {
 export type BackgroundImage = {
   url: string;
   altText: string;
+};
+
+export type Forecast = {
+  today?: {
+    temp: number;
+    humidity: number;
+    windSpeed: number;
+    windDirection: number;
+    weather: { id: number; main: string; description: string };
+  };
+  tomorrow?: {
+    maxTemp: number;
+    minTemp: number;
+    weather: { id: number; main: string; description: string };
+  };
+  afterTomorrow?: {
+    maxTemp: number;
+    minTemp: number;
+    weather: { id: number; main: string; description: string };
+  };
 };

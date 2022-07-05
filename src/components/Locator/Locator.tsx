@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useStore } from "../../store/store";
 import { fetchLocation } from "../../services/fetchService";
-import ContentCard from "../Forecast/ContentCard/ContentCard";
 
 const Locator = () => {
   //Zustand hook alias
@@ -29,14 +28,14 @@ const Locator = () => {
             municipality: data.municipality,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((error) => console.log(error));
     }
   };
 
   useEffect(coordsEffect, []);
   useEffect(locationEffect, [coords.latitude]);
 
-  return <ContentCard />;
+  return <></>;
 };
 
 export default Locator;
