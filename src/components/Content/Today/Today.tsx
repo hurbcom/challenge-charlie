@@ -1,16 +1,18 @@
 import React from "react";
-
 import { useStore } from "../../../store/store";
+import Icon from "../IconRenderer/Icon";
 
 const Today = () => {
   const forecast = useStore((state) => state.forecast);
+  const theme = useStore((state) => state.globaltheme);
+
   return (
-    <div
-      className="
-  bg-red-100 w-full text-center h-[40vh] before:content-[''] before:bg-red-100
-  before:block before:rounded-[100%] before:h-4 before:w-full before:-translate-y-[50%]"
-    >
-      <h1 className="z-20">Hoje</h1>
+    <div className={`bg-${theme}-100 w-full text-center h-[50vh]`}>
+      <Icon
+        color={`${theme}-200`}
+        code={forecast.today.weather.icon}
+        size="[3rem]"
+      />
     </div>
   );
 };

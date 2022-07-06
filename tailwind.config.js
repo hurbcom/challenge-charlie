@@ -1,31 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{tsx,ts}"],
+  safelist: [{ pattern: /(bg|fill)-(blue|yellow|red|gray)-(100|200|300)/ }],
   theme: {
     colors: {
       red: {
-        100: "#ea4848",
-        200: "#e73636",
-        300: "#e52424",
+        100: "#F34545",
+        200: "#EC3939",
+        300: "#EB2525",
       },
       blue: {
-        100: "#4889ea",
-        200: "#3672e7",
-        300: "#245ae5",
+        100: "#39B4F9",
+        200: "#21A5EF",
+        300: "#1191D9",
       },
       yellow: {
-        100: "#eadd48",
-        200: "#e7c436",
-        300: "#e5ae24",
+        100: "#FFCE22",
+        200: "#F4C108",
+        300: "#DDB00F",
       },
       gray: {
-        50: "#e7e7e7",
-        100: "#bfbfbf",
+        50: "#E7E7E7",
+        100: "#BFBFBF",
         200: "#999999",
         300: "#898989",
-        400: "#7a7a7a",
+        400: "#7A7A7A",
       },
-      white: "#ffffff",
+      darktext: "#1C1C1C",
+      white: "#FFFFFF",
       black: "000000",
     },
     extend: {},

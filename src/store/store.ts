@@ -1,9 +1,11 @@
 import create from "zustand";
-import { BackgroundImage, Coordinates, Forecast, Location } from "../types";
+import { BackgroundImage, Coordinates, Forecast, Location } from "./storeTypes";
 import produce from "immer";
 
 type Store = {
   loading: boolean;
+  globaltheme: string;
+  setGlobalTheme: (temperature: number) => void;
   coords: Coordinates;
   setCoords: (geoPosition: GeolocationPosition) => void;
   location: Location;
@@ -17,6 +19,27 @@ type Store = {
 export const useStore = create<Store>((set) => ({
   //app state
   loading: false,
+
+  //app appearance
+  globaltheme: "gray",
+  setGlobalTheme(temperature) {
+    set(
+      produce((state) => {
+        if (temperature < 15) {
+          state.globaltheme = "blue";
+          console.log("it's cold out there");
+        } else {
+          if (temperature > 35) {
+            state.globaltheme = "red";
+            console.log("it's hot out there");
+          } else {
+            state.globaltheme = "yellow";
+            console.log("it's pleasant out there");
+          }
+        }
+      })
+    );
+  },
 
   //coordinates
   coords: {
@@ -71,12 +94,22 @@ export const useStore = create<Store>((set) => ({
   },
 
   //weather
-  forecast: {},
-  setForecast(newForecast) {
-    set(
-      produce((state) => {
-        state.forecast = newForecast;
-      })
-    );
+  forecast: {
+    today: {
+      weather: {
+        icon: "",
+      },
+    },
+    tomorrow: {
+      weather: {
+        icon: "",
+      },
+    },
+    afterTomorrow: {
+      weather: {
+        icon: "",
+      },
+    },
   },
+  setForecast: (newForecast) => set(() => ({ forecast: newForecast })),
 }));

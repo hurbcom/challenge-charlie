@@ -1,6 +1,6 @@
 import React from "react";
 import Background from "./Background/Background";
-import ContentCard from "./Content/ContentCard/ContentCard";
+import ContentContainer from "./ContentContainer/ContentContainer";
 
 import Locator from "./Locator/Locator";
 
@@ -9,7 +9,7 @@ const App = () => {
     <>
       <Background />
       <Locator />
-      <ContentCard />
+      <ContentContainer />
     </>
   );
 };

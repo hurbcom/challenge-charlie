@@ -61,7 +61,7 @@ export const fetchWeather = async (
       windDirection: <number>response.data.current.wind_deg,
       pressure: <number>response.data.current.pressure,
       weather: {
-        id: <number>response.data.current.weather[0].id,
+        icon: `code${response.data.current.weather[0].icon}`,
         main: <string>response.data.current.weather[0].main,
         description: <string>response.data.current.weather[0].description,
       },
@@ -70,7 +70,7 @@ export const fetchWeather = async (
       maxTemp: <number>response.data.daily[0].temp.max,
       minTemp: <number>response.data.daily[0].temp.min,
       weather: {
-        id: <number>response.data.daily[0].weather[0].id,
+        icon: <string>response.data.daily[0].weather[0].icon,
         main: <string>response.data.daily[0].weather[0].main,
         description: <string>response.data.daily[0].weather[0].description,
       },
@@ -79,7 +79,7 @@ export const fetchWeather = async (
       maxTemp: <number>response.data.daily[1].temp.max,
       minTemp: <number>response.data.daily[1].temp.min,
       weather: {
-        id: <number>response.data.daily[1].weather[0].id,
+        icon: <string>response.data.daily[1].weather[0].icon,
         main: <string>response.data.daily[1].weather[0].main,
         description: <string>response.data.daily[1].weather[0].description,
       },
