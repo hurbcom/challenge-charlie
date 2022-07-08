@@ -66,17 +66,17 @@ O ```Tailwind``` foi o método escolhido para estilização da aplicação devid
 Biblioteca de componentes visuais desenvolvida pela equipe do ```Tailwind```, com integração direta com ```React```. Escolhida para facilitar a construção e configuração da acessibilidade da UI
 
 ## 📦 Instalação
-Para instalar o projeto localmente, use os seguintes comandos:
+Para clonar o projeto, execute o comando:
 ```bash
 git clone https://github.com/jpsaiago/challenge-charlie.git
 ```
-&
+Depois mude seu terminal para o diretório que foi criado do projeto e execute:
 ```bash
 yarn 
 -OU-
 npm install
 ```
-Para clonar o repositório e instalar as dependências do projeto.
+Para instalar as dependências do projeto.
 
 ## ⚙️ Execução
 Para levantar o ambiente de desenvolvimento com hot reload, basta rodar o comando
