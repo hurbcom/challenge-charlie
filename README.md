@@ -71,8 +71,7 @@ O ```Tailwind``` foi o método escolhido para estilização da aplicação devid
 Biblioteca de componentes visuais desenvolvida pela equipe do ```Tailwind```, com integração direta com ```React```. Escolhida para facilitar a construção e configuração da acessibilidade da UI.
 
 ### Observações
-* Se tratando das chaves de API armazenadas como variáveis de ambiente, o arquivo .env faz parte do repositório apenas por questão de praticidade de uso da aplicação clonada, tendo em vista que são chaves públicas no repositório original do desafio.
-* Na mesma linha, a chave de API da Google está visível no corpo do arquivo html por ser um requisito da própria Google em sua documentação, porém em produção essa chave seria limitada a requisições vindas apenas de membros da whitelist.
+* Se tratando das chaves de API armazenadas como variáveis de ambiente, o arquivo .env faz parte do repositório apenas por questão de praticidade de uso da aplicação clonada. Se esse fosse um aplicativo em produção, as chaves precisariam ser manualmente preenchidas para executar a aplicação
 
 ## 📦 Instalação
 Para clonar o projeto, execute o comando:
