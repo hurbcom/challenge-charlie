@@ -2,10 +2,10 @@
   "name": "challenge--charlie",
   "version": "0.1.0",
   "description": "Hurb hiring challenge",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "test": "jest",
-    "start": "webpack serve --port 42069",
+    "start": "webpack serve --port 4000",
     "build": "NODE_ENV=production && webpack"
   },
   "author": "João Pedro Saiago",

@@ -26,11 +26,15 @@ module.exports = {
         300: "#898989",
         400: "#7A7A7A",
       },
-      darktext: "#1C1C1C",
+      dark: "#1C1C1C",
       white: "#FFFFFF",
       black: "000000",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserrat: "'Montserrat', sans-serif",
+      },
+    },
   },
   plugins: [],
 };

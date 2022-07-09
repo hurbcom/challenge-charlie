@@ -21,7 +21,7 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
         type: "asset/resource",
       },
       {
@@ -47,7 +47,8 @@ module.exports = {
   devtool: prod ? "" : "source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico",
     }),
     new Dotenv(),
   ],

@@ -14,9 +14,11 @@ type Store = {
   setBackground: (image: BackgroundImage) => void;
   forecast: Forecast;
   setForecast: (newForecast: Forecast) => void;
+  temperatureScale: number;
+  setTemperatureScale: () => void;
 };
 
-export const useStore = create<Store>((set) => ({
+export const useStore = create<Store>((set, get) => ({
   //app state
   loading: false,
 
@@ -27,14 +29,11 @@ export const useStore = create<Store>((set) => ({
       produce((state) => {
         if (temperature < 15) {
           state.globaltheme = "blue";
-          console.log("it's cold out there");
         } else {
           if (temperature > 35) {
             state.globaltheme = "red";
-            console.log("it's hot out there");
           } else {
             state.globaltheme = "yellow";
-            console.log("it's pleasant out there");
           }
         }
       })
@@ -96,20 +95,51 @@ export const useStore = create<Store>((set) => ({
   //weather
   forecast: {
     today: {
+      temp: 0,
       weather: {
         icon: "",
+        main: "",
       },
     },
     tomorrow: {
+      temp: {
+        max: 0,
+        min: 0,
+      },
       weather: {
         icon: "",
+        main: "",
       },
     },
     afterTomorrow: {
+      temp: {
+        max: 0,
+        min: 0,
+      },
       weather: {
         icon: "",
+        main: "",
       },
     },
   },
   setForecast: (newForecast) => set(() => ({ forecast: newForecast })),
+
+  /*To avoid using multiple state variables and setters, the global temperature is defined
+  by a single number, that represents the active temperature scale, where:
+  0 = Celsius & 1 = Fahrenheit. 2 = Kelvin could also be activated.
+  Further temperature scales could also be freely added in the future if needed. */
+
+  temperatureScale: 0,
+  setTemperatureScale() {
+    set(
+      produce((state) => {
+        const index = get().temperatureScale;
+        if (index == 1) {
+          state.temperatureScale = 0;
+        } else {
+          state.temperatureScale = state.temperatureScale + 1;
+        }
+      })
+    );
+  },
 }));

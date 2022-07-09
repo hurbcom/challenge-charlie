@@ -1,12 +1,12 @@
 import React from "react";
 
 interface IconProps {
-  color?: string;
+  style: string;
 }
 
-const SparseRainSun = ({ color }: IconProps) => {
+const RainSun = ({ style }: IconProps) => {
   return (
-    <svg className={`fill-${color} w-full h-full`} viewBox="0 0 512 512">
+    <svg className={style} viewBox="0 0 512 512">
       <path
         fillRule="evenodd"
         d="M224.8 485.5a24.6 24.6 0 1 0 49.2 0c0-13.6-24.6-49.2-24.6-49.2s-24.6 35.6-24.6 49.2Zm97.7-24.6a24.6 24.6 0 1 0 49.2 0c0-13.6-24.6-49.2-24.6-49.2s-24.6 35.6-24.6 49.2Zm-197-49.2a24.6 24.6 0 1 0 49.3 0c0-13.6-24.6-49.3-24.6-49.3s-24.7 35.7-24.7 49.3Z"
@@ -19,4 +19,4 @@ const SparseRainSun = ({ color }: IconProps) => {
   );
 };
 
-export default SparseRainSun;
+export default RainSun;

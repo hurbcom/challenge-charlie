@@ -55,7 +55,7 @@ export const fetchWeather = async (
   );
   return {
     today: {
-      temp: <number>response.data.current.temp,
+      temp: <number>Math.round(response.data.current.temp),
       humidity: <number>response.data.current.humidity,
       windSpeed: <number>response.data.current.wind_speed,
       windDirection: <number>response.data.current.wind_deg,
@@ -63,25 +63,26 @@ export const fetchWeather = async (
       weather: {
         icon: `code${response.data.current.weather[0].icon}`,
         main: <string>response.data.current.weather[0].main,
-        description: <string>response.data.current.weather[0].description,
       },
     },
     tomorrow: {
-      maxTemp: <number>response.data.daily[0].temp.max,
-      minTemp: <number>response.data.daily[0].temp.min,
+      temp: {
+        max: <number>Math.round(response.data.daily[0].temp.max),
+        min: <number>Math.round(response.data.daily[0].temp.min),
+      },
       weather: {
-        icon: <string>response.data.daily[0].weather[0].icon,
+        icon: `code${response.data.daily[0].weather[0].icon}`,
         main: <string>response.data.daily[0].weather[0].main,
-        description: <string>response.data.daily[0].weather[0].description,
       },
     },
     afterTomorrow: {
-      maxTemp: <number>response.data.daily[1].temp.max,
-      minTemp: <number>response.data.daily[1].temp.min,
+      temp: {
+        max: <number>Math.round(response.data.daily[1].temp.max),
+        min: <number>Math.round(response.data.daily[1].temp.min),
+      },
       weather: {
-        icon: <string>response.data.daily[1].weather[0].icon,
+        icon: `code${response.data.daily[1].weather[0].icon}`,
         main: <string>response.data.daily[1].weather[0].main,
-        description: <string>response.data.daily[1].weather[0].description,
       },
     },
   };

@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { fetchWeather } from "../../services/fetchService";
 import { useStore } from "../../store/store";
 import Search from "../Search/Search";
-import Today from "../Content/Today/Today";
-import Tomorrow from "../Content/Tomorrow/Tomorrow";
-import Overmorrow from "../Content/Overmorrow/Overmorrow";
+import Today from "../Days/Today/Today";
+import Tomorrow from "../Days/Tomorrow/Tomorrow";
+import Overmorrow from "../Days/Overmorrow/Overmorrow";
 
 const ContentContainer = () => {
   const coords = useStore((state) => state.coords);
@@ -24,11 +24,11 @@ const ContentContainer = () => {
   useEffect(weatherEffect, [coords]);
 
   return (
-    <div className="flex flex-col mx-[30vw] items-center my-[5vh] rounded-xl drop-shadow-md">
+    <div className="flex flex-col mx-[30%] items-center my-[5vh] rounded-xl drop-shadow-md">
       <Search />
-      {forecast.today?.temp ? <Today /> : null}
-      {forecast.tomorrow?.maxTemp ? <Tomorrow /> : null}
-      {forecast.afterTomorrow?.minTemp ? <Overmorrow /> : null}
+      {forecast.today.temp ? <Today /> : null}
+      {forecast.tomorrow.temp.max ? <Tomorrow /> : null}
+      {forecast.afterTomorrow.temp.max ? <Overmorrow /> : null}
     </div>
   );
 };

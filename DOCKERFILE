@@ -1,12 +1,12 @@
 FROM node:16.15.1-alpine3.15
-WORKDIR /code
+WORKDIR /build
 ENV PATH="./node_modules/.bin:$PATH"
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
+COPY package.json .
+COPY yarn.lock .
 
-RUN npm install
+RUN yarn install
 
 COPY . .
-
-CMD [ "npm", "run", "start" ]
+EXPOSE 4000
+CMD [ "yarn","run", "start" ]

@@ -1,2 +1,7 @@
 node_modules
 *.todo
+build
+.dockerignore
+.eslintignore
+.eslintrc.cjs
+docker-compose.yml

@@ -18,20 +18,25 @@ export type BackgroundImage = {
 
 export type Forecast = {
   today: {
-    temp?: number;
+    temp: number;
     humidity?: number;
+    pressure?: number;
     windSpeed?: number;
     windDirection?: number;
-    weather: { icon: string; main?: string; description?: string };
+    weather: { icon: string; main: string };
   };
   tomorrow: {
-    maxTemp?: number;
-    minTemp?: number;
-    weather: { icon: string; main?: string; description?: string };
+    temp: {
+      max: number;
+      min: number;
+    };
+    weather: { icon: string; main: string };
   };
   afterTomorrow: {
-    maxTemp?: number;
-    minTemp?: number;
-    weather: { icon: string; main?: string; description?: string };
+    temp: {
+      max: number;
+      min: number;
+    };
+    weather: { icon: string; main: string };
   };
 };
