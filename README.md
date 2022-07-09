@@ -8,6 +8,7 @@
 <img alt="Zustand" src="https://img.shields.io/badge/-%F0%9F%90%BB%20Zustand-592e3f?style=for-the-badge" />
 <img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
 <img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />
+<img alt="Babel" src ="https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black" />
 </div>
 <div align="center">
  <img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" />
@@ -15,6 +16,7 @@
 <img alt="Headless UI" src="https://img.shields.io/badge/Headless_UI-111827.svg?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+SGVhZGxlc3MgVUk8L3RpdGxlPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik00LjQ3NyAxMy4xOTJjLS4zNi0yLjI3NC0uNTg0LTMuNzExLS42NS00LjgwNS0uMDYyLTEuMDM1LjA1MS0xLjM1NC4xLTEuNDY4LjE2OS0uMzk1LjQyNC0uNzQ2Ljc0Ni0xLjAyOS4wOTMtLjA4MS4zNjMtLjI4OCAxLjM2Ni0uNTQ4IDEuMDYtLjI3NSAyLjQ5Ni0uNTA3IDQuNzY5LS44NjcgMi4yNzQtLjM2IDMuNzEtLjU4NCA0LjgwNC0uNjUgMS4wMzQtLjA2MiAxLjM1NC4wNTEgMS40NjguMS4zOTUuMTY5Ljc0Ni40MjQgMS4wMjkuNzQ3LjA4LjA5My4yODcuMzYyLjU0NyAxLjM2Ni4yNDIuOTMzLjQ1IDIuMTU2Ljc0MyAzLjk4N2wtMTQuNjQ2IDQuODljLS4wODUtLjUxNS0uMTc2LTEuMDg1LS4yNzYtMS43MjNabS0zLjc2Mi41OTZDLjAxOCA5LjM4Ny0uMzMgNy4xODcuNDI1IDUuNDIyYTYuNjY1IDYuNjY1IDAgMCAxIDEuNzQzLTIuNDAxQzMuNjE0IDEuNzU3IDUuODEzIDEuNDEgMTAuMjExLjcxM2M0LjQtLjY5OCA2LjYtMS4wNDYgOC4zNjctLjI5MS45Mi4zOTMgMS43NC45OSAyLjM5OSAxLjc0MyAxLjI2NCAxLjQ0NyAxLjYxMiAzLjY0NyAyLjMwOCA4LjA0Ny42OTcgNC40IDEuMDQ1IDYuNjAxLjI5IDguMzY2YTYuNjY0IDYuNjY0IDAgMCAxLTEuNzQzIDIuNDAyYy0xLjQ0NSAxLjI2My0zLjY0NSAxLjYxMS04LjA0NSAyLjMwOC00LjM5OC42OTctNi41OTggMS4wNDUtOC4zNjMuMjlhNi42NjYgNi42NjYgMCAwIDEtMi40LTEuNzQzYy0xLjI2My0xLjQ0OC0xLjYxMS0zLjY0OC0yLjMwOC04LjA0OEguNzE1di4wMDFabTcuNzU5IDcuODE0YzEuMTc4LS4wNzIgMi42OTUtLjMxIDQuOTQtLjY2NSAyLjI0Ny0uMzU2IDMuNzYyLS41OTkgNC45MDUtLjg5NSAxLjEwNy0uMjg4IDEuNjE3LS41NjggMS45NDctLjg1NmE0LjI4NiA0LjI4NiAwIDAgMCAxLjEyLTEuNTQzYy4xNzItLjQwMi4yODEtLjk3NC4yMTItMi4xMTYtLjA3MS0xLjE3OC0uMzA5LTIuNjk2LS42NjUtNC45NDItLjM1NS0yLjI0Ny0uNTk4LTMuNzYzLS44OTQtNC45MDYtLjI4Ny0xLjEwNy0uNTY4LTEuNjE4LS44NTUtMS45NDdhNC4yODUgNC4yODUgMCAwIDAtMS41NDMtMS4xMmMtLjQwMi0uMTc0LS45NzQtLjI4Mi0yLjExNi0uMjEzLTEuMTc4LjA3MS0yLjY5NC4zMDktNC45NC42NjQtMi4yNDYuMzU3LTMuNzYyLjYtNC45MDUuODk2LTEuMTA3LjI4Ny0xLjYxNi41NjgtMS45NDYuODU1YTQuMjg2IDQuMjg2IDAgMCAwLTEuMTIgMS41NDNjLS4xNzMuNDAzLS4yODEuOTc0LS4yMTIgMi4xMTYuMDcgMS4xNzkuMzA4IDIuNjk2LjY2NCA0Ljk0My4zNTYgMi4yNDYuNTk4IDMuNzYyLjg5NSA0LjkwNS4yODcgMS4xMDguNTY3IDEuNjE4Ljg1NSAxLjk0Ny40MjMuNDg1Ljk1Ljg2OCAxLjU0MyAxLjEyMS40MDIuMTczLjk3My4yODIgMi4xMTYuMjEzWiIvPjwvc3ZnPgo=" />
 <img alt="Webpack" src="https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black" />
 <img alt="Jest" src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white" />
+<img alt="Nginx" src="https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white" />
 </div>
 <br/>
 
@@ -33,10 +35,10 @@ barra de pesquisa.
     4. [Immer](#immer)
     5. [TailwindCSS](#tailwindcss)
     6. [Headless UI](#headless-ui)
+    7. [Observações](#observa%C3%A7%C3%B5es)
 3. [Instalação](#-instalação)
 4. [Execução](#%EF%B8%8F-execução)
-5. [Docker](#-docker)
-6. [Testes](#-testes)
+5. [Testes](#-testes)
 
 ## 🌟 Funcionalidades
 * 🧭 Geolocalização automática
@@ -52,7 +54,7 @@ barra de pesquisa.
 Para ser avisado sobre problemas de tipagem no compile time, foi escolhido o ```Typescript``` como linguagem, transpilado com Babel.
 
 ### Layout
-O layout foi modificado para criar uma hierarquia visual entre as informações mais relevantes e para criar um fluxo de leitura mais confortável na aplicação. No ambiente mobile, foi omitido a imagem de fundo do Bing para evitar clutter ou possíveis perdas de leitura se as informações fossem colocadas contra um fundo transparente para que a imagem de fundo ainda aparecesse
+O layout foi modificado para criar uma hierarquia visual entre as informações mais relevantes e para criar um fluxo de leitura mais confortável na aplicação. No ambiente mobile, foi omitido a imagem de fundo do Bing para evitar clutter ou possíveis perdas de leitura se as informações fossem colocadas contra um fundo transparente para que a imagem de fundo ainda aparecesse.
 
 ### Zustand
 Para evitar prop drilling e ter acesso global aos estados da aplicação, foi preciso escolher um gerenciador de estados, nesse processo o ```Zustand``` foi escolhido pela sua simplicidade de sintaxe e facilidade de uso.
@@ -64,7 +66,11 @@ Em conjunto com o ```Zustand```, foi usado o ```Immer```, que permite uma manipu
 O ```Tailwind``` foi o método escolhido para estilização da aplicação devido a velocidade de iteração e por facilitar a estilização dependendo do estado da aplicação, já que usa diretamente classNames.
 
 ### Headless UI
-Biblioteca de componentes visuais desenvolvida pela equipe do ```Tailwind```, com integração direta com ```React```. Escolhida para facilitar a construção e configuração da acessibilidade da UI
+Biblioteca de componentes visuais desenvolvida pela equipe do ```Tailwind```, com integração direta com ```React```. Escolhida para facilitar a construção e configuração da acessibilidade da UI.
+
+### Observações
+* Se tratando das chaves de API armazenadas como variáveis de ambiente, o arquivo .env faz parte do repositório apenas por questão de praticidade de uso da aplicação clonada, tendo em vista que são chaves públicas no repositório original do desafio.
+* Na mesma linha, a chave de API da Google está visível no corpo do arquivo html por ser um requisito da própria Google em sua documentação, porém em produção essa chave seria limitada a requisições vindas apenas de membros da whitelist.
 
 ## 📦 Instalação
 Para clonar o projeto, execute o comando:
@@ -80,15 +86,5 @@ npm install
 Para instalar as dependências do projeto.
 
 ## ⚙️ Execução
-Para levantar o ambiente de desenvolvimento com hot reload, basta rodar o comando
-```bash
-yarn run start
-```
-Ou
-```bash
-npm start
-```
-
-## 🐋 Docker
 
 ## 🧪 Testes
