@@ -1,6 +1,8 @@
 # Challenge Charlie
 
 <h3 align="center"> ☁️ Previsão do tempo dinâmica e com um visual agradável ☁️ </h3>
+
+<img alt="Captura de tela do aplicativo funcionando" src="./ChallengeCharlieScreenshot.png"/>
  
 <div align="center">
 <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
