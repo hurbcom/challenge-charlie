@@ -36,8 +36,7 @@ barra de pesquisa.
     3. [Zustand](#zustand)
     4. [Immer](#immer)
     5. [TailwindCSS](#tailwindcss)
-    6. [Headless UI](#headless-ui)
-    7. [Observações](#observa%C3%A7%C3%B5es)
+    6. [Observações](#observa%C3%A7%C3%B5es)
 3. [Instalação](#-instalação)
 4. [Execução](#%EF%B8%8F-execução)
 5. [Testes](#-testes)
@@ -53,7 +52,7 @@ barra de pesquisa.
 
 ## 🧠 Escolhas no desenvolvimento
 ### Typescript
-Para ser avisado sobre problemas de tipagem no compile time, foi escolhido o ```Typescript``` como linguagem, transpilado com Babel.
+Para ser avisado sobre problemas de tipagem no compile time, foi escolhido o ```Typescript``` como linguagem, transpilado com ```Babel```.
 
 ### Layout
 O layout foi modificado para criar uma hierarquia visual entre as informações mais relevantes e para criar um fluxo de leitura mais confortável na aplicação. No ambiente mobile, foi omitido a imagem de fundo do Bing para evitar clutter ou possíveis perdas de leitura se as informações fossem colocadas contra um fundo transparente para que a imagem de fundo ainda aparecesse.
@@ -66,9 +65,6 @@ Em conjunto com o ```Zustand```, foi usado o ```Immer```, que permite uma manipu
 
 ### TailwindCSS
 O ```Tailwind``` foi o método escolhido para estilização da aplicação devido a velocidade de iteração e por facilitar a estilização dependendo do estado da aplicação, já que usa diretamente classNames.
-
-### Headless UI
-Biblioteca de componentes visuais desenvolvida pela equipe do ```Tailwind```, com integração direta com ```React```. Escolhida para facilitar a construção e configuração da acessibilidade da UI.
 
 ### Observações
 * Se tratando das chaves de API armazenadas como variáveis de ambiente, o arquivo .env faz parte do repositório apenas por questão de praticidade de uso da aplicação clonada. Se esse fosse um aplicativo em produção, as chaves precisariam ser manualmente preenchidas para executar a aplicação
