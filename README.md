@@ -44,7 +44,6 @@ barra de pesquisa.
 * 🧭 Geolocalização automática
 * 🌎 Pesquisa global de localidades
 * 🌡️ Temperaturas em Celsius ou Fahrenheit
-* 🔍 Sugestões de busca do Google
 * 🎨 Tema dinâmico que muda de acordo com a temperatura do local 
 * 🖼️ Fundo dinâmico que muda todos os dias
 * ♿ Configurado com acessibilidade em mente
