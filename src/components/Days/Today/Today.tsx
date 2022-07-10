@@ -1,8 +1,9 @@
 import React from "react";
 import { useStore } from "../../../store/store";
-import Conditions from "../../Auxiliary/Conditions/Conditions";
+import { windDirection } from "../../../Utilities/windDirection";
 import Icon from "../../Auxiliary/Icons/IconRenderer/Icon";
 import Temperature from "../../Auxiliary/Temperature/Temperature";
+import { translateCondition } from "../../../Utilities/translateCondition";
 
 const Today = () => {
   const forecast = useStore((state) => state.forecast.today);
@@ -25,19 +26,27 @@ const Today = () => {
         </p>
       </div>
       {/*Second horizontal half of the result block*/}
-      <div className="w-[50%] h-full flex relative flex-col py-[2.5%] items-center overflow-hidden justify-between">
+      <div className="w-[50%] h-full flex relative flex-col py-[3%] items-center overflow-hidden justify-between">
         {/*Location name*/}
-        <h1 className="text-center font-montserrat font-medium text-3xl text-dark">
-          {location.city}
-        </h1>
+        <div>
+          <h2 className="text-center font-montserrat font-normal text-xl text-dark leading-7">
+            {location.state}
+          </h2>
+          <h1 className="text-center font-montserrat font-normal text-3xl text-dark leading-7">
+            {location.city}
+          </h1>
+        </div>
         {/*Temperature display/switcher*/}
-        <Temperature temp={forecast.temp} style={"text-[8rem]"}></Temperature>
-        <Conditions
-          style={`font-montserrat font-medium text-[2rem] text-dark`}
-          condition={forecast.weather.main}
-        ></Conditions>
+        <Temperature
+          temp={forecast.temp}
+          style={"text-[5rem] mt-3"}
+        ></Temperature>
+        {/*Current weather condition*/}
+        <h1 className="font-montserrat font-medium text-[2rem] text-dark">
+          {translateCondition(forecast.weather.main)}
+        </h1>
         {/*Extra information container*/}
-        <div className="flex flex-row justify-between w-[90%] h-[30%]">
+        <div className="flex flex-row justify-between w-[90%] h-[30%] items-start">
           {/*Humidity*/}
           <div className="mx-[1.5%] flex flex-col">
             <svg
@@ -55,7 +64,7 @@ const Today = () => {
             </p>
             <p className="text-center text-sm font-montserrat text-dark font-semibold leading-tight">{`${forecast.humidity}%`}</p>
           </div>
-          {/*Winds*/}
+          {/*Wind*/}
           <div className="mx-[1.5%] flex flex-col">
             <svg
               className="fill-dark w-[1.8rem] mx-[auto]"
@@ -69,7 +78,10 @@ const Today = () => {
             <p className="text-center text-sm font-montserrat text-dark font-semibold leading-tight mt-1">
               ventos
             </p>
-            <p className="text-center text-sm font-montserrat text-dark font-semibold leading-tight">{`${forecast.windSpeed}m/s NO`}</p>
+            <p className="text-center text-sm font-montserrat text-dark font-semibold leading-tight">{`${forecast.windSpeed} km/h`}</p>
+            <p className="text-center text-xs font-montserrat text-dark font-semibold leading-tight">
+              {windDirection(forecast.windDirection)}
+            </p>
           </div>
           {/*Pressure*/}
           <div className="mx-[1.5%]  flex flex-col">

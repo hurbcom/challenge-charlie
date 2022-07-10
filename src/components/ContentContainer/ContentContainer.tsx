@@ -14,10 +14,14 @@ const ContentContainer = () => {
 
   const weatherEffect = () => {
     if (coords.latitude && !forecast.today?.temp) {
-      fetchWeather(coords.latitude, coords.longitude).then((data) => {
-        setForecast(data);
-        setTheme(data.today.temp);
-      });
+      fetchWeather(coords.latitude, coords.longitude)
+        .then((data) => {
+          setForecast(data);
+          setTheme(data.today.temp);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 

@@ -9,7 +9,7 @@ export const fetchLocation = async (
     {
       params: {
         q: `${latitude}, ${longitude}`,
-        key: `${process.env.OPEN_CAGE_KEY}`,
+        key: process.env.OPEN_CAGE_KEY,
         abbrv: 1,
         language: "pt-br",
         no_annotations: 1,
@@ -19,6 +19,19 @@ export const fetchLocation = async (
     }
   );
   return response.data.results[0].components;
+};
+
+export const fetchGeocoding = async (address: string) => {
+  const response = await axios.get(
+    "https://maps.googleapis.com/maps/api/geocode/json",
+    {
+      params: {
+        address: address,
+        key: process.env.GOOGLE_KEY,
+      },
+    }
+  );
+  return response.data.results[0];
 };
 
 export const fetchBackground = async () => {
@@ -49,7 +62,7 @@ export const fetchWeather = async (
         exclude: "minutely,hourly,alerts",
         units: "metric",
         lang: "pt_br",
-        appid: `${process.env.OPEN_WEATHER_KEY}`,
+        appid: process.env.OPEN_WEATHER_KEY,
       },
     }
   );
@@ -57,7 +70,9 @@ export const fetchWeather = async (
     today: {
       temp: <number>Math.round(response.data.current.temp),
       humidity: <number>response.data.current.humidity,
-      windSpeed: <number>response.data.current.wind_speed,
+      windSpeed: <number>(
+        (Math.round(response.data.current.wind_speed * 3.6 * 10) / 10)
+      ),
       windDirection: <number>response.data.current.wind_deg,
       pressure: <number>response.data.current.pressure,
       weather: {

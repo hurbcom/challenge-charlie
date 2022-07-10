@@ -3,11 +3,12 @@ import { BackgroundImage, Coordinates, Forecast, Location } from "./storeTypes";
 import produce from "immer";
 
 type Store = {
-  loading: boolean;
+  isLoading: boolean;
+  isError: boolean;
   globaltheme: string;
   setGlobalTheme: (temperature: number) => void;
   coords: Coordinates;
-  setCoords: (geoPosition: GeolocationPosition) => void;
+  setCoords: (geoPosition: Coordinates) => void;
   location: Location;
   setLocation: (newLocation: Location) => void;
   background: BackgroundImage;
@@ -20,8 +21,8 @@ type Store = {
 
 export const useStore = create<Store>((set, get) => ({
   //app state
-  loading: false,
-
+  isLoading: false,
+  isError: false,
   //app appearance
   globaltheme: "gray",
   setGlobalTheme(temperature) {
@@ -48,8 +49,8 @@ export const useStore = create<Store>((set, get) => ({
   setCoords(geoposition) {
     set(
       produce((state) => {
-        state.coords.latitude = geoposition.coords.latitude;
-        state.coords.longitude = geoposition.coords.longitude;
+        state.coords.latitude = geoposition.latitude;
+        state.coords.longitude = geoposition.longitude;
       })
     );
   },
@@ -58,12 +59,10 @@ export const useStore = create<Store>((set, get) => ({
   location: {
     city: "",
     state: "",
-    country: "",
   },
   setLocation(newLocation) {
     set(
       produce((state) => {
-        state.location.country = newLocation.country;
         state.location.state = newLocation.state;
         if (newLocation.city) {
           state.location.city = newLocation.city;
@@ -96,6 +95,7 @@ export const useStore = create<Store>((set, get) => ({
   forecast: {
     today: {
       temp: 0,
+      windDirection: 0,
       weather: {
         icon: "",
         main: "",

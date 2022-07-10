@@ -10,9 +10,17 @@ const Locator = () => {
 
   const coordsEffect = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setCoords, (error) => {
-        console.log(error);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (geolocation) => {
+          setCoords({
+            latitude: geolocation.coords.latitude,
+            longitude: geolocation.coords.longitude,
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
   };
 
@@ -21,11 +29,10 @@ const Locator = () => {
       fetchLocation(coords.latitude, coords.longitude)
         .then((data) => {
           setLocation({
-            country: data.country,
-            state: data.state,
             city: data.city,
             district: data.district,
             municipality: data.municipality,
+            state: data.state,
           });
         })
         .catch((error) => console.log(error));
