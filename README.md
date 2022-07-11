@@ -74,12 +74,34 @@ git clone https://github.com/jpsaiago/challenge-charlie.git
 ```
 Depois mude seu terminal para o diretório que foi criado do projeto e execute:
 ```bash
-yarn 
--OU-
-npm install
+yarn -OU- npm install
 ```
 Para instalar as dependências do projeto.
 
 ## ⚙️ Execução
+Para iniciar o ambiente de desenvolvimento através do ```Node```, basta usar o comando:
+```bash
+npm start -OU- yarn run start
+```
+A aplicação será levantada na porta 4000 com hot reload e source maps ativados.
+
+Para executar a aplicação em produção, não é preciso instalar as dependências, mas é preciso ter o ```Docker``` instalado. O comando para verificar se ele existe na máquina é:
+```bash
+docker -v
+```
+Feito isso, basta executar:
+```bash
+npm compose-prod -OU- yarn run compose-prod
+```
+A aplicação será levantada na porta 4000 minificada no modo de produção.
+
+Existem também códigos para criar o pacote do webpack
+```bash
+npm build -OU- yarn run build
+```
+e para levantar o container no modo de desenvolvimento
+```bash
+npm compose-dev -OU- yarn run compose-dev
+```
 
 ## 🧪 Testes
