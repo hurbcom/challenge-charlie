@@ -12,7 +12,7 @@ const Today = () => {
 
   return (
     //Show today's forecast results
-    <section className={`bg-${theme}-100 w-full h-[50vh] flex flex-row`}>
+    <section className={`bg-${theme}-100 w-full h-[55vh] flex flex-row`}>
       {/*First horizontal half of the result block*/}
       <div className="w-[50%] h-full flex relative flex-col">
         {/*Show the current weather icon*/}
@@ -32,7 +32,7 @@ const Today = () => {
           <h2 className="text-center font-montserrat font-normal text-xl text-dark leading-7">
             {location.state}
           </h2>
-          <h1 className="text-center font-montserrat font-normal text-3xl text-dark leading-7">
+          <h1 className="text-center font-montserrat font-normal text-2xl text-dark leading-7">
             {location.city}
           </h1>
         </div>

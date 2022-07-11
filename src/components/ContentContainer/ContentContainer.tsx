@@ -36,7 +36,7 @@ const ContentContainer = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col mx-[30%] items-center my-[5vh] rounded-xl drop-shadow-md">
+        <div className="flex flex-col mx-[30%] items-center my-[2.5vh] rounded-xl drop-shadow-md">
           <Search />
           <Today />
           <Tomorrow />
