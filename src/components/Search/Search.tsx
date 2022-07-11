@@ -10,15 +10,35 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [inputValue, setInputValue] = useState("");
 
+  const handleInformationSize = (data: any) => {
+    const length = data.address_components.length;
+    switch (length) {
+      case 1:
+        return {
+          city: data.address_components[0].long_name,
+          state: "",
+        };
+      case 2:
+        return {
+          city: data.address_components[0].long_name,
+          state: data.address_components[1].long_name,
+        };
+
+      default:
+        return {
+          city: data.address_components[0].long_name,
+          state: data.address_components.at(-2).long_name,
+        };
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading();
     fetchGeocoding(searchTerm)
       .then((data) => {
-        setLocation({
-          city: data.address_components[0].long_name,
-          state: data.address_components[1].long_name,
-        });
+        console.log(data.address_components.length);
+        setLocation(handleInformationSize(data));
         fetchWeather(data.geometry.location.lat, data.geometry.location.lng)
           .then((data) => {
             setForecast(data);

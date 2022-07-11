@@ -1,9 +1,9 @@
 services:
   weather-app:
-    stdin_open: true
-    tty: true
     container_name: WeatherApp
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - "4000:4000"
     volumes:

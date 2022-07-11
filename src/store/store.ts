@@ -39,7 +39,6 @@ export const useStore = create<Store>((set, get) => ({
   setErrorCode(newCode) {
     set(() => ({ errorCode: newCode }));
   },
-
   //app appearance
   globaltheme: "gray",
   setGlobalTheme(temperature) {

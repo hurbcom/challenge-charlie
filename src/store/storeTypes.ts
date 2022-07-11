@@ -7,7 +7,7 @@ export type Location = {
   city?: string;
   municipality?: string;
   district?: string;
-  state: string;
+  state?: string;
 };
 
 export type BackgroundImage = {
