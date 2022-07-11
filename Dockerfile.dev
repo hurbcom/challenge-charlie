@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node
 WORKDIR /build
 ENV PATH="./node_modules/.bin:$PATH"
 COPY package.json .

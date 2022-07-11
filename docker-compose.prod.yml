@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     ports:
-      - "4040:40"
+      - "4000:80"
     env_file:
       - ./.env

@@ -5,6 +5,5 @@ COPY package.json .
 RUN yarn
 COPY . .
 RUN yarn run build
-
-FROM nginx:latest
+FROM nginx
 COPY --from=build /app/build usr/share/nginx/html

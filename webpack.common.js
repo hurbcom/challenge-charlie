@@ -1,14 +1,13 @@
-const prod = process.env.NODE_ENV === "production";
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const path = require("path");
 
 module.exports = {
-  mode: prod ? "production" : "development",
   entry: "./src/index.tsx",
   output: {
-    path: __dirname + "/build/",
     filename: "index.bundle.js",
+    path: path.join(__dirname, "/build"),
+    clean: true,
   },
   module: {
     rules: [
@@ -51,7 +50,6 @@ module.exports = {
       },
     ],
   },
-  devtool: prod ? "" : "source-map",
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",

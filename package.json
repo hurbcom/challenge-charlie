@@ -5,8 +5,10 @@
   "main": "index.tsx",
   "scripts": {
     "test": "jest",
-    "start": "webpack serve --port 4000",
-    "build": "NODE_ENV=production && webpack"
+    "start": "webpack serve --config webpack.dev.js --port 4000 --hot",
+    "build": "webpack --config webpack.prod.js",
+    "compose-prod": "docker compose -f docker-compose.prod.yml up --build",
+    "compose-dev": "docker compose -f docker-compose.dev.yml up --build"
   },
   "author": "João Pedro Saiago",
   "license": "MIT",
@@ -32,7 +34,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.2",
     "json-minimizer-webpack-plugin": "^4.0.0",
-    "lottie-web-webpack-loader": "^0.0.4",
+    "lottie-web-webpack-loader": "^0.0.1",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
     "style-loader": "^3.3.1",
@@ -41,6 +43,7 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.8.0",
     "webpack-typings-for-json": "^0.8.0"
   },
   "dependencies": {

@@ -11,45 +11,47 @@ const Search = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInformationSize = (data: any) => {
-    const length = data.address_components.length;
-    switch (length) {
-      case 1:
-        return {
-          city: data.address_components[0].long_name,
-          state: "",
-        };
-      case 2:
-        return {
-          city: data.address_components[0].long_name,
-          state: data.address_components[1].long_name,
-        };
+    interface Switcher {
+      [key: string]: () => { city: string; state: string };
+    }
 
-      default:
-        return {
-          city: data.address_components[0].long_name,
-          state: data.address_components.at(-2).long_name,
-        };
+    if (data.address_components.length > 2) {
+      return {
+        city: data.address_components[0].long_name,
+        state: data.address_components.at(-2).long_name,
+      };
+    } else {
+      const length = `case${data.address_components.length}`;
+      const switcher: Switcher = {
+        case1() {
+          return { city: data.address_components[0].long_name, state: "" };
+        },
+        case2() {
+          return {
+            city: data.address_components[0].long_name,
+            state: data.address_components[1].long_name,
+          };
+        },
+      };
+      return switcher[length]();
     }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading();
-    fetchGeocoding(searchTerm)
-      .then((data) => {
-        console.log(data.address_components.length);
-        setLocation(handleInformationSize(data));
-        fetchWeather(data.geometry.location.lat, data.geometry.location.lng)
-          .then((data) => {
-            setForecast(data);
-            setTheme(data.today.temp);
-            setLoading();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch(console.log);
+    fetchGeocoding(searchTerm).then((data) => {
+      setLocation(handleInformationSize(data));
+      fetchWeather(data.geometry.location.lat, data.geometry.location.lng)
+        .then((data) => {
+          setForecast(data);
+          setTheme(data.today.temp);
+          setLoading();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   };
 
   return (
