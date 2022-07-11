@@ -6,17 +6,19 @@ import Today from "../Days/Today/Today";
 import Tomorrow from "../Days/Tomorrow/Tomorrow";
 import Overmorrow from "../Days/Overmorrow/Overmorrow";
 import Loading from "../Loading/Loading";
+import EmptyLocation from "../EmptyLocation/EmptyLocation";
 
 const ContentContainer = () => {
   const isLoading = useStore((state) => state.isLoading);
   const setLoading = useStore((state) => state.setLoading);
   const coords = useStore((state) => state.coords);
   const forecast = useStore((state) => state.forecast);
+  const location = useStore((state) => state.location);
   const setForecast = useStore((state) => state.setForecast);
   const setTheme = useStore((state) => state.setGlobalTheme);
 
   const weatherEffect = () => {
-    if (coords.latitude && !forecast.today?.temp) {
+    if (coords.latitude && !forecast.today?.temp && location.city) {
       fetchWeather(coords.latitude, coords.longitude)
         .then((data) => {
           setForecast(data);
@@ -29,18 +31,24 @@ const ContentContainer = () => {
     }
   };
 
-  useEffect(weatherEffect, [coords]);
+  useEffect(weatherEffect, [coords, location]);
 
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col mx-[30%] items-center my-[2.5vh] rounded-xl drop-shadow-md">
+        <div className="flex flex-col w-full md:w-[40%] mx-auto items-center md:my-[17.5vh] lg:my-[2.5vh] rounded-xl md:drop-shadow-md">
           <Search />
-          <Today />
-          <Tomorrow />
-          <Overmorrow />
+          {location.city ? (
+            <>
+              <Today />
+              <Tomorrow />
+              <Overmorrow />
+            </>
+          ) : (
+            <EmptyLocation />
+          )}
         </div>
       )}
     </>
