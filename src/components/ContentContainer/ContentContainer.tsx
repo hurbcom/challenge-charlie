@@ -5,8 +5,11 @@ import Search from "../Search/Search";
 import Today from "../Days/Today/Today";
 import Tomorrow from "../Days/Tomorrow/Tomorrow";
 import Overmorrow from "../Days/Overmorrow/Overmorrow";
+import Loading from "../Loading/Loading";
 
 const ContentContainer = () => {
+  const isLoading = useStore((state) => state.isLoading);
+  const setLoading = useStore((state) => state.setLoading);
   const coords = useStore((state) => state.coords);
   const forecast = useStore((state) => state.forecast);
   const setForecast = useStore((state) => state.setForecast);
@@ -18,6 +21,7 @@ const ContentContainer = () => {
         .then((data) => {
           setForecast(data);
           setTheme(data.today.temp);
+          setLoading();
         })
         .catch((error) => {
           console.log(error);
@@ -28,12 +32,18 @@ const ContentContainer = () => {
   useEffect(weatherEffect, [coords]);
 
   return (
-    <div className="flex flex-col mx-[30%] items-center my-[5vh] rounded-xl drop-shadow-md">
-      <Search />
-      {forecast.today.temp ? <Today /> : null}
-      {forecast.tomorrow.temp.max ? <Tomorrow /> : null}
-      {forecast.afterTomorrow.temp.max ? <Overmorrow /> : null}
-    </div>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="flex flex-col mx-[30%] items-center my-[5vh] rounded-xl drop-shadow-md">
+          <Search />
+          <Today />
+          <Tomorrow />
+          <Overmorrow />
+        </div>
+      )}
+    </>
   );
 };
 

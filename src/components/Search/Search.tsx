@@ -6,11 +6,13 @@ const Search = () => {
   const setLocation = useStore((state) => state.setLocation);
   const setForecast = useStore((state) => state.setForecast);
   const setTheme = useStore((state) => state.setGlobalTheme);
+  const setLoading = useStore((state) => state.setLoading);
   const [searchTerm, setSearchTerm] = useState("");
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading();
     fetchGeocoding(searchTerm)
       .then((data) => {
         setLocation({
@@ -21,7 +23,7 @@ const Search = () => {
           .then((data) => {
             setForecast(data);
             setTheme(data.today.temp);
-            setInputValue("");
+            setLoading();
           })
           .catch((error) => {
             console.log(error);
@@ -42,7 +44,7 @@ const Search = () => {
           placeholder="Insira uma localização"
           required
           type="text"
-          className="bg-gray-50 font-montserrat rounded-md w-full text-xl pl-3 py-1 overflow-hidden placeholder:text-center placeholder:pr-3"
+          className=" location-input bg-gray-50 font-montserrat rounded-md w-full text-xl pl-3 py-1 overflow-hidden placeholder:text-center placeholder:pr-3"
         />
       </form>
     </div>

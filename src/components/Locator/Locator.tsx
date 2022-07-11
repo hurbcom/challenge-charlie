@@ -8,6 +8,8 @@ const Locator = () => {
   const setCoords = useStore((state) => state.setCoords);
   const coords = useStore((state) => state.coords);
 
+  console.log("Locator rendered");
+
   const coordsEffect = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

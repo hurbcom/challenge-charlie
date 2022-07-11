@@ -6,6 +6,8 @@ const Background = () => {
   const background = useStore((state) => state.background);
   const setBackground = useStore((state) => state.setBackground);
 
+  console.log("Background rendered");
+
   const imageEffect = () => {
     fetchBackground().then((data) => {
       setBackground({

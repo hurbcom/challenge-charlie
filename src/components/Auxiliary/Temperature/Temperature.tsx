@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "../../../store/store";
-import { celsiusToFahrenheit } from "../../../Utilities/tempConverter";
+import { celsiusToFahrenheit } from "../../../utilities/tempConverter";
 
 interface TemperatureProps {
   temp: number;

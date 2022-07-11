@@ -4,7 +4,11 @@ import produce from "immer";
 
 type Store = {
   isLoading: boolean;
+  setLoading: () => void;
   isError: boolean;
+  setError: () => void;
+  errorCode: string;
+  setErrorCode: (code: string) => void;
   globaltheme: string;
   setGlobalTheme: (temperature: number) => void;
   coords: Coordinates;
@@ -21,8 +25,21 @@ type Store = {
 
 export const useStore = create<Store>((set, get) => ({
   //app state
-  isLoading: false,
+  isLoading: true,
+  setLoading() {
+    set(() => ({ isLoading: !get().isLoading }));
+  },
+
   isError: false,
+  setError() {
+    set(() => ({ isError: !get().isError }));
+  },
+
+  errorCode: "00",
+  setErrorCode(newCode) {
+    set(() => ({ errorCode: newCode }));
+  },
+
   //app appearance
   globaltheme: "gray",
   setGlobalTheme(temperature) {

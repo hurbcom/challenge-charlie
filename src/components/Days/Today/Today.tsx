@@ -1,9 +1,9 @@
 import React from "react";
 import { useStore } from "../../../store/store";
-import { windDirection } from "../../../Utilities/windDirection";
+import { windDirection } from "../../../utilities/windDirection";
 import Icon from "../../Auxiliary/Icons/IconRenderer/Icon";
 import Temperature from "../../Auxiliary/Temperature/Temperature";
-import { translateCondition } from "../../../Utilities/translateCondition";
+import { translateCondition } from "../../../utilities/translateCondition";
 
 const Today = () => {
   const forecast = useStore((state) => state.forecast.today);
@@ -17,7 +17,7 @@ const Today = () => {
       <div className="w-[50%] h-full flex relative flex-col">
         {/*Show the current weather icon*/}
         <Icon
-          style={`fill-${theme}-200 w-[90%] ml-[auto] my-[auto]`}
+          style={`fill-${theme}-200 w-[90%] ml-[auto] my-[auto] `}
           code={forecast.weather.icon}
         />
         {/*"Hoje" tag*/}

@@ -21,7 +21,13 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        test: /\.json$/i,
+        type: "javascript/auto",
+        loader: "lottie-web-webpack-loader",
+        include: /(lottie)/,
+      },
+      {
+        test: /\.ico$/i,
         exclude: /node_modules/,
         type: "asset/resource",
       },
