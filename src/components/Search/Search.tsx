@@ -7,6 +7,8 @@ const Search = () => {
   const setForecast = useStore((state) => state.setForecast);
   const setTheme = useStore((state) => state.setGlobalTheme);
   const setLoading = useStore((state) => state.setLoading);
+  const setError = useStore((state) => state.setError);
+  const setErrorCode = useStore((state) => state.setErrorCode);
   const [searchTerm, setSearchTerm] = useState("");
   const [inputValue, setInputValue] = useState("");
 
@@ -40,22 +42,30 @@ const Search = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading();
-    fetchGeocoding(searchTerm).then((data) => {
-      setLocation(handleInformationSize(data));
-      fetchWeather(data.geometry.location.lat, data.geometry.location.lng)
-        .then((data) => {
-          setForecast(data);
-          setTheme(data.today.temp);
-          setLoading();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+    fetchGeocoding(searchTerm)
+      .then((data) => {
+        setLocation(handleInformationSize(data));
+        fetchWeather(data.geometry.location.lat, data.geometry.location.lng)
+          .then((data) => {
+            setForecast(data);
+            setTheme(data.today.temp);
+            setLoading();
+          })
+          .catch((error) => {
+            setLoading;
+            setError();
+            setErrorCode({ erro: "ERRO NA PREVISÃO", mensagem: error.message });
+          });
+      })
+      .catch(() => {
+        setLoading();
+        setError();
+        setErrorCode({ erro: "", mensagem: "Local não encontrado" });
+      });
   };
 
   return (
-    <div className="bg-white w-full rounded-t-xl h-[10vh] flex justify-center items-center">
+    <div className="bg-white w-full md:rounded-t-xl h-[10vh] md:h-[5vh] lg:h-[10vh] flex justify-center items-center">
       <form className="w-2/3" onSubmit={handleSubmit}>
         <input
           onChange={(event) => {
@@ -66,7 +76,7 @@ const Search = () => {
           placeholder="Insira uma localização"
           required
           type="text"
-          className=" location-input bg-gray-50 font-montserrat rounded-md w-full text-xl pl-3 py-1 overflow-hidden placeholder:text-center placeholder:pr-3"
+          className=" bg-gray-50 font-montserrat rounded-lg md:rounded-md w-full text-[5vw] md:text-xl pl-3 py-1 overflow-hidden placeholder:text-center placeholder:pr-3"
         />
       </form>
     </div>

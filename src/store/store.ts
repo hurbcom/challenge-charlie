@@ -7,8 +7,11 @@ type Store = {
   setLoading: () => void;
   isError: boolean;
   setError: () => void;
-  errorCode: string;
-  setErrorCode: (code: string) => void;
+  errorCode: {
+    mensagem: string;
+    erro: string;
+  };
+  setErrorCode: (code: { mensagem: string; erro: string }) => void;
   globaltheme: string;
   setGlobalTheme: (temperature: number) => void;
   coords: Coordinates;
@@ -35,7 +38,10 @@ export const useStore = create<Store>((set, get) => ({
     set(() => ({ isError: !get().isError }));
   },
 
-  errorCode: "00",
+  errorCode: {
+    mensagem: "",
+    erro: "",
+  },
   setErrorCode(newCode) {
     set(() => ({ errorCode: newCode }));
   },

@@ -5,10 +5,11 @@ import { fetchLocation } from "../../services/fetchService";
 const Locator = () => {
   //Zustand hook alias
   const setLocation = useStore((state) => state.setLocation);
+  const setLoading = useStore((state) => state.setLoading);
   const setCoords = useStore((state) => state.setCoords);
   const coords = useStore((state) => state.coords);
-
-  console.log("Locator rendered");
+  const setError = useStore((state) => state.setError);
+  const setErrorCode = useStore((state) => state.setErrorCode);
 
   const coordsEffect = () => {
     if (navigator.geolocation) {
@@ -20,7 +21,12 @@ const Locator = () => {
           });
         },
         (error) => {
-          console.log(error);
+          setError();
+          setErrorCode({
+            erro: "ERRO NAS COORDENADAS",
+            mensagem: error.message,
+          });
+          setLoading();
         }
       );
     }
@@ -37,7 +43,13 @@ const Locator = () => {
             state: data.state,
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          setError();
+          setErrorCode({
+            erro: "ERRO NA LOCALIZAÇÃO",
+            mensagem: error.message,
+          });
+        });
     }
   };
 
