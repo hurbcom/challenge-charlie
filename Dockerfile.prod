@@ -1,0 +1,10 @@
+FROM node:current-alpine as build
+WORKDIR /app
+ENV PATH="./node_modules/.bin:$PATH"
+COPY package.json .
+RUN yarn
+COPY . .
+RUN yarn run build
+
+FROM nginx:latest
+COPY --from=build /app/build usr/share/nginx/html
