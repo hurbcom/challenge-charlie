@@ -40,6 +40,7 @@ barra de pesquisa.
 3. [Instalação](#-instalação)
 4. [Execução](#%EF%B8%8F-execução)
 5. [Testes](#-testes)
+6. [To-Do](#-to-do)
 
 ## 🌟 Funcionalidades
 * 🧭 Geolocalização automática
@@ -47,7 +48,6 @@ barra de pesquisa.
 * 🌡️ Temperaturas em Celsius ou Fahrenheit
 * 🎨 Tema dinâmico que muda de acordo com a temperatura do local 
 * 🖼️ Fundo dinâmico que muda todos os dias
-* ♿ Configurado com acessibilidade em mente
 
 ## 🧠 Escolhas no desenvolvimento
 ### Typescript
@@ -64,6 +64,9 @@ Em conjunto com o ```Zustand```, foi usado o ```Immer```, que permite uma manipu
 
 ### TailwindCSS
 O ```Tailwind``` foi o método escolhido para estilização da aplicação devido a velocidade de iteração e por facilitar a estilização dependendo do estado da aplicação, já que usa diretamente classNames.
+
+### Headless UI
+Biblioteca de componentes criada pelo ```Tailwind Labs```, facilita o uso de componentes dinâmicos e acessíveis 
 
 ### Observações
 * Se tratando das chaves de API armazenadas como variáveis de ambiente, o arquivo .env faz parte do repositório apenas por questão de praticidade de uso da aplicação clonada. Se esse fosse um aplicativo em produção, as chaves precisariam ser manualmente preenchidas para executar a aplicação
@@ -92,17 +95,37 @@ docker -v
 ```
 Feito isso, basta executar:
 ```bash
-npm compose-prod -OU- yarn run compose-prod
+npm compose:prod-up -OU- yarn run compose:prod-up
 ```
 A aplicação será levantada na porta 4000 minificada no modo de produção.
 
-Existem também códigos para criar o pacote do webpack
+Existem também códigos para buildar o container sem iniciar o servidor
+```bash
+npm compose:prod -OU- yarn run compose:prod
+```
+Para criar o pacote do webpack
 ```bash
 npm build -OU- yarn run build
 ```
-e para levantar o container no modo de desenvolvimento
+E para levantar o container no modo de desenvolvimento
 ```bash
-npm compose-dev -OU- yarn run compose-dev
+npm compose:dev -OU- yarn run compose:dev
 ```
 
 ## 🧪 Testes
+
+<img align="center" alt="Captura de tela dos resultados dos testes" src="./JestResults.png"/>
+
+---
+
+Para rodar os testes da aplicação, use o comando
+```bash
+npm test -OU- yarn run test
+```
+
+## 🔭 To-Do
+* Testes unitários usando MSW para emular um servidor e verificar o comportamento dos métodos de aquisição de dados.
+* Testes de integração e end-to-end.
+* Criar mensagens de erro mais detalhadas, tratando os erros retornados e apresentando-os ao usuário.
+* Customizar as tags ARIA para a utilização do site com leitores de tela.
+* Implementar transições na UI usando Headless UI.
