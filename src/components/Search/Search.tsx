@@ -51,16 +51,16 @@ const Search = () => {
             setTheme(data.today.temp);
             setLoading();
           })
-          .catch((error) => {
-            setLoading;
+          .catch(() => {
+            setLoading();
             setError();
-            setErrorCode({ erro: "ERRO NA PREVISÃO", mensagem: error.message });
+            setErrorCode({ erro: "Erro na previsão do tempo", mensagem: "" });
           });
       })
-      .catch(() => {
+      .catch((error) => {
         setLoading();
         setError();
-        setErrorCode({ erro: "", mensagem: "Local não encontrado" });
+        setErrorCode({ erro: "Local não encontrado", mensagem: "" });
       });
   };
 
@@ -76,7 +76,7 @@ const Search = () => {
           placeholder="Insira uma localização"
           required
           type="text"
-          className=" bg-gray-50 font-montserrat rounded-lg md:rounded-md w-full text-[5vw] md:text-xl pl-3 py-1 overflow-hidden placeholder:text-center placeholder:pr-3"
+          className="w-full bg-gray-50 text-[5vw] font-montserrat md:text-xl pl-3 py-1  rounded-lg md:rounded-md overflow-hidden placeholder:text-center placeholder:pr-3 placeholder:text-gray-200"
         />
       </form>
     </div>

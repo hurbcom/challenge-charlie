@@ -6,18 +6,28 @@ import { useWindowSize } from "usehooks-ts";
 const Background = () => {
   const background = useStore((state) => state.background);
   const setBackground = useStore((state) => state.setBackground);
+  const setError = useStore((state) => state.setError);
+  const setErrorCode = useStore((state) => state.setErrorCode);
   const { width } = useWindowSize();
   const [fetched, setFetched] = useState(false);
 
   const imageEffect = () => {
     if (width > 800 && !fetched) {
       setFetched(true);
-      fetchBackground().then((data) => {
-        setBackground({
-          url: `https://www.bing.com/${data.url}`,
-          altText: data.title,
+      fetchBackground()
+        .then((data) => {
+          setBackground({
+            url: `https://www.bing.com/${data.url}`,
+            altText: data.title,
+          });
+        })
+        .catch(() => {
+          setError();
+          setErrorCode({
+            erro: "Não foi possível se comunicar com o Bing",
+            mensagem: "",
+          });
         });
-      });
     }
   };
 

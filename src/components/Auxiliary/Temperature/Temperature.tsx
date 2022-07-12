@@ -4,7 +4,7 @@ import { celsiusToFahrenheit } from "../../../utilities/tempConverter";
 
 interface TemperatureProps {
   temp: number;
-  style?: string;
+  style: string;
 }
 
 interface SelectorInterface {

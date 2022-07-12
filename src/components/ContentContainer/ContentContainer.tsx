@@ -16,6 +16,8 @@ const ContentContainer = () => {
   const location = useStore((state) => state.location);
   const setForecast = useStore((state) => state.setForecast);
   const setTheme = useStore((state) => state.setGlobalTheme);
+  const setError = useStore((state) => state.setError);
+  const setErrorCode = useStore((state) => state.setErrorCode);
 
   const weatherEffect = () => {
     if (coords.latitude && !forecast.today?.temp && location.city) {
@@ -26,7 +28,8 @@ const ContentContainer = () => {
           setLoading();
         })
         .catch((error) => {
-          console.log(error);
+          setError();
+          setErrorCode({ erro: "Erro na previsão do tempo", mensagem: "" });
         });
     }
   };

@@ -22,11 +22,19 @@ const Locator = () => {
         },
         (error) => {
           setError();
-          setErrorCode({
-            erro: "ERRO NAS COORDENADAS",
-            mensagem: error.message,
-          });
-          setLoading();
+          if (error.code === 1) {
+            setErrorCode({
+              erro: "Por favor permita o uso da localização",
+              mensagem: error.message,
+            });
+            setLoading();
+          } else {
+            setErrorCode({
+              erro: "Erro nas coordenadas",
+              mensagem: error.message,
+            });
+            setLoading();
+          }
         }
       );
     }
@@ -46,7 +54,7 @@ const Locator = () => {
         .catch((error) => {
           setError();
           setErrorCode({
-            erro: "ERRO NA LOCALIZAÇÃO",
+            erro: "Não foi possível localizar suas coordenadas",
             mensagem: error.message,
           });
         });

@@ -4,7 +4,7 @@ import lottieJson from "./animation.json";
 
 const EmptyLocation = () => {
   return (
-    <div className="bg-gray-200 h-[80vh] w-full rounded-b-xl flex flex-col items-center">
+    <div className="bg-gray-200 h-[90vh] md:h-[50vh] lg:h-[85vh] w-full rounded-b-xl flex flex-col items-center">
       <div className="w-64 mt-12">
         <Lottie
           loop

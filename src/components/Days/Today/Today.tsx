@@ -11,15 +11,14 @@ const Today = () => {
   const location = useStore((state) => state.location);
 
   return (
-    //Show today's forecast results
     <section
-      className={`bg-${theme}-100 w-full h-[50vh] md:h-[30vh] lg:h-[55vh] flex flex-row`}
+      className={`w-full h-[50vh] md:h-[30vh] lg:h-[55vh] bg-${theme}-100 flex flex-row`}
     >
       {/*First horizontal half of the result block*/}
-      <div className="w-[50%] h-full flex relative flex-col">
+      <div className="relative w-1/2 h-full flex flex-col">
         {/*Show the current weather icon*/}
         <Icon
-          style={`fill-${theme}-200 w-[90%] ml-[auto] my-[auto] `}
+          style={`w-[90%] fill-${theme}-200 ml-[auto] my-[auto] `}
           code={forecast.weather.icon}
         />
         {/*"Hoje" tag*/}
@@ -28,7 +27,7 @@ const Today = () => {
         </p>
       </div>
       {/*Second horizontal half of the result block*/}
-      <div className="w-[50%] h-full flex relative flex-col md:py-[3%] items-center overflow-hidden justify-center">
+      <div className="relative w-[50%] h-full md:py-[3%] flex flex-col items-center overflow-hidden justify-center">
         {/*Location name*/}
         <div>
           <h2 className="text-center font-montserrat font-normal text-[5vw] md:text-xl text-dark md:leading-7">
@@ -41,18 +40,18 @@ const Today = () => {
         {/*Temperature display/switcher*/}
         <Temperature
           temp={forecast.temp}
-          style={"text-[15vw] md:text-[5rem] mt-3"}
+          style={"mt-3 text-[15vw] md:text-[5rem]"}
         ></Temperature>
         {/*Current weather condition*/}
         <h1 className="font-montserrat font-medium text-[8vw] md:text-[2rem] text-dark">
           {translateCondition(forecast.weather.main)}
         </h1>
         {/*Extra information container*/}
-        <div className="flex flex-row justify-between w-[90%] md:h-[30%] items-start">
+        <div className="w-[90%] md:h-[30%] flex flex-row justify-between items-start">
           {/*Humidity*/}
           <div className="mx-[1.5%] flex flex-col">
             <svg
-              className="fill-dark w-[4.5vh] md:w-[1.8rem] mx-[auto]"
+              className="w-[4.5vh] md:w-[1.8rem] mx-[auto] fill-dark "
               viewBox="0 0 512 512"
             >
               <path
@@ -61,7 +60,7 @@ const Today = () => {
                 d="M238.6 144.5c0 43-23.5 78.7-74.6 78.7-51.2 0-75.7-35.8-75.7-78.7C88.3 81 164 5.4 164 5.4s74.6 75.7 74.6 139Zm185.1-47c0 22.4-13.3 41.9-41.9 41.9-28.6 0-42-19.5-42-43 0-46 41-74.6 41-74.6s43 28.6 43 74.6v1Zm-28.6 287.3c0 70.6-39.9 123.8-114.6 121.7-73.6-4-102.2-61.3-102.2-129.8 0-78.8 118.6-214.8 118.6-214.8s98.2 146.2 98.2 225v-2Z"
               />
             </svg>
-            <p className="text-center text-[3vw] md:text-sm font-montserrat text-dark font-semibold leading-tight mt-1">
+            <p className="mt-1 text-center text-[3vw] md:text-sm font-montserrat text-dark font-semibold leading-tight">
               humidade
             </p>
             <p className="text-center text-[3vw] md:text-sm font-montserrat text-dark font-semibold leading-tight">{`${forecast.humidity}%`}</p>
@@ -69,7 +68,7 @@ const Today = () => {
           {/*Wind*/}
           <div className="mx-[1.5%] flex flex-col">
             <svg
-              className="fill-dark w-[4.5vh] md:w-[1.8rem] mx-[auto]"
+              className="w-[4.5vh] md:w-[1.8rem] fill-dark mx-[auto]"
               viewBox="0 0 512 512"
             >
               <path
@@ -86,9 +85,9 @@ const Today = () => {
             </p>
           </div>
           {/*Pressure*/}
-          <div className="mx-[1.5%]  flex flex-col">
+          <div className="mx-[1.5%] flex flex-col">
             <svg
-              className="fill-dark w-[4.5vh] md:w-[1.8rem] mx-[auto]"
+              className="w-[4.5vh] md:w-[1.8rem] fill-dark mx-[auto]"
               viewBox="0 0 512 512"
             >
               <path
