@@ -1,5 +1,5 @@
 import create from "zustand";
-import { BackgroundImage, Coordinates, Forecast, Location } from "./storeTypes";
+import { Coordinates, Forecast, Location } from "./storeTypes";
 import produce from "immer";
 
 type Store = {
@@ -18,8 +18,6 @@ type Store = {
   setCoords: (geoPosition: Coordinates) => void;
   location: Location;
   setLocation: (newLocation: Location) => void;
-  background: BackgroundImage;
-  setBackground: (image: BackgroundImage) => void;
   forecast: Forecast;
   setForecast: (newForecast: Forecast) => void;
   temperatureScale: number;
@@ -95,20 +93,6 @@ export const useStore = create<Store>((set, get) => ({
             state.location.city = newLocation.district;
           }
         }
-      })
-    );
-  },
-
-  //background image
-  background: {
-    url: "",
-    altText: "",
-  },
-  setBackground(image) {
-    set(
-      produce((state) => {
-        state.background.url = image.url;
-        state.background.altText = image.altText;
       })
     );
   },

@@ -12,6 +12,7 @@ const Today = () => {
 
   return (
     <section
+      role={theme}
       className={`w-full h-[50vh] md:h-[30vh] lg:h-[55vh] bg-${theme}-100 flex flex-row`}
     >
       {/*First horizontal half of the result block*/}

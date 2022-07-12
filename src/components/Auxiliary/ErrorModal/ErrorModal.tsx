@@ -9,6 +9,7 @@ const ErrorModal = () => {
 
   return (
     <Dialog
+      role="Error Modal"
       className="fixed"
       open={isError}
       onClose={() => {

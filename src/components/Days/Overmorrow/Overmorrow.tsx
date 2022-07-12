@@ -8,6 +8,7 @@ const Overmorrow = () => {
   const forecast = useStore((state) => state.forecast.afterTomorrow);
   return (
     <div
+      role={`${theme}`}
       className={`bg-${theme}-300 w-full h-[20vh] md:h-[10vh] lg:h-[15vh] rounded-b-xl flex flex-row-reverse items-center`}
     >
       <Icon

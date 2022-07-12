@@ -10,11 +10,6 @@ export type Location = {
   state?: string;
 };
 
-export type BackgroundImage = {
-  url: string;
-  altText: string;
-};
-
 export type Forecast = {
   today: {
     temp: number;

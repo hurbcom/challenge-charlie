@@ -4,8 +4,7 @@ import { useStore } from "../../store/store";
 import { useWindowSize } from "usehooks-ts";
 
 const Background = () => {
-  const background = useStore((state) => state.background);
-  const setBackground = useStore((state) => state.setBackground);
+  const [background, setBackground] = useState("");
   const setError = useStore((state) => state.setError);
   const setErrorCode = useStore((state) => state.setErrorCode);
   const { width } = useWindowSize();
@@ -16,10 +15,7 @@ const Background = () => {
       setFetched(true);
       fetchBackground()
         .then((data) => {
-          setBackground({
-            url: `https://www.bing.com/${data.url}`,
-            altText: data.title,
-          });
+          setBackground(`https://www.bing.com${data.url}`);
         })
         .catch(() => {
           setError();
@@ -32,8 +28,8 @@ const Background = () => {
   };
 
   const backgroundEffect = () => {
-    if (background.url) {
-      document.body.style.backgroundImage = `url(${background.url})`;
+    if (background) {
+      document.body.style.backgroundImage = `url(${background})`;
       document.body.style.backgroundPosition = "center";
       document.body.style.backgroundAttachment = "fixed";
       document.body.style.backgroundRepeat = "no-repeat";
@@ -42,9 +38,13 @@ const Background = () => {
   };
 
   useEffect(imageEffect, [width]);
-  useEffect(backgroundEffect, [background.url]);
+  useEffect(backgroundEffect, [background]);
 
-  return <></>;
+  return (
+    <p role={"background"} style={{ display: "none" }}>
+      {background}
+    </p>
+  );
 };
 
 export default Background;

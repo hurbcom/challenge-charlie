@@ -8,6 +8,7 @@ const Tomorrow = () => {
   const theme = useStore((state) => state.globaltheme);
   return (
     <div
+      role={`${theme}`}
       className={`bg-${theme}-200 w-full h-[20vh] md:h-[10vh] lg:h-[15vh] flex flex-row-reverse items-center`}
     >
       <Icon
