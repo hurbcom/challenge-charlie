@@ -8,6 +8,7 @@
     "start": "webpack serve --config webpack.dev.js --port 4000 --hot",
     "build": "webpack --config webpack.prod.js",
     "compose:prod": "docker compose -f docker-compose.prod.yml --build",
+    "compose:prod-up": "docker compose -f docker-compose.prod.yml up --build",
     "compose:dev": "docker compose -f docker-compose.dev.yml up --build"
   },
   "author": "João Pedro Saiago",
