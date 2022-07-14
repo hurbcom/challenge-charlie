@@ -7,10 +7,16 @@ const theme = {
       400: "#B4B0AD",
     },
     textColors: {
-      100: "#F2EFE4",
+      100: "#FFFAF8",
       400: "#807C7B",
     },
     error: "#F46969",
+    temperatures: {
+      null: "rgba(204, 202, 200, 0.8)",
+      cold: "rgba(121, 188, 236, 0.8)",
+      normal: "rgba(255, 84, 30, 0.8)",
+      hot: "rgba(254, 37, 37, 0.8)",
+    },
   },
 };
 
