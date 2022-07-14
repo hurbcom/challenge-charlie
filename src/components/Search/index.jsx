@@ -7,7 +7,7 @@ export const Search = ({ city, onSubmit, error }) => {
   const [value, setValue] = useState("");
   function handleSubmit(e) {
     e.preventDefault(value);
-    onSubmit();
+    onSubmit(value);
   }
 
   return (
