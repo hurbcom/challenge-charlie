@@ -12,9 +12,9 @@ const theme = {
     },
     error: "#F46969",
     temperatures: {
-      null: "rgba(204, 202, 200, 0.8)",
-      cold: "rgba(121, 188, 236, 0.8)",
-      normal: "rgba(255, 84, 30, 0.8)",
+      null: "rgba(204, 202, 200, 0.9)",
+      cold: "rgba(121, 188, 236, 0.9)",
+      normal: "rgba(255, 84, 30, 0.9)",
       hot: "rgba(254, 37, 37, 0.8)",
     },
   },
