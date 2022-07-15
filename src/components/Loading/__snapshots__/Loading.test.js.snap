@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loading/.> should render loading component 1`] = `
+<div>
+  <div
+    aria-label="loading"
+    class="sc-gsnTZi ivoJFd"
+  >
+    <span
+      class="sc-bczRLJ fJjrnV"
+      data-icon="("
+      title="not found"
+    />
+  </div>
+</div>
+`;
