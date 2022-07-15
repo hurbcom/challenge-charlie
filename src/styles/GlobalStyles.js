@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import "./fonts/meteocons-icons.css";
 const GlobalStyle = createGlobalStyle`
 
 * {
