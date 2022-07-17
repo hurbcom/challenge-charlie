@@ -14,8 +14,8 @@ const theme = {
     temperatures: {
       null: "rgba(204, 202, 200, 0.9)",
       cold: "rgba(121, 188, 236, 0.9)",
-      normal: "rgba(255, 84, 30, 0.9)",
-      hot: "rgba(254, 37, 37, 0.8)",
+      normal: "rgba(235, 187, 19, 0.9)",
+      hot: "rgba(255, 92, 92, 0.8)",
     },
   },
 };
