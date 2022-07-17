@@ -7,7 +7,8 @@ export const Search = ({ city, onSubmit, error }) => {
   const [value, setValue] = useState("");
   function handleSubmit(e) {
     e.preventDefault(value);
-    onSubmit(value);
+    if (value) onSubmit(value);
+    setValue("");
   }
 
   return (
@@ -18,8 +19,9 @@ export const Search = ({ city, onSubmit, error }) => {
       <input
         type="text"
         value={value}
-        placeholder={city ? city : "Procure sua cidade"}
+        placeholder={city ? `Cidade atual: ${city}` : "Procure sua cidade"}
         onChange={(e) => setValue(e.target.value)}
+        required
       />
       {error && <S.Error>{error}</S.Error>}
     </S.Wrapper>
@@ -29,5 +31,5 @@ export const Search = ({ city, onSubmit, error }) => {
 Search.propTypes = {
   city: P.string,
   onSubmit: P.func,
-  error: P.string,
+  error: P.oneOfType([P.string, P.bool]),
 };
