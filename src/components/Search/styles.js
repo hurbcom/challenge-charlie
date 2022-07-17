@@ -19,6 +19,9 @@ export const Wrapper = styled.form`
       padding-left: 8px;
       color: ${theme.colors.textColors[400]};
       outline: none;
+      ::placeholder {
+        opacity: .6;
+      }
     }
   `}
   position: relative;
