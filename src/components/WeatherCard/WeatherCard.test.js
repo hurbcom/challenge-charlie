@@ -22,10 +22,10 @@ jest.mock("../WeatherIcons", () => {
   };
 });
 
-describe("<Search /.>", () => {
+describe("<WeatherCard /.>", () => {
   it("should render props card correctly", () => {
     renderWithTheme(<WeatherCard {...mock} />);
-
+    
     expect(screen.getByText("hoje")).toBeInTheDocument();
     expect(screen.getByTestId("icon")).toBeInTheDocument();
     expect(screen.getByText("20°C")).toBeInTheDocument();
