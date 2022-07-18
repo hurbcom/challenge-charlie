@@ -10,8 +10,8 @@ const IconModifiers = {
 export const Icon = styled.div`
   ${({ theme, smallCard }) => css`
     width: 50%;
-    font-size: 10rem;
-    line-height: 10rem;
+    font-size: 14rem;
+    line-height: 14rem;
     display: flex;
     justify-content: center;
     color: ${theme.colors.textColors[100]};
@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
     ${temperature <= 15 && WrapperModifiers.cold(theme)}
     ${temperature <= 35 && temperature > 15 && WrapperModifiers.normal(theme)}
     ${temperature > 35 && WrapperModifiers.hot(theme)} 
-    
+    border-top: 1px solid rgb(255 255 255 / 25%);
     @media (max-width: 768px) {
       width: 100%;
       padding: 16px;

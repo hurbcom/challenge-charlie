@@ -3,6 +3,7 @@ import P from "prop-types";
 import * as S from "./styles";
 import { WeatherIcons } from "../WeatherIcons";
 import celsiusToFahrenheit from "../../utils/celsiusToFahrenheit";
+
 export const WeatherCard = ({
   temperature,
   wind,
@@ -27,12 +28,12 @@ export const WeatherCard = ({
       <S.Content>
         <S.Mesure aria-label="Temperatures">
           <span>{label}</span>
-          <S.Temperature>
+          <S.Temperature onClick={() => toggleMetric()}>
             {temperature && (
-              <span onClick={() => toggleMetric()}>
+              <span>
                 {metric === "fahrenheit"
-                  ? `${celsiusToFahrenheit(temperature)}°F`
-                  : `${temperature}°C`}
+                  ? `${celsiusToFahrenheit(temperature).toFixed()}°F`
+                  : `${temperature.toFixed()}°C`}
               </span>
             )}
           </S.Temperature>
