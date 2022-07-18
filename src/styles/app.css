@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+body{
+    font-family: 'Arvo', serif;
+    background-image: url('../image/galaxy.jpg')
+}
+
+.city{
+    font-size: 32px;
+}
+
+.date {
+    font-size: 16px;
+}
+
+.container-temp{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(123, 0, 255, 0.321);
+    box-shadow: 5px 6px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+
+    font-size: 100px;
+    font-weight: 900;
+    text-shadow: 3px 6px rgba(182, 89, 89, 0.648);
+}
+
+.weather{
+    font-size: 32px;
+}
+
+.low-high {
+    font-size: 22px;
+}
+
+@media screen and (max-width: 700px){
+    
+}
+  
