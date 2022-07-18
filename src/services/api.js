@@ -5,7 +5,6 @@ const api = axios.create({
 });
 
 export const getWeather = async (params) => {
-  console.log(process.env.REACT_APP_API_KEY);
   try {
     const placeReponse = await api.get("weather", {
       params: {
