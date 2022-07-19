@@ -5,6 +5,7 @@ import * as S from "./styles";
 
 export const Search = ({ city, onSubmit, error, onSetCoordinates }) => {
   const [value, setValue] = useState("");
+  
   function handleSubmit(e) {
     e.preventDefault(value);
     if (value) onSubmit(value);

@@ -20,7 +20,7 @@ export const Wrapper = styled.form`
       color: ${theme.colors.textColors[400]};
       outline: none;
       ::placeholder {
-        opacity: .6;
+        opacity: 0.6;
       }
     }
   `}
@@ -30,8 +30,28 @@ export const Icon = styled.span`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    padding: 0 10px 0 16px;
+
+    padding: 0 16px 0 16px;
     color: ${theme.colors.textColors[400]};
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    ::after {
+      content: "";
+      width: 48px;
+      height: 48px;
+      background: ${theme.colors.white[300]};
+      position: absolute;
+      z-index: -1;
+      border-radius: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity ease-in-out 300ms;
+    }
+    :hover::after {
+      opacity: 1;
+    }
   `}
 `;
 
