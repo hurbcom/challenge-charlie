@@ -6,6 +6,9 @@ const theme = {
       300: "#CCCAC8",
       400: "#B4B0AD",
     },
+    black: {
+      100: "#000000",
+    },
     textColors: {
       100: "#FFFAF8",
       400: "#807C7B",
