@@ -40,4 +40,26 @@ describe("<Search /.>", () => {
     userEvent.keyboard("{enter}");
     expect(onSubmit).not.toBeCalled();
   });
+  it("should call function when search button is cliked", () => {
+    const onSubmit = jest.fn();
+    renderWithTheme(<Search city="rio" onSubmit={onSubmit} />);
+
+    const buttonSearch = screen.getByTitle("search").parentElement;
+    const input = screen.getByPlaceholderText(/rio/i);
+
+    userEvent.type(input, "sao paulo");
+    expect(input).toHaveValue("sao paulo");
+
+    userEvent.click(buttonSearch);
+    expect(onSubmit).toBeCalledWith("sao paulo");
+  });
+  it("should call function when location button is cliked", () => {
+    const setLocation = jest.fn();
+    renderWithTheme(<Search city="rio" onSetCoordinates={setLocation} />);
+
+    const locationSearch = screen.getByTitle("location").parentElement;
+
+    userEvent.click(locationSearch);
+    expect(setLocation).toBeCalled();
+  });
 });
