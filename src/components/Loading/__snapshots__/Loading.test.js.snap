@@ -4,7 +4,7 @@ exports[`<Loading/.> should render loading component 1`] = `
 <div>
   <div
     aria-label="loading"
-    class="sc-gsnTZi ivoJFd"
+    class="sc-gsnTZi gskusV"
   >
     <span
       class="sc-bczRLJ fJjrnV"
