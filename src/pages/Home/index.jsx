@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { MdPhotoCamera } from "react-icons/md";
 import * as S from "./styles";
+import useGeoLocation from "../../hooks/useGeoLocation";
+import { useForecastContext } from "../../context/ForecastContext";
 import { Search } from "../../components/Search";
 import { WeatherCard } from "../../components/WeatherCard";
 import { Loading } from "../../components/Loading";
-import { useForecastContext } from "../../context/ForecastContext";
-import useGeoLocation from "../../hooks/useGeoLocation";
-
-const img =
-  "https://images.unsplash.com/photo-1657857984812-5b7b75472262?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+import { Notification } from "../../components/Notification";
+import useFetch from "../../hooks/useFetch";
 
 export const Home = () => {
+  const { result, fetchUrl } = useFetch();
+  const [geoLocationError, setGeoLocationError] = useState("");
   const location = useGeoLocation();
   const { isLoading, error, data, currentPlace, getForecastByParams } =
     useForecastContext();
@@ -19,21 +21,45 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    const get = async () => {
+    fetchUrl("http://localhost:5000/photo");
+  }, []);
+
+  useEffect(() => {
+    const onSearchByLocation = () => {
       if (location.loaded) {
-        await getForecastByParams({
+        location.coordinates &&
+          getForecastByParams({
+            lat: location.coordinates.lat,
+            lon: location.coordinates.lon,
+          });
+      }
+    };
+    onSearchByLocation();
+  }, [location]);
+
+  const onSetCoordinates = () => {
+    location.error
+      ? setGeoLocationError(location.error.message)
+      : getForecastByParams({
           lat: location.coordinates.lat,
           lon: location.coordinates.lon,
         });
-      }
-    };
-    get();
-  }, [location]);
+  };
+
+  const closeNotification = () => {
+    setGeoLocationError(null);
+  };
 
   return (
-    <S.Main background={img}>
+    <S.Main background={result && result.url}>
       <S.Content>
-        <Search onSubmit={onSubmit} error={error} city={currentPlace.name} />
+        <Search
+          onSubmit={onSubmit}
+          error={error}
+          city={currentPlace.name}
+          onSetCoordinates={onSetCoordinates}
+        />
+
         {data.name && !isLoading && (
           <>
             <WeatherCard
@@ -61,11 +87,25 @@ export const Home = () => {
             />
           </>
         )}
-        {isLoading && <Loading />}
+        {isLoading && <Loading height={400} />}
         {!currentPlace.name && (
-          <S.Help>pesquiser uma cidade ou habilite a localidade</S.Help>
+          <S.Help>pesquise uma cidade ou habilite a localidade</S.Help>
+        )}
+        {geoLocationError && (
+          <Notification
+            notification={geoLocationError}
+            onCloseNotification={closeNotification}
+            timer={3000}
+          />
         )}
       </S.Content>
+
+      <S.PhotoTitle>
+        <S.Icon>
+          <MdPhotoCamera size={26} />
+        </S.Icon>
+        {result && result.title}
+      </S.PhotoTitle>
     </S.Main>
   );
 };
