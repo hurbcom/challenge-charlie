@@ -1,10 +1,24 @@
-/* eslint-disable no-unused-vars */
 import { screen } from "@testing-library/react";
 import renderWithTheme from "../../utils/test/renderWithTheme";
 import { Home } from ".";
 import { ForecastContext } from "../../context/ForecastContext";
-import { Loading } from "../../components/Loading";
 import { userEvent } from "@storybook/testing-library";
+import { customRender } from "../../utils/test/test-utils";
+
+jest.mock("../../hooks/useFetch", () => {
+  return {
+    __esModule: true,
+    default: function useFetch() {
+      return {
+        result: {
+          url: "foo.png",
+          title: "boo is boo",
+        },
+        fetchUrl: jest.fn(),
+      };
+    },
+  };
+});
 
 const mocklocation = {
   loaded: false,
@@ -69,20 +83,20 @@ const ForecastProps = {
   currentPlace: { name: "rio" },
 };
 
-
+const root = document.createElement("div");
+root.setAttribute("id", "notification");
 
 describe("<Home />", () => {
-
-
- 
   it("should render home correctly", () => {
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <ForecastContext.Provider value={{ ...ForecastProps, isLoading: false }}>
         <Home />
       </ForecastContext.Provider>
     );
     expect(screen.getAllByTestId("WeatherCard")).toHaveLength(3);
     expect(screen.getByPlaceholderText("Cidade atual: rio"));
+    expect(screen.getByText("boo is boo")).toBeInTheDocument();
+    expect(container.firstChild).toHaveStyle({ background: "url('foo.png')" });
   });
 
   it("should loading icon", () => {
@@ -105,11 +119,11 @@ describe("<Home />", () => {
     );
     expect(screen.queryByTestId("WeatherCard")).not.toBeInTheDocument();
     expect(
-      screen.getByText("pesquiser uma cidade ou habilite a localidade")
+      screen.getByText("pesquise uma cidade ou habilite a localidade")
     ).toBeInTheDocument();
   });
 
-  it("should call function when has location", () => {
+  it("should call the function getForecastByParam when has location", () => {
     mocklocation.loaded = true;
     mocklocation.coordinates = { lat: 10, lon: 10 };
     const getForecastByParams = jest.fn();
@@ -124,7 +138,42 @@ describe("<Home />", () => {
 
     expect(getForecastByParams).toBeCalledWith(mocklocation.coordinates);
   });
-  it("should not call function when dont has location", () => {
+
+  it("should call the function getForecastByParams when user type 'sao paulo' in input", () => {
+    const getForecastByParams = jest.fn();
+    renderWithTheme(
+      <ForecastContext.Provider
+        value={{ ...ForecastProps, getForecastByParams: getForecastByParams }}
+      >
+        <Home />
+      </ForecastContext.Provider>
+    );
+    const input = screen.getByPlaceholderText(/Procure sua cidade/i);
+
+    userEvent.type(input, "sao paulo");
+    expect(input).toHaveValue("sao paulo");
+    userEvent.keyboard("{enter}");
+    expect(getForecastByParams).toBeCalledWith({ q: "sao paulo" });
+  });
+
+  it("should call the function getForecastByParams and send the coordinates received by geolocation when button location clicked", () => {
+    const getForecastByParams = jest.fn();
+    mocklocation.coordinates = { lat: 10, lon: 10 };
+    renderWithTheme(
+      <ForecastContext.Provider
+        value={{ ...ForecastProps, getForecastByParams: getForecastByParams }}
+      >
+        <Home />
+      </ForecastContext.Provider>
+    );
+
+    const locationSearch = screen.getByTitle("location").parentElement;
+    userEvent.click(locationSearch);
+
+    expect(getForecastByParams).toBeCalledWith(mocklocation.coordinates);
+  });
+
+  it("should not call the function getForecastByParams when dont has location", () => {
     mocklocation.loaded = false;
     mocklocation.coordinates = {};
     const getForecastByParams = jest.fn();
@@ -140,20 +189,32 @@ describe("<Home />", () => {
     expect(getForecastByParams).not.toBeCalled();
   });
 
-  it("should call function when user type in input", () => {
-    const getForecastByParams = jest.fn();
-    renderWithTheme(
-      <ForecastContext.Provider
-        value={{ ...ForecastProps, getForecastByParams: getForecastByParams }}
-      >
-        <Home />
-      </ForecastContext.Provider>
-    );
-    const input = screen.getByPlaceholderText(/Procure sua cidade/i);
+  describe("Notification and alerts", () => {
+    it("should show message saying that access location was  not allowed and close notification", () => {
+      mocklocation.error = {
+        message: "access was not allowed",
+      };
+      const getForecastByParams = jest.fn();
 
-    userEvent.type(input, "sao paulo");
-    expect(input).toHaveValue("sao paulo");
-    userEvent.keyboard("{enter}");
-    expect(getForecastByParams).toBeCalledWith({ q: "sao paulo" });
+      customRender(
+        <ForecastContext.Provider
+          value={{ ...ForecastProps, getForecastByParams: getForecastByParams }}
+        >
+          <Home />
+        </ForecastContext.Provider>,
+        {
+          container: document.body.appendChild(root),
+        }
+      );
+
+      const locationSearch = screen.getByTitle("location").parentElement;
+      userEvent.click(locationSearch);
+      expect(screen.getByText("access was not allowed")).toBeInTheDocument();
+      //remove notification
+      userEvent.click(screen.getByText("access was not allowed"));
+      expect(
+        screen.queryByText("access was not allowed")
+      ).not.toBeInTheDocument();
+    });
   });
 });
