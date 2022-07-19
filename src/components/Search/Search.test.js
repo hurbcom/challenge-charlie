@@ -28,4 +28,16 @@ describe("<Search /.>", () => {
     userEvent.keyboard("{enter}");
     expect(onSubmit).toBeCalledWith("sao paulo");
   });
+  it("should input empty not submit value", () => {
+    const onSubmit = jest.fn();
+    renderWithTheme(<Search city="rio" onSubmit={onSubmit} />);
+    const input = screen.getByPlaceholderText(/rio/i);
+
+    userEvent.type(input, "sao paulo");
+
+    input.setSelectionRange(0, 9);
+    userEvent.type(input, "{backspace}");
+    userEvent.keyboard("{enter}");
+    expect(onSubmit).not.toBeCalled();
+  });
 });
