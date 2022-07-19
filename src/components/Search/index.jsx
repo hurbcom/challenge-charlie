@@ -5,17 +5,20 @@ import * as S from "./styles";
 
 export const Search = ({ city, onSubmit, error, onSetCoordinates }) => {
   const [value, setValue] = useState("");
-  
+
   function handleSubmit(e) {
     e.preventDefault(value);
     if (value) onSubmit(value);
     setValue("");
   }
+  function onLocation(){
+    onSetCoordinates()
+  }
 
   return (
     <S.Wrapper onSubmit={handleSubmit}>
-      <S.Icon onClick={(e) => handleSubmit(e)}>
-        <FaSearch size={24} />
+      <S.Icon onClick={(e) => handleSubmit(e)} name="search">
+        <FaSearch size={24} title="search" />
       </S.Icon>
       <input
         type="text"
@@ -25,8 +28,8 @@ export const Search = ({ city, onSubmit, error, onSetCoordinates }) => {
         required
       />
       {error && <S.Error>{error}</S.Error>}
-      <S.Icon onClick={() => onSetCoordinates()}>
-        <Location size={24} />
+      <S.Icon onClick={() => onLocation()} name="location">
+        <Location size={24} title="location" />
       </S.Icon>
     </S.Wrapper>
   );

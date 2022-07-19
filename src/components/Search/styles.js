@@ -5,6 +5,7 @@ export const Wrapper = styled.form`
     background: ${theme.colors.white[100]};
     height: 56px;
     display: flex;
+    padding: 0 8px;
     align-items: center;
     transition: background ease-in-out 200ms;
     box-shadow: 0px 3px 6px -1px rgba(121, 121, 121, 0.28);
@@ -26,14 +27,16 @@ export const Wrapper = styled.form`
   `}
   position: relative;
 `;
-export const Icon = styled.span`
+export const Icon = styled.button`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-
-    padding: 0 16px 0 16px;
+    justify-content: center;
+    border: none;
+    width: 48px;
     color: ${theme.colors.textColors[400]};
     cursor: pointer;
+    background: none;
     position: relative;
     z-index: 1;
     ::after {
