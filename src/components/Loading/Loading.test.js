@@ -8,4 +8,9 @@ describe("<Loading/.>", () => {
     expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
+  it("should have height 300px ", () => {
+    const { container } = renderWithTheme(<Loading height={300} />);
+
+    expect(container.firstChild).toHaveStyle({ height: "300px" });
+  });
 });

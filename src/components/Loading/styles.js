@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
 export const Loading = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, height }) => css`
     display: flex;
-    height: 200px;
+    height: ${height+'px'};
     background: ${theme.colors.temperatures.null};
     font-size: 10rem;
     line-height: 10rem;
