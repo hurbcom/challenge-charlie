@@ -11,23 +11,26 @@ export const Search = ({ city, onSubmit, error, onSetCoordinates }) => {
     if (value) onSubmit(value);
     setValue("");
   }
-  function onLocation(){
-    onSetCoordinates()
+  function onLocation() {
+    onSetCoordinates();
   }
 
   return (
-    <S.Wrapper onSubmit={handleSubmit}>
-      <S.Icon onClick={(e) => handleSubmit(e)} name="search">
-        <FaSearch size={24} title="search" />
-      </S.Icon>
-      <input
-        type="text"
-        value={value}
-        placeholder={city ? `Cidade atual: ${city}` : "Procure sua cidade"}
-        onChange={(e) => setValue(e.target.value)}
-        required
-      />
-      {error && <S.Error>{error}</S.Error>}
+    <S.Wrapper >
+      <form onSubmit={handleSubmit}>
+        <S.Icon onClick={(e) => handleSubmit(e)} name="search">
+          <FaSearch size={24} title="search" />
+        </S.Icon>
+        <input
+          type="text"
+          value={value}
+          placeholder={city ? `Cidade atual: ${city}` : "Procure sua cidade"}
+          onChange={(e) => setValue(e.target.value)}
+          required
+        />
+        {error && <S.Error>{error}</S.Error>}
+      </form>
+
       <S.Icon onClick={() => onLocation()} name="location">
         <Location size={24} title="location" />
       </S.Icon>

@@ -1,27 +1,41 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.white[100]};
     height: 56px;
     display: flex;
     padding: 0 8px;
-    align-items: center;
-    transition: background ease-in-out 200ms;
-    box-shadow: 0px 3px 6px -1px rgba(121, 121, 121, 0.28);
     :focus-within {
       background: ${theme.colors.white[200]};
     }
-    input {
-      background: none;
-      border: none;
-      height: 56px;
-      width: 100%;
-      padding-left: 8px;
-      color: ${theme.colors.textColors[400]};
-      outline: none;
-      ::placeholder {
-        opacity: 0.6;
+    box-shadow: 0px 3px 6px -1px rgba(121, 121, 121, 0.28);
+    form {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      transition: background ease-in-out 200ms;
+      position: relative;
+      ::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 24px;
+        right: 4px;
+        background: ${theme.colors.white[400]};
+      }
+      input {
+        background: none;
+        border: none;
+        height: 56px;
+        width: 100%;
+        padding-left: 8px;
+        padding-right: 16px;
+        color: ${theme.colors.textColors[400]};
+        outline: none;
+        ::placeholder {
+          opacity: 0.6;
+        }
       }
     }
   `}
