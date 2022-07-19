@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { FaCompass as Compass } from "react-icons/fa";
+import { FaSearch, FaMapMarkerAlt as Location } from "react-icons/fa";
 import P from "prop-types";
 import * as S from "./styles";
 
-export const Search = ({ city, onSubmit, error }) => {
+export const Search = ({ city, onSubmit, error, onSetCoordinates }) => {
   const [value, setValue] = useState("");
   function handleSubmit(e) {
     e.preventDefault(value);
@@ -13,8 +13,8 @@ export const Search = ({ city, onSubmit, error }) => {
 
   return (
     <S.Wrapper onSubmit={handleSubmit}>
-      <S.Icon>
-        <Compass size={24} />
+      <S.Icon onClick={(e) => handleSubmit(e)}>
+        <FaSearch size={24} />
       </S.Icon>
       <input
         type="text"
@@ -24,6 +24,9 @@ export const Search = ({ city, onSubmit, error }) => {
         required
       />
       {error && <S.Error>{error}</S.Error>}
+      <S.Icon onClick={() => onSetCoordinates()}>
+        <Location size={24} />
+      </S.Icon>
     </S.Wrapper>
   );
 };
@@ -31,5 +34,6 @@ export const Search = ({ city, onSubmit, error }) => {
 Search.propTypes = {
   city: P.string,
   onSubmit: P.func,
+  onSetCoordinates: P.func,
   error: P.oneOfType([P.string, P.bool]),
 };
