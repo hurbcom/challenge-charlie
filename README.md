@@ -55,7 +55,7 @@ Depois de estar dentro do repositório:
 
 # Docker - Para ambiente de produção
 
-# Api key do serviço openweathermap ela já está no docker compose
+# Api key do serviço openweathermap ela já está no .env
 
 npm run prod
 
@@ -67,7 +67,7 @@ npm run prod
 
 # Docker - Para ambiente de Desevolvimento
 
-# Api key do serviço openweathermap ela já está no docker compose
+# Api key do serviço openweathermap ela já está no .env
 
 npm run dev
 
@@ -75,7 +75,7 @@ npm run dev
 
 ```
 
-Ambos compose irão rodar um serviço node para fazer a busca na api bing para retorna a foto para compor a interface
+Ambos compose irão rodar um serviço node para fazer a busca na api bing para retornar a foto para compor a interface
 
 ## Lib dos componentes | Storybook
 
@@ -86,6 +86,4 @@ npm run storybook
 
 ```
 
-```
 
-```
