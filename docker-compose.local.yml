@@ -4,6 +4,6 @@ services:
         build:
             context: "./api"
             dockerfile: Dockerfile.api
-        container_name: api-weather-local
+        container_name: api-as-service
         ports:
         - "5000:5000"
