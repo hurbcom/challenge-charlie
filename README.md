@@ -16,6 +16,15 @@ Projeto de nivelamento do processo seletivo Hurb
 
     - Realizado os teste dos componentes e contexto da aplicaçao, localstorage...
 
+    ![coverage_view](coverage_view)
+
+```
+
+coverage dos testes
+npm run test -- --coverage src
+
+```
+
 ## Funcionalidades
 
 - Home
@@ -47,6 +56,7 @@ Depois de estar dentro do repositório:
 ```
 
 # Docker - Para ambiente de produção
+
 # Api key do serviço openweathermap ela já está no docker compose
 
 npm run prod
@@ -58,6 +68,7 @@ npm run prod
 ```
 
 # Docker - Para ambiente de Desevolvimento
+
 # Api key do serviço openweathermap ela já está no docker compose
 
 npm run dev
@@ -74,5 +85,7 @@ Ambos compose irão rodar um serviço node para fazer a busca na api bing para r
 
 #Storybook
 npm run storybook
+
+```
 
 ```
