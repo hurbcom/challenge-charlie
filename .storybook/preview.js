@@ -11,9 +11,15 @@ export const decorators = [
       <div style={{ margin: " 0 auto", maxWidth: "900px" }}>
         <Story />
       </div>
+      <div id="notification"></div>
     </ThemeProvider>
   ),
 ];
+
+const modalRoot = document.createElement("div");
+modalRoot.setAttribute("id", "notification");
+
+document.querySelector("body").appendChild(modalRoot);
 
 export const parameters = {
   backgrounds: {
