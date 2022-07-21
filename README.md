@@ -38,7 +38,7 @@ Projeto de nivelamento do processo seletivo Hurb
   - :heavy_check_mark: utiliza a geolocalização do usuário quando é permitido
 
 - UI
-  - :heavy_check_mark: utiliza a geolocalização do usuário quando é permitido
+  - :heavy_check_mark: reponsivo na quebra de linhas com 768px
 
 ## Como Rodar
 
@@ -51,6 +51,8 @@ Depois de estar dentro do repositório:
 
 npm run prod
 
+# output - http://localhost:8080/
+
 ```
 
 ```
@@ -59,6 +61,8 @@ npm run prod
 # Api key do serviço openweathermap ela já está no docker compose
 
 npm run dev
+
+# output - http://localhost:3000/
 
 ```
 
