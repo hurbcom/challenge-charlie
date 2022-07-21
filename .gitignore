@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+#
+docker-compose.base.yml
 # testing
 /coverage
 

@@ -1,0 +1,21 @@
+version: '3'
+services:
+    api:
+        build:
+            context: "./api"
+            dockerfile: Dockerfile.api
+        container_name: api-weather
+        ports:
+        - "5000:5000"
+    dev:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        container_name: development-container
+        environment:
+            - WATCHPACK_POLLING=true
+            - REACT_APP_API_KEY=9c11e8478fb792bc6fe3b0d1d2ca96a7
+        volumes:
+            - ./src:/src/src
+        ports:
+        - "3000:3000"
