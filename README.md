@@ -14,7 +14,7 @@ Projeto de nivelamento do processo seletivo Hurb
 
 ## Testes Unitários
 
-![coverage_view](coverage_view)
+![coverage_view](coverage_view.png)
 
 ```
 # Realizado os teste dos componentes e contexto da aplicaçao, localstorage...
