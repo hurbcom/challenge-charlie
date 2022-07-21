@@ -14,13 +14,11 @@ Projeto de nivelamento do processo seletivo Hurb
 
 ## Testes Unitários
 
-    - Realizado os teste dos componentes e contexto da aplicaçao, localstorage...
-
-    ![coverage_view](coverage_view)
+![coverage_view](coverage_view)
 
 ```
-
-coverage dos testes
+# Realizado os teste dos componentes e contexto da aplicaçao, localstorage...
+# coverage dos testes
 npm run test -- --coverage src
 
 ```
@@ -85,6 +83,8 @@ Ambos compose irão rodar um serviço node para fazer a busca na api bing para r
 
 #Storybook
 npm run storybook
+
+```
 
 ```
 
