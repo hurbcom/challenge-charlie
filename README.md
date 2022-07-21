@@ -46,6 +46,9 @@ npm run test -- --coverage src
 
 - UI
   - :heavy_check_mark: reponsivo na quebra de linhas com 768px
+  - :heavy_check_mark: colocado dois novos botões da interface : local e search
+    - lupa pra fazer o submit do input
+    - local para fazer o match com a localização do usuário
 
 ## Como Rodar
 
