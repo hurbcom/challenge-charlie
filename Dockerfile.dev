@@ -2,6 +2,7 @@ FROM node:12-alpine as base
 
 WORKDIR /src
 COPY package.json .
+COPY package-lock.json .
 COPY . .
 EXPOSE 3000
 RUN npm install

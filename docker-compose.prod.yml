@@ -12,7 +12,5 @@ services:
             context: .
             dockerfile: Dockerfile.prod
         container_name: prodution-container
-        environment:
-            - REACT_APP_API_KEY=9c11e8478fb792bc6fe3b0d1d2ca96a7
         ports:
         - "8080:80"
