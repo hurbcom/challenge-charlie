@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -22,6 +23,8 @@
     "rules": {
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
-      "@typescript-eslint/no-floating-promises": "off"
+      "@typescript-eslint/no-floating-promises": "off",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"]
     }
 }
