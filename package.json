@@ -43,6 +43,8 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
-    "git-commit-msg-linter": "^4.1.3"
+    "git-commit-msg-linter": "^4.1.3",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3"
   }
 }
