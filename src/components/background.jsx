@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { getBackground } from "../../apis/bingImages";
+import { getBackground } from "../apis/bingImages";
 export const Background = ({ children }) => {
     const [bg, setBg] = useState("");
     useEffect(() => {
@@ -8,17 +8,26 @@ export const Background = ({ children }) => {
             setBg(bgUrl);
         });
     }, []);
-    return <Wrapper bg={bg}>{children}</Wrapper>;
+    return (
+        <Wrapper bg={bg}>
+            <Opacity>{children}</Opacity>
+        </Wrapper>
+    );
 };
 const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
     ${({ bg }) => {
-        console.log(bg);
         if (bg) {
             return css`
                 background-image: url(${bg});
+                background-size: cover;
             `;
         }
     }}
+`;
+const Opacity = styled.div`
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
 `;
