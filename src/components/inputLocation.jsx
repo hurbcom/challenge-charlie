@@ -40,4 +40,5 @@ const StyledInput = styled.input`
     font-size: 5.5vh;
     border: none;
     background-color: transparent;
+    color: #666;
 `;
