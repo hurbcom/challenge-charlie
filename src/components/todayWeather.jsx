@@ -26,16 +26,20 @@ const Wrapper = styled.div`
     width: 100%;
     background-color: ${({ temperatureColor }) =>
         `rgba(${temperatureColor},0.8)`};
-    padding: 0 5vh;
+
     display: flex;
     align-items: flex-start;
 
     &:before {
         font-size: 40vh;
+        padding: 0 5vh;
+        @media (max-width: 600px) {
+            font-size: 20vw;
+        }
     }
 `;
 const WeatherInfo = styled.div`
-    margin: 0 auto;
+    padding: 0 5vh;
 `;
 
 const Description = styled.span`

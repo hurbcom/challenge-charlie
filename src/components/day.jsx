@@ -11,7 +11,15 @@ export const Day = ({ day, temp }) => {
 };
 const Wrapper = styled.div`
     width: 100%;
-    padding: 2vh;
+    padding: 2vh 5vh;
     background-color: ${({ temperatureColor, day }) =>
         `rgba(${temperatureColor},${day === 1 ? 0.9 : 0.4})`};
+    display: grid;
+    grid-template-columns: 50vh 1fr;
+    > span {
+        grid-column: 2;
+    }
+    @media (max-width: 600px) {
+        grid-template-columns: calc(20vw + 10vh) 1fr;
+    }
 `;
