@@ -6,7 +6,7 @@ export async function getLocationName({ latitude, longitude }) {
             baseURL: `${config.apis.locationName}`,
             method: "GET",
             params: {
-                q: { latitude, longitude },
+                q: `${latitude}, ${longitude}`,
                 key: process.env.REACT_APP_LOCATION_NAME_KEY,
                 language: "en",
             },
