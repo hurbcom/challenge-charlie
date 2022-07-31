@@ -51,3 +51,33 @@ interface Wind {
   speed: number
   deg: number
 }
+
+export interface OpenWeatherForecastResponseDTO {
+  lat: number
+  lon: number
+  daily: DailyForecastWeather[]
+  current: ForecastWeather
+}
+
+interface BaseWeatherInfos {
+  wind_speed: number
+  humidity: number
+  pressure: number
+}
+
+interface ForecastWeather extends BaseWeatherInfos {
+  temp: number
+}
+
+export interface DailyForecastWeather extends BaseWeatherInfos {
+  temp: DailyTemperature
+}
+
+interface DailyTemperature {
+  day: number
+  eve: number
+  max: number
+  min: number
+  morn: number
+  night: number
+}
