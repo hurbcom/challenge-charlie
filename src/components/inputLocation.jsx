@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getLocationName } from "../apis/locationName";
 
 export const InputLocation = () => {
+    const [location, setLocation] = useState("");
+    useEffect(() => {
+        navigator?.geolocation.getCurrentPosition(async (position) => {
+            setLocation(await getLocationName(position.coords));
+        });
+    }, []);
     return (
         <InputWrapper data-icon={"("}>
-            <StyledInput />
+            <StyledInput value={`${location.municipality},${location.state}`} />
         </InputWrapper>
     );
 };

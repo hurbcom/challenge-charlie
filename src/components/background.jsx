@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { getBackground } from "../apis/bingImages";
+import { getBackground } from "../apis/bgImages";
 export const Background = ({ children }) => {
     const [bg, setBg] = useState("");
     useEffect(() => {
