@@ -12,6 +12,10 @@ const GlobalStyles = createGlobalStyle`
 p{
   margin: 1em 0;
 }
+span{display: block;
+    color: #fff;
+    font-size: 3.5vh;
+    text-transform: Capitalize;}
 `;
 
 export default GlobalStyles;

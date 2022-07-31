@@ -9,14 +9,14 @@ export const TodayWeather = ({ main, weather, wind }) => {
         >
             <WeatherInfo>
                 <p>
-                    <Details>HOJE</Details>
-                    <Details>{main.temp}°C</Details>
+                    <span>HOJE</span>
+                    <span>{main.temp}°C</span>
                 </p>
                 <Description> {weather[0].description}</Description>
                 <p>
-                    <Details>Vento: {wind.speed}km/h</Details>
-                    <Details>Humidade:{main.humidity}%</Details>
-                    <Details>Pressão:{main.pressure}hPA</Details>
+                    <span>Vento: {wind.speed}km/h</span>
+                    <span>Humidade:{main.humidity}%</span>
+                    <span>Pressão:{main.pressure}hPA</span>
                 </p>
             </WeatherInfo>
         </Wrapper>
@@ -37,13 +37,8 @@ const Wrapper = styled.div`
 const WeatherInfo = styled.div`
     margin: 0 auto;
 `;
-const Details = styled.span`
-    display: block;
-    color: #fff;
-    font-size: 3.5vh;
-    text-transform: Capitalize;
-`;
-const Description = styled(Details)`
+
+const Description = styled.span`
     font-size: 4vh;
     margin: 2vh 0;
 `;
