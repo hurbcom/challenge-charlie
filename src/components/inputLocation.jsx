@@ -1,17 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { getLocationName } from "../apis/locationName";
 
-export const InputLocation = () => {
-    const [location, setLocation] = useState("");
+export const InputLocation = ({ location, setLocation }) => {
     useEffect(() => {
         navigator?.geolocation.getCurrentPosition(async (position) => {
             setLocation(await getLocationName(position.coords));
         });
-    }, []);
+    }, [setLocation]);
+
     return (
         <InputWrapper data-icon={"("}>
-            <StyledInput value={`${location.municipality},${location.state}`} />
+            <StyledInput
+                value={`${location?.municipality ?? ""},${
+                    location?.state ?? ""
+                }`}
+                onChange={(evt) => {
+                    const [municipality, state] = evt.target.value.split(",");
+                    setLocation(municipality, state);
+                }}
+            />
         </InputWrapper>
     );
 };
