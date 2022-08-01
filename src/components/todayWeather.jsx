@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { getColorByTemperature, getWeatherIcon } from "../helpers";
 
-export const TodayWeather = ({ main, weather, wind }) => {
+export const TodayWeather = ({ forecast }) => {
+    const { main, weather, wind } = forecast;
     return (
         <Wrapper
-            temperatureColor={getColorByTemperature(main.temp)}
-            data-icon={getWeatherIcon(weather[0].main)}
+            temperatureColor={getColorByTemperature(main?.temp)}
+            data-icon={getWeatherIcon(weather[0]?.main)}
         >
             <WeatherInfo>
                 <p>

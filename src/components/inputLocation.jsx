@@ -1,21 +1,32 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useAppContext } from "./weatherLocation.context";
 
-export const InputLocation = ({ location, setLocation }) => {
+export const InputLocation = () => {
+    const { location, changeLocation } = useAppContext();
+    const [inputValue, setInputValue] = useState(
+        `${location?.city ?? ""}${location?.state ? `,${location?.state}` : ""}`
+    );
+    useEffect(() => {
+        setInputValue(
+            `${location?.city ?? ""}${
+                location?.state ? `,${location?.state}` : ""
+            }`
+        );
+    }, [location]);
     return (
         <InputWrapper data-icon={"("}>
             <StyledInput
-                defaultValue={`${location?.municipality ?? ""}${
-                    location?.state ? `,${location?.state}` : ""
-                }`}
+                value={inputValue}
+                onChange={(evt) => setInputValue(evt.target.value)}
                 onBlur={(evt) => {
-                    const [municipality, state] = evt.target.value.split(",");
-                    setLocation({ municipality, state });
+                    changeLocation(evt.target.value);
                 }}
             />
         </InputWrapper>
     );
 };
-const InputWrapper = styled.div`
+const InputWrapper = styled.form`
     background-color: #ffffffca;
     display: flex;
     align-items: center;
