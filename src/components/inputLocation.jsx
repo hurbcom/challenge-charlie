@@ -15,7 +15,14 @@ export const InputLocation = () => {
         );
     }, [location]);
     return (
-        <InputWrapper data-icon={"("}>
+        <InputWrapper
+            data-icon={"("}
+            onSubmit={(evt) => {
+                evt.preventDefault();
+
+                changeLocation(inputValue);
+            }}
+        >
             <StyledInput
                 value={inputValue}
                 onChange={(evt) => setInputValue(evt.target.value)}

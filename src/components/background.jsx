@@ -24,6 +24,9 @@ const Wrapper = styled.div`
                 background-size: cover;
             `;
         }
+        return css`
+            background: linear-gradient(#43cea2, #185a9d);
+        `;
     }}
 `;
 const Opacity = styled.div`

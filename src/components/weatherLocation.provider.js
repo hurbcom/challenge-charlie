@@ -12,32 +12,29 @@ export const AppProvider = ({ children }) => {
 
     const changeLocation = async (location) => {
         setStatus("loading");
-        if (location) {
-            try {
-                const { city, state, latitude, longitude } =
-                    await getCoordenatesByName(location);
 
-                const weatherResponse = await getWeatherByCoordenates(
-                    latitude,
-                    longitude
-                );
+        try {
+            const { city, state, latitude, longitude } =
+                await getCoordenatesByName(location);
 
-                setForecast(weatherResponse.forecast);
-                setStatus("success");
-                setLocation({ city, state });
-                setError("");
-            } catch {
-                setError(
-                    "ops! erro ao obter previsōes para" + location.municipality
-                );
-            }
+            const weatherResponse = await getWeatherByCoordenates(
+                latitude,
+                longitude
+            );
+
+            setForecast(weatherResponse.forecast);
+            setStatus("success");
+            setLocation({ city, state });
+            setError("");
+        } catch {
+            setStatus("error");
+            setError("ops! erro ao obter previsōes para " + location);
         }
     };
 
     useEffect(() => {
         navigator?.geolocation.getCurrentPosition(
             async (geolocation) => {
-                console.log(geolocation);
                 const weatherResponse = await getWeatherByCoordenates(
                     geolocation.coords.latitude,
                     geolocation.coords.longitude

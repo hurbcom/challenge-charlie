@@ -34,6 +34,7 @@ const Wrapper = styled.div`
     &:before {
         font-size: 40vh;
         padding: 0 5vh;
+        align-self: center;
         @media (max-width: 600px) {
             font-size: 20vw;
         }
@@ -46,4 +47,5 @@ const WeatherInfo = styled.div`
 const Description = styled.span`
     font-size: 4vh;
     margin: 2vh 0;
+    text-transform: uppercase;
 `;

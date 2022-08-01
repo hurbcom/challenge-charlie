@@ -6,6 +6,7 @@ import { useAppContext } from "./weatherLocation.context";
 
 export const MainComponent = () => {
     const { error, status, forecast } = useAppContext();
+
     switch (status) {
         case "success":
             return (
@@ -38,9 +39,11 @@ export const MainComponent = () => {
         default:
         case "loading":
             return (
-                <Loader data-icon={"("}>
-                    <p>localizando...</p>
-                </Loader>
+                <Main>
+                    <Loader data-icon={"("}>
+                        <p>localizando...</p>
+                    </Loader>
+                </Main>
             );
     }
 };
