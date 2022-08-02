@@ -3,7 +3,7 @@ import axios from "axios";
 export async function getCoordenatesByName(locationName) {
     try {
         const res = await axios({
-            baseURL: `${config.apis.locationName}`,
+            baseURL: config.apis.locationName,
             method: "GET",
             params: {
                 q: locationName,

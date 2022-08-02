@@ -10,7 +10,7 @@ export const MainComponent = () => {
     switch (status) {
         case "success":
             return (
-                <Main>
+                <Main data-cy="main-success">
                     <InputLocation />
                     {forecast &&
                         forecast.map((day, index) => {
@@ -33,7 +33,7 @@ export const MainComponent = () => {
             return (
                 <Main>
                     <InputLocation />
-                    {error}
+                    <ErrorMessage>{error}</ErrorMessage>
                 </Main>
             );
         default:
@@ -69,4 +69,12 @@ const Main = styled.main`
     display: grid;
     grid-auto-flow: row;
     grid-template-rows: 15vh 1fr 17vh 17vh;
+`;
+const ErrorMessage = styled.p`
+    font-size: 4vh;
+    padding: 3vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background-color: rgba(249, 204, 6, 0.5);
 `;

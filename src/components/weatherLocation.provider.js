@@ -28,25 +28,31 @@ export const AppProvider = ({ children }) => {
             setError("");
         } catch {
             setStatus("error");
-            setError("ops! erro ao obter previsōes para " + location);
+            setError("Ops! erro ao obter previsōes para " + location);
         }
     };
 
     useEffect(() => {
         navigator?.geolocation.getCurrentPosition(
             async (geolocation) => {
-                const weatherResponse = await getWeatherByCoordenates(
-                    geolocation.coords.latitude,
-                    geolocation.coords.longitude
-                );
+                try {
+                    const weatherResponse = await getWeatherByCoordenates(
+                        geolocation.coords.latitude,
+                        geolocation.coords.longitude
+                    );
 
-                setLocation({ city: weatherResponse?.city });
-                if (weatherResponse?.forecast) {
-                    setForecast(weatherResponse?.forecast);
-                    setStatus("success");
+                    setLocation({ city: weatherResponse?.city });
+                    if (weatherResponse?.forecast) {
+                        setForecast(weatherResponse?.forecast);
+                        setStatus("success");
+                    }
+                    setError("");
+                } catch {
+                    setStatus("error");
+                    setError(
+                        "Ops! Permita acesso a localização ou informe sua cidade no campo acima"
+                    );
                 }
-
-                setError("");
             },
             () => {
                 setStatus("error");

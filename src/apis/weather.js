@@ -4,7 +4,7 @@ import axios from "axios";
 export async function getWeatherByCoordenates(latitude, longitude) {
     try {
         const res = await axios({
-            baseURL: `${config.apis.weather}`,
+            baseURL: config.apis.weather,
             method: "GET",
             url: "/forecast",
             params: {
