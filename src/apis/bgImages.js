@@ -8,9 +8,9 @@ export async function getBackground() {
             method: "GET",
         });
 
-        return `${config.apis.bing}${res.data.images[0].url}`;
+        return `${config.apis.bing}${res.data?.images[0].url}`;
     } catch (e) {
         console.log(e);
-        return Promise.reject();
+        return "";
     }
 }

@@ -17,6 +17,7 @@
     "scripts": {
         "start": "react-scripts start",
         "start:dev": "cors-proxy-server & react-scripts start",
+        "cy:open": "cypress open --component",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

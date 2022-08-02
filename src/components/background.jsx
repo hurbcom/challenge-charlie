@@ -9,7 +9,7 @@ export const Background = ({ children }) => {
         });
     }, []);
     return (
-        <Wrapper bg={bg}>
+        <Wrapper bg={bg} data-cy="bg-wrapper">
             <Opacity>{children}</Opacity>
         </Wrapper>
     );
