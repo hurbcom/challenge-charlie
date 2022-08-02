@@ -18,6 +18,17 @@ interface Clouds {
   all: number
 }
 
+type WeatherMain =
+  | 'Atmosphere'
+  | 'Clear'
+  | 'Clouds'
+  | 'Drizzle'
+  | 'Fog'
+  | 'Mist'
+  | 'Rain'
+  | 'Snow'
+  | 'Thunderstorm'
+
 export interface Coordinates {
   lon: number
   lat: number
@@ -42,7 +53,7 @@ interface Sys {
 
 interface Weather {
   id: number
-  main: string
+  main: WeatherMain
   description: string
   icon: string
 }
