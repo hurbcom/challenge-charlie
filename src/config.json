@@ -1,0 +1,8 @@
+{
+    "proxy": "http://localhost:9090",
+    "apis": {
+        "bing": "https://www.bing.com",
+        "locationName": "https://api.opencagedata.com/geocode/v1/json",
+        "weather": "http://api.openweathermap.org/data/2.5"
+    }
+}
