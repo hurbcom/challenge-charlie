@@ -31,7 +31,7 @@ export const MainComponent = () => {
             );
         case "error":
             return (
-                <Main>
+                <Main data-cy="main-error">
                     <InputLocation />
                     <ErrorMessage>{error}</ErrorMessage>
                 </Main>

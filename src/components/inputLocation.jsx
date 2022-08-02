@@ -26,6 +26,7 @@ export const InputLocation = () => {
             <StyledInput
                 value={inputValue}
                 onChange={(evt) => setInputValue(evt.target.value)}
+                data-cy="inputLocation"
                 onBlur={(evt) => {
                     changeLocation(evt.target.value);
                 }}

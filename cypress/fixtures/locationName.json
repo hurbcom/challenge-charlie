@@ -1,0 +1,989 @@
+{
+    "documentation": "https://opencagedata.com/api",
+    "licenses": [
+        {
+            "name": "see attribution guide",
+            "url": "https://opencagedata.com/credits"
+        }
+    ],
+    "rate": {
+        "limit": 2500,
+        "remaining": 2494,
+        "reset": 1659484800
+    },
+    "results": [
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "51° 30' 26.35884'' N",
+                    "lng": "0° 7' 39.53064'' E"
+                },
+                "MGRS": "30UXC9932710155",
+                "Maidenhead": "IO91wm41qs",
+                "Mercator": {
+                    "x": -14209.644,
+                    "y": 6678063.768
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=107775#map=17/51.50732/-0.12765",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/51.50732/-0.12765&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=51.50732&mlon=-0.12765#map=17/51.50732/-0.12765"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "EUROPE": "150",
+                        "GB": "826",
+                        "NORTHERN_EUROPE": "154",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["MEDC"]
+                },
+                "callingcode": 44,
+                "currency": {
+                    "alternate_symbols": [],
+                    "decimal_mark": ".",
+                    "html_entity": "&#x00A3;",
+                    "iso_code": "GBP",
+                    "iso_numeric": "826",
+                    "name": "British Pound",
+                    "smallest_denomination": 1,
+                    "subunit": "Penny",
+                    "subunit_to_unit": 100,
+                    "symbol": "£",
+                    "symbol_first": 1,
+                    "thousands_separator": ","
+                },
+                "flag": "🇬🇧",
+                "geohash": "gcpvj0e5csepnkstrhwy",
+                "qibla": 118.99,
+                "roadinfo": {
+                    "drive_on": "left",
+                    "speed_in": "mph"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659414420,
+                        "astronomical": 1659404280,
+                        "civil": 1659412020,
+                        "nautical": 1659408780
+                    },
+                    "set": {
+                        "apparent": 1659469560,
+                        "astronomical": 1659479520,
+                        "civil": 1659471960,
+                        "nautical": 1659475140
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/London",
+                    "now_in_dst": 1,
+                    "offset_sec": 3600,
+                    "offset_string": "+0100",
+                    "short_name": "BST"
+                },
+                "what3words": {
+                    "words": "reveal.zeal.crisp"
+                },
+                "wikidata": "Q84"
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 51.6673219,
+                    "lng": 0.0323526
+                },
+                "southwest": {
+                    "lat": 51.3473219,
+                    "lng": -0.2876474
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "GB",
+                "ISO_3166-1_alpha-3": "GBR",
+                "ISO_3166-2": ["GB-ENG"],
+                "_category": "place",
+                "_type": "city",
+                "city": "Londres",
+                "continent": "Europe",
+                "country": "Reino Unido",
+                "country_code": "gb",
+                "postcode": "SW1A 2DX",
+                "state": "Inglaterra",
+                "state_district": "Grande Londres"
+            },
+            "confidence": 4,
+            "formatted": "Londres, Inglaterra, Reino Unido",
+            "geometry": {
+                "lat": 51.5073219,
+                "lng": -0.1276474
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "27° 42' 45.43632'' S",
+                    "lng": "67° 8' 7.98576'' W"
+                },
+                "MGRS": "19JFK8381933240",
+                "Maidenhead": "FG62kg38rx",
+                "Mercator": {
+                    "x": -7473495.418,
+                    "y": -3192924.383
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?relation=2268862#map=17/-27.71262/-67.13555",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/-27.71262/-67.13555&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=-27.71262&mlon=-67.13555#map=17/-27.71262/-67.13555"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "AR": "032",
+                        "LATIN_AMERICA": "419",
+                        "SOUTH_AMERICA": "005",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 54,
+                "currency": {
+                    "alternate_symbols": ["$m/n", "m$n"],
+                    "decimal_mark": ",",
+                    "disambiguate_symbol": "$m/n",
+                    "html_entity": "$",
+                    "iso_code": "ARS",
+                    "iso_numeric": "032",
+                    "name": "Argentine Peso",
+                    "smallest_denomination": 1,
+                    "subunit": "Centavo",
+                    "subunit_to_unit": 100,
+                    "symbol": "$",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇦🇷",
+                "geohash": "6e062716k2brme995thc",
+                "qibla": 77.52,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659438600,
+                        "astronomical": 1659433800,
+                        "civil": 1659437160,
+                        "nautical": 1659435480
+                    },
+                    "set": {
+                        "apparent": 1659477600,
+                        "astronomical": 1659482400,
+                        "civil": 1659479040,
+                        "nautical": 1659480720
+                    }
+                },
+                "timezone": {
+                    "name": "America/Argentina/Catamarca",
+                    "now_in_dst": 0,
+                    "offset_sec": -10800,
+                    "offset_string": "-0300",
+                    "short_name": "-03"
+                },
+                "what3words": {
+                    "words": "curtains.exults.outtakes"
+                },
+                "wikidata": "Q930973"
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": -27.705754,
+                    "lng": -67.1078685
+                },
+                "southwest": {
+                    "lat": -27.7271722,
+                    "lng": -67.157884
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "AR",
+                "ISO_3166-1_alpha-3": "ARG",
+                "ISO_3166-2": ["AR-K"],
+                "_category": "place",
+                "_type": "village",
+                "continent": "South America",
+                "country": "Argentina",
+                "country_code": "ar",
+                "municipality": "Municipio de Londres",
+                "state": "Catamarca",
+                "state_code": "K",
+                "state_district": "Departamento Belén",
+                "village": "Londres"
+            },
+            "confidence": 7,
+            "formatted": "Londres, Departamento Belén, Argentina",
+            "geometry": {
+                "lat": -27.7126212,
+                "lng": -67.1355516
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "12° 30' 59.83308'' N",
+                    "lng": "124° 18' 24.31476'' E"
+                },
+                "MGRS": "51PXP4198684032",
+                "Maidenhead": "PK22dm63tx",
+                "Mercator": {
+                    "x": 13837764.569,
+                    "y": 1395305.806
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=8038726874#map=17/12.51662/124.30675",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/12.51662/124.30675&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=12.51662&mlon=124.30675#map=17/12.51662/124.30675"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "ASIA": "142",
+                        "PH": "608",
+                        "SOUTHEAST_ASIA": "035",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 63,
+                "currency": {
+                    "alternate_symbols": ["PHP", "PhP", "P"],
+                    "decimal_mark": ".",
+                    "html_entity": "&#x20B1;",
+                    "iso_code": "PHP",
+                    "iso_numeric": "608",
+                    "name": "Philippine Peso",
+                    "smallest_denomination": 1,
+                    "subunit": "Centavo",
+                    "subunit_to_unit": 100,
+                    "symbol": "₱",
+                    "symbol_first": 1,
+                    "thousands_separator": ","
+                },
+                "flag": "🇵🇭",
+                "geohash": "wf0rhwt6t71uqk9jk2rs",
+                "qibla": 289.99,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659475800,
+                        "astronomical": 1659471300,
+                        "civil": 1659474480,
+                        "nautical": 1659472860
+                    },
+                    "set": {
+                        "apparent": 1659434880,
+                        "astronomical": 1659439380,
+                        "civil": 1659436200,
+                        "nautical": 1659437820
+                    }
+                },
+                "timezone": {
+                    "name": "Asia/Manila",
+                    "now_in_dst": 0,
+                    "offset_sec": 28800,
+                    "offset_string": "+0800",
+                    "short_name": "PST"
+                },
+                "what3words": {
+                    "words": "yearly.jingling.networks"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 12.5366203,
+                    "lng": 124.3267541
+                },
+                "southwest": {
+                    "lat": 12.4966203,
+                    "lng": 124.2867541
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "PH",
+                "ISO_3166-1_alpha-3": "PHL",
+                "ISO_3166-2": ["PH-08", "PH-NSA"],
+                "_category": "place",
+                "_type": "village",
+                "continent": "Asia",
+                "country": "Filipinas",
+                "country_code": "ph",
+                "postcode": "6405",
+                "region": "Eastern Visayas",
+                "state": "Northern Samar",
+                "state_code": "NSA",
+                "village": "Londres"
+            },
+            "confidence": 7,
+            "formatted": "Londres, 6405 Northern Samar, Filipinas",
+            "geometry": {
+                "lat": 12.5166203,
+                "lng": 124.3067541
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "10° 38' 37.07052'' N",
+                    "lng": "63° 18' 9.81648'' W"
+                },
+                "MGRS": "20PMS6688976592",
+                "Maidenhead": "FK80ip34ql",
+                "Mercator": {
+                    "x": -7046827.313,
+                    "y": 1183830.744
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=4104046465#map=17/10.64363/-63.30273",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/10.64363/-63.30273&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=10.64363&mlon=-63.30273#map=17/10.64363/-63.30273"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "LATIN_AMERICA": "419",
+                        "SOUTH_AMERICA": "005",
+                        "VE": "862",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 58,
+                "currency": {
+                    "alternate_symbols": ["Bs.S"],
+                    "decimal_mark": ",",
+                    "html_entity": "",
+                    "iso_code": "VES",
+                    "iso_numeric": "928",
+                    "name": "Venezuelan Bolívar Soberano",
+                    "smallest_denomination": 1,
+                    "subunit": "Céntimo",
+                    "subunit_to_unit": 100,
+                    "symbol": "Bs",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇻🇪",
+                "geohash": "d9fux987es9dpx6vv1t2",
+                "qibla": 66.3,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659434580,
+                        "astronomical": 1659430140,
+                        "civil": 1659433260,
+                        "nautical": 1659431700
+                    },
+                    "set": {
+                        "apparent": 1659479760,
+                        "astronomical": 1659484200,
+                        "civil": 1659481080,
+                        "nautical": 1659482640
+                    }
+                },
+                "timezone": {
+                    "name": "America/Caracas",
+                    "now_in_dst": 0,
+                    "offset_sec": -14400,
+                    "offset_string": "-0400",
+                    "short_name": "-04"
+                },
+                "what3words": {
+                    "words": "frilly.concluded.believe"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 10.6636307,
+                    "lng": -63.2827268
+                },
+                "southwest": {
+                    "lat": 10.6236307,
+                    "lng": -63.3227268
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "VE",
+                "ISO_3166-1_alpha-3": "VEN",
+                "ISO_3166-2": ["VE-R"],
+                "_category": "place",
+                "_type": "village",
+                "continent": "South America",
+                "country": "Venezuela",
+                "country_code": "ve",
+                "county": "Municipio Bermúdez",
+                "municipality": "Parroquia Bolívar",
+                "postcode": "0294",
+                "state": "Sucre",
+                "state_code": "R",
+                "village": "Londres"
+            },
+            "confidence": 7,
+            "formatted": "Londres 0294, R, Venezuela",
+            "geometry": {
+                "lat": 10.6436307,
+                "lng": -63.3027268
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "9° 8' 17.80620'' N",
+                    "lng": "62° 4' 14.30472'' W"
+                },
+                "MGRS": "20PPR0211410271",
+                "Maidenhead": "FJ89xd13me",
+                "Mercator": {
+                    "x": -6909672.06,
+                    "y": 1014827.61
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=5241593897#map=17/9.13828/-62.07064",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/9.13828/-62.07064&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=9.13828&mlon=-62.07064#map=17/9.13828/-62.07064"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "LATIN_AMERICA": "419",
+                        "SOUTH_AMERICA": "005",
+                        "VE": "862",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 58,
+                "currency": {
+                    "alternate_symbols": ["Bs.S"],
+                    "decimal_mark": ",",
+                    "html_entity": "",
+                    "iso_code": "VES",
+                    "iso_numeric": "928",
+                    "name": "Venezuelan Bolívar Soberano",
+                    "smallest_denomination": 1,
+                    "subunit": "Céntimo",
+                    "subunit_to_unit": 100,
+                    "symbol": "Bs",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇻🇪",
+                "geohash": "d9eggx9d36b0dcxbesc3",
+                "qibla": 66.76,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659434400,
+                        "astronomical": 1659430020,
+                        "civil": 1659433080,
+                        "nautical": 1659431580
+                    },
+                    "set": {
+                        "apparent": 1659479340,
+                        "astronomical": 1659483720,
+                        "civil": 1659480660,
+                        "nautical": 1659482160
+                    }
+                },
+                "timezone": {
+                    "name": "America/Caracas",
+                    "now_in_dst": 0,
+                    "offset_sec": -14400,
+                    "offset_string": "-0400",
+                    "short_name": "-04"
+                },
+                "what3words": {
+                    "words": "raising.perpetrate.coincidences"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 9.1582795,
+                    "lng": -62.0506402
+                },
+                "southwest": {
+                    "lat": 9.1182795,
+                    "lng": -62.0906402
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "VE",
+                "ISO_3166-1_alpha-3": "VEN",
+                "ISO_3166-2": ["VE-Y"],
+                "_category": "place",
+                "_type": "village",
+                "continent": "South America",
+                "country": "Venezuela",
+                "country_code": "ve",
+                "county": "Municipio Tucupita",
+                "municipality": "Parroquia José Vidal Marcano",
+                "state": "Delta Amacuro",
+                "state_code": "Y",
+                "village": "Londres"
+            },
+            "confidence": 7,
+            "formatted": "Londres, Municipio Tucupita, Venezuela",
+            "geometry": {
+                "lat": 9.1382795,
+                "lng": -62.0706402
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "8° 9' 42.31296'' N",
+                    "lng": "74° 50' 40.42140'' W"
+                },
+                "MGRS": "18PWQ1712202183",
+                "Maidenhead": "FJ28nd88pt",
+                "Mercator": {
+                    "x": -8331658.475,
+                    "y": 905588.686
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=703195333#map=17/8.16175/-74.84456",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/8.16175/-74.84456&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=8.16175&mlon=-74.84456#map=17/8.16175/-74.84456"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "CO": "170",
+                        "LATIN_AMERICA": "419",
+                        "SOUTH_AMERICA": "005",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 57,
+                "currency": {
+                    "alternate_symbols": ["COL$"],
+                    "decimal_mark": ",",
+                    "disambiguate_symbol": "COL$",
+                    "html_entity": "&#36;",
+                    "iso_code": "COP",
+                    "iso_numeric": "170",
+                    "name": "Colombian Peso",
+                    "smallest_denomination": 20,
+                    "subunit": "Centavo",
+                    "subunit_to_unit": 100,
+                    "symbol": "$",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇨🇴",
+                "geohash": "d36y2vgcem4h8kvhmnwq",
+                "qibla": 63.78,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659437580,
+                        "astronomical": 1659433140,
+                        "civil": 1659436260,
+                        "nautical": 1659434700
+                    },
+                    "set": {
+                        "apparent": 1659482340,
+                        "astronomical": 1659400320,
+                        "civil": 1659483600,
+                        "nautical": 1659398760
+                    }
+                },
+                "timezone": {
+                    "name": "America/Bogota",
+                    "now_in_dst": 0,
+                    "offset_sec": -18000,
+                    "offset_string": "-0500",
+                    "short_name": "-05"
+                },
+                "what3words": {
+                    "words": "shampooed.promenade.pleases"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 8.1817536,
+                    "lng": -74.8245615
+                },
+                "southwest": {
+                    "lat": 8.1417536,
+                    "lng": -74.8645615
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "CO",
+                "ISO_3166-1_alpha-3": "COL",
+                "ISO_3166-2": ["CO-ANT"],
+                "_category": "place",
+                "_type": "hamlet",
+                "continent": "South America",
+                "country": "Colômbia",
+                "country_code": "co",
+                "hamlet": "Londres",
+                "state": "Antioquia",
+                "state_code": "ANT",
+                "state_district": "Bajo Cauca",
+                "town": "Nechí"
+            },
+            "confidence": 7,
+            "formatted": "Nechí, Bajo Cauca, Colômbia",
+            "geometry": {
+                "lat": 8.1617536,
+                "lng": -74.8445615
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "10° 25' 38.98920'' N",
+                    "lng": "83° 38' 17.77344'' W"
+                },
+                "MGRS": "17PKM1114753882",
+                "Maidenhead": "EK80ek32jo",
+                "Mercator": {
+                    "x": -9310569.672,
+                    "y": 1159516.655
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=3888249752#map=17/10.42750/-83.63827",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/10.42750/-83.63827&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=10.42750&mlon=-83.63827#map=17/10.42750/-83.63827"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "CENTRAL_AMERICA": "013",
+                        "CR": "188",
+                        "LATIN_AMERICA": "419",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 506,
+                "currency": {
+                    "alternate_symbols": ["¢"],
+                    "decimal_mark": ",",
+                    "html_entity": "&#x20A1;",
+                    "iso_code": "CRC",
+                    "iso_numeric": "188",
+                    "name": "Costa Rican Colón",
+                    "smallest_denomination": 500,
+                    "subunit": "Céntimo",
+                    "subunit_to_unit": 100,
+                    "symbol": "₡",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇨🇷",
+                "geohash": "d1ue2f22x436kzxxst5p",
+                "qibla": 59.79,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659439500,
+                        "astronomical": 1659435060,
+                        "civil": 1659438180,
+                        "nautical": 1659436620
+                    },
+                    "set": {
+                        "apparent": 1659484620,
+                        "astronomical": 1659402660,
+                        "civil": 1659399540,
+                        "nautical": 1659401100
+                    }
+                },
+                "timezone": {
+                    "name": "America/Costa_Rica",
+                    "now_in_dst": 0,
+                    "offset_sec": -21600,
+                    "offset_string": "-0600",
+                    "short_name": "CST"
+                },
+                "what3words": {
+                    "words": "disallowed.decorously.plop"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 10.447497,
+                    "lng": -83.6182704
+                },
+                "southwest": {
+                    "lat": 10.407497,
+                    "lng": -83.6582704
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "CR",
+                "ISO_3166-1_alpha-3": "CRI",
+                "ISO_3166-2": ["CR-L"],
+                "_category": "place",
+                "_type": "hamlet",
+                "continent": "North America",
+                "country": "Costa Rica",
+                "country_code": "cr",
+                "county": "Cantón Pococí",
+                "hamlet": "Londres",
+                "province": "Limón",
+                "state": "Limón",
+                "state_code": "L",
+                "village": "Roxana"
+            },
+            "confidence": 7,
+            "formatted": "Roxana, Cantón Pococí, Costa Rica",
+            "geometry": {
+                "lat": 10.427497,
+                "lng": -83.6382704
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "11° 31' 4.79424'' S",
+                    "lng": "68° 53' 17.65284'' W"
+                },
+                "MGRS": "19LEH1218726741",
+                "Maidenhead": "FH58nl35jq",
+                "Mercator": {
+                    "x": -7668603.453,
+                    "y": -1282375.416
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=3205037741#map=17/-11.51800/-68.88824",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/-11.51800/-68.88824&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=-11.51800&mlon=-68.88824#map=17/-11.51800/-68.88824"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "BO": "068",
+                        "LATIN_AMERICA": "419",
+                        "SOUTH_AMERICA": "005",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC", "LLDC"]
+                },
+                "callingcode": 591,
+                "currency": {
+                    "alternate_symbols": ["Bs"],
+                    "decimal_mark": ".",
+                    "html_entity": "",
+                    "iso_code": "BOB",
+                    "iso_numeric": "068",
+                    "name": "Bolivian Boliviano",
+                    "smallest_denomination": 10,
+                    "subunit": "Centavo",
+                    "subunit_to_unit": 100,
+                    "symbol": "Bs.",
+                    "symbol_first": 1,
+                    "thousands_separator": ","
+                },
+                "flag": "🇧🇴",
+                "geohash": "6mzn2rjng9rx329zehmh",
+                "qibla": 71.31,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659437640,
+                        "astronomical": 1659433260,
+                        "civil": 1659436320,
+                        "nautical": 1659434820
+                    },
+                    "set": {
+                        "apparent": 1659479400,
+                        "astronomical": 1659483720,
+                        "civil": 1659480720,
+                        "nautical": 1659482220
+                    }
+                },
+                "timezone": {
+                    "name": "America/La_Paz",
+                    "now_in_dst": 0,
+                    "offset_sec": -14400,
+                    "offset_string": "-0400",
+                    "short_name": "-04"
+                },
+                "what3words": {
+                    "words": "transpose.fiercely.chess"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": -11.4979984,
+                    "lng": -68.8682369
+                },
+                "southwest": {
+                    "lat": -11.5379984,
+                    "lng": -68.9082369
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "BO",
+                "ISO_3166-1_alpha-3": "BOL",
+                "ISO_3166-2": ["BO-N"],
+                "_category": "place",
+                "_type": "hamlet",
+                "city": "Municipio Filadelfia",
+                "city_district": "Canton Arroyo Grande",
+                "continent": "South America",
+                "country": "Bolívia",
+                "country_code": "bo",
+                "county": "Provincia de Manuripi",
+                "hamlet": "Londres",
+                "state": "Pando",
+                "state_code": "N"
+            },
+            "confidence": 7,
+            "formatted": "Canton Arroyo Grande, Municipio Filadelfia, Provincia de Manuripi, Bolívia",
+            "geometry": {
+                "lat": -11.5179984,
+                "lng": -68.8882369
+            }
+        },
+        {
+            "annotations": {
+                "DMS": {
+                    "lat": "9° 27' 46.11420'' N",
+                    "lng": "84° 3' 54.08388'' W"
+                },
+                "MGRS": "16PHR2230847377",
+                "Maidenhead": "EJ79xl21eb",
+                "Mercator": {
+                    "x": -9358075.587,
+                    "y": 1051196.708
+                },
+                "OSM": {
+                    "edit_url": "https://www.openstreetmap.org/edit?node=1761888926#map=17/9.46281/-84.06502",
+                    "note_url": "https://www.openstreetmap.org/note/new#map=17/9.46281/-84.06502&layers=N",
+                    "url": "https://www.openstreetmap.org/?mlat=9.46281&mlon=-84.06502#map=17/9.46281/-84.06502"
+                },
+                "UN_M49": {
+                    "regions": {
+                        "AMERICAS": "019",
+                        "CENTRAL_AMERICA": "013",
+                        "CR": "188",
+                        "LATIN_AMERICA": "419",
+                        "WORLD": "001"
+                    },
+                    "statistical_groupings": ["LEDC"]
+                },
+                "callingcode": 506,
+                "currency": {
+                    "alternate_symbols": ["¢"],
+                    "decimal_mark": ",",
+                    "html_entity": "&#x20A1;",
+                    "iso_code": "CRC",
+                    "iso_numeric": "188",
+                    "name": "Costa Rican Colón",
+                    "smallest_denomination": 500,
+                    "subunit": "Céntimo",
+                    "subunit_to_unit": 100,
+                    "symbol": "₡",
+                    "symbol_first": 1,
+                    "thousands_separator": "."
+                },
+                "flag": "🇨🇷",
+                "geohash": "d1sjz49sygx3khvjt1ek",
+                "qibla": 60.03,
+                "roadinfo": {
+                    "drive_on": "right",
+                    "speed_in": "km/h"
+                },
+                "sun": {
+                    "rise": {
+                        "apparent": 1659439680,
+                        "astronomical": 1659435240,
+                        "civil": 1659438360,
+                        "nautical": 1659436800
+                    },
+                    "set": {
+                        "apparent": 1659484620,
+                        "astronomical": 1659402660,
+                        "civil": 1659399540,
+                        "nautical": 1659401100
+                    }
+                },
+                "timezone": {
+                    "name": "America/Costa_Rica",
+                    "now_in_dst": 0,
+                    "offset_sec": -21600,
+                    "offset_string": "-0600",
+                    "short_name": "CST"
+                },
+                "what3words": {
+                    "words": "northbound.interestingly.backpacks"
+                }
+            },
+            "bounds": {
+                "northeast": {
+                    "lat": 9.4828095,
+                    "lng": -84.0450233
+                },
+                "southwest": {
+                    "lat": 9.4428095,
+                    "lng": -84.0850233
+                }
+            },
+            "components": {
+                "ISO_3166-1_alpha-2": "CR",
+                "ISO_3166-1_alpha-3": "CRI",
+                "ISO_3166-2": ["CR-P"],
+                "_category": "place",
+                "_type": "hamlet",
+                "continent": "North America",
+                "country": "Costa Rica",
+                "country_code": "cr",
+                "county": "Cantón Quepos",
+                "hamlet": "Londres",
+                "postcode": "60603",
+                "province": "Provincia Puntarenas",
+                "state": "Provincia Puntarenas",
+                "village": "Naranjito"
+            },
+            "confidence": 7,
+            "formatted": "Provincia Puntarenas, Naranjito, 60603 Costa Rica",
+            "geometry": {
+                "lat": 9.4628095,
+                "lng": -84.0650233
+            }
+        }
+    ],
+    "status": {
+        "code": 200,
+        "message": "OK"
+    },
+    "stay_informed": {
+        "blog": "https://blog.opencagedata.com",
+        "twitter": "https://twitter.com/OpenCage"
+    },
+    "thanks": "For using an OpenCage API",
+    "timestamp": {
+        "created_http": "Tue, 02 Aug 2022 03:00:20 GMT",
+        "created_unix": 1659409220
+    },
+    "total_results": 9
+}

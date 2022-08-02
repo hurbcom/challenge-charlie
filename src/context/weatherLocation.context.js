@@ -2,7 +2,6 @@ import { createContext, useContext } from "react";
 
 const contextDefaultValues = {
     status: "loading",
-    lang: "pt-br",
     error: "",
     location: { city: "", state: "" },
     forecast: [],
