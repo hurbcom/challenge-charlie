@@ -18,7 +18,7 @@ export const Background: React.FC<Props> = ({ children }) => {
 
   return (
     <div
-      className='h-screen w-screen bg-white bg-cover bg-center'
+      className='h-screen w-screen bg-white bg-cover bg-center flex justify-center items-center'
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
       {children}
