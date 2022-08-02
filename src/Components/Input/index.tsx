@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { ReactComponent as CompassIcon } from '../../Assets/Icons/44.svg'
+import { ReactComponent as CompassIcon } from '../../Assets/Icons/Compass.svg'
 import { useDebounce } from '../../Hooks/useDebounce'
 
 interface Props {
-  setUserInputLocality: Function;
+  setUserInputLocality: Function
+  userLocalityName: string
 }
 
-export const Input = ({ setUserInputLocality }: Props) => {
+export const Input = ({ setUserInputLocality, userLocalityName }: Props) => {
   const [displayValue, setDisplayValue] = useState('')
 
   const debouncedChange = useDebounce(setUserInputLocality, 500)
@@ -17,8 +18,12 @@ export const Input = ({ setUserInputLocality }: Props) => {
     debouncedChange(event.target.value)
   }
 
+  useEffect(() => {
+    setDisplayValue(userLocalityName)
+  }, [userLocalityName])
+
   return (
-    <section className='bg-amber-400 opacity-80 h-1/5'>
+    <section className='opacity-80'>
       <div className='relative'>
         <CompassIcon
           fill='#8C8A87'
