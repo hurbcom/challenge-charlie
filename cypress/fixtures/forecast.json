@@ -1,0 +1,128 @@
+{
+    "cod": "200",
+    "message": 0,
+    "cnt": 3,
+    "list": [
+        {
+            "dt": 1659409200,
+            "main": {
+                "temp": 21.19,
+                "feels_like": 21.51,
+                "temp_min": 19.6,
+                "temp_max": 21.19,
+                "pressure": 1017,
+                "sea_level": 1017,
+                "grnd_level": 1017,
+                "humidity": 82,
+                "temp_kf": 1.59
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "céu limpo",
+                    "icon": "01n"
+                }
+            ],
+            "clouds": {
+                "all": 1
+            },
+            "wind": {
+                "speed": 1.83,
+                "deg": 302,
+                "gust": 3.38
+            },
+            "visibility": 10000,
+            "pop": 0,
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2022-08-02 03:00:00"
+        },
+        {
+            "dt": 1659420000,
+            "main": {
+                "temp": 20.02,
+                "feels_like": 20.32,
+                "temp_min": 19.04,
+                "temp_max": 20.02,
+                "pressure": 1017,
+                "sea_level": 1017,
+                "grnd_level": 1016,
+                "humidity": 86,
+                "temp_kf": 0.98
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "céu limpo",
+                    "icon": "01n"
+                }
+            ],
+            "clouds": {
+                "all": 1
+            },
+            "wind": {
+                "speed": 1.39,
+                "deg": 322,
+                "gust": 2.05
+            },
+            "visibility": 10000,
+            "pop": 0,
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2022-08-02 06:00:00"
+        },
+        {
+            "dt": 1659430800,
+            "main": {
+                "temp": 18.62,
+                "feels_like": 18.81,
+                "temp_min": 18.62,
+                "temp_max": 18.62,
+                "pressure": 1018,
+                "sea_level": 1018,
+                "grnd_level": 1017,
+                "humidity": 87,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "céu limpo",
+                    "icon": "01n"
+                }
+            ],
+            "clouds": {
+                "all": 0
+            },
+            "wind": {
+                "speed": 0.55,
+                "deg": 356,
+                "gust": 0.8
+            },
+            "visibility": 10000,
+            "pop": 0,
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2022-08-02 09:00:00"
+        }
+    ],
+    "city": {
+        "id": 7538753,
+        "name": "Vila Joaniza",
+        "coord": {
+            "lat": -22.7931,
+            "lon": -43.1833
+        },
+        "country": "BR",
+        "population": 0,
+        "timezone": -10800,
+        "sunrise": 1659345994,
+        "sunset": 1659385886
+    }
+}

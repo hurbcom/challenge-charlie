@@ -18,17 +18,17 @@ import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-import { AppProvider } from "../../src/context/weatherLocation.provider";
+
 import GlobalStyles from "../../src/global-styles";
 
 import { mount } from "cypress/react";
 
 Cypress.Commands.add("mount", (component, options) => {
     return mount(
-        <AppProvider>
+        <>
             <GlobalStyles />
             {component}
-        </AppProvider>,
+        </>,
         options
     );
 });
