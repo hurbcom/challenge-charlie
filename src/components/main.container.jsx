@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Day } from "./day";
 import { InputLocation } from "./inputLocation";
 import { TodayWeather } from "./todayWeather";
-import { useAppContext } from "./weatherLocation.context";
+import { useAppContext } from "../context/weatherLocation.context";
 
 export const MainComponent = () => {
     const { error, status, forecast } = useAppContext();

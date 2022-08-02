@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAppContext } from "./weatherLocation.context";
+import { useAppContext } from "../context/weatherLocation.context";
 
 export const InputLocation = () => {
     const { location, changeLocation } = useAppContext();
