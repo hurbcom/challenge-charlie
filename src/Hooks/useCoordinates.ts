@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
-
-interface Coordinates {
-  latitude: number
-  longitude: number
-}
+import { Coordinates } from '../Core/dtos/OpenWeatherResponseDTO'
 
 export const useCoordinates = () => {
   const [coordinates, setCoordinates] = useState<Coordinates>()
@@ -11,9 +7,9 @@ export const useCoordinates = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords
-      setCoordinates({ latitude, longitude })
+      setCoordinates({ lat: latitude, lon: longitude })
     })
   }, [])
 
-  return coordinates
+  return { coordinates }
 }
