@@ -18,7 +18,7 @@ interface Clouds {
   all: number
 }
 
-interface Coordinates {
+export interface Coordinates {
   lon: number
   lat: number
 }
@@ -63,6 +63,8 @@ interface BaseWeatherInfos {
   wind_speed: number
   humidity: number
   pressure: number
+  weather: DayWeather[]
+  wind_deg: number
 }
 
 interface ForecastWeather extends BaseWeatherInfos {
@@ -80,4 +82,11 @@ interface DailyTemperature {
   min: number
   morn: number
   night: number
+}
+
+export interface DayWeather {
+  description: string
+  icon: string
+  id: number
+  main: string
 }
