@@ -1,5 +1,5 @@
 import { Day } from "../../src/components/day";
-import { getColorByTemperature, getWindDirection } from "../../src/helpers";
+import { getColorByTemperature } from "../../src/helpers";
 import forecast from "../fixtures/forecast.json";
 describe("Day component success", () => {
     it("should show info and yellow background correctly", async () => {

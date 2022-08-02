@@ -12,17 +12,16 @@ export const getWeatherIcon = (temp) => {
         case "Rain":
             return "R";
         case "Snow":
-        case "Sun":
-            return "B";
+            return "W";
+
         case "Clouds":
             return "Y";
+        case "Sun":
         default:
             return "B";
     }
 };
 export const getWindDirection = (windDeg) => {
-    console.log(windDeg);
-
     if ((windDeg > 0 && windDeg < 45) || windDeg > 350) {
         return "N";
     }
