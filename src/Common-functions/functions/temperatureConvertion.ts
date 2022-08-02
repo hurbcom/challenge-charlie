@@ -8,7 +8,7 @@ export const fahrenheitToCelsius = (fahrenheitTemperature: number) => {
 }
 
 export const celsiusToFahrenheit = (celsiusTemperature: number) => {
-  return (celsiusTemperature / SIMPLIFIED_CELSIUS_BOILING_TEMPERATURE) * SIMPLIFIED_FAHRENHEIT_BOILING_TEMPERATURE + FREEZING_FAHRENHEIT_TEMPERATURE
+  return +Number((celsiusTemperature / SIMPLIFIED_CELSIUS_BOILING_TEMPERATURE) * SIMPLIFIED_FAHRENHEIT_BOILING_TEMPERATURE + FREEZING_FAHRENHEIT_TEMPERATURE).toFixed(0)
 }
 
 export const kelvinToCelsius = (kelvinTemperature: number) => {
