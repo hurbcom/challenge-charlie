@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Coordinates } from '../Core/dto/OpenWeatherResponseDTO'
+import { Coordinates } from '../Core/dtos/OpenWeatherResponseDTO'
 import { WeatherService } from '../Core/services/openWeather'
+import { useCoordinates } from './useCoordinates'
 
 export const useWeather = (locationName: string) => {
   const [loading, setLoading] = useState(false)
   const [weather, setWeather] = useState({})
-  const [forecastWeather, setForecastWeather] = useState({})
+  const [forecastWeather, setForecastWeather] = useState<any>([])
+  const { coordinates } = useCoordinates()
 
   const fetchForecastWeather = (coordinates: Coordinates) => {
     setLoading(true)
@@ -27,6 +29,12 @@ export const useWeather = (locationName: string) => {
   useEffect(() => {
     fetchWeather()
   }, [locationName])
+
+  useEffect(() => {
+    if (coordinates) {
+      fetchForecastWeather(coordinates)
+    }
+  }, [coordinates])
 
   return {
     loading,
