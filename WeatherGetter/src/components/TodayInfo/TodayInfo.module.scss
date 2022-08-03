@@ -1,6 +1,7 @@
 .TodayInfo{
-    width: 100%;
+    width: 75vh;
     border: 1px solid red;
 
-    display:block;
+    grid-row-start: 2;
+    grid-row: span 3;
 }

@@ -1,6 +1,6 @@
 .FutureInfo{
-    width: 100%;
+    width: 75vh;
     border: 1px solid red;
 
-    display:block;
+    grid-row: 5 / span 2;
 }
