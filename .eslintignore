@@ -1,0 +1,5 @@
+node_modules/**
+cli/**
+**/node_modules/**
+**/coverage/**
+**/build/**

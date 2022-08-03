@@ -27,7 +27,6 @@ const saveTestFile = ({ name, savePath, fileFormat }) => {
 };
 
 const formatData = ({ type, format }) => {
-  console.log('format: ', format);
   let savePath = '';
   let fileFormat = '';
   if (type === 'serviço') {
@@ -45,4 +44,10 @@ const formatData = ({ type, format }) => {
   return { savePath, fileFormat };
 };
 
-module.exports = { saveFile, formatData, saveReactFile, saveStyleFile, saveTestFile };
+module.exports = {
+  saveFile,
+  formatData,
+  saveReactFile,
+  saveStyleFile,
+  saveTestFile,
+};

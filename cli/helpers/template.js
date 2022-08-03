@@ -37,4 +37,8 @@ test('test render', () => {
   return fileContent;
 };
 
-module.exports = { getReactComponentContent, getStyleFileContent, getTestFileContent };
+module.exports = {
+  getReactComponentContent,
+  getStyleFileContent,
+  getTestFileContent,
+};
