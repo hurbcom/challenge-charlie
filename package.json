@@ -8,14 +8,17 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^0.27.2",
         "cypress": "^10.3.1",
+        "docker": "^1.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-scripts": "5.0.1",
         "styled-components": "^5.3.5",
         "web-vitals": "^2.1.4"
+    
     },
     "scripts": {
         "start": "react-scripts start",
+        "start-docker": "docker compose -f 'docker-compose.yml' up -d --build ",
         "start:dev": "cors-proxy-server & react-scripts start",
         "cy:open:unit": "cypress open --component",
         "cy:open:e2e": "cypress open --e2e",
@@ -40,5 +43,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "cors-proxy-server": "^1.0.2"
     }
 }
