@@ -1,6 +1,11 @@
 const inquirer = require('inquirer');
 const { inquirerFilters } = require('../helpers/string');
-const { formatData, saveReactFile, saveStyleFile } = require('../helpers/write');
+const {
+  formatData,
+  saveReactFile,
+  saveStyleFile,
+  saveTestFile,
+} = require('../helpers/write');
 const fs = require('fs');
 const path = require('path');
 
@@ -54,6 +59,7 @@ const createModule = async () => {
   saveReactFile({ name, savePath, fileFormat, type });
   if (type !== 'serviço') {
     saveStyleFile({ name, savePath, fileFormat });
+    saveTestFile({ name, savePath, fileFormat });
   }
 
   console.info('Módulo', name, 'criado com sucesso 🤗');

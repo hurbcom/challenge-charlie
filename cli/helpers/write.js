@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const { humanize } = require('./string');
-const { getReactComponentContent, getStyleFileContent } = require('./template');
+const {
+  getReactComponentContent,
+  getStyleFileContent,
+  getTestFileContent,
+} = require('./template');
 
 const saveFile = (name, content) => {
   fs.writeFileSync(name, content);
@@ -15,6 +19,11 @@ const saveReactFile = ({ name, savePath, fileFormat, type }) => {
 const saveStyleFile = ({ name, savePath, fileFormat }) => {
   const styleContent = getStyleFileContent(humanize(name));
   saveFile(path.resolve(savePath, name, `styles${fileFormat}`), styleContent);
+};
+
+const saveTestFile = ({ name, savePath, fileFormat }) => {
+  const styleContent = getTestFileContent(humanize(name));
+  saveFile(path.resolve(savePath, name, `index.spec${fileFormat}x`), styleContent);
 };
 
 const formatData = ({ type, format }) => {
@@ -36,4 +45,4 @@ const formatData = ({ type, format }) => {
   return { savePath, fileFormat };
 };
 
-module.exports = { saveFile, formatData, saveReactFile, saveStyleFile };
+module.exports = { saveFile, formatData, saveReactFile, saveStyleFile, saveTestFile };

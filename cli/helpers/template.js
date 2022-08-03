@@ -7,7 +7,7 @@ const getReactComponentContent = (name, type) => {
 
 export const ${name} = () => (
   <Container>
-    <h1>Eu sou o componente e meu nome é ${name} </h1>
+    <h1>Eu sou o componente e meu nome é ${name}</h1>
   </Container>
 );
 `;
@@ -22,4 +22,19 @@ export const Container = styled.div\`\`;
   return fileContent;
 };
 
-module.exports = { getReactComponentContent, getStyleFileContent };
+const getTestFileContent = name => {
+  const fileContent = `import { render, screen } from '@testing-library/react';
+import { ${name} } from './';
+
+test('test render', () => {
+  render(<${name} />);
+
+  const text = screen.getByText('Eu sou o componente e meu nome é ${name}');
+  expect(text).toBeInTheDocument();
+});
+`;
+
+  return fileContent;
+};
+
+module.exports = { getReactComponentContent, getStyleFileContent, getTestFileContent };
