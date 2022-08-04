@@ -3,7 +3,6 @@
   .todayContainer {
     height: 50vh;
     .WheatherFigure{
-      padding: 5rem;
       width: 60%;
       height: auto;
     }    
@@ -53,14 +52,20 @@
   }
 
   .White{
-    .todayContainer {
+    .todayContainer,.tomorrowContainer, .afterTomorrowContainer {
       background-color: $light;
     }
-    .tomorrowContainer {
-      background-color: $light;
-    }
-    .afterTomorrowContainer {
-      background-color: $light;
-    }
+  }
 
+  @media screen and (max-width: 700px) {
+    .todayContainer {
+      height: 50%;
+      .WheatherFigure{       
+        height: auto;
+      }    
+    }    
+    .tomorrowContainer,
+    .afterTomorrowContainer {      
+      height: 17.5%;
+    }  
   }
