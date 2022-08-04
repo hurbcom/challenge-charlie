@@ -14,6 +14,12 @@
     font-weight: 400;    
   } 
 
+  .Section{
+    span{ 
+      cursor: pointer;
+      
+    }   
+  }
   .measureFigure{
     height: 3rem;
   } 
@@ -44,3 +50,4 @@
     }
   }
 }
+
