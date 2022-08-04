@@ -9,4 +9,12 @@ export const StyledSection = styled.section`
 
     //Ajustando posição e tamanho da seção para a informação do dia atual
     grid-row: 5 / span 2;
+
+    #tomorrow{
+        display:flex;
+    }
+
+    #afterTomorrow{
+        display:flex;
+    }
 `;
