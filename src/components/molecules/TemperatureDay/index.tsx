@@ -18,7 +18,7 @@ const TemperatureDay = componentFactory<ITemperatureDayProps>(
     const style = `${className} ${styles.TemperatureDay}`;
     return (
       <div ref={ref} className={style} {...rest}>
-        <section>
+        <section className={styles.Section}>
           <h2>{dayDescription}</h2>
           <span onClick={onClick}>{`${temperature}`}</span>
           {minTemperature !== undefined && (
