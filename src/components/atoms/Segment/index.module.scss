@@ -1,0 +1,12 @@
+@import "/src/styles/tokens.scss";
+
+.Segment {
+  width: 50vw;
+  max-width: 900px;
+  min-width: 400px;    
+  height: 10vh;
+  padding: 1rem;
+  background-color: $light;
+  display: flex;
+  align-items: center; 
+}

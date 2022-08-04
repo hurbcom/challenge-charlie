@@ -1,0 +1,12 @@
+@import "/src/styles/tokens.scss";
+
+.Input {
+  outline: none;
+  border: none;
+  background-color: transparent;    
+  color:$grey-1;
+  font-weight: 600;
+  font-size: 3rem;
+  width:100%
+
+}

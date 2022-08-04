@@ -1,0 +1,14 @@
+@import "/src/styles/tokens.scss";
+
+.Header {
+  width: 50vw;
+  max-width: 900px;
+  min-width: 400px;    
+  background-color: $light-opacity;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; 
+  gap: 1rem;
+  height: 15vh;
+  padding: 1rem;
+}
