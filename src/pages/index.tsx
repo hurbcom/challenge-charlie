@@ -74,7 +74,7 @@ const Principal: NextPage = () => {
       dataCurrent;
 
       climate
-        .GetForecast(response)
+        .GetForecast(response,unit)
         .then((i) => {
           const dados: IForecastClimateResponse = i;
           const dataTomorrow = dados.list
@@ -141,7 +141,6 @@ const Principal: NextPage = () => {
       .catch((i) => setResponse('Digite um local'));
     }
   }, [local.loaded]);
-  console.log(foreCastClimate);
 
   const getDescriptionLocation = async (lat: number, lng: number) => {
     return await cidadeEstado.Get(lat as number, lng as number);
@@ -183,9 +182,6 @@ const Principal: NextPage = () => {
   const responseMemo = React.useMemo(() => response, [response]);
   const foreCastClimateMemo = React.useMemo(() => foreCastClimate, [foreCastClimate]);
   const currentClimateMemo = React.useMemo(() => currentClimate, [currentClimate]);
-
-  console.log('variantMemo =>',variantMemo)
-
 
   return (
     <>
