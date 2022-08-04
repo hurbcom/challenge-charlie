@@ -8,5 +8,10 @@
   font-weight: 600;
   font-size: 3rem;
   width:100%
+}
 
+@media screen and (max-width: 700px) {
+  .Input {
+    font-size: 2rem;  
+  }
 }

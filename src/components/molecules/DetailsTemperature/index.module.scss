@@ -1,40 +1,65 @@
 @import "/src/styles/tokens.scss";
 
-.DetailsTemperature{
+.DetailsTemperature {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap:1.5rem;
+  gap: 1.5rem;
   height: 100%;
 
-  h2{
-    font-size:2.5rem;
-    color:$light;
-    margin:0;
-    font-weight: 400;    
-  } 
+  h2 {
+    font-size: 2.5rem;
+    color: $light;
+    margin: 0;
+    font-weight: 400;
+  }
 
-  section{
+  section {
     display: flex;
     flex-direction: column;
 
-    span{
-      font-size:1.8rem;
-      color:$light;
-      margin:0;
-      font-weight: 400;    
-      text-transform: none; 
+    span {
+      font-size: 1.8rem;
+      color: $light;
+      margin: 0;
+      font-weight: 400;
+      text-transform: none;
       line-height: 2rem;
-    } 
+    }
   }
 
 
-  .measureFigure{
+  .measureFigure {
     height: 3rem;
   }
 
-  .teste{
+  .teste {
     display: flex;
   }
- 
+
+}
+
+@media screen and (max-width: 700px) {
+  .DetailsTemperature {
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    section {
+      span {
+        font-size: 1.2rem;
+        color: $light;
+        margin: 0;
+        font-weight: 400;
+        text-transform: none;
+        line-height: 2rem;
+      }
+    }
+
+    .measureFigure {
+      height: 3rem;
+    }
+  }
 }

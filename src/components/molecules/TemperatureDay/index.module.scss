@@ -27,3 +27,20 @@
     }
   }
 }
+
+@media screen and (max-width: 700px) {
+  .TemperatureDay{   
+    gap:1rem;
+    h2, span{
+      font-size:1.4rem;     
+    }   
+    .measureFigure{
+      height: 3rem;
+    }   
+    .MinMaxTemperature{     
+      span{
+        font-size:0.7rem;  
+      }
+    }
+  }
+}
