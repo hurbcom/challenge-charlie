@@ -3,3 +3,7 @@
 .iconLocation{
   width: 5rem;
 }
+
+.iconLocation:not(:first-child){
+  cursor: pointer;
+}

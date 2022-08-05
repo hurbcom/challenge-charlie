@@ -5,13 +5,14 @@ import Content from "../../organisms/Content";
 import InternalHeader from "../../organisms/InternalHeader";
 
 const Home = componentFactory<IHomeProps>("Home", (props, ref) => {
-  const { dataCurrent,dataForecast, text, value, onClick, variant , onChange} = props;
+  const { dataCurrent,dataForecast, text, value, onClick, variant , onChange, onChangeLanguage} = props;
   return (
     <Container ref={ref}>
       <InternalHeader 
-        value={value} 
-        onChange={onChange}
-    />
+        value={value}
+        onChange={onChange} 
+        onChangeLanguage={onChangeLanguage}
+      />
       <Content 
         text={text}
         variant={variant}

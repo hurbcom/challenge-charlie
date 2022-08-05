@@ -11,15 +11,19 @@ import { iconWeather } from "../utils/iconWeather";
 import { defaultValueCurrent, noResultFound } from "../Json/currentClimate";
 import { variantColor } from "../utils/variantColor";
 import { getWindDirection } from "../utils/getWindDirection";
-import { textPortuguese } from "../Json/text";
 import { formatTemperature } from "../utils/templateStringTemperature";
 import { defaultValueForecast, noResultFoundForecast } from "../Json/foreCastClimate";
+import i18n from "../i18n";
+import { useTranslation } from "react-i18next";
 
 const Principal: NextPage = () => {
-  const [response, setResponse] = React.useState<string>("Carregando");
+  const {t} = useTranslation()
+  const loading = t("carregando")
+  const [response, setResponse] = React.useState<string>(loading);
   const [load, setLoad] = React.useState<boolean>(false);
   const [currentClimate, setCurrentClimate] = React.useState(defaultValueCurrent);
   const [foreCastClimate, setForeCastClimate] = React.useState(defaultValueForecast);
+  const [language, setLanguage] = useLocalStorage("language", "pt_br");
   const [unit, setUnit] = useLocalStorage("unit", "metric");
   const [unitMeasurement, setUnitMeasurement] = React.useState({
     temperature: "C",
@@ -44,15 +48,22 @@ const Principal: NextPage = () => {
         speed: "Mph",
       });
     }
+    if (language === '"pt_br"') {
+      setLanguage('pt_br')
+      
+    } else if (language === "en") {
+      setLanguage('en')      
+    }
   }, []);
 
   useEffect(() => {
+    console.log("init", language)
     if (response !== "Carregando" && response.length > 3) {
       const dataCurrent = climate
-        .GetCurrent(response, unit)
+        .GetCurrent(response, unit,language)
         .then((i) => {
           const dados: ICurrentClimateResponse = i;
-          const windDirection = getWindDirection(dados.wind.deg);
+          const windDirection = getWindDirection(dados.wind.deg,language);
           const newData = {
             climateFigure: iconWeather(dados.weather[0].icon),
             dayDescription: dados.weather[0].description,
@@ -60,21 +71,22 @@ const Principal: NextPage = () => {
             maxTemperature: formatTemperature(dados.main.temp_max,unitTemp),
             minTemperature: formatTemperature(dados.main.temp_min,unitTemp),
             climate: `${dados.weather[0].description}`,
-            humidity: `${dados.main.humidity}%`,
-            pressure: `${dados.main.humidity} hPA`,
-            wind: `${windDirection} ${Math.floor(dados.wind.speed)} ${unitSpeed}`,
+            humidity: `${t('humidade')}: ${dados.main.humidity}%`,
+            pressure: `${t('pressão')}: ${dados.main.humidity} hPA`,
+            wind: `${t('vento')}: ${windDirection} ${Math.floor(dados.wind.speed)} ${unitSpeed}`,
             temperatureNumber: Math.floor(dados.main.temp),
           };
           setCurrentClimate(newData);
         })
         .catch((i) => {
           setCurrentClimate(noResultFound);
+          
         });
 
       dataCurrent;
 
       climate
-        .GetForecast(response,unit)
+        .GetForecast(response,unit,language)
         .then((i) => {
           const dados: IForecastClimateResponse = i;
           const dataTomorrow = dados.list
@@ -128,7 +140,7 @@ const Principal: NextPage = () => {
         })
         .catch((i) => setForeCastClimate(noResultFoundForecast));
     }
-  }, [response, unit]);
+  }, [response, unit, language]);
 
   useEffect(() => {
     if (local.loaded) {
@@ -159,8 +171,7 @@ const Principal: NextPage = () => {
   );
 
   const changeUnit = () => {
-    setLoad(true)
-    
+    setLoad(true)    
     if (unit === "metric") {
       setUnit("imperial");
       setUnitMeasurement({
@@ -178,10 +189,27 @@ const Principal: NextPage = () => {
     setLoad(false)
   };
 
+  const changeLanguage = () => {    
+    if (language === 'pt_br'){
+      i18n.changeLanguage('en')
+      setLanguage('en')
+    } else if (language === 'en'){
+      i18n.changeLanguage('pt')
+      setLanguage('pt_br')
+    }
+  }
+
   const variantMemo = React.useMemo(() => variant, [variant, load]);
   const responseMemo = React.useMemo(() => response, [response]);
   const foreCastClimateMemo = React.useMemo(() => foreCastClimate, [foreCastClimate]);
   const currentClimateMemo = React.useMemo(() => currentClimate, [currentClimate]);
+
+  const textTranslate = {
+    today: t("Hoje"),
+    tomorrow: t("Amanhã"),
+    afterTomorrow: t("Depois de Amanhã"),
+  }
+
 
   return (
     <>
@@ -189,11 +217,11 @@ const Principal: NextPage = () => {
         variant={variantMemo}
         value={responseMemo}
         onClick={debounce(changeUnit, 1000)}
-        text={textPortuguese}
+        text={textTranslate}
         dataCurrent={currentClimateMemo}
-        dataForecast={foreCastClimateMemo} 
-        onChange={(e) => setResponse(e.target.value)}
-      />
+        dataForecast={foreCastClimateMemo}
+        onChange={(e) => setResponse(e.target.value)} 
+        onChangeLanguage={() => changeLanguage()}      />
     </>
   );
 };
