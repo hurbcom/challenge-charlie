@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 const Principal: NextPage = () => {
   const {t} = useTranslation()  
   const [response, setResponse] = React.useState<string>('Brasil');
-  const [load, setLoad] = React.useState<boolean>(false);
+  const [isLoading,setIsLoading] = React.useState(false) 
   const [currentClimate, setCurrentClimate] = React.useState(defaultValueCurrent);
   const [foreCastClimate, setForeCastClimate] = React.useState(defaultValueForecast);
   const [language, setLanguage] = useLocalStorage("language", "pt_br");
@@ -28,6 +28,7 @@ const Principal: NextPage = () => {
     temperature: "C",
     speed: "Km/h",
   });
+  const delay = (ms:number) => new Promise(res => setTimeout(res, ms));
   const local = useGeoLocation();
   const cidadeEstado = GetCurrentCityState();
   const climate = useWheather();
@@ -35,7 +36,7 @@ const Principal: NextPage = () => {
   const unitTemp = unitMeasurement.temperature
   const unitSpeed = unitMeasurement.speed
 
-  useEffect(() => {
+  useEffect(() => {    
     if (unit === "metric") {
       setUnitMeasurement({
         temperature: "C",
@@ -52,12 +53,12 @@ const Principal: NextPage = () => {
       
     } else if (language === "en") {
       setLanguage('en')      
-    }
+    }    
   }, []);
 
   useEffect(() => {
     if (response !== "Carregando" && response.length > 3) {
-      const dataCurrent = climate
+        climate
         .GetCurrent(response, unit,language)
         .then((i) => {
           const dados: ICurrentClimateResponse = i;
@@ -84,9 +85,6 @@ const Principal: NextPage = () => {
         .catch((i) => {
           setCurrentClimate(noResultFound);          
         });
-
-      dataCurrent;
-
       climate
         .GetForecast(response,unit,language)
         .then((i) => {
@@ -141,7 +139,7 @@ const Principal: NextPage = () => {
           setForeCastClimate(newData);
         })
         .catch((i) => setForeCastClimate(noResultFoundForecast));
-    }
+    }  
   }, [response, unit, language]);
 
   useEffect(() => {
@@ -152,7 +150,7 @@ const Principal: NextPage = () => {
           local.coordinates?.lng as number
         ),
       ]).then((i) => setResponse(i[0] as string))
-      .catch((i) => setResponse('Digite um local'));
+      .catch((i) => setResponse('Brasil'));
     }
   }, [local.loaded]);
 
@@ -167,13 +165,13 @@ const Principal: NextPage = () => {
     },
     [currentClimate.temperatureNumber, unit]
   );
-  const variant = load ? 'White' : getColorVariant(
+  const variant = getColorVariant(
     Math.round(currentClimate.temperatureNumber),
     unit
   );
-
-  const changeUnit = () => {
-    setLoad(true)    
+  
+  const changeUnit = async () => {      
+    await setIsLoading(true) 
     if (unit === "metric") {
       setUnit("imperial");
       setUnitMeasurement({
@@ -187,11 +185,11 @@ const Principal: NextPage = () => {
         speed: "Km/h",
       });
     }
-
-    setLoad(false)
+    await delay(500)
+    await setIsLoading(false) 
   };
 
-  const changeLanguage = () => {    
+  const changeLanguage = () => {
     if (language === 'pt_br'){
       i18n.changeLanguage('en')
       setLanguage('en')
@@ -201,7 +199,7 @@ const Principal: NextPage = () => {
     }
   }
 
-  const variantMemo = React.useMemo(() => variant, [variant, load]);
+  const variantMemo = React.useMemo(() => variant, [variant]);
   const responseMemo = React.useMemo(() => response, [response]);
   const foreCastClimateMemo = React.useMemo(() => foreCastClimate, [foreCastClimate]);
   const currentClimateMemo = React.useMemo(() => currentClimate, [currentClimate]);
@@ -212,18 +210,23 @@ const Principal: NextPage = () => {
     afterTomorrow: t("Depois de amanhã"),
   }
 
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {    
+    setResponse(event.target.value)
+  }
 
   return (
     <>
       <Home
         variant={variantMemo}
         value={responseMemo}
-        onClick={debounce(changeUnit, 500)}
+        onClick={changeUnit}
         text={textTranslate}
         dataCurrent={currentClimateMemo}
         dataForecast={foreCastClimateMemo}
-        onChange={(e) => setResponse(e.target.value)} 
-        onChangeLanguage={() => changeLanguage()}      />
+        onChange={debounce(handleChange, 1000)}
+        onChangeLanguage={changeLanguage} 
+        isLoading={isLoading}
+      />
     </>
   );
 };

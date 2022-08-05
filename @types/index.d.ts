@@ -70,8 +70,8 @@ declare global {
 
     interface IHomeProps extends IContentProps,IInternalHeaderProps  {
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-      onChangeLanguage: () => void
-
+      onChangeLanguage: () => void;
+      isLoading:boolean
     }
 
     interface IBingImageResponse {

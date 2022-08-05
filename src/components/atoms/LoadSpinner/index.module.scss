@@ -1,0 +1,41 @@
+@import "/src/styles/tokens.scss";
+
+.ldsFacebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.ldsFacebook div {
+  display: inline-block;
+  position: absolute;
+  left: 1vw;
+  width: 16px;
+  background: $grey-1;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.ldsFacebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.ldsFacebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.ldsFacebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 1vh;
+    height: 8vh;
+  }
+  50%, 100% {
+    top: 3vh;
+    height: 4vh;
+  }
+}
+
+

@@ -1,0 +1,12 @@
+@import "/src/styles/tokens.scss";
+
+.LoadContainer{
+  height: 85vh;
+  width: 50vw;
+  max-width: 900px;   
+  min-width: 300px; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: $light-opacity; 
+}
