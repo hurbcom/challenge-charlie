@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import useGeoLocation from "../hooks/useGeoLocation";
-import { GetCurrentCityState } from "../service/GetCurrentCityState";
+import { GetCurrentCityState } from "../service/getCurrentCityState";
 import * as React from "react";
 import { useWheather } from "../service/getWheather";
 import Home from "../components/templates/Home";
@@ -13,7 +13,7 @@ import { variantColor } from "../utils/variantColor";
 import { getWindDirection } from "../utils/getWindDirection";
 import { formatTemperature } from "../utils/templateStringTemperature";
 import { defaultValueForecast, noResultFoundForecast } from "../Json/foreCastClimate";
-import i18n from "../i18n";
+import i18n from "../translate/i18n";
 import { useTranslation } from "react-i18next";
 
 const Principal: NextPage = () => {
@@ -82,8 +82,7 @@ const Principal: NextPage = () => {
           setCurrentClimate(newData);
         })
         .catch((i) => {
-          setCurrentClimate(noResultFound);
-          
+          setCurrentClimate(noResultFound);          
         });
 
       dataCurrent;

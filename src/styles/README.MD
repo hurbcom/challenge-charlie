@@ -5,9 +5,6 @@ dentro do diretório que armazena o próprio componente.
 
 Neste diretório são definidos os estilos compartilhados entre os componentes.
 
-- `generic.scss`: São estilos que podem ser reaproveitados por todos os componentes,
-  afim de reutilizar código.
-
 - `global.scss`: São estilos que são definidos globalmente, afeta todo o sistema.
 
 - `tokens.scss`: São variáveis que podem ser usadas em qualquer parte do sistema,

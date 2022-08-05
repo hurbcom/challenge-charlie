@@ -1,8 +1,8 @@
-import en from './language/en.json'
-import pt from './language/pt.json'
+import en from '../language/en.json'
+import pt from '../language/pt.json'
 import { initReactI18next } from 'react-i18next'
 import i18n  from 'i18next'
-import { validLocalStorage } from './utils/validLocalStorage';
+import { validLocalStorage } from '../utils/validLocalStorage';
 
 const resources = {
     en: {

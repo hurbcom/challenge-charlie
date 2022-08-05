@@ -15,13 +15,13 @@ export const defaultValueCurrent = {
 
 export const noResultFound = {
   climateFigure: na,
-  dayDescription: "Resultado não encontrado",
+  dayDescription: "-",
   temperature: "-",
-  maxTemperature: "",
-  minTemperature: "",
+  maxTemperature: "-",
+  minTemperature: "-",
   climate: "-",
-  humidity: "",
-  pressure: "",
-  wind: "",
+  humidity: "-",
+  pressure: "-",
+  wind: "-",
   temperatureNumber: 0
 }
