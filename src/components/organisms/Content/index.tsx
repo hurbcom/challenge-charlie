@@ -34,17 +34,20 @@ const Content = componentFactory<IContentProps>("Content", (props, ref) => {
   return (
     <main ref={ref} className={style}>
       <Segment className={styles.todayContainer}>
+        <figure className={styles.FigureContainer}>
         <span className={styles.WheatherFigure}>
           <Image
             src={climateFigure}
             alt="currentyWheatherFigure"
             layout="responsive"
-            objectFit="contain"
-            width={145}
-            height={132}
+            objectFit="cover"
+            width={250}
+            height={250}
           />
         </span>
+        </figure>
         <TemperatureDay
+        className={styles.detailsToday}
           onClick={onClick}
           dayDescription={today}
           temperature={temperature}

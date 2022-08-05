@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif; 
   text-transform: capitalize;
+  font-size: 1rem;
 }
 
 a {
@@ -15,4 +16,52 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 1600px) {
+  html,
+    body {
+      font-size: 0.9rem;
+  
+}
+}
+
+@media screen and (max-width: 1400px) {
+  html,
+    body {
+      font-size: 0.8rem;
+  
+}
+}
+
+@media screen and (max-width: 800px) {
+  html,
+    body {
+      font-size: 0.9rem;
+  
+}
+}
+
+@media screen and (max-width: 700px) {
+  html,
+    body {
+      font-size: 0.8rem;
+  
+}
+}
+
+@media screen and (max-width: 600px) {
+  html,
+    body {
+      font-size: 0.7rem;
+  
+}
+}
+
+@media screen and (max-width: 500px) {
+  html,
+    body {
+      font-size: 0.6rem;
+  
+}
 }

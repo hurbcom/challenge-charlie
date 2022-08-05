@@ -43,18 +43,12 @@
   .DetailsTemperature {
     gap: 1rem;
 
-    h2 {
-      font-size: 1.5rem;
-    }
-
     section {
-      span {
-        font-size: 1.2rem;
+      span {      
         color: $light;
         margin: 0;
         font-weight: 400;
-        text-transform: none;
-        line-height: 2rem;
+        text-transform: none;     
       }
     }
 

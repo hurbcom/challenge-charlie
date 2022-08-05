@@ -36,18 +36,9 @@
 
 @media screen and (max-width: 800px) {
   .TemperatureDay{   
-    gap:1rem;
-    h2, span{
-      font-size:1rem;     
-    }   
+    gap:1rem;      
     .measureFigure{
       height: 3rem;
-    }
-    .MinMaxTemperature{     
-      span{
-        font-size:1rem;  
-      }
-    }
+    }   
   }
 }
-

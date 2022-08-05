@@ -28,7 +28,7 @@ const InternalHeader = componentFactory<IInternalHeaderProps>("InternalHeader", 
       <span className={styles.iconLocation} onClick={onChangeLanguage}>
         <Image
           src={braFlag}
-          alt={"compass"}
+          alt={"bra flag"}
           layout="responsive"
           objectFit="cover"
           width={50}
@@ -39,7 +39,7 @@ const InternalHeader = componentFactory<IInternalHeaderProps>("InternalHeader", 
       <span className={styles.iconLocation} onClick={onChangeLanguage}>
         <Image
           src={euaFlag }
-          alt={"compass"}
+          alt={"eua flag"}
           layout="responsive"
           objectFit="cover"
           width={50}
