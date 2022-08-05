@@ -8,11 +8,11 @@ const Container = componentFactory<IContainerProps>(
   "Container",
   (props, ref) => {
     const {children} = props
-    const image = useImageBing().Get()
     const previewUrl = 'https://www.bing.com/th?id=OHR.HickmanBridge_PT-BR3632714538_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'
+    const style = {backgroundImage:`url(${previewUrl})`}
     return (
 
-     <div ref={ref} className={styles.Container} style={{backgroundImage:`url(${previewUrl})`}}>
+     <div ref={ref} className={styles.Container} style={style}>
       <div className={styles.ContainerColor}>
       {children}
       </div>

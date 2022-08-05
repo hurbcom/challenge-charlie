@@ -34,7 +34,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .TemperatureDay{   
     gap:1rem;
     h2, span{
@@ -45,7 +45,7 @@
     }   
     .MinMaxTemperature{     
       span{
-        font-size:0.7rem;  
+        font-size:1rem;  
       }
     }
   }

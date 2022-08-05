@@ -9,10 +9,7 @@ class currentCityState {
           .then((i:IOpenCageDataResponse) => {
             const descriptions = i.data.results[0].components  
             return `${descriptions.municipality}, ${descriptions.state}`            
-            })
-          .catch((i) => {        
-            console.error(i)
-        });
+            })         
         return result 
       }    
 }

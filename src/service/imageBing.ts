@@ -9,9 +9,10 @@ class imageBing {
           .then((i:IBingImageResponse) => {
               return i.data.images.url
             })
-          .catch((i) => {          
-            console.error("Falha ao coletar dados")
-        });
+          .catch((i) => {    
+            return 'https://www.bing.com/th?id=OHR.HickmanBridge_PT-BR3632714538_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'      
+        
+        });       
         return result 
       }    
 }

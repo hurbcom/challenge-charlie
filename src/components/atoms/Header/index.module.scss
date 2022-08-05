@@ -2,8 +2,8 @@
 
 .Header {
   width: 50vw;
-  max-width: 900px;
-  min-width: 700px;    
+  max-width: 900px;   
+  min-width: 600px; 
   background-color: $light-opacity;
   display: flex;
   justify-content: flex-start;
@@ -13,7 +13,7 @@
   padding: 1rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .Header {
     height: 15%;
     width: 100%;    

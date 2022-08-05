@@ -17,9 +17,8 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 
 const Principal: NextPage = () => {
-  const {t} = useTranslation()
-  const loading = t("carregando")
-  const [response, setResponse] = React.useState<string>(loading);
+  const {t} = useTranslation()  
+  const [response, setResponse] = React.useState<string>('Brasil');
   const [load, setLoad] = React.useState<boolean>(false);
   const [currentClimate, setCurrentClimate] = React.useState(defaultValueCurrent);
   const [foreCastClimate, setForeCastClimate] = React.useState(defaultValueForecast);
@@ -57,7 +56,6 @@ const Principal: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("init", language)
     if (response !== "Carregando" && response.length > 3) {
       const dataCurrent = climate
         .GetCurrent(response, unit,language)
@@ -216,7 +214,7 @@ const Principal: NextPage = () => {
       <Home
         variant={variantMemo}
         value={responseMemo}
-        onClick={debounce(changeUnit, 1000)}
+        onClick={debounce(changeUnit, 500)}
         text={textTranslate}
         dataCurrent={currentClimateMemo}
         dataForecast={foreCastClimateMemo}

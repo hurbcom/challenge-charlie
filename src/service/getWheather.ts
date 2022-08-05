@@ -9,10 +9,7 @@ class Wheather {
           .get(url)
           .then((i) => {
             return i.data              
-            })
-          .catch((i) => {        
-            console.error(i)
-        });
+            })          
         return result 
       }    
     
@@ -23,10 +20,7 @@ class Wheather {
           .get(url)
           .then((i) => {
             return i.data               
-            })
-          .catch((i) => {        
-            console.error(i)
-        });
+            })          
         return result 
       }    
 }

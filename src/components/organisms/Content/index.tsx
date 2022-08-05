@@ -27,7 +27,7 @@ const Content = componentFactory<IContentProps>("Content", (props, ref) => {
     minTemperatureTomorrow,
     temperatureAfterTomorrow,
     temperatureTomorrow,
-  } = dataForecast;
+  } = dataForecast;  
 
   const style = styles[variant];
 
