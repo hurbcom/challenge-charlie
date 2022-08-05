@@ -1,7 +1,5 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
 
-docker compose -f 'docker-compose.yml' up -d --build
-cors-proxy-server
 
 ## Projeto
 
@@ -12,12 +10,12 @@ Consiste em um microsite responsivo que exibe a previsão do tempo, de hoje e do
 
 ## Tecnologias utilizadas
 
-- [reactjs]: https://reactjs.org
-- [nodejs]: https://nodejs.org/
-- [Styled Components]: https://styled-components.com/
-- [axios]: https://www.npmjs.com/package/axios
-- [cypress]: https://www.cypress.io/
-- [docker]: https://www.docker.com/
+- [reactjs] : https://reactjs.org
+- [nodejs] : https://nodejs.org/
+- [Styled Components] : https://styled-components.com/
+- [axios] : https://www.npmjs.com/package/axios
+- [cypress] : https://www.cypress.io/
+- [docker] : https://www.docker.com/
 - [cors-proxy-server]
 
 
@@ -27,11 +25,15 @@ Consiste em um microsite responsivo que exibe a previsão do tempo, de hoje e do
 $ git clone https://github.com/MariaLemos/challenge-charlie.git
 // navegar ate a pasta
 $ cd challenge-charlie
-// rodar o projeto 
+// rodar o projeto no docker
 $ npm run start-docker
+// ou para rodar local
+$ npm run start:dev
 // acesse http://localhost:3000/
+
 ```
 
 ## Contato
 
-oi@marialemos.dev
+Desenvolvido por Maria Lemos 👋🏽 [Entre em contato!](https://www.linkedin.com/in/maria-lemos/)
+
