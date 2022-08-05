@@ -16,6 +16,7 @@ import i18n from "../translate/i18n";
 import { useTranslation } from "react-i18next";
 import { GetCurrentCityState } from "../service/getCurrentCityState";
 
+
 const Principal: NextPage = () => {
   const {t} = useTranslation()  
   const [response, setResponse] = React.useState<string>('Brasil');

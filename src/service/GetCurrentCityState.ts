@@ -13,7 +13,7 @@ class currentCityState {
         return result 
       }    
 }
-export default currentCityState;
+
 
 export const GetCurrentCityState = () => {    
     return useMemo(() => new currentCityState(), []);
