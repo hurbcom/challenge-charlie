@@ -10,3 +10,12 @@
   align-items: center; 
   background-color: $light-opacity; 
 }
+
+@media screen and (max-width: 800px) {
+  .LoadContainer {    
+    min-width: 100px; 
+    width: 100vw;    
+  }
+}
+
+
