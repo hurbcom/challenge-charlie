@@ -12,4 +12,8 @@
 
 #### docker
 docker build -t react-image .
-docker run -d -p 8080:8080 --name react-app react-image
+docker run -d -p 8080:8080 --name react-app -v $(pwd)/src:/app/src -e CHOKIDAR_USEPOLLING=true react-image
+
+
+docker build -t react-nginx -f Dockerfile.prd .
+docker run --rm -it -p 80:80 react-nginx

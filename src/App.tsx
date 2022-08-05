@@ -16,7 +16,7 @@ export const App = () => {
   return (
     <>
        <h2>Cidade: {address.city}</h2>
-       <h1 className={style.teste}>Hello World - {process.env.NODE_ENV} - {process.env.name}</h1>
+       <h1 className={style.teste}>Hello world - {process.env.NODE_ENV} - {process.env.name}</h1>
         {pos.latitude} {pos.longitude}
        <img src={image} alt="Imagem de exemplo" />
     </>
