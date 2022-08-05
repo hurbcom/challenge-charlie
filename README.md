@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# Dev-Beber
+# Dev-Temperatura
 
 https://dev-temperatura.vercel.app/
 
@@ -37,7 +37,7 @@ A aplicação tem algumas opções de acessibilidade:
 ## Como Executar o Projeto
 
 - git clone https://github.com/PedroRomano25/dev-temperatura.git
-- cd dev-beber
+- cd dev-temperatura
 - npm i 
 - npm run dev
 
