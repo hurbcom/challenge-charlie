@@ -7,4 +7,9 @@ export const StyledHeader = styled.header`
     background-color: hsla(0, 0%, 100%, 0.8);
 
     grid-row-start: 1;
+
+    img{
+        height: 50%;
+        width: 20%;
+    }
 `;

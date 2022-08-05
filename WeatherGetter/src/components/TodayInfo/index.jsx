@@ -1,10 +1,11 @@
 import { StyledSection } from './style';
+import icone from "../../assets/icons/2.svg"
 
 export function TodayInfo() {
   return (
     <StyledSection>
       <img
-        src="../../assets/icons/1.svg"
+        src={icone}
         alt="Ícone representando clima do dia."
       />
       <div id="infoSection">

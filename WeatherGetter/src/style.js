@@ -12,6 +12,11 @@ export const StyledApp = styled.div`
 
     position: relative;
 
+    color: #fff;
+
+    font-weight: 600;
+    font-size:x-large;
+
     &:after{
       content: "";
       background-image: url(${props => props.bg});

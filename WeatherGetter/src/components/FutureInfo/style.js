@@ -12,9 +12,14 @@ export const StyledSection = styled.section`
 
     #tomorrow{
         display:flex;
+        flex-direction:column;
     }
 
     #afterTomorrow{
+        display:flex;
+        flex-direction:column;
+    }
+    #temperatures{
         display:flex;
     }
 `;

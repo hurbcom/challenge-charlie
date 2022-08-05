@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "compose-dev":"docker compose -f docker-compose.dev.yml up",
+    "compose-dev-build":"docker compose -f docker-compose.dev.yml up -d --build",
+    "compose-dev-down":"docker compose -f docker-compose.dev.yml down",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
