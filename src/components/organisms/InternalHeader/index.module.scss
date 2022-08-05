@@ -7,3 +7,8 @@
 .iconLocation:not(:first-child){
   cursor: pointer;
 }
+@media screen and (max-width: 800px) {
+  .iconLocation{
+    width: 2.5rem;
+  }
+}

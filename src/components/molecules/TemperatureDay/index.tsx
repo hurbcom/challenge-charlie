@@ -20,13 +20,11 @@ const TemperatureDay = componentFactory<ITemperatureDayProps>(
       <div ref={ref} className={style} {...rest}>
         <section className={styles.Section}>
           <h2>{dayDescription}</h2>
-          <span onClick={onClick}>{`${temperature}`}</span>
-          {minTemperature !== undefined && (
+          <span onClick={onClick}>{`${temperature}`}</span>          
             <div className={styles.MinMaxTemperature}>
               <span onClick={onClick}>{`${minTemperature}`}</span>
               <span onClick={onClick}>{`${maxTemperature}`}</span>
-            </div>
-          )}
+            </div>      
         </section>
         {children}
       </div>

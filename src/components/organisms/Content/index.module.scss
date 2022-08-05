@@ -56,17 +56,3 @@
       background-color: $light;
     }
   }
-
-  @media screen and (max-width: 800px) {
-    .todayContainer {
-      height: 50%;
-      width:100vw;
-      .WheatherFigure{       
-        height: auto;
-      }    
-    }    
-    .tomorrowContainer,
-    .afterTomorrowContainer {      
-      height: 17.5%;
-    }  
-  }
