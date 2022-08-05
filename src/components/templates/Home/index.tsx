@@ -13,13 +13,13 @@ const Home = componentFactory<IHomeProps>("Home", (props, ref) => {
         onChange={onChange} 
         onChangeLanguage={onChangeLanguage}
       />
-      <Content 
+       <Content 
         text={text}
         variant={variant}
         onClick={onClick} 
         dataCurrent={dataCurrent} 
         dataForecast={dataForecast}
-      />
+      /> 
     </Container>
   );
 });

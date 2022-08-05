@@ -62,16 +62,21 @@ const Principal: NextPage = () => {
         .then((i) => {
           const dados: ICurrentClimateResponse = i;
           const windDirection = getWindDirection(dados.wind.deg,language);
+          const climateText = `${dados.weather[0].description}`
+          const humidityText = `${t('humidade')}: ${dados.main.humidity}%`
+          const pressureText = `${t('pressão')}: ${dados.main.humidity} hPA`
+          const windText = `${t('vento')}: ${windDirection} ${Math.floor(dados.wind.speed)} ${unitSpeed}`
+
           const newData = {
             climateFigure: iconWeather(dados.weather[0].icon),
             dayDescription: dados.weather[0].description,
             temperature:formatTemperature(dados.main.temp,unitTemp),
             maxTemperature: formatTemperature(dados.main.temp_max,unitTemp),
             minTemperature: formatTemperature(dados.main.temp_min,unitTemp),
-            climate: `${dados.weather[0].description}`,
-            humidity: `${t('humidade')}: ${dados.main.humidity}%`,
-            pressure: `${t('pressão')}: ${dados.main.humidity} hPA`,
-            wind: `${t('vento')}: ${windDirection} ${Math.floor(dados.wind.speed)} ${unitSpeed}`,
+            climate: climateText,
+            humidity: humidityText,
+            pressure: pressureText,
+            wind: windText,
             temperatureNumber: Math.floor(dados.main.temp),
           };
           setCurrentClimate(newData);

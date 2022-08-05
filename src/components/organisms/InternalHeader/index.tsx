@@ -10,7 +10,7 @@ import braFlag from '../../../../public/flags/braFlag.svg'
 import euaFlag from '../../../../public/flags/euaFlag.svg'
 
 const InternalHeader = componentFactory<IInternalHeaderProps>("InternalHeader", (props, ref) => {
-  const {value, onChange, onChangeLanguage} = props  
+  const {value, onChange, onChangeLanguage} = props          
   return (
     <Header >
       <span className={styles.iconLocation}>

@@ -17,6 +17,7 @@ i18n
 .use(initReactI18next)
 .init({resources,
      lng: JSON.parse( validLocalStorage() as string),
-     fallbackLng:'pt'})
+     fallbackLng:'pt',
+     react: { useSuspense: false }})
 
 export default i18n;
