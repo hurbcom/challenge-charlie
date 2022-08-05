@@ -8,3 +8,8 @@
 - Criar search por localidade []
 - Icones  http://www.alessioatzeni.com/meteocons/.
 - Criar fn para pegar temperatuda de hoje, amanhã de depois de amanhã []
+
+
+#### docker
+docker build -t react-image .
+docker run -d -p 8080:8080 --name react-app react-image
