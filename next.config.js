@@ -4,4 +4,5 @@ module.exports = {
       'picsum.photos'
     ],
   },
+  output: 'standalone',
 }
