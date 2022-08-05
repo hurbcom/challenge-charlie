@@ -5,62 +5,73 @@ import { AppContext } from "./weatherLocation.context";
 
 export const AppProvider = ({ children }) => {
     const [status, setStatus] = useState("loading");
-
     const [location, setLocation] = useState("");
-    const [forecast, setForecast] = useState();
+    const [forecast, setForecast] = useState([]);
     const [error, setError] = useState("");
 
-    const changeLocation = async (location) => {
-        setStatus("loading");
+    const setSuccessData = (coords, location, forecast) => {
+        localStorage.setItem("coords", JSON.stringify(coords));
+        setForecast(forecast);
+        setStatus("success");
+        setLocation(location);
+        setError("");
+    };
 
+    const getForecastByCoords = async (coords, location) => {
         try {
-            const { city, state, latitude, longitude } =
-                await getCoordenatesByName(location);
-
             const weatherResponse = await getWeatherByCoordenates(
-                latitude,
-                longitude
+                coords.latitude,
+                coords.longitude
             );
 
-            setForecast(weatherResponse.forecast);
-            setStatus("success");
-            setLocation({ city, state });
-            setError("");
+            setSuccessData(
+                coords,
+                location ?? { city: weatherResponse.city },
+                weatherResponse.forecast
+            );
         } catch {
             setStatus("error");
             setError("Ops! erro ao obter previsōes para " + location);
         }
     };
+    const changeLocation = async (location) => {
+        setStatus("loading");
+        setLocation({ city: location });
+        try {
+            const response = await getCoordenatesByName(location);
+
+            await getForecastByCoords(response.coords, response.location);
+        } catch {
+            setStatus("error");
+            setError(
+                "Ops! erro ao obter previsōes para " +
+                    location +
+                    " verifique a digitação"
+            );
+        }
+    };
 
     useEffect(() => {
-        navigator?.geolocation.getCurrentPosition(
-            async (geolocation) => {
-                try {
-                    const weatherResponse = await getWeatherByCoordenates(
-                        geolocation.coords.latitude,
-                        geolocation.coords.longitude
-                    );
-
-                    setLocation({ city: weatherResponse?.city });
-                    if (weatherResponse?.forecast) {
-                        setForecast(weatherResponse?.forecast);
-                        setStatus("success");
-                    }
-                    setError("");
-                } catch {
+        setStatus("loading");
+        const savedCoords = JSON.parse(localStorage.getItem("coords"));
+        if (!savedCoords) {
+            navigator?.geolocation.getCurrentPosition(
+                async (geolocation) =>
+                    getForecastByCoords({
+                        latitude: geolocation.coords.latitude,
+                        longitude: geolocation.coords.longitude,
+                    }),
+                () => {
                     setStatus("error");
                     setError(
                         "Ops! Permita acesso a localização ou informe sua cidade no campo acima"
                     );
                 }
-            },
-            () => {
-                setStatus("error");
-                setError(
-                    "ops! Permita acesso a localização ou informe sua cidade no campo acima"
-                );
-            }
-        );
+            );
+        } else {
+            getForecastByCoords(savedCoords);
+        }
+        // eslint-disable-next-line
     }, []);
     return (
         <AppContext.Provider

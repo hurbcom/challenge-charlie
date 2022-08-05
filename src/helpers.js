@@ -22,9 +22,6 @@ export const getWeatherIcon = (temp) => {
     }
 };
 export const getWindDirection = (windDeg) => {
-    if ((windDeg > 0 && windDeg < 45) || windDeg > 350) {
-        return "N";
-    }
     if (windDeg >= 45 && windDeg < 90) {
         return "NE";
     }
@@ -46,4 +43,5 @@ export const getWindDirection = (windDeg) => {
     if (windDeg >= 315 && windDeg < 350) {
         return "NO";
     }
+    return "N";
 };

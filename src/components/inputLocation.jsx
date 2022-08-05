@@ -5,12 +5,14 @@ import { useAppContext } from "../context/weatherLocation.context";
 export const InputLocation = () => {
     const { location, changeLocation } = useAppContext();
     const [inputValue, setInputValue] = useState(
-        `${location?.city ?? ""}${location?.state ? `,${location?.state}` : ""}`
+        `${location?.city ?? ""}${
+            location?.state ? `, ${location?.state}` : ""
+        }`
     );
     useEffect(() => {
         setInputValue(
             `${location?.city ?? ""}${
-                location?.state ? `,${location?.state}` : ""
+                location?.state ? `, ${location?.state}` : ""
             }`
         );
     }, [location]);
