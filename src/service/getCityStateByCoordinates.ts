@@ -17,6 +17,6 @@ class currentCityState {
 export default currentCityState;
 
 export const GetCurrentCityState = () => {    
-    return useMemo(() => new currentCityState(), []);
+  return useMemo(() => new currentCityState(), []);
 }
 

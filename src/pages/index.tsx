@@ -6,34 +6,31 @@ import { useWheather } from "../service/getWheather";
 import Home from "../components/templates/Home";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { debounce } from "../utils/debounce";
-import { iconWeather } from "../utils/iconWeather";
-import { defaultValueCurrent, noResultFound } from "../Json/currentClimate";
+import { defaultValueCurrent } from "../Json/currentClimate";
 import { variantColor } from "../utils/variantColor";
-import { getWindDirection } from "../utils/getWindDirection";
-import { formatTemperature } from "../utils/templateStringTemperature";
-import { defaultValueForecast, noResultFoundForecast } from "../Json/foreCastClimate";
+import { defaultValueForecast } from "../Json/foreCastClimate";
 import i18n from "../translate/i18n";
 import { useTranslation } from "react-i18next";
+import { updateData } from "../service/updateData";
+import { changeUnitMeasurement } from "../utils/changeUnitMeasurement";
+import { getLocalByCoordinate } from "../utils/getLocalByCoordinate";
 import { GetCurrentCityState } from "../service/getCityStateByCoordinates";
-
-
 
 const Principal: NextPage = () => {
   const {t} = useTranslation()  
   const [response, setResponse] = React.useState<string>('Brasil');
   const [isLoading,setIsLoading] = React.useState(false) 
-  const [currentClimate, setCurrentClimate] = React.useState(defaultValueCurrent);
-  const [foreCastClimate, setForeCastClimate] = React.useState(defaultValueForecast);
+  const [currentClimate, setCurrentClimate] = React.useState<ICurrentClimate>(defaultValueCurrent);
+  const [foreCastClimate, setForeCastClimate] = React.useState<IForecastClimate>(defaultValueForecast);
   const [language, setLanguage] = useLocalStorage("language", "pt_br");
   const [unit, setUnit] = useLocalStorage("unit", "metric");
-  const [unitMeasurement, setUnitMeasurement] = React.useState({
+  const [unitMeasurement, setUnitMeasurement] = React.useState<IUnitMensure>({
     temperature: "C",
     speed: "Km/h",
   });
-  const delay = (ms:number) => new Promise(res => setTimeout(res, ms));
-  const local = useGeoLocation();
-  const cidadeEstado = GetCurrentCityState();
+  const local = useGeoLocation(); 
   const climate = useWheather();
+  const getCurrentyCity = GetCurrentCityState();
 
   const unitTemp = unitMeasurement.temperature
   const unitSpeed = unitMeasurement.speed
@@ -51,114 +48,32 @@ const Principal: NextPage = () => {
       });
     }
     if (language === '"pt_br"') {
-      setLanguage('pt_br')
-      
+      setLanguage('pt_br')      
     } else if (language === "en") {
       setLanguage('en')      
     }    
   }, []);
 
   useEffect(() => {
-    if (response !== "Carregando" && response.length > 3) {
-        climate
-        .GetCurrent(response, unit,language)
-        .then((i) => {
-          const dados: ICurrentClimateResponse = i;
-          const windDirection = getWindDirection(dados.wind.deg,language);
-          const climateText = `${dados.weather[0].description}`
-          const humidityText = `${t('humidade')}: ${dados.main.humidity}%`
-          const pressureText = `${t('pressão')}: ${dados.main.humidity} hPA`
-          const windText = `${t('vento')}: ${windDirection} ${Math.floor(dados.wind.speed)} ${unitSpeed}`
-
-          const newData = {
-            climateFigure: iconWeather(dados.weather[0].icon),
-            dayDescription: dados.weather[0].description,
-            temperature:formatTemperature(dados.main.temp,unitTemp),
-            maxTemperature: formatTemperature(dados.main.temp_max,unitTemp),
-            minTemperature: formatTemperature(dados.main.temp_min,unitTemp),
-            climate: climateText,
-            humidity: humidityText,
-            pressure: pressureText,
-            wind: windText,
-            temperatureNumber: Math.floor(dados.main.temp),
-          };
-          setCurrentClimate(newData);
-        })
-        .catch((i) => {
-          setCurrentClimate(noResultFound);          
-        });
-      climate
-        .GetForecast(response,unit,language)
-        .then((i) => {
-          const dados: IForecastClimateResponse = i;
-          const dataTomorrow = dados.list
-            .filter(
-              (i) => new Date(i.dt_txt).getDate() === new Date().getDate() + 1
-            )
-            .map((i) => i.main);
-          const minTommorrow = Math.min(
-            ...dataTomorrow.map((i: any) => i?.temp_min)
-          );
-          const maxTommorrow = Math.max(
-            ...dataTomorrow.map((i: any) => i?.temp_max)
-          );
-          const sumTomorrow = dataTomorrow.reduce(function (
-            accumulator,
-            curValue: any
-          ) {
-            return accumulator + curValue?.temp;
-          },
-          0);
-          const avgTomorrow = sumTomorrow / dataTomorrow.length;
-          const dataAfterTomorrow = dados.list
-            .filter(
-              (i) => new Date(i.dt_txt).getDate() === new Date().getDate() + 2
-            )
-            .map((i) => i.main);
-          const sumAfterTomorrow = dataAfterTomorrow.reduce(function (
-            accumulator,
-            curValue: any
-          ) {
-            return accumulator + curValue?.temp;
-          },
-          0);
-          const avgAfterTomorrow = sumAfterTomorrow / dataAfterTomorrow.length;
-          const minAfterTommorrow = Math.min(
-            ...dataAfterTomorrow.map((i: any) => i?.temp_min)
-          );
-          const maxAfterTommorrow = Math.max(
-            ...dataAfterTomorrow.map((i: any) => i?.temp_max)
-          );
-          const newData = {
-            temperatureTomorrow: formatTemperature(avgTomorrow,unitTemp),
-            maxTemperatureTomorrow: formatTemperature(maxTommorrow,unitTemp),
-            minTemperatureTomorrow: formatTemperature(minTommorrow,unitTemp),
-            temperatureAfterTomorrow: formatTemperature(avgAfterTomorrow,unitTemp),
-            maxTemperatureAfterTomorrow: formatTemperature(maxAfterTommorrow,unitTemp),
-            minTemperatureAfterTomorrow: formatTemperature(minAfterTommorrow,unitTemp),
-          };
-
-          setForeCastClimate(newData);
-        })
-        .catch((i) => setForeCastClimate(noResultFoundForecast));
-    }  
+    updateData(
+      setIsLoading,
+      response,
+      climate,
+      unit,
+      language,
+      unitSpeed,
+      unitTemp,
+      setCurrentClimate,
+      setForeCastClimate,
+      t("humidade"),
+      t("pressão"),
+      t("vento")
+    );    
   }, [response, unit, language]);
 
   useEffect(() => {
-    if (local.loaded) {
-      Promise.all([
-        getDescriptionLocation(
-          local.coordinates?.lat as number,
-          local.coordinates?.lng as number
-        ),
-      ]).then((i) => setResponse(i[0] as string))
-      .catch((i) => setResponse('Brasil'));
-    }
+    getLocalByCoordinate(getCurrentyCity,setIsLoading, local, setResponse)  
   }, [local.loaded]);
-
-  const getDescriptionLocation = async (lat: number, lng: number) => {
-    return await cidadeEstado.Get(lat as number, lng as number);
-  };
 
 
   const getColorVariant = React.useCallback(
@@ -167,47 +82,33 @@ const Principal: NextPage = () => {
     },
     [currentClimate.temperatureNumber, unit]
   );
-  const variant = getColorVariant(
+
+  const variantMemo = React.useMemo(() => getColorVariant(
     Math.round(currentClimate.temperatureNumber),
     unit
-  );
-  
-  const changeUnit = async () => {      
-    await setIsLoading(true) 
-    if (unit === "metric") {
-      setUnit("imperial");
-      setUnitMeasurement({
-        temperature: "F",
-        speed: "Mph",
-      });
-    } else if (unit === "imperial") {
-      setUnit("metric");
-      setUnitMeasurement({
-        temperature: "C",
-        speed: "Km/h",
-      });
-    }
-    await delay(1000)
-    await setIsLoading(false) 
-  };
+  ), [currentClimate.temperatureNumber, unit]);
 
-  const changeLanguage = async () => {
-    await setIsLoading(true)
+  const responseMemo = React.useMemo(() => response, [response]);
+  const foreCastClimateMemo = React.useMemo(() => foreCastClimate, [foreCastClimate]);
+  const currentClimateMemo = React.useMemo(() => currentClimate, [currentClimate]);
+
+  const handleChange = React.useCallback((event:React.ChangeEvent<HTMLInputElement>) => {    
+    setResponse(event.target.value)
+  },[response])
+
+  const handleChangeUnitMeasurement = React.useCallback(() => {    
+    changeUnitMeasurement(unit,setUnit,setUnitMeasurement)
+  },[unit])
+
+  const handleChangeLanguage = React.useCallback(() => {   
     if (language === 'pt_br'){
       i18n.changeLanguage('en')
       setLanguage('en')
     } else if (language === 'en'){
       i18n.changeLanguage('pt')
       setLanguage('pt_br')
-    }
-    await delay(1000)
-    await setIsLoading(false) 
-  }
-
-  const variantMemo = React.useMemo(() => variant, [variant]);
-  const responseMemo = React.useMemo(() => response, [response]);
-  const foreCastClimateMemo = React.useMemo(() => foreCastClimate, [foreCastClimate]);
-  const currentClimateMemo = React.useMemo(() => currentClimate, [currentClimate]);
+    }   
+  },[language])
 
   const textTranslate = {
     today: t("Hoje"),
@@ -215,24 +116,18 @@ const Principal: NextPage = () => {
     afterTomorrow: t("Depois de amanhã"),
   }
 
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {    
-    setResponse(event.target.value)
-  }
-
-  return (
-    <>
+  return (    
       <Home
         variant={variantMemo}
         value={responseMemo}
-        onClick={changeUnit}
+        onClick={handleChangeUnitMeasurement}
         text={textTranslate}
         dataCurrent={currentClimateMemo}
         dataForecast={foreCastClimateMemo}
         onChange={debounce(handleChange, 1000)}
-        onChangeLanguage={changeLanguage} 
+        onChangeLanguage={handleChangeLanguage} 
         isLoading={isLoading}
       />
-    </>
   );
 };
 
