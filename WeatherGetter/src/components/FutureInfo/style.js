@@ -19,6 +19,17 @@ export const Temperature = styled.div`
     div:not(:first-child){
         margin-left: 1.5rem;
     }
+
+    //Remove estilo dos botões de temperatura.
+    button{
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
 `
 
 //Seções básicas das temperaturas de dias futuros.

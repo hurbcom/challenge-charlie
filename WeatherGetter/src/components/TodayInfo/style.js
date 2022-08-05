@@ -45,6 +45,16 @@ export const StyledSection = styled.section`
         @media (min-width: 600px) {
             flex-direction: column; 
         }
+        //remove estilos dos botões de temperatura
+        button{
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
 
         margin-left: 1rem;
 
