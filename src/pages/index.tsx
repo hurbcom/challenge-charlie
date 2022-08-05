@@ -205,7 +205,7 @@ const Principal: NextPage = () => {
   const textTranslate = {
     today: t("Hoje"),
     tomorrow: t("Amanhã"),
-    afterTomorrow: t("Depois de Amanhã"),
+    afterTomorrow: t("Depois de amanhã"),
   }
 
 
