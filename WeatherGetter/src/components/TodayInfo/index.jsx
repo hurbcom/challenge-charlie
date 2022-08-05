@@ -9,7 +9,7 @@ export function TodayInfo() {
         alt="Ícone representando clima do dia."
       />
       <div id="infoSection">
-        <p>Hoje</p>
+        <p id="dia">Hoje</p>
         <div id="tempSection">
             <div id="temperature">
             <p>Agora</p>
@@ -24,7 +24,7 @@ export function TodayInfo() {
             <p>30°C</p>
             </div>
         </div>
-        <p>Ensolarado</p>
+        <p id="clima">Ensolarado</p>
         <p>Vento: NO 6.4km/h</p>
         <p>Humidade: 78%</p>
         <p>Pressão: 1003hPa</p>

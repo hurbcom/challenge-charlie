@@ -1,4 +1,4 @@
-import { StyledApp } from './style.js'
+import { StyledApp, StyledContainer } from './style.js'
 import { Header, TodayInfo, FutureInfo } from './components'
 
 function App() {
@@ -6,9 +6,11 @@ function App() {
 
   return (
     <StyledApp bg={bg_path}>
+      <StyledContainer>
         <Header/>
         <TodayInfo/>
         <FutureInfo/>
+      </StyledContainer>
     </StyledApp>
   )
 }

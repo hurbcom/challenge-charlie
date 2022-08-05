@@ -1,11 +1,11 @@
-import { StyledSection } from './style';
+import { Tomorrow,  AfterTomorrow, Temperature} from './style';
 
 export function FutureInfo() {
   return (
-    <StyledSection>
-      <div id="tomorrow">
-        <p>Amanhã</p>
-        <div id="temperatures">
+    <>
+      <Tomorrow>
+        <h1 id='day'>Amanhã</h1>
+        <Temperature>
           <div>
             <p>Agora</p>
             <p>30°C</p>
@@ -18,11 +18,11 @@ export function FutureInfo() {
             <p>Máx.</p>
             <p>30°C</p>
           </div>
-        </div>
-      </div>
-      <div id="afterTomorrow">
-        <p>Depois de amanhã</p>
-        <div id="temperatures">
+        </Temperature>
+      </Tomorrow>
+      <AfterTomorrow>
+        <h1 id='day'>Depois de amanhã</h1>
+        <Temperature>
           <div>
             <p>Agora</p>
             <p>30°C</p>
@@ -35,8 +35,8 @@ export function FutureInfo() {
             <p>Máx.</p>
             <p>30°C</p>
           </div>
-        </div>
-      </div>
-    </StyledSection>
+        </Temperature>
+      </AfterTomorrow>
+    </>
   );
 }
