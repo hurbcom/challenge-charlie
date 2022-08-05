@@ -16,7 +16,10 @@ export async function getCoordenatesByName(locationName) {
             geometry: { lat, lng },
         } = await res.data.results[0];
 
-        return { longitude: lng, latitude: lat, city, state };
+        return {
+            coords: { longitude: lng, latitude: lat },
+            location: { city, state },
+        };
     } catch (e) {
         console.log(e);
         return Promise.reject();
