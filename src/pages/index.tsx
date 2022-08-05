@@ -187,11 +187,12 @@ const Principal: NextPage = () => {
         speed: "Km/h",
       });
     }
-    await delay(500)
+    await delay(1000)
     await setIsLoading(false) 
   };
 
-  const changeLanguage = () => {
+  const changeLanguage = async () => {
+    await setIsLoading(true)
     if (language === 'pt_br'){
       i18n.changeLanguage('en')
       setLanguage('en')
@@ -199,6 +200,8 @@ const Principal: NextPage = () => {
       i18n.changeLanguage('pt')
       setLanguage('pt_br')
     }
+    await delay(1000)
+    await setIsLoading(false) 
   }
 
   const variantMemo = React.useMemo(() => variant, [variant]);
