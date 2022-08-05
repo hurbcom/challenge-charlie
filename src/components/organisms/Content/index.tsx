@@ -63,7 +63,9 @@ const Content = componentFactory<IContentProps>("Content", (props, ref) => {
         </TemperatureDay>
       </Segment>
       <Segment className={styles.tomorrowContainer}>
+      
         <TemperatureDay
+        className={styles.TemperatureDay}
           onClick={onClick}
           dayDescription={tomorrow}
           temperature={temperatureTomorrow}
@@ -73,6 +75,7 @@ const Content = componentFactory<IContentProps>("Content", (props, ref) => {
       </Segment>
       <Segment className={styles.afterTomorrowContainer}>
         <TemperatureDay
+        className={styles.TemperatureDay}
           onClick={onClick}
           dayDescription={afterTomorrow}
           temperature={temperatureAfterTomorrow}

@@ -3,22 +3,20 @@
   .todayContainer {
     height: 50vh;
     .FigureContainer{
-      width: 30vw;
-      .WheatherFigure{
-        width: 100%;
-        height: auto;
-      }    
+      width: 50%;     
     }
     .detailsToday{
-      width:25vw;
+      width:45%;
     }
   }
   
   .tomorrowContainer,
   .afterTomorrowContainer {
-    padding-left: 27vw;
-    justify-content: flex-start;
-    height: 17.5vh;
+    justify-content: flex-end;
+    height: 17.5vh;    
+    .TemperatureDay{     
+      width:45%;
+    }
   }  
   
   .Yellow{
@@ -64,22 +62,12 @@
   }
 
   @media screen and (max-width: 800px) {
-    .todayContainer {
-     
-      .FigureContainer{
-        width: 45vw;
+    .todayContainer {     
+      .FigureContainer{       
         .WheatherFigure{
           width: 100%;
           height: auto;
         }    
-      }
-      .detailsToday{
-        width:45vw;
-      }
-    }
-    .tomorrowContainer,
-    .afterTomorrowContainer {
-      padding-left: 55vw;
-      
-    } 
+      }      
+    }    
   }
