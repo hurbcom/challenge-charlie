@@ -14,7 +14,8 @@ import { formatTemperature } from "../utils/templateStringTemperature";
 import { defaultValueForecast, noResultFoundForecast } from "../Json/foreCastClimate";
 import i18n from "../translate/i18n";
 import { useTranslation } from "react-i18next";
-import { GetCurrentCityState } from "../service/getCurrentCityState";
+import { GetCurrentCityState } from "../service/getCityStateByCoordinates";
+
 
 
 const Principal: NextPage = () => {
