@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import useGeoLocation from "../hooks/useGeoLocation";
-import { GetCurrentCityState } from "../service/getCurrentCityState";
 import * as React from "react";
 import { useWheather } from "../service/getWheather";
 import Home from "../components/templates/Home";
@@ -15,6 +14,7 @@ import { formatTemperature } from "../utils/templateStringTemperature";
 import { defaultValueForecast, noResultFoundForecast } from "../Json/foreCastClimate";
 import i18n from "../translate/i18n";
 import { useTranslation } from "react-i18next";
+import { GetCurrentCityState } from "../service/getCurrentCityState";
 
 const Principal: NextPage = () => {
   const {t} = useTranslation()  
