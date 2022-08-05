@@ -1,5 +1,6 @@
-export const getWindDirection = (degree:number, language:string = "pt") => {
-    let sectors = language === 'en' ? ['N','NE','E','SE','S','SW','W','NW'] : ['N','NE','L','SE','S','SO','O','NO']    
+export const getWindDirection = (degree:number, language:string) => {
+    console.log('windDirection => ',language)
+    let sectors = language === 'en' ? ['Northerly','North Easterly','Easterly','South Easterly','Southerly','South Westerly','Westerly','North Westerly'] : ['Norte','Nordeste','Leste','Sudeste','Sul','Sudoeste','Oeste','Noroeste']    
     degree += 22.5;  
     if (degree < 0) 
       degree = 360 - Math.abs(degree) % 360;

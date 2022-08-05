@@ -65,10 +65,12 @@ declare global {
     interface IInternalHeaderProps {
         value:string;
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+        onChangeLanguage: () => void
     }
 
     interface IHomeProps extends IContentProps,IInternalHeaderProps  {
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+      onChangeLanguage: () => void
 
     }
 

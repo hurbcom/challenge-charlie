@@ -1,0 +1,9 @@
+{
+    "Hoje":"Today" ,
+    "Amanhã": "Tomorrow",
+    "Depois de amanhã": "After Tomorrow",
+    "carregando": "Loading",
+    "vento": "Wind",   
+    "pressão": "Pressure",
+    "humidade": "Humidity"
+}
