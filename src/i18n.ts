@@ -1,5 +1,5 @@
-import en from './Language/en.json'
-import pt from './Language/pt.json'
+import en from './language/en.json'
+import pt from './language/pt.json'
 import { initReactI18next } from 'react-i18next'
 import i18n  from 'i18next'
 import { validLocalStorage } from './utils/validLocalStorage';
