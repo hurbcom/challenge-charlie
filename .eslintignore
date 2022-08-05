@@ -3,3 +3,4 @@ cli/**
 **/node_modules/**
 **/coverage/**
 **/build/**
+webpack.config.js

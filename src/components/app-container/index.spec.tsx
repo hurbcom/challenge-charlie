@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { App } from './App';
+import { AppContainer } from './';
 
-test('App test render', () => {
-  const container = render(<App />);
+test('AppContainer test render', () => {
+  const container = render(<AppContainer />);
 
   expect(container.container).toBeInTheDocument();
 });
