@@ -15,7 +15,7 @@
     justify-content: flex-end;
     height: 17.5vh;    
     .TemperatureDay{     
-      width:45%;
+      width:calc( 45% - 1rem);
     }
   }  
   
@@ -65,15 +65,4 @@
     .afterTomorrowContainer {
       background-color: $white-3;
     }
-  }
-
-  @media screen and (max-width: 800px) {
-    .todayContainer {     
-      .FigureContainer{       
-        .WheatherFigure{
-          width: 100%;
-          height: auto;
-        }    
-      }      
-    }    
   }
