@@ -3,10 +3,19 @@
 .Input {
   outline: none;
   border: none;
-  background-color: transparent;    
+  border-radius: 5px;
+  background-color: $grey-opacity;    
   color:$grey-1;
   font-weight: 600;
   font-size: 2rem;
-  width:100%
+  width:100%;
+  line-height: 4rem;
+  padding: 0px 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .Input{
+    line-height: 2rem;
+  }
 }
 

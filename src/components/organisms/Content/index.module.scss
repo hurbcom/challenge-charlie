@@ -56,8 +56,14 @@
   }
 
   .White{
-    .todayContainer,.tomorrowContainer, .afterTomorrowContainer {
-      background-color: $light;
+    .todayContainer {
+      background-color: $white-1;
+    }
+    .tomorrowContainer {
+      background-color: $white-2;
+    }
+    .afterTomorrowContainer {
+      background-color: $white-3;
     }
   }
 

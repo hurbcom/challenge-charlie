@@ -28,8 +28,8 @@ const Content = componentFactory<IContentProps>("Content", (props, ref) => {
     temperatureAfterTomorrow,
     temperatureTomorrow,
   } = dataForecast;  
-
-  const style = styles[variant];
+  
+  const style = climate === '' ? styles['White'] : styles[variant];
 
   return (
     <main ref={ref} className={style}>
