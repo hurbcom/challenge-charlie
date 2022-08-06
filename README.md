@@ -26,17 +26,17 @@ As informações apresentadas na tela:
 - Temperatura máxima | `Melhoria`
 
 ## Amanhã
-- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia ) | `Melhoria`
+- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
 - Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
 - Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
 
 ## Depois de Amanhã
-- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia ) | `Melhoria`
+- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
 - Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
 - Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
 
 
-A aplicação tem algumas opções de acessibilidade:
+## Acessibilidade:
 - Idiomas: `Português`e `Inglês` | Apenas clicar na bandeira do país
 - Unidades de Medida: `Métrico` (Temperatura Celsius e Velocidade Km/h) e `Imperial` (Temperatura Fahrenheit e Velocidade Mph) | Apenas clicar nas temperaturas
 
