@@ -8,7 +8,7 @@ class currentCityState {
           .get(url)
           .then((i:IOpenCageDataResponse) => {
             const descriptions = i.data.results[0].components  
-            return `${descriptions.municipality}, ${descriptions.state}`            
+            return `${descriptions.state}`            
             })         
         return result 
       }    
