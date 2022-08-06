@@ -1,0 +1,6 @@
+{
+    "proxy": "http://localhost:9090",
+    "apis": {
+        "bing": "https://www.bing.com"
+    }
+}

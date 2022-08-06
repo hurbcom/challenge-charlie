@@ -3167,6 +3167,14 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
+cors-proxy-server@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cors-proxy-server/-/cors-proxy-server-1.0.2.tgz#3ba9fb09ee0f3bcc49df316b542039de4b1795c4"
+  integrity sha512-O+Gza9UQVQnvfxRGhxkrZ4ZQIDC5xtWcUUyVhry5zczacO0WE38naXF94JU0Y5Puu0KDE2Z8X2q5ZfEWSnUeFQ==
+  dependencies:
+    http-proxy "^1.15.2"
+    proxy-from-env "^0.1.1"
+
 cosmiconfig@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-6.0.0.tgz#da4fee853c52f6b1e6935f41c1a2fc50bd4a9982"
@@ -4748,7 +4756,7 @@ http-proxy-middleware@^2.0.3:
     is-plain-obj "^3.0.0"
     micromatch "^4.0.2"
 
-http-proxy@^1.18.1:
+http-proxy@^1.15.2, http-proxy@^1.18.1:
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/http-proxy/-/http-proxy-1.18.1.tgz#401541f0534884bbf95260334e72f88ee3976549"
   integrity sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
@@ -7072,6 +7080,11 @@ proxy-addr@~2.0.7:
   dependencies:
     forwarded "0.2.0"
     ipaddr.js "1.9.1"
+
+proxy-from-env@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-0.1.1.tgz#c5f529b41d2a23f1f81f7ee258974fb80885a6e7"
+  integrity sha512-COoSB26cBQseMl9DaIt0L0cAlvuk7QfcIZpf/9v8GtAS2chFCulYbeMZbm4uLwDUe/HlUet+oAxSern9i/OgmQ==
 
 psl@^1.1.33:
   version "1.9.0"
