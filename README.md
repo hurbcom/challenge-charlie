@@ -1,24 +1,22 @@
-# Dev-Temperatura
+# Challenge-Charlie
 
 
-https://dev-temperatura.vercel.app/
 
-Dev-Temperatura é uma aplicação front-end contruída em [Next.js](https://nextjs.org/) com responsividade para `desktop` e `mobile`.
+
+Challenge-Charlie é uma aplicação front-end contruída em [Next.js](https://nextjs.org/) com responsividade para `desktop` e `mobile`.
 
 # Imagens da Aplicação
  Mobile | Desktop
 |----------|----------|
 | ![mobile](https://user-images.githubusercontent.com/59035461/183235294-82d94112-1d83-4432-a4cb-f3a7a2af324a.png) | ![desktop](https://user-images.githubusercontent.com/59035461/183235317-91bc469f-800e-49e7-87c4-5c70601880e7.png) | 
 
-
-
 A Aplicação consiste em consultar a previsão do tempo utilizando a API [OpenWheather](https://api.openweathermap.org).
 
 Ao iniciar a aplicação, por padrão o local pesquisado será o `Brasil`, ao dev-temperatura ter permissão para acessar o local, ele vai usar as coordenadas fornecidas pelo navegador para localizar pela API [OpenCageData](https://api.opencagedata.com) a localização vigente e fornecer a previsão do tempo atual com base em seu local.
 
-Também é gerado uma imagem para o backgroud da aplicaração que foi retirada da API do [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) que é atualizada diariamente
+Também é gerado uma imagem para o background da aplicação que foi gerada pela API do [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
 
-As informações apresentadas na tela:
+# As informações apresentadas na tela:
 
 ## Hoje
 - Temperatura atual do dia
@@ -57,14 +55,21 @@ As informações apresentadas na tela:
 - Axios `Cliente HTTP`
 - i18next `Internacionalização`
 
-## Implantação em Produção
-
-- Front-end web: [Vercel](https://dev-temperatura.vercel.app/)
-
 ## Como Executar o Projeto local
 
+Criar um arquivo `.env.local` na pasta challenge-charlie com os dados abaixo:
+
+*Caso necessário, crie uma nova conta para ter acesso a Key das APIs  [OpenCageData](https://api.opencagedata.com) e [OpenWheather](https://api.openweathermap.org)*
+
 ```
-git clone https://github.com/PedroRomano25/dev-temperatura.git
+NEXT_PUBLIC_OPEN_CAGE_DATA_KEY=c63386b4f77e46de817bdf94f552cddf
+NEXT_PUBLIC_OPEN_WHEATHER_MAP_KEY=772920597e4ec8f00de8d376dfb3f094
+```
+
+
+
+```
+git clone https://github.com/PedroRomano25/challenge-charlie.git
 cd dev-temperatura
 npm i 
 npm run dev
@@ -75,7 +80,7 @@ npm run dev
 `Stage - Desenvolvimento`
 
 ```
-git clone https://github.com/PedroRomano25/dev-temperatura.git
+git clone https://github.com/PedroRomano25/challenge-charlie.git
 cd dev-temperatura
 docker-compose -f docker-compose.dev.yml up
 ```
@@ -83,14 +88,14 @@ docker-compose -f docker-compose.dev.yml up
 `Stage - Produção`
 
 ```
-git clone https://github.com/PedroRomano25/dev-temperatura.git
+git clone https://github.com/PedroRomano25/challenge-charlie.git
 cd dev-temperatura
 docker-compose -f docker-compose.prod.yml up
 ```
 
 # Desafios
 - `Docker`:  Primeira aplicação que eu faço a implementação do Docker
-- `Cors`: A API da Bing estava apresentando erro de cors, precisei pesquisar uma forma de evitar, utilizei a api [`allorigins`](http://api.allorigins.win) `Medida Paleativa`
+- `Cors`: A API da Bing estava apresentando erro de cors, precisei pesquisar uma forma de evitar, utilizei a api [`allOrigins`](http://api.allorigins.win) 
   
   ```  
   const url = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`
