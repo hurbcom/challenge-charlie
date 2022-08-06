@@ -12,26 +12,26 @@ Challenge-Charlie é uma aplicação front-end contruída em [Next.js](https://n
 
 A Aplicação consiste em consultar a previsão do tempo utilizando a API [OpenWheather](https://api.openweathermap.org).
 
-Ao iniciar a aplicação, por padrão o local pesquisado será o `Brasil`, ao dev-temperatura ter permissão para acessar o local, ele vai usar as coordenadas fornecidas pelo navegador para localizar pela API [OpenCageData](https://api.opencagedata.com) a localização vigente e fornecer a previsão do tempo atual com base em seu local.
+Ao iniciar a aplicação, por padrão o local pesquisado será o `Brasil`, ao Challenge-Charlie ter permissão para acessar o local, ele vai usar as coordenadas fornecidas pelo navegador para localizar pela API [OpenCageData](https://api.opencagedata.com) a localização vigente e fornecer a previsão do tempo atual com base em seu local. Além disso, é possível pesquisar qualquer local digitado no campo de texto.
 
-Também é gerado uma imagem para o background da aplicação que foi gerada pela API do [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+Também é gerado uma imagem para o background da aplicação com dado fornecido pela API do [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
 
 # As informações apresentadas na tela:
 
 ## Hoje
 - Temperatura atual do dia
-- Temperatura mínima do dia | `Melhoria`
+- Temperatura mínima | `Melhoria`
 - Temperatura máxima | `Melhoria`
 
 ## Amanhã
-- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
-- Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
-- Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
+- Temperatura média ( A média de todas as temperaturas recebidas pela API referente ao dia )
+- Temperatura mínima do dia ( O valor mínimo localizado nos dados recebidos pela API referente ao dia ) | `Melhoria`
+- Temperatura máxima do dia ( O valor máximo localizado nos dados recebidos pela API referente ao dia ) | `Melhoria`
 
 ## Depois de Amanhã
-- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
-- Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
-- Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
+- Temperatura média ( A média de todas as temperaturas recebidas pela API referente ao dia )
+- Temperatura mínima do dia ( O valor mínimo localizado nos dados recebidos pela API referente ao dia ) | `Melhoria`
+- Temperatura máxima do dia ( O valor máximo localizado nos dados recebidos pela API referente ao dia ) | `Melhoria`
 
 
 ## Acessibilidade:
