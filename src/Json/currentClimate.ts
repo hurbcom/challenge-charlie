@@ -2,7 +2,7 @@ import na from '../../public/na.svg'
 
 export const defaultValueCurrent = {
   climateFigure: na,
-  dayDescription: "Carregando",
+  dayDescription: "",
   temperature: "",
   maxTemperature: "",
   minTemperature: "",
@@ -15,13 +15,13 @@ export const defaultValueCurrent = {
 
 export const noResultFound = {
   climateFigure: na,
-  dayDescription: "-",
-  temperature: "-",
-  maxTemperature: "-",
-  minTemperature: "-",
-  climate: "-",
-  humidity: "-",
-  pressure: "-",
-  wind: "-",
+  dayDescription: "",
+  temperature: "",
+  maxTemperature: "",
+  minTemperature: "",
+  climate: "",
+  humidity: "",
+  pressure: "",
+  wind: "",
   temperatureNumber: 0
 }

@@ -8,10 +8,10 @@ export const defaultValueForecast = {
 };
 
 export const noResultFoundForecast = {
-  temperatureTomorrow: "-",
-  maxTemperatureTomorrow: "-",
-  minTemperatureTomorrow: "-",
-  temperatureAfterTomorrow: "-",
-  maxTemperatureAfterTomorrow: "-",
-  minTemperatureAfterTomorrow: "-",
+  temperatureTomorrow: "",
+  maxTemperatureTomorrow: "",
+  minTemperatureTomorrow: "",
+  temperatureAfterTomorrow: "",
+  maxTemperatureAfterTomorrow: "",
+  minTemperatureAfterTomorrow: "",
 };
