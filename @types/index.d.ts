@@ -76,16 +76,21 @@ declare global {
     isLoading: boolean;
   }
 
-  interface IBingImageResponse {
+  interface IAllOriginResponse {
     data: {
-      images: {
-        startdate: number;
-        enddate: number;
-        url: string;
-        copyright: string;
-        title: string;
+      contents:string;
+      status: {     
+        url: string;       
       };
     };
+  }
+
+  interface IBingImageResponse {  
+    images: [
+      {        
+        url: string;        
+      }
+    ]
   }
 
   interface IOpenCageDataResponse {

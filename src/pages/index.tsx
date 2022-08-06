@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useEffect } from "react";
 import useGeoLocation from "../hooks/useGeoLocation";
 import * as React from "react";
-import { useWheather } from "../service/getWheather";
+import { useWheather } from "../service/wheather";
 import Home from "../components/templates/Home";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { debounce } from "../utils/debounce";
@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { updateData } from "../service/updateData";
 import { changeUnitMeasurement } from "../utils/changeUnitMeasurement";
 import { getLocalByCoordinate } from "../utils/getLocalByCoordinate";
-import { GetCurrentCityState } from "../service/getCityStateByCoordinates";
+import { GetCurrentCityState } from "../service/localeCoordinates";
 
 const Principal: NextPage = () => {
   const {t} = useTranslation()  
@@ -30,8 +30,7 @@ const Principal: NextPage = () => {
   });
   const local = useGeoLocation(); 
   const climate = useWheather();
-  const getCurrentyCity = GetCurrentCityState();
-
+  const getCurrentyCity = GetCurrentCityState();  
   const unitTemp = unitMeasurement.temperature
   const unitSpeed = unitMeasurement.speed
 
@@ -115,7 +114,6 @@ const Principal: NextPage = () => {
     tomorrow: t("Amanhã"),
     afterTomorrow: t("Depois de amanhã"),
   }
-
   return (    
       <Home
         variant={variantMemo}
