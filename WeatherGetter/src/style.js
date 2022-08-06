@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-const mdfont = 1.5;
-const smfont = 1;
-const xsfont = 0.5;
-
 export const StyledApp = styled.div`
     //Margens responsivas.
     width: min(100vw - 30vw);

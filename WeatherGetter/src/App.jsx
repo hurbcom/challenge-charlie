@@ -15,7 +15,7 @@ function App() {
   }
 
   return (
-    <StyledApp bg={bg_path}>
+    <StyledApp data-testid="bg" bg={bg_path}>
       <StyledContainer>
         <Header/>
         <TodayInfo tipoTemperatura = {tipoTemperatura} alteraTipoTemp = {handleAlteraTipoTemp}/>
