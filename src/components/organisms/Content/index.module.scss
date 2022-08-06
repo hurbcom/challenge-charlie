@@ -1,0 +1,68 @@
+@import "/src/styles/tokens.scss";
+
+  .todayContainer {
+    height: 50vh;
+    .FigureContainer{
+      width: 50%;     
+    }
+    .detailsToday{
+      width:45%;
+    }
+  }
+  
+  .tomorrowContainer,
+  .afterTomorrowContainer {
+    justify-content: flex-end;
+    height: 17.5vh;    
+    .TemperatureDay{     
+      width:calc( 45% - 1rem);
+    }
+  }  
+  
+  .Yellow{
+    .todayContainer {
+      background-color: $yellow-1;
+    }
+    .tomorrowContainer {
+      background-color: $yellow-2;
+    }
+    .afterTomorrowContainer {
+      background-color: $yellow-3;
+    }
+  }
+
+  .Blue{
+    .todayContainer {
+      background-color: $blue-1;
+    }
+    .tomorrowContainer {
+      background-color: $blue-2;
+    }
+    .afterTomorrowContainer {
+      background-color:$blue-3;
+    }
+  }
+
+  .Red{
+    .todayContainer {
+      background-color: $red-1;
+    }
+    .tomorrowContainer {
+      background-color: $red-2;
+    }
+    .afterTomorrowContainer {
+      background-color: $red-3;
+    }
+  }
+
+  .White{
+    .todayContainer {
+      background-color: $white-1;
+    }
+    .tomorrowContainer {
+      background-color: $white-2;
+    }
+    .afterTomorrowContainer {
+      background-color: $white-3;
+    }
+  }

@@ -1,0 +1,14 @@
+@import "/src/styles/tokens.scss";
+
+.iconLocation{
+  width: 5rem;
+}
+
+.iconLocation:not(:first-child){
+  cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  .iconLocation{
+    width: 2.5rem;
+  }
+}

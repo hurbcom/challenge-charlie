@@ -1,0 +1,22 @@
+@import "/src/styles/tokens.scss";
+
+.Header {
+  width: 50vw;
+  min-width: 800px; 
+  background-color: $light-opacity;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; 
+  gap: 1rem;
+  height: 15vh;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .Header {    
+    min-width: 100px; 
+    width: 100vw;
+    height: 7vh;   
+  }
+}
+

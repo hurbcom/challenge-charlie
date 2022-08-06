@@ -1,0 +1,16 @@
+@import "/src/styles/tokens.scss";
+
+.Container {
+  width: 100vw;
+  height: 100vh;
+  background: no-repeat cover top center;
+  .ContainerColor{
+    background-color: $dark-opacity;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+  }
+}

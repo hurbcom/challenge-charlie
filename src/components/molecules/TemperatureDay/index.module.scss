@@ -1,0 +1,44 @@
+@import "/src/styles/tokens.scss";
+
+.TemperatureDay{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap:1.5rem;
+  height: 100%;
+
+  h2, span{
+    font-size:2.2rem;
+    color:$light;
+    margin:0;
+    font-weight: 400;    
+  } 
+
+  .Section{
+    span{ 
+      cursor: pointer;
+      
+    }   
+  }
+  .measureFigure{
+    height: 3rem;
+  } 
+
+  .MinMaxTemperature{
+    display: flex;
+    gap: 0.3rem;
+    span{
+      font-size:1rem;
+
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .TemperatureDay{   
+    gap:1rem;      
+    .measureFigure{
+      height: 3rem;
+    }   
+  }
+}

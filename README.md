@@ -1,59 +1,133 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Dev-Temperatura
 
-[[English](README.md) | [Portuguese](README.pt.md)]
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+https://dev-temperatura.vercel.app/
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+Dev-Temperatura é uma aplicação front-end contruída em [Next.js](https://nextjs.org/) com responsividade para `desktop` e `mobile`.
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+# Imagens da Aplicação
+ Mobile | Desktop
+|----------|----------|
+| ![mobile](https://user-images.githubusercontent.com/59035461/183235294-82d94112-1d83-4432-a4cb-f3a7a2af324a.png) | ![desktop](https://user-images.githubusercontent.com/59035461/183235317-91bc469f-800e-49e7-87c4-5c70601880e7.png) | 
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+A Aplicação consiste em consultar a previsão do tempo utilizando a API [OpenWheather](https://api.openweathermap.org).
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+Ao iniciar a aplicação, por padrão o local pesquisado será o `Brasil`, ao dev-temperatura ter permissão para acessar o local, ele vai usar as coordenadas fornecidas pelo navegador para localizar pela API [OpenCageData](https://api.opencagedata.com) a localização vigente e fornecer a previsão do tempo atual com base em seu local.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+Também é gerado uma imagem para o backgroud da aplicaração que foi retirada da API do [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) que é atualizada diariamente
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+As informações apresentadas na tela:
 
-## Requirements
+## Hoje
+- Temperatura atual do dia
+- Temperatura mínima do dia | `Melhoria`
+- Temperatura máxima | `Melhoria`
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+## Amanhã
+- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
+- Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
+- Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
 
-## Evaluation criteria
+## Depois de Amanhã
+- Temperatura média ( A média de todas as temperaturas fornecidas pela API referente ao dia )
+- Temperatura mínima do dia ( O valor mínimo localizado nos dados pela API referente ao dia ) | `Melhoria`
+- Temperatura máxima ( O valor máximo localizado nos dados pela API referente ao dia ) | `Melhoria`
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
 
-## Doubts
+## Acessibilidade:
+- Idiomas: `Português`e `Inglês` | Apenas clicar na bandeira do país
+- Unidades de Medida: `Métrico` (Temperatura Celsius e Velocidade Km/h) e `Imperial` (Temperatura Fahrenheit e Velocidade Mph) | Apenas clicar nas temperaturas
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+## Organização do Projeto
 
-Godspeed! ;)
+- Design System: `Atomic-Design`
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+## Tecnologias Utilizadas
+
+- NextJs
+- HTML
+- SASS
+- TypeScript
+- Docker
+
+## Bibliotecas Utilizadas
+
+- Axios `Cliente HTTP`
+- i18next `Internacionalização`
+
+## Implantação em Produção
+
+- Front-end web: [Vercel](https://dev-temperatura.vercel.app/)
+
+## Como Executar o Projeto local
+
+```
+git clone https://github.com/PedroRomano25/dev-temperatura.git
+cd dev-temperatura
+npm i 
+npm run dev
+```
+
+## Como Executar o Projeto Docker | `Necessário ter o docker instalado`
+
+`Stage - Desenvolvimento`
+
+```
+git clone https://github.com/PedroRomano25/dev-temperatura.git
+cd dev-temperatura
+docker-compose -f docker-compose.dev.yml up
+```
+
+`Stage - Produção`
+
+```
+git clone https://github.com/PedroRomano25/dev-temperatura.git
+cd dev-temperatura
+docker-compose -f docker-compose.prod.yml up
+```
+
+# Desafios
+- `Docker`:  Primeira aplicação que eu faço a implementação do Docker
+- `Cors`: A API da Bing estava apresentando erro de cors, precisei pesquisar uma forma de evitar, utilizei a api [`allorigins`](http://api.allorigins.win) `Medida Paleativa`
+  
+  ```  
+  const url = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`
+  const cors = 'http://api.allorigins.win/get?url='
+  const urlRequest = `${cors}${encodeURIComponent(url)}`
+  ```
+ 
+ # Imagens da Aplicação
+ 
+ ## Cores
+ 
+  Abaixo de 15°C/59°F | Acima ou igual á  15°C/59°F e Abaixo ou igual á 35°C/95°F | Acima de 35°C/95°F
+|----------|----------|----------|
+| ![blue](https://user-images.githubusercontent.com/59035461/183236365-38db1709-2670-4a12-98fb-0efa43f96d53.png) | ![yellow](https://user-images.githubusercontent.com/59035461/183236367-a6b189f8-4c58-4fc8-8168-3d6c1161bd98.png) | ![red](https://user-images.githubusercontent.com/59035461/183236377-ab8b4e9b-e9e5-424a-ad2e-1afaca3652e5.png) |
+
+ ## Unidades de Medida
+
+  Métrico | Imperial |
+|----------|----------|
+| ![cel](https://user-images.githubusercontent.com/59035461/183236452-dea88cfa-861d-4133-8df2-b6f00e191954.png) | ![fah](https://user-images.githubusercontent.com/59035461/183236447-35d88bca-8b42-4369-b3c4-cb436d971f68.png) |
+
+## Linguagem
+
+  Português | Inglês |
+|----------|----------|
+| ![pt](https://user-images.githubusercontent.com/59035461/183236520-bc2c9189-1d10-4ed5-bb08-f9c36ffdceb9.png) | ![en](https://user-images.githubusercontent.com/59035461/183236528-d121bd59-f04f-4a2e-b9a7-7b0d5555bb6e.png) |
+
+## Demais
+
+  Carregamento | Resultado Não Encontrado |
+|----------|----------|
+| ![load](https://user-images.githubusercontent.com/59035461/183236578-023ee27a-1709-4064-b91c-916a2dd94705.png) | ![resultadoNaoEncontrado PT](https://user-images.githubusercontent.com/59035461/183236590-2843535b-a552-4ad5-867a-6cbbd1adb81b.png) |
+ 
+ 
+
+
+
+## Autor
+
+Pedro Romano | [Linkedin](https://www.linkedin.com/in/pedropauloromano/)

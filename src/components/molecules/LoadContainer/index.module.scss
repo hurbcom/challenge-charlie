@@ -1,0 +1,20 @@
+@import "/src/styles/tokens.scss";
+
+.LoadContainer{
+  height: 85vh;
+  width: 50vw;
+  min-width: 800px; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: $light-opacity; 
+}
+
+@media screen and (max-width: 800px) {
+  .LoadContainer {    
+    min-width: 100px; 
+    width: 100vw;    
+  }
+}
+
+
