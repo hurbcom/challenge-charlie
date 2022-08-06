@@ -1,34 +1,46 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Dev-Temperatura
 
-First, run the development server:
+https://dev-temperatura.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Dev-Temperatura é uma aplicação front-end contruída em [Next.js](https://nextjs.org/) com responsividade para `desktop` e `mobile`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A Aplicação consiste em consultar a previsão do tempo utilizando a API [OpenWheather](https://api.openweathermap.org).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Ao iniciar a aplicação, por padrão o local pesquisado será o `Brasil`, ao dev-temperatura ter permissão para acessar o local, ele vai usar as coordenadas fornecidas pelo navegador para acessar pela API [OpenCageData](https://api.opencagedata.com) informar a previsão do tempo de onde o usuário está localizado.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+A aplicação tem algumas opções de acessibilidade:
+- Idiomas: `Português`e `Inglês`
+- Unidades de Medida: `Métrico` (Temperatura Celsius e Velocidade Km/h) e `Imperial` (Temperatura Fahrenheit e Velocidade Mph)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Organização do Projeto
 
-## Learn More
+- Design System: `Atomic-Design`
 
-To learn more about Next.js, take a look at the following resources:
+## Tecnologias Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- NextJs
+- HTML
+- SASS
+- TypeScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Bibliotecas Utilizadas
 
-## Deploy on Vercel
+- Axios `Cliente HTTP`
+- i18next `Internacionalização`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Implantação em Produção
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Front-end web: [Vercel](https://dev-temperatura.vercel.app/)
+
+## Como Executar o Projeto
+
+- git clone https://github.com/PedroRomano25/dev-temperatura.git
+- cd dev-temperatura
+- npm i 
+- npm run dev
+
+## Autor
+
+- Pedro Romano | [Linkedin](https://www.linkedin.com/in/pedropauloromano/)
