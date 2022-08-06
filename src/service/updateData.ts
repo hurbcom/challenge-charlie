@@ -3,7 +3,7 @@ import { noResultFoundForecast } from "../Json/foreCastClimate";
 import { getWindDirection } from "../utils/getWindDirection";
 import { iconWeather } from "../utils/iconWeather";
 import { formatTemperature } from "../utils/templateStringTemperature";
-import Wheather from "./getWheather";
+import Wheather from "./wheather";
 
 export const updateData = async (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
@@ -29,9 +29,7 @@ export const updateData = async (
         const climateText = `${dados.weather[0].description}`;
         const humidityText = `${humidity}: ${dados.main.humidity}%`;
         const pressureText = `${pressure}: ${dados.main.humidity} hPA`;
-        const windText = `${wind}: ${windDirection} ${Math.floor(
-          dados.wind.speed
-        )} ${unitSpeed}`;
+        const windText = `${wind}: ${windDirection} ${dados.wind.speed.toFixed(1)} ${unitSpeed}`;
 
         const newData = {
           climateFigure: iconWeather(dados.weather[0].icon),
