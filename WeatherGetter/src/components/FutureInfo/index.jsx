@@ -3,12 +3,12 @@ import { Tomorrow,  AfterTomorrow, Temperature} from './style';
 export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
 
   const temperaturasAmanha = {
-    agora: tipoTemperatura ? 30 : convertTemp(30),
+    agora: tipoTemperatura ? 14 : convertTemp(14),
     min: tipoTemperatura ? 30 : convertTemp(30),
     max: tipoTemperatura ? 30 : convertTemp(30)
   }
   const temperaturasDepAmanha = {
-    agora: tipoTemperatura ? 30 : convertTemp(30),
+    agora: tipoTemperatura ? 36 : convertTemp(36),
     min: tipoTemperatura ? 30 : convertTemp(30),
     max: tipoTemperatura ? 30 : convertTemp(30)
   }
@@ -20,10 +20,27 @@ export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
   function convertTemp(temp){
     return temp*9/5 + 32
   }
+
+  //função matemática para converter as temperaturas para um valor HUE correspondente
+  function tempColor(temp){
+    if(temp < 15){
+      return (temp+60)*70/75+180
+    }else if(temp > 35){
+      return 15 - (temp-35) * 15/25
+    }else{
+      return 60 - (temp-15) * 35/25
+    }
+  }
+
+  //Define as HUE das cores para o background de acordo com as temperaturas em celsius
+  const cores = {
+    amanha: tempColor(14),
+    depAmanha: tempColor(36)
+  }
   
   return (
     <>
-      <Tomorrow>
+      <Tomorrow cor = {cores.amanha}>
         <h1 id='day'>Amanhã</h1>
         <Temperature>
           <div>
@@ -46,7 +63,7 @@ export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
           </div>
         </Temperature>
       </Tomorrow>
-      <AfterTomorrow>
+      <AfterTomorrow cor = {cores.depAmanha}>
         <h1 id='day'>Depois de amanhã</h1>
         <Temperature>
           <div>

@@ -54,7 +54,7 @@ const StyledSection = styled.section`
 export const Tomorrow = styled(StyledSection)`
 
     //Cor de background ajustada de acordo com valor da temperatura
-    background-color: hsla(0, 100%, 50%, 0.5);
+    background-color: hsla(${props => props.cor}, 100%, 50%, 0.5);
 
     //Ajustando posição e tamanho da seção para a informação do dia atual
     grid-row: 5 / span 1;
@@ -65,7 +65,7 @@ export const Tomorrow = styled(StyledSection)`
 export const AfterTomorrow = styled(StyledSection)`
 
     //Cor de background ajustada de acordo com valor da temperatura 
-    background-color: hsla(0, 100%, 50%, 0.5);
+    background-color: hsla(${props => props.cor}, 100%, 50%, 0.5);
 
     //Ajustando posição e tamanho da seção para a informação do dia atual
     grid-row: 6 / span 1;

@@ -5,7 +5,7 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
   
 
   const temperaturas = {
-    agora: tipoTemperatura ? 30 : convertTemp(30),
+    agora: tipoTemperatura ? 25 : convertTemp(30),
     min: tipoTemperatura ? 30 : convertTemp(30),
     max: tipoTemperatura ? 30 : convertTemp(30)
   }
@@ -18,8 +18,22 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
     return temp*9/5 + 32
   }
 
+  //função matemática para converter as temperaturas para um valor HUE correspondente
+  function tempColor(temp){
+    if(temp < 15){
+      return (temp+60)*70/75+180
+    }else if(temp > 35){
+      return 15 - (temp-35) * 15/25
+    }else{
+      return 60 - (temp-15) * 35/25
+    }
+  }
+
+  //Define as HUE das cores para o background de acordo com as temperaturas em celsius
+  const cor = tempColor(25)
+
   return (
-    <StyledSection>
+    <StyledSection cor={cor}>
       <img
         src={icone}
         alt="Ícone representando clima do dia."
