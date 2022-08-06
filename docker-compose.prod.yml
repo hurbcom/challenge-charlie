@@ -1,8 +1,8 @@
 version: "3"
 services:
   app:
-    container_name: temperature-next-docker-prod 
-    image: temperature-next-docker-prod 
+    container_name: temperature-next-docker-prd 
+    image: temperature-next-docker-prd 
     build: 
       context: .
       target: prod
