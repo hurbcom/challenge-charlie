@@ -3,21 +3,19 @@ import { useImageBing } from "../../../service/imageBing";
 import componentFactory from "../../../utils/componentFactory";
 import styles from "./index.module.scss";
 
-
 const Container = componentFactory<IContainerProps>(
   "Container",
   (props, ref) => {
-    const {children} = props
-    const previewImg = `https://picsum.photos/1920/1080`
-    const style = {backgroundImage:`url(${previewImg})`}
+    const [image, setImage] = React.useState<string>("");
+    useImageBing()
+      .Get()
+      .then((i) => setImage(i));
+    const { children } = props;
+    const style = { backgroundImage: `url(${image})` };
     return (
-
-     <div ref={ref} className={styles.Container} style={style}>
-      <div className={styles.ContainerColor}>
-      {children}
+      <div ref={ref} className={styles.Container} style={style}>
+        <div className={styles.ContainerColor}>{children}</div>
       </div>
-     </div>
-
     );
   }
 );
