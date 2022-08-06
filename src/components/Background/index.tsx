@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ImageService } from "../../services/ImageService";
-import { BackgroundImg } from "./styled";
+import { BackgroundImg, Wrapper } from "./styled";
 
 interface IBackground {
     children: React.ReactNode;
@@ -23,7 +23,11 @@ const Background = ({ children }: IBackground) => {
         getBackgroundImage();
     }, []);
 
-    return <BackgroundImg img={background}>{children}</BackgroundImg>;
+    return (
+        <Wrapper>
+            <BackgroundImg img={background}>{children}</BackgroundImg>;
+        </Wrapper>
+    );
 };
 
 export default Background;
