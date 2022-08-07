@@ -1,34 +1,25 @@
 import { useEffect, useState } from "react";
+import Background from "./components/Background";
+import Weather from "./components/Weather";
+import { IWeather } from "./models/weatherData";
 import { GeolocationService } from "./services/GeolocationService";
-import { GlobalStyle } from "./styles/global";
-import { tempConvertToCelsius } from "./utils/tempConvert";
 
-interface IWeather {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-    sea_level: number;
-    grnd_level: number;
-}
+import { GlobalStyle } from "./styles/global";
 
 function App() {
     const [address, setAddress] = useState([]);
-    const [weather, setWeather] = useState<IWeather>();
+    const [weatherData, setWeatherData] = useState<IWeather>();
 
     const getAddressAndWeather = async () => {
         await GeolocationService.getUserLocation()
             .then(async (response) => {
                 setAddress(response.results[0].formatted);
-                await GeolocationService.getWeather(
+                await GeolocationService.getWeatherFromLatAndLng(
                     response.results[0].geometry.lat,
                     response.results[0].geometry.lng
                 )
                     .then((response) => {
-                        console.log(response);
-                        setWeather(response.main);
+                        setWeatherData(response);
                     })
                     .catch((error) => {
                         console.log(error);
@@ -41,21 +32,20 @@ function App() {
 
     useEffect(() => {
         getAddressAndWeather();
-
-        //if weather stop updating
     }, []);
 
     return (
         <>
             <GlobalStyle />
-            {!address.length ? (
+            {!address.length || !weatherData ? (
                 <div>Loading...</div>
             ) : (
-                <>
-                    <h1>{address}</h1>
+                <Background>
+                    <Weather weatherData={weatherData} />
+                    {/* <h1>{address}</h1>
                     <h2>{JSON.stringify(weather)}</h2>
-                    {weather && <h3>{tempConvertToCelsius(weather.temp)}ºC</h3>}
-                </>
+                    {weather && <h3>{tempConvertToCelsius(weather.temp)}ºC</h3>} */}
+                </Background>
             )}
         </>
     );
