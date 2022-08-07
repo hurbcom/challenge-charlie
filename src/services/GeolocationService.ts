@@ -21,9 +21,19 @@ export class GeolocationService {
         return geolocation as Promise<any>;
     };
 
-    public static getWeather = async (lat: number, lng: number) => {
+    public static getWeatherFromLatAndLng = async (
+        lat: number,
+        lng: number
+    ) => {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`
+        );
+        return await response.json();
+    };
+
+    public static getWeatherFromCity = async (city: string) => {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`
         );
         return await response.json();
     };
