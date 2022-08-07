@@ -7,17 +7,17 @@ export const GlobalStyle = createGlobalStyle`
   --gray-200: #1f2729;
   --black: #001219;
 
-  --blue-100: #94D2BD;
-  --blue-200: #0A9396;
-  --blue-300: #005F73;
+  --blue-100: rgba(148, 210, 189, 0.7);
+  --blue-200: rgba(10, 147, 150, 0.8);
+  --blue-300: rgba(0, 95, 115, 0.9);
 
-  --yellow-100: #E9D8A6;
-  --yellow-200: #EE9B00;
-  --yellow-300: #CA6702;
+  --yellow-100: rgba(233, 216, 166, 0.7);
+  --yellow-200: rgba(238, 155, 0, 0.8);
+  --yellow-300: rgba(187, 62, 3, 0.9);
 
-  --red-100: #BB3E03;
-  --red-200: #AE2012;
-  --red-300: #9B2226;
+  --red-100: rgba(187, 62, 3, 0.7);
+  --red-200: rgba(174, 32, 18, 0.8);
+  --red-300: rgba(155, 34, 38, 0.9);
   }
 
   * {
