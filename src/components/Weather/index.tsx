@@ -7,7 +7,10 @@ import {
 } from "../../utils/tempConvert";
 import {
     CityInput,
+    ForecastDescription,
+    ForecastTempWrapper,
     ForecastWrapper,
+    TemperatureWrapper,
     WeatherContainer,
     WeatherDayAfterTomorrowWrapper,
     WeatherHeader,
@@ -18,6 +21,9 @@ import {
 } from "./styled";
 import CelsiusIcon from "../icons/CelsiusIcon";
 import FahrenheitIcon from "../icons/FahrenheitIcon";
+import { speedConvert } from "../../utils/speedConvert";
+import { ForecastInfos } from "./styled";
+import { degToCompass } from "../../utils/directionConvert";
 
 type unit = "fahrenheit" | "celsius";
 
@@ -27,18 +33,18 @@ const Weather = ({ weatherData }: IWeatherData) => {
     const getTemperature = () => {
         if (unit === "celsius") {
             return (
-                <>
+                <TemperatureWrapper>
                     <p>{tempConvertToCelsius(weatherData.main.temp)}</p>
                     <CelsiusIcon onClick={() => setUnit("fahrenheit")} />
-                </>
+                </TemperatureWrapper>
             );
         }
         if (unit === "fahrenheit") {
             return (
-                <>
+                <TemperatureWrapper>
                     <p>{tempConvertToFahrenheit(weatherData.main.temp)}</p>
                     <FahrenheitIcon onClick={() => setUnit("celsius")} />
-                </>
+                </TemperatureWrapper>
             );
         }
     };
@@ -55,12 +61,23 @@ const Weather = ({ weatherData }: IWeatherData) => {
                         src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                     />
                     <ForecastWrapper>
-                        <span>Today</span>
-                        {getTemperature()}
-                        <span>{weatherData.weather[0].description}</span>
-                        <span>Vento: NO 6.4km/h</span>
-                        <span>Umidade: {weatherData.main.humidity} %</span>
-                        <span>Pressão: {weatherData.main.pressure}hPA</span>
+                        <ForecastTempWrapper>
+                            <span>Hoje</span>
+                            {getTemperature()}
+                        </ForecastTempWrapper>
+                        <ForecastDescription>
+                            {weatherData.weather[0].description}
+                        </ForecastDescription>
+                        <ForecastInfos>
+                            Vento: {degToCompass(weatherData.wind.deg)}{" "}
+                            {speedConvert(weatherData.wind.speed)}km/h
+                        </ForecastInfos>
+                        <ForecastInfos>
+                            Umidade: {weatherData.main.humidity} %
+                        </ForecastInfos>
+                        <ForecastInfos>
+                            Pressão: {weatherData.main.pressure}hPA
+                        </ForecastInfos>
                     </ForecastWrapper>
                 </WeatherTodayInnerWrapper>
             </WeatherTodayWrapper>

@@ -52,15 +52,33 @@ export const WeatherTodayInnerWrapper = styled.div`
 `;
 
 export const WeatherTodayIcon = styled.img`
-    width: 30%;
-    height: 30%;
+    /* width: 30%;
+    height: 30%; */
 `;
 
 export const ForecastWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+`;
+
+export const ForecastTempWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+`;
+
+export const ForecastDescription = styled.span`
+    font-size: 1.5rem;
+
+    margin-bottom: 1rem;
+`;
+
+export const ForecastInfos = styled.span`
+    font-size: 1.2rem;
 `;
 
 export const WeatherTomorrowWrapper = styled.div<{ BgColor: string }>`
@@ -73,4 +91,9 @@ export const WeatherDayAfterTomorrowWrapper = styled.div<{ BgColor: string }>`
     width: 100%;
     height: 16%;
     background-color: ${(props) => props.BgColor};
+`;
+
+export const TemperatureWrapper = styled.div`
+    display: flex;
+    align-items: center;
 `;
