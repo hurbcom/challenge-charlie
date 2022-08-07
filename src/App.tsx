@@ -1,33 +1,35 @@
 import { useEffect, useState } from "react";
 import Background from "./components/Background";
 import Weather from "./components/Weather";
+import { ILocation } from "./models/locationData";
 import { IWeather } from "./models/weatherData";
 import { GeolocationService } from "./services/GeolocationService";
 
 import { GlobalStyle } from "./styles/global";
 
 function App() {
-    const [address, setAddress] = useState([]);
     const [weatherData, setWeatherData] = useState<IWeather>();
+    const [locationData, setLocationData] = useState<ILocation>();
 
     const getAddressAndWeather = async () => {
-        await GeolocationService.getUserLocation()
-            .then(async (response) => {
-                setAddress(response.results[0].formatted);
+        try {
+            const userLocationResponse =
+                await GeolocationService.getUserLocation();
+            const currentWeatherResponse =
                 await GeolocationService.getWeatherFromLatAndLng(
-                    response.results[0].geometry.lat,
-                    response.results[0].geometry.lng
-                )
-                    .then((response) => {
-                        setWeatherData(response);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                    userLocationResponse.results[0].geometry.lat,
+                    userLocationResponse.results[0].geometry.lng
+                );
+            setWeatherData(currentWeatherResponse);
+            const forecastResponse =
+                await GeolocationService.getForecastFromLatAndLng(
+                    userLocationResponse.results[0].geometry.lat,
+                    userLocationResponse.results[0].geometry.lng
+                );
+            console.log("forecastResponse", forecastResponse);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -37,7 +39,7 @@ function App() {
     return (
         <>
             <GlobalStyle />
-            {!address.length || !weatherData ? (
+            {!weatherData ? (
                 <div>Loading...</div>
             ) : (
                 <Background>
