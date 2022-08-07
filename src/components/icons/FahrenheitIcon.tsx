@@ -4,7 +4,7 @@ const FahrenheitIcon: FC<{
     color?: string;
     size?: string;
     onClick?: () => void;
-}> = ({ color = "#1D1D1B", size = "45", onClick = () => {} }) => {
+}> = ({ color = "#001219", size = "45", onClick = () => {} }) => {
     return (
         <svg
             version="1.1"

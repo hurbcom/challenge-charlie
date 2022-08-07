@@ -3,7 +3,7 @@ import { FC } from "react";
 const CompassIcon: FC<{
     color?: string;
     size?: string;
-}> = ({ color = "#1D1D1B", size = "45" }) => {
+}> = ({ color = "#001219", size = "45" }) => {
     return (
         <svg
             version="1.1"

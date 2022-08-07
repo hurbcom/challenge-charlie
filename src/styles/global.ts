@@ -28,9 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     overflow: hidden;
   }
 
-  body, input, textarea, button {
+  body, input {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    color: var(--black);
   }
   
   h1, h2, h3, h4, h5, h6, strong {
