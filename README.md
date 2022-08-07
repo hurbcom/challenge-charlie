@@ -57,3 +57,11 @@ Godspeed! ;)
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
+
+## Development Notes
+
+-   The weather forecast is obtained from the [OpenWeather](http://openweathermap.org/img/wn/{{icon}}@2x.png) API.
+-   The weather icon is obtained from the [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) API.
+-   The location is obtained from the [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) API.
+-   The background image is obtained from the [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US) API.
+-   The color pallet was obtained from [Coolors](https://coolors.co/).
