@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IWeatherData } from "../../models/weatherData";
+import { IWeather, IWeatherData } from "../../models/weatherData";
 import CompassIcon from "../icons/CompassIcon";
 import {
     tempConvertToCelsius,
@@ -24,17 +24,24 @@ import FahrenheitIcon from "../icons/FahrenheitIcon";
 import { speedConvert } from "../../utils/speedConvert";
 import { ForecastInfos } from "./styled";
 import { degToCompass } from "../../utils/directionConvert";
+import { GeolocationService } from "../../services/GeolocationService";
 
 type unit = "fahrenheit" | "celsius";
 
 const Weather = ({ weatherData }: IWeatherData) => {
+    const [userWeatherData, setUserWeatherData] =
+        useState<IWeather>(weatherData);
     const [unit, setUnit] = useState<unit>("celsius");
+    const [userCity, setUserCity] = useState<string>(weatherData.name);
+    const [iconURL, setIconURL] = useState<string>(
+        `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
+    );
 
     const getTemperature = () => {
         if (unit === "celsius") {
             return (
                 <TemperatureWrapper>
-                    <p>{tempConvertToCelsius(weatherData.main.temp)}</p>
+                    <p>{tempConvertToCelsius(userWeatherData.main.temp)}</p>
                     <CelsiusIcon onClick={() => setUnit("fahrenheit")} />
                 </TemperatureWrapper>
             );
@@ -42,41 +49,63 @@ const Weather = ({ weatherData }: IWeatherData) => {
         if (unit === "fahrenheit") {
             return (
                 <TemperatureWrapper>
-                    <p>{tempConvertToFahrenheit(weatherData.main.temp)}</p>
+                    <p>{tempConvertToFahrenheit(userWeatherData.main.temp)}</p>
                     <FahrenheitIcon onClick={() => setUnit("celsius")} />
                 </TemperatureWrapper>
             );
         }
     };
 
+    const handleUserCity = async () => {
+        const city = userCity.replace(/\s/g, "+");
+        await GeolocationService.getWeatherFromCity(city)
+            .then((response) => {
+                setUserWeatherData(response);
+                setIconURL(
+                    `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+                );
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <WeatherContainer>
             <WeatherHeader>
-                <CompassIcon />
-                <CityInput />
+                <CompassIcon color="var(--gray-200)" />
+                <CityInput
+                    type="text"
+                    value={userCity}
+                    onChange={(e) => setUserCity(e.target.value)}
+                    placeholder="Digite sua cidade"
+                    onKeyPress={(event) => {
+                        if (event.key === "Enter") {
+                            handleUserCity();
+                        }
+                    }}
+                />
             </WeatherHeader>
             <WeatherTodayWrapper BgColor="var(--blue-100)">
                 <WeatherTodayInnerWrapper>
-                    <WeatherTodayIcon
-                        src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                    />
+                    <WeatherTodayIcon src={iconURL} />
                     <ForecastWrapper>
                         <ForecastTempWrapper>
                             <span>Hoje</span>
                             {getTemperature()}
                         </ForecastTempWrapper>
                         <ForecastDescription>
-                            {weatherData.weather[0].description}
+                            {userWeatherData.weather[0].description}
                         </ForecastDescription>
                         <ForecastInfos>
-                            Vento: {degToCompass(weatherData.wind.deg)}{" "}
-                            {speedConvert(weatherData.wind.speed)}km/h
+                            Vento: {degToCompass(userWeatherData.wind.deg)}{" "}
+                            {speedConvert(userWeatherData.wind.speed)}km/h
                         </ForecastInfos>
                         <ForecastInfos>
-                            Umidade: {weatherData.main.humidity} %
+                            Umidade: {userWeatherData.main.humidity} %
                         </ForecastInfos>
                         <ForecastInfos>
-                            Pressão: {weatherData.main.pressure}hPA
+                            Pressão: {userWeatherData.main.pressure}hPA
                         </ForecastInfos>
                     </ForecastWrapper>
                 </WeatherTodayInnerWrapper>

@@ -9,7 +9,6 @@ export const WeatherContainer = styled.div`
     width: 60%;
     height: 100%;
     max-height: 100vh;
-    background-color: #fff;
 `;
 
 export const WeatherHeader = styled.header`
@@ -32,7 +31,7 @@ export const CityInput = styled.input`
     background-color: var(--gray-100);
     border: none;
 
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0 0.5rem;
 `;
 
@@ -51,10 +50,7 @@ export const WeatherTodayInnerWrapper = styled.div`
     height: 100%;
 `;
 
-export const WeatherTodayIcon = styled.img`
-    /* width: 30%;
-    height: 30%; */
-`;
+export const WeatherTodayIcon = styled.img``;
 
 export const ForecastWrapper = styled.div`
     display: flex;
