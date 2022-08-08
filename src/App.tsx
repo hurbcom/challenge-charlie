@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Background from "./components/Background";
+import Loader from "./components/Loader";
 import Weather from "./components/Weather";
 import { IForecastData } from "./models/forecastData";
 import { IWeather } from "./models/weatherData";
@@ -73,7 +74,7 @@ function App() {
         <>
             <GlobalStyle />
             {loading ? (
-                <div>Loading...</div>
+                <Loader />
             ) : (
                 <Background>
                     <Weather weatherData={weatherData} forecast={forecast} />
