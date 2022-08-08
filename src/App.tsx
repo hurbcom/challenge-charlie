@@ -55,6 +55,7 @@ function App() {
                 setWeatherData(undefined);
             }
         } catch (error) {
+            setLoading(false);
             console.log(error);
         }
     };
