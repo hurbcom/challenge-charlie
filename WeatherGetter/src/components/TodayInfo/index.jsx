@@ -1,13 +1,17 @@
+import { useContext } from 'react'
+
 import { StyledSection } from './style';
 import icone from "../../assets/icons/2.svg"
 
+import {WeatherContext} from '../../contexts/WeatherContext'
+
 export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
-  
+  const { weather } = useContext(WeatherContext);  
 
   const temperaturas = {
-    agora: tipoTemperatura ? 25 : convertTemp(30),
-    min: tipoTemperatura ? 30 : convertTemp(30),
-    max: tipoTemperatura ? 30 : convertTemp(30)
+    agora: tipoTemperatura ? weather.hoje.tempAtual : convertTemp(30),
+    min: tipoTemperatura ? weather.hoje.min : convertTemp(30),
+    max: tipoTemperatura ? weather.hoje.max : convertTemp(30)
   }
 
   //variável que muda o simbolo da temperatura de acordo com a seleção atual

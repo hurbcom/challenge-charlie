@@ -1,11 +1,35 @@
 import { StyledHeader } from './style';
-import { useState } from 'react';
+
+import { useApi } from '../../hooks/useApi';
+import { WeatherContext } from '../../contexts/WeatherContext';
+
+import { useContext, useEffect, useState } from 'react';
 
 import { ArrowRight } from 'phosphor-react'
 import icone from '../../assets/icons/44.svg'
 
+
 export function Header() {
-  const [local, setLocal] = useState('');
+  const [local, setLocal] = useState('Rio de Janeiro');
+  const { updateWeather } = useContext(WeatherContext)
+
+  const { getWeather } = useApi();
+
+   useEffect(()=>{
+     async function carregaTempo(){
+      await getWeather(local).then(
+        result=>updateWeather(result)
+      )
+     };
+
+     carregaTempo()
+   }, [])
+
+  async function mudaTempo(){
+    await getWeather(local).then(
+      result=>updateWeather(result)
+    )
+  }
 
   return (
     <StyledHeader>
@@ -21,7 +45,7 @@ export function Header() {
         <option value="São Paulo" />
         <option value="Salvador" />
       </datalist>
-      {local && <button onClick={()=>console.log(local)}><ArrowRight/></button>}
+      {local && <button onClick={mudaTempo}><ArrowRight/></button>}
     </StyledHeader>
   );
 }

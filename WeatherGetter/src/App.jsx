@@ -1,6 +1,9 @@
 import { useState } from 'react';
+
 import { StyledApp, StyledContainer } from './style.js'
+
 import { Header, TodayInfo, FutureInfo } from './components'
+import { WeatherContextProvider } from './contexts/WeatherContext'
 
 function App() {
   //Estado que controla qual o tipo de temperatura está sendo exibido (°C ou °F)
@@ -14,14 +17,19 @@ function App() {
     })
   }
 
+  console.log('rerendering')
   return (
-    <StyledApp data-testid="bg" bg={bg_path}>
-      <StyledContainer>
-        <Header/>
-        <TodayInfo tipoTemperatura = {tipoTemperatura} alteraTipoTemp = {handleAlteraTipoTemp}/>
-        <FutureInfo tipoTemperatura = {tipoTemperatura} alteraTipoTemp = {handleAlteraTipoTemp}/>
-      </StyledContainer>
-    </StyledApp>
+    
+      <StyledApp data-testid="bg" bg={bg_path}>
+        <StyledContainer>
+        <WeatherContextProvider>
+            <Header/>
+            <TodayInfo tipoTemperatura = {tipoTemperatura} alteraTipoTemp = {handleAlteraTipoTemp}/>
+            <FutureInfo tipoTemperatura = {tipoTemperatura} alteraTipoTemp = {handleAlteraTipoTemp}/>
+          </WeatherContextProvider>
+        </StyledContainer>
+      </StyledApp>
+    
   )
 }
 
