@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ImageService } from "../../services/ImageService";
+import Loader from "../Loader";
 import { BackgroundImg, Wrapper } from "./styled";
 
 interface IBackground {
@@ -7,16 +8,18 @@ interface IBackground {
 }
 
 const Background = ({ children }: IBackground) => {
+    const [isLoading, setIsLoading] = useState(true);
     const [background, setBackground] = useState<string>();
 
     const getBackgroundImage = async () => {
-        await ImageService.getImage()
-            .then((image) => {
-                setBackground(image);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        try {
+            const response = await ImageService.getImage();
+            setBackground(response);
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -24,9 +27,15 @@ const Background = ({ children }: IBackground) => {
     }, []);
 
     return (
-        <Wrapper>
-            <BackgroundImg img={background}>{children}</BackgroundImg>
-        </Wrapper>
+        <>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <Wrapper>
+                    <BackgroundImg img={background}>{children}</BackgroundImg>
+                </Wrapper>
+            )}
+        </>
     );
 };
 
