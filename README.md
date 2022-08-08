@@ -1,62 +1,64 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Weather Forecast
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+## Table of Content:
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+-   [About The App](#about-the-app)
+-   [Technologies and Libraries](#technologies-and-libraries)
+-   [Setup](#setup)
+-   [Approach](#approach)
+-   [Credits](#credits)
+-   [Development Notes](#development-notes)
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+## About The App
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+You can preview the app [here](https://challenge-charlie.herokuapp.com/).
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+This application was developed to help people to get the weather forecast for a specific city.
+The application can get the user coordinates from the browser and I used the [OpenWeatherMap](https://openweathermap.org/) API to get the weather forecast.
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+## Technologies and Libraries
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+-   React - 18.2.0
+-   TypeScript - 4.4.2
+-   Styled Components - 5.2.5
+-   Axios - 0.27.2
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+## Setup
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+-   Download or clone the repository
+-   Run `npm install` or `yarn`
+-   Run `npm start` or `yarn start`
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+## Approach
 
-## Requirements
+The project started with `create-react-app` and I used `styled-components` to style the application. After cleaning the code, I created a global style file and modified `App.tsx` file to handle the application logic.
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+Then I created the /services folder to call all the API services needed to get the weather forecast.
 
-## Evaluation criteria
+The first service was to get the user coordinates from the browser. With this output, I used the OpenWeatherMap API using latitude and longitude to get the current weather, the weather forecast for the next tow days and city name.
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+After that, I created the /components folder to handle the components of the application and created a 'Weather' component to display the weather forecast. In the 'Weather' component, I used the 'useEffect' and a state of loading do get the data I needed before display anything on the screen. I also create a input field to get the city name from the user if the user wants to search the weather for another location and for that I created another service to get the weather forecast for the new city.
 
-## Doubts
+Then I tried to call Bing's API to get image of the day for the background of the application. I was facing a CORS issue and the first approach was to to create a proxy using the library `cors-proxy-server` following the instructions on the [Microsoft](https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/bing-image-search-resource-faq) faq page. Beside the fact that the proxy was working just fine, in the same documentation I knew that it wouldn't work in the production environment.
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+To solve this issue, I created a simple [backend](https://api-bing.herokuapp.com/bingAPI) service with express.js to return the image of the day. You can check this code in this [GitHub](https://github.com/karina-borges/bing-api) repository. I used [Heroku](https://heroku.com) to deploy the api and I integrated with github to run the pipeline each time I push a new commit to the `master` branch.
 
-Godspeed! ;)
+After that, I had all the services and components ready to use. And I made some changes in logic and style to get the responsive application working as it was supposed to be. I used the icon library from [OpenWeather](https://openweathermap.org/weather-conditions) to get the icons used in this app for convenience. To get the responsive result I used relative widths and heights for the components and media queries.
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+After all the changes needed in order the application to word I also used the [Heroku](https://heroku.com) platform to deploy the frontend application with the same github commit and deploy strategy.
+
+## Improvements
+
+-   I could increase the coverage of tests.
+-   I could use Next.js for server side rendering.
+-   I could remove the alert message when the user do not allow the browser to get the user coordinates and make it a modal with better style.
+-   I could use other icon library such as [meteocons](https://www.alessioatzeni.com/meteocons/) with better UI.
+
+## Credits
+
+[@karina-borges](https://github.com/karina-borges)
+
+[@hurb](https://github.com/hurbcom/challenge-charlie)
 
 ## Development Notes
 
