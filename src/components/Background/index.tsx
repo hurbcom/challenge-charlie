@@ -25,7 +25,7 @@ const Background = ({ children }: IBackground) => {
 
     return (
         <Wrapper>
-            <BackgroundImg img={background}>{children}</BackgroundImg>;
+            <BackgroundImg img={background}>{children}</BackgroundImg>
         </Wrapper>
     );
 };
