@@ -41,7 +41,33 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
         `http://openweathermap.org/img/wn/02d@2x.png`
     );
     const [unit, setUnit] = useState<unit>("celsius");
+    const [colorScheme, setColorScheme] = useState<string>("gray");
     const [response, setResponse] = useState<boolean>(false);
+
+    const getColorScheme = (temp: number) => {
+        if (unit === "celsius") {
+            const tempCelsius = tempConvertToCelsius(temp);
+            if (tempCelsius < 15) {
+                setColorScheme("blue");
+            } else if (tempCelsius >= 15 && tempCelsius < 35) {
+                setColorScheme("yellow");
+            } else if (tempCelsius >= 35) {
+                setColorScheme("red");
+            }
+            return null;
+        }
+        if (unit === "fahrenheit") {
+            const tempFahrenheit = tempConvertToFahrenheit(temp);
+            if (tempFahrenheit < 59) {
+                setColorScheme("blue");
+            } else if (tempFahrenheit >= 59 && tempFahrenheit < 95) {
+                setColorScheme("yellow");
+            } else if (tempFahrenheit >= 95) {
+                setColorScheme("red");
+            }
+            return null;
+        }
+    };
 
     const getTemperature = (value: number) => {
         if (unit === "celsius") {
@@ -70,6 +96,7 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
             );
             if (response) {
                 setUserWeatherData(response);
+                getColorScheme(response.main.temp);
                 setIconURL(
                     `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
                 );
@@ -96,6 +123,7 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
             setUserWeatherData(weatherData);
             setUserForecast(forecast);
             setUserCity(weatherData.name);
+            getColorScheme(weatherData.main.temp);
         }
     }, []);
 
@@ -130,7 +158,7 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
     return (
         <WeatherContainer>
             <WeatherHeader>
-                <CompassIcon color="var(--gray-200)" />
+                <CompassIcon />
                 <CityInput
                     type="text"
                     value={userCity}
@@ -143,7 +171,7 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
                     }}
                 />
             </WeatherHeader>
-            <WeatherTodayWrapper BgColor="var(--blue-100)">
+            <WeatherTodayWrapper BgColor={`var(--${colorScheme}-100)`}>
                 <WeatherTodayInnerWrapper>
                     <WeatherTodayIcon src={iconURL} />
                     <CurrentWeatherWrapper>
@@ -166,11 +194,11 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
                     </CurrentWeatherWrapper>
                 </WeatherTodayInnerWrapper>
             </WeatherTodayWrapper>
-            <ForecastWrapper BgColor="var(--blue-200)">
+            <ForecastWrapper BgColor={`var(--${colorScheme}-200)`}>
                 <span>Amanhã</span>
                 {displayData?.forecastTomorrow}
             </ForecastWrapper>
-            <ForecastWrapper BgColor="var(--blue-300)">
+            <ForecastWrapper BgColor={`var(--${colorScheme}-300)`}>
                 <span>Depois de Amanhã</span>
                 {displayData?.forecastDayAfterTomorrow}
             </ForecastWrapper>

@@ -19,7 +19,7 @@ export const WeatherHeader = styled.header`
     width: 100%;
     height: 16%;
 
-    background-color: var(--gray-100);
+    background-color: var(--gray);
 
     padding: 0 20px;
 `;
@@ -28,7 +28,7 @@ export const CityInput = styled.input`
     width: 100%;
     height: 100%;
 
-    background-color: var(--gray-100);
+    background-color: var(--gray);
     border: none;
 
     font-size: 2rem;
