@@ -11,25 +11,24 @@ import { GlobalStyle } from "./styles/global";
 function App() {
     const [weatherData, setWeatherData] = useState<IWeather>();
     const [forecast, setForecast] = useState<IForecastData>();
-    const [userPermission, setUserPermission] = useState<boolean>();
     const [loading, setLoading] = useState<boolean>(true);
 
     const watchUserLocation = async () => {
+        setLoading(true);
         const permission = navigator.geolocation.watchPosition(
-            () => {
-                setUserPermission(true);
-            },
+            () => {},
             (error) => {
-                setUserPermission(false);
-                console.log(error);
+                console.log("error", error.code);
+                if (error.code === 1) {
+                    alert(
+                        "Por favor, autorize a localização melhor experiência com o app. Mas não se preocupe, você pode continuar usando o app sem a sua localização atual."
+                    );
+                    setLoading(false);
+                }
             }
         );
         return permission;
     };
-
-    useEffect(() => {
-        watchUserLocation();
-    }, []);
 
     const getAddressAndWeather = async () => {
         setLoading(true);
@@ -62,13 +61,9 @@ function App() {
     };
 
     useEffect(() => {
-        if (!userPermission) {
-            setLoading(false);
-            return;
-        } else {
-            getAddressAndWeather();
-        }
-    }, [userPermission]);
+        watchUserLocation();
+        getAddressAndWeather();
+    }, []);
 
     return (
         <>
