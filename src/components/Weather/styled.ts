@@ -6,9 +6,13 @@ export const WeatherContainer = styled.div`
     align-items: center;
     justify-content: center;
 
-    width: 60%;
+    width: 90%;
     height: 100%;
     max-height: 100vh;
+
+    @media (min-width: 768px) {
+        width: 60%;
+    }
 `;
 
 export const WeatherHeader = styled.header`
@@ -21,7 +25,11 @@ export const WeatherHeader = styled.header`
 
     background-color: var(--gray);
 
-    padding: 0 20px;
+    padding: 0 10px;
+
+    @media (min-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 export const CityInput = styled.input`
@@ -42,15 +50,25 @@ export const WeatherTodayWrapper = styled.div<{ BgColor: string }>`
 `;
 
 export const WeatherTodayInnerWrapper = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-around;
 
     width: 100%;
     height: 100%;
 `;
 
-export const WeatherTodayIcon = styled.img``;
+export const WeatherTodayIcon = styled.img`
+    justify-self: center;
+
+    width: 100px;
+    height: 100px;
+
+    @media (min-width: 768px) {
+        width: 200px;
+        height: 200px;
+    }
+`;
 
 export const CurrentWeatherWrapper = styled.div`
     display: flex;
@@ -79,31 +97,23 @@ export const CurrentWeatherInfos = styled.span`
 
 export const ForecastWrapper = styled.div<{ BgColor: string }>`
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: flex-start;
     flex-direction: column;
 
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
 
-    padding: 0 1rem;
+    padding-left: 50%;
 
     width: 100%;
     height: 16%;
     background-color: ${(props) => props.BgColor};
+
+    @media (min-width: 768px) {
+        font-size: 1.5rem;
+    }
 `;
-
-// export const WeatherTomorrowWrapper = styled.div<{ BgColor: string }>`
-//     width: 100%;
-//     height: 16%;
-//     background-color: ${(props) => props.BgColor};
-// `;
-
-// export const WeatherDayAfterTomorrowWrapper = styled.div<{ BgColor: string }>`
-//     width: 100%;
-//     height: 16%;
-//     background-color: ${(props) => props.BgColor};
-// `;
 
 export const TemperatureWrapper = styled.div`
     display: flex;
