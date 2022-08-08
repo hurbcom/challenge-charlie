@@ -52,14 +52,14 @@ export const WeatherTodayInnerWrapper = styled.div`
 
 export const WeatherTodayIcon = styled.img``;
 
-export const ForecastWrapper = styled.div`
+export const CurrentWeatherWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 `;
 
-export const ForecastTempWrapper = styled.div`
+export const CurrentWeatherTempWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
@@ -67,27 +67,43 @@ export const ForecastTempWrapper = styled.div`
     font-weight: bold;
 `;
 
-export const ForecastDescription = styled.span`
+export const CurrentWeatherDescription = styled.span`
     font-size: 1.5rem;
 
     margin-bottom: 1rem;
 `;
 
-export const ForecastInfos = styled.span`
+export const CurrentWeatherInfos = styled.span`
     font-size: 1.2rem;
 `;
 
-export const WeatherTomorrowWrapper = styled.div<{ BgColor: string }>`
+export const ForecastWrapper = styled.div<{ BgColor: string }>`
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-direction: column;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    padding: 0 1rem;
+
     width: 100%;
     height: 16%;
     background-color: ${(props) => props.BgColor};
 `;
 
-export const WeatherDayAfterTomorrowWrapper = styled.div<{ BgColor: string }>`
-    width: 100%;
-    height: 16%;
-    background-color: ${(props) => props.BgColor};
-`;
+// export const WeatherTomorrowWrapper = styled.div<{ BgColor: string }>`
+//     width: 100%;
+//     height: 16%;
+//     background-color: ${(props) => props.BgColor};
+// `;
+
+// export const WeatherDayAfterTomorrowWrapper = styled.div<{ BgColor: string }>`
+//     width: 100%;
+//     height: 16%;
+//     background-color: ${(props) => props.BgColor};
+// `;
 
 export const TemperatureWrapper = styled.div`
     display: flex;
