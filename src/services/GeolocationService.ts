@@ -33,7 +33,7 @@ export class GeolocationService {
     public static reverseGeocode = async (lat: number, lng: number) => {
         try {
             const response = await axios({
-                url: `https://api.opencagedata.com/geocode/v1/json?q=${lat},${lng}&key=c63386b4f77e46de817bdf94f552cddf&language=pt_BR`,
+                url: `${process.env.REACT_APP_OPEN_CAGE_DATA_URL}/json?q=${lat},${lng}&key=${process.env.REACT_APP_OPEN_CAGE_DATA_API_KEY}&language=pt_BR`,
                 method: "GET",
             });
             return response.data;
@@ -49,7 +49,7 @@ export class GeolocationService {
     ) => {
         try {
             const response = await axios({
-                url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`,
+                url: `${process.env.REACT_APP_OPEN_WEATHER_MAP_URL}/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&lang=pt_BR`,
                 method: "GET",
             });
             return response.data as IWeather;
@@ -62,7 +62,7 @@ export class GeolocationService {
     public static getWeatherFromCity = async (city: string) => {
         try {
             const response = await axios({
-                url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`,
+                url: `${process.env.REACT_APP_OPEN_WEATHER_MAP_URL}/weather?q=${city}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&lang=pt_BR`,
                 method: "GET",
             });
             if (response) {
@@ -81,7 +81,7 @@ export class GeolocationService {
     ) => {
         try {
             const response = await axios({
-                url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=minutely,hourly,alerts&appid=a29cdb9283ab971b4ba908a8aa90601c&lang=pt_br`,
+                url: `${process.env.REACT_APP_OPEN_WEATHER_MAP_URL}/onecall?lat=${lat}&lon=${lng}&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&lang=pt_br`,
                 method: "GET",
             });
             return response.data as IForecastData;

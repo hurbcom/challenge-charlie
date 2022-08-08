@@ -8,7 +8,7 @@ export class ImageService {
         try {
             const response = await axios({
                 url: "/bingAPI",
-                baseURL: process.env.REACT_APP_API_URL,
+                baseURL: process.env.REACT_APP_API_BING_URL,
                 method: "GET",
             });
 
