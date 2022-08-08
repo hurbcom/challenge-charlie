@@ -1,5 +1,4 @@
 import axios from "axios";
-import config from "../config.json";
 
 export class ImageService {
     public static getImage = async () => {
@@ -12,7 +11,7 @@ export class ImageService {
                 method: "GET",
             });
 
-            return `${config.apis.bing}${response.data?.images[0].url}`;
+            return `${process.env.REACT_APP_BING_URL}${response.data?.images[0].url}`;
         } catch (error) {
             console.log(error);
         }
