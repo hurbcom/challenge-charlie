@@ -18,7 +18,7 @@ function App() {
         const permission = navigator.geolocation.watchPosition(
             () => {},
             (error) => {
-                console.log("error", error.code);
+                console.log(error);
                 if (error.code === 1) {
                     alert(
                         "Por favor, autorize a localização melhor experiência com o app. Mas não se preocupe, você pode continuar usando o app sem a sua localização atual."
