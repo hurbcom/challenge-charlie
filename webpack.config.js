@@ -36,10 +36,21 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(
-              Boolean
+              Boolean,
             ),
           },
         },
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
       },
     ],
   },
