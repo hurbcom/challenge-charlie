@@ -1,4 +1,5 @@
 export interface IWeather {
+    error: boolean;
     coord: {
         lon: number;
         lat: number;
@@ -41,8 +42,4 @@ export interface IWeather {
     id: number;
     name: string;
     cod: number;
-}
-
-export interface IWeatherData {
-    weatherData: IWeather;
 }

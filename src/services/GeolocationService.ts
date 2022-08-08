@@ -1,4 +1,7 @@
 import axios from "axios";
+import { IForecastData } from "../models/forecastData";
+import { IGeolocationFromBrowser } from "../models/geolocationFromBrowser";
+import { IWeather } from "../models/weatherData";
 
 export class GeolocationService {
     //Function to get the current location of the user from the browser
@@ -15,13 +18,14 @@ export class GeolocationService {
                             resolve(response);
                         })
                         .catch((error) => {
+                            console.log(error);
                             reject(error);
                         })
                 );
             });
-            return geolocation as Promise<any>;
-        } catch (e) {
-            console.log(e);
+            return geolocation as Promise<IGeolocationFromBrowser>;
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -33,8 +37,8 @@ export class GeolocationService {
                 method: "GET",
             });
             return response.data;
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -48,9 +52,9 @@ export class GeolocationService {
                 url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`,
                 method: "GET",
             });
-            return response.data;
-        } catch (e) {
-            console.log(e);
+            return response.data as IWeather;
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -61,9 +65,12 @@ export class GeolocationService {
                 url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=772920597e4ec8f00de8d376dfb3f094&lang=pt_BR`,
                 method: "GET",
             });
-            return response.data;
-        } catch (e) {
-            console.log(e);
+            if (response) {
+                return response.data as IWeather;
+            }
+            return null;
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -77,9 +84,9 @@ export class GeolocationService {
                 url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=minutely,hourly,alerts&appid=a29cdb9283ab971b4ba908a8aa90601c&lang=pt_br`,
                 method: "GET",
             });
-            return response.data;
-        } catch (e) {
-            console.log(e);
+            return response.data as IForecastData;
+        } catch (error) {
+            console.log(error);
         }
     };
 }
