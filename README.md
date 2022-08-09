@@ -22,11 +22,23 @@ The application can get the user coordinates from the browser and I used the [Op
 -   TypeScript - 4.4.2
 -   Styled Components - 5.2.5
 -   Axios - 0.27.2
+-   Jest - 28.1.3
 
 ## Setup
 
 -   Download or clone the repository
 -   Run `npm install` or `yarn`
+-   Create a `.env.local` file in the root directory of the project and add the following lines:
+
+```
+REACT_APP_API_BING_URL=https://api-bing.herokuapp.com
+REACT_APP_BING_URL=https://www.bing.com
+REACT_APP_OPEN_CAGE_DATA_URL=https://api.opencagedata.com/geocode/v1
+REACT_APP_OPEN_CAGE_DATA_API_KEY={{YOUR_API_KEY}}
+REACT_APP_OPEN_WEATHER_MAP_URL=https://api.openweathermap.org/data/2.5
+REACT_APP_OPEN_WEATHER_MAP_API_KEY={{YOUR_API_KEY}}
+```
+
 -   Run `npm start` or `yarn start`
 
 ## Approach
@@ -49,7 +61,7 @@ After all the changes needed in order the application to word I also used the [H
 
 ## Improvements
 
--   I could increase the coverage of tests.
+-   I could increase test coverage.
 -   I could use Next.js for server side rendering.
 -   I could remove the alert message when the user do not allow the browser to get the user coordinates and make it a modal with better style.
 -   I could use other icon library such as [meteocons](https://www.alessioatzeni.com/meteocons/) with better UI.
