@@ -111,6 +111,7 @@ const Weather = ({ weatherData, forecast }: IComponentProps) => {
                 setResponse(true);
             } else {
                 setResponse(false);
+                alert("Cidade não encontrada");
             }
         } catch (error) {
             console.log(error);

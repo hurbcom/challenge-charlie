@@ -13,6 +13,7 @@ function App() {
     const [forecast, setForecast] = useState<IForecastData>();
     const [loading, setLoading] = useState<boolean>(true);
 
+    // Function to watch if user gave permission to access their location from browser
     const watchUserLocation = async () => {
         setLoading(true);
         const permission = navigator.geolocation.watchPosition(
@@ -30,6 +31,7 @@ function App() {
         return permission;
     };
 
+    // Function to get user's location if he gave permission and return city name and forecast
     const getAddressAndWeather = async () => {
         setLoading(true);
         try {
