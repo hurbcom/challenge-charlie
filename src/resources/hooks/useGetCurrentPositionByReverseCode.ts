@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useGetCurrentPosition() {
+export function useGetCurrentPositionByReverseCode() {
   const [pos, setPos] = useState({
     latitude: 0,
     longitude: 0
