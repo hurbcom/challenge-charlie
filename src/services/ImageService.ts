@@ -13,7 +13,7 @@ export class ImageService {
 
             return `${process.env.REACT_APP_BING_URL}${response.data?.images[0].url}`;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 }

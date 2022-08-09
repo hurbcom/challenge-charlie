@@ -10,27 +10,29 @@ export class GeolocationService {
             const geolocation = new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition((pos) =>
                     //If the user allows the location, the position is returned
-                    this.reverseGeocode(
+                    this.getUserCityFromLatAndLgn(
                         pos.coords.latitude,
                         pos.coords.longitude
                     )
                         .then((response) => {
                             resolve(response);
                         })
-                        .catch((error) => {
-                            console.log(error);
-                            reject(error);
+                        .catch(() => {
+                            throw new Error("error");
                         })
                 );
             });
             return geolocation as Promise<IGeolocationFromBrowser>;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 
     //Function to convert latitude and longitude to a named location
-    public static reverseGeocode = async (lat: number, lng: number) => {
+    public static getUserCityFromLatAndLgn = async (
+        lat: number,
+        lng: number
+    ) => {
         try {
             const response = await axios({
                 url: `${process.env.REACT_APP_OPEN_CAGE_DATA_URL}/json?q=${lat},${lng}&key=${process.env.REACT_APP_OPEN_CAGE_DATA_API_KEY}&language=pt_BR`,
@@ -38,7 +40,7 @@ export class GeolocationService {
             });
             return response.data;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 
@@ -54,7 +56,7 @@ export class GeolocationService {
             });
             return response.data as IWeather;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 
@@ -70,11 +72,11 @@ export class GeolocationService {
             }
             return null;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 
-    //Function to get forecast weather data from latitude and longitude for the next 2 days
+    //Function to get forecast weather data from latitude and longitude for the next 7 days
     public static getForecastFromLatAndLng = async (
         lat: number,
         lng: number
@@ -86,7 +88,7 @@ export class GeolocationService {
             });
             return response.data as IForecastData;
         } catch (error) {
-            console.log(error);
+            throw new Error("error");
         }
     };
 }
