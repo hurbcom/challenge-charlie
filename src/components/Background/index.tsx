@@ -17,8 +17,8 @@ const Background = ({ children }: IBackground) => {
             setBackground(response);
             setIsLoading(false);
         } catch (error) {
+            setBackground("/bing.jpeg");
             setIsLoading(false);
-            console.log(error);
         }
     };
 
