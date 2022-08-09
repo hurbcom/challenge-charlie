@@ -1,19 +1,29 @@
-## todo
-- Coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via reverse geocode [https://developer.mozilla.org/pt-BR/docs/Web/API/Geolocation/getCurrentPosition](https://developer.mozilla.org/pt-BR/docs/Web/API/Geolocation/getCurrentPosition) [x]
-- converter latitude e longitude em uma localidade utilize o OpenCage [x] [https://opencagedata.com/demo](https://opencagedata.com/demo) // GIT LOGIN
-- Consultar API do OpenWeather [https://openweathermap.org/guide](https://openweathermap.org/guide) [x] // GOOGLE LOGIN
-- Extrair imagem BING [bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) []
+## O que temos dentro do projeto?
+- React, Typescript, Module SCSS, Docker
 
-- Criar paleta de cores []
-- Criar search por localidade []
-- Icones  http://www.alessioatzeni.com/meteocons/.
-- Criar fn para pegar temperatuda de hoje, amanhã de depois de amanhã []
+## O que diferencia?
+- O projeto está incompleto, mas as 3 principais API estão conectadas
+- Está com o básico da funcionalidade, pegando a cidade atual via reverse geocode podendo pesquisar por outra cidade etc
+- Usando sempre o principio da responsabilidade única.
+- Typescript com strict ativado.
 
+### 4 Coisas incompletas por falta de tempo:
+- Para pegar as outras 3 temperaturas, eu deveria ter usado a `api/forecast?q=...`
+- Deveria ter feito chamado a API do bing pra pegar a imagem
+- Para o degradê confesso que não sei a melhor maneira de se fazer, eu provavelmente criaria algumas classes auxiliares por estar usando scss, ou mudar o rgb dinamicamente de acordo com a temperatura. Talvez ter utilizado SCSS não tenha sido a melhor escolha, um styled-componentes cairia melhor.
+- E mais organização: deveria tambem ter isolado as URLs em variáveis de ambiente, `.env` e criado um `.env.example`
+## Como inicializar o projeto localmente?
 
-#### docker
-docker build -t react-image .
-docker run -d -p 8080:8080 --name react-app -v $(pwd)/src:/app/src -e CHOKIDAR_USEPOLLING=true react-image
+### Via instalação de dependencias
+- Clone o projeto
+- Entre no projeto
+- rode `npm install`
+- rode `npm start`
+## By Docker
+##### Docker local
+1) `docker build -t react-image .`
+2) `docker run -d -p 8080:8080 --name react-app -v $(pwd)/src:/app/src -e HOKIDAR_USEPOLLING=true react-image`
 
-
-docker build -t react-nginx -f Dockerfile.prd .
-docker run --rm -it -p 80:80 react-nginx
+#### Docker for prd
+1) `docker build -t react-nginx -f Dockerfile.prd .`
+2) `docker run --rm -it -p 80:80 react-nginx`
