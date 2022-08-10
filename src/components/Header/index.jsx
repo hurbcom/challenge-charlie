@@ -6,7 +6,7 @@ import { WeatherContext } from '../../contexts/WeatherContext';
 import { useContext, useEffect, useState } from 'react';
 
 import { ArrowRight } from 'phosphor-react'
-import icone from '../../assets/icons/44.svg'
+//import icone from '/public/assets/icons/bussola.svg'
 
 
 export function Header() {
@@ -66,7 +66,7 @@ export function Header() {
   //O botão de envio apenas aparece quando há uma busca digitada.
   return (
     <StyledHeader>
-      <img src={icone} alt="Ícone de uma bússola" />
+      <img src='/assets/icons/bussola.svg' alt="Ícone de uma bússola" />
       <input
         id="local"
         value={local}

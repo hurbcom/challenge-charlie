@@ -47,7 +47,7 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
       weather.hoje.clima === 'Carregando' ? 
         <CircleNotch id="loading-icon" size={96}/> :
         <img
-          src={`src/assets/icons/${weather.hoje.icone}.svg`}
+          src={`/assets/icons/${weather.hoje.icone}.svg`}
           alt="Ícone representando clima do dia."
         /> 
       }
