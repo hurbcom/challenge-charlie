@@ -5,8 +5,8 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size:calc(15px + 0.390625vw);
-  line-height: 24px;
+  font-size:calc(15px + 0.390625vh);
+  /* line-height: 24px; */
   font-weight: 400;
 
   font-synthesis: none;

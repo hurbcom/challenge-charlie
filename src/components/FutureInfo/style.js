@@ -6,14 +6,13 @@ export const Temperature = styled.div`
 
     width:50%;
 
-    line-height: 1.5rem;
-
     padding-bottom: 0.5rem;
 
     margin-left:1.5rem;
     //Alinhamento a partir do meio da página + margem para alinhar com seção de "Hoje"
     @media (min-width:800px) {
         margin-left:calc(50% + 1rem);
+        line-height: 1.5rem;
     }
 
     div:not(:first-child){
@@ -34,6 +33,12 @@ export const Temperature = styled.div`
 
 //Seções básicas das temperaturas de dias futuros.
 const StyledSection = styled.section`
+    h1{
+        @media (max-width: 600px) {
+            font-size: 1rem;
+        }
+    }
+
     width: 100%;
 
     padding-top: 1rem;

@@ -29,11 +29,8 @@ export const StyledContainer = styled.div`
 
     display:grid;
     grid-template-columns: auto;
-    //grid-template-rows: auto auto auto auto auto auto;
 
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    //overflow-y: scroll;
 
     justify-content: center;
 

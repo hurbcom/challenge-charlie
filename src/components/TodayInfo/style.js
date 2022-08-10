@@ -22,7 +22,7 @@ export const StyledSection = styled.section`
 
         max-height: 80%;
 
-        min-width: 125px;
+        min-width: 100px;
 
         //Alteração do tamanho de acordo com o tamanho da tela.
         @media (max-width:1200px){
@@ -92,12 +92,15 @@ export const StyledSection = styled.section`
                 flex-direction: column;
                 margin-right: 2rem;
             }
+            h1{
+                @media (max-width:600px) {
+                    font-size: 1rem;
+                }
+            }
         }
         #clima{
             @media (max-width:600px) and (max-height:800px) {
                 font-size:1rem;
-                margin-bottom: 0.5rem;
-                margin-top: 1rem;
             }
             @media (min-width:601px) and (min-height:801px) {
                 font-size:2rem;
