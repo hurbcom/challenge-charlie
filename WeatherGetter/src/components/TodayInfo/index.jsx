@@ -8,10 +8,11 @@ import {WeatherContext} from '../../contexts/WeatherContext'
 export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
   const { weather } = useContext(WeatherContext);  
 
+  
   const temperaturas = {
-    agora: tipoTemperatura ? weather.hoje.tempAtual : convertTemp(30),
-    min: tipoTemperatura ? weather.hoje.min : convertTemp(30),
-    max: tipoTemperatura ? weather.hoje.max : convertTemp(30)
+    agora: tipoTemperatura ? weather.hoje.tempAtual : convertTemp(weather.hoje.tempAtual),
+    min: tipoTemperatura ? weather.hoje.min : convertTemp(weather.hoje.min),
+    max: tipoTemperatura ? weather.hoje.max : convertTemp(weather.hoje.max)
   }
 
   //variável que muda o simbolo da temperatura de acordo com a seleção atual
@@ -34,10 +35,11 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
   }
 
   //Define as HUE das cores para o background de acordo com as temperaturas em celsius
-  const cor = tempColor(25)
+  const cor = tempColor(weather.hoje.tempAtual)
+  const sat = weather.hoje.clima === 'Carregando' ? 0 : 100
 
   return (
-    <StyledSection cor={cor}>
+    <StyledSection cor={cor} sat={sat}>
       <img
         src={icone}
         alt="Ícone representando clima do dia."
@@ -64,10 +66,10 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
               </button>
             </div>
         </div>
-        <p id="clima">Ensolarado</p>
-        <p>Vento: NO 6.4km/h</p>
-        <p>Humidade: 78%</p>
-        <p>Pressão: 1003hPa</p>
+        <p id="clima">{weather.hoje.clima}</p>
+        <p>Vento: {weather.hoje.vento.deg}° {weather.hoje.vento.velocidade}km/h</p>
+        <p>Humidade: {weather.hoje.humidade}%</p>
+        <p>Pressão: {weather.hoje.pressao}hPa</p>
       </div>
     </StyledSection>
   );

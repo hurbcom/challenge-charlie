@@ -11,7 +11,7 @@ export const StyledSection = styled.section`
     align-items: center;
 
     //Cor de background ajustada de acordo com valor da temperatura
-    background-color: hsla(${props=>props.cor}, 100%, 50%, 0.5);
+    background-color: hsla(${props=>props.cor}, ${props=>props.sat}%, 50%, 0.7);
 
     //Ajustando posição e tamanho da seção para a informação do dia atual
     grid-row-start: 2;

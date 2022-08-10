@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const WeatherContext = createContext();
 
@@ -7,7 +7,14 @@ export function WeatherContextProvider({children}){
         'hoje':{
             'tempAtual':0,
             'min':0,
-            'max':0
+            'max':0,
+            'clima': 'Carregando',
+            'vento': {
+                'velocidade':'Carregando',
+                'deg': 'Carregando'
+            },
+            'humidade': 'Carregando',
+            'pressao': 'Carregando'
         },
         'amanha':{
             'med':0,
@@ -22,7 +29,6 @@ export function WeatherContextProvider({children}){
     });
 
     function updateWeather(newWeather){
-        console.log(newWeather);
         setWeather(newWeather);
     }
 
