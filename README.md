@@ -3,7 +3,7 @@
 Este é a minha versão do desafio Challenge-Charlie do HURB. 
 O mesmo foi realizado seguindo os critérios contidos em https://github.com/hurbcom/challenge-charlie.
 
-o resultado final pode ser visto abaixo:
+O resultado final pode ser visto abaixo:
 <img src="https://i.imgur.com/59DOcvk.png"/>
 
 <ul>As modificações feitas na aplicação (não solicitadas no desafio) foram:
