@@ -22,7 +22,7 @@ O mesmo foi realizado seguindo os critérios contidos em https://github.com/hurb
     <li>npm run dev</li>
 </ul>
 
-<p>Uma versão preview pode ser visualizada em: https://hurb-challenge-e29dkkbob-estevao-gomes.vercel.app/<p>
+<p>Uma versão preview pode ser visualizada em: http://hurb-challenge.vercel.app/<p>
 
 <h1>Docker</h1>
 <p>Os arquivos yml para execução no docker foram inclusos tanto para desenvolvimento quanto para produção. Para execução de um container basta executar os seguintes comandos com o Docker em execução:</p>
