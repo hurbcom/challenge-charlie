@@ -3,9 +3,6 @@ import styled from 'styled-components';
 
 //Este é o estilo das seções de dia de Hoje. 
 export const StyledSection = styled.section`
-
-    border: 1px solid red;
-
     display: flex;
     flex-wrap:wrap;
     align-items: center;

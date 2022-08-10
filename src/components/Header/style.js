@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 //Estilo do Header.
 export const StyledHeader = styled.header`
-    border: 1px solid red;
-
     background-color: hsla(0, 0%, 100%, 0.8);
 
     grid-row-start: 1;
