@@ -7,6 +7,7 @@ export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
 
   const { weather } = useContext(WeatherContext)
 
+  //Gera valores de temperaturas em celsius ou farenheits dependendo da variável tipoTemperatura
   const temperaturasAmanha = {
     agora: tipoTemperatura ? weather.amanha.med : convertTemp(weather.amanha.med),
     min: tipoTemperatura ? weather.amanha.min : convertTemp(weather.amanha.min),
@@ -21,7 +22,7 @@ export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
   //Constante que muda o simbolo sendo mostrado de acordo com o tipo de temperatura
   const simboloTemp = tipoTemperatura ? "°C" : "°F"
 
-  //função para converter o valor da temperatura
+  //função para converter o valor da temperatura de celsius para Farenheits
   function convertTemp(temp){
     return temp*9/5 + 32
   }
@@ -46,6 +47,8 @@ export function FutureInfo({tipoTemperatura, alteraTipoTemp}) {
 
     return cores
   }
+
+  //configura a saturação como 0 (ton de cinza) caso não haja um local selecionado
   const sat = weather.hoje.clima === 'Carregando' ? 0 : 100
 
   return (

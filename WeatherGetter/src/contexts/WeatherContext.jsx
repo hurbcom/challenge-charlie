@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const WeatherContext = createContext();
 
 export function WeatherContextProvider({children}){
+    //estado inicial do contexto, gerando valores para tempo caso não haja local selecionado
     const [weather, setWeather] = useState({
         'hoje':{
             'tempAtual':0,
@@ -28,6 +29,7 @@ export function WeatherContextProvider({children}){
         }
     });
 
+    //função callback de update do estado
     function updateWeather(newWeather){
         setWeather(newWeather);
     }

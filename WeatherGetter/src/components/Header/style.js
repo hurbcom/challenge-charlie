@@ -50,4 +50,16 @@ export const StyledHeader = styled.header`
         height: 50%;
         width: 20%;
     }
+
+    //esconde o label do botão de enviar (presente por motivos de acessibilidade)
+    .hidden{
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
 `;

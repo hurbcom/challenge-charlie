@@ -34,6 +34,7 @@ export const StyledSection = styled.section`
         }
     }
 
+    //adiciona animações do icone de loading
     #loading-icon {
         -webkit-animation: spin 2s linear infinite; /* Safari */
         animation: spin 2s linear infinite;

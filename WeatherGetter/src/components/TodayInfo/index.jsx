@@ -8,8 +8,8 @@ import { CircleNotch } from 'phosphor-react'
 
 export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
   const { weather } = useContext(WeatherContext);  
-
   
+  //Gera valores de temperaturas em celsius ou farenheits dependendo da variável tipoTemperatura
   const temperaturas = {
     agora: tipoTemperatura ? weather.hoje.tempAtual : convertTemp(weather.hoje.tempAtual),
     min: tipoTemperatura ? weather.hoje.min : convertTemp(weather.hoje.min),
@@ -37,17 +37,20 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
 
   //Define as HUE das cores para o background de acordo com as temperaturas em celsius
   const cor = tempColor(weather.hoje.tempAtual)
+
+  //configura a saturação como 0 (ton de cinza) caso não haja um local selecionado
   const sat = weather.hoje.clima === 'Carregando' ? 0 : 100
 
   return (
     <StyledSection cor={cor} sat={sat}>
-      {weather.hoje.clima === 'Carregando' ? 
+      {//renderiza símbolo de loading para caso não haja local selecionado
+      weather.hoje.clima === 'Carregando' ? 
         <CircleNotch id="loading-icon" size={96}/> :
         <img
           src={`src/assets/icons/${weather.hoje.icone}.svg`}
           alt="Ícone representando clima do dia."
         /> 
-        }
+      }
       <div id="infoSection">
         <p id="dia">Hoje</p>
         <div id="tempSection">

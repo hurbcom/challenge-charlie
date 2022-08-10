@@ -8,12 +8,13 @@ function capitalizeFirstLetter(string) {
   }
 
 export function useApi(){
-
-    async function getCityFromCoord(cidade){
+    //Função que realiza chamada na api com uma string de local e retorna as sugestões de locais no formato cidade, estado, país
+    async function getCitySugestion(cidade){
         const result = await opencage.geocode({q: cidade, key: import.meta.env.VITE_OPEN_CAGE_KEY})
         .then((data)=>{
             console.log('Results: ', data.results)
             const results = data.results.map((result)=>{
+                //se os valores de cidade, estado ou país não estão definidos no resultado, estes são omitidos
                 return `${result.components.city?result.components.city + ", ":""}${result.components.state?result.components.state + ", ":""}${result.components.country?result.components.country:""}`
             })
             return results
@@ -24,6 +25,7 @@ export function useApi(){
 
         return result
     }
+    //Realiza call na api opencage e retorna a coordenada de um lugar identificado por string
     async function getCityCoord(cidade){
         const result = await opencage.geocode({q: cidade, key: import.meta.env.VITE_OPEN_CAGE_KEY})
         .then((data)=>{
@@ -38,6 +40,7 @@ export function useApi(){
 
         return result
     }
+    //Realiza chamada na api openweather com cordenadas e retorna dados de tempo de acordo com formato definido na aplicação. 
     async function getWeatherFromCoord(coordenadas){
         return await axios.get(
             `https://api.openweathermap.org/data/2.5/onecall?lat=${coordenadas.lat}&lon=${coordenadas.long}&exclude=hourly,minutely&units=metric&lang=pt_br&appid=${import.meta.env.VITE_OPEN_WEATHER_KEY}`
@@ -48,6 +51,7 @@ export function useApi(){
             (response)=>{
                 console.log(response);
                 return {
+                    //Formato da informação comforme usada no app. Atenção ao arredondamento e capitalização.
                     'hoje':{
                         'tempAtual': Math.round(response.data.current.temp),
                         'max':Math.round(response.data.daily[0].temp.max),
@@ -79,10 +83,13 @@ export function useApi(){
         )
     }
 
+    //Realiza chamada sequencial da obtenção de coordenadas e obtenção de dados do tempo.
     async function getWeather(cidade){
         return getCityCoord(cidade).then(result => getWeatherFromCoord(result))
     }
 
+    //Obtem o papel de parede do dia da Api do Bing. Foi utilizada API externa que realiza a mesma chamada para 
+    //evitar erro com CORS.
     async function getBackground(){
         return await axios.get('https://bing.biturl.top/?resolution=1920&format=json&index=0&mkt=en-US').then(
             (result) => {
@@ -92,15 +99,7 @@ export function useApi(){
         ).catch(
             err=>console.log(err)
         )
-        // return await axios.get('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US').then(
-        //     (result) => {
-        //         console.log(result.data.url)
-        //         return result.data.url
-        //     }
-        // ).catch(
-        //     err=>console.log(err)
-        // )
     }
 
-    return { getCityFromCoord, getWeatherFromCoord, getWeather, getBackground }
+    return { getCitySugestion, getWeatherFromCoord, getWeather, getBackground }
 }
