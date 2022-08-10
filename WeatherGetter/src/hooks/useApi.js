@@ -9,12 +9,17 @@ function capitalizeFirstLetter(string) {
 
 export function useApi(){
 
-    async function getCityFromCoord(coordenadas){
-        const result = await opencage.geocode({q: `${coordenadas.lat},${coordenadas.long}`, key: import.meta.env.VITE_OPEN_CAGE_KEY})
+    async function getCityFromCoord(cidade){
+        const result = await opencage.geocode({q: cidade, key: import.meta.env.VITE_OPEN_CAGE_KEY})
         .then((data)=>{
-            return data
+            console.log('Results: ', data.results)
+            const results = data.results.map((result)=>{
+                return `${result.components.city?result.components.city + ", ":""}${result.components.state?result.components.state + ", ":""}${result.components.country?result.components.country:""}`
+            })
+            return results
         }).catch(error=>{
             console.log(error)
+            return "error"
         })
 
         return result
@@ -53,7 +58,8 @@ export function useApi(){
                             'deg': response.data.current.wind_deg
                         },
                         'humidade': response.data.current.humidity,
-                        'pressao': response.data.current.pressure
+                        'pressao': response.data.current.pressure,
+                        'icone': response.data.current.weather[0].icon
 
                     },
                     'amanha':{

@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 
 import { StyledSection } from './style';
-import icone from "../../assets/icons/2.svg"
 
 import {WeatherContext} from '../../contexts/WeatherContext'
+
+import { CircleNotch } from 'phosphor-react'
 
 export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
   const { weather } = useContext(WeatherContext);  
@@ -40,10 +41,13 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
 
   return (
     <StyledSection cor={cor} sat={sat}>
-      <img
-        src={icone}
-        alt="Ícone representando clima do dia."
-      />
+      {weather.hoje.clima === 'Carregando' ? 
+        <CircleNotch id="loading-icon" size={96}/> :
+        <img
+          src={`src/assets/icons/${weather.hoje.icone}.svg`}
+          alt="Ícone representando clima do dia."
+        /> 
+        }
       <div id="infoSection">
         <p id="dia">Hoje</p>
         <div id="tempSection">

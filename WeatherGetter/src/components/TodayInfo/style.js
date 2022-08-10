@@ -18,12 +18,12 @@ export const StyledSection = styled.section`
     grid-row: span 3;
 
     //Ajuste de tamanho do ícone do clima
-    img {
+    img, #loading-icon {
 
         flex: 1;
         margin-left: 1rem;
 
-        max-height: 100%;
+        max-height: 80%;
 
         min-width: 125px;
 
@@ -32,6 +32,21 @@ export const StyledSection = styled.section`
             width: 50%;
             height:50%;
         }
+    }
+
+    #loading-icon {
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     //Ajustes da seção de informações
