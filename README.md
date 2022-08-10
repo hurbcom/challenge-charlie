@@ -1,4 +1,4 @@
-<h1>WeatherGetter<h1>
+<h1>WeatherGetter</h1>
 
 Este é a minha versão do desafio Challenge-Charlie do HURB. 
 O mesmo foi realizado seguindo os critérios contidos em https://github.com/hurbcom/challenge-charlie.
