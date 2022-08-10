@@ -24,7 +24,9 @@ Para testar o código basta sexecutar os seguintes comandos em uma pasta com um 
 <h1>Docker</h1>
 Os arquivos yml para execução no docker foram inclusos tanto para desenvolvimento quanto para produção. Para execução de um container basta executar os seguintes comandos com o Docker em execução:
 
-Desenvolvimento: docker compose -f docker-compose.dev.yml up
-Produção: docker compose -f docker-compose.prod.yml up
+<ul>
+    <li>Desenvolvimento: docker compose -f docker-compose.dev.yml up</li>
+    <li>Produção: docker compose -f docker-compose.prod.yml up</li>
+</ul>
 
     
