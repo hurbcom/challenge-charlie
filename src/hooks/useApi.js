@@ -4,8 +4,21 @@ import opencage from 'opencage-api-client'
 
 //função para tornar a primeira letra da string maiúscula
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+//função que passa os valores da direção do vento em graus para textual
+function grausParaDirecao(degree){
+    if (degree>337.5) return 'N';
+    if (degree>292.5) return 'NO';
+    if(degree>247.5) return 'O';
+    if(degree>202.5) return 'SO';
+    if(degree>157.5) return 'S';
+    if(degree>122.5) return 'SE';
+    if(degree>67.5) return 'L';
+    if(degree>22.5){return 'NE';}
+    return 'N';
+}
 
 export function useApi(){
     //Função que realiza chamada na api com uma string de local e retorna as sugestões de locais no formato cidade, estado, país
@@ -59,7 +72,7 @@ export function useApi(){
                         'clima': capitalizeFirstLetter(response.data.current.weather[0].description),
                         'vento': {
                             'velocidade':response.data.current.wind_speed,
-                            'deg': response.data.current.wind_deg
+                            'deg': grausParaDirecao(response.data.current.wind_deg)
                         },
                         'humidade': response.data.current.humidity,
                         'pressao': response.data.current.pressure,

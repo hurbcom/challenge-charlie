@@ -74,7 +74,7 @@ export function TodayInfo({tipoTemperatura, alteraTipoTemp}) {
             </div>
         </div>
         <p id="clima">{weather.hoje.clima}</p>
-        <p>Vento: {weather.hoje.vento.deg}° {weather.hoje.vento.velocidade}km/h</p>
+        <p>Vento: {weather.hoje.vento.deg} {weather.hoje.vento.velocidade}km/h</p>
         <p>Humidade: {weather.hoje.humidade}%</p>
         <p>Pressão: {weather.hoje.pressao}hPa</p>
       </div>
