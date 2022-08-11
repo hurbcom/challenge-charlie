@@ -11,13 +11,13 @@ export default createGlobalStyle`
   }
 
   body {
-  font-family: "Helvetica sans-serif";
-  font-size: 10px;
-  margin: 0;
-  min-height: 100%;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    margin: 0;
+    min-height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
   html, body {
     height: 100%;
