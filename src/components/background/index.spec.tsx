@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Background } from './';
-import * as backgroundHooks from '../../services/hooks/useBackground';
+import * as backgroundHooks from '../../services/hooks/useBackground/useBackground';
 
 test('Background test render', () => {
   jest

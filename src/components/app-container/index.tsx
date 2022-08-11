@@ -1,8 +1,13 @@
 import React from 'react';
+import { SearchBar } from '../search-bar';
+import { WeatherContainer } from '../weather-container';
 import { Container } from './styles';
 
-export const AppContainer = () => (
-  <Container>
-    <h1>Eu sou o componente e meu nome é AppContainer</h1>
-  </Container>
-);
+export const AppContainer = () => {
+  return (
+    <Container>
+      <SearchBar />
+      <WeatherContainer />
+    </Container>
+  );
+};

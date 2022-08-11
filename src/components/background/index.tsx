@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBackground } from '../../services/hooks/useBackground';
+import { useBackground } from '../../services/hooks/useBackground/useBackground';
 import { Container } from './styles';
 
 type Props = {
