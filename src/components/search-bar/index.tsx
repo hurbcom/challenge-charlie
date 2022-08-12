@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getCurrentWeatherForecast } from '../../services/weather';
+// import { getCurrentWeatherForecast } from '../../services/weather';
 import { LocationInput } from '../input';
 import { Container } from './styles';
 
@@ -8,7 +8,7 @@ export const SearchBar: React.FC = () => {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    getCurrentWeatherForecast(location);
+    // getCurrentWeatherForecast(location);
   };
 
   return (
