@@ -4,7 +4,7 @@ import { TopInfoContainer } from './styles';
 interface TopInfoProps {
   isOpen: boolean;
   day: string;
-  temperature: number;
+  temperature: string;
 }
 
 export const TopInfo = ({ isOpen, day, temperature }: TopInfoProps) => {

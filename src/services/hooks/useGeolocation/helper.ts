@@ -8,9 +8,9 @@ export const formatUserLocation = (data: GeocodingLocation) => {
   const country = data?.data.results[0].components.country;
 
   if (suburb) {
-    userLocation = suburb && city ? `${suburb}, ${city}` : undefined;
+    userLocation = suburb && city ? `${suburb}, ${city}` : '';
   } else {
-    userLocation = state && country ? `${state}, ${country}` : undefined;
+    userLocation = state && country ? `${state}, ${country}` : '';
   }
 
   return { userLocation };

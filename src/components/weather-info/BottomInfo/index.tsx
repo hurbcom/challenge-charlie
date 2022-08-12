@@ -2,11 +2,11 @@ import React from 'react';
 import { BottomInfoContainer } from './styles';
 
 interface BottomInfoProps {
-  humidity: number;
-  pressure: number;
+  humidity: string;
+  pressure: string;
   wind: {
     direction: string;
-    speed: number;
+    speed: string;
   };
 }
 

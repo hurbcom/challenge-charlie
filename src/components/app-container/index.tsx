@@ -1,15 +1,16 @@
 import React from 'react';
-import { useGeolocation } from '../../services/hooks/useGeolocation';
+import AppDataProvider from '../../contexts/app-data';
 import { SearchBar } from '../search-bar';
 import { WeatherContainer } from '../weather-container';
 import { Container } from './styles';
 
 export const AppContainer = () => {
-  useGeolocation();
   return (
-    <Container>
-      <SearchBar />
-      <WeatherContainer />
-    </Container>
+    <AppDataProvider>
+      <Container>
+        <SearchBar />
+        <WeatherContainer />
+      </Container>
+    </AppDataProvider>
   );
 };

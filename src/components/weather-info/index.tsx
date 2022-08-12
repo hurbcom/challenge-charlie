@@ -3,19 +3,28 @@ import { WeatherInfoContainer } from './styles';
 import { TopInfo } from './TopInfo';
 import { MidInfo } from './MidInfo';
 import { BottomInfo } from './BottomInfo';
+import { IFormattedDailyWeather } from '../../contexts/app-data/interfaces';
 
-interface WeatherInfoProps {
+interface WeatherInfoProps extends IFormattedDailyWeather {
   isOpen: boolean;
 }
 
-export const WeatherInfo = ({ isOpen }: WeatherInfoProps) => {
+export const WeatherInfo = ({
+  isOpen,
+  day,
+  temperature,
+  humidity,
+  pressure,
+  wind,
+  description,
+}: WeatherInfoProps) => {
   return (
     <WeatherInfoContainer isOpen={isOpen}>
-      <TopInfo isOpen={isOpen} day={'Hoje'} temperature={12} />
+      <TopInfo isOpen={isOpen} day={day} temperature={temperature} />
       {isOpen && (
         <React.Fragment>
-          <MidInfo description={'nublado'} />
-          <BottomInfo wind={{ speed: 12, direction: 'NO' }} humidity={12} pressure={12} />
+          <MidInfo description={description} />
+          <BottomInfo wind={wind} humidity={humidity} pressure={pressure} />
         </React.Fragment>
       )}
     </WeatherInfoContainer>

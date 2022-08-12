@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, { useContext } from 'react';
 import { WeatherIcon } from '../weather-icon';
 import { WeatherInfo } from '../weather-info';
 import { Container, Day } from './styles';
-import { defaultTheme, Theme } from '../../styles/theme';
-import { useTheme } from '../../services/hooks/useTheme/useTheme';
+import { AppDataContext } from '../../contexts/app-data';
 
 export const WeatherContainer = () => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const temperature = 40;
-  useTheme({ temperature, setTheme });
-  const isOpen = true;
-  const arr = [0, 1, 2];
+  const { dailyWeather } = useContext(AppDataContext);
+  const isOpen = false;
+
+  if (!dailyWeather || !dailyWeather?.length) {
+    return null;
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        {arr.map(day => (
-          <Day isOpen={day === 0} key={day} dayNumber={day}>
-            <WeatherIcon isOpen={day === 0} iconCode="02d" />
-            <WeatherInfo isOpen={day === 0} />
-          </Day>
-        ))}
-      </Container>
-    </ThemeProvider>
+    <Container>
+      {dailyWeather.map((dailyWeather, index) => (
+        <Day isOpen={true} key={dailyWeather.day} dayNumber={index}>
+          <WeatherIcon isOpen={true} iconCode={dailyWeather.iconId} />
+          <WeatherInfo isOpen={true} {...dailyWeather} />
+        </Day>
+      ))}
+    </Container>
   );
 };
