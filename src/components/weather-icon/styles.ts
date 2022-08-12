@@ -31,17 +31,18 @@ export const Container = styled.div<ContainerProps>`
   }
 
   ${media.laptop} {
-    flex: 1.5;
+    flex: 1.2;
     display: flex;
 
     img {
-      height: 18rem;
+      height: 15rem;
     }
   }
 
   ${media.desktop} {
+    flex: 1;
     img {
-      height: 20rem;
+      height: 18rem;
     }
   }
 `;
