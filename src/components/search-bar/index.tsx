@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppDataContext } from '../../contexts/app-data';
+import { getCoordinates } from '../../services/hooks/useGeolocation';
+import { getWeather } from '../../services/hooks/useWeather';
 import { LocationInput } from '../input';
 import { Container } from './styles';
 
 export const SearchBar: React.FC = () => {
   const [location, setLocation] = useState('');
-  const { userLocation } = useContext(AppDataContext);
+  const { userLocation, setDailyWeather } = useContext(AppDataContext);
 
   useEffect(() => {
     if (userLocation) {
@@ -15,6 +17,9 @@ export const SearchBar: React.FC = () => {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    getCoordinates(location).then(({ latitude, longitude }) =>
+      getWeather({ latitude, longitude }).then(data => setDailyWeather(data)),
+    );
   };
 
   return (

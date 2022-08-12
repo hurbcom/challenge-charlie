@@ -13,18 +13,23 @@ interface Props {
 interface ContextProps {
   userLocation?: string;
   dailyWeather?: IFormattedDailyWeather[];
+  setDailyWeather: (data: IFormattedDailyWeather[]) => void;
 }
 
 export const AppDataContext = createContext<ContextProps>({} as ContextProps);
 
 const AppDataProvider: React.FC<Props> = ({ children }) => {
+  const [dailyWeather, setDailyWeather] = useState<IFormattedDailyWeather[]>();
+
   const { latitude, longitude, userLocation } = useGeolocation();
-  const dailyWeather = useWeather({ latitude, longitude });
+
+  const userDailyWeather = useWeather({ latitude, longitude }, setDailyWeather);
+
   const [theme, setTheme] = useState<Theme>(defaultTheme);
-  useTheme({ temperature: dailyWeather?.[0]?.temperature, setTheme });
+  useTheme({ temperature: userDailyWeather?.[0]?.temperature, setTheme });
 
   return (
-    <AppDataContext.Provider value={{ userLocation, dailyWeather }}>
+    <AppDataContext.Provider value={{ userLocation, dailyWeather, setDailyWeather }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </AppDataContext.Provider>
   );

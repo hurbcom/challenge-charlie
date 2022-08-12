@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { formatUserLocation } from './helper';
 import { GeolocationCoordinates } from './interfaces';
 
-const OPEN_CAGE_API_KEY = 'c63386b4f77e46de817bdf94f552cddf';
-
 export const useGeolocation = () => {
   const [location, setLocation] = useState<GeolocationCoordinates>({
     coords: {
@@ -35,17 +33,17 @@ export const useGeolocation = () => {
     }
   }, []);
   const { latitude, longitude } = location.coords;
-  const { userLocation } = useGetUserLocation(location);
+  const { userLocation } = useGetUserAddress(location);
 
   return { userLocation, latitude, longitude };
 };
 
-export const useGetUserLocation = (userData: GeolocationCoordinates) => {
+export const useGetUserAddress = (userData: GeolocationCoordinates) => {
   const [userLocation, setUserLocation] = useState<string>();
   const { latitude, longitude } = userData.coords;
 
   const baseUrl = 'https://api.opencagedata.com/';
-  const endpoint = `${baseUrl}geocode/v1/json?q=${latitude}+${longitude}&key=${OPEN_CAGE_API_KEY}`;
+  const endpoint = `${baseUrl}geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_OPEN_CAGE_API_KEY}`;
 
   useEffect(() => {
     const fetchuserLocation = async () => {
@@ -62,4 +60,15 @@ export const useGetUserLocation = (userData: GeolocationCoordinates) => {
   }, [endpoint]);
 
   return { userLocation };
+};
+
+export const getCoordinates = async (address: string) => {
+  const baseUrl = 'https://api.opencagedata.com/';
+  const endpoint = `${baseUrl}geocode/v1/json?q=${address}&key=${process.env.REACT_APP_OPEN_CAGE_API_KEY}&pretty=1`;
+
+  const { data } = await axios.get(endpoint);
+  const latitude = data.results[0].geometry.lat;
+  const longitude = data.results[0].geometry.lng;
+
+  return { latitude, longitude };
 };
