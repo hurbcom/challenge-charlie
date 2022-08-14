@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Main from './components/App';
+import './theme/reset.css';
 
-const App = () => <h1>Hi</h1>;
+const App = () => <Main />;
 
 ReactDOM.render(
   <React.StrictMode>
