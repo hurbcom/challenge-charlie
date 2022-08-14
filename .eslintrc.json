@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint", 
+    "react-hooks",
+    "react", 
+    "prettier"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "prettier"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "camelcase": "error",
+    "spaced-comment": "error",
+    "quotes": ["error", "single"],
+    "no-duplicate-imports": "error",
+    "no-var": "error",
+    "prettier/prettier": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "prefer-const": "error",
+    "no-use-before-define": "error",
+    "linebreak-style": 0,
+    "space-before-function-paren": 0,
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["TemplateLiteral"]
+      }
+    ],
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "react/display-name": "off",
+    "react/no-children-prop": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
