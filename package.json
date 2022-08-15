@@ -6,6 +6,7 @@
     "build": "webpack --config webpack.prod.config.ts"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -12,7 +12,7 @@ const Styles = {
   `,
 };
 
-const Main: FC = () => {
+const App: FC = () => {
   return (
     <ThemeProvider theme={lightTheme}>
       <DynamicBackground>
@@ -28,4 +28,4 @@ const Main: FC = () => {
   );
 };
 
-export default Main;
+export default App;
