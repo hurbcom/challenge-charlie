@@ -5,7 +5,8 @@ const S = {
   Container: styled.div`
     height: 100vh;
     width: 100vw;
-    background: ${({ theme }) => theme.secondaryColor};
+    background-color: ${({ theme }) => theme.secondaryColor};
+    background-image: url('https://www.bing.com/th?id=OHR.Cassowary_PT-BR4044547706_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp');
   `,
 };
 
