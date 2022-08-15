@@ -2,16 +2,17 @@ import React from 'react';
 
 type TProps = {
   color: string;
+  size?: number;
 };
 
-const Compass = ({ color }: TProps) => (
+const Compass = ({ color, size }: TProps) => (
   <svg
     version='1.1'
     id='Layer_1'
     x='0px'
     y='0px'
-    width='40px'
-    height='40px'
+    width={size}
+    height={size}
     viewBox='0 0 512 512'
     enableBackground='new 0 0 512 512'
   >

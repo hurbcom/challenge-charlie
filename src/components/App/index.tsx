@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../theme';
-import Card from '../atoms/Card';
-import Center from '../atoms/Center';
-import DynamicBackground from '../molecules/DynamicBackground';
-import Search from '../molecules/Search';
+import { Card, Center } from 'atoms';
+import { DynamicBackground, Search, Stages } from 'molecules';
 
 const Styles = {
   Header: styled.div`
     display: flex;
   `,
+  Body: styled.div``,
 };
 
 const App: FC = () => {
@@ -21,6 +20,9 @@ const App: FC = () => {
             <Styles.Header>
               <Search />
             </Styles.Header>
+            <Styles.Body>
+              <Stages />
+            </Styles.Body>
           </Card>
         </Center>
       </DynamicBackground>

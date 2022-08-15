@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Main = styled.div`
   width: 100%;
   height: 600px;
-  background: #fff;
   border-radius: 0px;
 
   @media only screen and (min-width: 768px) {

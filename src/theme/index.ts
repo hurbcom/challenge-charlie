@@ -13,12 +13,12 @@ export const lightTheme: DefaultTheme = {
   primaryColor: '#CC0000',
   secondaryColor: '#75B2AA',
   grayColor: '#B1B5C3',
-  fontFamily: 'Inter',
+  fontFamily: 'Poppins',
 };
 
 export const darkTheme: DefaultTheme = {
   primaryColor: '#CC0000',
   secondaryColor: '#75B2AA',
   grayColor: '#B1B5C3',
-  fontFamily: 'Inter',
+  fontFamily: 'Poppins',
 };
