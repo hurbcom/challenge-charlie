@@ -12,7 +12,7 @@ declare module 'styled-components' {
 export const lightTheme: DefaultTheme = {
   primaryColor: '#CC0000',
   secondaryColor: '#75B2AA',
-  grayColor: '#B1B5C3',
+  grayColor: '#90939e',
   fontFamily: 'Poppins',
 };
 

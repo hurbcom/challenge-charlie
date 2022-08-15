@@ -6,7 +6,7 @@ const Styles = {
   Container: styled.div`
     display: flex;
     align-items: center;
-    background-image: linear-gradient(to right, rgb(243 187 0 / 70%), rgb(243 187 0 / 30%));
+    background-image: linear-gradient(to right, rgb(243 187 0 / 75%), rgb(243 187 0 / 40%));
     justify-content: space-between;
     overflow: hidden;
     position: relative;

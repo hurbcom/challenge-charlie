@@ -7,8 +7,15 @@ import { DynamicBackground, Search, Stages } from 'molecules';
 const Styles = {
   Header: styled.div`
     display: flex;
+    background-color: #fff;
+    height: 80px;
+    padding: 0 18px;
   `,
   Body: styled.div``,
+  Footer: styled.div`
+    background-color: #fff;
+    height: 20px;
+  `,
 };
 
 const App: FC = () => {
@@ -23,6 +30,7 @@ const App: FC = () => {
             <Styles.Body>
               <Stages />
             </Styles.Body>
+            <Styles.Footer />
           </Card>
         </Center>
       </DynamicBackground>

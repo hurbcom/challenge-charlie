@@ -5,8 +5,12 @@ const TextField = styled.input`
   height: 100%;
   border: none;
   font-size: 18px;
-  padding: 0 8px;
-  background-color: ${({ theme }) => theme.grayColor};
+  padding: 0 18px;
+  background-color: #fff;
+  outline: none;
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fontFamily};
+  color: ${({ theme }) => theme.grayColor};
 `;
 
 export default TextField;

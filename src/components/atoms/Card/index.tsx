@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Main = styled.div`
   width: 100%;
-  height: 600px;
   border-radius: 0px;
+  overflow: hidden;
 
   @media only screen and (min-width: 768px) {
     width: 600px;
