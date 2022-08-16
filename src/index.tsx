@@ -1,10 +1,5 @@
-import React from "react";
+import { App } from "./App";
 import ReactDOM from "react-dom/client";
-import { Home } from "./pages/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>
-);
+root.render(<App />);

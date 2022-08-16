@@ -7,7 +7,12 @@ export const getBingImage = async (): Promise<string> => {
   if (localCache) {
     const nowDate = new Date();
     const cacheObject = JSON.parse(localCache) as IBingAPIResponse;
-    const cacheExpiration = new Date(cacheObject.end_date);
+    const cacheExpirationString = cacheObject.end_date;
+    const cacheExpirationYear = +cacheExpirationString.slice(0, 4);
+    const cacheExpirationMonth = +cacheExpirationString.slice(4, 6);
+    const cacheExpirationDay = +cacheExpirationString.slice(6, 8);
+
+    const cacheExpiration = new Date(cacheExpirationYear, cacheExpirationMonth - 1, cacheExpirationDay, 0, 0, 0, 0);
 
     if (cacheExpiration > nowDate) {
       return cacheObject.url;
