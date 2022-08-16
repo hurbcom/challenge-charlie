@@ -12,7 +12,7 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   background: transparent;
-  font-size: 25px;
+  font-size: 28px;
   color: #fff;
   font-weight: 500;
   cursor: pointer;

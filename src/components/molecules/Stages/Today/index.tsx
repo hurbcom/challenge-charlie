@@ -1,73 +1,6 @@
 import React from 'react';
 import { Icon, Temperature } from 'atoms';
-import styled from 'styled-components';
-
-const Styles = {
-  Container: styled.div`
-    display: flex;
-    align-items: center;
-    background-image: linear-gradient(to right, rgb(243 187 0 / 85%), rgb(243 187 0 / 50%));
-    justify-content: space-between;
-    overflow: hidden;
-    position: relative;
-    height: 100px;
-    padding: 0 28px;
-
-    .content {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-
-      @media only screen and (min-width: 768px) {
-        flex-direction: row;
-      }
-
-      .temperature {
-        display: flex;
-
-        .pipe {
-          border-right: 1px solid rgb(255 255 255 / 60%);
-          margin: 0 28px;
-        }
-      }
-    }
-
-    .icon {
-      min-width: 100px;
-      margin-right: 20px;
-      opacity: 0.7;
-      display: none;
-
-      @media only screen and (min-width: 768px) {
-        display: block;
-      }
-
-      > div {
-        position: absolute;
-        top: -10px;
-        left: -10px;
-      }
-    }
-  `,
-  Title: styled.h2`
-    font-size: 18px;
-    font-weight: 200;
-    margin: 0;
-    color: #fff;
-  `,
-  Element: styled.div`
-    display: flex;
-    align-items: center;
-  `,
-  Label: styled.div`
-    font-size: 10px;
-    background-color: #fff;
-    padding: 1px 5px;
-    border-radius: 8px;
-    margin-left: 10px;
-  `,
-};
+import { Styles } from './styles';
 
 const Today = () => {
   return (
@@ -79,20 +12,43 @@ const Today = () => {
       <div className='content'>
         <Styles.Title>Hoje</Styles.Title>
 
-        <div className='temperature'>
-          <Styles.Element>
-            <Temperature temp={10} />
+        <div className='values'>
+          <div className='temperature'>
+            <Styles.Element>
+              <Temperature temp={10} />
 
-            <Styles.Label>min</Styles.Label>
-          </Styles.Element>
+              <Styles.Label>min</Styles.Label>
+            </Styles.Element>
 
-          <div className='pipe'></div>
+            <div className='pipe'></div>
 
-          <Styles.Element>
-            <Temperature temp={20} />
+            <Styles.Element>
+              <Temperature temp={20} />
 
-            <Styles.Label>max</Styles.Label>
-          </Styles.Element>
+              <Styles.Label>max</Styles.Label>
+            </Styles.Element>
+          </div>
+
+          <div className='temperature'>
+            <Styles.TextCenter>
+              <Styles.Text fontSize='16px'>4 km/h NE</Styles.Text>
+              <Styles.Text>Vento</Styles.Text>
+            </Styles.TextCenter>
+
+            <div className='pipe'></div>
+
+            <Styles.TextCenter>
+              <Styles.Text fontSize='16px'>10%</Styles.Text>
+              <Styles.Text>Humidade</Styles.Text>
+            </Styles.TextCenter>
+
+            <div className='pipe'></div>
+
+            <Styles.TextCenter>
+              <Styles.Text fontSize='16px'>1018hPa</Styles.Text>
+              <Styles.Text>Pressão</Styles.Text>
+            </Styles.TextCenter>
+          </div>
         </div>
       </div>
     </Styles.Container>
