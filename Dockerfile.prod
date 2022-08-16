@@ -1,0 +1,14 @@
+FROM node:16-alpine as build
+WORKDIR /app
+COPY package.json .
+COPY yarn.lock .
+RUN yarn
+COPY . .
+ARG REACT_APP_OPEN_WEATHER_KEY
+ENV REACT_APP_OPEN_WEATHER_KEY=$REACT_APP_OPEN_WEATHER_KEY
+ARG REACT_APP_OPEN_CAGE_KEY
+ENV REACT_APP_OPEN_CAGE_KEY=$REACT_APP_OPEN_CAGE_KEY
+RUN yarn build
+
+FROM nginx
+COPY --from=build /app/build /usr/share/nginx/html

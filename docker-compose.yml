@@ -1,0 +1,6 @@
+version: "3"
+services:
+  challenge-charlie:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
