@@ -20,8 +20,18 @@ interface ContainerProps {
 
 export const Container = styled(motion.section)<ContainerProps>`
   height: 50vh;
-  background-color: var(--yellow-100);
+  background-color: var(--grey);
   display: flex;
+  transition: 0.2s background-color;
+  will-change: background-color;
+
+  ${(props) =>
+    props.temperature &&
+    props.temperature >= 15 &&
+    props.temperature <= 35 &&
+    css`
+      background-color: var(--yellow-100);
+    `};
 
   ${(props) =>
     props.temperature &&
@@ -77,7 +87,7 @@ export const DataContainer = styled.article`
   font-size: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 
   @media only screen and (${breakpoints.device.xs}) {
     width: 100%;
@@ -103,10 +113,10 @@ export const Data = styled.span``;
 export const Weather = styled(Line)`
   text-transform: capitalize;
   font-size: 3rem;
-  margin: 3% 0;
 
   @media only screen and (${breakpoints.device.xs}) {
-    margin: 0.2rem 0;
     font-size: 2rem;
   }
 `;
+
+export const Group = styled.div``;

@@ -1,1 +1,1 @@
-export type IFetchState = "Loading" | "Error" | "Success" | "Idle";
+export type IFetchState = "Loading" | "Error" | "Idle";

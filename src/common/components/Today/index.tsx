@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { weatherState } from "../../../store/atoms";
-import { Container, Data, DataContainer, IconWrapper, Label, Line, Weather, Wrapper } from "./style";
+import { Container, Data, DataContainer, Group, IconWrapper, Label, Line, Weather, Wrapper } from "./style";
 
 export const Today = () => {
   const weather = useRecoilValue(weatherState);
@@ -24,27 +24,31 @@ export const Today = () => {
           <>
             <IconWrapper weather={weather.weatherType} />
             <DataContainer>
-              <Line>
-                <Label>HOJE</Label>
-              </Line>
+              <Group>
+                <Line>
+                  <Label>HOJE</Label>
+                </Line>
 
-              <Line>
-                <Data>{weather.temperature.toFixed(0)}°C</Data>
-              </Line>
+                <Line>
+                  <Data>{weather.temperature.toFixed(0)}°C</Data>
+                </Line>
+              </Group>
 
               <Weather>{weather.weather}</Weather>
 
-              <Line>
-                <Label>Vento: </Label> <Data>{weather.wind.toString().replace(".", ",")} m/s</Data>
-              </Line>
+              <Group>
+                <Line>
+                  <Label>Vento: </Label> <Data>{weather.wind.toString().replace(".", ",")} m/s</Data>
+                </Line>
 
-              <Line>
-                <Label>Humidade: </Label> <Data>{weather.humidity}%</Data>
-              </Line>
+                <Line>
+                  <Label>Humidade: </Label> <Data>{weather.humidity}%</Data>
+                </Line>
 
-              <Line>
-                <Label>Pressão: </Label> <Data>{weather.pressure} hPa</Data>
-              </Line>
+                <Line>
+                  <Label>Pressão: </Label> <Data>{weather.pressure} hPa</Data>
+                </Line>
+              </Group>
             </DataContainer>
           </>
         )}

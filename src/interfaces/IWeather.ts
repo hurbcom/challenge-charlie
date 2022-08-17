@@ -1,3 +1,5 @@
+import { IForecast } from "./IForecast";
+import { ICoordinate } from "./ICoordinate";
 import { IWeatherTypes } from "./IWeatherTypes";
 
 export interface IWeatherRawData {
@@ -13,6 +15,10 @@ export interface IWeatherRawData {
   wind: {
     speed: number;
   };
+  coord: {
+    lat: number;
+    lon: number;
+  };
 }
 
 export interface IWeather {
@@ -22,4 +28,5 @@ export interface IWeather {
   wind: number;
   humidity: number;
   pressure: number;
+  forecast: IForecast[];
 }
