@@ -1,7 +1,7 @@
-import { IWeather } from "./../interfaces/IWeather";
-import { getInitialLocation } from "./../services/geoLocationService";
 import { atom } from "recoil";
+import { IWeather } from "./../interfaces/IWeather";
 import { getBingImage } from "./../services/backgroundImageService";
+import { getInitialLocation } from "./../services/geoLocationService";
 
 export const backgroundImageState = atom<string | undefined>({
   key: "backgroundImageState",

@@ -1,5 +1,4 @@
 import { IForecast } from "./IForecast";
-import { ICoordinate } from "./ICoordinate";
 import { IWeatherTypes } from "./IWeatherTypes";
 
 export interface IWeatherRawData {

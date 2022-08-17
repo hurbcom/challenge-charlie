@@ -1,12 +1,12 @@
-import { AnimatePresence } from "framer-motion";
-import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
-import { ChangeEvent, useCallback, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { IFetchState } from "../../../interfaces/IFetchState";
+import Tooltip from "rc-tooltip";
 import { getWeather } from "../../../services/weatherService";
-import { locationState, weatherState } from "../../../store/atoms";
 import { useDebounce } from "../../hooks/useDebounce";
+import { IFetchState } from "../../../interfaces/IFetchState";
+import { AnimatePresence } from "framer-motion";
+import { locationState, weatherState } from "../../../store/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { ChangeEvent, useCallback, useState } from "react";
 import { ErrorWrapper, IconWrapper, Input, Loader, StateContainer, StateWrapper, Wrapper } from "./style";
 
 export const LocationInput = () => {

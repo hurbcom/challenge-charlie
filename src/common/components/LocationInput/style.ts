@@ -1,9 +1,9 @@
-import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
-import breakpoints from "../../breakpoints";
 import gpsIcon from "../../icons/gps.svg";
 import alertIcon from "../../icons/alert.svg";
 import { motion } from "framer-motion";
+import breakpoints from "../../breakpoints";
+import { BounceLoader } from "react-spinners";
 
 export const Wrapper = styled.nav`
   height: 15vh;
