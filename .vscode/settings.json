@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/02907b12-0d84-4428-9c3f-6f605feaa9a0/microsoft.web/sites/subscriptions/02907b12-0d84-4428-9c3f-6f605feaa9a0/resourceGroups/challenge-charlie/providers/Microsoft.Web/sites/challenge-charlie",
+  "appService.deploySubpath": "./build"
+}
