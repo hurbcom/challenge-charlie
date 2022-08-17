@@ -2,7 +2,7 @@ import styled from "styled-components";
 import gpsIcon from "../../icons/gps.svg";
 import alertIcon from "../../icons/alert.svg";
 import { motion } from "framer-motion";
-import breakpoints from "../../breakpoints";
+import { breakpoints } from "../../breakpoints";
 import { BounceLoader } from "react-spinners";
 
 export const Wrapper = styled.nav`

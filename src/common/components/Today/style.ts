@@ -4,9 +4,9 @@ import snowIcon from "../../icons/snow.svg";
 import clearIcon from "../../icons/clear.svg";
 import { motion } from "framer-motion";
 import cloudsIcon from "../../icons/clouds.svg";
-import breakpoints from "../../breakpoints";
 import drizzleIcon from "../../icons/drizzle.svg";
 import atmosphereIcon from "../../icons/atmosphere.svg";
+import { breakpoints } from "../../breakpoints";
 import thunderstormIcon from "../../icons/thunderstorm.svg";
 import { IWeatherTypes } from "../../../interfaces/IWeatherTypes";
 

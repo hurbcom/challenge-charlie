@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import breakpoints from "../../breakpoints";
+import { breakpoints } from "../../breakpoints";
 import styled, { css } from "styled-components";
 
 interface ContainerProps {
