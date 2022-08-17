@@ -48,9 +48,7 @@ export const Forecast = ({ isPostTomorrow }: ForecastProps) => {
                 <Legend>Máximo</Legend>
                 <Data>{weather.forecast[isPostTomorrow ? 1 : 0].max.toFixed(0)}°C</Data>
               </Temperature>
-            </Group>
 
-            <Group>
               <Temperature>
                 <Legend>Mínimo</Legend>
                 <Data>{weather.forecast[isPostTomorrow ? 1 : 0].min.toFixed(0)}°C</Data>

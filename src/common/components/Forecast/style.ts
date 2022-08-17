@@ -1,27 +1,11 @@
 import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
-import { IWeatherTypes } from "../../../interfaces/IWeatherTypes";
 import breakpoints from "../../breakpoints";
+import styled, { css } from "styled-components";
 
 interface ContainerProps {
   temperature?: number;
   isPostTomorrow?: boolean;
 }
-
-// interface WrapperProps {
-//   isPostTomorrow?: boolean;
-// }
-
-// export const Wrapper = styled.div<WrapperProps>`
-//   height: 17.5vh;
-//   background-color: var(--yellow-300);
-
-//   ${(props) =>
-//     props.isPostTomorrow &&
-//     css`
-//       background-color: var(--yellow-500);
-//     `}
-// `;
 
 export const Container = styled(motion.section)<ContainerProps>`
   height: 17.5vh;
@@ -45,7 +29,8 @@ export const Container = styled(motion.section)<ContainerProps>`
 
   @media only screen and (${breakpoints.device.xs}) {
     flex-direction: column;
-    height: 55vh;
+    height: 17.5vh;
+    gap: 1rem;
   }
 `;
 
@@ -63,8 +48,21 @@ export const Group = styled.div`
     justify-content: flex-end;
   }
 
-  &:nth-of-type(2) {
-    justify-content: center;
+  &:last-of-type {
+    min-width: 60%;
+    justify-content: space-evenly;
+  }
+
+  @media only screen and (${breakpoints.device.xs}) {
+    &:first-of-type {
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    &:last-of-type {
+      align-items: flex-start;
+      flex: 1;
+    }
   }
 `;
 
