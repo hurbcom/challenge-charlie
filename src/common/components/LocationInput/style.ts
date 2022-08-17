@@ -1,11 +1,9 @@
 import { BounceLoader } from "react-spinners";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import breakpoints from "../../breakpoints";
 import gpsIcon from "../../icons/gps.svg";
-
-interface LoadingProps {
-  isLoading: boolean;
-}
+import alertIcon from "../../icons/alert.svg";
+import { motion } from "framer-motion";
 
 export const Wrapper = styled.nav`
   height: 15vh;
@@ -38,34 +36,49 @@ export const Input = styled.input`
   flex: 1;
   font-size: 3.75rem;
   color: var(--grey);
-  max-width: 83vw;
+  max-width: calc(100vw - 28px - 1rem - 40px);
 
   @media only screen and (${breakpoints.device.xs}) {
     font-size: 2rem;
   }
 `;
 
-export const Loading = styled.div<LoadingProps>`
+export const StateContainer = styled.div`
   width: 3vw;
+  min-width: 20px;
   aspect-ratio: 1/1;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  ${(props) =>
-    props.isLoading &&
-    css`
-      display: flex;
-    `}
+  position: relative;
 `;
 
 export const Loader = styled(BounceLoader)`
   height: 3vw !important;
   width: 3vw !important;
+  min-width: 20px;
+  min-height: 20px;
 
   span {
     background-color: var(--grey) !important;
     height: 3vw !important;
     width: 3vw !important;
+    min-width: 20px;
+    min-height: 20px;
   }
+`;
+
+export const ErrorWrapper = styled.div`
+  height: 3vw;
+  width: 3vw;
+  min-width: 20px;
+  min-height: 20px;
+  background-image: url(${alertIcon});
+  background-size: contain;
+  background-position: center;
+`;
+
+export const StateWrapper = styled(motion.div)`
+  position: absolute;
+  inset: 0 0 0 0;
 `;
