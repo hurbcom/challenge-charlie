@@ -1,6 +1,7 @@
 import { Background } from "../../common/components/Background";
+import { Forecast } from "../../common/components/Forecast";
 import { LocationInput } from "../../common/components/LocationInput";
-import { Temperature } from "../../common/components/Temperature";
+import { Today } from "../../common/components/Today";
 import { Container } from "./style";
 
 export const Home = () => {
@@ -8,7 +9,9 @@ export const Home = () => {
     <Background>
       <Container>
         <LocationInput />
-        <Temperature />
+        <Today />
+        <Forecast />
+        <Forecast isPostTomorrow />
       </Container>
     </Background>
   );

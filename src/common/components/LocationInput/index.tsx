@@ -1,15 +1,19 @@
-import { ChangeEvent } from "react";
-import { useRecoilState } from "recoil";
-import { locationState } from "../../../store/atoms";
+import { ChangeEvent, useCallback, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { getWeather } from "../../../services/weatherService";
+import { locationState, weatherState } from "../../../store/atoms";
 import { useDebounce } from "../../hooks/useDebounce";
-import { IconWrapper, Input, Wrapper } from "./style";
+import { IconWrapper, Input, Loader, Loading, Wrapper } from "./style";
 
 export const LocationInput = () => {
   const [location, setLocation] = useRecoilState(locationState);
+  const setWeather = useSetRecoilState(weatherState);
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
 
-  const loadWeather = (loc: string) => {
-    console.log(loc);
-  };
+  const loadWeather = useCallback(async (location: string) => {
+    setWeather(undefined);
+    setWeather(await getWeather(location));
+  }, []);
 
   useDebounce<string>({ value: location, onDebounce: loadWeather });
 
@@ -21,6 +25,9 @@ export const LocationInput = () => {
     <Wrapper>
       <IconWrapper />
       <Input value={location} onChange={handleChange} />
+      <Loading isLoading={isLoadingLocation}>
+        <Loader />
+      </Loading>
     </Wrapper>
   );
 };

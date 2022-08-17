@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface useDebounceProps<T> {
   value: T;
@@ -18,6 +18,6 @@ export const useDebounce = <T>({ value, onDebounce, delay = 500 }: useDebouncePr
   }, [value, delay]);
 
   useEffect(() => {
-    onDebounce(value);
-  }, [debouncedValue, onDebounce, value]);
+    onDebounce(debouncedValue);
+  }, [debouncedValue]);
 };
