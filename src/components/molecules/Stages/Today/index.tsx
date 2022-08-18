@@ -6,7 +6,7 @@ const Today = () => {
   return (
     <Styles.Container>
       <div className='icon'>
-        <Icon name='sun-clouds' color='white' size={100} />
+        <Icon name='sun-clouds' color='white' size={110} />
       </div>
 
       <div className='content'>

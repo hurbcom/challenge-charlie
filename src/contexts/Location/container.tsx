@@ -1,47 +1,50 @@
 import React, { memo, PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import services from 'services';
-import { LocationContextPayload } from './types';
+import { Geolocalization, LocationContextPayload } from './types';
 import { LocationProvider } from '.';
 
 function LocationContainer({ children }: PropsWithChildren): React.ReactElement {
   // eslint-disable-next-line
   const [coords, setCoords] = useState<GeolocationPosition['coords'] | null>(null);
 
-  const [allowed, setAllowed] = useState(false);
+  const [geolocalization, setGeolocalization] = useState<Geolocalization>();
 
-  const isGeolocationAllowedOrAbleToAsk = async () => {
+  const getGeolocalization = async (lat: number, long: number) => {
     try {
-      const allowed = await services.getLocation.isGeolocationAllowedOrAbleToAsk();
+      const response = await services.getGeolocalization(lat, long);
 
-      return setAllowed(allowed);
+      return setGeolocalization(response?.results[0].components);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      return error;
     }
   };
 
   const getLocation = async () => {
     try {
       // eslint-disable-next-line
-      const location = (await services.getLocation.getLocation()) as GeolocationPosition;
+      const { coords } = (await services.getLocation.getLocation()) as GeolocationPosition;
 
-      return setCoords(location.coords);
+      setCoords(coords);
+
+      getGeolocalization(coords.latitude, coords.longitude);
+
+      return;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      return error;
     }
   };
 
   useEffect(() => {
     void getLocation();
+    // eslint-disable-next-line
   }, []);
 
   const payload = useMemo<LocationContextPayload>(
     () => ({
-      allowed,
+      geolocalization,
       coords,
     }),
-    [allowed, coords],
+    [geolocalization, coords],
   );
 
   return <LocationProvider value={payload}>{children}</LocationProvider>;

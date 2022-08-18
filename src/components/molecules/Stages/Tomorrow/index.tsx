@@ -6,7 +6,7 @@ const Tomorrow = () => {
   return (
     <Styles.Container>
       <div className='icon'>
-        <Icon name='sun-clouds' color='white' size={80} />
+        <Icon name='sun-clouds' color='white' size={60} />
       </div>
 
       <div className='content'>

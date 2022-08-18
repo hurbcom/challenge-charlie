@@ -48,9 +48,22 @@ export const Styles = {
       margin-right: 20px;
       opacity: 0.7;
       display: none;
+      transform: scale(0.9);
+      transition: ease all 0.3s;
 
       @media only screen and (min-width: 768px) {
         display: block;
+      }
+      > div {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &:hover {
+      .icon {
+        opacity: 0.9;
+        transform: scale(1);
       }
     }
   `,
