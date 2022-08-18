@@ -20,7 +20,9 @@
           "molecules": "./src/components/molecules",
           "organisms": "./src/components/organisms",
           "templates": "./src/components/templates",
-          "services": "./src/services"
+          "services": "./src/services",
+          "contexts": "./src/contexts",
+          "hooks": "./src/hooks"
         }
       }
     ]

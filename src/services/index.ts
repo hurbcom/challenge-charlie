@@ -1,6 +1,7 @@
 import axios from 'axios';
 import applicationConfig from './config';
 import getDynamicBackground from './getDynamicBackground';
+import getLocation from './getLocation';
 
 const client = axios.create({
   headers: {
@@ -8,4 +9,4 @@ const client = axios.create({
   },
 });
 
-export default { client, getDynamicBackground };
+export default { client, getDynamicBackground, getLocation };

@@ -26,6 +26,7 @@
     "spaced-comment": "error",
     "quotes": ["error", "single"],
     "no-duplicate-imports": "error",
+    "no-unused-vars": 0,
     "no-var": "error",
     "prettier/prettier": "error",
     "no-multi-spaces": "error",
@@ -48,7 +49,8 @@
     "react/no-children-prop": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unused-vars": 0
   },
   "settings": {
     "react": {

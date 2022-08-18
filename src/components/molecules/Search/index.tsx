@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { TextField, Icon } from 'atoms';
+import { useLocation } from 'hooks';
 
 const Styles = {
   Container: styled.div`
@@ -17,6 +18,11 @@ const Styles = {
 };
 
 const Search: FC = () => {
+  const { coords } = useLocation();
+
+  /* eslint-disable-next-line no-console */
+  console.log(coords);
+
   return (
     <Styles.Container>
       <Styles.Icon>
@@ -32,4 +38,4 @@ const Search: FC = () => {
   );
 };
 
-export default Search;
+export default React.memo(Search);

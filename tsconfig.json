@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "atoms": ["./src/components/atoms"],
@@ -19,6 +23,8 @@
       "organisms": ["./src/components/organisms"],
       "templates": ["./src/components/templates"],
       "services": ["./src/services"],
+      "contexts": ["./src/contexts"],
+      "hooks": ["./src/hooks"],
     }
   },
   "include": ["src"]
