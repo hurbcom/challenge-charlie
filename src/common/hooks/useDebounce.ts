@@ -6,7 +6,7 @@ interface useDebounceProps<T> {
   onDebounce: (v: T) => void;
 }
 
-export const useDebounce = <T>({ value, onDebounce, delay = 500 }: useDebounceProps<T>) => {
+export const useDebounce = <T>({ value, onDebounce, delay = 700 }: useDebounceProps<T>) => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
@@ -19,5 +19,5 @@ export const useDebounce = <T>({ value, onDebounce, delay = 500 }: useDebouncePr
 
   useEffect(() => {
     onDebounce(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, onDebounce]);
 };

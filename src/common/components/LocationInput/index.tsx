@@ -14,17 +14,20 @@ export const LocationInput = () => {
   const setWeather = useSetRecoilState(weatherState);
   const [fetchState, setFetchState] = useState<IFetchState>("Idle");
 
-  const loadWeather = useCallback(async (location: string) => {
-    setFetchState("Loading");
-    setWeather(undefined);
+  const loadWeather = useCallback(
+    async (location: string) => {
+      setFetchState("Loading");
+      setWeather(undefined);
 
-    try {
-      setWeather(await getWeather(location));
-      setFetchState("Idle");
-    } catch (err) {
-      setFetchState("Error");
-    }
-  }, []);
+      try {
+        setWeather(await getWeather(location));
+        setFetchState("Idle");
+      } catch (err) {
+        setFetchState("Error");
+      }
+    },
+    [setWeather]
+  );
 
   useDebounce<string>({ value: location, onDebounce: loadWeather });
 
