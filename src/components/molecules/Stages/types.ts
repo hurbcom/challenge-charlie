@@ -6,3 +6,8 @@ export enum TWeatherEnum {
 }
 
 export type TWeatherEnumOptions = 'Warm' | 'Normal' | 'Cold' | 'Undefined';
+
+export enum ScaleEnum {
+  C = 1,
+  F = 2,
+}

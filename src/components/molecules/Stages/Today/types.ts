@@ -1,4 +1,4 @@
-import { TWeatherEnum } from '../types';
+import { ScaleEnum, TWeatherEnum } from '../types';
 
 export type TWeatherTypes =
   | 'Thunderstorm'
@@ -6,6 +6,7 @@ export type TWeatherTypes =
   | 'Rain'
   | 'Snow'
   | 'Atmosphere'
+  | 'Mist'
   | 'Clear'
   | 'Clouds';
 
@@ -17,4 +18,6 @@ export interface IToday {
   wind?: number;
   humidity?: number;
   pressure?: number;
+  onChangeScale?: () => void;
+  scale?: ScaleEnum;
 }

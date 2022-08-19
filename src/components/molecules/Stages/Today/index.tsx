@@ -10,17 +10,17 @@ const Today: FC<IToday> = ({
   humidity,
   pressure,
   temperature,
-  weatherType = 'Clouds',
+  weatherType,
   weatherColor,
   wind,
+  scale,
+  onChangeScale,
 }) => {
   const iconName = weatherType as keyof typeof sources;
 
   return (
     <Styles.Container weatherColor={weatherColor}>
-      <div className='icon'>
-        <Icon name={iconName} color='white' size={110} />
-      </div>
+      <div className='icon'>{iconName && <Icon name={iconName} color='white' size={110} />}</div>
 
       <div className='content'>
         <Styles.Title>Hoje</Styles.Title>
@@ -31,7 +31,7 @@ const Today: FC<IToday> = ({
           <div className='values'>
             <div className='temperature'>
               <Styles.Element>
-                <Temperature temp={temperature ?? 0} />
+                <Temperature temp={temperature ?? 0} onChangeScale={onChangeScale} scale={scale} />
 
                 <Styles.Label>atual</Styles.Label>
               </Styles.Element>

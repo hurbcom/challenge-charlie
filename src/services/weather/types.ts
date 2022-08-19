@@ -4,12 +4,14 @@ export type TWeatherTypes =
   | 'Rain'
   | 'Snow'
   | 'Atmosphere'
+  | 'Mist'
   | 'Clear'
   | 'Clouds';
 
 interface IDaily {
   min: number;
   max: number;
+  weatherType: TWeatherTypes;
 }
 
 export interface IWeatherData {
@@ -44,6 +46,9 @@ export interface IForecastDaily {
     max: number;
     min: number;
   };
+  weather: Array<{
+    main: TWeatherTypes;
+  }>;
 }
 
 export interface IForecastData {

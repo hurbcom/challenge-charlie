@@ -22,6 +22,7 @@ const getForecast = async (
   const daily = data.daily.slice(0, 2).map(day => ({
     max: day.temp.max,
     min: day.temp.min,
+    weatherType: day.weather[0].main,
   }));
 
   return {

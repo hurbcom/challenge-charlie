@@ -5,14 +5,16 @@ import Today from './Today';
 import Tomorrow from './Tomorrow';
 
 import { Styles } from './styles';
-import { TWeatherEnum } from './types';
+import { ScaleEnum, TWeatherEnum } from './types';
 
 const Stages = () => {
   const [stageLoading, setStageLoading] = useState<boolean>(true);
 
+  const [scale, setScale] = useState<ScaleEnum>(ScaleEnum.C);
+
   const { geolocalization } = useLocation();
 
-  const { current, name, loading } = useWeather();
+  const { current, otherDays, name, loading } = useWeather();
 
   const currentLocation = name ?? `${geolocalization?.city ?? ''}, ${geolocalization?.state ?? ''}`;
 
@@ -36,6 +38,10 @@ const Stages = () => {
     return TWeatherEnum.Undefined;
   })() as TWeatherEnum;
 
+  const handleChangeScale = () => {
+    setScale(scale === ScaleEnum.C ? ScaleEnum.F : ScaleEnum.C);
+  };
+
   return (
     <Styles.Container>
       <Styles.CurrentLocation loading={stageLoading}>
@@ -44,16 +50,36 @@ const Stages = () => {
 
       <div className='content'>
         <Today
+          scale={scale}
           loading={stageLoading}
           humidity={current?.humidity}
           pressure={current?.pressure}
           temperature={current?.temperature}
           weatherColor={weatherColor}
           weatherType={current?.weatherType}
+          onChangeScale={handleChangeScale}
           wind={current?.wind}
         />
-        <Tomorrow loading={stageLoading} weatherColor={weatherColor} />
-        <AfterTomorrow loading={stageLoading} weatherColor={weatherColor} />
+
+        <Tomorrow
+          scale={scale}
+          loading={stageLoading}
+          weatherColor={weatherColor}
+          onChangeScale={handleChangeScale}
+          weatherType={otherDays?.[0].weatherType}
+          max={otherDays?.[0].max || 0}
+          min={otherDays?.[0].min || 0}
+        />
+
+        <AfterTomorrow
+          scale={scale}
+          loading={stageLoading}
+          weatherColor={weatherColor}
+          onChangeScale={handleChangeScale}
+          weatherType={otherDays?.[1].weatherType}
+          max={otherDays?.[1].max || 0}
+          min={otherDays?.[1].min || 0}
+        />
       </div>
     </Styles.Container>
   );

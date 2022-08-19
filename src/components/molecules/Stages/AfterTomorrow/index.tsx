@@ -1,19 +1,34 @@
 import React, { FC } from 'react';
 import { Icon, Temperature } from 'atoms';
+import sources from '../../../atoms/Icon/sources';
+import { ScaleEnum, TWeatherEnum } from '../types';
+import { TWeatherTypes } from '../Today/types';
 import { Styles } from './styles';
-import { TWeatherEnum } from '../types';
 
 interface IAfterTomorrow {
   loading: boolean;
   weatherColor?: TWeatherEnum;
+  weatherType?: TWeatherTypes;
+  onChangeScale?: () => void;
+  scale?: ScaleEnum;
+  max: number;
+  min: number;
 }
 
-const AfterTomorrow: FC<IAfterTomorrow> = ({ loading, weatherColor }) => {
+const AfterTomorrow: FC<IAfterTomorrow> = ({
+  loading,
+  weatherColor,
+  scale,
+  onChangeScale,
+  weatherType,
+  max,
+  min,
+}) => {
+  const iconName = weatherType as keyof typeof sources;
+
   return (
     <Styles.Container weatherColor={weatherColor}>
-      <div className='icon'>
-        <Icon name='sun-clouds' color='white' size={60} />
-      </div>
+      <div className='icon'>{iconName && <Icon name={iconName} color='white' size={60} />}</div>
 
       <div className='content'>
         <Styles.Title>Depois de Amanhã</Styles.Title>
@@ -23,7 +38,7 @@ const AfterTomorrow: FC<IAfterTomorrow> = ({ loading, weatherColor }) => {
         ) : (
           <div className='temperature'>
             <Styles.Element>
-              <Temperature temp={10} />
+              <Temperature temp={min} onChangeScale={onChangeScale} scale={scale} />
 
               <Styles.Label>min</Styles.Label>
             </Styles.Element>
@@ -31,7 +46,7 @@ const AfterTomorrow: FC<IAfterTomorrow> = ({ loading, weatherColor }) => {
             <div className='pipe'></div>
 
             <Styles.Element>
-              <Temperature temp={20} />
+              <Temperature temp={max} onChangeScale={onChangeScale} scale={scale} />
 
               <Styles.Label>max</Styles.Label>
             </Styles.Element>

@@ -1,8 +1,16 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { ToFahrenheit } from '../../../utils/convertTemperature';
+
+export enum ScaleEnum {
+  C = 1,
+  F = 2,
+}
 
 interface TemperatureProps {
   temp: number;
+  onChangeScale?: () => void;
+  scale?: ScaleEnum;
 }
 
 const Container = styled.div`
@@ -23,13 +31,17 @@ const Container = styled.div`
   }
 `;
 
-const Temperature: FC<TemperatureProps> = ({ temp }) => {
-  const scale = window ? '°C' : '°F';
+const Temperature: FC<TemperatureProps> = ({ temp, onChangeScale, scale }) => {
+  const isCelsius = scale === ScaleEnum.C;
+
+  const currentScale = isCelsius ? '°C' : '°F';
+
+  const currentTemperature = isCelsius ? temp : ToFahrenheit(temp);
 
   return (
-    <Container onClick={() => alert('hi')}>
-      {temp}
-      <span>{scale}</span>
+    <Container onClick={onChangeScale}>
+      {Math.round(currentTemperature)}
+      <span>{currentScale}</span>
     </Container>
   );
 };

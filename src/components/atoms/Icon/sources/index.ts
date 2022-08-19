@@ -17,6 +17,7 @@ export default {
   Rain: Rain,
   Snow: Snow,
   Atmosphere: Atmosphere,
+  Mist: Atmosphere,
   Clear: sunClouds,
   Clouds: Clouds,
 };
