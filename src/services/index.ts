@@ -1,18 +1,11 @@
-import axios from 'axios';
-import applicationConfig from './config';
-import getDynamicBackground from './getDynamicBackground';
-import getLocation from './getLocation';
-import getGeolocalization from './getGeolocalization';
-
-const client = axios.create({
-  headers: {
-    'Content-Type': applicationConfig.api.headers.contentType,
-  },
-});
+import dynamicBackground from './dynamicBackground';
+import geolocalization from './geolocalization';
+import location from './location';
+import weather from './weather';
 
 export default {
-  getDynamicBackground,
-  getGeolocalization,
-  getLocation,
-  client,
+  dynamicBackground,
+  geolocalization,
+  location,
+  weather,
 };

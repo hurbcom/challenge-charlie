@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Icon, Temperature } from 'atoms';
 import { Styles } from './styles';
 
-const Today = () => {
+interface IToday {
+  loading: boolean;
+}
+
+const Today: FC<IToday> = () => {
   return (
     <Styles.Container>
       <div className='icon'>

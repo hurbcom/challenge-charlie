@@ -50,7 +50,7 @@ const DynamicBackground: FC<Props> = ({ children }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
-    services
+    services.dynamicBackground
       .getDynamicBackground()
       .then((res: Response) => {
         const { images } = res;

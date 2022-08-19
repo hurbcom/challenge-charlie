@@ -11,7 +11,7 @@ function LocationContainer({ children }: PropsWithChildren): React.ReactElement 
 
   const getGeolocalization = async (lat: number, long: number) => {
     try {
-      const response = await services.getGeolocalization(lat, long);
+      const response = await services.geolocalization.getGeolocalization(lat, long);
 
       return setGeolocalization(response?.results[0].components);
     } catch (error) {
@@ -22,7 +22,7 @@ function LocationContainer({ children }: PropsWithChildren): React.ReactElement 
   const getLocation = async () => {
     try {
       // eslint-disable-next-line
-      const { coords } = (await services.getLocation.getLocation()) as GeolocationPosition;
+      const { coords } = (await services.location.getLocation()) as GeolocationPosition;
 
       setCoords(coords);
 

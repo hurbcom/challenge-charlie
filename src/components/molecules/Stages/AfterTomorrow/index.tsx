@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Icon, Temperature } from 'atoms';
 import { Styles } from './styles';
 
-const AfterTomorrow = () => {
+interface IAfterTomorrow {
+  loading: boolean;
+}
+
+const AfterTomorrow: FC<IAfterTomorrow> = ({ loading }) => {
   return (
     <Styles.Container>
       <div className='icon'>
@@ -12,21 +16,25 @@ const AfterTomorrow = () => {
       <div className='content'>
         <Styles.Title>Depois de Amanhã</Styles.Title>
 
-        <div className='temperature'>
-          <Styles.Element>
-            <Temperature temp={10} />
+        {loading ? (
+          <Icon name='loading' />
+        ) : (
+          <div className='temperature'>
+            <Styles.Element>
+              <Temperature temp={10} />
 
-            <Styles.Label>min</Styles.Label>
-          </Styles.Element>
+              <Styles.Label>min</Styles.Label>
+            </Styles.Element>
 
-          <div className='pipe'></div>
+            <div className='pipe'></div>
 
-          <Styles.Element>
-            <Temperature temp={20} />
+            <Styles.Element>
+              <Temperature temp={20} />
 
-            <Styles.Label>max</Styles.Label>
-          </Styles.Element>
-        </div>
+              <Styles.Label>max</Styles.Label>
+            </Styles.Element>
+          </div>
+        )}
       </div>
     </Styles.Container>
   );

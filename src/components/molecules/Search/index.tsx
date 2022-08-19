@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { TextField, Icon } from 'atoms';
-import { useLocation } from 'hooks';
+import { useWeather } from 'hooks';
 
 const Styles = {
-  Container: styled.div`
+  Container: styled.form`
     display: flex;
     align-items: center;
     width: 100%;
@@ -18,17 +18,18 @@ const Styles = {
 };
 
 const Search: FC = () => {
-  const [value, setValue] = useState<string | null>();
-  const { geolocalization } = useLocation();
+  const { getWeather } = useWeather();
 
-  useEffect(() => {
-    if (geolocalization?.city && !value) {
-      setValue(`${geolocalization?.suburb}, ${geolocalization?.city}`);
-    }
-  }, [geolocalization, value]);
+  const [value, setValue] = useState<string | null>();
+
+  const handleSubmit = (event: FormEvent) => {
+    value && getWeather(value)();
+
+    event.preventDefault();
+  };
 
   return (
-    <Styles.Container>
+    <Styles.Container onSubmit={handleSubmit}>
       <Styles.Icon>
         <Icon name='compass' size={40} color='#ccc' />
       </Styles.Icon>
@@ -36,8 +37,9 @@ const Search: FC = () => {
         type='text'
         placeholder='Digite aqui sua localização'
         value={value ?? ''}
-        /* eslint-disable-next-line no-console */
-        onChange={e => console.log(e.target.value)}
+        onChange={e => {
+          setValue(e.target.value);
+        }}
       />
     </Styles.Container>
   );
