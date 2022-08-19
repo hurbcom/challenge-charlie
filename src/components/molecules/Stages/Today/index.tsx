@@ -3,12 +3,23 @@ import React, { FC, memo } from 'react';
 import { Icon, Temperature } from 'atoms';
 import { Styles } from './styles';
 import { IToday } from './types';
+import sources from '../../../atoms/Icon/sources';
 
-const Today: FC<IToday> = ({ loading, humidity, pressure, temperature, weatherColor, wind }) => {
+const Today: FC<IToday> = ({
+  loading,
+  humidity,
+  pressure,
+  temperature,
+  weatherType = 'Clouds',
+  weatherColor,
+  wind,
+}) => {
+  const iconName = weatherType as keyof typeof sources;
+
   return (
     <Styles.Container weatherColor={weatherColor}>
       <div className='icon'>
-        <Icon name='sun-clouds' color='white' size={110} />
+        <Icon name={iconName} color='white' size={110} />
       </div>
 
       <div className='content'>

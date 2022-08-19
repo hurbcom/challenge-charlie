@@ -17,12 +17,11 @@ type TIcon = {
 
 const Icon = ({
   color = '',
-  name,
+  name = 'loading',
   size = 24,
   opacity = 1,
   className,
   onClick,
-
   ...props
 }: TIcon) => {
   const Component = useMemo(() => sources[name], [name]);
