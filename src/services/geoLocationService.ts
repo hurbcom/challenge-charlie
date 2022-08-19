@@ -2,6 +2,8 @@ import axios from "axios";
 import { ICoordinate } from "../interfaces/ICoordinate";
 import { IOpenCageResponse } from "../interfaces/IOpenCageResponse";
 
+const FALLBACK_LOCATION = "Rio de Janeiro";
+
 const FALLBACK_COORDINATES: ICoordinate = {
   latitude: -22.908333,
   longitude: -43.196388,
@@ -37,12 +39,20 @@ export const getLocationByCoordinate = async ({ latitude, longitude }: ICoordina
 
     if (data.results.length === 0) throw new Error();
 
-    const location = `${data.results[0].components.city}, ${data.results[0].components.state}`;
+    const info = data.results[0].components;
 
-    return location;
+    if (!info.state && !info.city && !info.municipality) return FALLBACK_LOCATION;
+
+    const firstLocale = (() => {
+      if (info.city) return `${info.city}, `;
+      if (info.municipality) return `${info.municipality}, `;
+      return "";
+    })();
+
+    return firstLocale + info.state;
   } catch (err) {
     console.error("Erro ao buscar localização no OpenCage.");
-    return "";
+    return FALLBACK_LOCATION;
   }
 };
 

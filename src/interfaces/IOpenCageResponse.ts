@@ -1,6 +1,7 @@
 export interface IOpenCageResponseResult {
   components: {
-    city: string;
+    municipality?: string;
+    city?: string;
     state: string;
   };
 }
