@@ -18,6 +18,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "*": ["types/*.d.ts"],
       "atoms": ["./src/components/atoms"],
       "molecules": ["./src/components/molecules"],
       "organisms": ["./src/components/organisms"],
@@ -27,5 +28,5 @@
       "hooks": ["./src/hooks"],
     }
   },
-  "include": ["src"]
+  "include": ["src", "**/*.d.ts"]
 }

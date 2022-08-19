@@ -5,9 +5,10 @@ import Today from './Today';
 import Tomorrow from './Tomorrow';
 
 import { Styles } from './styles';
+import { TWeatherEnum } from './types';
 
 const Stages = () => {
-  const [stageLoading, setStageLoading] = useState(true);
+  const [stageLoading, setStageLoading] = useState<boolean>(true);
 
   const { geolocalization } = useLocation();
 
@@ -21,6 +22,20 @@ const Stages = () => {
     }
   }, [current, loading]);
 
+  const weatherColor = (function getWeatherColor() {
+    if (current?.temperature) {
+      if (current.temperature < 15) {
+        return TWeatherEnum.Cold;
+      } else if (current.temperature > 35) {
+        return TWeatherEnum.Warm;
+      } else {
+        return TWeatherEnum.Normal;
+      }
+    }
+
+    return TWeatherEnum.Undefined;
+  })() as TWeatherEnum;
+
   return (
     <Styles.Container>
       <Styles.CurrentLocation loading={stageLoading}>
@@ -28,9 +43,17 @@ const Stages = () => {
       </Styles.CurrentLocation>
 
       <div className='content'>
-        <Today loading={stageLoading} />
-        <Tomorrow loading={stageLoading} />
-        <AfterTomorrow loading={stageLoading} />
+        <Today
+          loading={stageLoading}
+          humidity={current?.humidity}
+          pressure={current?.pressure}
+          temperature={current?.temperature}
+          weatherColor={weatherColor}
+          weatherType={current?.weatherType}
+          wind={current?.wind}
+        />
+        <Tomorrow loading={stageLoading} weatherColor={weatherColor} />
+        <AfterTomorrow loading={stageLoading} weatherColor={weatherColor} />
       </div>
     </Styles.Container>
   );

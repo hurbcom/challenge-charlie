@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
 import { Icon, Temperature } from 'atoms';
 import { Styles } from './styles';
+import { TWeatherEnum } from '../types';
 
 interface IAfterTomorrow {
   loading: boolean;
+  weatherColor?: TWeatherEnum;
 }
 
-const AfterTomorrow: FC<IAfterTomorrow> = ({ loading }) => {
+const AfterTomorrow: FC<IAfterTomorrow> = ({ loading, weatherColor }) => {
   return (
-    <Styles.Container>
+    <Styles.Container weatherColor={weatherColor}>
       <div className='icon'>
         <Icon name='sun-clouds' color='white' size={60} />
       </div>

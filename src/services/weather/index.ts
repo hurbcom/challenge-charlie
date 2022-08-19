@@ -25,7 +25,14 @@ const getForecast = async (
   }));
 
   return {
-    current: data.current,
+    current: {
+      humidity: data.current?.humidity,
+      temperature: data.current?.temp,
+      pressure: data.current?.pressure,
+      weatherType: data.current?.weather[0].main,
+      weather: data.current?.weather[0].description,
+      wind: data.current?.wind_speed,
+    },
     otherDays: daily,
   };
 };

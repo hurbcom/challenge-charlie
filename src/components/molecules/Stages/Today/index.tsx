@@ -1,14 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+
 import { Icon, Temperature } from 'atoms';
 import { Styles } from './styles';
+import { IToday } from './types';
 
-interface IToday {
-  loading: boolean;
-}
-
-const Today: FC<IToday> = ({ loading }) => {
+const Today: FC<IToday> = ({ loading, humidity, pressure, temperature, weatherColor, wind }) => {
   return (
-    <Styles.Container>
+    <Styles.Container weatherColor={weatherColor}>
       <div className='icon'>
         <Icon name='sun-clouds' color='white' size={110} />
       </div>
@@ -22,37 +20,29 @@ const Today: FC<IToday> = ({ loading }) => {
           <div className='values'>
             <div className='temperature'>
               <Styles.Element>
-                <Temperature temp={10} />
+                <Temperature temp={temperature ?? 0} />
 
-                <Styles.Label>min</Styles.Label>
-              </Styles.Element>
-
-              <div className='pipe'></div>
-
-              <Styles.Element>
-                <Temperature temp={20} />
-
-                <Styles.Label>max</Styles.Label>
+                <Styles.Label>atual</Styles.Label>
               </Styles.Element>
             </div>
 
             <div className='temperature'>
               <Styles.TextCenter>
-                <Styles.Text fontSize='16px'>4 km/h NE</Styles.Text>
+                <Styles.Text fontSize='16px'>{wind} km/h NE</Styles.Text>
                 <Styles.Text>Vento</Styles.Text>
               </Styles.TextCenter>
 
               <div className='pipe'></div>
 
               <Styles.TextCenter>
-                <Styles.Text fontSize='16px'>10%</Styles.Text>
+                <Styles.Text fontSize='16px'>{humidity}%</Styles.Text>
                 <Styles.Text>Humidade</Styles.Text>
               </Styles.TextCenter>
 
               <div className='pipe'></div>
 
               <Styles.TextCenter>
-                <Styles.Text fontSize='16px'>1018hPa</Styles.Text>
+                <Styles.Text fontSize='16px'>{pressure}hPa</Styles.Text>
                 <Styles.Text>Pressão</Styles.Text>
               </Styles.TextCenter>
             </div>
@@ -63,4 +53,4 @@ const Today: FC<IToday> = ({ loading }) => {
   );
 };
 
-export default Today;
+export default memo(Today);
