@@ -22,4 +22,5 @@ export interface WeatherContextPayload {
   current: IForecast['current'] | undefined;
   otherDays: IForecast['otherDays'] | undefined;
   name: string | undefined;
+  loading: boolean;
 }

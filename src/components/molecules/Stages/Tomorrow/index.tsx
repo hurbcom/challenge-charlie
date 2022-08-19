@@ -6,7 +6,7 @@ interface ITomorrow {
   loading: boolean;
 }
 
-const Tomorrow: FC<ITomorrow> = () => {
+const Tomorrow: FC<ITomorrow> = ({ loading }) => {
   return (
     <Styles.Container>
       <div className='icon'>
@@ -15,22 +15,25 @@ const Tomorrow: FC<ITomorrow> = () => {
 
       <div className='content'>
         <Styles.Title>Amanhã</Styles.Title>
+        {loading ? (
+          <Icon name='loading' size={40} color='white' />
+        ) : (
+          <div className='temperature'>
+            <Styles.Element>
+              <Temperature temp={10} />
 
-        <div className='temperature'>
-          <Styles.Element>
-            <Temperature temp={10} />
+              <Styles.Label>min</Styles.Label>
+            </Styles.Element>
 
-            <Styles.Label>min</Styles.Label>
-          </Styles.Element>
+            <div className='pipe'></div>
 
-          <div className='pipe'></div>
+            <Styles.Element>
+              <Temperature temp={20} />
 
-          <Styles.Element>
-            <Temperature temp={20} />
-
-            <Styles.Label>max</Styles.Label>
-          </Styles.Element>
-        </div>
+              <Styles.Label>max</Styles.Label>
+            </Styles.Element>
+          </div>
+        )}
       </div>
     </Styles.Container>
   );

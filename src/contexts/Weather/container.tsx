@@ -6,6 +6,7 @@ import { IWeather, WeatherContextPayload } from './types';
 import { WeatherProvider } from '.';
 
 function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
+  const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState<IWeather>();
 
   const { coords } = useLocation();
@@ -13,12 +14,19 @@ function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
   const getWeather = useCallback(
     (location: string) => async () => {
       if (location) {
+        setLoading(true);
+
         try {
           const data = await services.weather.getWeather(location);
 
           setWeather(data);
+
+          setLoading(false);
+
           return;
         } catch (error) {
+          setLoading(false);
+
           return error;
         }
       }
@@ -28,13 +36,19 @@ function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
 
   const getForecast = useCallback(
     (latitude: number, longitude: number) => async () => {
+      setLoading(true);
+
       try {
         const data = await services.weather.getForecast(latitude, longitude);
 
         setWeather(data);
 
+        setLoading(false);
+
         return;
       } catch (error) {
+        setLoading(false);
+
         return error;
       }
     },
@@ -53,8 +67,9 @@ function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
       current: weather?.current,
       otherDays: weather?.otherDays,
       name: weather?.name,
+      loading,
     }),
-    [getWeather, weather],
+    [getWeather, weather, loading],
   );
 
   return <WeatherProvider value={payload}>{children}</WeatherProvider>;

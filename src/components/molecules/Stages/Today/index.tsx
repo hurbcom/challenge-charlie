@@ -6,7 +6,7 @@ interface IToday {
   loading: boolean;
 }
 
-const Today: FC<IToday> = () => {
+const Today: FC<IToday> = ({ loading }) => {
   return (
     <Styles.Container>
       <div className='icon'>
@@ -16,44 +16,48 @@ const Today: FC<IToday> = () => {
       <div className='content'>
         <Styles.Title>Hoje</Styles.Title>
 
-        <div className='values'>
-          <div className='temperature'>
-            <Styles.Element>
-              <Temperature temp={10} />
+        {loading ? (
+          <Icon name='loading' size={40} color='white' />
+        ) : (
+          <div className='values'>
+            <div className='temperature'>
+              <Styles.Element>
+                <Temperature temp={10} />
 
-              <Styles.Label>min</Styles.Label>
-            </Styles.Element>
+                <Styles.Label>min</Styles.Label>
+              </Styles.Element>
 
-            <div className='pipe'></div>
+              <div className='pipe'></div>
 
-            <Styles.Element>
-              <Temperature temp={20} />
+              <Styles.Element>
+                <Temperature temp={20} />
 
-              <Styles.Label>max</Styles.Label>
-            </Styles.Element>
+                <Styles.Label>max</Styles.Label>
+              </Styles.Element>
+            </div>
+
+            <div className='temperature'>
+              <Styles.TextCenter>
+                <Styles.Text fontSize='16px'>4 km/h NE</Styles.Text>
+                <Styles.Text>Vento</Styles.Text>
+              </Styles.TextCenter>
+
+              <div className='pipe'></div>
+
+              <Styles.TextCenter>
+                <Styles.Text fontSize='16px'>10%</Styles.Text>
+                <Styles.Text>Humidade</Styles.Text>
+              </Styles.TextCenter>
+
+              <div className='pipe'></div>
+
+              <Styles.TextCenter>
+                <Styles.Text fontSize='16px'>1018hPa</Styles.Text>
+                <Styles.Text>Pressão</Styles.Text>
+              </Styles.TextCenter>
+            </div>
           </div>
-
-          <div className='temperature'>
-            <Styles.TextCenter>
-              <Styles.Text fontSize='16px'>4 km/h NE</Styles.Text>
-              <Styles.Text>Vento</Styles.Text>
-            </Styles.TextCenter>
-
-            <div className='pipe'></div>
-
-            <Styles.TextCenter>
-              <Styles.Text fontSize='16px'>10%</Styles.Text>
-              <Styles.Text>Humidade</Styles.Text>
-            </Styles.TextCenter>
-
-            <div className='pipe'></div>
-
-            <Styles.TextCenter>
-              <Styles.Text fontSize='16px'>1018hPa</Styles.Text>
-              <Styles.Text>Pressão</Styles.Text>
-            </Styles.TextCenter>
-          </div>
-        </div>
+        )}
       </div>
     </Styles.Container>
   );

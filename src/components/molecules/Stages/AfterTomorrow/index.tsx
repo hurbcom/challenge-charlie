@@ -17,7 +17,7 @@ const AfterTomorrow: FC<IAfterTomorrow> = ({ loading }) => {
         <Styles.Title>Depois de Amanhã</Styles.Title>
 
         {loading ? (
-          <Icon name='loading' />
+          <Icon name='loading' size={40} color='white' />
         ) : (
           <div className='temperature'>
             <Styles.Element>
