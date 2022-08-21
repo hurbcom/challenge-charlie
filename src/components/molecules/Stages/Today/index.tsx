@@ -19,7 +19,7 @@ const Today: FC<IToday> = ({
   const iconName = weatherType as keyof typeof sources;
 
   return (
-    <Styles.Container weatherColor={weatherColor} loading={loading}>
+    <Styles.Container weatherColor={weatherColor} loading={loading ? 1 : 0}>
       <div className='icon'>
         {iconName && !loading && <Icon name={iconName} color='white' size={110} />}
       </div>

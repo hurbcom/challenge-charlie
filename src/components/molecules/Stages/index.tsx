@@ -8,7 +8,7 @@ import { Styles } from './styles';
 import { ScaleEnum, TWeatherEnum } from './types';
 
 const Stages = () => {
-  const [stageLoading, setStageLoading] = useState<boolean>(true);
+  const [stageLoading, setStageLoading] = useState(true);
 
   const [scale, setScale] = useState<ScaleEnum>(ScaleEnum.C);
 
@@ -44,7 +44,7 @@ const Stages = () => {
 
   return (
     <Styles.Container>
-      <Styles.CurrentLocation loading={stageLoading}>
+      <Styles.CurrentLocation loading={stageLoading ? 1 : 0}>
         Resultados de: {currentLocation}
       </Styles.CurrentLocation>
 

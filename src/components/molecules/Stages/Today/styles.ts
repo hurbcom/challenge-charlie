@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { TWeatherEnum } from '../types';
 
 export const Styles = {
-  Container: styled.div<{ weatherColor?: TWeatherEnum; loading?: boolean }>`
+  Container: styled.div<{ weatherColor?: TWeatherEnum; loading?: boolean | number }>`
     display: flex;
     align-items: center;
     background-image: linear-gradient(
