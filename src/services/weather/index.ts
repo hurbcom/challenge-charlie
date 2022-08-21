@@ -1,8 +1,9 @@
 import client from '../../api';
 import { TLocation } from '../location/types';
+import { forecastSerialize, weatherSerialize } from './serializer';
 import { IForecast, IForecastData, IWeatheData, IWeather } from './types';
 
-const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
+export const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 const getForecast = async (
   latitude: TLocation['latitude'],
@@ -19,23 +20,7 @@ const getForecast = async (
     },
   });
 
-  const daily = data.daily.slice(0, 2).map(day => ({
-    max: day.temp.max,
-    min: day.temp.min,
-    weatherType: day.weather[0].main,
-  }));
-
-  return {
-    current: {
-      humidity: data.current?.humidity,
-      temperature: data.current?.temp,
-      pressure: data.current?.pressure,
-      weatherType: data.current?.weather[0].main,
-      weather: data.current?.weather[0].description,
-      wind: data.current?.wind_speed,
-    },
-    otherDays: daily,
-  };
+  return forecastSerialize(data);
 };
 
 const getWeather = async (location: string): Promise<IWeather> => {
@@ -51,10 +36,7 @@ const getWeather = async (location: string): Promise<IWeather> => {
 
   const forecast = await getForecast(data.coord.lat, data.coord.lon);
 
-  return {
-    ...forecast,
-    name: data.name,
-  };
+  return weatherSerialize(forecast, data);
 };
 
 export default { getWeather, getForecast };

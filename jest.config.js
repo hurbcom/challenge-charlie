@@ -13,7 +13,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./test/setup.ts'],
-  setupFiles: ['jest-prop-type-error'],
+  setupFiles: ['jest-prop-type-error', './test/helpers.ts'],
   moduleFileExtensions: ['js', 'json', 'ts', 'tsx', 'node'],
   coverageDirectory: 'coverage',
   coverageReporters: ['json-summary', 'text', 'html', 'lcov'],

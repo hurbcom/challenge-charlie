@@ -48,6 +48,7 @@ export interface IForecastDaily {
   };
   weather: Array<{
     main: TWeatherTypes;
+    description: string;
   }>;
 }
 

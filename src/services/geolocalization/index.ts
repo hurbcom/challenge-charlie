@@ -1,7 +1,7 @@
 import client from '../../api';
 import { TLocation } from '../location/types';
 
-const API_BASE_URL = 'https://api.opencagedata.com/geocode/v1/json';
+export const API_BASE_URL = 'https://api.opencagedata.com/geocode/v1/json';
 
 const getGeolocalization = async (
   latitude: TLocation['latitude'],

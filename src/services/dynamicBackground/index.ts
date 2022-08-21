@@ -1,8 +1,8 @@
 import client from '../../api';
 
-const PROXY_BASE_URL = 'https://thingproxy.freeboard.io/fetch';
+export const PROXY_BASE_URL = 'https://thingproxy.freeboard.io/fetch';
 
-const API_BASE_URL = 'https://www.bing.com/HPImageArchive.aspx';
+export const API_BASE_URL = 'https://www.bing.com/HPImageArchive.aspx';
 
 const getDynamicBackground = async () => {
   try {

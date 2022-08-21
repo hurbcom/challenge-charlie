@@ -1,1 +1,1 @@
-export const ToFahrenheit = (temp: number) => (temp * 9) / 5 + 32;
+export const ToFahrenheit = (temperature: number) => (temperature * 9) / 5 + 32;
