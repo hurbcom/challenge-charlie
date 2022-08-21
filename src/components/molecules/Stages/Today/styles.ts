@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import { TWeatherEnum } from '../types';
 
 export const Styles = {
-  Container: styled.div<{ weatherColor?: TWeatherEnum }>`
+  Container: styled.div<{ weatherColor?: TWeatherEnum; loading?: boolean }>`
     display: flex;
     align-items: center;
     background-image: linear-gradient(
       to right,
-      rgb(${({ weatherColor }) => weatherColor} / 85%),
-      rgb(${({ weatherColor }) => weatherColor} / 50%)
+      rgb(${({ weatherColor }) => weatherColor} / 90%),
+      rgb(${({ weatherColor }) => weatherColor} / 65%)
     );
     justify-content: space-between;
     overflow: hidden;
     position: relative;
-    height: 200px;
+    height: ${({ loading }) => (loading ? '100px' : '200px')};
     padding: 0 8px;
     transition: all ease 0.3s;
 

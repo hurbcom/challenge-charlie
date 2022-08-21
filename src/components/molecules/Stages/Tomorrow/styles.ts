@@ -7,8 +7,8 @@ export const Styles = {
     align-items: center;
     background-image: linear-gradient(
       to right,
-      rgb(${({ weatherColor }) => weatherColor} / 70%),
-      rgb(${({ weatherColor }) => weatherColor} / 40%)
+      rgb(${({ weatherColor }) => weatherColor} / 65%),
+      rgb(${({ weatherColor }) => weatherColor} / 50%)
     );
     justify-content: space-between;
     overflow: hidden;
