@@ -31,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-const Temperature: FC<TemperatureProps> = ({ temp, onChangeScale, scale }) => {
+const Temperature: FC<TemperatureProps> = ({ temp, onChangeScale, scale = ScaleEnum.C }) => {
   const isCelsius = scale === ScaleEnum.C;
 
   const currentScale = isCelsius ? '°C' : '°F';
@@ -39,7 +39,7 @@ const Temperature: FC<TemperatureProps> = ({ temp, onChangeScale, scale }) => {
   const currentTemperature = isCelsius ? temp : ToFahrenheit(temp);
 
   return (
-    <Container onClick={onChangeScale}>
+    <Container role='presentation' onClick={onChangeScale}>
       {Math.round(currentTemperature)}
       <span>{currentScale}</span>
     </Container>

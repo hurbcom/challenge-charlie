@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { lightTheme } from '../../theme';
+import { lightTheme } from '../../../theme';
 import { Card, Center } from 'atoms';
 import { LocationContainer, WeatherContainer } from 'contexts';
 import { DynamicBackground, Search, Stages } from 'molecules';
