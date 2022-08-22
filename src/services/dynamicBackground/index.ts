@@ -1,6 +1,6 @@
 import client from '../../api';
 
-export const PROXY_BASE_URL = 'http://api.allorigins.win/get?url=';
+export const PROXY_BASE_URL = 'https://api.allorigins.win/get?url=';
 
 export const API_BASE_URL =
   'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';

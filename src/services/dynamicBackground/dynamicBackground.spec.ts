@@ -38,7 +38,7 @@ const fixtures = {
 //   });
 
 //   it('should have PROXY_BASE_URL equal the value', () => {
-//     expect(PROXY_BASE_URL).toEqual('http://api.allorigins.win/get?url=');
+//     expect(PROXY_BASE_URL).toEqual('https://api.allorigins.win/get?url=');
 //   });
 
 //   it('should have API_BASE_URL equal the value', () => {
