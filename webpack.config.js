@@ -19,14 +19,14 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'public'),
+      directory: path.join(__dirname, 'dist'),
     },
     hot: true,
   },
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'),
+      template: path.resolve(__dirname, 'src', 'template', 'index.html'),
     }),
     new Dotenv(),
   ].filter(Boolean),

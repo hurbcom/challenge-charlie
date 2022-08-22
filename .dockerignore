@@ -1,0 +1,9 @@
+node_modules
+*.todo
+build
+dist
+.dockerignore
+.eslintignore
+.git
+Dockerfile
+docker-compose.yml
