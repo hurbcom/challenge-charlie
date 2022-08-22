@@ -9,8 +9,6 @@ const getDynamicBackground = async () => {
   try {
     const { data } = await client.get(`${PROXY_BASE_URL}${encodeURIComponent(API_BASE_URL)}`);
 
-    console.log(data.contents);
-
     return JSON.parse(data.contents);
   } catch (error) {
     return error;
