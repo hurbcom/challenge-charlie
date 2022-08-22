@@ -1,59 +1,138 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+<h1 align="center">
+   Challenge-Charlie | Hurb
+</h1>
 
-[[English](README.md) | [Portuguese](README.pt.md)]
-
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
-
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
-
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
-
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
-
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
-
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
-
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
-
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
-
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
-
-## Requirements
-
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
-
-## Evaluation criteria
-
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
-
-## Doubts
-
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
-
-Godspeed! ;)
+<h4 align="center"> 
+	 ⛅ ☔⛄ Microsite para Previsão do Tempo
+</h4>
 
 <p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-autor">Autor</a> • 
+ <a href="#user-content--licença">Licença</a>
 </p>
+
+## 💻 Sobre o projeto
+
+☔ O microsite Previsão do Tempo é um microsite responsivo que mostra a previsão do tempo para o dia corrente e para os próximos dois dias, de acordo com o nome de uma localidade informada pelo usuário.
+
+Além da previsão do tempo essa aplicação também apresenta outras informações, como: direção e velocidade do vento, umidade e pressão, referentes ao dia de hoje.
+
+---
+
+## ⚙️ Funcionalidades
+
+- Busca de previsão do tempo por nome de uma localidade ou por geolocalização do usuário,
+- Previsão do Tempo para Hoje,
+- Previsão do Tempo para Amanhã e Depois de Amanhã,
+- Temperaturas em Celsius ou em Fahrenheit,
+- Outras informações como : Direção e Velocidade do Vento, Humidade e Pressão Atmosférica, referentes ao corrente e aos próximos dias.
+
+---
+
+## 🚀 Como executar o projeto
+
+### 🎏Pré-requisitos
+
+- Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Docker](https://www.docker.com/). Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+#### 🧭 Rodando a aplicação na sua máquina
+
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:carlos-novaes/challenge-charlie.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd challenge-charlie
+
+# Instale as dependências
+$ yarn
+
+# Execute a aplicação em modo de desenvolvimento
+$ yarn start
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+
+
+```
+
+#### 🧭 Rodando a aplicação dentro de um container Docker
+
+Para esta aplicação foram criados no Docker um `stage` para produção e um para desenvolvimento.
+
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:carlos-novaes/challenge-charlie.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd challenge-charlie
+
+# Para esta aplicação foram criados stage dev e prod
+
+#Crie as imagem docker
+#para o stage de desenvolvimento
+$ docker build -t challenge-charlie:dev .
+#para o stage de produção
+$ docker build -f Dockerfile.prod -t challenge-charlie:prod .
+
+#Uma vez que as imagens estão criadas, pode-se rodar os containers:
+#para o stage de desenvolvimento:
+$ docker compose -f docker-compose.yml up --build
+# No stage de desenvolvimento a aplicação será aberta na porta:3000 - acesse http://localhost:3000
+#para o stage de produção:
+$ docker compose -f docker-compose.prod.yml up --build
+# No stage de produção aplicação será aberta na porta:1337 - acesse http://localhost:1337
+
+```
+
+---
+
+#### 🧭 Rodando os testes da aplicação
+
+A aplicação contém alguns testes unitários.
+
+```bash
+# Para executar os testes utilize
+$ yarn test
+```
+
+## 🛠 Tecnologias
+
+As seguintes tecnologias foram usadas no desenvolvimento do projeto:
+
+- **[React](https://reactjs.org/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[Styled Components](https://styled-components.com/)**
+- **[Axios](https://axios-http.com/docs/intro)**
+- **[Jest](https://jestjs.io/pt-BR/)**
+
+#### APIs utilizadas
+
+- [Open Weather](http://api.openweathermap.org) -API utilizada para Previsão do Tempo
+- [Open Cage](https://api.opencagedata.com) - API utilizada para converter latitude e longitude em uma localidade.
+- [API do BING](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR) - API utilizada para extrair a URL da imagem de fundo da página.
+
+#### **Utilitários**
+
+- Editor: **[Visual Studio Code](https://code.visualstudio.com/)**
+
+---
+
+## Autor
+
+### <sub><b>Carlos Novaes</b></sub></a> <a href="https://github.com/carlos-novaes" title="Git Hub">🚀</a>
+
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito com ❤️ por Carlos Novaes
+
+---

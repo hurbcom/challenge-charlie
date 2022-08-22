@@ -19,7 +19,7 @@ export const WeatherInfo = ({
   description,
 }: WeatherInfoProps) => {
   return (
-    <WeatherInfoContainer isOpen={isOpen}>
+    <WeatherInfoContainer isOpen={isOpen} data-testid="weather-info">
       <TopInfo isOpen={isOpen} day={day} temperature={temperature} />
       {isOpen && (
         <React.Fragment>
