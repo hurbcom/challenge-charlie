@@ -11,6 +11,7 @@
  <a href="#-funcionalidades">Funcionalidades</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-melhorias">Melhorias</a> • 
  <a href="#-autor">Autor</a> • 
  <a href="#user-content--licença">Licença</a>
 </p>
@@ -120,6 +121,16 @@ As seguintes tecnologias foram usadas no desenvolvimento do projeto:
 #### **Utilitários**
 
 - Editor: **[Visual Studio Code](https://code.visualstudio.com/)**
+
+---
+
+## Melhorias
+
+No futuro, algumas das seguintes melhorias poderiam ser feitas no projeto.
+
+- Expandir a CLI de criação de componentes e serviços.
+- Aumentar a cobertura de testes unitários.
+- Armazenar as últimas pesquisas do usuário para otimizar a usabilidade da aplicação.
 
 ---
 
