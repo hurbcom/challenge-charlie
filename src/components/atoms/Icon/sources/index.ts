@@ -5,6 +5,8 @@ import Drizzle from './drizzle';
 import Loading from './loading';
 import Rain from './rain';
 import Snow from './snow';
+import Clear from './clean';
+import Smoke from './smoke';
 import sunClouds from './sunClouds';
 import Thunderstorm from './thunderstorm';
 
@@ -12,12 +14,13 @@ export default {
   compass: Compass,
   loading: Loading,
   'sun-clouds': sunClouds,
-  Thunderstorm: Thunderstorm,
-  Drizzle: Drizzle,
-  Rain: Rain,
-  Snow: Snow,
-  Atmosphere: Atmosphere,
+  Thunderstorm,
+  Drizzle,
+  Rain,
+  Snow,
+  Atmosphere,
   Mist: Atmosphere,
-  Clear: sunClouds,
-  Clouds: Clouds,
+  Smoke,
+  Clear,
+  Clouds,
 };
