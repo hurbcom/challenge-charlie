@@ -4,6 +4,7 @@ import { lightTheme } from '../../../theme';
 import { Card, Center } from 'atoms';
 import { LocationContainer, WeatherContainer } from 'contexts';
 import { DynamicBackground, Search, Stages } from 'molecules';
+import { ErrorBoundary } from 'organisms';
 
 const Styles = {
   Header: styled.div`
@@ -21,25 +22,27 @@ const Styles = {
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <LocationContainer>
-        <WeatherContainer>
-          <DynamicBackground>
-            <Center>
-              <Card>
-                <Styles.Header>
-                  <Search />
-                </Styles.Header>
-                <Styles.Body>
-                  <Stages />
-                </Styles.Body>
-                <Styles.Footer />
-              </Card>
-            </Center>
-          </DynamicBackground>
-        </WeatherContainer>
-      </LocationContainer>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={lightTheme}>
+        <LocationContainer>
+          <WeatherContainer>
+            <DynamicBackground>
+              <Center>
+                <Card>
+                  <Styles.Header>
+                    <Search />
+                  </Styles.Header>
+                  <Styles.Body>
+                    <Stages />
+                  </Styles.Body>
+                  <Styles.Footer />
+                </Card>
+              </Center>
+            </DynamicBackground>
+          </WeatherContainer>
+        </LocationContainer>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 
