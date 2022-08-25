@@ -12,7 +12,8 @@
     "@sentry/tracing": "^7.11.1",
     "axios": "^0.27.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

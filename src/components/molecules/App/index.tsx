@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Toaster } from 'react-hot-toast';
 import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../../theme';
 import { Card, Center } from 'atoms';
@@ -38,6 +39,8 @@ const App: FC = () => {
                   <Styles.Footer />
                 </Card>
               </Center>
+
+              <Toaster />
             </DynamicBackground>
           </WeatherContainer>
         </LocationContainer>

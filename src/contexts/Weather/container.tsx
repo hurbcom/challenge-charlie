@@ -1,4 +1,5 @@
 import React, { memo, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import services from 'services';
 import { useLocation } from 'hooks';
 
@@ -27,6 +28,8 @@ function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
         } catch (error) {
           setLoading(false);
 
+          toast.error('Não encontramos o termo buscado');
+
           return error;
         }
       }
@@ -48,6 +51,8 @@ function WeatherContainer({ children }: PropsWithChildren): React.ReactElement {
         return;
       } catch (error) {
         setLoading(false);
+
+        toast.error('Não encontramos o termo buscado');
 
         return error;
       }

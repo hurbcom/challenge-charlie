@@ -1,4 +1,5 @@
 import React, { memo, PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import services from 'services';
 import { Geolocalization, LocationContextPayload } from './types';
 import { LocationProvider } from '.';
@@ -30,6 +31,8 @@ function LocationContainer({ children }: PropsWithChildren): React.ReactElement 
 
       return;
     } catch (error) {
+      toast.error('Acesso negado a Geolocalização, faça uma busca.');
+
       return error;
     }
   };
