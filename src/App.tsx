@@ -1,10 +1,12 @@
+import Background from "./components/Background/Background";
+import WeatherPage from "./pages/Weather/Weather";
 
 function App() {
-  return (
-    <div className="App">
-        <p>Learn React</p>
-    </div>
-  );
+    return (
+        <Background>
+            <WeatherPage />
+        </Background>
+    );
 }
 
 export default App;

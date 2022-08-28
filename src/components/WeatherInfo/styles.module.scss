@@ -1,0 +1,77 @@
+.weatherInfo {
+    font-weight: 700;
+    .weatherBlock {
+        min-height: 100px;
+        justify-content: right;
+        display: flex;
+        > div {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 20px;
+            p {
+                color: white;
+                font-size: 22px;
+            }
+
+            .day {
+                text-transform: uppercase;
+            }
+
+            h1.title {
+                font-size: 26px;
+                color: white;
+                margin: 20px 0;
+            }
+
+            p.details {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .todayWeather {
+        > img {
+            width: 40%;
+            max-width: 300px;
+            margin-right: auto;
+        }
+    }
+
+    .tomorrowWeather {
+
+    }
+
+    @media screen and (max-width: 768px) {
+        .weatherBlock {
+            > div {
+                width: 55%;
+                > p {
+                    font-size: 18px;
+                }
+            }
+        }
+        .todayWeather {
+            padding: 20px 0;
+        }
+    }
+}
+
+:global(.hot) {
+    .todayWeather { background-color: rgba($color: #ff0000, $alpha: .5); }
+    .tomorrowWeather { background-color: #ff0000; }
+    .afterTomorrowWeather { background-color: #920000; }
+ }
+
+ :global(.medium) {
+    .todayWeather { background-color: rgba($color: #f5de0f, $alpha: .5); }
+    .tomorrowWeather { background-color: #f5de0f; }
+    .afterTomorrowWeather { background-color: #c9b503; }
+ }
+
+ :global(.cold) {
+    .todayWeather { background-color: rgba($color: #4d4dfc, $alpha: .5); }
+    .tomorrowWeather { background-color: #4d4dfc; }
+    .afterTomorrowWeather { background-color: #1010ce; }
+ }

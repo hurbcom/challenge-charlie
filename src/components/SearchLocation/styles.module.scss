@@ -1,0 +1,23 @@
+.input {
+    background-image: url('./compass.svg');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-size: 35px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 15px 50px 15px;
+    color: #8e8e8e;
+    font-weight: 500;
+}
+
+.input:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 768px) {
+    .input {
+        font-size: 20px;
+    }
+}

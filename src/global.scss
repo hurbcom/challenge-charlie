@@ -1,0 +1,27 @@
+html, body, #app {
+    height: 100vh;
+}
+
+body *, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body *, input {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+
+    .opacity {
+        background-color: rgba($color: #808080, $alpha: .7);
+        &.hot { background-color: rgba($color: #ff0000, $alpha: .5); }
+        &.medium { background-color: rgba($color: #f5de0f, $alpha: .5); }
+        &.cold { background-color: rgba($color: #4d4dfc, $alpha: .5); }
+    }
+}
