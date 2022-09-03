@@ -18,6 +18,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "docker:dev": "docker-compose up",
+    "docker:prod": "docker-compose -f docker-compose-prod.yml up",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
