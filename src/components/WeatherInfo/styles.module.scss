@@ -14,7 +14,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-left: 20px;
+            margin-left: 60px;
 
             @media screen and (max-width: 768px) {
                 width: 100%;
@@ -52,8 +52,8 @@
     .todayWeather {
         > img {
             width: 40%;
-            max-width: 400px;
-            margin-right: auto;
+            max-height: 30vh;
+            margin: 40px auto;
         }
 
         @media screen and (max-width: 768px) {
