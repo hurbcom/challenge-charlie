@@ -22,7 +22,7 @@ const SearchLocation: React.FC = () => {
             <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Pesquisar por ciddade"
+                placeholder="Pesquisar por cidade"
                 className={styles.input}
                 aria-label="location"
                 type="text"
