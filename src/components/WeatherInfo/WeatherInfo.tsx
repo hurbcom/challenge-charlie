@@ -1,7 +1,6 @@
 import React from "react";
 import { useWeather } from "../../providers/weather";
 import styles from "./styles.module.scss";
-import sun from "./sun.svg";
 
 const WeatherInfo: React.FC = () => {
     const { weather } = useWeather();
@@ -12,7 +11,7 @@ const WeatherInfo: React.FC = () => {
     return (
         <div className={`${styles.weatherInfo}`}>
             <div className={`${styles.todayWeather} ${styles.weatherBlock} ${today.bgColor}`}>
-                <img src={sun} alt="" />
+                <img src={`/assets/${today.iconId}.svg`} alt="" />
                 <div>
                     <p className={styles.day}>Hoje</p>
                     <p>{today.temp}ºC</p>
