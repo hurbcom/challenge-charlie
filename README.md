@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Challenge Charlie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Breve descrição
+Aplicação que mostra a temperatura da localidade colocada no input usando uma API externa.
 
-## Available Scripts
+## Como rodar o projeto
+```
+git clone https://github.com/wkiane/challenge-charlie
 
-In the project directory, you can run:
+cd challenge-charlie
 
-### `yarn start`
+yarn
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Como rodar o projeto com docker (desenvolvimento)
+```
+git clone https://github.com/wkiane/challenge-charlie
 
-### `yarn test`
+cd challenge-charlie
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+docker-compose up
+```
 
-### `yarn build`
+## Como rodar o projeto com docker (produção)
+```
+git clone https://github.com/wkiane/challenge-charlie
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+cd challenge-charlie
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+docker-compose -f docker-compose-prod.yml up
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Dependências:
+- [typescript](https://github.com/microsoft/TypeScript) - Superset Javascript que adciona tipagem e outras vantagens
+- [sass](https://github.com/sass/sass) - Pré-processador CSS
+- [axios](https://github.com/axios/axios) - Biblioteca usada para fazer requisições API
+- [allorigins](https://allorigins.win/) - Serviço usado para autorizar resposta da API do BING
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Melhorias
+O projeto não tem cobertura de testes, é algo que desejo melhorar no profissionalmente.
