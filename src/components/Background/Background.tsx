@@ -1,4 +1,5 @@
 import { useBackground } from "../../providers/background";
+import { useWeather } from "../../providers/weather";
 
 type Props = {
     children:
@@ -7,11 +8,12 @@ type Props = {
   };
 
 const Background = ({ children }: Props) => {
+    const { weather } = useWeather();
     const { background } = useBackground();
 
     return (
-        <div className="app" style={{ backgroundImage: `url(${background})` }}>
-            <div className="opacity">
+        <div className='app' style={{ backgroundImage: `url(${background})` }}>
+            <div className={`opacity ${weather?.today.bgColor ?? ''}`}>
                 {children}
             </div>
         </div>

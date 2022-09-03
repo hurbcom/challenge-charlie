@@ -1,18 +1,34 @@
 .weatherInfo {
     font-weight: 700;
     .weatherBlock {
-        min-height: 100px;
+        min-height: 180px;
         justify-content: right;
         display: flex;
+
+        @media screen and (max-width: 768px) {
+            min-height: 120px;
+        }
+
         > div {
             width: 50%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin-left: 20px;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
             p {
                 color: white;
-                font-size: 22px;
+                font-size: 2em;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 1.4em;
+                }
             }
 
             .day {
@@ -20,13 +36,15 @@
             }
 
             h1.title {
-                font-size: 26px;
+                text-transform: capitalize;
+                font-size: 2.5em;
                 color: white;
                 margin: 20px 0;
             }
 
             p.details {
-                font-size: 16px;
+                font-size: 1.5em;
+                line-height: 40px;
             }
         }
     }
@@ -34,44 +52,40 @@
     .todayWeather {
         > img {
             width: 40%;
-            max-width: 300px;
+            max-width: 400px;
             margin-right: auto;
         }
-    }
 
-    .tomorrowWeather {
-
-    }
-
-    @media screen and (max-width: 768px) {
-        .weatherBlock {
-            > div {
-                width: 55%;
-                > p {
-                    font-size: 18px;
-                }
-            }
-        }
-        .todayWeather {
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px 0;
+            > img {
+                margin: 0 auto 20px;
+            }
+            > div {
+                margin: 0 auto;
+                text-align: center;
+            }
         }
     }
 }
 
 :global(.hot) {
-    .todayWeather { background-color: rgba($color: #ff0000, $alpha: .5); }
-    .tomorrowWeather { background-color: #ff0000; }
-    .afterTomorrowWeather { background-color: #920000; }
- }
+    &.todayWeather { background-color: rgba($color: #ff0000, $alpha: .5); }
+    &.tomorrowWeather { background-color: rgba($color: #ff0000, $alpha: .7); }
+    &.afterTomorrowWeather { background-color: rgba($color: #ff0000, $alpha: .9); }
+}
 
- :global(.medium) {
-    .todayWeather { background-color: rgba($color: #f5de0f, $alpha: .5); }
-    .tomorrowWeather { background-color: #f5de0f; }
-    .afterTomorrowWeather { background-color: #c9b503; }
- }
+:global(.medium) {
+    &.todayWeather { background-color: rgba($color: #f5de0f, $alpha: .5); }
+    &.tomorrowWeather { background-color: rgba($color: #f5de0f, $alpha: .7); }
+    &.afterTomorrowWeather { background-color: rgba($color: #f5de0f, $alpha: .9); }
+}
 
- :global(.cold) {
-    .todayWeather { background-color: rgba($color: #4d4dfc, $alpha: .5); }
-    .tomorrowWeather { background-color: #4d4dfc; }
-    .afterTomorrowWeather { background-color: #1010ce; }
- }
+:global(.cold) {
+    &.todayWeather { background-color: rgba($color: #4d4dfc, $alpha: .5); }
+    &.tomorrowWeather { background-color: rgba($color: #4d4dfc, $alpha: .7); }
+    &.afterTomorrowWeather { background-color: rgba($color: #1010ce, $alpha: .8); }
+}

@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { getGeolocationFromAPI } from "../services/getGeolocationFromAPI";
+import { useWeather } from "./weather";
 
 type LocationContextType = {
     location: string;
@@ -17,6 +18,7 @@ const LocationContext = React.createContext<LocationContextType>(
 export const LocationProvider = ({ children }: { children: ReactNode }) => {
     const [latLong, setLatLong] = useState<LatLongType | null>(null);
     const [location, setLocation] = useState("");
+    const { getWeather } = useWeather()
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -41,6 +43,7 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
             }
         }
         getBrowserAddress();
+        getWeather(latLong)
     }, [latLong]);
 
     return (

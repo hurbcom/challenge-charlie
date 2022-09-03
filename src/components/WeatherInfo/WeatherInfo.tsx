@@ -1,32 +1,38 @@
 import React from "react";
+import { useWeather } from "../../providers/weather";
 import styles from "./styles.module.scss";
 import sun from "./sun.svg";
 
 const WeatherInfo: React.FC = () => {
+    const { weather } = useWeather();
+    if(!weather) return <></>
+
+    const { today, tomorrow, afterTomorrow } = weather
+
     return (
         <div className={`${styles.weatherInfo}`}>
-            <div className={`${styles.todayWeather} ${styles.weatherBlock}`}>
-                <img width={32} src={sun} alt="" />
+            <div className={`${styles.todayWeather} ${styles.weatherBlock} ${today.bgColor}`}>
+                <img src={sun} alt="" />
                 <div>
                     <p className={styles.day}>Hoje</p>
-                    <p>32*C</p>
-                    <h1 className={styles.title}>Ensolarado</h1>
+                    <p>{today.temp}ºC</p>
+                    <h1 className={styles.title}>{today.description}</h1>
 
-                    <p className={styles.details}>Vento: NO 6.4km/h</p>
-                    <p className={styles.details}>Humidade: 78%</p>
-                    <p className={styles.details}>Pressão: 100 3hPA</p>
+                    <p className={styles.details}>Vento: {today.wind.direction} {today.wind.speed}km/h</p>
+                    <p className={styles.details}>Humidade: {today.humidity}%</p>
+                    <p className={styles.details}>Pressão: {today.pressure}hPA</p>
                 </div>
             </div>
-            <div className={`${styles.tomorrowWeather} ${styles.weatherBlock}`}>
+            <div className={`${styles.tomorrowWeather} ${styles.weatherBlock} ${today.bgColor}`}>
                 <div>
                     <p className={styles.day}>AMANHÃ</p>
-                    <p>25*C</p>
+                    <p>{tomorrow.temp}ºC</p>
                 </div>
             </div>
-            <div className={`${styles.afterTomorrowWeather} ${styles.weatherBlock}`}>
+            <div className={`${styles.afterTomorrowWeather} ${styles.weatherBlock} ${today.bgColor}`}>
                 <div>
                     <p className={styles.day}>DEPOIS DE AMANHÃ</p>
-                    <p>22*C</p>
+                    <p>{afterTomorrow.temp}ºC</p>
                 </div>
             </div>
         </div>
