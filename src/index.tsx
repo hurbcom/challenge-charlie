@@ -7,7 +7,7 @@ import { BrowserTracing } from '@sentry/tracing';
 
 import App from './components/molecules/App';
 
-import './theme/reset.css';
+import './theme/theme.css';
 
 Sentry.init({
   // for real life use as environment variable separated by development and production
