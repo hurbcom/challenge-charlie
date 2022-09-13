@@ -8,12 +8,6 @@ import { DynamicBackground, Search, Stages } from 'molecules';
 import { ErrorBoundary } from 'organisms';
 
 const Styles = {
-  Header: styled.div`
-    display: flex;
-    background-color: #fff;
-    height: 80px;
-    padding: 0 18px;
-  `,
   Body: styled.div``,
   Footer: styled.div`
     background-color: #fff;
@@ -30,9 +24,9 @@ const App: FC = () => {
             <DynamicBackground>
               <Center>
                 <Card>
-                  <Styles.Header>
+                  <header className='flex bg-white px-4 h-20'>
                     <Search />
-                  </Styles.Header>
+                  </header>
                   <Styles.Body>
                     <Stages />
                   </Styles.Body>
