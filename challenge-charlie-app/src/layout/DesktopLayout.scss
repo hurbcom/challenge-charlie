@@ -1,0 +1,14 @@
+.charlie-desktop-layout-container
+{
+    width: 100%;
+    display: flex;
+
+    .charlie-desktop-layout-display
+    {
+        flex: 7;
+    }
+    .charlie-desktop-layout-info
+    {
+        flex: 5
+    }
+}

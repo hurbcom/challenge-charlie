@@ -1,0 +1,83 @@
+@use "../../style.scss" as style;
+
+.charlie-weather-info-container {
+    background-color: map-get(style.$color-pallete, "primary");
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-size: 1vw;
+
+    .charlie-weather-info-location
+    {
+        display: flex;
+        padding: .25em;
+        align-items: center;
+        font-size: 2em;
+        background-color: map-get(style.$color-pallete, "beige" );
+        
+        .item {
+            color: map-get(style.$grayscale-pallete , "primary" );
+        }
+    }
+    .charlie-weather-info-overview
+    {
+        display: flex;
+        padding: 1em;
+        font-size: 1em;
+        
+        img {
+            flex: 6;
+            padding: 0 2em;
+        }
+
+        .infos
+        {
+            flex: 6;
+            font-size: 2em;
+            color: map-get(style.$color-pallete, "beige" );
+            font-weight: bold;
+
+            .hoje {
+                margin-top: 0em;
+            }
+            
+            .weather {
+                margin-top: 1em;
+            }
+
+            .main {
+                margin-top: 1em;
+                .measure {
+                    font-size: 0.66em;
+                }
+            }
+        }
+    }
+    .charlie-weather-info-tomorrow
+    {
+        font-size: 1.5em;
+        background-color: map-get(style.$lighten-pallete, "primary");
+        .tomorrow
+        {
+            text-align: right;
+            color: map-get(style.$color-pallete, "beige" );
+            font-weight: bold;
+            padding: 0em 2em 1em 0em;
+        }
+
+    }
+    .charlie-weather-info-after
+    {
+        font-size: 1.5em;
+        background-color: map-get(style.$darken-pallete, "primary");
+        height: 100%;
+        .after
+        {
+            text-align: right;
+            color: map-get(style.$color-pallete, "beige" );
+            font-weight: bold;
+            margin: 0em 2em 1em 0em;
+        }
+    }
+}
