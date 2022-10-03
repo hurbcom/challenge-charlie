@@ -13,8 +13,7 @@ export default class PortableLayout extends React.Component<IPortableLayoutProps
   constructor(props: IPortableLayoutProps) {
     super(props);
 
-    this.state = {
-    }
+    this.state = {}
   }
 
   public render() {

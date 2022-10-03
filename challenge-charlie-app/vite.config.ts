@@ -11,7 +11,8 @@ export default defineConfig({
     proxy: {
       "/HPImageArchive.aspx": "https://www.bing.com",
       "/th": "https://www.bing.com",
-      "/data/2.5/weather": "https://api.openweathermap.org"
+      "/data/2.5": "https://api.openweathermap.org",
+      "/geo/1.0": "https://api.openweathermap.org",
     }
   },
   plugins: [react()]

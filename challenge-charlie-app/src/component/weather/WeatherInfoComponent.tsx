@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Icon from '../common/icon/Icon';
+import { OpenWeatherApi } from './open-weather/OpenWeatherApi';
 import './WeatherInfoComponent.scss'
 
 export interface IWeatherInfoComponentProps {
@@ -9,11 +10,13 @@ export interface IWeatherInfoComponentState {
 }
 
 export default class WeatherInfoComponent extends React.Component<IWeatherInfoComponentProps, IWeatherInfoComponentState> {
+  
+  private readonly _openWeatherApi: OpenWeatherApi;
+
   constructor(props: IWeatherInfoComponentProps) {
     super(props);
-
-    this.state = {
-    }
+    this._openWeatherApi = OpenWeatherApi.factory('772920597e4ec8f00de8d376dfb3f094');
+    this.state = {}
   }
 
   public render() {
