@@ -1,0 +1,27 @@
+$color-pallete: (
+    "primary": #FBCC04,
+    "secondary": #05B4FB,
+    "beige": #EFF4D7,
+    "sushi": #94C44C,
+);
+
+$lighten-pallete: (
+    "primary": lighten(map-get($color-pallete, "primary"), 20%),
+    "secondary": lighten(map-get($color-pallete, "secondary"), 20%),
+    "beige": lighten(map-get($color-pallete, "beige"), 20%),
+    "sushi": lighten(map-get($color-pallete, "sushi"), 20%),
+);
+
+$darken-pallete: (
+    "primary": darken(map-get($color-pallete, "primary"), 10%),
+    "secondary": darken(map-get($color-pallete, "secondary"), 10%),
+    "beige": darken(map-get($color-pallete, "beige"), 10%),
+    "sushi": darken(map-get($color-pallete, "sushi"), 10%),
+);
+
+$grayscale-pallete: (
+    "primary": grayscale(map-get($color-pallete, "primary")),
+    "secondary": grayscale(map-get($color-pallete, "secondary")),
+    "beige": grayscale(map-get($color-pallete, "beige")),
+    "sushi": grayscale(map-get($color-pallete, "sushi")),
+);
