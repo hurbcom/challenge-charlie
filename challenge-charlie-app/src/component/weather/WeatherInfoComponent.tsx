@@ -7,6 +7,7 @@ export interface IWeatherInfoComponentProps {
 }
 
 export interface IWeatherInfoComponentState {
+  location?: string
 }
 
 export default class WeatherInfoComponent extends React.Component<IWeatherInfoComponentProps, IWeatherInfoComponentState> {
@@ -15,8 +16,20 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
 
   constructor(props: IWeatherInfoComponentProps) {
     super(props);
-    this._openWeatherApi = OpenWeatherApi.factory('772920597e4ec8f00de8d376dfb3f094');
+    this._openWeatherApi = OpenWeatherApi.factory();
     this.state = {}
+  }
+
+  private async _getInfo()
+  {
+    //now
+    //geo
+    //prediction
+  }
+
+  async componentDidMount() {
+     const _res = await this._openWeatherApi.getDirectGeocoding("rio de janeiro");
+     this.setState({location: `${_res[0].name}, ${_res[0].country}`})
   }
 
   public render() {
@@ -25,7 +38,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
 
         <div className='charlie-weather-info-location'>
           <Icon className='item' style={{marginRight: ".5em"}} src='icons/110837_compass_icon.svg' width="50em"/>
-          <div className='item'>Location, Location</div>
+          <div className='item'>{this.state.location ?? "Location, Location"}</div>
         </div>
 
         <div className='charlie-weather-info-overview'>

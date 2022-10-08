@@ -11,8 +11,21 @@ export default defineConfig({
     proxy: {
       "/HPImageArchive.aspx": "https://www.bing.com",
       "/th": "https://www.bing.com",
-      "/data/2.5": "https://api.openweathermap.org",
-      "/geo/1.0": "https://api.openweathermap.org",
+      "/data/2.5": {
+        target: "https://api.openweathermap.org",
+        changeOrigin: true,
+        rewrite: (path) => path + "&appid=772920597e4ec8f00de8d376dfb3f094"
+      },
+      "/geo/1.0": {
+        target: "https://api.openweathermap.org",
+        changeOrigin: true,
+        rewrite: (path) => path + "&appid=772920597e4ec8f00de8d376dfb3f094"
+      },
+      "/img/wn": {
+        target: "http://openweathermap.org",
+        changeOrigin: true,
+        rewrite: (path) => path
+      },
     }
   },
   plugins: [react()]

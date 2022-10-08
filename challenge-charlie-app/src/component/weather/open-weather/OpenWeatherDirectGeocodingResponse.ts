@@ -6,6 +6,7 @@ export interface OpenWeatherDirectGeocodingResponse {
     lon:     number;
     country: string;
     state:   string;
+    local_names: any;
 }
 
 export type OpenWeatherDirectGeocodingResponses = OpenWeatherDirectGeocodingResponse[];

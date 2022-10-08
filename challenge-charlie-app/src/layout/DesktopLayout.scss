@@ -1,7 +1,12 @@
+@use '../style.scss' as style;
+
 .charlie-desktop-layout-container
 {
     width: 100%;
     display: flex;
+
+    border: .33vw solid map-get(style.$color_pallete, $key: 'primary');
+    border-radius: .75vw;
 
     .charlie-desktop-layout-display
     {
