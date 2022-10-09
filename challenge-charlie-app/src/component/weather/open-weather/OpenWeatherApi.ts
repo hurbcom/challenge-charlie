@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import { OpenWeather5DayCast } from './OpenWeather5DayCastResponse';
 import { OpenWeatherCurrentCast } from './OpenWeatherCurrentCastResponse';
 import { OpenWeatherDirectGeocodingResponses } from './OpenWeatherDirectGeocodingResponse';
 
@@ -24,7 +25,7 @@ export class OpenWeatherApi
         return _res.data;
     }
   
-    async get5DayForecast(city: string, lang='pt') : Promise<OpenWeatherCurrentCast>
+    async get5DayForecast(city: string, lang='pt') : Promise<OpenWeather5DayCast>
     {
         const _res =  await axios.default.get(`/data/2.5/forecast?q=${city}&lang=${lang}`);
         return _res.data;

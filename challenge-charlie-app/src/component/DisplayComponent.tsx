@@ -23,7 +23,7 @@ export default class DisplayComponent extends React.Component<IDisplayComponentP
     const _classes =`${this.props.className ?? ''} charlie-display-container`;
     const _style: React.CSSProperties = {
       backgroundImage: this.props.backgroundSrc,
-      backgroundSize: 'cover',
+      backgroundSize: '100% 100%',
     };
     return (
       <div className={_classes} style={_style}>
