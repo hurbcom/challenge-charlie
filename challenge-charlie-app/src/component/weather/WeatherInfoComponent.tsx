@@ -6,7 +6,7 @@ import { OpenWeatherApi } from './open-weather/OpenWeatherApi';
 import './WeatherInfoComponent.scss'
 import { OpenWeatherInfoModel } from './WeatherInfoModel';
 
-import {minBy, sum, uniqBy} from 'lodash';
+import {debounce, minBy, sum, uniqBy} from 'lodash';
 
 export interface IWeatherInfoComponentProps {
 }
@@ -50,8 +50,8 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
           <Select 
             className='info-select'
             placeholder={_placeholder}
-            onChange={this._selectChangeHandler} 
-            onInputChange={this._inputChangeHandler}
+            onChange={this._selectChangeHandler.bind(this)} 
+            onInputChange={this._inputChangeHandler.bind(this)}
             options={this.state.options} 
           />
         </div>
@@ -112,31 +112,32 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   }>)
   {
     if(newValue) {
-      // const _info = await this._getInfo(newValue.value);
-      // this.setState({...this.state, contextCity: newValue?.value, info: _info});
-      console.log(newValue + 'info');
+      const _info = await this._getInfo(newValue.value);
+      this.setState({...this.state, contextCity: newValue?.value, info: _info});
     }
   }
 
   private async _setGeoState(query: string)
   {
-    try {
-      const _resGeo = await this._openWeatherApi.getDirectGeocoding(query);
-      if(_resGeo?.length > 0)
-      {
-        this.setState({
-          ...this.state, 
-          options: _resGeo.map(g => {
-            return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
-          })
-        });
-      }
-    } catch(e) {}
+    debounce(async (query: string) => {
+        try {
+          const _resGeo = await this._openWeatherApi.getDirectGeocoding(query);
+          if(_resGeo?.length > 0)
+          {
+            this.setState({
+              ...this.state, 
+              options: _resGeo.map(g => {
+                return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
+              })
+            });
+          }
+        } catch(e) {}
+
+    }, 300)(query);
   }
 
   private _inputChangeHandler(newValue: string, actionMeta: InputActionMeta) {
-    // this._setGeoState(newValue);
-    console.log(newValue);
+    this._setGeoState(newValue);
   }
 
   private async _getInfo(place: string)
