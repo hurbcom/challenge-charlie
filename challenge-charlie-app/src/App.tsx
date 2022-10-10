@@ -5,16 +5,19 @@ import WeatherInfoComponent from './component/weather/WeatherInfoComponent';
 import { BingApi } from './component/bing/BingApi';
 import React from 'react';
 import PortableLayout from './layout/PortableLayout';
+import { debounce } from 'lodash';
 
 export interface IAppLayoutProps {
 }
 
 export interface IAppLayoutState {
   isPortable?: boolean;
+  layout?: React.ReactNode;
 }
 class App extends React.Component<IAppLayoutProps, IAppLayoutState>
 {
-
+  private _display = <BingDisplayComponent mkt={'pt-BR'}></BingDisplayComponent>;
+  private _info = <WeatherInfoComponent></WeatherInfoComponent>
   constructor(props: IAppLayoutProps)
   {
     super(props);
@@ -24,22 +27,37 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
 
   componentDidMount(): void
   {
-    
+    window.addEventListener('resize', this.debouncedHandleResize(this._display, this._info).bind(this));
+    const isPortable = window.matchMedia('(max-width: 600px)').matches;
+
+    this.setState({
+      isPortable,
+      layout: this.state.isPortable ? 
+        <PortableLayout infoComponent={this._info} /> :
+        <DesktopLayout displayComponent={this._display} infoComponent={this._info} />
+    });
   }
 
-  render(): React.ReactNode {
+ debouncedHandleResize(display: React.ReactNode, info: React.ReactNode) {
+   return debounce(() => {
+        const isPortable = window.matchMedia('(max-width: 600px)').matches;
+        this.setState({
+          isPortable,
+          layout: isPortable ? 
+                    <PortableLayout infoComponent={info} /> :
+                    <DesktopLayout displayComponent={display} infoComponent={info} />
+        })
+    }, 1000);  
+ } 
 
+    // window.removeEventListener('resize', debouncedHandleResize)
+
+  render(): React.ReactNode {
       this._setBodyBackground();
-  
-      const _mkt = 'pt-BR';
-      const _display = <BingDisplayComponent mkt={_mkt}></BingDisplayComponent>;
-      const _info = <WeatherInfoComponent></WeatherInfoComponent>
-      const _layout = this.state.isPortable ? 
-              <PortableLayout infoComponent={_info} /> :
-              <DesktopLayout displayComponent={_display} infoComponent={_info} />;
+
       return (
         <div>
-          {_layout}
+          {this.state.layout}
         </div>
       );
   }

@@ -10,7 +10,8 @@ export interface IBingDisplayComponentProps {
 }
 
 export interface IBingDisplayComponentState {
-    backgroundSrc?: string
+    backgroundSrc?: string;
+    copyright?: string;
 }
 
 export default class BingDisplayComponent extends React.Component<IBingDisplayComponentProps, IBingDisplayComponentState> {
@@ -23,7 +24,7 @@ export default class BingDisplayComponent extends React.Component<IBingDisplayCo
   async componentDidMount(): Promise<void> {
       try {
         const data: BingImageArchiveResponse = await BingApi.getImageArchive((this.props.format ?? 'js'), this.props.mkt);
-        this.setState({backgroundSrc: `url('${data.images[0].url}')`})
+        this.setState({backgroundSrc: `url('${data.images[0].url}')`, copyright: data.images[0].copyright})
       } catch (error) {
         this.setState({backgroundSrc: 'none'})
       }
@@ -31,7 +32,7 @@ export default class BingDisplayComponent extends React.Component<IBingDisplayCo
 
   public render() {
     return (
-       <DisplayComponent backgroundSrc={this.state.backgroundSrc}></DisplayComponent>
+       <DisplayComponent backgroundSrc={this.state.backgroundSrc} copyright={this.state.copyright}></DisplayComponent>
     );
   }
 }

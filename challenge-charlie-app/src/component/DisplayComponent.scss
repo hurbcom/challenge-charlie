@@ -1,6 +1,22 @@
+@use '../style.scss' as style;
+
 .charlie-display-container
 {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: flex-end;
     background-color: aqua;
     width: 100%;
     height: 100%;
+
+    .display-copyright
+    {
+        font-size: .5vw;
+        margin: .25vw;
+        text-align: center;
+        color: map-get(style.$color-pallete, "beige" );
+        background-color: map-get(style.$grayscale-pallete, "secondary" );
+        opacity: 75%;
+    }
 }

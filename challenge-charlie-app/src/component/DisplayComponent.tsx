@@ -4,10 +4,11 @@ import './DisplayComponent.scss';
 export interface IDisplayComponentProps {
    className?: string
    backgroundSrc?: string
+   copyright?: string;
 }
 
 export interface IDisplayComponentState {
-    backgroundSrc?: string
+    backgroundSrc?: string;
 }
 
 export default class DisplayComponent extends React.Component<IDisplayComponentProps, IDisplayComponentState> {
@@ -27,7 +28,7 @@ export default class DisplayComponent extends React.Component<IDisplayComponentP
     };
     return (
       <div className={_classes} style={_style}>
-        <br/>
+        <div className='display-copyright'>{this.props.copyright}</div>
       </div>
     );
   }
