@@ -22,7 +22,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   private readonly _openWeatherApi: OpenWeatherApi;
   private _baseOptions = [
     {
-      value: "Rio de Janeiro,Rio de Janeiro,BR", label: "Rio de Janeiro, BR"
+      value: "Rio de Janeiro,Rio de Janeiro,BR", label: "Rio de Janeiro, Rio de Janeiro, BR"
     },
   ];
 
@@ -37,6 +37,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
 
   async componentDidMount() {
     await this._setGeoState(this.state.contextCity);
+    await this._setNavGeo();
     await this._setSchedule(5);
   }
 
@@ -50,9 +51,10 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
           <Select 
             className='info-select'
             placeholder={_placeholder}
+            defaultValue={this.state.options[0]}
             onChange={this._selectChangeHandler.bind(this)} 
             onInputChange={this._inputChangeHandler.bind(this)}
-            options={this.state.options} 
+            options={this.state.options}
           />
         </div>
 
@@ -90,14 +92,47 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     );
   }
 
+  private _setNavGeo()
+  {
+    try {
+      const success = async  (position: GeolocationPosition) => {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        
+        const _resGeo = await this._openWeatherApi.getReverseGeocoding(latitude, longitude);
+        if(_resGeo?.length > 0)
+        {
+          this.setState({
+            ...this.state,
+            contextCity: `${_resGeo[0].name},${_resGeo[0].state},${_resGeo[0].country}`,
+            options: _resGeo.map(g => {
+              return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
+            })
+          });
+        }
+      }
+      const error = () => {
+        throw new Error('Unable to retrieve your location');
+      }
+    
+      if (!navigator.geolocation) {
+        throw new Error('Geolocation is not supported by your browser');
+      } else {
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   private async _setSchedule(eachMinute: number)
   {
     const _info = await this._getInfo(this.state.contextCity);
-    this.setState({info: _info});
+    this.setState({...this.state, info: _info});
 
     setInterval(async () => {
       const _info = await this._getInfo(this.state.contextCity);
-      this.setState({info: _info});
+      this.setState({...this.state, info: _info});
     }, 1000 * 60 * eachMinute);
   }
 

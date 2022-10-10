@@ -2,6 +2,7 @@ import * as axios from 'axios';
 import { OpenWeather5DayCast } from './OpenWeather5DayCastResponse';
 import { OpenWeatherCurrentCast } from './OpenWeatherCurrentCastResponse';
 import { OpenWeatherDirectGeocodingResponses } from './OpenWeatherDirectGeocodingResponse';
+import { OpenWeatherReverseGeocodingResponses } from './OpenWeatherReverseGeocodingResponse';
 
 export class OpenWeatherApi
 {
@@ -19,7 +20,7 @@ export class OpenWeatherApi
         return _res.data;
     }
 
-    async getCurrentWeatherByGeolocation(lat: number, lon: number, lang='pt') : Promise<OpenWeatherCurrentCast>
+    async getCurrentWeatherByGeolocation(lat: number, lon: number, lang='pt') : Promise<OpenWeatherDirectGeocodingResponses>
     {
         const _res =  await axios.default.get(`/data/2.5/weather?lat=${lat}&lon=${lon}&lang=${lang}`);
         return _res.data;
@@ -34,6 +35,12 @@ export class OpenWeatherApi
     async getDirectGeocoding(qcity: string, limit=20) : Promise<OpenWeatherDirectGeocodingResponses>
     {
         const _res =  await axios.default.get(`/geo/1.0/direct?q=${qcity}&limit=${limit}`);
+        return _res.data;
+    }
+  
+    async getReverseGeocoding(lat: number, lon: number, limit=20) : Promise<OpenWeatherReverseGeocodingResponses>
+    {
+        const _res =  await axios.default.get(`/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}`);
         return _res.data;
     }
   

@@ -29,13 +29,17 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
   {
     window.addEventListener('resize', this.debouncedHandleResize(this._display, this._info).bind(this));
     const isPortable = window.matchMedia('(max-width: 600px)').matches;
-
+    
     this.setState({
       isPortable,
       layout: this.state.isPortable ? 
         <PortableLayout infoComponent={this._info} /> :
         <DesktopLayout displayComponent={this._display} infoComponent={this._info} />
     });
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('resize', this.debouncedHandleResize(this._display, this._info).bind(this));
   }
 
  debouncedHandleResize(display: React.ReactNode, info: React.ReactNode) {
