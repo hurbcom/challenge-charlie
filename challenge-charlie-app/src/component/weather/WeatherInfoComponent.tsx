@@ -8,6 +8,8 @@ import { OpenWeatherInfoModel } from './WeatherInfoModel';
 
 import {debounce, minBy, sum, uniqBy} from 'lodash';
 import { HexWeatherGradient } from './weather-gradient';
+import { OpenWeatherReverseGeocodingResponse } from './open-weather/OpenWeatherReverseGeocodingResponse';
+import { OpenWeatherDirectGeocodingResponse } from './open-weather/OpenWeatherDirectGeocodingResponse';
 
 
 export interface IWeatherInfoComponentProps {
@@ -76,7 +78,10 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
         </div>
 
         <div className='charlie-weather-info-overview' style={{backgroundColor: this.state.currentGradient?.base}}>
-          <Icon src={`/img/wn/${this.state.info?.weather.icon}@2x.png`} width="120em" />
+          <Icon className='overview-icon' 
+            src={this.state.info?.weather.icon ? `/img/wn/${this.state.info?.weather.icon}@2x.png` : `/icons/weather/2969391_geolocation_gps_location_position_icon.svg`}
+            style={this.state.info?.weather.icon ? {maxWidth: '50em'} : {maxWidth: '10em'}}
+          />
           <div className="infos">
             <div className="hoje">
               <div className="label">Hoje</div>
@@ -109,6 +114,13 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     );
   }
 
+  private _getGeoOptionPattern(geo: OpenWeatherDirectGeocodingResponse | OpenWeatherReverseGeocodingResponse)
+  {
+    return {
+      value: `${geo.name}${geo?.state ? ',' + geo.state : ''}${geo?.country ? ',' + geo.country : ''}`,
+      label: `${geo.name}${geo?.state ? ', ' + geo.state : ''}${geo?.country ? ', ' + geo.country : ''}`
+    }
+  }
   private _setNavGeo()
   {
     return new Promise<{contextCity: string, options: {value: string, label:string}[]}>((res, rej) => {
@@ -124,7 +136,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
             res({
               contextCity: `${_resGeo[0].name},${_resGeo[0].state},${_resGeo[0].country}`,
               options: _resGeo.map(g => {
-                return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
+                return this._getGeoOptionPattern(g);
               })
             });
           }
@@ -184,7 +196,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
             if(_resGeo?.length > 0)
             {
               res(_resGeo.map(g => {
-                return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
+                return this._getGeoOptionPattern(g);
               }));
             }
           } catch(e) {
