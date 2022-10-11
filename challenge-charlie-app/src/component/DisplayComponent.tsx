@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Icon from './common/icon/Icon';
 import './DisplayComponent.scss';
 
 export interface IDisplayComponentProps {
@@ -28,6 +29,10 @@ export default class DisplayComponent extends React.Component<IDisplayComponentP
     };
     return (
       <div className={_classes} style={_style}>
+        <div className='display-logo'>
+          <Icon style={{maxWidth: '5vw'}} src='/2682824_horizont_morning_sun_sunrise_weather_icon.svg'></Icon>
+          <div className='logo-label'>Charlie</div>
+        </div>
         <div className='display-copyright'>{this.props.copyright}</div>
       </div>
     );
