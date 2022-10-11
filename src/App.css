@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: red;
+}
+
+.search-form {
+    padding: 0.5rem;
+}
+
+.input {
+    display: flex;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.search-input {
+    border: 0;
+    width: 90%;
+    margin-left: 0.5rem;
+}
+
+.options-town {
+    margin-top: 0.5rem;
+}
+
+.item-list:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+.weather-forecast {
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+}
+
+.current-weather {
+    display: flex;
+    padding: 1rem;
+}
+
+.weather-icon {
+    width: 12rem;
+    height: 12rem;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    margin-left: 1rem;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+
+.more-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.tommorow {
+    background-color: yellow;
+}
