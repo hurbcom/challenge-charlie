@@ -72,7 +72,7 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
         .then(data => {
           document.body.style.background =  'rgba(0, 0, 0, 0.5)';
           document.body.style.backgroundImage = `url('${data.images[0].url}')`;
-          document.body.style.backgroundSize = 'cover';
+          document.body.style.backgroundSize =  'cover';
           document.body.style.backgroundBlendMode = 'darken';
       });
     }

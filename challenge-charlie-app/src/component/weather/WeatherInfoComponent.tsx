@@ -198,7 +198,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   }
 
   private _inputChangeHandler(newValue: string, actionMeta: InputActionMeta) {
-    this._setGeoState(newValue).then(options => this.setState({...this.state, options}));
+    if(newValue) this._setGeoState(newValue).then(options => this.setState({...this.state, options}));
   }
 
   private async _getInfo(place: string)
