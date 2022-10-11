@@ -7,6 +7,8 @@ import './WeatherInfoComponent.scss'
 import { OpenWeatherInfoModel } from './WeatherInfoModel';
 
 import {debounce, minBy, sum, uniqBy} from 'lodash';
+import { HexWeatherGradient } from './weather-gradient';
+
 
 export interface IWeatherInfoComponentProps {
 }
@@ -15,11 +17,18 @@ export interface IWeatherInfoComponentState {
   contextCity: string,
   options: {value: string, label: string}[]
   info?: OpenWeatherInfoModel;
+  currentGradient?: HexWeatherGradient;
 }
 
 export default class WeatherInfoComponent extends React.Component<IWeatherInfoComponentProps, IWeatherInfoComponentState> {
   
   private readonly _openWeatherApi: OpenWeatherApi;
+  private readonly _gradients = {
+    null: new HexWeatherGradient('#9FA6A5', '#D9CEC5', '#3D403F'),
+    cold: new HexWeatherGradient('#05B4FB', '#50CAFB', '#0490C7'),
+    warm: new HexWeatherGradient('#FBCC04', '#FBDB50', '#C7A304'),
+    hot: new HexWeatherGradient('#FA8605', '#FBAB50', '#C76C04'),
+  };
   private _baseOptions = [
     {
       value: "Rio de Janeiro,Rio de Janeiro,BR", label: "Rio de Janeiro, Rio de Janeiro, BR"
@@ -31,14 +40,22 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     this._openWeatherApi = OpenWeatherApi.factory();
     this.state = {
       contextCity: this._baseOptions[0].value,
-      options: this._baseOptions
+      options: this._baseOptions,
+      currentGradient: this._gradients.null,
     };
   }
 
   async componentDidMount() {
-    await this._setGeoState(this.state.contextCity);
-    await this._setNavGeo();
-    await this._setSchedule(5);
+    const _nav = await this._setNavGeo();
+    const _res = await this._setSchedule(_nav?.contextCity ?? this.state.contextCity, 5);
+    const currentGradient = this._setBackgroundColorGradient(_res.info.today.tempC ?? 25);
+    this.setState({
+      ...this.state,
+      contextCity: _nav?.contextCity ?? this.state.contextCity,
+      options: (_nav?.options ?? _res?.options) ?? this.state.options,
+      info: _res.info,
+      currentGradient
+    });
   }
 
   public render() {
@@ -58,7 +75,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
           />
         </div>
 
-        <div className='charlie-weather-info-overview'>
+        <div className='charlie-weather-info-overview' style={{backgroundColor: this.state.currentGradient?.base}}>
           <Icon src={`/img/wn/${this.state.info?.weather.icon}@2x.png`} width="120em" />
           <div className="infos">
             <div className="hoje">
@@ -76,13 +93,13 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
           </div>
         </div>
 
-        <div className='charlie-weather-info-tomorrow'>
+        <div className='charlie-weather-info-tomorrow' style={{backgroundColor: this.state.currentGradient?.lighter}}>
           <div className="tomorrow">
                 <div className="label">Amanhã</div>
                 <div className="value">{this.state.info?.tomorrow.tempC.toFixed(0)} ºC</div>
           </div>
         </div>
-        <div className='charlie-weather-info-after'>
+        <div className='charlie-weather-info-after' style={{backgroundColor: this.state.currentGradient?.darker}}>
         <div className="after">
                 <div className="label">Depois de Amanhã</div>
                 <div className="value">{this.state.info?.after.tempC.toFixed(0)} ºC</div>
@@ -94,46 +111,51 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
 
   private _setNavGeo()
   {
-    try {
-      const success = async  (position: GeolocationPosition) => {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        
-        const _resGeo = await this._openWeatherApi.getReverseGeocoding(latitude, longitude);
-        if(_resGeo?.length > 0)
-        {
-          this.setState({
-            ...this.state,
-            contextCity: `${_resGeo[0].name},${_resGeo[0].state},${_resGeo[0].country}`,
-            options: _resGeo.map(g => {
-              return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
-            })
-          });
+    return new Promise<{contextCity: string, options: {value: string, label:string}[]}>((res, rej) => {
+
+      try {
+        const success = async  (position: GeolocationPosition) => {
+          const latitude  = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          
+          const _resGeo = await this._openWeatherApi.getReverseGeocoding(latitude, longitude);
+          if(_resGeo?.length > 0)
+          {
+            res({
+              contextCity: `${_resGeo[0].name},${_resGeo[0].state},${_resGeo[0].country}`,
+              options: _resGeo.map(g => {
+                return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
+              })
+            });
+          }
         }
+        const error = () => {
+          throw new Error('Unable to retrieve your location');
+        }
+      
+        if (!navigator.geolocation) {
+          throw new Error('Geolocation is not supported by your browser');
+        } else {
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+      } catch (e) {
+        rej(null);
       }
-      const error = () => {
-        throw new Error('Unable to retrieve your location');
-      }
-    
-      if (!navigator.geolocation) {
-        throw new Error('Geolocation is not supported by your browser');
-      } else {
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    });
   }
 
-  private async _setSchedule(eachMinute: number)
+  private async _setSchedule(contextCity: string, eachMinute: number)
   {
-    const _info = await this._getInfo(this.state.contextCity);
-    this.setState({...this.state, info: _info});
-
+    const options = await this._setGeoState(contextCity ?? this.state.contextCity);
+    const info = await this._getInfo(contextCity ?? this.state.contextCity);
+    
     setInterval(async () => {
       const _info = await this._getInfo(this.state.contextCity);
-      this.setState({...this.state, info: _info});
-    }, 1000 * 60 * eachMinute);
+      const grad = this._setBackgroundColorGradient(_info.today.tempC);
+      this.setState({...this.state, info: _info, currentGradient: grad});
+    }, 1000 * 60 * (1 + eachMinute));
+    
+    return {info, options};
   }
 
   private async _selectChangeHandler(
@@ -147,32 +169,36 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   }>)
   {
     if(newValue) {
-      const _info = await this._getInfo(newValue.value);
-      this.setState({...this.state, contextCity: newValue?.value, info: _info});
+      const info = await this._getInfo(newValue.value);
+      const currentGradient = this._setBackgroundColorGradient(info.today.tempC ?? 25);
+      this.setState({...this.state, contextCity: newValue?.value, info, currentGradient});
     }
   }
 
   private async _setGeoState(query: string)
   {
-    debounce(async (query: string) => {
-        try {
-          const _resGeo = await this._openWeatherApi.getDirectGeocoding(query);
-          if(_resGeo?.length > 0)
-          {
-            this.setState({
-              ...this.state, 
-              options: _resGeo.map(g => {
+    const _p = new Promise<{value: string, label: string}[]>((res, rej) => {
+      debounce(async (query: string) => {
+          try {
+            const _resGeo = await this._openWeatherApi.getDirectGeocoding(query);
+            if(_resGeo?.length > 0)
+            {
+              res(_resGeo.map(g => {
                 return {value: `${g.name},${g.state},${g.country}`, label: `${g.name}, ${g.state} , ${g.country}`}
-              })
-            });
+              }));
+            }
+          } catch(e) {
+            rej(null);
           }
-        } catch(e) {}
-
-    }, 300)(query);
+  
+      }, 300)(query);  
+    });
+    const _dres = await _p;
+    return _dres;
   }
 
   private _inputChangeHandler(newValue: string, actionMeta: InputActionMeta) {
-    this._setGeoState(newValue);
+    this._setGeoState(newValue).then(options => this.setState({...this.state, options}));
   }
 
   private async _getInfo(place: string)
@@ -205,5 +231,12 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
         
     
     return _info;
+  }
+
+  private _setBackgroundColorGradient(todayTemperatureC: number)
+  {
+    if (todayTemperatureC <= 15) return this._gradients.cold;
+    else if (todayTemperatureC >= 35) return this._gradients.hot
+    else return this._gradients.warm
   }
 }
