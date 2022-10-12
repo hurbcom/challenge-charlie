@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { LocationProps } from './useGeolocation';
 
-interface PredictionProps {
+export interface PredictionProps {
     loaded: boolean
     weather?: {
         current: {

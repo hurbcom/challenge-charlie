@@ -1,0 +1,20 @@
+.search {
+    display: flex;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.input-town {
+    border: 0;
+    width: 90%;
+    margin-left: 0.5rem;
+}

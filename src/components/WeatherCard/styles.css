@@ -1,0 +1,39 @@
+.weather-card {
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+}
+
+.current-weather {
+    display: flex;
+    padding: 1rem;
+}
+
+.weather-icon {
+    width: 12rem;
+    height: 12rem;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    margin-left: 1rem;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    cursor: pointer;
+}
+
+.more-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.tommorow {
+    background-color: yellow;
+}
