@@ -33,7 +33,9 @@ export default class DisplayComponent extends React.Component<IDisplayComponentP
           <Icon style={{maxWidth: '5vw'}} src='/2682824_horizont_morning_sun_sunrise_weather_icon.svg'></Icon>
           <div className='logo-label'>Charlie</div>
         </div>
-        <div className='display-copyright'>{this.props.copyright}</div>
+        <div className='display-copyright'>
+          <div className='copyright-text'>{this.props.copyright}</div>
+        </div>
       </div>
     );
   }

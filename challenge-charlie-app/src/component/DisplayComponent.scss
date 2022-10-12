@@ -22,11 +22,15 @@
 
     .display-copyright
     {
-        font-size: .5vw;
-        margin: .25vw;
-        text-align: center;
-        color: map-get(style.$color-pallete, "beige" );
-        background-color: map-get(style.$grayscale-pallete, "secondary" );
-        opacity: 75%;
+        display: flex;
+        justify-content: flex-end;
+        .copyright-text  {            
+            font-size: .5vw;
+            margin: .25vw;
+            text-align: right;
+            color: map-get(style.$color-pallete, "beige" );
+            background-color: map-get(style.$grayscale-pallete, "secondary" );
+            opacity: 75%;
+        }
     }
 }
