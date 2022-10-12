@@ -3,7 +3,7 @@ import capitalize from "../../utils/capitalize"
 import convertDegToDirection from "../../utils/convertDegToDirection"
 import convertMsToKmh from "../../utils/convertMsToKmh"
 
-import "./styles.css"
+import * as Styles from './styles'
 
 interface WeatherCardProps {
     unitTemperature: string
@@ -25,38 +25,38 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
     }
 
     return (
-        <div className="weather-card">
-            <div className="current-weather">
-                <div className="image">
-                    <img className="weather-icon" src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
-                </div>
+        <Styles.WeatherCard>
+            <Styles.CurrentWeather>
+                <Styles.Image>
+                    <Styles.WeatherIcon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
+                </Styles.Image>
 
-                <div className="weather">
-                    <div className="temperature" onClick={handleChangeUnitTemperature}>
+                <Styles.Weather>
+                    <Styles.CurrentTemperature onClick={handleChangeUnitTemperature}>
                         <span>HOJE</span>
                         <span>{prediction.weather?.current.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-                    </div>
+                    </Styles.CurrentTemperature>
 
                     <span>{capitalize(prediction.weather?.current.description || "")}</span>
 
-                    <div className="more-info">
+                    <Styles.MoreInfo>
                         <span>Vento: {convertDegToDirection(prediction.weather?.current.wind_deg)} {convertMsToKmh(prediction.weather?.current.wind_speed)}Km/h</span>
                         <span>Humidade: {prediction.weather?.current.humidity}%</span>
                         <span>Pressão: {prediction.weather?.current.pressure}hPA</span>
-                    </div>
-                </div>
-            </div>
+                    </Styles.MoreInfo>
+                </Styles.Weather>
+            </Styles.CurrentWeather>
 
-            <div className="temperature tommorow" onClick={handleChangeUnitTemperature}>
+            <Styles.TommorowTemperature onClick={handleChangeUnitTemperature}>
                 <span>AMANHÃ</span>
                 <span>{prediction.weather?.tomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-            </div>
+            </Styles.TommorowTemperature>
 
-            <div className="temperature" onClick={handleChangeUnitTemperature}>
+            <Styles.AfetTomorrowTemperature onClick={handleChangeUnitTemperature}>
                 <span>DEPOIS DE AMANHÃ</span>
                 <span>{prediction.weather?.afterTomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-            </div>
-        </div>
+            </Styles.AfetTomorrowTemperature>
+        </Styles.WeatherCard>
     )
 }
 

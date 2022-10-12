@@ -7,7 +7,7 @@ import ListOptionsTown from "../ListOptionsTown";
 
 import searchIcon from "../../assets/searchIcon.svg";
 
-import "./styles.css"
+import * as Styles from './styles'
 
 interface SearchTownProps {
     setLocation: (value: LocationProps) => void
@@ -38,7 +38,7 @@ const SearchTown: React.FC<SearchTownProps> = ({
     }
 
     return (
-        <form className="search-town" onSubmit={handleSubmit}>
+        <Styles.SearchTown onSubmit={handleSubmit}>
             <SearchInput
                 searchIcon={searchIcon}
                 inputTown={inputTown}
@@ -46,13 +46,15 @@ const SearchTown: React.FC<SearchTownProps> = ({
                 setOptionsTown={setOptionsTown}
             />
 
-            <ListOptionsTown
-                optionsTown={optionsTown}
-                setOptionsTown={setOptionsTown}
-                setInputTown={setInputTown}
-                setLocation={setLocation}
-            />
-        </form>
+            {optionsTown.loaded &&
+                <ListOptionsTown
+                    optionsTown={optionsTown}
+                    setOptionsTown={setOptionsTown}
+                    setInputTown={setInputTown}
+                    setLocation={setLocation}
+                />
+            }
+        </Styles.SearchTown>
     )
 }
 

@@ -1,15 +1,13 @@
-* {
-    margin: 0;
-}
+import styled from "styled-components";
 
-.app {
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+`;
 
-.prediction-card {
+export const PredictionCard = styled.div`
     background-color: red;
-}
+`;

@@ -1,6 +1,6 @@
 import getOptionsTown, { OptionsTownProps } from "../../utils/getOptionsTown";
 
-import "./styles.css"
+import * as Styles from './styles'
 
 interface SearchInputProps {
     searchIcon: string
@@ -21,19 +21,18 @@ const SearchInput: React.FC<SearchInputProps> = ({
     }
 
     return (
-        <div className="search">
-            <div className="image">
-                <img className="search-icon" src={searchIcon} alt="ícone" />
-            </div>
-            <input
-                className="input-town"
+        <Styles.Search>
+            <Styles.Image>
+                <Styles.SearchIcon src={searchIcon} alt="ícone" />
+            </Styles.Image>
+            <Styles.InputTown
                 type="text"
                 name="input-town"
                 placeholder="Buscar Cidade"
                 value={inputTown}
                 onChange={handleChangeInput}
             />
-        </div>
+        </Styles.Search>
     )
 }
 

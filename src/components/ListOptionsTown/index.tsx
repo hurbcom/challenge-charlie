@@ -2,7 +2,7 @@ import { LocationProps } from "../../hooks/useGeolocation"
 
 import { OptionsTownProps } from "../../utils/getOptionsTown"
 
-import "./styles.css"
+import * as Styles from './styles'
 
 interface ListOptionsTownProps {
     optionsTown: OptionsTownProps
@@ -36,20 +36,19 @@ const ListOptionsTown: React.FC<ListOptionsTownProps> = ({
     }
 
     return (
-        <ul className="options-town">
-            {optionsTown.loaded && optionsTown.towns?.map((town, index) => (
-                <li
+        <Styles.OptionsTown>
+            {optionsTown.towns?.map((town, index) => (
+                <Styles.ItemList
                     key={index}
-                    className="item-list"
                     onClick={() => handleOnclickList({
                         loaded: optionsTown.loaded,
                         towns: [town],
                     })}
                 >
                     {town.direction}
-                </li>
+                </Styles.ItemList>
             ))}
-        </ul>
+        </Styles.OptionsTown>
     )
 }
 

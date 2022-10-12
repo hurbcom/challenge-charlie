@@ -10,7 +10,7 @@ import WeatherCard from "./components/WeatherCard";
 import Loading from "./components/Loading";
 import SearchTown from "./components/SearchTown";
 
-import "./App.css";
+import * as Styles from './App.styles'
 
 const App = () => {
     const initialLocation = useGeolocation();
@@ -36,9 +36,9 @@ const App = () => {
     }, [town])
 
     return (
-        <div className="app">
+        <Styles.Container>
             {prediction.loaded ?
-                <div className="prediction-card">
+                <Styles.PredictionCard>
                     <SearchTown
                         setLocation={setLocation}
                         inputTown={inputTown}
@@ -52,11 +52,11 @@ const App = () => {
                         setUnitTemperature={setUnitTemperature}
                         prediction={prediction}
                     />
-                </div>
+                </Styles.PredictionCard>
             :
                 <Loading />
             }
-        </div>
+        </Styles.Container>
     );
 }
 
