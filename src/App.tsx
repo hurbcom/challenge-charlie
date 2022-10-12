@@ -124,7 +124,7 @@ const App = () => {
                             <div className="weather">
                                 <div className="temperature" onClick={handleChangeUnitTemperature}>
                                     <span>HOJE</span>
-                                    <span>{prediction.weather?.current.temperature.toFixed(0)}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
+                                    <span>{prediction.weather?.current.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
                                 </div>
 
                                 <span>{capitalize(prediction.weather?.current.description || "")}</span>

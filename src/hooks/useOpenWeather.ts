@@ -57,13 +57,13 @@ const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
                                 wind_speed: response.data.current.wind_speed,
                                 humidity: response.data.current.humidity,
                                 pressure: response.data.current.pressure,
-                                temperature: response.data.current.temp,
+                                temperature: response.data.current.temp.toFixed(0),
                             },
                             tomorrow:{
-                                temperature: response.data.daily[0].temp.day,
+                                temperature: response.data.daily[0].temp.day.toFixed(0),
                             },
                             afterTomorrow: {
-                                temperature: response.data.daily[1].temp.day,
+                                temperature: response.data.daily[1].temp.day.toFixed(0),
                             },
                         }
                     });
