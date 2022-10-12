@@ -16,9 +16,10 @@ import "./App.css";
 const App = () => {
     const initialLocation = useGeolocation();
     const [location, setLocation] = useState<LocationProps>(initialLocation);
+    const [unitTemperature, setUnitTemperature] = useState<string>("celsius");
     
     const town = useReverseGeocoding(location);
-    const prediction = useOpenWeather(location);
+    const prediction = useOpenWeather(location, unitTemperature);
 
     const [inputTown, setInputTown] = useState<string>("");
     const [optionsTown, setOptionsTown] = useState<OptionsTownProps>({loaded: false});
@@ -56,6 +57,14 @@ const App = () => {
             setOptionsTown({
                 loaded: false
             })
+        }
+    }
+
+    const handleChangeUnitTemperature = () => {
+        if(unitTemperature==="celsius") {
+            setUnitTemperature("fahrenheit")
+        } else {
+            setUnitTemperature("celsius")
         }
     }
     
@@ -113,9 +122,9 @@ const App = () => {
                             </div>
 
                             <div className="weather">
-                                <div className="temperature">
+                                <div className="temperature" onClick={handleChangeUnitTemperature}>
                                     <span>HOJE</span>
-                                    <span>{prediction.weather?.current.temperature.toFixed(0)}°C</span>
+                                    <span>{prediction.weather?.current.temperature.toFixed(0)}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
                                 </div>
 
                                 <span>{capitalize(prediction.weather?.current.description || "")}</span>
@@ -128,14 +137,14 @@ const App = () => {
                             </div>
                         </div>
 
-                        <div className="temperature tommorow">
+                        <div className="temperature tommorow" onClick={handleChangeUnitTemperature}>
                             <span>AMANHÃ</span>
-                            <span>{prediction.weather?.tomorrow.temperature}°C</span>
+                            <span>{prediction.weather?.tomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
                         </div>
 
-                        <div className="temperature">
+                        <div className="temperature" onClick={handleChangeUnitTemperature}>
                             <span>DEPOIS DE AMANHÃ</span>
-                            <span>{prediction.weather?.afterTomorrow.temperature}°C</span>
+                            <span>{prediction.weather?.afterTomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
                         </div>
                     </div>
                 </div>

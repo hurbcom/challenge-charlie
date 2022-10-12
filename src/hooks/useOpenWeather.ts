@@ -26,12 +26,12 @@ interface PredictionProps {
     }
 }
 
-const useOpenWeather = (location: LocationProps) => {
+const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
     const language = navigator.language.substring(0,2);
     const [prediction, setPrediction] = useState<PredictionProps>({
         loaded: false
     });
-    
+
     useEffect(() => {
         if (location.loaded) {
             if(location.coordinates) {
@@ -42,8 +42,8 @@ const useOpenWeather = (location: LocationProps) => {
                             lon: location.coordinates?.longitude,
                             exclude: "minutely,hourly,alerts",
                             appid: import.meta.env.VITE_API_KEY_OPEN_WEATHERE,
+                            units: unitTemperature==="celsius" ? "metric" : "imperial",
                             lang: language,
-                            units: "metric"
                         }
                     }
                 ).then((response) => {
@@ -79,7 +79,7 @@ const useOpenWeather = (location: LocationProps) => {
                 alert(location.error?.message)
             }
         }
-    }, [location]);
+    }, [location, unitTemperature]);
 
     return prediction
 }
