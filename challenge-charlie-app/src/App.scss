@@ -13,8 +13,9 @@
   position: absolute;
   top: 40%;
   left: 45%;
-  visibility: hidden;
-  
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
   @media only screen and (max-width: 600px) {
     top: 40%;
     left: 35%;

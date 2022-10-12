@@ -126,7 +126,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   private async _setLoader(visible: boolean)
   {
     const _l = document.getElementById('loader');
-    if(_l) _l.style.visibility = visible ? 'visible' : 'hidden';
+    if(_l) _l.style.opacity = visible ? '1' : '0';
   }
 
   private _getGeoOptionPattern(geo: OpenWeatherDirectGeocodingResponse | OpenWeatherReverseGeocodingResponse)

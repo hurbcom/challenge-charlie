@@ -23,14 +23,14 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
   constructor(props: IAppLayoutProps)
   {
     super(props);
-    const isPortable = window.matchMedia('(max-width: 600px)').matches;
+    const isPortable = window?.matchMedia('(max-width: 600px)')?.matches;
     this.state = {isPortable};
   }
 
   componentDidMount(): void
   {
     window.addEventListener('resize', this.debouncedHandleResize(this._display, this._info).bind(this));
-    const isPortable = window.matchMedia('(max-width: 600px)').matches;
+    const isPortable = window?.matchMedia('(max-width: 600px)')?.matches;
     
     this.setState({
       isPortable,
@@ -46,7 +46,7 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
 
  debouncedHandleResize(display: React.ReactNode, info: React.ReactNode) {
    return debounce(() => {
-        const isPortable = window.matchMedia('(max-width: 600px)').matches;
+        const isPortable = window?.matchMedia('(max-width: 600px)')?.matches;
         this.setState({
           isPortable,
           layout: isPortable ? 
