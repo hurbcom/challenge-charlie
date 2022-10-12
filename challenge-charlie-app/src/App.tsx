@@ -6,6 +6,8 @@ import { BingApi } from './component/bing/BingApi';
 import React from 'react';
 import PortableLayout from './layout/PortableLayout';
 import { debounce } from 'lodash';
+import { ClipLoader } from 'react-spinners';
+import GridLoader from 'react-spinners/GridLoader';
 
 export interface IAppLayoutProps {
 }
@@ -62,6 +64,16 @@ class App extends React.Component<IAppLayoutProps, IAppLayoutState>
       return (
         <div>
           {this.state.layout}
+          <div id='loader' className='App-loader'>
+            <GridLoader
+            className='loader-spinner'
+                color={'#05B4FB'}
+                loading={true}
+                size={'5vmin'}
+                aria-label="Loading..."
+                data-testid="loader"
+              />
+          </div>
         </div>
       );
   }

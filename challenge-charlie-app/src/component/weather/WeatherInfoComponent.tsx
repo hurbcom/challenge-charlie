@@ -20,6 +20,7 @@ export interface IWeatherInfoComponentState {
   options: {value: string, label: string}[]
   info?: OpenWeatherInfoModel;
   currentGradient?: HexWeatherGradient;
+  lock?: boolean;
 }
 
 export default class WeatherInfoComponent extends React.Component<IWeatherInfoComponentProps, IWeatherInfoComponentState> {
@@ -44,10 +45,14 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
       contextCity: this._baseOptions[0].value,
       options: this._baseOptions,
       currentGradient: this._gradients.null,
+      lock: false,
     };
   }
 
   async componentDidMount() {
+    
+    this._setLoader(true);
+    this.setState({...this.state, lock: true});
     const _nav = await this._setNavGeo();
     const _res = await this._setSchedule(_nav?.contextCity ?? this.state.contextCity, 5);
     const currentGradient = this._setBackgroundColorGradient(_res.info.today.tempC ?? 25);
@@ -56,8 +61,10 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
       contextCity: _nav?.contextCity ?? this.state.contextCity,
       options: (_nav?.options ?? _res?.options) ?? this.state.options,
       info: _res.info,
-      currentGradient
+      currentGradient,
+      lock: false
     });
+    this._setLoader(false);
   }
 
   public render() {
@@ -74,6 +81,8 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
             onChange={this._selectChangeHandler.bind(this)} 
             onInputChange={this._inputChangeHandler.bind(this)}
             options={this.state.options}
+            isDisabled= {this.state.lock}
+            noOptionsMessage={() => "Nenhum lugar encontrado"}
           />
         </div>
 
@@ -112,6 +121,12 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
         </div>
       </div>
     );
+  }
+
+  private async _setLoader(visible: boolean)
+  {
+    const _l = document.getElementById('loader');
+    if(_l) _l.style.visibility = visible ? 'visible' : 'hidden';
   }
 
   private _getGeoOptionPattern(geo: OpenWeatherDirectGeocodingResponse | OpenWeatherReverseGeocodingResponse)
@@ -181,9 +196,12 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
   }>)
   {
     if(newValue) {
+      this._setLoader(true);
+      this.setState({...this.state, lock: true});
       const info = await this._getInfo(newValue.value);
       const currentGradient = this._setBackgroundColorGradient(info.today.tempC ?? 25);
-      this.setState({...this.state, contextCity: newValue?.value, info, currentGradient});
+      this.setState({...this.state, contextCity: newValue?.value, info, currentGradient, lock: false});
+      this._setLoader(false);
     }
   }
 
