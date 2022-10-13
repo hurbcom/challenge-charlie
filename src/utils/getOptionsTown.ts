@@ -65,14 +65,14 @@ const getOptionsTown = async(town: string) => {
             loaded: true,
             towns: filterTowns
         })
-    }).catch((error) => (
-        {
+    }).catch((error) => {
+        return ({
             loaded: true,
             error: {
                 message: error.message,
             }
-        }
-    ));
+        })
+    });
 
     return optionsTown
 }

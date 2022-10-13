@@ -5,7 +5,7 @@ export const OptionsTown = styled.ul`
 `
 
 export const ItemList = styled.li`
-    :hover {
+    &:hover {
         background-color: yellow;
         cursor: pointer;
     }

@@ -11,17 +11,21 @@ export const Image = styled.div`
 `
 
 export const SearchIcon = styled.img`
-    width: 1rem;
-    height: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
 `
 
 export const InputTown = styled.input`
     border: 0;
-    width: 90%;
-    margin-left: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
 
     background-color: #F0EBE7;
     color: #848381;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
+
+    &:focus {
+        outline: none;
+    }
 `

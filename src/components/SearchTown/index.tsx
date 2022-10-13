@@ -24,7 +24,7 @@ const SearchTown: React.FC<SearchTownProps> = ({
     optionsTown,
     setOptionsTown,
 }) => {
-    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if(optionsTown.loaded && optionsTown.towns) {
             setLocation({
