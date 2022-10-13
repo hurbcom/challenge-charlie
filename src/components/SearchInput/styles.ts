@@ -19,4 +19,9 @@ export const InputTown = styled.input`
     border: 0;
     width: 90%;
     margin-left: 0.5rem;
+
+    background-color: #F0EBE7;
+    color: #848381;
+    font-size: 1rem;
+    font-weight: bold;
 `

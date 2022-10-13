@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import useBackgroundImageBing from "./hooks/useBackgroundImageBing";
 import useGeolocation, { LocationProps } from "./hooks/useGeolocation";
 import useReverseGeocoding from './hooks/useReverseGeocoding';
 import useOpenWeather from "./hooks/useOpenWeather";
@@ -13,6 +14,8 @@ import SearchTown from "./components/SearchTown";
 import * as Styles from './App.styles'
 
 const App = () => {
+    const backgrounImage = useBackgroundImageBing();
+    
     const initialLocation = useGeolocation();
     const [location, setLocation] = useState<LocationProps>(initialLocation);
 
@@ -22,7 +25,7 @@ const App = () => {
     
     const [unitTemperature, setUnitTemperature] = useState<string>("celsius");
     const prediction = useOpenWeather(location, unitTemperature);
-  
+    
     useEffect(() => {
         if(initialLocation.loaded && !location.loaded) {
             setLocation(initialLocation)
@@ -36,27 +39,31 @@ const App = () => {
     }, [town])
 
     return (
-        <Styles.Container>
-            {prediction.loaded ?
-                <Styles.PredictionCard>
-                    <SearchTown
-                        setLocation={setLocation}
-                        inputTown={inputTown}
-                        setInputTown={setInputTown}
-                        optionsTown={optionsTown}
-                        setOptionsTown={setOptionsTown}
-                    />
+        <>
+            {backgrounImage.loaded &&
+                <Styles.Container imgUrl={backgrounImage.imgUrl || ""}>
+                    {prediction.loaded ?
+                        <Styles.PredictionCard>
+                            <SearchTown
+                                setLocation={setLocation}
+                                inputTown={inputTown}
+                                setInputTown={setInputTown}
+                                optionsTown={optionsTown}
+                                setOptionsTown={setOptionsTown}
+                            />
 
-                    <WeatherCard
-                        unitTemperature={unitTemperature}
-                        setUnitTemperature={setUnitTemperature}
-                        prediction={prediction}
-                    />
-                </Styles.PredictionCard>
-            :
-                <Loading />
+                            <WeatherCard
+                                unitTemperature={unitTemperature}
+                                setUnitTemperature={setUnitTemperature}
+                                prediction={prediction}
+                            />
+                        </Styles.PredictionCard>
+                    :
+                        <Loading />
+                    }
+                </Styles.Container>
             }
-        </Styles.Container>
+        </>
     );
 }
 
