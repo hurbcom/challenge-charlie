@@ -1,10 +1,8 @@
 import { LocationProps } from "../../hooks/useGeolocation";
 
-import { OptionsTownProps } from "../../utils/getOptionsTown";
+import getOptionsTown, { OptionsTownProps } from "../../utils/getOptionsTown";
 
-import SearchInput from "../SearchInput";
 import ListOptionsTown from "../ListOptionsTown";
-
 import searchIcon from "../../assets/searchIcon.svg";
 
 import * as Styles from './styles'
@@ -24,6 +22,11 @@ const SearchTown: React.FC<SearchTownProps> = ({
     optionsTown,
     setOptionsTown,
 }) => {
+    const handleChangeInput = async(event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputTown(event.target.value)
+        setOptionsTown(await getOptionsTown(event.target.value))
+    }
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if(optionsTown.loaded && optionsTown.towns) {
@@ -39,12 +42,18 @@ const SearchTown: React.FC<SearchTownProps> = ({
 
     return (
         <Styles.SearchTown onSubmit={handleSubmit}>
-            <SearchInput
-                searchIcon={searchIcon}
-                inputTown={inputTown}
-                setInputTown={setInputTown}
-                setOptionsTown={setOptionsTown}
-            />
+            <Styles.Search>
+                <Styles.Image>
+                    <Styles.Icon src={searchIcon} alt="ícone" />
+                </Styles.Image>
+                <Styles.Input
+                    type="text"
+                    name="input-town"
+                    placeholder="Buscar Cidade"
+                    value={inputTown}
+                    onChange={handleChangeInput}
+                />
+            </Styles.Search>
 
             {optionsTown.loaded &&
                 <ListOptionsTown
