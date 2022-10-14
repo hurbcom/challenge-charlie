@@ -49,6 +49,7 @@ export const MoreInfo = styled.div`
 export const WeatherDescription = styled.span`
     margin-bottom: 0.6rem;
     font-size: 1.2rem;
+    text-transform: capitalize;
 `
     
 export const CurrentTemperature = styled(Temperature)`

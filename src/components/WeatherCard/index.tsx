@@ -1,5 +1,4 @@
 import { PredictionProps } from "../../hooks/useOpenWeather"
-import capitalize from "../../utils/capitalize"
 import convertDegToDirection from "../../utils/convertDegToDirection"
 import convertMsToKmh from "../../utils/convertMsToKmh"
 
@@ -38,7 +37,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                     </Styles.CurrentTemperature>
 
                     <Styles.WeatherDescription>
-                        {capitalize(prediction.weather?.current.description || "")}
+                        {prediction.weather?.current.description}
                     </Styles.WeatherDescription>
 
                     <Styles.MoreInfo>
