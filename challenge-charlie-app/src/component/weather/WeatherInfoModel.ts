@@ -19,6 +19,7 @@ interface LocationData
 interface TemperatureData
 {
     tempC: number;
+    tempKelvin?: number;
 }
 interface WeatherData<WeatherIconType>
 

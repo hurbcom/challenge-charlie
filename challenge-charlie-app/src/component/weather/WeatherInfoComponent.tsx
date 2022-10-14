@@ -10,6 +10,7 @@ import {debounce, minBy, sum, uniqBy} from 'lodash';
 import { HexWeatherGradient } from './weather-gradient';
 import { OpenWeatherReverseGeocodingResponse } from './open-weather/OpenWeatherReverseGeocodingResponse';
 import { OpenWeatherDirectGeocodingResponse } from './open-weather/OpenWeatherDirectGeocodingResponse';
+import TemperatureLabel, { TEMP_UNITS } from '../common/temperature-label';
 
 
 export interface IWeatherInfoComponentProps {
@@ -94,7 +95,8 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
           <div className="infos">
             <div className="hoje">
               <div className="label">Hoje</div>
-              <div className="value">{this.state.info?.today.tempC?.toFixed(0)} ºC</div>
+              {/* <div className="value">{this.state.info?.today.tempC?.toFixed(0)} ºC</div> */}
+              <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.today.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
             </div>
             <div className="weather">
               <div className="value">{this.state.info?.weather.description}</div>
@@ -110,13 +112,13 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
         <div className='charlie-weather-info-tomorrow' style={{backgroundColor: this.state.currentGradient?.lighter}}>
           <div className="tomorrow">
                 <div className="label">Amanhã</div>
-                <div className="value">{this.state.info?.tomorrow.tempC.toFixed(0)} ºC</div>
+                <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.tomorrow.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
           </div>
         </div>
         <div className='charlie-weather-info-after' style={{backgroundColor: this.state.currentGradient?.darker}}>
         <div className="after">
                 <div className="label">Depois de Amanhã</div>
-                <div className="value">{this.state.info?.after.tempC.toFixed(0)} ºC</div>
+                <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.after.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
           </div>
         </div>
       </div>
@@ -241,7 +243,8 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     //now
     const _resNow = await this._openWeatherApi.getCurrentWeather(_info.location.city);
     _info.today.tempC = _resNow.main.temp - 273.15;
-
+    _info.today.tempKelvin = _resNow.main.temp;
+    
     _info.weather.description = _resNow.weather[0].description;
     _info.weather.icon = _resNow.weather[0].icon;
     _info.weather.pressure = _resNow.main.pressure;
@@ -254,10 +257,12 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     const _tmwdt = new Date((Math.floor(Date.now()/1000) + 1*24*60*60) * 1000);
     const _tmw = _resPred.list.filter(p => (new Date(p.dt * 1000)).getDay() ===  _tmwdt.getDay());
     _info.tomorrow.tempC =  sum(_tmw.map(p => p.main.temp - 273.15))/_tmw.length;
+    _info.tomorrow.tempKelvin = _info.tomorrow.tempC + 273.15;
     
     const _aftdt = new Date((Math.floor(Date.now()/1000) + 2*24*60*60) * 1000);
     const _aft = _resPred.list.filter(p => (new Date(p.dt * 1000)).getDay() ===  _aftdt.getDay());
     _info.after.tempC =  sum(_aft.map(p => p.main.temp - 273.15))/_aft.length;
+    _info.after.tempKelvin = _info.after.tempC + 273.15;
         
     
     return _info;

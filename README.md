@@ -1,16 +1,10 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+App criado com base nas [Instruções](README.pt.md) disponíveis.
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
 
-Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
-
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
-
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
-
-Para Realizar as funcionalidades foram utilizadas as APIs do **Bing** e do **OpenWeather**:
+## Funcionalidades Implementadas
 
 - A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
 
@@ -20,19 +14,15 @@ Para Realizar as funcionalidades foram utilizadas as APIs do **Bing** e do **Ope
 
 - A API do OpenWeather provê nativamente ícones, o que facilita a interpretação dos testos de resumo das [condições climáticas ("cèu limpo", "nublado" etc)]( https://openweathermap.org/weather-conditions). ex: `http://openweathermap.org/img/wn/{{icon_tag}}@2x.png`;
 
+- Logo que a página seja aberta são coletadas as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_;
 
-## Requisitos
-
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+- Degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas;
+## Características
+-   Feito em React;
+-   Estilo usando SASS/SCSS;
+-   Servido e configurado com [Vite](https://vitejs.dev/), possibilitando build para produção e servir em desenvolvimento, além de ferramentas de proxy etc;
+-   Aplicação Dockerizada  para desenvolvimento. (Para produção será necessário um serviço de Proxy Reverso, preferencialmente Nginx);
+- 
 
 ## Critério de avaliação
 
