@@ -19,4 +19,9 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const PredictionCard = styled.div`
+    width: 28rem;
+
+    @media (max-width: 520px) {
+        width: 100%;
+    }
 `;
