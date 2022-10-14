@@ -16,8 +16,8 @@ export const Image = styled.div`
 `
 
 export const Icon = styled.img`
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 2rem;
+    height: 2rem;
 `
 
 export const Input = styled.input`
@@ -28,7 +28,7 @@ export const Input = styled.input`
     background-color: #F0EBE7;
     color: #848381;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 700;
 
     &:focus {
         outline: none;

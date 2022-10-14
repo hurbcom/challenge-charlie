@@ -4,11 +4,12 @@ export const WeatherCard = styled.div`
     display: flex;
     flex-direction: column;
     background-color: orange;
+    color: #FFFFFF;
 `
 
 export const CurrentWeather = styled.div`
     display: flex;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
 `
 
 export const Image = styled.div`
@@ -31,15 +32,26 @@ export const Temperature = styled.div`
     flex-direction: column;
     padding-bottom: 1rem;
     cursor: pointer;
+
+    span:nth-child(2) {
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+    }
 `
 
 export const MoreInfo = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 1rem;
-`
-
-export const CurrentTemperature = styled(Temperature)`
+    font-size: 0.8rem;
+    font-weight: 600;
+    `
+    
+    export const CurrentTemperature = styled(Temperature)`
+    `
+    
+    export const WeatherDescription = styled.span`
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
 `
 
 export const TommorowTemperature = styled(Temperature)`

@@ -37,7 +37,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                         <span>{prediction.weather?.current.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
                     </Styles.CurrentTemperature>
 
-                    <span>{capitalize(prediction.weather?.current.description || "")}</span>
+                    <Styles.WeatherDescription>
+                        {capitalize(prediction.weather?.current.description || "")}
+                    </Styles.WeatherDescription>
 
                     <Styles.MoreInfo>
                         <span>Vento: {convertDegToDirection(prediction.weather?.current.wind_deg)} {convertMsToKmh(prediction.weather?.current.wind_speed)}Km/h</span>
