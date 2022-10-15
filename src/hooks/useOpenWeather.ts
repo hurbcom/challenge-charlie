@@ -69,7 +69,7 @@ const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
                     });
                 }).catch((error) => {
                     setPrediction({
-                        loaded: true,
+                        loaded: false,
                         error: {
                             message: error.message,
                         }

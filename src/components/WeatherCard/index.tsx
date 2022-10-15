@@ -1,18 +1,22 @@
 import { PredictionProps } from "../../hooks/useOpenWeather"
+
 import convertDegToDirection from "../../utils/convertDegToDirection"
 import convertMsToKmh from "../../utils/convertMsToKmh"
+import { BackgroundColorProps } from "../../utils/getBackgroundColor"
 
 import * as Styles from './styles'
 
 interface WeatherCardProps {
     unitTemperature: string
     setUnitTemperature: (value: string) => void
+    backgroundColor: BackgroundColorProps
     prediction: PredictionProps
 }
 
 const WeatherCard: React.FC<WeatherCardProps> = ({
     unitTemperature,
     setUnitTemperature,
+    backgroundColor,
     prediction,
 }) => {
     const handleChangeUnitTemperature = () => {
@@ -25,8 +29,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
 
     return (
         <Styles.WeatherCard>
-            <Styles.CurrentWeather>
-                <Styles.Icon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
+            <Styles.CurrentWeather backgroundColor={backgroundColor.color?.current}>
+                <Styles.Image>
+                    <Styles.Icon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
+                </Styles.Image>
 
                 <Styles.Weather>
                     <Styles.Temperature onClick={handleChangeUnitTemperature} today>
@@ -46,7 +52,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                 </Styles.Weather>
             </Styles.CurrentWeather>
 
-            <Styles.TomorrowWeather>
+            <Styles.TomorrowWeather backgroundColor={backgroundColor.color?.tomorrow}>
                 <div></div>
                 
                 <Styles.Weather>
@@ -57,7 +63,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                 </Styles.Weather>
             </Styles.TomorrowWeather>
 
-            <Styles.AfterTomorrowWeather>
+            <Styles.AfterTomorrowWeather backgroundColor={backgroundColor.color?.afterTomorrow}>
                 <div></div>
 
                 <Styles.Weather>

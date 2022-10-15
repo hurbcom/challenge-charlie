@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { LocationProps } from './useGeolocation';
 
-interface TownProps {
+export interface TownProps {
     loaded: boolean
     description?: {
         town: string
@@ -41,7 +41,7 @@ const useReverseGeocoding = (location: LocationProps) => {
                     })
                     .catch((error) => {
                         setTown({
-                            loaded: true,
+                            loaded: false,
                             error: {
                                 message: error.message,
                             }
@@ -50,6 +50,10 @@ const useReverseGeocoding = (location: LocationProps) => {
             } else {
                 alert(location.error?.message)
             }
+        } else {
+            setTown({
+                loaded: false
+            })
         }
     }, [location]);
 

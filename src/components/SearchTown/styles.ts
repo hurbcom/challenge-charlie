@@ -2,7 +2,15 @@ import styled from "styled-components";
 
 export const SearchTown = styled.form`
     padding: 0.5rem;
-    background-color: #F0EBE7;
+    background: linear-gradient(
+        160deg,
+        rgba(240, 235, 231, 1),
+        rgba(240, 235, 231, 1),
+        rgba(240, 235, 231, 1),
+        rgba(240, 235, 231, 0.95),
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.6)
+    );
 `
 
 export const Search = styled.div`
@@ -12,8 +20,13 @@ export const Search = styled.div`
 `
 
 export const Icon = styled.img`
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
+
+    @media (max-width: 520px) {
+        width: 2rem;
+        height: 2rem;
+    }
 `
 
 export const Input = styled.input`
@@ -21,12 +34,16 @@ export const Input = styled.input`
     padding: 0.5rem;
     border: 0;
 
-    background-color: #F0EBE7;
-    color: #848381;
-    font-size: 1.2rem;
+    background-color: transparent;
+    color: #8A8987;
+    font-size: 1.8rem;
     font-weight: 700;
 
     &:focus {
         outline: none;
+    }
+
+    @media (max-width: 520px) {
+        font-size: 1.2rem;
     }
 `

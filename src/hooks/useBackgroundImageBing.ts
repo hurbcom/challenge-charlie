@@ -25,7 +25,7 @@ const useBackgroundImageBing = () => {
             })
         }).catch((error) => {
             setBackgroundImage ({
-                loaded: true,
+                loaded: false,
                 error: {
                     message: error.message,
                 }

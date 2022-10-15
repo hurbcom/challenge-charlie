@@ -25,6 +25,7 @@ const SearchTown: React.FC<SearchTownProps> = ({
     const handleChangeInput = async(event: React.ChangeEvent<HTMLInputElement>) => {
         setInputTown(event.target.value)
         setOptionsTown(await getOptionsTown(event.target.value))
+        setLocation({ loaded: false })
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +40,7 @@ const SearchTown: React.FC<SearchTownProps> = ({
             })
         }
     }
-
+    
     return (
         <Styles.SearchTown onSubmit={handleSubmit}>
             <Styles.Search>

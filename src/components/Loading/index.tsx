@@ -2,7 +2,9 @@ import * as Styles from './styles'
 
 const Loading = () => {
     return(
-        <div>Carregando...</div>
+        <Styles.Loading>
+            Carregando...
+        </Styles.Loading>
     )
 }
 

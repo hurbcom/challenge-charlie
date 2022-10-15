@@ -4,6 +4,7 @@ import useBackgroundImageBing from "./hooks/useBackgroundImageBing";
 import useGeolocation, { LocationProps } from "./hooks/useGeolocation";
 import useReverseGeocoding from './hooks/useReverseGeocoding';
 import useOpenWeather from "./hooks/useOpenWeather";
+import useBackgroundColor from "./hooks/useBackgroundColor";
 
 import { OptionsTownProps } from "./utils/getOptionsTown";
 
@@ -14,8 +15,6 @@ import SearchTown from "./components/SearchTown";
 import * as Styles from './App.styles'
 
 const App = () => {
-    const backgrounImage = useBackgroundImageBing();
-    
     const initialLocation = useGeolocation();
     const [location, setLocation] = useState<LocationProps>(initialLocation);
 
@@ -26,6 +25,9 @@ const App = () => {
     const [unitTemperature, setUnitTemperature] = useState<string>("celsius");
     const prediction = useOpenWeather(location, unitTemperature);
     
+    const backgrounImage = useBackgroundImageBing();
+    const backgroundColor = useBackgroundColor(town.loaded, unitTemperature, prediction)
+
     useEffect(() => {
         if(initialLocation.loaded && !location.loaded) {
             setLocation(initialLocation)
@@ -33,7 +35,7 @@ const App = () => {
     }, [initialLocation])
 
     useEffect(() => {
-        if(town.loaded && town.description) {
+        if(town.loaded) {
             setInputTown(`${town.description?.town}, ${town.description?.state}`)
         }
     }, [town])
@@ -55,6 +57,7 @@ const App = () => {
                             <WeatherCard
                                 unitTemperature={unitTemperature}
                                 setUnitTemperature={setUnitTemperature}
+                                backgroundColor={backgroundColor}
                                 prediction={prediction}
                             />
                         </Styles.PredictionCard>

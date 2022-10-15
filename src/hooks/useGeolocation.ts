@@ -28,7 +28,7 @@ const useGeolocation = () => {
 
     const geolocationError = (error: GeolocationPositionError) => {
         setLocation({
-            loaded: true,
+            loaded: false,
             error: {
                 message: error.message,
             }
