@@ -49,6 +49,35 @@ docker-compose up -d --build
 -   Aplicação Dockerizada  para desenvolvimento. (Para produção será necessário um serviço de Proxy Reverso, preferencialmente Nginx);
 - O projeto utiliza a [react-test-libary]() na qual nos permite fazer testes de unidade das funcionalidades e também da criação de componentes no DOM utilizando  a sintaxe do react-babel, basta criar no diretório ````src```` testes em arquivos de extensão ````*.test.tsx````.
 
+## Web-Vitals e Analytics
+
+O projeto se encotra pronto para análise de desempenho de [métricas importantes](https://web.dev/vitals/). Para isso foi utilizado a biblioteca ```web-vitals``` na qual é possível disponiblizar os resultados das métricas do app, através da função ```reportWebVitals```.
+
+Para disponibilizee via log basta utilizar algum comando de log local como:
+
+````javascript
+reportWebVitals(console.log);
+````
+
+Para enviar para uma ferramenta de Analytics basta realizar uma chamada:
+
+````javascript
+
+function sendToAnalytics(metric) {
+  const body = JSON.stringify(metric);
+  const url = 'https://example.com/analytics';
+
+  // Use `navigator.sendBeacon()` if available, falling back to `fetch()`
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url, body);
+  } else {
+    fetch(url, { body, method: 'POST', keepalive: true });
+  }
+}
+
+reportWebVitals(sendToAnalytics);
+
+````
 
 ## Futuro
 
