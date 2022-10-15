@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import convertDegToDirection from '../utils/convertDegToDirection';
+import convertMileshToKmh from '../utils/convertMileshToKmh';
+import convertMsToKmh from '../utils/convertMsToKmh';
 import { LocationProps } from './useGeolocation';
 
 export interface PredictionProps {
@@ -8,17 +11,17 @@ export interface PredictionProps {
         current: {
             icon: string
             description: string
-            wind_deg: number
-            wind_speed: number
+            wind_deg: string
+            wind_speed: string
             humidity: number
             pressure: number
-            temperature: number
+            temperature: string
         }
         tomorrow:{
-            temperature: number
+            temperature: string
         }
         afterTomorrow: {
-            temperature: number
+            temperature: string
         }
     }
     error?: {
@@ -53,8 +56,8 @@ const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
                             current: {
                                 icon: response.data.current.weather[0].icon,
                                 description: response.data.current.weather[0].description,
-                                wind_deg: response.data.current.wind_deg,
-                                wind_speed: response.data.current.wind_speed,
+                                wind_deg: convertDegToDirection(response.data.current.wind_deg),
+                                wind_speed: unitTemperature==="celsius" ? convertMsToKmh(response.data.current.wind_speed) : convertMileshToKmh(response.data.current.wind_speed),
                                 humidity: response.data.current.humidity,
                                 pressure: response.data.current.pressure,
                                 temperature: response.data.current.temp.toFixed(0),

@@ -1,9 +1,6 @@
 import { BackgroundColorProps } from "../../hooks/useBackgroundColor"
 import { PredictionProps } from "../../hooks/useOpenWeather"
 
-import convertDegToDirection from "../../utils/convertDegToDirection"
-import convertMsToKmh from "../../utils/convertMsToKmh"
-
 import * as Styles from './styles'
 
 interface WeatherCardProps {
@@ -45,7 +42,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                     </Styles.WeatherDescription>
 
                     <Styles.MoreInfo>
-                        <span>Vento: {convertDegToDirection(prediction.weather?.current.wind_deg)} {convertMsToKmh(prediction.weather?.current.wind_speed)}Km/h</span>
+                        <span>Vento: {prediction.weather?.current.wind_deg} {prediction.weather?.current.wind_speed}Km/h</span>
                         <span>Humidade: {prediction.weather?.current.humidity}%</span>
                         <span>Pressão: {prediction.weather?.current.pressure}hPA</span>
                     </Styles.MoreInfo>
