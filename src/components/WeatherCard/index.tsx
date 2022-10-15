@@ -1,8 +1,8 @@
+import { BackgroundColorProps } from "../../hooks/useBackgroundColor"
 import { PredictionProps } from "../../hooks/useOpenWeather"
 
 import convertDegToDirection from "../../utils/convertDegToDirection"
 import convertMsToKmh from "../../utils/convertMsToKmh"
-import { BackgroundColorProps } from "../../utils/getBackgroundColor"
 
 import * as Styles from './styles'
 
