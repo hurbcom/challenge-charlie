@@ -26,15 +26,13 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
     return (
         <Styles.WeatherCard>
             <Styles.CurrentWeather>
-                <Styles.Image>
-                    <Styles.WeatherIcon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
-                </Styles.Image>
+                <Styles.Icon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
 
                 <Styles.Weather>
-                    <Styles.CurrentTemperature onClick={handleChangeUnitTemperature}>
+                    <Styles.Temperature onClick={handleChangeUnitTemperature} today>
                         <span>HOJE</span>
                         <span>{prediction.weather?.current.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-                    </Styles.CurrentTemperature>
+                    </Styles.Temperature>
 
                     <Styles.WeatherDescription>
                         {prediction.weather?.current.description}
@@ -48,15 +46,27 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                 </Styles.Weather>
             </Styles.CurrentWeather>
 
-            <Styles.TommorowTemperature onClick={handleChangeUnitTemperature}>
-                <span>AMANHÃ</span>
-                <span>{prediction.weather?.tomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-            </Styles.TommorowTemperature>
+            <Styles.TomorrowWeather>
+                <div></div>
+                
+                <Styles.Weather>
+                    <Styles.Temperature onClick={handleChangeUnitTemperature}>
+                        <span>AMANHÃ</span>
+                        <span>{prediction.weather?.tomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
+                    </Styles.Temperature>
+                </Styles.Weather>
+            </Styles.TomorrowWeather>
 
-            <Styles.AfetTomorrowTemperature onClick={handleChangeUnitTemperature}>
-                <span>DEPOIS DE AMANHÃ</span>
-                <span>{prediction.weather?.afterTomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
-            </Styles.AfetTomorrowTemperature>
+            <Styles.AfterTomorrowWeather>
+                <div></div>
+
+                <Styles.Weather>
+                    <Styles.Temperature onClick={handleChangeUnitTemperature}>
+                        <span>DEPOIS DE AMANHÃ</span>
+                        <span>{prediction.weather?.afterTomorrow.temperature}{unitTemperature==="celsius" ? "°C" : "°F"}</span>
+                    </Styles.Temperature>
+                </Styles.Weather>
+            </Styles.AfterTomorrowWeather>
         </Styles.WeatherCard>
     )
 }

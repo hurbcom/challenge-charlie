@@ -7,10 +7,6 @@ export const SearchTown = styled.form`
 
 export const Search = styled.div`
     display: flex;
-`
-
-export const Image = styled.div`
-    display: flex;
     justify-content: center;
     align-items: center;
 `
@@ -21,9 +17,9 @@ export const Icon = styled.img`
 `
 
 export const Input = styled.input`
-    border: 0;
     width: 100%;
     padding: 0.5rem;
+    border: 0;
 
     background-color: #F0EBE7;
     color: #848381;

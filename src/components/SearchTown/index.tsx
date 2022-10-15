@@ -43,9 +43,8 @@ const SearchTown: React.FC<SearchTownProps> = ({
     return (
         <Styles.SearchTown onSubmit={handleSubmit}>
             <Styles.Search>
-                <Styles.Image>
-                    <Styles.Icon src={searchIcon} alt="ícone" />
-                </Styles.Image>
+                <Styles.Icon src={searchIcon} alt="ícone" />
+                
                 <Styles.Input
                     type="text"
                     name="input-town"

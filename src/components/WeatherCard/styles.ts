@@ -1,21 +1,31 @@
 import styled from "styled-components";
 
+interface WeatherProps {
+    today?: boolean;
+}
+
 export const WeatherCard = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: orange;
     color: #FFFFFF;
 `
 
 export const CurrentWeather = styled.div`
     display: flex;
-    padding: 1rem 2rem;
+    justify-content: space-between;
+    padding: 1rem 2rem 1.5rem 2rem;
+    background-color: orange;
 `
 
-export const Image = styled.div`
+export const TomorrowWeather = styled(CurrentWeather)`
+    background-color: black;
 `
 
-export const WeatherIcon = styled.img`
+export const AfterTomorrowWeather = styled(CurrentWeather)`
+    background-color: purple;
+`
+
+export const Icon = styled.img`
     width: 12rem;
     height: 12rem;
 `
@@ -23,14 +33,15 @@ export const WeatherIcon = styled.img`
 export const Weather = styled.div`
     display: flex;
     flex-direction: column;
-    padding-bottom: 2rem;
     margin-left: 1.5rem;
+    width: 50%;
 `
 
-export const Temperature = styled.div`
+export const Temperature = styled.div<WeatherProps>`
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
+    margin-left: ${(props) => !props.today && "1.5rem"};
+
     cursor: pointer;
 
     span:nth-child(2) {
@@ -39,25 +50,16 @@ export const Temperature = styled.div`
     }
 `
 
+export const WeatherDescription = styled.span`
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+`
+
 export const MoreInfo = styled.div`
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
     font-weight: 600;
-    `
-
-export const WeatherDescription = styled.span`
-    margin-bottom: 0.6rem;
-    font-size: 1.2rem;
-    text-transform: capitalize;
-`
-    
-export const CurrentTemperature = styled(Temperature)`
-`
-
-export const TommorowTemperature = styled(Temperature)`
-    background-color: yellow;
-`
-
-export const AfetTomorrowTemperature = styled(Temperature)`
 `
