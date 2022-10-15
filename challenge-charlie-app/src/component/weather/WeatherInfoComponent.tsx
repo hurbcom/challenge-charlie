@@ -22,6 +22,7 @@ export interface IWeatherInfoComponentState {
   info?: OpenWeatherInfoModel;
   currentGradient?: HexWeatherGradient;
   lock?: boolean;
+  contextUnit?: TEMP_UNITS;
 }
 
 export default class WeatherInfoComponent extends React.Component<IWeatherInfoComponentProps, IWeatherInfoComponentState> {
@@ -47,6 +48,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
       options: this._baseOptions,
       currentGradient: this._gradients.null,
       lock: false,
+      contextUnit: TEMP_UNITS.CELSIUS,
     };
   }
 
@@ -96,7 +98,7 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
             <div className="hoje">
               <div className="label">Hoje</div>
               {/* <div className="value">{this.state.info?.today.tempC?.toFixed(0)} ºC</div> */}
-              <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.today.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
+              <div className="value"> <TemperatureLabel onClick={this._switchUnit.bind(this)} kelvinValue={this.state.info?.today.tempKelvin} unit={this.state.contextUnit}/></div>
             </div>
             <div className="weather">
               <div className="value">{this.state.info?.weather.description}</div>
@@ -112,13 +114,13 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
         <div className='charlie-weather-info-tomorrow' style={{backgroundColor: this.state.currentGradient?.lighter}}>
           <div className="tomorrow">
                 <div className="label">Amanhã</div>
-                <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.tomorrow.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
+                <div className="value"> <TemperatureLabel onClick={this._switchUnit.bind(this)} kelvinValue={this.state.info?.tomorrow.tempKelvin} unit={this.state.contextUnit}/></div>
           </div>
         </div>
         <div className='charlie-weather-info-after' style={{backgroundColor: this.state.currentGradient?.darker}}>
         <div className="after">
                 <div className="label">Depois de Amanhã</div>
-                <div className="value"> <TemperatureLabel kelvinValue={this.state.info?.after.tempKelvin} unit={TEMP_UNITS.CELSIUS}/></div>
+                <div className="value"> <TemperatureLabel onClick={this._switchUnit.bind(this)} kelvinValue={this.state.info?.after.tempKelvin} unit={this.state.contextUnit}/></div>
           </div>
         </div>
       </div>
@@ -273,5 +275,14 @@ export default class WeatherInfoComponent extends React.Component<IWeatherInfoCo
     if (todayTemperatureC <= 15) return this._gradients.cold;
     else if (todayTemperatureC >= 35) return this._gradients.hot
     else return this._gradients.warm
+  }
+
+  private _switchUnit(event: React.MouseEvent<HTMLSpanElement, MouseEvent>)
+  {
+    let _u = this.state.contextUnit;
+    if(event.currentTarget.textContent?.includes('C')) _u = TEMP_UNITS.CELSIUS;
+    if(event.currentTarget.textContent?.includes('F')) _u = TEMP_UNITS.FAHRENHEIT;
+    
+    this.setState({...this.state, info: this.state.info, contextUnit: _u});
   }
 }

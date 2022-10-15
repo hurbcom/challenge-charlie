@@ -11,6 +11,7 @@ export interface ITemperatureLabelProps {
     kelvinValue?: number;
     unit?: TEMP_UNITS;
     fixedPoints?: number;
+    onClick?: React.MouseEventHandler<HTMLSpanElement> | undefined;
 }
 
 export interface ITemperatureLabelState {
@@ -34,24 +35,15 @@ export default class TemperatureLabel extends React.Component<ITemperatureLabelP
       <div>
         {
             this.props.kelvinValue ?
-            this._switchTemp(this.props.kelvinValue, this.state.unit ?? TEMP_UNITS.KELVIN)
+            this._switchTemp(this.props.kelvinValue, this.props.unit ?? TEMP_UNITS.KELVIN)
                 .toFixed(this.props.fixedPoints ? Math.floor(this.props.fixedPoints) : 0)
             : ''
         }
         <>&nbsp;</>
-        <span onClick={this._switchUnit.bind(this)} style={{color: this.state.unit === TEMP_UNITS.CELSIUS ? 'white' : 'gray'}}>ºC</span>
+        <span onClick={this.props.onClick} style={{color: this.props.unit === TEMP_UNITS.CELSIUS ? 'white' : 'gray'}}>ºC</span>
         |
-        <span onClick={this._switchUnit.bind(this)} style={{color: this.state.unit === TEMP_UNITS.FAHRENHEIT ? 'white' : 'gray'}}>ºF</span></div>
+        <span onClick={this.props.onClick} style={{color: this.props.unit === TEMP_UNITS.FAHRENHEIT ? 'white' : 'gray'}}>ºF</span></div>
     );
-  }
-
-  private _switchUnit(event: React.MouseEvent<HTMLSpanElement, MouseEvent>)
-  {
-    let _u = this.state.unit;
-    if(event.currentTarget.textContent?.includes('C')) _u = TEMP_UNITS.CELSIUS;
-    if(event.currentTarget.textContent?.includes('F')) _u = TEMP_UNITS.FAHRENHEIT;
-    
-    this.setState({...this.state, unit: _u});
   }
 
   private _switchTemp(kvalue: number, unit: TEMP_UNITS)
