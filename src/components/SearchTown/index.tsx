@@ -22,10 +22,10 @@ const SearchTown: React.FC<SearchTownProps> = ({
     setOptionsTown,
 }) => {
     const handleChangeInput = async(event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputTown(event.target.value)
-        setOptionsTown(await getOptionsTown(event.target.value))
-        setLocation({ loaded: false })
-    }
+        setInputTown(event.target.value);
+        setOptionsTown(await getOptionsTown(event.target.value));
+        setLocation({ loaded: false });
+    };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -36,9 +36,9 @@ const SearchTown: React.FC<SearchTownProps> = ({
                     latitude: optionsTown.towns[0].latitude,
                     longitude: optionsTown.towns[0].longitude,
                 }
-            })
+            });
         }
-    }
+    };
     
     return (
         <Styles.SearchTown onSubmit={handleSubmit}>
@@ -53,6 +53,6 @@ const SearchTown: React.FC<SearchTownProps> = ({
             />
         </Styles.SearchTown>
     )
-}
+};
 
 export default SearchTown;

@@ -18,17 +18,17 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
 }) => {
     const handleChangeUnitTemperature = () => {
         if(unitTemperature==="celsius") {
-            setUnitTemperature("fahrenheit")
+            setUnitTemperature("fahrenheit");
         } else {
-            setUnitTemperature("celsius")
+            setUnitTemperature("celsius");
         }
-    }
+    };
 
     return (
         <Styles.WeatherCard>
             <Styles.CurrentWeather backgroundColor={backgroundColor.color?.current}>
                 <Styles.Image>
-                    <Styles.Icon src={"/src/assets/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
+                    <Styles.Icon src={"/weather/"+prediction.weather?.current.icon+".svg"} alt="Ícone" />
                 </Styles.Image>
 
                 <Styles.Weather>
@@ -72,6 +72,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
             </Styles.AfterTomorrowWeather>
         </Styles.WeatherCard>
     )
-}
+};
 
 export default WeatherCard;

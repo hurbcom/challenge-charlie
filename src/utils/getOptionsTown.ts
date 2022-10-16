@@ -29,7 +29,7 @@ const getOptionsTown = async(town: string) => {
                 direction: `${response.components.quarter}, ${(response.components.town || response.components.city)}, ${response.components.country}`,
                 latitude: response.geometry.lat,
                 longitude: response.geometry.lng,
-            }
+            };
         }
     
         if(String(response.components.town).toLocaleLowerCase().startsWith(town.toLocaleLowerCase()) || String(response.components.city).toLocaleLowerCase().startsWith(town.toLocaleLowerCase())) {
@@ -37,7 +37,7 @@ const getOptionsTown = async(town: string) => {
                 direction: `${(response.components.town || response.components.city)}, ${(response.components.state || response.components.county)}, ${response.components.country}`,
                 latitude: response.geometry.lat,
                 longitude: response.geometry.lng,
-            }
+            };
         }
     
         if(String(response.components.village).toLocaleLowerCase().startsWith(town.toLocaleLowerCase())) {
@@ -45,9 +45,9 @@ const getOptionsTown = async(town: string) => {
                 direction: `${response.components.village}, ${(response.components.state || response.components.county)}, ${response.components.country}`,
                 latitude: response.geometry.lat,
                 longitude: response.geometry.lng,
-            }
+            };
         }
-    }
+    };
 
     const optionsTown: OptionsTownProps = await axios.get(
         "https://api.opencagedata.com/geocode/v1/json", {
@@ -58,14 +58,14 @@ const getOptionsTown = async(town: string) => {
             }
         }
     ).then((response) => {
-        const towns = (response.data.results).map((item: ResponseProps) => formattedTown(item, town.split(", ")[0]))
-        const townsWithoutUndefined = towns.filter((item: ItemProps) => item!==undefined)
+        const towns = (response.data.results).map((item: ResponseProps) => formattedTown(item, town.split(", ")[0]));
+        const townsWithoutUndefined = towns.filter((item: ItemProps) => item!==undefined);
         
         const filterTowns = townsWithoutUndefined.filter((item: ItemProps, index: number) => {
             const townIndex = townsWithoutUndefined.findIndex((item2: ItemProps) => item.direction===item2.direction);
 
             if(townIndex===index) {
-                return item
+                return item;
             }
         })
 
@@ -73,11 +73,11 @@ const getOptionsTown = async(town: string) => {
             return ({
                 loaded: true,
                 towns: filterTowns,
-            })
+            });
         } else {
             return ({
                 loaded: false,
-            })
+            });
         }
     }).catch((error) => {
         return ({
@@ -85,10 +85,10 @@ const getOptionsTown = async(town: string) => {
             error: {
                 message: error.message,
             }
-        })
+        });
     });
     
-    return optionsTown
-}
+    return optionsTown;
+};
 
 export default getOptionsTown;

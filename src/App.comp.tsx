@@ -13,7 +13,7 @@ import ListOptionsTown from "./components/ListOptionsTown";
 import WeatherCard from "./components/WeatherCard";
 import Loading from "./components/Loading";
 
-import * as Styles from './App.styles'
+import * as Styles from "./App.styles";
 
 const App = () => {
     const initialLocation = useGeolocation();
@@ -27,19 +27,19 @@ const App = () => {
     const prediction = useOpenWeather(location, unitTemperature);
     
     const backgrounImage = useBackgroundImageBing();
-    const backgroundColor = useBackgroundColor(town.loaded, unitTemperature, prediction)
+    const backgroundColor = useBackgroundColor(town.loaded, unitTemperature, prediction);
 
     useEffect(() => {
         if(initialLocation.loaded && !location.loaded) {
-            setLocation(initialLocation)
+            setLocation(initialLocation);
         }
-    }, [initialLocation])
+    }, [initialLocation]);
 
     useEffect(() => {
         if(town.loaded) {
-            setInputTown(`${town.description?.town}, ${town.description?.state}`)
+            setInputTown(`${town.description?.town}, ${town.description?.state}`);
         }
-    }, [town])
+    }, [town]);
 
     return (
         <>
@@ -78,6 +78,6 @@ const App = () => {
             }
         </>
     );
-}
+};
 
 export default App;

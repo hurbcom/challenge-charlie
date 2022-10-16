@@ -43,7 +43,7 @@ const useGeolocation = () => {
         }
     }, []);
 
-    return location
-}
+    return location;
+};
 
 export default useGeolocation;

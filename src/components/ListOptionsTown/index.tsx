@@ -19,7 +19,7 @@ const ListOptionsTown: React.FC<ListOptionsTownProps> = ({
 }) => {
     const handleOnclickList = (optionsTown: OptionsTownProps) => {
         if(optionsTown.loaded && optionsTown.towns) {
-            setInputTown(`${optionsTown.towns[0].direction.split(", ")[0]}, ${optionsTown.towns[0].direction.split(", ")[1]}`)
+            setInputTown(`${optionsTown.towns[0].direction.split(", ")[0]}, ${optionsTown.towns[0].direction.split(", ")[1]}`);
 
             setLocation({
                 loaded: optionsTown.loaded,
@@ -27,13 +27,13 @@ const ListOptionsTown: React.FC<ListOptionsTownProps> = ({
                     latitude: optionsTown.towns[0].latitude,
                     longitude: optionsTown.towns[0].longitude,
                 }
-            })
+            });
 
             setOptionsTown({
                 loaded: false
-            })
+            });
         }
-    }
+    };
 
     return (
         <Styles.OptionsTown>
@@ -50,6 +50,6 @@ const ListOptionsTown: React.FC<ListOptionsTownProps> = ({
             ))}
         </Styles.OptionsTown>
     )
-}
+};
 
 export default ListOptionsTown;

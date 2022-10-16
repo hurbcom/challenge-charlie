@@ -6,6 +6,6 @@ const Loading = () => {
             Carregando...
         </Styles.Loading>
     )
-}
+};
 
 export default Loading;

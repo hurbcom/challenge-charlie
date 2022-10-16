@@ -48,16 +48,16 @@ const useReverseGeocoding = (location: LocationProps) => {
                         });
                     });
             } else {
-                alert(location.error?.message)
+                alert(location.error?.message);
             }
         } else {
             setTown({
                 loaded: false
-            })
+            });
         }
     }, [location]);
 
-    return town
-}
+    return town;
+};
 
 export default useReverseGeocoding;

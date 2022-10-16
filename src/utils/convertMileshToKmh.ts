@@ -1,8 +1,8 @@
 const convertMileshToKmh = (value: number | undefined) => {
     if(typeof(value) === "number") {
-        return (value*1.609).toFixed(1)
+        return (value*1.609).toFixed(1);
     }
-    return "?"
-}
+    return "?";
+};
 
 export default convertMileshToKmh;

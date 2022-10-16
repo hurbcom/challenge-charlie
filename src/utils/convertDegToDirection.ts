@@ -17,13 +17,13 @@ const convertDegToDirection = (value: number | undefined) => {
         "NW",
         "NNW",
         "N"
-    ]
+    ];
 
     if(typeof(value)==="number") {
-        const direction = Number((value/22.5).toFixed(0))
-        return windDirection[direction]
+        const direction = Number((value/22.5).toFixed(0));
+        return windDirection[direction];
     }
-    return "?"
-}
+    return "?";
+};
 
 export default convertDegToDirection;

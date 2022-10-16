@@ -15,13 +15,13 @@ export interface PredictionProps {
             wind_speed: string
             humidity: number
             pressure: number
-            temperature: string
+            temperature: number
         }
         tomorrow:{
-            temperature: string
+            temperature: number
         }
         afterTomorrow: {
-            temperature: string
+            temperature: number
         }
     }
     error?: {
@@ -60,13 +60,13 @@ const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
                                 wind_speed: unitTemperature==="celsius" ? convertMsToKmh(response.data.current.wind_speed) : convertMileshToKmh(response.data.current.wind_speed),
                                 humidity: response.data.current.humidity,
                                 pressure: response.data.current.pressure,
-                                temperature: response.data.current.temp.toFixed(0),
+                                temperature: Number(response.data.current.temp.toFixed(0)),
                             },
                             tomorrow:{
-                                temperature: response.data.daily[0].temp.day.toFixed(0),
+                                temperature: Number(response.data.daily[0].temp.day.toFixed(0)),
                             },
                             afterTomorrow: {
-                                temperature: response.data.daily[1].temp.day.toFixed(0),
+                                temperature: Number(response.data.daily[1].temp.day.toFixed(0)),
                             },
                         }
                     });
@@ -79,12 +79,12 @@ const useOpenWeather = (location: LocationProps, unitTemperature: string) => {
                     });
                 });
             } else {
-                alert(location.error?.message)
+                alert(location.error?.message);
             }
         }
     }, [location, unitTemperature]);
 
-    return prediction
-}
+    return prediction;
+};
 
 export default useOpenWeather;

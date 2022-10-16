@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { TownProps } from "./useReverseGeocoding"
 import { PredictionProps } from "../hooks/useOpenWeather"
 
 export interface BackgroundColorProps {
@@ -22,18 +21,18 @@ const useBackgroundColor = (isSelectionTown: boolean, unitTemperature: string, p
     const getColor = (temperature?: number) => {
         if(temperature) {
             if(unitTemperature==="celsius") {
-                if(temperature<15) return "low"
-                if(temperature>35) return "high"
-                if(temperature) return "medium"
+                if(temperature<15) return "low";
+                if(temperature>35) return "high";
+                if(temperature) return "medium";
             }
             if(unitTemperature==="fahrenheit") {
-                if(temperature<59) return "low"
-                if(temperature>95) return "high"
-                if(temperature) return "medium"
+                if(temperature<59) return "low";
+                if(temperature>95) return "high";
+                if(temperature) return "medium";
             }
         }
-        return ""
-    }
+        return "";
+    };
 
     useEffect(() => {
         if(isSelectionTown) {
@@ -43,7 +42,7 @@ const useBackgroundColor = (isSelectionTown: boolean, unitTemperature: string, p
                     tomorrow: getColor(prediction.weather?.tomorrow.temperature),
                     afterTomorrow: getColor(prediction.weather?.afterTomorrow.temperature)
                 }
-            })
+            });
         } else {
             setBackgroundColor({
                 color: {
@@ -51,11 +50,11 @@ const useBackgroundColor = (isSelectionTown: boolean, unitTemperature: string, p
                     tomorrow: "",
                     afterTomorrow: "",
                 }
-            })
+            });
         }
-    }, [isSelectionTown, prediction])
+    }, [isSelectionTown, prediction]);
 
-    return backgroundColor
-}
+    return backgroundColor;
+};
 
 export default useBackgroundColor;
