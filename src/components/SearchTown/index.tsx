@@ -2,7 +2,6 @@ import { LocationProps } from "../../hooks/useGeolocation";
 
 import getOptionsTown, { OptionsTownProps } from "../../utils/getOptionsTown";
 
-import ListOptionsTown from "../ListOptionsTown";
 import searchIcon from "../../assets/searchIcon.svg";
 
 import * as Styles from './styles'
@@ -43,26 +42,15 @@ const SearchTown: React.FC<SearchTownProps> = ({
     
     return (
         <Styles.SearchTown onSubmit={handleSubmit}>
-            <Styles.Search>
-                <Styles.Icon src={searchIcon} alt="ícone" />
-                
-                <Styles.Input
-                    type="text"
-                    name="input-town"
-                    placeholder="Buscar Cidade"
-                    value={inputTown}
-                    onChange={handleChangeInput}
-                />
-            </Styles.Search>
-
-            {optionsTown.loaded &&
-                <ListOptionsTown
-                    optionsTown={optionsTown}
-                    setOptionsTown={setOptionsTown}
-                    setInputTown={setInputTown}
-                    setLocation={setLocation}
-                />
-            }
+            <Styles.Icon src={searchIcon} alt="ícone" />
+            
+            <Styles.Input
+                type="text"
+                name="input-town"
+                placeholder="Buscar Cidade"
+                value={inputTown}
+                onChange={handleChangeInput}
+            />
         </Styles.SearchTown>
     )
 }

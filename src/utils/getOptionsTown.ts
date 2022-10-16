@@ -26,7 +26,7 @@ const getOptionsTown = async(town: string) => {
     const formattedTown = (response: ResponseProps, town: string) => {
         if(String(response.components.quarter).toLocaleLowerCase().startsWith(town.toLocaleLowerCase())) {
             return {
-                direction: `${response.components.quarter}, ${response.components.city}, ${response.components.country}`,
+                direction: `${response.components.quarter}, ${(response.components.town || response.components.city)}, ${response.components.country}`,
                 latitude: response.geometry.lat,
                 longitude: response.geometry.lng,
             }
@@ -34,7 +34,7 @@ const getOptionsTown = async(town: string) => {
     
         if(String(response.components.town).toLocaleLowerCase().startsWith(town.toLocaleLowerCase()) || String(response.components.city).toLocaleLowerCase().startsWith(town.toLocaleLowerCase())) {
             return {
-                direction: `${(response.components.town || response.components.city)}, ${response.components.state}, ${response.components.country}`,
+                direction: `${(response.components.town || response.components.city)}, ${(response.components.state || response.components.county)}, ${response.components.country}`,
                 latitude: response.geometry.lat,
                 longitude: response.geometry.lng,
             }

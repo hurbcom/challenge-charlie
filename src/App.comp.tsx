@@ -8,9 +8,10 @@ import useBackgroundColor from "./hooks/useBackgroundColor";
 
 import { OptionsTownProps } from "./utils/getOptionsTown";
 
+import SearchTown from "./components/SearchTown";
+import ListOptionsTown from "./components/ListOptionsTown";
 import WeatherCard from "./components/WeatherCard";
 import Loading from "./components/Loading";
-import SearchTown from "./components/SearchTown";
 
 import * as Styles from './App.styles'
 
@@ -53,6 +54,15 @@ const App = () => {
                                 optionsTown={optionsTown}
                                 setOptionsTown={setOptionsTown}
                             />
+
+                            {optionsTown.loaded &&
+                                <ListOptionsTown
+                                    optionsTown={optionsTown}
+                                    setOptionsTown={setOptionsTown}
+                                    setInputTown={setInputTown}
+                                    setLocation={setLocation}
+                                />
+                            }
 
                             <WeatherCard
                                 unitTemperature={unitTemperature}

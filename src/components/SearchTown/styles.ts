@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const SearchTown = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0.5rem;
+    
     background: linear-gradient(
         160deg,
         rgba(240, 235, 231, 1),
@@ -11,12 +15,6 @@ export const SearchTown = styled.form`
         rgba(255, 255, 255, 0.85),
         rgba(255, 255, 255, 0.6)
     );
-`
-
-export const Search = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `
 
 export const Icon = styled.img`
