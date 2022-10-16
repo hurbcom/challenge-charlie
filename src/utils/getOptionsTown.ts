@@ -59,8 +59,16 @@ const getOptionsTown = async(town: string) => {
         }
     ).then((response) => {
         const towns = (response.data.results).map((item: ResponseProps) => formattedTown(item, town.split(", ")[0]))
-        const filterTowns = towns.filter((item: ItemProps) => item!==undefined)
+        const townsWithoutUndefined = towns.filter((item: ItemProps) => item!==undefined)
         
+        const filterTowns = townsWithoutUndefined.filter((item: ItemProps, index: number) => {
+            const townIndex = townsWithoutUndefined.findIndex((item2: ItemProps) => item.direction===item2.direction);
+
+            if(townIndex===index) {
+                return item
+            }
+        })
+
         if(filterTowns.length>0) {
             return ({
                 loaded: true,

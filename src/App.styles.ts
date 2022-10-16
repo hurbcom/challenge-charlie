@@ -20,7 +20,7 @@ export const Container = styled.div<ContainerProps>`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-`;
+`
 
 export const PredictionCard = styled.div`
     width: 36rem;
@@ -28,4 +28,4 @@ export const PredictionCard = styled.div`
     @media (max-width: 520px) {
         width: 100%;
     }
-`;
+`
