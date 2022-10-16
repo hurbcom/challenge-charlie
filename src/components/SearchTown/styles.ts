@@ -7,8 +7,7 @@ export const SearchTown = styled.form`
     padding: 0.5rem;
     
     background: linear-gradient(
-        160deg,
-        rgba(240, 235, 231, 1),
+        140deg,
         rgba(240, 235, 231, 1),
         rgba(240, 235, 231, 1),
         rgba(240, 235, 231, 0.95),

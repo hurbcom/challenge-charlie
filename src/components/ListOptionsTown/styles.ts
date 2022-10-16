@@ -11,8 +11,14 @@ export const OptionsTown = styled.ul`
         width: 100%;
     }
 
-    background-color: #F0EBE7;
-    opacity: 0.9;
+    background: linear-gradient(
+        60deg,
+        rgba(240, 235, 231, 1),
+        rgba(240, 235, 231, 1),
+        rgba(240, 235, 231, 0.95),
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.3)
+    );
 `
 
 export const ItemList = styled.li`
@@ -23,8 +29,12 @@ export const ItemList = styled.li`
     color: #636361;
 
     &:hover {
-        background-color: #C4C0BD;
-        color: #575755;
+        background: linear-gradient(
+            60deg,
+            rgba(199, 195, 192, 1),
+            rgba(199, 195, 192, 0.75),
+            rgba(255, 255, 255, 0.35)
+        );
         cursor: pointer;
     }
 `
