@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Challenge Charlie" title="#challenge-charlie" src="/challenge-charlie.jpg" width="75%" />
+    <img alt="Challenge Charlie" title="#challenge-charlie" src=".github/challenge-charlie.jpg" width="75%" />
 </p>
 
 <h4 align="center">
