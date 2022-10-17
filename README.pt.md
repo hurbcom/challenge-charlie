@@ -1,60 +1,73 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
+<p align="center">
+    <img alt="Challenge Charlie" title="#challenge-charlie" src="/challenge-charlie.jpg" width="75%" />
+</p>
 
-[[English](README.md) | [Portuguese](README.pt.md)]
-
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
-
-Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
-
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
-
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
-
-A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
-
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `772920597e4ec8f00de8d376dfb3f094`. Caso necessário, crie uma nova conta.
-
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
-
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
-
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
-
-## Requisitos
-
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
-
-## Critério de avaliação
-
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome enigmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura etc, é a melhor escolha para a aplicação?
-
-## Dúvidas
-
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
-
-Boa sorte e boa viagem! ;)
+<h4 align="center">
+  Projeto desenvolvido como parte do Desafio Técnico da HURB
+</h4>
 
 <p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologia">Tecnologia</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-apis-utilizadas">APIs utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-melhorias">Melhorias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-observações-e-trabalhos-futuros">Observações e Trabalhos futuros</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar-o-projeto">Como executar o projeto</a>
 </p>
+
+## 💻 Projeto
+
+O Desafio Charlie é um desafio de Front-end, criado pela HURB, para avaliação de seus candidatos. Tal desafio consiste na criação de uma página web para consulta da previsão do tempo com base na cidade informada.
+
+Para mais informações sobre as especificações e critérios do desafio acesse [challenge-charlie](https://github.com/hurbcom/challenge-charlie/blob/master/README.md).
+
+## 🚀 Tecnologia
+
+Este projeto foi desenvolvido com as seguintes tecnologias:
+
+-   [ReactJS](https://reactjs.org)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Axios](https://axios-http.com/ptbr/docs/intro)
+-   [styled-components](https://styled-components.com/)
+
+## ☁ APIs utilizadas
+
+-   [API do BING](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
+-   [Open Cage](https://api.opencagedata.com)
+-   [Open Weather](http://api.openweathermap.org)
+
+## 🎯 Melhorias
+
+1. Para consultar a previsão do tempo, utilizou-se dos dados de latitude e longitude em lugar do nome da localização, dentro da API OpenWeather, como forma de obter dados de um maior número de localizações distintas, visto que, durantes testes da API, foi observado um número reduzidos de localizações aceitas (localidades de municípios não eram reconhecidas).
+
+2. Por conta do ponto anterior, no projeto em questão foi utilizado a API OpenCage não apenas para obtenção do nome da localização inicial, mas também para realizar a pesquisa das cidades e municípios. Isto é, com base na informação inserida pelo usuário no input, uma lista de possíveis localizações relacionadas é exibida na tela para que o mesmo selecione a localização desejada. Na sequência, a aplicação repassa os dados de latitude e longitude correspondente para a API OpenWeather realizar a busca da previsão do tempo.
+
+## 📝 Observações e Trabalhos futuros
+
+1. Por ser um desafio de front-end, as chaves das APIs utilizadas foram declaradas como variaveis de ambiente diretamente na aplicação frontend, contudo, em uma aplicação real seria melhor tais chaves serem declaradas no backend, por questões de segurança.
+2. Criação de testes automatizados.
+3. Criação de correções automatizadas de lint.
+
+## 🤔 Como executar o projeto
+
+### Localmente
+
+1.  Clone o repositório: `git clone git@github.com:esiammd/challenge-charlie.git`
+2.  Acesse a pasta do projeto no seu terminal: `cd challenge-charlie`
+3.  Instale as dependências: `yarn` ou `npm install`
+4.  Execute a aplicação em modo de desenvolvimento: `yarn dev` ou `npm run dev`
+5.  Acesse a aplicação: http://127.0.0.1:5173/
+
+### Docker
+
+1.  Clone o repositório: `git clone git@github.com:esiammd/challenge-charlie.git`
+2.  Acesse a pasta do projeto no seu terminal: `cd challenge-charlie`
+
+3.  Docker de desenvolvimento
+    -   Crie a imagem: `docker build -t challenge-charlie-dev --target development .`
+    -   Crie o container: `docker run -p 3000:5173 --name challenge-charlie-dev -d challenge-charlie-dev`
+    -   Acesse a aplicação: http://localhost:3000
+4.  Docker de produção
+    -   Crie a imagem: `docker build -t challenge-charlie-prod --target production .`
+    -   Crie o container: `docker run -p 4000:4173 --name challenge-charlie-prod -d challenge-charlie-prod`
+    -   Acesse a aplicação: http://localhost:4000
