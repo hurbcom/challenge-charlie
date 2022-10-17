@@ -1,10 +1,12 @@
-<p align="center">
-    <img alt="Challenge Charlie" title="#challenge-charlie" src=".github/challenge-charlie.jpg" width="75%" />
-</p>
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Challenge Charlie
 
-<h4 align="center">
-  Project developed as part of HURB's Technical Challenge
-</h4>
+<span>Project developed as part of HURB's Technical Challenge</span>
+
+[[English](README.md) | [Portuguese](README.pt.md)]
+
+<p align="center">
+    <img alt="Challenge Charlie" title="#challenge-charlie" src=".github/challenge-charlie.png" width="75%" />
+</p>
 
 <p align="center">
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

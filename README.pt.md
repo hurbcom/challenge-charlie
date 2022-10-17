@@ -1,10 +1,12 @@
-<p align="center">
-    <img alt="Challenge Charlie" title="#challenge-charlie" src=".github/challenge-charlie.jpg" width="75%" />
-</p>
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-<h4 align="center">
-  Projeto desenvolvido como parte do Desafio Técnico da HURB
-</h4>
+<span>Projeto desenvolvido como parte do Desafio Técnico da HURB</span>
+
+[[Inglês](README.md) | [Português](README.pt.md)]
+
+<p align="center">
+    <img alt="Challenge Charlie" title="#challenge-charlie" src=".github/challenge-charlie.png" width="75%" />
+</p>
 
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
