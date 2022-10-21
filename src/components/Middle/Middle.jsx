@@ -1,5 +1,9 @@
+import { useState, useEffect } from "react";
+import { Toastify } from "toastify";
 import Weather from "../../assets/WeatherIcons/2.svg";
 import Compass from "../../assets/WeatherIcons/44.svg";
+import { GeolocalizationIP } from "../../services/GeolocalizationIP";
+import { OpenWeatherCityApi } from "../../services/OpenWeatherAPI";
 import {
   ContainerWeatherData,
   Content,
@@ -11,16 +15,36 @@ import {
   ImgTitleContainer,
 } from "./styled";
 export const Middle = () => {
+  const [information, setInformation] = useState(null);
+  const [city, setCity] = useState(null);
+  //geolocalização
+  useEffect(() => {
+    GeolocalizationIP()
+      .get()
+      .then((response) => {
+        setInformation(response.data);
+        setCity(response.data.city);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  //cidade
+
   return (
     <Content color="#161616">
       <TitleContainer>
         <ImgTitleContainer>
           <img src={Compass} alt="Bússola" />
         </ImgTitleContainer>
-        <div>
-          <p>Previsão do tempo</p>
-          <p>Rio de Janeiro, RJ</p>
-        </div>
+        {information ? (
+          <div>
+            <p>Previsão do tempo</p>
+            <p>
+              {information.city},{information.state},{information.country_code}
+            </p>
+          </div>
+        ) : null}
       </TitleContainer>
 
       <ContainerWeatherData color="#F0C000">

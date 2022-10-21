@@ -32,6 +32,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 -   [Color](https://github.com/Qix-/color)
 -   [MaterialUI](https://mui.com/pt/material-ui/)
 -   [Material_Icons](https://mui.com/pt/material-ui/material-icons/)
+-   [Toastify](#)
 
  API's solicitadas e utilizadas
 
