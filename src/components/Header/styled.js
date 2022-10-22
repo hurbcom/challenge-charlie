@@ -23,6 +23,7 @@ export const DivIcon = styled.button`
   background-color: black;
   width: 50px;
   height: 50px;
+  border: none;
 `;
 export const InputText = styled.input`
   height: 47px;

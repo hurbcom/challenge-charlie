@@ -32,13 +32,14 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 -   [Color](https://github.com/Qix-/color)
 -   [MaterialUI](https://mui.com/pt/material-ui/)
 -   [Material_Icons](https://mui.com/pt/material-ui/material-icons/)
--   [Toastify](#)
+-   [Toastify](https://fkhadra.github.io/react-toastify/introduction)
 
  API's solicitadas e utilizadas
 
 -   [API do BING](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
 -   [Open Cage](https://api.opencagedata.com)
 -   [Open Weather](http://api.openweathermap.org)
+-   [Geolocation DB](https://geolocation-db.com/)
 
 ## Melhorias
 
