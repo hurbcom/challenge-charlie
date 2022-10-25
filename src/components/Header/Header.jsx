@@ -1,11 +1,26 @@
 import SearchIcon from "@mui/icons-material/TravelExplore";
 import { Container, DivIcon, InputText, SearchContainer } from "./styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OpenWeatherCityApi } from "../../services/OpenWeatherAPI";
+import { CustomerContext } from "../../providers/CustomerContext";
+import { toast } from "react-toastify";
 export const Header = () => {
-  const [city, setCity] = useState();
+  const { setCity } = useContext(CustomerContext);
+  const [inputValue, setInputValue] = useState("");
+  const HandleChange = (e) => {
+    e.preventDefault();
+    setInputValue(e.target.value);
+  };
   const handleClick = (e) => {
     e.preventDefault();
-    setCity(e.target.value);
+    OpenWeatherCityApi(inputValue)
+      .get()
+      .then((response) => {
+        setCity(response.data);
+      })
+      .catch(() => {
+        toast.error("Cidade não encontrada");
+      });
   };
 
   return (
@@ -14,8 +29,9 @@ export const Header = () => {
       <SearchContainer>
         <div>
           <InputText
+            onChange={HandleChange}
             type="text"
-            value={city}
+            value={inputValue}
             placeholder="Digite aqui sua cidade"
           />
         </div>

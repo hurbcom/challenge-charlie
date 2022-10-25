@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";
-import Weather from "../../assets/WeatherIcons/2.svg";
-import Compass from "../../assets/WeatherIcons/44.svg";
-import { GeolocalizationIP } from "../../services/GeolocalizationIP";
-import { OpenWeatherCityApi } from "../../services/OpenWeatherAPI";
+import { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import {
   ContainerWeatherData,
@@ -14,25 +10,31 @@ import {
   TitleContainer,
   ImgTitleContainer,
 } from "./styled";
+import Weather from "../../assets/WeatherIcons/2.svg";
+import Compass from "../../assets/WeatherIcons/44.svg";
+import { GeolocalizationIP } from "../../services/GeolocalizationIP";
+import { OpenWeatherCityApi } from "../../services/OpenWeatherAPI";
+
 export const Middle = () => {
+  const [currentCity, setCurrentCity] = useState(null);
   const [information, setInformation] = useState(null);
-  const [city, setCity] = useState();
   const [WeatherData, setWeatherData] = useState();
-  //geolocalização
+  const [fahrenheit, setFahrenheit] = useState(false);
+  //geolocalização/separar em outro arquivo
   useEffect(() => {
     GeolocalizationIP()
       .get()
       .then((response) => {
         setInformation(response.data);
-        setCity(response.data.city);
+        setCurrentCity(response.data.city);
       })
       .catch((error) => {
         toast.error("Erro ao buscar dados de localização");
       });
   }, []);
-  //cidade
+  //cidade/separar em outro arquivo
   useEffect(() => {
-    OpenWeatherCityApi(city)
+    OpenWeatherCityApi(currentCity)
       .get()
       .then((response) => {
         setWeatherData(response.data);
@@ -40,21 +42,31 @@ export const Middle = () => {
       .catch(() => {
         toast.error("Cidade não encontrada");
       });
-  }, [city]);
-
+  }, [currentCity]);
+  //separar em outro arquivo
   const ChangeColor = (temp) => {
-    if (temp > 30) {
-      return "red";
-    } else if (temp > 20) {
-      return "orange";
-    } else if (temp > 10) {
-      return "yellow";
-    } else if (temp > 0) {
-      return "blue";
+    if (temp > 35) {
+      return "#AA2429";
+    } else if (temp < 15) {
+      return "#0954A5";
+    } else {
+      return "#F0C000";
     }
   };
+  //separar em outro arquivo
+  const ConvertTemp = (temp) => {
+    if (fahrenheit === false) {
+      let Convert = (temp * 9) / 5 + 32;
+      setFahrenheit(true);
+      return `${Convert}°F`;
+    } else {
+      setFahrenheit(false);
+      return `${temp}°C`;
+    }
+  };
+
   return (
-    <Content color="black">
+    <Content color={ChangeColor(24)}>
       <TitleContainer>
         <ImgTitleContainer>
           <img src={Compass} alt="Bússola" />
@@ -78,7 +90,7 @@ export const Middle = () => {
             <ContentDetailsRight>
               <div>
                 <p>Hoje</p>
-                <p>{WeatherData.main.temp}º</p>
+                <p>{Math.round(WeatherData.main.temp)}º</p>
               </div>
               <div>
                 <p>{WeatherData.weather[0].description}</p>
@@ -91,12 +103,12 @@ export const Middle = () => {
             </ContentDetailsRight>
           </ContainerWeatherData>
 
-          <TomorrowContainer color={ChangeColor(WeatherData.main.temp)}>
+          <TomorrowContainer color={ChangeColor(38)}>
             <p>Amanhã</p>
             <p>32º</p>
           </TomorrowContainer>
 
-          <NextDaysContainer color={ChangeColor(WeatherData.main.temp)}>
+          <NextDaysContainer color={ChangeColor(18)}>
             <p>Depois de Amanhã</p>
             <p>30º</p>
           </NextDaysContainer>

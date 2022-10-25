@@ -3,11 +3,7 @@ import { createContext, useState } from "react";
 export const WeatherContext = createContext();
 
 export const WeatherProvider = ({ children }) => {
-  const [city, setCity] = useState();
+  const [currentCity, setCurrentCity] = useState();
 
-  return (
-    <WeatherContext.Provider value={{ city, setCity }}>
-      {children}
-    </WeatherContext.Provider>
-  );
+  return <WeatherContext.Provider>{children}</WeatherContext.Provider>;
 };
