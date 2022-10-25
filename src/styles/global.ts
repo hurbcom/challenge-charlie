@@ -7,7 +7,12 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, input-security, textarea, button {
+  :focus {
+    outline: 0;
+  }
+
+  body, input, textarea, button {
     font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
   }
 `
