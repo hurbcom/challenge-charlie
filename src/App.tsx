@@ -1,9 +1,16 @@
+import { Background } from './components/Background';
+
+
+import { GlobalStyle } from './styles/global';
 
 function App() {
   return (
-    <div className="App">
-      hello world
-    </div>
+    <Background>
+      <div className="App">
+        hello world
+      </div>
+      <GlobalStyle />
+    </Background>
   );
 }
 
