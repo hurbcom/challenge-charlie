@@ -33,6 +33,7 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 export const ImgTitleContainer = styled.div`
+  padding: 16px;
   width: 50px;
   height: 50px;
   img {
@@ -57,9 +58,10 @@ export const ContainerWeatherData = styled.div`
 `;
 export const ContentImgLeft = styled.div`
   display: flex;
+  padding: 30px;
   img {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
 `;
 export const ContentDetailsRight = styled.div`

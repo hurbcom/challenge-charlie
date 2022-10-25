@@ -10,7 +10,7 @@ import {
   TitleContainer,
   ImgTitleContainer,
 } from "./styled";
-import Weather from "../../assets/WeatherIcons/2.svg";
+import Weather from "../../assets/WeatherIcons/04d.svg";
 import Compass from "../../assets/WeatherIcons/44.svg";
 import { GeolocalizationIP } from "../../services/GeolocalizationIP";
 import {
@@ -127,26 +127,28 @@ export const Middle = () => {
   };
 
   return (
-    <Content color={ChangeColor(24)}>
-      <TitleContainer>
-        <ImgTitleContainer>
-          <img src={Compass} alt="Bússola" />
-        </ImgTitleContainer>
-        {information ? (
-          <div>
-            <p>Previsão do tempo</p>
-            <p>
-              {`${information.city}, ${information.state}, ${information.country_code}`}
-            </p>
-          </div>
-        ) : null}
-      </TitleContainer>
-
+    <>
       {WeatherData ? (
-        <>
+        <Content color={ChangeColor(WeatherData.main.temp)}>
+          <TitleContainer>
+            <ImgTitleContainer>
+              <img src={Compass} alt="Bússola" />
+            </ImgTitleContainer>
+
+            <div>
+              <p>Previsão do tempo</p>
+              <p>
+                {`${information.city}, ${information.state}, ${information.country_code}`}
+              </p>
+            </div>
+          </TitleContainer>
+
           <ContainerWeatherData color={ChangeColor(WeatherData.main.temp)}>
             <ContentImgLeft>
-              <img src={Weather} alt=""></img>
+              <img
+                src={`../../../src/assets/WeatherIcons/${WeatherData.weather[0].icon}.svg`}
+                alt={`${WeatherData.weather[0].description}`}
+              ></img>
             </ContentImgLeft>
             <ContentDetailsRight>
               <div>
@@ -173,8 +175,8 @@ export const Middle = () => {
             <p>Depois de Amanhã</p>
             <p>{nextDays}º</p>
           </NextDaysContainer>
-        </>
+        </Content>
       ) : null}
-    </Content>
+    </>
   );
 };

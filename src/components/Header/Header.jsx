@@ -1,9 +1,9 @@
 import SearchIcon from "@mui/icons-material/TravelExplore";
 import { Container, DivIcon, InputText, SearchContainer } from "./styled";
 import { useContext, useState } from "react";
-import { OpenWeatherCityApi } from "../../services/OpenWeatherAPI";
 import { CustomerContext } from "../../providers/CustomerContext";
-import { toast } from "react-toastify";
+
+//^[a-zA-Zà-úÀ-Ú.\s_-]+$  regex de letras
 export const Header = () => {
   const { setCity } = useContext(CustomerContext);
   const [inputValue, setInputValue] = useState("");
@@ -14,6 +14,9 @@ export const Header = () => {
   const handleClick = (e) => {
     e.preventDefault();
     setCity(inputValue);
+    // const re = /^[a-zA-Zà-úÀ-Ú.\s_-]+$/;
+    // let RegexArray = inputValue.match(re);
+    // console.log(RegexArray); // se retorna um array com tamanho 0 mas se for null é numero
   };
 
   const handleKeyDown = (e) => {
