@@ -130,7 +130,6 @@ export function WeatherCard() {
           handleLoadingState(false)
         }
       } else {
-        console.log("ué")
         handleLoadingState(false)
         setErrorMessage('Geolocation permission denied. You can still look for location using the search bar')
       }
