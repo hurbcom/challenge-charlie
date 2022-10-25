@@ -1,11 +1,13 @@
 import SearchIcon from "@mui/icons-material/TravelExplore";
 import { Container, DivIcon, InputText, SearchContainer } from "./styled";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CustomerContext } from "../../providers/CustomerContext";
+import { toast } from "react-toastify";
+import { OpenCageAPI } from "../../services/OpenCageAPI";
 
-//^[a-zA-Zà-úÀ-Ú.\s_-]+$  regex de letras
 export const Header = () => {
-  const { setCity } = useContext(CustomerContext);
+  const { city, setCity } = useContext(CustomerContext);
+  const { coordinate, setCoordinate } = useContext(CustomerContext);
   const [inputValue, setInputValue] = useState("");
   const HandleChange = (e) => {
     e.preventDefault();
@@ -13,10 +15,32 @@ export const Header = () => {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    setCity(inputValue);
-    // const re = /^[a-zA-Zà-úÀ-Ú.\s_-]+$/;
-    // let RegexArray = inputValue.match(re);
-    // console.log(RegexArray); // se retorna um array com tamanho 0 mas se for null é numero
+    let RegexArray = inputValue.match(/^[a-zA-Zà-úÀ-Ú.\s_-]+$/);
+    if (Array.isArray(RegexArray)) {
+      setCity(inputValue);
+    } else {
+      if (inputValue.indexOf(",") !== -1) {
+        let coordinateArray = inputValue.split(",");
+        setCoordinate(coordinateArray);
+      } else if (inputValue.indexOf(" ") !== -1) {
+        let cleanCoordinate = inputValue.trim();
+        let coordinateArray = cleanCoordinate.split(" ");
+        setCoordinate(coordinateArray);
+      } else {
+        toast.error("Digite uma cidade ou coordenadas válidas");
+      }
+    }
+
+    OpenCageAPI(coordinate[0], coordinate[1])
+      .get()
+      .then((response) => {
+        console.log("Before", response.data.results[0].components.city);
+        setCity(response.data.results[0].components.city);
+        console.log("After", city);
+      })
+      .catch((error) => {
+        toast.error("Digite uma cidade ou coordenadas válidas");
+      });
   };
 
   const handleKeyDown = (e) => {

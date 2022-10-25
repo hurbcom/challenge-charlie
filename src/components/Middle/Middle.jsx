@@ -22,6 +22,7 @@ import { CustomerContext } from "../../providers/CustomerContext";
 
 export const Middle = () => {
   const { city, setCity } = useContext(CustomerContext);
+  const { coordinate } = useContext(CustomerContext);
   const [information, setInformation] = useState(null);
   const [WeatherData, setWeatherData] = useState();
   const [fahrenheit, setFahrenheit] = useState(false);
@@ -73,7 +74,6 @@ export const Middle = () => {
         toast.error("Erro ao buscar dados de previsão");
       });
   };
-
   //cidade/separar em outro arquivo
   useEffect(() => {
     if (city) {
