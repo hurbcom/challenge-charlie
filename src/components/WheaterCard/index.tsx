@@ -1,6 +1,7 @@
 
 
 
+import { useEffect, useState } from 'react';
 import {
   WeatherCardContainer,
   WeatherCardForm,
@@ -13,11 +14,49 @@ import {
 
 
 export function WeatherCard() {
+  const [currentCity, setCurrentCity] = useState('');
+  const [currentState, setCurrentState] = useState('');
+
+
+  function openCageUrl(lat: number, lon: number) {
+    const openCageApiKey = process.env.REACT_APP_OPENCAGE_API_KEY
+    return "https://api.opencagedata.com/geocode/v1/json?q=" +
+      lat + "+" + lon + "&key=" + openCageApiKey
+  }
+
+  function returnLocationForPlaceholder() {
+    if (currentCity && currentState) {
+      return `${currentCity}, ${currentState}`
+    } else {
+      return ""
+    }
+  }
+
+  useEffect(() => {
+    try {
+      //colocar o loading
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(async (result) => {
+          const response = await fetch(openCageUrl(result.coords.latitude, result.coords.longitude))
+          const openCageData = await response.json()
+
+          setCurrentCity(openCageData.results[0].components.city)
+          setCurrentState(openCageData.results[0].components.state)
+        })
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      // retirar o loading
+    }
+  }, [])
+
+
   return (
     <WeatherCardContainer>
       <WeatherCardForm action="">
         <p>(</p>
-        <input type="text" placeholder='Rio de Janeiro, Rio de Janeiro' />
+        <input type="text" placeholder={returnLocationForPlaceholder()} />
       </WeatherCardForm>
       <TodayContainer>
         <WeatherIconContainer>B</WeatherIconContainer>
