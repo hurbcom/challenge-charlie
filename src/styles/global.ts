@@ -5,6 +5,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+      font-size: 90%;
+    }
+   
   }
 
   :focus {
@@ -15,4 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
   }
+
+  
 `

@@ -16,7 +16,6 @@ export function returnWeatherIconString(weather?: string) {
   }
 }
 
-
 export function returnWindDirectionString(windDirection?: number) {
   if (windDirection) {
     if (windDirection === 0 || windDirection === 260) { return "N" }
@@ -31,17 +30,12 @@ export function returnWindDirectionString(windDirection?: number) {
   }
 }
 
-
 export function getBackgroundColorFromTemperature(temperature?: number) {
   if (temperature) {
     if (temperature < 15) return "blue"
     else if (temperature > 35) return "red"
     else return "yellow"
   } else return "gray"
-}
-
-export function convertCelsiusToFahrenheit(temperature: number) {
-  return Math.round(temperature * 1.8 + 32);
 }
 
 export function convertFromKelvinToCelsius(temperature: number) {

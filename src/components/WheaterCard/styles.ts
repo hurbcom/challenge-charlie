@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 function todayBackgroundBasedOnTemperature(temperature?: number) {
   if (temperature) {
-    if (temperature > 35) return 'rgba(255, 51, 0, 0.7)';
-    else if (temperature < 15) return 'rgba(0, 51, 255, 0.7)';
-    else return 'rgba(233,215,0, .8);'
+    if (temperature > 35) return 'rgba(255, 51, 0, 0.9)';
+    else if (temperature < 15) return 'rgba(0, 51, 255, 0.9)';
+    else return 'rgba(233,215,0, .9);'
   } else {
     return 'rgba(75,75,75, 0.8)'
   }
@@ -37,6 +37,22 @@ export const WeatherCardContainer = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  @media (max-width: 795px) {
+    width: 40rem;
+  }
+
+  @media (max-width: 585px) {
+    width: 35rem;
+  }
+
+  @media (max-width: 415px) {
+    width: 24.5rem;
+  }
+
+  @media (max-width: 300px) {
+    width: 18rem;
+  }
 `
 
 export const WeatherCardForm = styled.form`
@@ -46,6 +62,8 @@ export const WeatherCardForm = styled.form`
   grid-template-columns: 7rem 1fr;
   background-color: rgba(255,255,255,0.9);
   color: #8B8884;
+
+ 
 
   p {
     font-family: 'MeteoconsRegular';
@@ -61,6 +79,54 @@ export const WeatherCardForm = styled.form`
     line-height: 1.6;
     background-color: transparent;
     color: #8B8884;
+    overflow: hidden;
+  }
+
+
+  @media (max-width: 795px) {
+    height: 5rem;
+    grid-template-columns: 5rem 1fr;
+
+    p {
+      font-size: 4rem;
+    }
+    input {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 585px) {
+    height: 4.5rem;
+    grid-template-columns: 4.5rem 1fr;
+
+    p {
+      font-size: 3.5rem;
+    }
+    input {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 415px) {
+    height: 4rem;
+    grid-template-columns: 4rem 1fr;
+    p {
+      font-size: 3rem;
+    }
+    input {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 300px) {
+    height: 3rem;
+    grid-template-columns: 3rem 1fr;
+    p {
+      font-size: 2rem;
+    }
+    input {
+      font-size: 1.5rem;
+    }
   }
 `
 
@@ -73,6 +139,14 @@ export const TodayContainer = styled.div<WeatherInfoProps>`
   height: 25rem;
   display: grid;
   grid-template-columns: 50% 1fr;
+
+  @media (max-width: 795px) {
+   display: flex;
+   flex-direction: column;
+  }
+
+  
+
 `
 
 export const WeatherIconContainer = styled.div`
@@ -82,6 +156,10 @@ export const WeatherIconContainer = styled.div`
   font-family: 'MeteoconsRegular';
   font-size: 20rem;
   color: whitesmoke;
+
+  @media (max-width: 795px) {
+    font-size: 10.5rem;
+  }
 `
 
 export const TodayWeatherInfo = styled.div`
@@ -100,7 +178,7 @@ export const TodayWeatherInfo = styled.div`
 
   h2 {
     margin: 1rem 0;
-    font-weight: 100;
+    font-weight: bold;
     text-transform: capitalize;
   }
 
@@ -112,6 +190,15 @@ export const TodayWeatherInfo = styled.div`
     font-size: 1.7rem;
     line-height: 1.2;
     cursor: pointer;
+    max-width: 20%;
+  }
+
+  @media (max-width: 795px) {
+    padding-left: 2rem;
+  }
+
+  @media (max-width: 300px) {
+    padding-left: 1rem;
   }
 `
 
@@ -140,6 +227,22 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
     line-height: 1.3;
     font-size: 1.7rem;
     color: whitesmoke;
+  }
+
+  @media (max-width: 795px) {
+    align-items: flex-start;
+    padding-left: 2rem;
+
+    div {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 300px) {
+    padding-left: 1rem;
+    span {
+      font-size: 1.5rem;
+    }
   }
 `
 
