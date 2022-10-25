@@ -17,7 +17,8 @@ import {
   AfterTomorrowContainer,
   AutocompleteDropdownContainer,
   AutocompleteSugestionsContainer,
-  SearchbarContainer
+  SearchbarContainer,
+  ErrorMessageContainer
 } from './styles';
 
 interface ApiWeatherInfo {
@@ -44,6 +45,7 @@ export function WeatherCard() {
   const [tomorrowWeatherReport, setTomorrowWeatherReport] = useState<ApiWeatherInfo | undefined>();
   const [afterTomorrowWeatherReport, setAfterTomorrowWeatherReport] = useState<ApiWeatherInfo | undefined>();
   const [temperatureShowType, setTemperatureShowType] = useState<"celsius" | "fahrenheit">("celsius");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   //context
   const { handleLoadingState } = useContext(LoadingContext);
@@ -106,26 +108,35 @@ export function WeatherCard() {
 
   useEffect(() => {
     handleLoadingState(true)
-    if ("geolocation" in navigator) {
-      try {
-        navigator.geolocation.getCurrentPosition(async (result) => {
-          const response = await fetch(openCageUrl(result.coords.latitude, result.coords.longitude))
-          const openCageData = await response.json()
+    navigator.permissions.query({ name: 'geolocation' }).then(result => {
+      if (result.state === 'granted' || result.state === 'prompt') {
+        setErrorMessage(null)
+        try {
+          navigator.geolocation.getCurrentPosition(async (result) => {
+            const response = await fetch(openCageUrl(result.coords.latitude, result.coords.longitude))
+            const openCageData = await response.json()
 
-          const geo = openCageData.results[0].geometry
-          const city = openCageData.results[0].components.city
+            const geo = openCageData.results[0].geometry
+            const city = openCageData.results[0].components.city
 
-          setCurrentCity(city)
-          setCurrentState(openCageData.results[0].components.state)
+            setCurrentCity(city)
+            setCurrentState(openCageData.results[0].components.state)
 
-          await fetchWeatherInformationFromApi(geo)
+            await fetchWeatherInformationFromApi(geo)
+            handleLoadingState(false)
+          })
+        } catch (error) {
+          console.error(error)
           handleLoadingState(false)
-        })
-      } catch (error) {
-        console.error(error)
+        }
+      } else {
+        console.log("ué")
         handleLoadingState(false)
+        setErrorMessage('Geolocation permission denied. You can still look for location using the search bar')
       }
-    }
+    })
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -136,9 +147,11 @@ export function WeatherCard() {
       const geocode = await geocodeByAddress(value);
       const latLng = await getLatLng(geocode[0])
       await fetchWeatherInformationFromApi(latLng)
+      setErrorMessage(null)
       handleLoadingState(false)
     } catch (e) {
       console.error(e)
+      setErrorMessage("Unable to find location")
       handleLoadingState(false)
     }
     return
@@ -176,45 +189,50 @@ export function WeatherCard() {
           </SearchbarContainer>
         )}
       </PlacesAutocomplete>
-      <TodayContainer temperature={todayWeatherReport?.temperature} >
-        <WeatherIconContainer>{returnWeatherIconString(todayWeatherReport?.main)}</WeatherIconContainer>
-        <TodayWeatherInfo>
-          <div>
-            <span>Hoje</span>
-            <button onClick={SwitchTemperatureType}>
-              {
-                temperatureShowType === 'celsius' ? <span>{todayWeatherReport?.temperature}°C</span> : <span>{todayWeatherReport?.temperatureFahrenheit}°F</span>
-              }
-            </button>
-          </div>
-          <h2>{todayWeatherReport?.description}</h2>
-          <div>
-            <span>Vento: {returnWindDirectionString(todayWeatherReport?.windDirection)} {todayWeatherReport?.windSpeed}km/h</span>
-            <span>Humidade: {todayWeatherReport?.humidity}%</span>
-            <span>Pressão: {todayWeatherReport?.pressure}hPA</span>
-          </div>
-        </TodayWeatherInfo>
-      </TodayContainer>
-      <TomorrowContainer temperature={todayWeatherReport?.temperature}>
-        <div>
-          <span>AMANHÃ</span>
-          <button onClick={SwitchTemperatureType}>
-            {
-              temperatureShowType === 'celsius' ? <span>{tomorrowWeatherReport?.temperature}°C</span> : <span>{tomorrowWeatherReport?.temperatureFahrenheit}°F</span>
-            }
-          </button>
-        </div>
-      </TomorrowContainer>
-      <AfterTomorrowContainer temperature={todayWeatherReport?.temperature}>
-        <div>
-          <span>DEPOIS DE AMANHÃ</span>
-          <button onClick={SwitchTemperatureType}>
-            {
-              temperatureShowType === 'celsius' ? <span>{afterTomorrowWeatherReport?.temperature}°C</span> : <span>{afterTomorrowWeatherReport?.temperatureFahrenheit}°F</span>
-            }
-          </button>
-        </div>
-      </AfterTomorrowContainer>
+      {errorMessage ?
+        <ErrorMessageContainer><span>{errorMessage}</span></ErrorMessageContainer> :
+        <>
+          <TodayContainer temperature={todayWeatherReport?.temperature} >
+            <WeatherIconContainer>{returnWeatherIconString(todayWeatherReport?.main)}</WeatherIconContainer>
+            <TodayWeatherInfo>
+              <div>
+                <span>Hoje</span>
+                <button onClick={SwitchTemperatureType}>
+                  {
+                    temperatureShowType === 'celsius' ? <span>{todayWeatherReport?.temperature}°C</span> : <span>{todayWeatherReport?.temperatureFahrenheit}°F</span>
+                  }
+                </button>
+              </div>
+              <h2>{todayWeatherReport?.description}</h2>
+              <div>
+                <span>Vento: {returnWindDirectionString(todayWeatherReport?.windDirection)} {todayWeatherReport?.windSpeed}km/h</span>
+                <span>Humidade: {todayWeatherReport?.humidity}%</span>
+                <span>Pressão: {todayWeatherReport?.pressure}hPA</span>
+              </div>
+            </TodayWeatherInfo>
+          </TodayContainer>
+          <TomorrowContainer temperature={todayWeatherReport?.temperature}>
+            <div>
+              <span>AMANHÃ</span>
+              <button onClick={SwitchTemperatureType}>
+                {
+                  temperatureShowType === 'celsius' ? <span>{tomorrowWeatherReport?.temperature}°C</span> : <span>{tomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+                }
+              </button>
+            </div>
+          </TomorrowContainer>
+          <AfterTomorrowContainer temperature={todayWeatherReport?.temperature}>
+            <div>
+              <span>DEPOIS DE AMANHÃ</span>
+              <button onClick={SwitchTemperatureType}>
+                {
+                  temperatureShowType === 'celsius' ? <span>{afterTomorrowWeatherReport?.temperature}°C</span> : <span>{afterTomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+                }
+              </button>
+            </div>
+          </AfterTomorrowContainer>
+        </>
+      }
     </WeatherCardContainer >
   )
 }

@@ -277,3 +277,17 @@ export const AutocompleteSugestionsContainer = styled.div`
     filter: brightness(0.9);
   }
 `
+
+export const ErrorMessageContainer = styled.div`
+  width: 100%;
+  background-color: rgba(75,75,75, 0.9);
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+
+  span {
+    font-size: 1.4rem;
+    color: whitesmoke;
+  }
+`
