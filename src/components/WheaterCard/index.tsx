@@ -43,6 +43,7 @@ export function WeatherCard() {
   const [todayWeatherReport, setTodayWeatherReport] = useState<ApiWeatherInfo | undefined>();
   const [tomorrowWeatherReport, setTomorrowWeatherReport] = useState<ApiWeatherInfo | undefined>();
   const [afterTomorrowWeatherReport, setAfterTomorrowWeatherReport] = useState<ApiWeatherInfo | undefined>();
+  const [temperatureShowType, setTemperatureShowType] = useState<"celsius" | "fahrenheit">("celsius");
 
   //context
   const { handleLoadingState } = useContext(LoadingContext);
@@ -143,6 +144,11 @@ export function WeatherCard() {
     return
   }
 
+  function SwitchTemperatureType() {
+    if (temperatureShowType === 'celsius') { setTemperatureShowType('fahrenheit') }
+    else { setTemperatureShowType('celsius') }
+  }
+
   return (
     <WeatherCardContainer>
       <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
@@ -153,7 +159,7 @@ export function WeatherCard() {
           loading,
         }) => (
           <SearchbarContainer>
-            <WeatherCardForm action="">
+            <WeatherCardForm action="" >
               <p>(</p>
               <input {...getInputProps({ placeholder: returnLocationForPlaceholder() })} value={address} />
             </WeatherCardForm>
@@ -175,7 +181,11 @@ export function WeatherCard() {
         <TodayWeatherInfo>
           <div>
             <span>Hoje</span>
-            <span>{todayWeatherReport?.temperature.toFixed(0)}°C</span>
+            <button onClick={SwitchTemperatureType}>
+              {
+                temperatureShowType === 'celsius' ? <span>{todayWeatherReport?.temperature}°C</span> : <span>{todayWeatherReport?.temperatureFahrenheit}°F</span>
+              }
+            </button>
           </div>
           <h2>{todayWeatherReport?.description}</h2>
           <div>
@@ -185,13 +195,25 @@ export function WeatherCard() {
           </div>
         </TodayWeatherInfo>
       </TodayContainer>
-      <TomorrowContainer temperature={tomorrowWeatherReport?.temperature}>
-        <span>AMANHÃ</span>
-        <span>{tomorrowWeatherReport?.temperature.toFixed(0)}°C</span>
+      <TomorrowContainer temperature={todayWeatherReport?.temperature}>
+        <div>
+          <span>AMANHÃ</span>
+          <button onClick={SwitchTemperatureType}>
+            {
+              temperatureShowType === 'celsius' ? <span>{tomorrowWeatherReport?.temperature}°C</span> : <span>{tomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+            }
+          </button>
+        </div>
       </TomorrowContainer>
-      <AfterTomorrowContainer temperature={afterTomorrowWeatherReport?.temperature}>
-        <span>DEPOIS DE AMANHÃ</span>
-        <span>{afterTomorrowWeatherReport?.temperature.toFixed(0)}°C</span>
+      <AfterTomorrowContainer temperature={todayWeatherReport?.temperature}>
+        <div>
+          <span>DEPOIS DE AMANHÃ</span>
+          <button onClick={SwitchTemperatureType}>
+            {
+              temperatureShowType === 'celsius' ? <span>{afterTomorrowWeatherReport?.temperature}°C</span> : <span>{afterTomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+            }
+          </button>
+        </div>
       </AfterTomorrowContainer>
     </WeatherCardContainer >
   )

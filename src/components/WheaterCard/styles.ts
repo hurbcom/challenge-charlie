@@ -103,6 +103,16 @@ export const TodayWeatherInfo = styled.div`
     font-weight: 100;
     text-transform: capitalize;
   }
+
+  button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    cursor: pointer;
+  }
 `
 
 const PostWeatherContainer = styled.div<WeatherInfoProps>`
@@ -112,8 +122,21 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
   align-items: flex-end;
   padding-top: 0.5rem;
 
-  span {
+  div {
     width: 50%;
+  }
+
+  button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  span {
     line-height: 1.3;
     font-size: 1.7rem;
     color: whitesmoke;
