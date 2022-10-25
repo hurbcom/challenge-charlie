@@ -11,3 +11,15 @@ export const OpenWeatherCityApi = (city) => {
     baseURL: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=pt_br`,
   });
 };
+
+export const OpenWeatherGeoApi = (city) => {
+  return axios.create({
+    baseURL: `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}&units=metric&lang=pt_br`,
+  });
+};
+
+export const OpenWeatherForecastApi = (lat, long) => {
+  return axios.create({
+    baseURL: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric&lang=pt_br`,
+  });
+};

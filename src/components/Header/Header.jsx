@@ -13,14 +13,13 @@ export const Header = () => {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    OpenWeatherCityApi(inputValue)
-      .get()
-      .then((response) => {
-        setCity(response.data);
-      })
-      .catch(() => {
-        toast.error("Cidade não encontrada");
-      });
+    setCity(inputValue);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleClick(e);
+    }
   };
 
   return (
@@ -30,6 +29,7 @@ export const Header = () => {
         <div>
           <InputText
             onChange={HandleChange}
+            onKeyDown={handleKeyDown}
             type="text"
             value={inputValue}
             placeholder="Digite aqui sua cidade"
