@@ -2,6 +2,7 @@
 
 
 import { useEffect, useState } from 'react';
+import PlacesAutocomplete from 'react-places-autocomplete';
 import {
   WeatherCardContainer,
   WeatherCardForm,
@@ -9,14 +10,17 @@ import {
   WeatherIconContainer,
   TodayWeatherInfo,
   TomorrowContainer,
-  AfterTomorrowContainer
+  AfterTomorrowContainer,
+  AutocompleteDropdownContainer,
+  AutocompleteSugestionsContainer,
+  SearchbarContainer
 } from './styles';
 
 
 export function WeatherCard() {
   const [currentCity, setCurrentCity] = useState('');
   const [currentState, setCurrentState] = useState('');
-
+  const [address, setAddress] = useState('');
 
   function openCageUrl(lat: number, lon: number) {
     const openCageApiKey = process.env.REACT_APP_OPENCAGE_API_KEY
@@ -51,13 +55,40 @@ export function WeatherCard() {
     }
   }, [])
 
+  function handleSelect() {
+    return
+  }
 
   return (
     <WeatherCardContainer>
-      <WeatherCardForm action="">
-        <p>(</p>
-        <input type="text" placeholder={returnLocationForPlaceholder()} />
-      </WeatherCardForm>
+
+
+      <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+        {({
+          getInputProps,
+          suggestions,
+          getSuggestionItemProps,
+          loading,
+        }) => (
+          <SearchbarContainer>
+            <WeatherCardForm action="">
+              <p>(</p>
+              <input {...getInputProps({ placeholder: returnLocationForPlaceholder() })} />
+            </WeatherCardForm>
+            <AutocompleteDropdownContainer>
+              {loading ? <div>...loading</div> : null}
+              {suggestions.map((suggestion) => {
+                return (
+                  <AutocompleteSugestionsContainer {...getSuggestionItemProps(suggestion)} key={suggestion.id}>
+                    {suggestion.description}
+                  </AutocompleteSugestionsContainer>
+                );
+              })}
+            </AutocompleteDropdownContainer>
+          </SearchbarContainer>
+        )}
+      </PlacesAutocomplete>
+
       <TodayContainer>
         <WeatherIconContainer>B</WeatherIconContainer>
         <TodayWeatherInfo>
@@ -81,6 +112,6 @@ export function WeatherCard() {
         <span>DEPOIS DE AMANHÃ</span>
         <span>32°C</span>
       </AfterTomorrowContainer>
-    </WeatherCardContainer>
+    </WeatherCardContainer >
   )
 }

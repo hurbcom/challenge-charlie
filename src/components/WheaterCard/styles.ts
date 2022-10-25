@@ -14,6 +14,7 @@ export const WeatherCardForm = styled.form`
   grid-template-columns: 7rem 1fr;
   background-color: rgba(255,255,255,0.9);
   color: #8B8884;
+
  
   p {
     font-family: 'MeteoconsRegular';
@@ -90,4 +91,28 @@ export const TomorrowContainer = styled(PostWeatherContainer)`
 
 export const AfterTomorrowContainer = styled(PostWeatherContainer)`
   background-color: rgb(224, 185, 0);
+`
+
+export const SearchbarContainer = styled.div`
+  position: relative;
+`
+
+export const AutocompleteDropdownContainer = styled.div`
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+`
+
+export const AutocompleteSugestionsContainer = styled.div`
+  width: 100%;
+  cursor: pointer;
+  font-size: 2rem;
+  background-color: whitesmoke;
+  line-height: 1.6;
+
+  transition: all 0.6s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 `
