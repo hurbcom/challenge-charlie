@@ -29,7 +29,7 @@ Projeto concluído para o desafio técnico do processo seletivo da Hurb para vag
 - Foi utilizado o create-react-app para economizar tempo e focar mais nas funcionalidades da aplicação.
 
 ### Tecnologias utilizadas
-- React (Foi utilizado o create-react-app para acelerar a produção da aplicação)
+- React
 - Typescript
 - Styled Components 
 - Docker
