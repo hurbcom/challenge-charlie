@@ -1,9 +1,7 @@
-version: "3"
+version: "3.7"
 services: 
   challenge-charlie: 
-    container_name: challenge-charlie
     build:
       context: .
       dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
+    
