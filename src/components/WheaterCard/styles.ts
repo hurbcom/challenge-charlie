@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 function todayBackgroundBasedOnTemperature(temperature?: number) {
-  if (temperature) {
+  if (temperature || temperature === 0) {
     if (temperature > 35) return 'rgba(255, 51, 0, 0.9)';
     else if (temperature < 15) return 'rgba(0, 51, 255, 0.9)';
     else return 'rgba(233,215,0, .9);'
@@ -12,7 +12,7 @@ function todayBackgroundBasedOnTemperature(temperature?: number) {
 }
 
 function tomorrowBackgroundBasedOnTemperature(temperature?: number) {
-  if (temperature) {
+  if (temperature || temperature === 0) {
     if (temperature > 35) return 'rgba(204, 51, 0, 0.9)';
     else if (temperature < 15) return 'rgba(0, 51, 204, 0.9)';
     else return 'rgba(251, 205, 8, 0.9);'
@@ -22,7 +22,7 @@ function tomorrowBackgroundBasedOnTemperature(temperature?: number) {
 }
 
 function afterTomorrowBackgroundBasedOnTemperature(temperature?: number) {
-  if (temperature) {
+  if (temperature || temperature === 0) {
     if (temperature > 35) return 'rgba(255, 51, 51, 1)';
     else if (temperature < 15) return 'rgba(51, 51, 255, 1)';
     else return 'rgba(181, 149, 4, 1)';
