@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState, useContext } from 'react';
 import { LoadingContext } from '../../context/LoadingContext';
 import { returnWeatherIconString, returnWindDirectionString, convertFromKelvinToCelsius, convertFromKelvinToFahrenheit } from '../../assets/utils/utils';
 
-
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import {
   WeatherCardContainer,
@@ -18,8 +17,9 @@ import {
   AutocompleteDropdownContainer,
   AutocompleteSugestionsContainer,
   SearchbarContainer,
-  ErrorMessageContainer
+  ErrorMessageContainer,
 } from './styles';
+import "./searching.css";
 
 interface ApiWeatherInfo {
   main: string
@@ -185,9 +185,9 @@ export function WeatherCard() {
             <WeatherCardForm action="" >
               <p>(</p>
               <input {...getInputProps({ placeholder: returnLocationForPlaceholder() })} value={address} />
+              {loading && <div className="lds-ripple"><div></div><div></div></div>}
             </WeatherCardForm>
             <AutocompleteDropdownContainer>
-              {loading ? <div>...loading</div> : null}
               {suggestions.map((suggestion) => {
                 return (
                   <AutocompleteSugestionsContainer {...getSuggestionItemProps(suggestion)} key={suggestion.id}>

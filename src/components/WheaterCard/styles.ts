@@ -38,6 +38,8 @@ export const WeatherCardContainer = styled.main`
   flex-direction: column;
   height: 100vh;
 
+  
+
   @media (max-width: 795px) {
     width: 40rem;
   }
@@ -62,8 +64,16 @@ export const WeatherCardForm = styled.form`
   grid-template-columns: 7rem 1fr;
   background-color: rgba(255,255,255,0.9);
   color: #8B8884;
+  position: relative;
 
- 
+  div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    position: absolute;
+    right: 0;
+  }
 
   p {
     font-family: 'MeteoconsRegular';
@@ -260,15 +270,16 @@ export const SearchbarContainer = styled.div`
 
 export const AutocompleteDropdownContainer = styled.div`
   width: 100%;
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.9);
   position: absolute;
 `
+
 
 export const AutocompleteSugestionsContainer = styled.div`
   width: 100%;
   cursor: pointer;
   font-size: 2rem;
-  background-color: whitesmoke;
+  background-color: rgba(255,255,255,0.9);
   line-height: 1.6;
 
   transition: all 0.6s;
