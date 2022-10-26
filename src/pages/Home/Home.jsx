@@ -1,9 +1,9 @@
-import BingAPI from "../../services/WallpapperBing";
-import { Container } from "./styled";
 import { useState } from "react";
-import { Header } from "../../components/Header/Header";
-import { Middle } from "../../components/Middle/Middle";
-import { Footer } from "../../components/Footer/Footer";
+import { Header } from "@components/Header/Header";
+import { Middle } from "@components/Middle/Middle";
+import { Footer } from "@components/Footer/Footer";
+import BingAPI from "@services/WallpapperBing";
+import { Container } from "./styled";
 
 export const Home = () => {
   const [wallpaper, setWallpaper] = useState("");

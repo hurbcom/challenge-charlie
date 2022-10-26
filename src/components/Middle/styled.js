@@ -10,7 +10,7 @@ export const Content = styled.div`
   flex-direction: column;
   font-weight: 700;
   background-color: ${(props) => Color(props.color).alpha(0.5)};
-  border-radius: 15px;
+  border-radius: 16px;
   margin-top: 16px;
 
   p {
@@ -21,6 +21,21 @@ export const Content = styled.div`
   }
   @media (min-width: 1024px) {
     width: 60%;
+  }
+  @media (min-width: 1100px) {
+    width: 50%;
+  }
+  @media (min-width: 2000px) {
+    width: 30%;
+  }
+  .clickText {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    &:hover {
+      border: 2px solid #ffff;
+    }
   }
 `;
 export const TitleContainer = styled.div`
@@ -62,6 +77,10 @@ export const ContentImgLeft = styled.div`
   img {
     width: 250px;
     height: 250px;
+  }
+  @media (min-width: 600px) {
+    width: 100%;
+    justify-content: center;
   }
 `;
 export const ContentDetailsRight = styled.div`
