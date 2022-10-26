@@ -95,15 +95,21 @@ export function WeatherCard() {
   }
 
   const fetchWeatherInformationFromApi = useCallback(async (geo: GeometryType) => {
-    const weatherResponse = await fetch(openWeatherUrl(geo))
-    const currentWeather = await weatherResponse.json()
-    const todayWeather = organizeAndReturnCurrentWeatherInfo(currentWeather.current)
-    const tomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[1])
-    const afterTomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[2])
+    try {
+      const weatherResponse = await fetch(openWeatherUrl(geo))
+      const currentWeather = await weatherResponse.json()
+      const todayWeather = organizeAndReturnCurrentWeatherInfo(currentWeather.current)
+      const tomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[1])
+      const afterTomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[2])
 
-    setTodayWeatherReport(todayWeather)
-    setTomorrowWeatherReport(tomorrowWeather)
-    setAfterTomorrowWeatherReport(afterTomorrowWeather)
+      setTodayWeatherReport(todayWeather)
+      setTomorrowWeatherReport(tomorrowWeather)
+      setAfterTomorrowWeatherReport(afterTomorrowWeather)
+      setErrorMessage(null)
+    } catch (error) {
+      setErrorMessage("Something went wrong when fetching info form api")
+      console.error(error)
+    }
   }, [])
 
   useEffect(() => {
@@ -113,20 +119,27 @@ export function WeatherCard() {
         setErrorMessage(null)
         try {
           navigator.geolocation.getCurrentPosition(async (result) => {
-            const response = await fetch(openCageUrl(result.coords.latitude, result.coords.longitude))
-            const openCageData = await response.json()
+            try {
+              const response = await fetch(openCageUrl(result.coords.latitude, result.coords.longitude))
+              const openCageData = await response.json()
+              const geo = openCageData.results[0].geometry
+              const city = openCageData.results[0].components.city
 
-            const geo = openCageData.results[0].geometry
-            const city = openCageData.results[0].components.city
+              setCurrentCity(city)
+              setCurrentState(openCageData.results[0].components.state)
 
-            setCurrentCity(city)
-            setCurrentState(openCageData.results[0].components.state)
-
-            await fetchWeatherInformationFromApi(geo)
-            handleLoadingState(false)
+              await fetchWeatherInformationFromApi(geo)
+              setErrorMessage(null)
+              handleLoadingState(false)
+            } catch (error) {
+              handleLoadingState(false)
+              console.error(error)
+              setErrorMessage("Something went wrong with your request")
+            }
           })
         } catch (error) {
           console.error(error)
+          setErrorMessage('Something went wrong with your request')
           handleLoadingState(false)
         }
       } else {
@@ -134,8 +147,6 @@ export function WeatherCard() {
         setErrorMessage('Geolocation permission denied. You can still look for location using the search bar')
       }
     })
-
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -188,7 +199,7 @@ export function WeatherCard() {
           </SearchbarContainer>
         )}
       </PlacesAutocomplete>
-      {errorMessage ?
+      {(errorMessage || !todayWeatherReport) ?
         <ErrorMessageContainer><span>{errorMessage}</span></ErrorMessageContainer> :
         <>
           <TodayContainer temperature={todayWeatherReport?.temperature} >
