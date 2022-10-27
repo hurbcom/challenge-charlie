@@ -1,1 +1,0 @@
-🚧 Em construção || Under construction
