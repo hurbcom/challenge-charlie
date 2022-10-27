@@ -26,6 +26,7 @@ Projeto concluído para o desafio técnico do processo seletivo da Hurb para vag
 ### Notas
 - O arquivo .env contendo chaves de acesso para as apis foi adicionado temporariamente no repositório para acelerar a avaliação, eliminando a necessidade de alguma manutenção para que a aplicação funciona devidamente.
 - Ao contrário do recomendado pela descrição do desafio, escolhi uma forma alternativa de buscar a previsão do tempo ainda utilizando do OpenWeather. Ao invés de buscar pelo nome da cidade, busco pela geolocalização utilizando das coordenadas de latitude e longitude. Assim obtendo um resultado mais preciso do local. Essa decisão foi tomada quando testando a aplicação eu busquei por Nova Iorque e a API me retornou uma cidade do Maranhão com o mesmo nome, mesmo o autocomplete passar corretamente New York, NY, EUA.
+- Adicionei temperatura mínima e máxima para as previsões dos próximos dois dias.
 - Foi utilizado o create-react-app para economizar tempo e focar mais nas funcionalidades da aplicação.
 
 ### Tecnologias utilizadas
