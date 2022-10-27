@@ -1,16 +1,13 @@
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { BackgroundContainer } from './styles';
 
-import { LoadingContext } from '../../context/LoadingContext';
 interface BackgroundProps {
   children: ReactNode
 }
 export function Background({ children }: BackgroundProps) {
   const [background, setBackground] = useState<string>('');
-  const { handleLoadingState } = useContext(LoadingContext);
 
   useEffect(() => {
-    handleLoadingState(true)
     async function fetchBackgroundFromBing() {
       const corsUrl = "https://api.allorigins.win/get?url=";
       const bingUrl = "https://www.bing.com";
@@ -26,8 +23,6 @@ export function Background({ children }: BackgroundProps) {
         }
       } catch (e) {
         console.error("Failed to find background")
-      } finally {
-        handleLoadingState(false)
       }
     }
     fetchBackgroundFromBing()
