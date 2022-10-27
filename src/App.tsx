@@ -8,12 +8,12 @@ function App() {
 
 
   return (
-    <Background>
-      <LoadingContextProvider>
+    <LoadingContextProvider>
+      <Background>
         <Home />
-      </LoadingContextProvider>
-      <GlobalStyle />
-    </Background>
+        <GlobalStyle />
+      </Background>
+    </LoadingContextProvider>
   );
 }
 
