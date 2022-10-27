@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import * as Color from "color";
 
-export const Content = styled.div`
+export const Content = styled.main`
   display: flex;
   width: 100%;
-  min-height: 600px;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   font-weight: 700;
-  background-color: ${(props) => Color(props.color).alpha(0.5)};
   border-radius: 16px;
   margin-top: 16px;
 
@@ -28,24 +26,16 @@ export const Content = styled.div`
   @media (min-width: 2000px) {
     width: 30%;
   }
-  .clickText {
-    cursor: pointer;
-    text-align: center;
-    border-radius: 4px;
-    border: none;
-    &:hover {
-      border: 2px solid #ffff;
-    }
-  }
 `;
 export const TitleContainer = styled.div`
-  background-color: #707070;
-  width: 95%;
+  background-color: rgba(112, 112, 112, 0.8);
+  width: 100%;
   height: 15%;
   border-radius: 14px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 16px 0px;
 `;
 export const ImgTitleContainer = styled.div`
   padding: 16px;
@@ -99,6 +89,9 @@ export const ContentDetailsRight = styled.div`
     }
   }
 `;
+export const ContainerSpace = styled.div`
+  padding: ${(props) => props.space};
+`;
 
 export const TomorrowContainer = styled.div`
   display: flex;
@@ -109,6 +102,7 @@ export const TomorrowContainer = styled.div`
   align-items: center;
   transition: 1s;
   border-radius: 14px;
+  margin: 16px 0px;
   &:hover {
     background-color: ${(props) => Color(props.color).darken(0.6)};
   }

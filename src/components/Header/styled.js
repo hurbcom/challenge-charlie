@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.header`
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   justify-content: space-between;
+  padding-top: 24px;
 `;
 export const SearchContainer = styled.div`
   display: flex;

@@ -9,9 +9,11 @@ import {
   NextDaysContainer,
   TitleContainer,
   ImgTitleContainer,
+  ContainerSpace,
 } from "./styled";
 import Compass from "@assets/WeatherIcons/44.svg";
 import { GeolocalizationIP } from "@services/GeolocalizationIP";
+import { styled } from "@mui/material/styles";
 import {
   OpenWeatherCityApi,
   OpenWeatherGeoApi,
@@ -20,7 +22,23 @@ import {
 } from "@services/OpenWeatherAPI";
 import { CustomerContext } from "@providers/CustomerContext";
 import { showCityInformation, ChangeColor } from "@/functions/MiddleHelpers";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid, Switch } from "@mui/material";
+
+const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiSwitch-thumb": {
+    color: "inherit",
+    backgroundColor: "currentColor",
+  },
+  "& .MuiSwitch-track": {
+    color: "inherit",
+    backgroundColor: "currentColor",
+  },
+  "& .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track":
+    {
+      backgroundColor: "currentColor",
+    },
+}));
 
 export const Middle = () => {
   const { city, setCity } = useContext(CustomerContext);
@@ -28,9 +46,9 @@ export const Middle = () => {
   const [temp, setTemp] = useState("");
   const [information, setInformation] = useState(null);
   const [WeatherData, setWeatherData] = useState();
-  const [fahrenheit, setFahrenheit] = useState();
   const [tomorrow, setTomorrow] = useState();
   const [nextDays, setNextDays] = useState();
+  const { fahrenheit, setFahrenheit } = useContext(CustomerContext);
   //geolocalização/separar em outro arquivo
   useEffect(() => {
     GeolocalizationIP()
@@ -119,6 +137,10 @@ export const Middle = () => {
       });
   };
 
+  const handleChangeTempFormat = (e) => {
+    setFahrenheit(e.target.checked);
+  };
+
   useEffect(() => {
     if (city) {
       getCurrentWeatherByCity(city);
@@ -129,21 +151,30 @@ export const Middle = () => {
   }, [city, coordinate]);
 
   const ConvertTemp = (temp) => {
-    let Convert = (temp * 9) / 5 + 32;
-
-    setTemp(`${Convert}°F`);
-
-    // setFahrenheit(false);
-    // setTemp(`${temp}°C`);
+    let tempConvert = temp;
+    if (fahrenheit) {
+      tempConvert = (temp * 9) / 5 + 32;
+    }
+    return Math.round(tempConvert);
   };
 
-  const HandleClick = (temp) => {
-    ConvertTemp(Math.round(temp));
-  };
+  const tempChar = fahrenheit ? "F" : "C";
+  const color = WeatherData ? ChangeColor(WeatherData.main.temp) : "white";
   return (
     <>
       {WeatherData ? (
-        <Content color={ChangeColor(WeatherData.main.temp)}>
+        <Content>
+          <Grid container justifyContent={"flex-end"} alignItems={"center "}>
+            <label>ºC</label>
+            <div style={{ color }}>
+              <MaterialUISwitch
+                value={fahrenheit}
+                onChange={handleChangeTempFormat}
+                style={{ color }}
+              />
+            </div>
+            <label>ºF</label>
+          </Grid>
           <TitleContainer>
             <ImgTitleContainer>
               <img src={Compass} alt="Bússola" />
@@ -163,31 +194,34 @@ export const Middle = () => {
               ></img>
             </ContentImgLeft>
             <ContentDetailsRight>
-              <div>
+              <ContainerSpace space="24px 0px">
                 <p>Hoje</p>
-                <p className="clickText" onClick={HandleClick}>
-                  {`${Math.round(WeatherData.main.temp)} °C`}
-                </p>
-              </div>
+                <p>{`${ConvertTemp(WeatherData.main.temp)} °${tempChar}`}</p>
+              </ContainerSpace>
               <div>
                 <p>{WeatherData.weather[0].description}</p>
               </div>
-              <div>
+
+              <ContainerSpace space="24px 0px">
                 <p>Vento: {WeatherData.wind.speed}KM/H</p>
                 <p>Umidade: {WeatherData.main.humidity}%</p>
                 <p>Pressão: {WeatherData.main.pressure}hPA</p>
-              </div>
+              </ContainerSpace>
             </ContentDetailsRight>
           </ContainerWeatherData>
 
           <TomorrowContainer color={ChangeColor(tomorrow)}>
-            <p>Amanhã</p>
-            <p className="clickText">{`${tomorrow} °C`}</p>
+            <ContainerSpace space="6px 0px">
+              <p>Amanhã</p>
+              <p>{`${ConvertTemp(tomorrow)} °${tempChar}`}</p>
+            </ContainerSpace>
           </TomorrowContainer>
 
           <NextDaysContainer color={ChangeColor(nextDays)}>
-            <p>Depois de Amanhã</p>
-            <p className="clickText">{`${nextDays} ºC`}</p>
+            <ContainerSpace space="6px 0px">
+              <p>Depois de Amanhã</p>
+              <p>{`${ConvertTemp(nextDays)} º${tempChar}`}</p>
+            </ContainerSpace>
           </NextDaysContainer>
         </Content>
       ) : (
