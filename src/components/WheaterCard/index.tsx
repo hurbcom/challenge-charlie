@@ -110,8 +110,6 @@ export function WeatherCard() {
       const tomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[1])
       const afterTomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[2])
 
-      console.log(currentWeather.daily)
-
       setTodayWeatherReport(todayWeather)
       setTomorrowWeatherReport(tomorrowWeather)
       setAfterTomorrowWeatherReport(afterTomorrowWeather)

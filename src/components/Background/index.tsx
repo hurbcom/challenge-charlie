@@ -19,7 +19,6 @@ export function Background({ children }: BackgroundProps) {
         const imgUrl = bingUrl + parsedJson.images[0].url;
         if (imgUrl as string) {
           setBackground(imgUrl)
-          console.log(imgUrl)
         }
       } catch (e) {
         console.error("Failed to find background")
