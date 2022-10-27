@@ -25,7 +25,11 @@ interface ApiWeatherInfo {
   main: string
   description: string
   temperature: number
+  minTemperature?: number,
+  maxTemperature?: number,
   temperatureFahrenheit: number
+  minTemperatureFahrenheit?: number,
+  maxTemperatureFahrenheit?: number,
   windDirection: number
   windSpeed: number
   humidity: number
@@ -86,7 +90,11 @@ export function WeatherCard() {
       main: weatherForTheDay.weather[0].main,
       description: weatherForTheDay.weather[0].description,
       temperature: convertFromKelvinToCelsius(weatherForTheDay.temp.day),
+      minTemperature: convertFromKelvinToCelsius(weatherForTheDay.temp.min),
+      maxTemperature: convertFromKelvinToCelsius(weatherForTheDay.temp.max),
       temperatureFahrenheit: convertFromKelvinToFahrenheit(weatherForTheDay.temp.day),
+      minTemperatureFahrenheit: convertFromKelvinToFahrenheit(weatherForTheDay.temp.min),
+      maxTemperatureFahrenheit: convertFromKelvinToFahrenheit(weatherForTheDay.temp.max),
       windDirection: weatherForTheDay.wind_deg,
       windSpeed: weatherForTheDay.wind_speed,
       humidity: weatherForTheDay.humidity,
@@ -101,6 +109,8 @@ export function WeatherCard() {
       const todayWeather = organizeAndReturnCurrentWeatherInfo(currentWeather.current)
       const tomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[1])
       const afterTomorrowWeather = organizeAndReturnFutureWeatherInfo(currentWeather.daily[2])
+
+      console.log(currentWeather.daily)
 
       setTodayWeatherReport(todayWeather)
       setTomorrowWeatherReport(tomorrowWeather)
@@ -226,7 +236,29 @@ export function WeatherCard() {
               <span>AMANHÃ</span>
               <button onClick={SwitchTemperatureType}>
                 {
-                  temperatureShowType === 'celsius' ? <span>{tomorrowWeatherReport?.temperature}°C</span> : <span>{tomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+                  temperatureShowType === 'celsius' ? (
+                    <>
+                      <div className='minMaxContainer'>
+                        <span>Min</span>
+                        <span>{tomorrowWeatherReport?.minTemperature}°C</span>
+                      </div>
+                      <div className='minMaxContainer'>
+                        <span>Max</span>
+                        <span>{tomorrowWeatherReport?.maxTemperature}°C</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className='minMaxContainer'>
+                        <span>Min</span>
+                        <span>{tomorrowWeatherReport?.minTemperatureFahrenheit}°F</span>
+                      </div>
+                      <div className='minMaxContainer'>
+                        <span>Max</span>
+                        <span>{tomorrowWeatherReport?.maxTemperatureFahrenheit}°F</span>
+                      </div>
+                    </>
+                  )
                 }
               </button>
             </div>
@@ -236,7 +268,29 @@ export function WeatherCard() {
               <span>DEPOIS DE AMANHÃ</span>
               <button onClick={SwitchTemperatureType}>
                 {
-                  temperatureShowType === 'celsius' ? <span>{afterTomorrowWeatherReport?.temperature}°C</span> : <span>{afterTomorrowWeatherReport?.temperatureFahrenheit}°F</span>
+                  temperatureShowType === 'celsius' ? (
+                    <>
+                      <div className='minMaxContainer'>
+                        <span>Min</span>
+                        <span>{afterTomorrowWeatherReport?.minTemperature}°C</span>
+                      </div>
+                      <div className='minMaxContainer'>
+                        <span>Max</span>
+                        <span>{afterTomorrowWeatherReport?.maxTemperature}°C</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className='minMaxContainer'>
+                        <span>Min</span>
+                        <span>{afterTomorrowWeatherReport?.minTemperatureFahrenheit}°F</span>
+                      </div>
+                      <div className='minMaxContainer'>
+                        <span>Max</span>
+                        <span>{afterTomorrowWeatherReport?.maxTemperatureFahrenheit}°F</span>
+                      </div>
+                    </>
+                  )
                 }
               </button>
             </div>

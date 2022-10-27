@@ -218,9 +218,19 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
   flex-direction: column;
   align-items: flex-end;
   padding-top: 0.5rem;
+  
 
   div {
     width: 50%;
+  }
+
+
+  .minMaxContainer {
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   button {
@@ -230,6 +240,7 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
     color: whitesmoke;
     font-size: 1.7rem;
     line-height: 1.2;
+    gap: 0.5rem;
     cursor: pointer;
   }
 
