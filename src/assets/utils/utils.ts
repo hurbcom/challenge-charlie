@@ -18,14 +18,14 @@ export function returnWeatherIconString(weather?: string) {
 
 export function returnWindDirectionString(windDirection?: number) {
   if (windDirection) {
-    if (windDirection === 0 || windDirection === 260) { return "N" }
-    else if (windDirection === 90) { return "L" }
-    else if (windDirection === 180) { return "S" }
-    else if (windDirection === 270) { return "O" }
-    else if (windDirection > 0 && windDirection < 90) { return "NE" }
-    else if (windDirection > 90 && windDirection < 180) { return "SE" }
-    else if (windDirection > 180 && windDirection < 270) { return "SO" }
-    else if (windDirection > 270 && windDirection < 360) { return "NO" }
+    if (windDirection >= 337 || windDirection <= 22) { return "N" }
+    else if (windDirection >= 23 && windDirection <= 66) { return "NE" }
+    else if (windDirection >= 67 && windDirection <= 111) { return "L" }
+    else if (windDirection >= 112 && windDirection <= 156) { return "SE" }
+    else if (windDirection >= 157 && windDirection <= 201) { return "S" }
+    else if (windDirection > 202 && windDirection < 246) { return "SO" }
+    else if (windDirection >= 247 && windDirection <= 291) { return "O" }
+    else if (windDirection > 292 && windDirection < 336) { return "NO" }
     else return ""
   }
 }
