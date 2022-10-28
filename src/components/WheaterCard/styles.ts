@@ -33,11 +33,11 @@ function afterTomorrowBackgroundBasedOnTemperature(temperature?: number) {
 
 
 export const WeatherCardContainer = styled.main`
-  width: 55rem;
+  width: 50rem;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-
+  margin-top: 1rem;
+  gap: 1rem;
   
 
   @media (max-width: 795px) {
@@ -65,6 +65,7 @@ export const WeatherCardForm = styled.form`
   background-color: rgba(255,255,255,0.9);
   color: #8B8884;
   position: relative;
+  border-radius: 8px;
 
   div:last-child {
     display: flex;
@@ -149,6 +150,7 @@ export const TodayContainer = styled.div<WeatherInfoProps>`
   height: 25rem;
   display: grid;
   grid-template-columns: 50% 1fr;
+  border-radius: 8px;
 
   @media (max-width: 795px) {
    display: flex;
@@ -218,6 +220,7 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
   flex-direction: column;
   align-items: flex-end;
   padding-top: 0.5rem;
+  border-radius: 8px;
   
 
   div {
