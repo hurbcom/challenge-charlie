@@ -67,6 +67,12 @@ export const WeatherCardForm = styled.form`
   position: relative;
   border-radius: 8px;
 
+  transition: all 0.6s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
   div:last-child {
     display: flex;
     align-items: center;
@@ -157,8 +163,10 @@ export const TodayContainer = styled.div<WeatherInfoProps>`
    flex-direction: column;
   }
 
-  
-
+  transition: all 0.6s;
+  &:hover {
+    filter: brightness(0.85);
+  }
 `
 
 export const WeatherIconContainer = styled.div`
@@ -222,7 +230,11 @@ const PostWeatherContainer = styled.div<WeatherInfoProps>`
   padding-top: 0.5rem;
   border-radius: 8px;
   
-
+  transition: all 0.6s;
+  &:hover {
+    filter: brightness(0.85);
+  }
+  
   div {
     width: 50%;
   }
