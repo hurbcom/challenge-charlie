@@ -223,7 +223,7 @@ export function WeatherCard() {
               </div>
               <h2>{todayWeatherReport?.description}</h2>
               <div>
-                <span>Vento: {returnWindDirectionString(todayWeatherReport?.windDirection)} {todayWeatherReport?.windSpeed}km/h</span>
+                <span>Vento: {returnWindDirectionString(todayWeatherReport?.windDirection)} - {todayWeatherReport?.windSpeed}km/h</span>
                 <span>Humidade: {todayWeatherReport?.humidity}%</span>
                 <span>Pressão: {todayWeatherReport?.pressure}hPA</span>
               </div>

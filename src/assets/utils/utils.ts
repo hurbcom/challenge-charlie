@@ -17,6 +17,9 @@ export function returnWeatherIconString(weather?: string) {
 }
 
 export function returnWindDirectionString(windDirection?: number) {
+  if (windDirection === 0) {
+    return "N"
+  }
   if (windDirection) {
     if (windDirection >= 337 || windDirection <= 22) { return "N" }
     else if (windDirection >= 23 && windDirection <= 66) { return "NE" }
