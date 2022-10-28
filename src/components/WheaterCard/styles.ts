@@ -54,7 +54,6 @@ export const WeatherCardContainer = styled.main`
 
   @media (max-width: 300px) {
     width: 18rem;
-    
   }
 `
 

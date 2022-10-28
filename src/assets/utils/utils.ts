@@ -6,6 +6,7 @@ const weatherToString = {
   Thunderstorm: "P",
   Clouds: "Y",
   Drizzle: "Q",
+  Haze: "A"
 }
 
 export function returnWeatherIconString(weather?: string) {

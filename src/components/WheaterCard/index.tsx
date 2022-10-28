@@ -180,6 +180,8 @@ export function WeatherCard() {
     else { setTemperatureShowType('celsius') }
   }
 
+  console.log(todayWeatherReport?.main)
+
   return (
     <WeatherCardContainer>
       <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
