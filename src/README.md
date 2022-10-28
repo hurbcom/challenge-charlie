@@ -39,15 +39,9 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Será necessário implementar uma API juntamente com o campo de input para o usuário ter a certeza de qual cidade foi selecionada
 - Implementar Cypress uma ferramenta de testes E2E
 - Aprimorar conexão com a ferramenta de tradução em libras VLibras
+- Aprimorar cores degradê para temperatura
 - Implementar Readme em inglês
-## Execução do projeto
 
-### Localmente
 
-1.  Clone o repositório: ``
-2.  Acesse a pasta do projeto no seu terminal: `cd challenge-charlie`
-3.  Instale as dependências: `yarn` ou `npm install`
-4.  Execute a aplicação em modo de desenvolvimento: `yarn dev` ou `npm run dev`
-5.  Acesse a aplicação: http://127.0.0.1:5173/
 
 
