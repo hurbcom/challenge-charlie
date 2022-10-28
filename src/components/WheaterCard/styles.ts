@@ -208,6 +208,7 @@ export const TodayWeatherInfo = styled.div`
 
 export const SearchbarContainer = styled.div`
   position: relative;
+  margin-bottom: 2rem;
 `
 
 export const AutocompleteDropdownContainer = styled.div`
