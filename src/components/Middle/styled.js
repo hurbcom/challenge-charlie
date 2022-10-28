@@ -95,11 +95,10 @@ export const ContainerSpace = styled.div`
 
 export const TomorrowContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  flex-direction: column;
+  text-align: center;
   background-color: ${(props) => Color(props.color).alpha(0.7)};
-  align-items: center;
   transition: 1s;
   border-radius: 14px;
   margin: 16px 0px;
@@ -109,13 +108,12 @@ export const TomorrowContainer = styled.div`
 `;
 export const NextDaysContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
   background-color: ${(props) => Color(props.color).alpha(1)};
   transition: 1s;
   border-radius: 14px;
+  text-align: center;
   &:hover {
     background-color: ${(props) => Color(props.color).darken(0.6)};
   }

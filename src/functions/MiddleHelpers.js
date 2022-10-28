@@ -23,3 +23,35 @@ export const ChangeColor = (temp) => {
     return "#F0C000";
   }
 };
+
+export const ConvertDeg = (value) => {
+  const windDirection = [
+    "N",
+    "NNE",
+    "NE",
+    "ENE",
+    "E",
+    "ESE",
+    "SE",
+    "SSE",
+    "S",
+    "SSW",
+    "SW",
+    "WSW",
+    "W",
+    "WNW",
+    "NW",
+    "NNW",
+    "N",
+  ];
+
+  if (typeof value === "number") {
+    const direction = Number((value / 22.5).toFixed(0));
+    return windDirection[direction];
+  }
+};
+export const ConvertToKmh = (value) => {
+  if (typeof value === "number") {
+    return (value * 3.6).toFixed(1);
+  }
+};

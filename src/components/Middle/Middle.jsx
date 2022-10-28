@@ -21,7 +21,12 @@ import {
   OpenWeatherLatLonApi,
 } from "@services/OpenWeatherAPI";
 import { CustomerContext } from "@providers/CustomerContext";
-import { showCityInformation, ChangeColor } from "@/functions/MiddleHelpers";
+import {
+  showCityInformation,
+  ChangeColor,
+  ConvertDeg,
+  ConvertToKmh,
+} from "@/functions/MiddleHelpers";
 import { CircularProgress, Grid, Switch } from "@mui/material";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -203,7 +208,9 @@ export const Middle = () => {
               </div>
 
               <ContainerSpace space="24px 0px">
-                <p>Vento: {WeatherData.wind.speed}KM/H</p>
+                <p>{`Vento: ${ConvertDeg(
+                  WeatherData.wind.deg
+                )} - ${ConvertToKmh(WeatherData.wind.speed)} KM/H`}</p>
                 <p>Umidade: {WeatherData.main.humidity}%</p>
                 <p>Pressão: {WeatherData.main.pressure}hPA</p>
               </ContainerSpace>
@@ -219,8 +226,12 @@ export const Middle = () => {
 
           <NextDaysContainer color={ChangeColor(nextDays)}>
             <ContainerSpace space="6px 0px">
-              <p>Depois de Amanhã</p>
-              <p>{`${ConvertTemp(nextDays)} º${tempChar}`}</p>
+              <div>
+                <p>Depois de Amanhã</p>
+              </div>
+              <div>
+                <p>{`${ConvertTemp(nextDays)} º${tempChar}`}</p>
+              </div>
             </ContainerSpace>
           </NextDaysContainer>
         </Content>

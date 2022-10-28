@@ -7,14 +7,6 @@
     <img alt="Challenge Charlie" title="#challenge-charlie" src="./assets/Mockup/demo.png" width="75%" />
 </p>
 
-<p align="center">
-  <a href="#-projeto-climaweb">Projeto ClimaWeb</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-tecnologias-escolhidas">Tecnologias Escolhidas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-apis-utilizadas">APIs utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-melhorias">Melhorias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-executar-o-projeto">Como executar o projeto</a>
-</p>
-
 ## 🔅 Projeto ClimaWeb
 O projeto "Climaweb" é um desafio de front-end proposto pela Hurb chamado "challenge-charlie" no qual foi inspiração e base para design e funcionalidades aplicados nesse projeto
 Essa ferramenta auxilia muitas pessoas, visto que atualmente precisamos nos informar como está o tempo atual para planejar o nosso dia, nos informa sobre a umidade visto que a umidade afeta nosso bem estar/saúde e além de auxiliar nas vestimentas que vamos utilizar, entre outras utilidades
@@ -30,7 +22,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 -   [Material_Icons](https://mui.com/pt/material-ui/material-icons/)
 -   [Toastify](https://fkhadra.github.io/react-toastify/introduction)
 -   [VLibras](https://github.com/djpfs/react-vlibras)
- ## Api utilizadas
+ ## Apis utilizadas
 
 -   [API do BING](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR)
 -   [Open Weather](http://api.openweathermap.org)
