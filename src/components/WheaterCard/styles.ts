@@ -71,7 +71,7 @@ export const WeatherCardForm = styled.form`
 
   input {
     border: none;
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1.6;
     background-color: transparent;
     color: #8B8884;
