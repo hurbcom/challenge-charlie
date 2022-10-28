@@ -4,16 +4,16 @@
 import { useCallback, useEffect, useState, useContext } from 'react';
 import { LoadingContext } from '../../context/LoadingContext';
 import { returnWeatherIconString, returnWindDirectionString, convertFromKelvinToCelsius, convertFromKelvinToFahrenheit } from '../../assets/utils/utils';
-
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { Forecast } from './components/Forecast';
+
+
 import {
   WeatherCardContainer,
   WeatherCardForm,
   TodayContainer,
   WeatherIconContainer,
   TodayWeatherInfo,
-  TomorrowContainer,
-  AfterTomorrowContainer,
   AutocompleteDropdownContainer,
   AutocompleteSugestionsContainer,
   SearchbarContainer,
@@ -115,16 +115,17 @@ export function WeatherCard() {
       setAfterTomorrowWeatherReport(afterTomorrowWeather)
       setErrorMessage(null)
     } catch (error) {
-      setErrorMessage("Something went wrong when fetching info form api")
+      setErrorMessage("Erro ao buscar previsão da API")
       console.error(error)
     }
   }, [])
+
+
 
   useEffect(() => {
     handleLoadingState(true)
     navigator.permissions.query({ name: 'geolocation' }).then(result => {
       if (result.state === 'granted' || result.state === 'prompt') {
-        setErrorMessage(null)
         try {
           navigator.geolocation.getCurrentPosition(async (result) => {
             try {
@@ -142,17 +143,17 @@ export function WeatherCard() {
             } catch (error) {
               handleLoadingState(false)
               console.error(error)
-              setErrorMessage("Something went wrong with your request")
+              setErrorMessage('Algo deu errado com a sua requisição')
             }
           })
         } catch (error) {
           console.error(error)
-          setErrorMessage('Something went wrong with your request')
+          setErrorMessage('Algo deu errado com a sua requisição')
           handleLoadingState(false)
         }
       } else {
         handleLoadingState(false)
-        setErrorMessage('Geolocation permission denied. You can still look for location using the search bar')
+        setErrorMessage('Sem permissão de localização. Você ainda pode buscar pela barra de busca')
       }
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,22 +166,19 @@ export function WeatherCard() {
       const geocode = await geocodeByAddress(value);
       const latLng = await getLatLng(geocode[0])
       await fetchWeatherInformationFromApi(latLng)
-      setErrorMessage(null)
       handleLoadingState(false)
     } catch (e) {
       console.error(e)
-      setErrorMessage("Unable to find location")
+      setErrorMessage("Não foi possível encontrar a localização")
       handleLoadingState(false)
     }
     return
   }
 
-  function SwitchTemperatureType() {
+  function switchTemperatureType() {
     if (temperatureShowType === 'celsius') { setTemperatureShowType('fahrenheit') }
     else { setTemperatureShowType('celsius') }
   }
-
-  console.log(todayWeatherReport?.main)
 
   return (
     <WeatherCardContainer>
@@ -217,7 +215,7 @@ export function WeatherCard() {
             <TodayWeatherInfo>
               <div>
                 <span>Hoje</span>
-                <button onClick={SwitchTemperatureType}>
+                <button onClick={switchTemperatureType}>
                   {
                     temperatureShowType === 'celsius' ? <span>{todayWeatherReport?.temperature}°C</span> : <span>{todayWeatherReport?.temperatureFahrenheit}°F</span>
                   }
@@ -231,70 +229,20 @@ export function WeatherCard() {
               </div>
             </TodayWeatherInfo>
           </TodayContainer>
-          <TomorrowContainer temperature={todayWeatherReport?.temperature}>
-            <div>
-              <span>AMANHÃ</span>
-              <button onClick={SwitchTemperatureType}>
-                {
-                  temperatureShowType === 'celsius' ? (
-                    <>
-                      <div className='minMaxContainer'>
-                        <span>Min</span>
-                        <span>{tomorrowWeatherReport?.minTemperature}°C</span>
-                      </div>
-                      <div className='minMaxContainer'>
-                        <span>Max</span>
-                        <span>{tomorrowWeatherReport?.maxTemperature}°C</span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className='minMaxContainer'>
-                        <span>Min</span>
-                        <span>{tomorrowWeatherReport?.minTemperatureFahrenheit}°F</span>
-                      </div>
-                      <div className='minMaxContainer'>
-                        <span>Max</span>
-                        <span>{tomorrowWeatherReport?.maxTemperatureFahrenheit}°F</span>
-                      </div>
-                    </>
-                  )
-                }
-              </button>
-            </div>
-          </TomorrowContainer>
-          <AfterTomorrowContainer temperature={todayWeatherReport?.temperature}>
-            <div>
-              <span>DEPOIS DE AMANHÃ</span>
-              <button onClick={SwitchTemperatureType}>
-                {
-                  temperatureShowType === 'celsius' ? (
-                    <>
-                      <div className='minMaxContainer'>
-                        <span>Min</span>
-                        <span>{afterTomorrowWeatherReport?.minTemperature}°C</span>
-                      </div>
-                      <div className='minMaxContainer'>
-                        <span>Max</span>
-                        <span>{afterTomorrowWeatherReport?.maxTemperature}°C</span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className='minMaxContainer'>
-                        <span>Min</span>
-                        <span>{afterTomorrowWeatherReport?.minTemperatureFahrenheit}°F</span>
-                      </div>
-                      <div className='minMaxContainer'>
-                        <span>Max</span>
-                        <span>{afterTomorrowWeatherReport?.maxTemperatureFahrenheit}°F</span>
-                      </div>
-                    </>
-                  )
-                }
-              </button>
-            </div>
-          </AfterTomorrowContainer>
+          <Forecast
+            dayWeather={tomorrowWeatherReport}
+            todayTemperature={todayWeatherReport?.temperature}
+            temperatureType={temperatureShowType}
+            dayShow={'tomorrow'}
+            switchTemperatureType={switchTemperatureType}
+          />
+          <Forecast
+            dayWeather={afterTomorrowWeatherReport}
+            todayTemperature={todayWeatherReport?.temperature}
+            temperatureType={temperatureShowType}
+            dayShow={'afterTomorrow'}
+            switchTemperatureType={switchTemperatureType}
+          />
         </>
       }
     </WeatherCardContainer >
