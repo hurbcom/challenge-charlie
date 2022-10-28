@@ -4,7 +4,7 @@
 <h1>Projeto ClimaWeb</h1>
 
 <p align="center">
-    <img alt="Challenge Charlie" title="#challenge-charlie" src="./assets/Mockup/demo.png" width="75%" />
+    <img alt="Challenge Charlie" title="#challenge-charlie" src="/src/assets/Mockup/demo.png" width="75%" />
 </p>
 
 ## 🔅 Projeto ClimaWeb
