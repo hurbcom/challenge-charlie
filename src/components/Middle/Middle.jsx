@@ -9,25 +9,51 @@ import {
   NextDaysContainer,
   TitleContainer,
   ImgTitleContainer,
+  ContainerSpace,
 } from "./styled";
-import Weather from "../../assets/WeatherIcons/04d.svg";
-import Compass from "../../assets/WeatherIcons/44.svg";
-import { GeolocalizationIP } from "../../services/GeolocalizationIP";
+import Compass from "@assets/WeatherIcons/44.svg";
+import { GeolocalizationIP } from "@services/GeolocalizationIP";
+import { styled } from "@mui/material/styles";
 import {
   OpenWeatherCityApi,
   OpenWeatherGeoApi,
   OpenWeatherForecastApi,
-} from "../../services/OpenWeatherAPI";
-import { CustomerContext } from "../../providers/CustomerContext";
+  OpenWeatherLatLonApi,
+} from "@services/OpenWeatherAPI";
+import { CustomerContext } from "@providers/CustomerContext";
+import {
+  showCityInformation,
+  ChangeColor,
+  ConvertDeg,
+  ConvertToKmh,
+} from "@/functions/MiddleHelpers";
+import { CircularProgress, Grid, Switch } from "@mui/material";
+
+const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiSwitch-thumb": {
+    color: "inherit",
+    backgroundColor: "currentColor",
+  },
+  "& .MuiSwitch-track": {
+    color: "inherit",
+    backgroundColor: "currentColor",
+  },
+  "& .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track":
+    {
+      backgroundColor: "currentColor",
+    },
+}));
 
 export const Middle = () => {
   const { city, setCity } = useContext(CustomerContext);
   const { coordinate } = useContext(CustomerContext);
+  const [temp, setTemp] = useState("");
   const [information, setInformation] = useState(null);
   const [WeatherData, setWeatherData] = useState();
-  const [fahrenheit, setFahrenheit] = useState(false);
   const [tomorrow, setTomorrow] = useState();
   const [nextDays, setNextDays] = useState();
+  const { fahrenheit, setFahrenheit } = useContext(CustomerContext);
   //geolocalização/separar em outro arquivo
   useEffect(() => {
     GeolocalizationIP()
@@ -40,6 +66,47 @@ export const Middle = () => {
         toast.error("Erro ao buscar dados de localização");
       });
   }, []);
+
+  const getCurrentWeatherByCity = (city) => {
+    OpenWeatherCityApi(city)
+      .get()
+      .then((response) => {
+        setWeatherData(response.data);
+        getForecast(response.data.coord.lat, response.data.coord.lon);
+      })
+      .catch(() => {
+        toast.error("Cidade não encontrada");
+      });
+  };
+
+  const getCityInformation = (city) => {
+    OpenWeatherGeoApi(city)
+      .get()
+      .then((response) => {
+        if (response.data.length > 0) {
+          const cityData = response.data[0];
+          const cityInformation = {
+            city: cityData.name,
+            country_code: cityData.country,
+            state: cityData.state,
+          };
+          setInformation({ ...information, ...cityInformation });
+        }
+      })
+      .catch(() => {
+        toast.error("Cidade não encontrada");
+      });
+  };
+
+  const getCurrentWeatherByLatLon = (lat, lon) => {
+    OpenWeatherLatLonApi(lat, lon)
+      .get()
+      .then((response) => {
+        setWeatherData(response.data);
+        getForecast(response.data.coord.lat, response.data.coord.lon);
+        getCityInformation(response.data.name);
+      });
+  };
 
   const getForecast = (lat, long) => {
     OpenWeatherForecastApi(lat, long)
@@ -74,62 +141,45 @@ export const Middle = () => {
         toast.error("Erro ao buscar dados de previsão");
       });
   };
-  //cidade/separar em outro arquivo
-  useEffect(() => {
-    if (city) {
-      OpenWeatherCityApi(city)
-        .get()
-        .then((response) => {
-          setWeatherData(response.data);
-          getForecast(response.data.coord.lat, response.data.coord.lon);
-        })
-        .catch(() => {
-          toast.error("Cidade não encontrada");
-        });
-      OpenWeatherGeoApi(city)
-        .get()
-        .then((response) => {
-          if (response.data.length > 0) {
-            const cityData = response.data[0];
-            const cityInformation = {
-              city: cityData.name,
-              country_code: cityData.country,
-              state: cityData.state,
-            };
-            setInformation({ ...information, ...cityInformation });
-          }
-        })
-        .catch(() => {
-          toast.error("Cidade não encontrada");
-        });
-    }
-  }, [city]);
-  //separar em outro arquivo
-  const ChangeColor = (temp) => {
-    if (temp > 35) {
-      return "#AA2429";
-    } else if (temp < 15) {
-      return "#0954A5";
-    } else {
-      return "#F0C000";
-    }
-  };
-  //separar em outro arquivo
-  const ConvertTemp = (temp) => {
-    if (fahrenheit === false) {
-      let Convert = (temp * 9) / 5 + 32;
-      setFahrenheit(true);
-      return `${Convert}°F`;
-    } else {
-      setFahrenheit(false);
-      return `${temp}°C`;
-    }
+
+  const handleChangeTempFormat = (e) => {
+    setFahrenheit(e.target.checked);
   };
 
+  useEffect(() => {
+    if (city) {
+      getCurrentWeatherByCity(city);
+      getCityInformation(city);
+    } else if (coordinate && coordinate.length === 2) {
+      getCurrentWeatherByLatLon(coordinate[0], coordinate[1]);
+    }
+  }, [city, coordinate]);
+
+  const ConvertTemp = (temp) => {
+    let tempConvert = temp;
+    if (fahrenheit) {
+      tempConvert = (temp * 9) / 5 + 32;
+    }
+    return Math.round(tempConvert);
+  };
+
+  const tempChar = fahrenheit ? "F" : "C";
+  const color = WeatherData ? ChangeColor(WeatherData.main.temp) : "white";
   return (
     <>
       {WeatherData ? (
-        <Content color={ChangeColor(WeatherData.main.temp)}>
+        <Content>
+          <Grid container justifyContent={"flex-end"} alignItems={"center "}>
+            <label>ºC</label>
+            <div style={{ color }}>
+              <MaterialUISwitch
+                value={fahrenheit}
+                onChange={handleChangeTempFormat}
+                style={{ color }}
+              />
+            </div>
+            <label>ºF</label>
+          </Grid>
           <TitleContainer>
             <ImgTitleContainer>
               <img src={Compass} alt="Bússola" />
@@ -137,9 +187,7 @@ export const Middle = () => {
 
             <div>
               <p>Previsão do tempo</p>
-              <p>
-                {`${information.city}, ${information.state}, ${information.country_code}`}
-              </p>
+              <p>{showCityInformation(information)}</p>
             </div>
           </TitleContainer>
 
@@ -151,32 +199,47 @@ export const Middle = () => {
               ></img>
             </ContentImgLeft>
             <ContentDetailsRight>
-              <div>
+              <ContainerSpace space="24px 0px">
                 <p>Hoje</p>
-                <p>{Math.round(WeatherData.main.temp)}º</p>
-              </div>
+                <p>{`${ConvertTemp(WeatherData.main.temp)} °${tempChar}`}</p>
+              </ContainerSpace>
               <div>
                 <p>{WeatherData.weather[0].description}</p>
               </div>
-              <div>
-                <p>Vento: {WeatherData.wind.speed}KM/H</p>
+
+              <ContainerSpace space="24px 0px">
+                <p>{`Vento: ${ConvertDeg(
+                  WeatherData.wind.deg
+                )} - ${ConvertToKmh(WeatherData.wind.speed)} KM/H`}</p>
                 <p>Umidade: {WeatherData.main.humidity}%</p>
                 <p>Pressão: {WeatherData.main.pressure}hPA</p>
-              </div>
+              </ContainerSpace>
             </ContentDetailsRight>
           </ContainerWeatherData>
 
           <TomorrowContainer color={ChangeColor(tomorrow)}>
-            <p>Amanhã</p>
-            <p>{tomorrow}º</p>
+            <ContainerSpace space="6px 0px">
+              <p>Amanhã</p>
+              <p>{`${ConvertTemp(tomorrow)} °${tempChar}`}</p>
+            </ContainerSpace>
           </TomorrowContainer>
 
           <NextDaysContainer color={ChangeColor(nextDays)}>
-            <p>Depois de Amanhã</p>
-            <p>{nextDays}º</p>
+            <ContainerSpace space="6px 0px">
+              <div>
+                <p>Depois de Amanhã</p>
+              </div>
+              <div>
+                <p>{`${ConvertTemp(nextDays)} º${tempChar}`}</p>
+              </div>
+            </ContainerSpace>
           </NextDaysContainer>
         </Content>
-      ) : null}
+      ) : (
+        <Content>
+          <CircularProgress />
+        </Content>
+      )}
     </>
   );
 };

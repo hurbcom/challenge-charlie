@@ -247,6 +247,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@djpfs/react-vlibras@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@djpfs/react-vlibras/-/react-vlibras-2.0.2.tgz#aeb7740f9c74b769a24c899f6b650ccccb3543cc"
+  integrity sha512-mhfxr1cg8tLdcXBUT5hictbcityoAXFKJz4/boiMGbpsZRCVkqC5EoJVRF+6brrB1GBAoVLCtn1OuzipEopewA==
+
 "@emotion/babel-plugin@^11.10.0":
   version "11.10.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.10.2.tgz#879db80ba622b3f6076917a1e6f648b1c7d008c7"

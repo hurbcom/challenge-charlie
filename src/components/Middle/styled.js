@@ -1,16 +1,14 @@
 import styled from "styled-components";
 import * as Color from "color";
 
-export const Content = styled.div`
+export const Content = styled.main`
   display: flex;
   width: 100%;
-  min-height: 600px;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   font-weight: 700;
-  background-color: ${(props) => Color(props.color).alpha(0.5)};
-  border-radius: 15px;
+  border-radius: 16px;
   margin-top: 16px;
 
   p {
@@ -22,15 +20,22 @@ export const Content = styled.div`
   @media (min-width: 1024px) {
     width: 60%;
   }
+  @media (min-width: 1100px) {
+    width: 50%;
+  }
+  @media (min-width: 2000px) {
+    width: 30%;
+  }
 `;
 export const TitleContainer = styled.div`
-  background-color: #707070;
-  width: 95%;
+  background-color: rgba(112, 112, 112, 0.8);
+  width: 100%;
   height: 15%;
   border-radius: 14px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 16px 0px;
 `;
 export const ImgTitleContainer = styled.div`
   padding: 16px;
@@ -63,6 +68,10 @@ export const ContentImgLeft = styled.div`
     width: 250px;
     height: 250px;
   }
+  @media (min-width: 600px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 export const ContentDetailsRight = styled.div`
   display: flex;
@@ -80,29 +89,31 @@ export const ContentDetailsRight = styled.div`
     }
   }
 `;
+export const ContainerSpace = styled.div`
+  padding: ${(props) => props.space};
+`;
 
 export const TomorrowContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  flex-direction: column;
+  text-align: center;
   background-color: ${(props) => Color(props.color).alpha(0.7)};
-  align-items: center;
   transition: 1s;
   border-radius: 14px;
+  margin: 16px 0px;
   &:hover {
     background-color: ${(props) => Color(props.color).darken(0.6)};
   }
 `;
 export const NextDaysContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
   background-color: ${(props) => Color(props.color).alpha(1)};
   transition: 1s;
   border-radius: 14px;
+  text-align: center;
   &:hover {
     background-color: ${(props) => Color(props.color).darken(0.6)};
   }
