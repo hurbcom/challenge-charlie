@@ -1,0 +1,12 @@
+version: "4.13"
+services:
+    client:
+      stdin_open: true
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "5173:5173"
+      volumes:
+        - "/app/node_modules"
+        - ".:/app"
