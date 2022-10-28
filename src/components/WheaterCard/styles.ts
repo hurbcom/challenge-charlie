@@ -36,7 +36,6 @@ export const WeatherCardContainer = styled.main`
   width: 50rem;
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
   gap: 1rem;
   
 
