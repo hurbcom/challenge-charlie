@@ -37,6 +37,7 @@ export const WeatherCardContainer = styled.main`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 95vw;
   
 
   @media (max-width: 795px) {
@@ -53,6 +54,7 @@ export const WeatherCardContainer = styled.main`
 
   @media (max-width: 300px) {
     width: 18rem;
+    
   }
 `
 
@@ -187,8 +189,7 @@ export const TodayWeatherInfo = styled.div`
   line-height: 1.2;
   color: whitesmoke;
   font-size: 1.7rem;
-  margin-top: 0.5rem;
-  
+  justify-content: center ;
   div {
     display: flex;
     flex-direction: column;
@@ -212,8 +213,13 @@ export const TodayWeatherInfo = styled.div`
     max-width: 20%;
   }
 
+  @media (max-width: 1024px) {
+    font-size: 2.3rem;
+  }
+
   @media (max-width: 795px) {
     padding-left: 2rem;
+    font-size: 2rem;
   }
 
   @media (max-width: 300px) {
