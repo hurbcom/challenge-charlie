@@ -230,6 +230,7 @@ export function WeatherCard() {
             </TodayWeatherInfo>
           </TodayContainer>
           <Forecast
+            description='AMANHÃ'
             dayWeather={tomorrowWeatherReport}
             todayTemperature={todayWeatherReport?.temperature}
             temperatureType={temperatureShowType}
@@ -237,6 +238,7 @@ export function WeatherCard() {
             switchTemperatureType={switchTemperatureType}
           />
           <Forecast
+            description='DEPOIS DE AMANHÃ'
             dayWeather={afterTomorrowWeatherReport}
             todayTemperature={todayWeatherReport?.temperature}
             temperatureType={temperatureShowType}

@@ -3,6 +3,7 @@ import { ForecastContainer } from './styles';
 
 
 interface ForecastProps {
+  description: string;
   todayTemperature: number;
   dayWeather: any;
   temperatureType: "celsius" | "fahrenheit";
@@ -10,13 +11,13 @@ interface ForecastProps {
   switchTemperatureType: () => void;
 }
 
-export function Forecast({ todayTemperature, dayWeather, temperatureType, dayShow, switchTemperatureType }: ForecastProps) {
+export function Forecast({ description, todayTemperature, dayWeather, temperatureType, dayShow, switchTemperatureType }: ForecastProps) {
 
 
   return (
     <ForecastContainer temperature={todayTemperature} dayShow={dayShow}>
       <div>
-        <span>AMANHÃ</span>
+        <span>{description}</span>
         <button onClick={switchTemperatureType}>
           {
             temperatureType === 'celsius' ? (
