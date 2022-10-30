@@ -25,7 +25,7 @@ function afterTomorrowBackgroundBasedOnTemperature(temperature?: number) {
   }
 }
 
-export const ForecastContainer = styled.div<WeatherInfoProps>`
+export const ForecastContainer = styled.section<WeatherInfoProps>`
   background-color: ${(props) => props.dayShow === "tomorrow" ? tomorrowBackgroundBasedOnTemperature(props.temperature) : afterTomorrowBackgroundBasedOnTemperature(props.temperature)};
   height: 8rem;
   display: flex;

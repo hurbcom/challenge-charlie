@@ -131,7 +131,7 @@ interface WeatherInfoProps {
   temperature: number | undefined
 }
 
-export const TodayContainer = styled.div<WeatherInfoProps>`
+export const TodayContainer = styled.section<WeatherInfoProps>`
   background-color: ${(props) => todayBackgroundBasedOnTemperature(props.temperature)};
   height: 25rem;
   display: grid;
@@ -207,7 +207,7 @@ export const TodayWeatherInfo = styled.div`
 `
 
 
-export const SearchbarContainer = styled.div`
+export const SearchbarContainer = styled.section`
   position: relative;
   margin-bottom: 1rem;
 `
@@ -232,7 +232,7 @@ export const AutocompleteSugestionsContainer = styled.div`
   }
 `
 
-export const ErrorMessageContainer = styled.div`
+export const ErrorMessageContainer = styled.section`
   width: 100%;
   background-color: rgba(75,75,75, 0.9);
   height: 8rem;
