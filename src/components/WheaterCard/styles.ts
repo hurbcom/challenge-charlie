@@ -17,6 +17,7 @@ export const WeatherCardContainer = styled.main`
   flex-direction: column;
   gap: 1rem;
   max-width: 95vw;
+  margin-top: 1.5rem;
   
 
   @media (max-width: 795px) {
@@ -208,7 +209,7 @@ export const TodayWeatherInfo = styled.div`
 
 export const SearchbarContainer = styled.div`
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `
 
 export const AutocompleteDropdownContainer = styled.div`

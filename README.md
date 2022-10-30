@@ -13,14 +13,14 @@ Projeto concluído para o desafio técnico do processo seletivo da Hurb para vag
 - Clonar o projeto para o seu computador
 - Ter o Docker instalado em seu computador
 - Abrir o terminar na raíz do projeto
-- Rodar o comando docker-compose -f docker-compose-dev.yml up -d --build
+- Rodar o comando docker-compose -f docker-compose.dev.yml up -d --build
 - A aplicação estará disponível no endereço http://localhost:3000
 
 ### Em um container em modo de produção 
 - Clonar o projeto para o seu computador
 - Ter o Docker instalado em seu computador
 - Abrir o terminar na raíz do projeto
-- Rodar o comando docker-compose -f docker-compose-prod.yml up -d --build
+- Rodar o comando docker-compose -f docker-compose.prod.yml up -d --build
 - A aplicação estará disponível no endereço http://localhost:3000
 
 ### Notas
