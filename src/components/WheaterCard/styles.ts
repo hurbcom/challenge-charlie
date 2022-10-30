@@ -17,7 +17,7 @@ export const WeatherCardContainer = styled.main`
   flex-direction: column;
   gap: 1rem;
   max-width: 95vw;
-  margin-top: 1.5rem;
+  padding: 1.5rem 0;
   
 
   @media (max-width: 795px) {
@@ -156,6 +156,8 @@ export const WeatherIconContainer = styled.div`
   font-family: 'MeteoconsRegular';
   font-size: 20rem;
   color: whitesmoke;
+  box-sizing: border-box;
+  padding-top: 0.5rem;
 
   @media (max-width: 795px) {
     font-size: 10.5rem;
