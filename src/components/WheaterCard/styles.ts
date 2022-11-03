@@ -15,9 +15,8 @@ export const WeatherCardContainer = styled.main`
   width: 50rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   max-width: 95vw;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   
 
   @media (max-width: 795px) {
@@ -45,7 +44,6 @@ export const WeatherCardForm = styled.form`
   background-color: rgba(255,255,255,0.9);
   color: #8B8884;
   position: relative;
-  border-radius: 8px;
 
   transition: all 0.6s;
 
@@ -136,7 +134,6 @@ export const TodayContainer = styled.section<WeatherInfoProps>`
   height: 25rem;
   display: grid;
   grid-template-columns: 50% 1fr;
-  border-radius: 8px;
 
   @media (max-width: 795px) {
    display: flex;
@@ -211,7 +208,6 @@ export const TodayWeatherInfo = styled.div`
 
 export const SearchbarContainer = styled.section`
   position: relative;
-  margin-bottom: 1rem;
 `
 
 export const AutocompleteDropdownContainer = styled.div`

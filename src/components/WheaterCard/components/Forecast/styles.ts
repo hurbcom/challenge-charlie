@@ -32,7 +32,6 @@ export const ForecastContainer = styled.section<WeatherInfoProps>`
   flex-direction: column;
   align-items: flex-end;
   padding-top: 0.5rem;
-  border-radius: 8px;
   
   transition: all 0.6s;
   &:hover {
