@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <title>Desafio Hurb</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<body onload="generateImgBackground()">
+  <div  class="container">
+
+    <div class="form">
+      <input type="text" id="city-input" placeholder="Digite o nome da cidade ou país">
+    </div>
+
+    <div data-js="accordion" id="weather-data" class="hide weather-data">
+      <div class="accordion-item" id="today">
+        <div data-accordion-header="1" data-js="accordion-header" class="accordion-header">
+          <img  data-accordion-header="1" class="weather-icon" src="" alt="" height="250" width="250" hidden>
+          <ul  data-accordion-header="1" class="header-data">
+            <li>HOJE</li>
+            <li class="temperature"></li>
+          </ul>
+
+          <ul data-accordion-header="1" class="body-data">
+            <li class="description"></li>
+            <li class="wind"></li>
+            <li class="humidity"></li>
+            <li class="pressure"></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item" id="tomorrow">
+        <div data-accordion-header="2" data-js="accordion-header" class="accordion-header">
+          <img  class="weather-icon" src="" alt="" height="250" width="250" hidden>
+          <ul  data-accordion-header="2" class="header-data">
+            <li>AMANHÃ</li>
+            <li class="temperature"></li>
+          </ul>
+
+          <ul data-accordion-header="2" class="body-data">
+            <li class="description"></li>
+            <li class="wind"></li>
+            <li class="humidity"></li>
+            <li class="pressure"></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item" id="after-tomorrow">
+        <div data-accordion-header="3" data-js="accordion-header" class="accordion-header">
+          <img  class="weather-icon" src="" alt="" height="250" width="250" hidden>
+          <ul data-accordion-header="3" class="header-data">
+            <li>DEPOIS DE AMANHÃ</li>
+            <li class="temperature"></li>
+          </ul>
+
+          <ul data-accordion-header="3" class="body-data">
+            <li class="description"></li>
+            <li class="wind"></li>
+            <li class="humidity"></li>
+            <li class="pressure"></li>
+          </ul>
+        </div>
+      </div>
+    
+    </div>
+    <div class="info hide">
+      <div id ="loader" class="loader hide "></div>
+      <div id="error-message" class="error-message hide ">
+        <p>Cidade não encontrada. Verifique se digitou o nome corretamente ou tente outra cidade!</p>
+      </div>
+    </div>
+    
+  </div>
+
+  <script src="./js/scripts.js" defer></script>
+</body>
+</html>
