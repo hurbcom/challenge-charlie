@@ -16,7 +16,6 @@
 body {
   font-family: sans-serif;
   background-color: black;
-  background-size: cover;
 }
 
 
@@ -49,6 +48,7 @@ body {
   position: absolute;
   top: 10px;
   left: 300px;
+  cursor: auto;
 }
 
 
@@ -63,6 +63,7 @@ body {
   left: 300px;
   display: none;
   padding-top: 1rem;
+  cursor: auto;
 }
 
 
@@ -77,6 +78,7 @@ body {
   top: 10px;
   left: 20px;
   display: none;
+  cursor: auto;
 }
 
 
