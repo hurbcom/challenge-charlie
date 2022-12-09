@@ -1,59 +1,41 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Desafio Hurb #
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+## Como Rodar sem Docker ##
+  1. Clonar repositório
+  2. Acessar repositório
+  3. rodar ```npm install```
+  4. rodar ```npm run start```
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+  ## Como Rodar com Docker ##
+  1. Clonar repositório
+  2. Acessar repositório
+  3. rodar ```docker-compose up -d```
+  
+  ### Ver logs do docker ###
+  - rodar: ```docker-compose logs -ft --tail 100```
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+# Como funciona
+Este software tem como seu objetivo apresentar ao usuário informações sobre o clima e uma simples previsão do clima dos próximos dias. Para isto, é usado algumas APIs, tais como: *OpenWeather*, *OpenCage* e *Bing*
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+# Problemas durante o desenvolvimento
+  1. API do OpenWeather não disponibiliza de forma gratuita a previsão dos dias seguintes, apenas uma API que libera climas de 3 em 3 horas. Este problema impossibilitou uma resposta precisa na previsão dos dias seguintes.
+  *Solução:* Peguei valores de horários específicos entregues pela API gratuita e mostrei na tela. Apesar de não ser uma solução elegante, ao menos entrega uma temperatura aproximada da média do dia.
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+  2. A API do Bing está retornando erro de CORS. Existe uma solução mas como o tempo está curto na minha vida pessoal decidi usar uma imagem fixa do Bing como fundo de tela.
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+# Pontos de melhora
+  - Testes unitários não foram feitos por questão de tempo. Dando sequência neste projeto eu usaria **Jest com React Testing Library** para os testes unitários e **Cypress para testes E2E**
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+  - Build de produção não foi feito por falta de tempo. Usaria o npm run build no docker-compose
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+  - I18n pode ser uma boa para deixar o software aberto para usuários que falam qualquer língua.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+  - Loaders não foram feitos por falta de tempo e fazem falta na UX. Usaria um componente de loading que aparecia enquanto as requisições são feitas para solucionar este problema
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+  - CSS muito pouco trabalhado. Uma aplicação como esta da espaço para diversas animações e uma dedicação para a UI que o tempo não permitiu.
 
-## Requirements
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+# Minha experiência
 
-## Evaluation criteria
-
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
-
-## Doubts
-
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
-
-Godspeed! ;)
-
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+Foi um teste bem divertido, de uma empresa que parece ser incrível. Infelizmente na correria do dia a dia, tocando minha formaçãp da Alura, trabalho e vida pessoal foi muito difícil me dedicar ao projeto. Fiz muito menos do que poderia, apesar de entender que seja necessário para avaliar os candidatos, sinto que poderia ser algo mais complexo e mais rápido ao invés de simples e demorado :D
+Grande abraço!
