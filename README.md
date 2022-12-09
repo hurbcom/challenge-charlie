@@ -30,6 +30,8 @@ Este software tem como seu objetivo apresentar ao usuário informações sobre o
   
   - Responsividade para mobile não foi feita por questão de tempo. Dando sequência neste projeto eu usaria regras de CSS para criar um layout responsivo.
 
+  - Ícones usados foram os da API de *OpenWeather* ao invés das recomendadas. Isso foi feito por questão de tempo. Num futuro usar ícones mais bonitos seria bem mais interessante
+  
   - Build de produção não foi feito por falta de tempo. Usaria o npm run build no docker-compose
 
   - I18n pode ser uma boa para deixar o software aberto para usuários que falam qualquer língua.
