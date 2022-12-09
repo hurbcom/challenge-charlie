@@ -5,11 +5,13 @@
   2. Acessar repositório
   3. rodar ```npm install```
   4. rodar ```npm run start```
+  5. Acessar http://localhost:3000
 
   ## Como Rodar com Docker ##
   1. Clonar repositório
   2. Acessar repositório
   3. rodar ```docker-compose up -d```
+  4. Acessar http://localhost:3000
   
   ### Ver logs do docker ###
   - rodar: ```docker-compose logs -ft --tail 100```
