@@ -27,6 +27,8 @@ Este software tem como seu objetivo apresentar ao usuário informações sobre o
 
 # Pontos de melhora
   - Testes unitários não foram feitos por questão de tempo. Dando sequência neste projeto eu usaria **Jest com React Testing Library** para os testes unitários e **Cypress para testes E2E**
+  
+    - Responsividade para mobile não foi feita por questão de tempo. Dando sequência neste projeto eu usaria regras de CSS para criar um layout responsivo.
 
   - Build de produção não foi feito por falta de tempo. Usaria o npm run build no docker-compose
 
