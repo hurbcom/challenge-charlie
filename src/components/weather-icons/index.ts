@@ -1,5 +1,5 @@
 import { BrokenClouds } from "./BrokenClouds";
-import { ClearSky } from "./clearSky";
+import { ClearSky } from "./ClearSky";
 import { FewClouds } from "./FewClouds";
 import { Mist } from "./Mist";
 import { Rain } from "./Rain";
