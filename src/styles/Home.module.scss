@@ -1,5 +1,8 @@
 .container {
   padding: 0 2rem;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(3px 6px 10px rgba(0, 0, 0, 0.29));
+  backdrop-filter: blur(10px);
 }
 
 .main {

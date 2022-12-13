@@ -5,7 +5,7 @@ describe("Test if the index page renders correctly", () => {
   it("should render Home page", async () => {
     render(<Home />);
 
-    const title = screen.getByText("Get started by editing");
+    const title = screen.getByText("Próximos dias:");
 
     waitFor(() => {
       expect(title).toBeInTheDocument();
