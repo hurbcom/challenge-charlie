@@ -19,6 +19,7 @@ import {
   pbTheme,
   qTheme,
 } from "../styles/themes";
+import Weather from "../components/weather-icons/Weather";
 
 export default function Home() {
   const [data, setData] = useState<IMountedData>();
@@ -125,7 +126,16 @@ export default function Home() {
               backgroundColor: bgColor.palette.primary.main,
             }}
           >
-            <p>Clima: {data.main}</p>
+            <p>
+              Clima:{" "}
+              <Weather
+                weather={data.main}
+                width={"100"}
+                height={"100"}
+                color={"#000"}
+              ></Weather>
+            </p>
+
             <p>Temperatura: {data.temp}</p>
             <p>Máxima: {data.max_temp}</p>
             <p>Mínima: {data.min_temp}</p>

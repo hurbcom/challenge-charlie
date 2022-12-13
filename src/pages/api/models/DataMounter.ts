@@ -30,7 +30,7 @@ class DataMounter {
     const mountedData: IMountedData = {
       lon: this.geoLocationResult?.results[0].geometry.lng,
       lat: this.geoLocationResult?.results[0].geometry.lat,
-      main: this.weatherResult?.weather[0].main,
+      main: this.weatherResult?.weather[0].icon,
       temp: this.weatherResult?.main.temp,
       max_temp: this.weatherResult?.main.temp_max,
       min_temp: this.weatherResult?.main.temp_min,
@@ -40,10 +40,10 @@ class DataMounter {
       image: "",
       max_temp_tomorrow: this.forecastWeatherResult.list[8].main.temp_max,
       min_temp_tomorrow: this.forecastWeatherResult.list[8].main.temp_min,
-      main_tomorrow: this.forecastWeatherResult.list[8].weather[0].main,
+      main_tomorrow: this.forecastWeatherResult.list[8].weather[0].icon,
       max_temp_atomorrow: this.forecastWeatherResult.list[16].main.temp_max,
       min_temp_atomorrow: this.forecastWeatherResult.list[16].main.temp_min,
-      main_atomorrow: this.forecastWeatherResult.list[16].weather[0].main,
+      main_atomorrow: this.forecastWeatherResult.list[16].weather[0].icon,
     };
 
     return mountedData;

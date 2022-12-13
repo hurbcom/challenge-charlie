@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 50px auto;
   width: 100%;
   max-width: 500px;
   @include for-desktop-up() {
@@ -44,7 +44,6 @@
 .inputLabel {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 10px;
 }
 
 .input {
