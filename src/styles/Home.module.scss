@@ -63,6 +63,32 @@
   border-radius: 67px;
 }
 
+.daily {
+  margin: 0 1.5em;
+
+  svg {
+    width: auto;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    ul {
+      margin: 0 0.6em;
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.footer {
+  grid-column: 1fr 1fr;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;

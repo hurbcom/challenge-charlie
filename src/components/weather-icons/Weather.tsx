@@ -18,7 +18,7 @@ interface Props {
   color: string;
 }
 
-export default function Weather({ weather, width, height, color }: Props) {
+export default function Weather(props: Props) {
   const getIcon = (
     weatherIcon: string,
     widthIcon: string,
@@ -52,5 +52,5 @@ export default function Weather({ weather, width, height, color }: Props) {
     );
   };
 
-  return getIcon(weather, color, width, height);
+  return getIcon(props.weather, props.color, props.width, props.height);
 }

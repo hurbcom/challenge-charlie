@@ -20,6 +20,7 @@ import {
   qTheme,
 } from "../styles/themes";
 import Weather from "../components/weather-icons/Weather";
+import Daily from "../components/dailies-info/Daily";
 
 export default function Home() {
   const [data, setData] = useState<IMountedData>();
@@ -126,27 +127,45 @@ export default function Home() {
               backgroundColor: bgColor.palette.primary.main,
             }}
           >
-            <p>
-              Clima:{" "}
-              <Weather
-                weather={data.main}
-                width={"100"}
-                height={"100"}
-                color={"#000"}
-              ></Weather>
-            </p>
+            <Weather
+              weather={data.main}
+              width={"100"}
+              height={"100"}
+              color={"#000"}
+            ></Weather>
 
             <p>Temperatura: {data.temp}</p>
             <p>Máxima: {data.max_temp}</p>
             <p>Mínima: {data.min_temp}</p>
             <p>Umidade: {data.humidity}%</p>
             <p>Próximos dias:</p>
-            <p>Max: {data.max_temp_tomorrow}</p>
-            <p>Min: {data.min_temp_tomorrow}</p>
-            <p>Amanhã: {data.main_tomorrow}</p>
-            <p>Max: {data.max_temp_atomorrow}</p>
-            <p>Min: {data.min_temp_atomorrow}</p>
-            <p>Depois de amanhã: {data.main_atomorrow}</p>
+
+            <footer className={style.footer}>
+              <div className={style.daily}>
+                <p>Amanhã:</p>
+                <Daily
+                  weather={data.main_tomorrow}
+                  maxTemp={data.max_temp_tomorrow}
+                  minTemp={data.min_temp_tomorrow}
+                  width={"40"}
+                  height={"40"}
+                  color={"#000"}
+                />
+              </div>
+
+              <div className={style.daily}>
+                <p>Depois de amanhã:</p>
+                <Daily
+                  weather={data.main_atomorrow}
+                  width={"40"}
+                  height={"40"}
+                  color={"#000"}
+                  maxTemp={data.max_temp_atomorrow}
+                  minTemp={data.min_temp_atomorrow}
+                />
+              </div>
+            </footer>
+
             <img src={data.image} alt="" />
           </div>
         )}
