@@ -6,7 +6,7 @@ import {
   InputLabel,
   ThemeProvider,
 } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 import { useDebounce } from "usehooks-ts";
 import IMountedData from "./api/interfaces/IMountedData";
 import style from "../styles/Home.module.scss";
@@ -70,9 +70,18 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={bgColor}>
-      <div>
-        <FormControl variant="standard">
-          <InputLabel color="primary" htmlFor="input-with-icon-adornment">
+      <div
+        className={style.container}
+        style={{
+          backgroundColor: bgColor.palette.primary.main,
+        }}
+      >
+        <FormControl variant="outlined" className={style.formControll}>
+          <InputLabel
+            className={style.inputLabel}
+            color="primary"
+            htmlFor="input-with-icon-adornment"
+          >
             {data && (
               <div>
                 {data.cityName}, {data.country}
@@ -81,10 +90,11 @@ export default function Home() {
           </InputLabel>
           <Input
             color="primary"
+            className={style.input}
             id="input-with-icon-adornment"
-            endAdornment={
-              <InputAdornment position="end">
-                <AccountCircle />
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon />
               </InputAdornment>
             }
             value={city}
@@ -111,11 +121,8 @@ export default function Home() {
           </div>
         ) : (
           <div
-            className={style.container}
             style={{
               backgroundColor: bgColor.palette.primary.main,
-              opacity: 0.75,
-              color: "white",
             }}
           >
             <p>Clima: {data.main}</p>
