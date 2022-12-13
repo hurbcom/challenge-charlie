@@ -19,7 +19,6 @@ import {
   pbTheme,
   qTheme,
 } from "../styles/themes";
-import Weather from "../components/weather-icons/Weather";
 import Daily from "../components/dailies-info/Daily";
 
 export default function Home() {
@@ -127,18 +126,9 @@ export default function Home() {
               backgroundColor: bgColor.palette.primary.main,
             }}
           >
-            <Weather
-              weather={data.main}
-              width={"100"}
-              height={"100"}
-              color={"#000"}
-            ></Weather>
-
-            <p>Temperatura: {data.temp}</p>
-            <p>Máxima: {data.max_temp}</p>
-            <p>Mínima: {data.min_temp}</p>
+            {/* <p>Máxima: {data.max_temp}</p>
+            <p>Mínima: {data.min_temp}</p> */}
             <p>Umidade: {data.humidity}%</p>
-            <p>Próximos dias:</p>
 
             <footer className={style.footer}>
               <div className={style.daily}>

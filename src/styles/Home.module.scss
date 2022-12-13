@@ -84,9 +84,14 @@
     }
   }
 }
-
 .footer {
   grid-column: 1fr 1fr;
+  padding: 0;
+  font-size: 1em;
+  p {
+    margin: 0;
+    font-size: 0.7em;
+  }
 }
 
 .main {
