@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   FormControl,
   Input,
   InputAdornment,
   InputLabel,
   ThemeProvider,
-  useTheme,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useDebounce } from "usehooks-ts";
