@@ -12,6 +12,7 @@ interface ICurrentInfoProps {
   description: string;
   windDegree: number;
   windSpeed: number;
+  isDesktop: boolean;
 }
 
 export default function CurrentInfo(props: ICurrentInfoProps) {

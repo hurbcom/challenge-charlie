@@ -21,6 +21,7 @@ import {
 } from "../styles/themes";
 import Daily from "../components/dailies-info/Daily";
 import CurrentInfo from "../components/dailies-info/CurrentInfo";
+import ReactLoading from "react-loading";
 
 export default function Home() {
   const [data, setData] = useState<IMountedData>();
@@ -105,22 +106,13 @@ export default function Home() {
         </FormControl>
 
         {!data || isLoading ? (
-          <div>
-            <p>Clima: Loading</p>
-            <p>Temperatura: Loading</p>
-            <p>Máxima: Loading</p>
-            <p>Mínima: Loading</p>
-            <p>Umidade: Loading%</p>
-            <p>Próximos dias:</p>
-            <p>Max: Loading</p>
-            <p>Min: Loading</p>
-            <p>Amanhã: Loading</p>
-            <p>Max: Loading</p>
-            <p>Min:Loading </p>
-            <p>Depois de amanhã: Loading</p>
-            <p>Max: Loading</p>
-            <p>Min: Loading</p>
-          </div>
+          <ReactLoading
+            type={"spin"}
+            color={"#000"}
+            height={100}
+            width={100}
+            className={style.main}
+          />
         ) : (
           <div
             style={{
@@ -137,6 +129,7 @@ export default function Home() {
                 description={data.description}
                 windSpeed={data.wind_speed}
                 windDegree={data.wind_deg}
+                isDesktop={true}
               ></CurrentInfo>
             </div>
 
