@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import IGeolocationResponse from "./interfaces/IGeolocationResponse";
+import IGeoLocationResponse from "./interfaces/IGeoLocationResponse";
 import URLMounter from "./models/URLMounter";
 
 const fetchInfo = async (apiName: string, { latitude, longitude }: any) => {
@@ -25,10 +25,10 @@ export default async function handler(
     query: { latitude, longitude },
   } = req;
 
-  const geoLocationResult: IGeolocationResponse = (await fetchInfo(
+  const geoLocationResult: IGeoLocationResponse = (await fetchInfo(
     "geolocation",
     { latitude, longitude }
-  )) as IGeolocationResponse;
+  )) as IGeoLocationResponse;
 
   res.status(200).json(geoLocationResult);
 }

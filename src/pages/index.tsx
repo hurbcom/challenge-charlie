@@ -66,7 +66,7 @@ export default function Home() {
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/geoLocation?latitude=${location.latitude}&longitude=${location.longitude}`
+        `/api/geoLocation?latitude=${location?.latitude}&longitude=${location?.longitude}`
       );
       const resultData = await response.json();
       console.log(resultData);
