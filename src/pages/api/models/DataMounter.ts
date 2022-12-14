@@ -1,6 +1,6 @@
 // import IBingImageResponse from "../interfaces/IBingImageResponse";
 import IForecastWeatherResponse from "../interfaces/IForecastWeatherResponse";
-import IGeolocationOptionsResponse from "../interfaces/IGeolocationResponse";
+import IGeolocationOptionsResponse from "../interfaces/IGeolocationOptionsResponse";
 import IMountedData from "../interfaces/IMountedData";
 import IWeatherResponse from "../interfaces/IWeatherResponse";
 
