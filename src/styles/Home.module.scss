@@ -33,7 +33,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto;
+  margin: 15px auto;
   width: 100%;
   max-width: 500px;
   @include for-desktop-up() {
@@ -55,13 +55,13 @@
   font-size: 1.5rem;
   outline: none;
   &:before,
-  &:after {
-    border-bottom: 0;
+  &:after, &:before {
+    content:none;
   }
   background: #f0f0f0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
   border-radius: 67px;
-}
+} 
 
 .daily {
   margin: 0 1.5em;
@@ -116,9 +116,6 @@
   grid-column: 1fr 1fr;
   padding: 0;
   font-size: 1em;
-  footer {
-    border-bottom: none;
-  }
   p {
     margin: 0;
     font-size: 0.7em;

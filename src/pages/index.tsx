@@ -168,7 +168,7 @@ export default function Home() {
               ></CurrentInfo>
             </div>
 
-            <footer className={style.footer}>
+            <div className={style.footer}>
               <div className={style.daily}>
                 <Daily
                   title="Amanhã"
@@ -192,7 +192,7 @@ export default function Home() {
                   minTemp={data.min_temp_atomorrow}
                 />
               </div>
-            </footer>
+            </div>
 
             <img src={data.image} alt="" />
           </div>
