@@ -29,27 +29,61 @@ export default function Home() {
   const [city, setCity] = useState("");
   const debouncedValue = useDebounce<string>(city, 1300);
   const [bgColor, setBGColor] = useState(pbTheme);
+  const [location, setLocation] = useState<ICoordinates>();
 
   const fetchWeatherData = async () => {
-    if (city.length > 3) {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/cityWeatherInfo?q=${city}`);
-        const resultData = await response.json();
-        console.log(resultData);
-        setData(resultData);
-        getColor(resultData.temp);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/cityWeatherInfo?q=${city}`);
+      const resultData = await response.json();
+      console.log(resultData);
+      setData(resultData);
+      getColor(resultData.temp);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
   };
 
   const handleCityChange = (e: any) => {
     setCity(e.target.value);
   };
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        console.log(latitude, longitude);
+        setLocation({ latitude, longitude });
+      });
+    }
+  }, []);
+
+  const fetchGeoLocationData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `/api/geoLocation?latitude=${location.latitude}&longitude=${location.longitude}`
+      );
+      const resultData = await response.json();
+      console.log(resultData);
+      setCity(resultData.results[0].components.city);
+      getColor(resultData.temp);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch data from API if `location` object is set
+    if (location) {
+      fetchGeoLocationData();
+    }
+  }, [location]);
 
   useEffect(() => {
     debouncedValue ? fetchWeatherData() : setData(undefined);

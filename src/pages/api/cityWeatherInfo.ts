@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import IForecastWeatherResponse from "./interfaces/IForecastWeatherResponse";
-import IGeolocationResponse from "./interfaces/IGeolocationResponse";
+import IGeolocationOptionsResponse from "./interfaces/IGeolocationOptionsResponse";
 import IWeatherResponse from "./interfaces/IWeatherResponse";
 import DataMounter from "./models/DataMounter";
 import URLMounter from "./models/URLMounter";
 
 const fetchInfo = async (apiName: string, cityName: string) => {
-  const url = new URLMounter({ urlType: apiName, cityName }).getURL();
+  const url = new URLMounter({ urlType: apiName }).getURL(cityName);
   const response = await fetch(url);
   const data = await response.json();
 
@@ -26,10 +26,10 @@ export default async function handler(
     query: { q },
   } = req;
 
-  const geoLocationResult: IGeolocationResponse = (await fetchInfo(
+  const geoLocationResult: IGeolocationOptionsResponse = (await fetchInfo(
     "geolocation",
     q as string
-  )) as IGeolocationResponse;
+  )) as IGeolocationOptionsResponse;
   const weatherResult: IWeatherResponse = (await fetchInfo(
     "weather",
     q as string

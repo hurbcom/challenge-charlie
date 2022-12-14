@@ -1,12 +1,12 @@
 // import IBingImageResponse from "../interfaces/IBingImageResponse";
 import IForecastWeatherResponse from "../interfaces/IForecastWeatherResponse";
-import IGeolocationResponse from "../interfaces/IGeolocationResponse";
+import IGeolocationOptionsResponse from "../interfaces/IGeolocationResponse";
 import IMountedData from "../interfaces/IMountedData";
 import IWeatherResponse from "../interfaces/IWeatherResponse";
 
 class DataMounter {
   weatherResult: IWeatherResponse;
-  geoLocationResult: IGeolocationResponse;
+  geoLocationResult: IGeolocationOptionsResponse;
   forecastWeatherResult: IForecastWeatherResponse | any;
   // bingImageResult: IBingImageResponse;
 
@@ -17,7 +17,7 @@ class DataMounter {
   }: // bingImageResult,
   {
     weatherResult: IWeatherResponse;
-    geoLocationResult: IGeolocationResponse;
+    geoLocationResult: IGeolocationOptionsResponse;
     forecastWeatherResult: IForecastWeatherResponse | any;
   }) {
     this.weatherResult = weatherResult;
