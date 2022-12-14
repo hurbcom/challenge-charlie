@@ -20,6 +20,7 @@ import {
   qTheme,
 } from "../styles/themes";
 import Daily from "../components/dailies-info/Daily";
+import CurrentInfo from "../components/dailies-info/CurrentInfo";
 
 export default function Home() {
   const [data, setData] = useState<IMountedData>();
@@ -58,7 +59,7 @@ export default function Home() {
       ? setBGColor(feTheme)
       : temperature >= -10 && temperature < -1
       ? setBGColor(mfTheme)
-      : temperature >= 0 && temperature < 10
+      : temperature >= -1 && temperature < 10
       ? setBGColor(fTheme)
       : temperature >= 10 && temperature < 20
       ? setBGColor(freTheme)
@@ -126,14 +127,23 @@ export default function Home() {
               backgroundColor: bgColor.palette.primary.main,
             }}
           >
-            {/* <p>Máxima: {data.max_temp}</p>
-            <p>Mínima: {data.min_temp}</p> */}
-            <p>Umidade: {data.humidity}%</p>
+            <div className={style.currentInfo}>
+              <CurrentInfo
+                temp={data.temp}
+                maximumTemp={data.max_temp}
+                minimumTemp={data.min_temp}
+                humidity={data.humidity}
+                weather={data.main}
+                description={data.description}
+                windSpeed={data.wind_speed}
+                windDegree={data.wind_deg}
+              ></CurrentInfo>
+            </div>
 
             <footer className={style.footer}>
               <div className={style.daily}>
-                <p>Amanhã:</p>
                 <Daily
+                  title="Amanhã"
                   weather={data.main_tomorrow}
                   maxTemp={data.max_temp_tomorrow}
                   minTemp={data.min_temp_tomorrow}
@@ -144,8 +154,8 @@ export default function Home() {
               </div>
 
               <div className={style.daily}>
-                <p>Depois de amanhã:</p>
                 <Daily
+                  title="Depois de amanhã"
                   weather={data.main_atomorrow}
                   width={"40"}
                   height={"40"}

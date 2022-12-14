@@ -35,6 +35,9 @@ class DataMounter {
       max_temp: this.weatherResult?.main.temp_max,
       min_temp: this.weatherResult?.main.temp_min,
       humidity: this.weatherResult?.main.humidity,
+      wind_speed: this.weatherResult?.wind.speed,
+      wind_deg: this.weatherResult?.wind.deg,
+      description: this.weatherResult?.weather[0].description,
       cityName: this.geoLocationResult?.results[0].components.city,
       country: this.geoLocationResult?.results[0].components.country,
       image: "",
@@ -45,6 +48,11 @@ class DataMounter {
       min_temp_atomorrow: this.forecastWeatherResult.list[16].main.temp_min,
       main_atomorrow: this.forecastWeatherResult.list[16].weather[0].icon,
     };
+
+    console.log({
+      wind_speed: this.weatherResult?.wind.speed,
+      wind_deg: this.weatherResult?.wind.deg,
+    });
 
     return mountedData;
   }

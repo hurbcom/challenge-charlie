@@ -6,6 +6,9 @@ interface IMountedData {
   max_temp: number;
   min_temp: number;
   humidity: number;
+  wind_speed: number;
+  wind_deg: number;
+  description: string;
   cityName: string;
   country: string;
   image: string;

@@ -9,6 +9,7 @@ interface Props {
   width: string;
   height: string;
   color: string;
+  title: string;
 }
 
 export default function Daily(props: Props) {
@@ -20,7 +21,11 @@ export default function Daily(props: Props) {
         height={props.height}
         color={props.color}
       ></Weather>
-      <Temp maxTemp={props.maxTemp} minTemp={props.minTemp}></Temp>
+      <Temp
+        title={props.title}
+        maxTemp={props.maxTemp}
+        minTemp={props.minTemp}
+      ></Temp>
     </div>
   );
 }

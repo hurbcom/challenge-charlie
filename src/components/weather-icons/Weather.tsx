@@ -52,5 +52,5 @@ export default function Weather(props: Props) {
     );
   };
 
-  return getIcon(props.weather, props.color, props.width, props.height);
+  return getIcon(props.weather, props.width, props.height, props.color);
 }
