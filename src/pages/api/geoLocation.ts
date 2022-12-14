@@ -1,8 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import ICoordinates from "./interfaces/ICoordinates";
-import IForecastWeatherResponse from "./interfaces/IForecastWeatherResponse";
 import IGeolocationResponse from "./interfaces/IGeolocationResponse";
-import IWeatherResponse from "./interfaces/IWeatherResponse";
 import URLMounter from "./models/URLMounter";
 
 const fetchInfo = async (apiName: string, { latitude, longitude }: any) => {

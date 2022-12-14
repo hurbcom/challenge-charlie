@@ -1,4 +1,3 @@
-import ICoordinates from "../interfaces/ICoordinates";
 class URLMounter {
   urlType: string;
   WEATHER_API_KEY: string;
