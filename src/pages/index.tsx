@@ -22,6 +22,7 @@ import {
 import Daily from "../components/dailies-info/Daily";
 import CurrentInfo from "../components/dailies-info/CurrentInfo";
 import ReactLoading from "react-loading";
+import ICoordinates from "./api/interfaces/ICoordinates";
 
 export default function Home() {
   const [data, setData] = useState<IMountedData>();
