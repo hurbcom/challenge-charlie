@@ -53,7 +53,6 @@ export default function Home() {
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         const { latitude, longitude } = coords;
         console.log(latitude, longitude);
@@ -80,7 +79,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Fetch data from API if `location` object is set
     if (location) {
       fetchGeoLocationData();
     }
@@ -109,94 +107,101 @@ export default function Home() {
   return (
     <ThemeProvider theme={bgColor}>
       <div
-        className={style.container}
         style={{
-          backgroundColor: bgColor.palette.primary.main,
+          backgroundImage: `url(${data?.image})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          color: bgColor.palette.primary.contrastText,
         }}
       >
-        <FormControl variant="outlined" className={style.formControll}>
-          <InputLabel
-            className={style.inputLabel}
-            color="primary"
-            htmlFor="input-with-icon-adornment"
-          >
-            {data && (
-              <div>
-                {data.cityName}, {data.country}
-              </div>
-            )}
-          </InputLabel>
-          <Input
-            color="primary"
-            className={style.input}
-            id="input-with-icon-adornment"
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-            value={city}
-            onChange={(e) => handleCityChange(e)}
-          />
-        </FormControl>
+        <div
+          className={style.container}
+          style={{
+            backgroundColor: bgColor.palette.primary.main,
+          }}
+        >
+          <FormControl variant="outlined" className={style.formControll}>
+            <InputLabel
+              className={style.inputLabel}
+              color="primary"
+              htmlFor="input-with-icon-adornment"
+            >
+              {data && (
+                <div>
+                  {data.cityName}, {data.country}
+                </div>
+              )}
+            </InputLabel>
+            <Input
+              color="primary"
+              className={style.input}
+              id="input-with-icon-adornment"
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+              value={city}
+              onChange={(e) => handleCityChange(e)}
+              data-testid="input-component"
+            />
+          </FormControl>
 
-        {!data || isLoading ? (
-          <ReactLoading
-            type={"spin"}
-            color={"#000"}
-            height={100}
-            width={100}
-            className={style.main}
-          />
-        ) : (
-          <div
-            style={{
-              backgroundColor: bgColor.palette.primary.main,
-            }}
-          >
-            <div className={style.currentInfo}>
-              <CurrentInfo
-                temp={data.temp}
-                maximumTemp={data.max_temp}
-                minimumTemp={data.min_temp}
-                humidity={data.humidity}
-                weather={data.main}
-                description={data.description}
-                windSpeed={data.wind_speed}
-                windDegree={data.wind_deg}
-                isDesktop={true}
-              ></CurrentInfo>
+          {!data || isLoading ? (
+            <ReactLoading
+              type={"spin"}
+              color={"#000"}
+              height={100}
+              width={100}
+              className={style.main}
+              data-testid="loading-component"
+            />
+          ) : (
+            <div>
+              <div className={style.currentInfo}>
+                <CurrentInfo
+                  temp={data.temp}
+                  maximumTemp={data.max_temp}
+                  minimumTemp={data.min_temp}
+                  humidity={data.humidity}
+                  weather={data.main}
+                  description={data.description}
+                  windSpeed={data.wind_speed}
+                  windDegree={data.wind_deg}
+                  isDesktop={true}
+                  color={bgColor.palette.primary.contrastText}
+                  data-testid="current-info-component"
+                ></CurrentInfo>
+              </div>
+
+              <div className={style.footer}>
+                <div className={style.daily}>
+                  <Daily
+                    title="Amanhã"
+                    weather={data.main_tomorrow}
+                    maxTemp={data.max_temp_tomorrow}
+                    minTemp={data.min_temp_tomorrow}
+                    width={"40"}
+                    height={"40"}
+                    color={bgColor.palette.primary.contrastText}
+                  />
+                </div>
+
+                <div className={style.daily}>
+                  <Daily
+                    title="Depois de amanhã"
+                    weather={data.main_atomorrow}
+                    width={"40"}
+                    height={"40"}
+                    color={bgColor.palette.primary.contrastText}
+                    maxTemp={data.max_temp_atomorrow}
+                    minTemp={data.min_temp_atomorrow}
+                  />
+                </div>
+              </div>
             </div>
-
-            <div className={style.footer}>
-              <div className={style.daily}>
-                <Daily
-                  title="Amanhã"
-                  weather={data.main_tomorrow}
-                  maxTemp={data.max_temp_tomorrow}
-                  minTemp={data.min_temp_tomorrow}
-                  width={"40"}
-                  height={"40"}
-                  color={"#000"}
-                />
-              </div>
-
-              <div className={style.daily}>
-                <Daily
-                  title="Depois de amanhã"
-                  weather={data.main_atomorrow}
-                  width={"40"}
-                  height={"40"}
-                  color={"#000"}
-                  maxTemp={data.max_temp_atomorrow}
-                  minTemp={data.min_temp_atomorrow}
-                />
-              </div>
-            </div>
-
-            <img src={data.image} alt="" />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </ThemeProvider>
   );

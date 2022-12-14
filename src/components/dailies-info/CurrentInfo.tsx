@@ -13,6 +13,7 @@ interface ICurrentInfoProps {
   windDegree: number;
   windSpeed: number;
   isDesktop: boolean;
+  color: string;
 }
 
 export default function CurrentInfo(props: ICurrentInfoProps) {
@@ -23,6 +24,7 @@ export default function CurrentInfo(props: ICurrentInfoProps) {
           weather={props.weather}
           description={props.description}
           temp={props.temp}
+          color={props.color}
         />
       </span>
 

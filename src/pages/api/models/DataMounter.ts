@@ -1,4 +1,4 @@
-// import IBingImageResponse from "../interfaces/IBingImageResponse";
+import IBingImageResponse from "../interfaces/IBingImageResponse";
 import IForecastWeatherResponse from "../interfaces/IForecastWeatherResponse";
 import IGeolocationOptionsResponse from "../interfaces/IGeolocationOptionsResponse";
 import IMountedData from "../interfaces/IMountedData";
@@ -8,22 +8,23 @@ class DataMounter {
   weatherResult: IWeatherResponse;
   geoLocationResult: IGeolocationOptionsResponse;
   forecastWeatherResult: IForecastWeatherResponse | any;
-  // bingImageResult: IBingImageResponse;
+  bingImageResult: IBingImageResponse;
 
   constructor({
     weatherResult,
     geoLocationResult,
     forecastWeatherResult,
-  }: // bingImageResult,
-  {
+    bingImageResult,
+  }: {
     weatherResult: IWeatherResponse;
     geoLocationResult: IGeolocationOptionsResponse;
     forecastWeatherResult: IForecastWeatherResponse | any;
+    bingImageResult: IBingImageResponse;
   }) {
     this.weatherResult = weatherResult;
     this.geoLocationResult = geoLocationResult;
     this.forecastWeatherResult = forecastWeatherResult;
-    // this.bingImageResult = bingImageResult;
+    this.bingImageResult = bingImageResult;
   }
 
   getData() {
@@ -40,7 +41,7 @@ class DataMounter {
       description: this.weatherResult?.weather[0].description,
       cityName: this.geoLocationResult?.results[0].components.city,
       country: this.geoLocationResult?.results[0].components.country,
-      image: "",
+      image: this.bingImageResult?.results[0].urls.regular,
       max_temp_tomorrow: this.forecastWeatherResult.list[8].main.temp_max,
       min_temp_tomorrow: this.forecastWeatherResult.list[8].main.temp_min,
       main_tomorrow: this.forecastWeatherResult.list[8].weather[0].icon,

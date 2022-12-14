@@ -38,13 +38,13 @@ export default async function handler(
     "forecastWeather",
     q as string
   )) as IForecastWeatherResponse;
-  // const bingImageResult = await fetchInfo("bingImage", q);
+  const bingImageResult = await fetchInfo("bingImage", q as string);
 
   const data = new DataMounter({
     weatherResult,
     geoLocationResult,
     forecastWeatherResult,
-    // bingImageResult,
+    bingImageResult,
   }).getData();
 
   res.status(200).json(data);
