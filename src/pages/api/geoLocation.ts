@@ -3,6 +3,7 @@ import IGeolocationResponse from "./interfaces/IGeolocationResponse";
 import URLMounter from "./models/URLMounter";
 
 const fetchInfo = async (apiName: string, { latitude, longitude }: any) => {
+  // Fetch the data from the API mounting the URL
   const url = new URLMounter({
     urlType: apiName,
   }).getGeoLocationURL(latitude, longitude);
@@ -25,10 +26,15 @@ export default async function handler(
     query: { latitude, longitude },
   } = req;
 
-  const geoLocationResult: IGeolocationResponse = (await fetchInfo(
-    "geolocation",
-    { latitude, longitude }
-  )) as IGeolocationResponse;
+  try {
+    const geoLocationResult: IGeolocationResponse = (await fetchInfo(
+      "geolocation",
+      { latitude, longitude }
+    )) as IGeolocationResponse;
 
-  res.status(200).json(geoLocationResult);
+    res.status(200).json(geoLocationResult);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 }

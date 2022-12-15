@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
+  AlertTitle,
   FormControl,
   Input,
   InputAdornment,
@@ -31,19 +33,47 @@ export default function Home() {
   const debouncedValue = useDebounce<string>(city, 1300);
   const [bgColor, setBGColor] = useState(pbTheme);
   const [location, setLocation] = useState<ICoordinates>();
+  const regEx = new RegExp(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+  const [hasError, setHasError] = useState(false);
 
   const fetchWeatherData = async () => {
+    // checks if the city name contains special characters
+    if (regEx.test(city)) {
+      setHasError(true);
+      setData(undefined);
+      return;
+    }
+
     setLoading(true);
+
+    // fetches the weather data from the api
     try {
       const response = await fetch(`/api/cityWeatherInfo?q=${city}`);
       const resultData = await response.json();
-      console.log(resultData);
+
+      setLoading(false);
+
+      // checks if the api returned an error or if the object is empty
+      if (resultData.error || Object.keys(resultData).length === 0) {
+        setData(undefined);
+        setBGColor(pbTheme);
+        setHasError(true);
+        return;
+      }
+
+      setHasError(false);
+
+      // sets the data and the background color
       setData(resultData);
       getColor(resultData.temp);
-      setLoading(false);
+
+      setHasError(false);
     } catch (error) {
-      console.log(error);
+      // sets the error state to true
+      console.log(error.message);
+      setHasError(true);
       setLoading(false);
+      console.log("error");
     }
   };
 
@@ -51,29 +81,44 @@ export default function Home() {
     setCity(e.target.value);
   };
 
+  // gets the user's location
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         const { latitude, longitude } = coords;
-        console.log(latitude, longitude);
         setLocation({ latitude, longitude });
       });
     }
   }, []);
 
+  // fetches the weather data based on the user's location
   const fetchGeoLocationData = async () => {
     setLoading(true);
+    // fetches the weather data from the api
     try {
       const response = await fetch(
         `/api/geoLocation?latitude=${location?.latitude}&longitude=${location?.longitude}`
       );
       const resultData = await response.json();
-      console.log(resultData);
+
+      // checks if the api returned an error or if the object is empty
+      if (resultData.error || Object.keys(resultData).length === 0) {
+        setData(undefined);
+        setBGColor(pbTheme);
+        setHasError(true);
+        return;
+      }
+
+      setHasError(false);
+
+      // sets the data and the background color
       setCity(resultData.results[0].components.city);
       getColor(resultData.temp);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      // sets the error state to true
+      setHasError(true);
+      console.log(error.message);
       setLoading(false);
     }
   };
@@ -84,10 +129,16 @@ export default function Home() {
     }
   }, [location]);
 
+  // fetches the weather data when the user stops typing
   useEffect(() => {
     debouncedValue ? fetchWeatherData() : setData(undefined);
+    // checks if the city name contains special characters
+    if (hasError && debouncedValue.length > 3) {
+      setHasError(false);
+    }
   }, [debouncedValue]);
 
+  // sets the background color based on the temperature
   const getColor = (temperature: number) => {
     return temperature < -10
       ? setBGColor(feTheme)
@@ -147,7 +198,14 @@ export default function Home() {
             />
           </FormControl>
 
-          {!data || isLoading ? (
+          {hasError ? (
+            <Alert severity="error" style={{ width: "60%", margin: "0 auto" }}>
+              <AlertTitle>Error</AlertTitle>
+              <strong>
+                <p>Não foi possível encontrar uma cidade, busque novamente</p>
+              </strong>
+            </Alert>
+          ) : !data || (isLoading && city.length < 2) ? (
             <ReactLoading
               type={"spin"}
               color={"#000"}

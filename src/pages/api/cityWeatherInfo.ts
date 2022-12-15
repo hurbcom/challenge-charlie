@@ -6,6 +6,7 @@ import DataMounter from "./models/DataMounter";
 import URLMounter from "./models/URLMounter";
 
 const fetchInfo = async (apiName: string, cityName: string) => {
+  // Fetch the data from the API mounting the URL
   const url = new URLMounter({ urlType: apiName }).getURL(cityName);
   const response = await fetch(url);
   const data = await response.json();
@@ -26,26 +27,32 @@ export default async function handler(
     query: { q },
   } = req;
 
-  const geoLocationResult: IGeolocationOptionsResponse = (await fetchInfo(
-    "geolocation",
-    q as string
-  )) as IGeolocationOptionsResponse;
-  const weatherResult: IWeatherResponse = (await fetchInfo(
-    "weather",
-    q as string
-  )) as IWeatherResponse;
-  const forecastWeatherResult: IForecastWeatherResponse = (await fetchInfo(
-    "forecastWeather",
-    q as string
-  )) as IForecastWeatherResponse;
-  const bingImageResult = await fetchInfo("bingImage", q as string);
+  // Fetch the data from the API mounting the data for the frontend
+  try {
+    const geoLocationResult: IGeolocationOptionsResponse = (await fetchInfo(
+      "geolocation",
+      q as string
+    )) as IGeolocationOptionsResponse;
+    const weatherResult: IWeatherResponse = (await fetchInfo(
+      "weather",
+      q as string
+    )) as IWeatherResponse;
+    const forecastWeatherResult: IForecastWeatherResponse = (await fetchInfo(
+      "forecastWeather",
+      q as string
+    )) as IForecastWeatherResponse;
+    const bingImageResult = await fetchInfo("bingImage", q as string);
 
-  const data = new DataMounter({
-    weatherResult,
-    geoLocationResult,
-    forecastWeatherResult,
-    bingImageResult,
-  }).getData();
+    const data = new DataMounter({
+      weatherResult,
+      geoLocationResult,
+      forecastWeatherResult,
+      bingImageResult,
+    }).getData();
 
-  res.status(200).json(data);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 }
