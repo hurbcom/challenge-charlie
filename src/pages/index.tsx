@@ -33,7 +33,7 @@ export default function Home() {
   const debouncedValue = useDebounce<string>(city, 1300);
   const [bgColor, setBGColor] = useState(pbTheme);
   const [location, setLocation] = useState<ICoordinates>();
-  const regEx = new RegExp(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+  const regEx = new RegExp(/[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]/);
   const [hasError, setHasError] = useState(false);
 
   const fetchWeatherData = async () => {
