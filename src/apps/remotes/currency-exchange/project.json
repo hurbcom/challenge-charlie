@@ -1,0 +1,105 @@
+{
+  "name": "remotes-currency-exchange",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/apps/remotes/currency-exchange/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/src/apps/remotes/currency-exchange",
+        "index": "src/apps/remotes/currency-exchange/src/index.html",
+        "baseHref": "/",
+        "main": "src/apps/remotes/currency-exchange/src/main.ts",
+        "polyfills": "src/apps/remotes/currency-exchange/src/polyfills.ts",
+        "tsConfig": "src/apps/remotes/currency-exchange/tsconfig.app.json",
+        "assets": [
+          "src/apps/remotes/currency-exchange/src/favicon.ico",
+          "src/apps/remotes/currency-exchange/src/assets"
+        ],
+        "styles": ["src/apps/remotes/currency-exchange/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "src/apps/remotes/currency-exchange/webpack.config.js",
+        "postcssConfig": "src/apps/remotes/currency-exchange/postcss.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "src/apps/remotes/currency-exchange/src/environments/environment.ts",
+              "with": "src/apps/remotes/currency-exchange/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "src/apps/remotes/currency-exchange/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "remotes-currency-exchange:build",
+        "hmr": true,
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "remotes-currency-exchange:build:development"
+        },
+        "production": {
+          "buildTarget": "remotes-currency-exchange:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "src/apps/remotes/currency-exchange/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/apps/remotes/currency-exchange/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "remotes-currency-exchange:build",
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "remotes-currency-exchange:build:development"
+        },
+        "production": {
+          "buildTarget": "remotes-currency-exchange:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
