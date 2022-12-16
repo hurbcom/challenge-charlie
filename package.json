@@ -3,24 +3,27 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx serve shell --devRemotes=remotes-weather-forecast,remotes-currency-exchange"
+    "start": "npx nx serve frontend-shell --devRemotes=frontend-mfes-weather-forecast,frontend-mfes-currency-exchange"
   },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
     "@nrwl/cypress": "15.3.3",
     "@nrwl/eslint-plugin-nx": "15.3.3",
+    "@nrwl/express": "15.3.3",
     "@nrwl/jest": "15.3.3",
     "@nrwl/js": "15.3.3",
     "@nrwl/linter": "15.3.3",
+    "@nrwl/node": "15.3.3",
     "@nrwl/react": "15.3.3",
     "@nrwl/web": "15.3.3",
     "@nrwl/workspace": "15.3.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@svgr/webpack": "^6.1.2",
     "@testing-library/react": "13.4.0",
+    "@types/express": "4.17.13",
     "@types/jest": "28.1.1",
-    "@types/node": "18.11.9",
+    "@types/node": "18.7.1",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@types/react-router-dom": "5.3.3",
@@ -51,6 +54,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "express": "^4.18.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.4.3",

@@ -1,0 +1,32 @@
+{
+  "name": "frontend-mfes-weather-forecast-e2e",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/apps/frontend/mfes/weather-forecast-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "src/apps/frontend/mfes/weather-forecast-e2e/cypress.config.ts",
+        "devServerTarget": "frontend-mfes-weather-forecast:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "frontend-mfes-weather-forecast:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "src/apps/frontend/mfes/weather-forecast-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["frontend-mfes-weather-forecast"]
+}

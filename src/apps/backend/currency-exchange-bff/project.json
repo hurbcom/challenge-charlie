@@ -1,0 +1,60 @@
+{
+  "name": "backend-currency-exchange-bff",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/apps/backend/currency-exchange-bff/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/src/apps/backend/currency-exchange-bff",
+        "main": "src/apps/backend/currency-exchange-bff/src/main.ts",
+        "tsConfig": "src/apps/backend/currency-exchange-bff/tsconfig.app.json",
+        "assets": ["src/apps/backend/currency-exchange-bff/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "src/apps/backend/currency-exchange-bff/src/environments/environment.ts",
+              "with": "src/apps/backend/currency-exchange-bff/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "backend-currency-exchange-bff:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "backend-currency-exchange-bff:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["src/apps/backend/currency-exchange-bff/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/apps/backend/currency-exchange-bff/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

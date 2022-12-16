@@ -1,0 +1,60 @@
+{
+  "name": "backend-weather-forecast-bff",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/apps/backend/weather-forecast-bff/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/src/apps/backend/weather-forecast-bff",
+        "main": "src/apps/backend/weather-forecast-bff/src/main.ts",
+        "tsConfig": "src/apps/backend/weather-forecast-bff/tsconfig.app.json",
+        "assets": ["src/apps/backend/weather-forecast-bff/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "src/apps/backend/weather-forecast-bff/src/environments/environment.ts",
+              "with": "src/apps/backend/weather-forecast-bff/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "backend-weather-forecast-bff:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "backend-weather-forecast-bff:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["src/apps/backend/weather-forecast-bff/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/apps/backend/weather-forecast-bff/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -14,7 +14,23 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@challenge-charlie/frontend/shared/environments": [
+        "src/libs/frontend/shared/environments/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/repositories/adapters": [
+        "src/libs/frontend/weather-forecast/framework/repositories/adapters/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/repositories/fetch-api": [
+        "src/libs/frontend/weather-forecast/framework/repositories/fetch-api/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/repositories/models": [
+        "src/libs/frontend/weather-forecast/framework/repositories/models/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/ui": [
+        "src/libs/frontend/weather-forecast/framework/ui/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

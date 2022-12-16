@@ -1,0 +1,109 @@
+{
+  "name": "frontend-shell",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/apps/frontend/shell/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/src/apps/frontend/shell",
+        "index": "src/apps/frontend/shell/src/index.html",
+        "baseHref": "/",
+        "main": "src/apps/frontend/shell/src/main.ts",
+        "polyfills": "src/apps/frontend/shell/src/polyfills.ts",
+        "tsConfig": "src/apps/frontend/shell/tsconfig.app.json",
+        "assets": [
+          "src/apps/frontend/shell/src/favicon.ico",
+          "src/apps/frontend/shell/src/assets"
+        ],
+        "styles": ["src/apps/frontend/shell/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "src/apps/frontend/shell/webpack.config.js",
+        "postcssConfig": "src/apps/frontend/shell/postcss.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true,
+          "fileReplacements": [
+            {
+              "replace": "src/apps/frontend/shell/src/environments/environment.ts",
+              "with": "src/libs/frontend/shared/environments/src/lib/development.ts"
+            }
+          ]
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "src/apps/frontend/shell/src/environments/environment.ts",
+              "with": "src/libs/frontend/shared/environments/src/lib/production.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "src/apps/frontend/shell/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-shell:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-shell:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend-shell:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["src/apps/frontend/shell/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/apps/frontend/shell/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-shell:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-shell:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend-shell:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
