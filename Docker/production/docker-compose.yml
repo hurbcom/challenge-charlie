@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  foca-no-tempo:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    image: foca-no-tempo
+    ports:
+      - '3003:3000'
