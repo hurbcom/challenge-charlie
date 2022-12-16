@@ -24,11 +24,17 @@ Instale o Foca no Tempo com docker
 ```
 
 ```bash
-  docker build -t challenge-charlie
+  make build-development
 ```
 
 ```bash
-  docker run -p 3000:3000 challenge-charlie
+  make start-development
+```
+
+- Para encerrar, basta digitar o comando abaixo:
+
+```bash
+  make stop-development
 ```
 
 ## Deploy
@@ -58,17 +64,24 @@ informação foi mudada.
 Foi feita uma tela de loading para dar o feedback para o usuário de que a busca está
 sendo feita
 
-## Lógica inicial (Diagrama que representa o fluxo)
-
-- Melhorar o suporte de navegadores
-
-- Adicionar mais integrações
-
 ## Projeto
 
-A ideia inicial era seguir esse fluxo em um BFF, porém surgiu a possibilidade de utilizar o next pela primeira vez
+A ideia inicial era seguir esse fluxo em um BFF, porém surgiu a possibilidade de utilizar o Next pela primeira vez
 
 ![Projeto](https://i.ibb.co/6NpVNXm/user-flow.png)
+
+Para utilizar, o usuário pode escolher permitir a geolocalização ou pesquisar uma cidade.
+
+Então a página irá:
+- fazer um fetch à api que possui um handler 
+- o Handler, irá chamar um fetch à api de geolocalização
+- a api de geolocalização devolverá os dados para o handle 
+- o handle irá montar os dados para enviar ao front
+
+Ao Receber os dados, a página irá:
+- checar se são válidos
+- se forem, os dados serão normalmente carregados
+- se não, uma mensagem de erro deve aparecer, solicitando uma nova busca
 
 ## Aprendizados
 
@@ -76,3 +89,17 @@ A ideia inicial era seguir esse fluxo em um BFF, porém surgiu a possibilidade d
 - Aprendi a fazer fetch em três APIs diferentes
 - Aprendi como configurar o docker do zero
 - Aprendi como configurar o Eslint e Prettier do zero
+
+## Testes
+
+Tive muita dificuldade em configurar e em utilizar. Nunca havia estudado testes antes para react e não tenho costume de utilizar testes do zero no meu atual projeto./
+
+Ao criar mocks tive difiuldade, para entender a estrutura de testes no next tive dificuldade. 
+É o meu próximo objetivo, aprender a realizar testes com maior facilidade.
+
+## Husky e commits
+
+Estou com problemas para rodar o git no meu prompt de comando no momento. Irei precisar formatar a máquina. Não tive como utilizar o husky, pois era incompatível com o GitHub Desktop. 
+
+Não quis utilizar a máquina do trabalho.
+
