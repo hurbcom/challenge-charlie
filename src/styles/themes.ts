@@ -12,7 +12,7 @@ export const feTheme = createTheme({
 export const mfTheme = createTheme({
   palette: {
     primary: {
-      main: "#0089EC",
+      main: "rgba(0, 137, 236, 0.4)",
       contrastText: "#fff",
     },
   },

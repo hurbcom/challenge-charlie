@@ -174,7 +174,6 @@ export default function Home() {
           <FormControl variant="outlined" className={style.formControll}>
             <InputLabel
               className={style.inputLabel}
-              color="primary"
               htmlFor="input-with-icon-adornment"
             >
               {data && (
