@@ -18,17 +18,44 @@
       "@challenge-charlie/frontend/shared/environments": [
         "src/libs/frontend/shared/environments/src/index.ts"
       ],
-      "@challenge-charlie/frontend/weather-forecast/framework/repositories/adapters": [
-        "src/libs/frontend/weather-forecast/framework/repositories/adapters/src/index.ts"
+      "@challenge-charlie/frontend/weather-forecast/adapter/contracts/controllers": [
+        "src/libs/frontend/weather-forecast/adapter/contracts/controllers/src/index.ts"
       ],
-      "@challenge-charlie/frontend/weather-forecast/framework/repositories/fetch-api": [
-        "src/libs/frontend/weather-forecast/framework/repositories/fetch-api/src/index.ts"
+      "@challenge-charlie/frontend/weather-forecast/adapter/controllers": [
+        "src/libs/frontend/weather-forecast/adapter/controllers/src/index.ts"
       ],
-      "@challenge-charlie/frontend/weather-forecast/framework/repositories/models": [
-        "src/libs/frontend/weather-forecast/framework/repositories/models/src/index.ts"
+      "@challenge-charlie/frontend/weather-forecast/application/contracts/repositories": [
+        "src/libs/frontend/weather-forecast/application/contracts/repositories/src/index.ts"
       ],
-      "@challenge-charlie/frontend/weather-forecast/framework/ui": [
-        "src/libs/frontend/weather-forecast/framework/ui/src/index.ts"
+      "@challenge-charlie/frontend/weather-forecast/application/contracts/use-cases": [
+        "src/libs/frontend/weather-forecast/application/contracts/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/application/use-cases": [
+        "src/libs/frontend/weather-forecast/application/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/enterprise/entities": [
+        "src/libs/frontend/weather-forecast/enterprise/entities/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/factories/controllers": [
+        "src/libs/frontend/weather-forecast/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/factories/repositories": [
+        "src/libs/frontend/weather-forecast/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/factories/use-cases": [
+        "src/libs/frontend/weather-forecast/framework/factories/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/presentation/components": [
+        "src/libs/frontend/weather-forecast/framework/presentation/components/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/presentation/contexts": [
+        "src/libs/frontend/weather-forecast/framework/presentation/contexts/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/repositories/bff": [
+        "src/libs/frontend/weather-forecast/framework/repositories/bff/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/weather-forecast/framework/repositories/geolocation": [
+        "src/libs/frontend/weather-forecast/framework/repositories/geolocation/src/index.ts"
       ]
     }
   },

@@ -8,6 +8,10 @@ module.exports = {
       __dirname,
       '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
     ),
+    join(
+      './src/libs/frontend/currency-exchange/framework/presentation/**/*',
+      '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+    ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {

@@ -35,6 +35,10 @@
             {
               "replace": "src/apps/frontend/mfes/weather-forecast/src/environments/environment.ts",
               "with": "src/libs/frontend/shared/environments/src/lib/development.ts"
+            },
+            {
+              "replace": "src/libs/frontend/weather-forecast/framework/repositories/bff/src/environments/environment.ts",
+              "with": "src/libs/frontend/shared/environments/src/lib/development.ts"
             }
           ]
         },
@@ -42,6 +46,10 @@
           "fileReplacements": [
             {
               "replace": "src/apps/frontend/mfes/weather-forecast/src/environments/environment.ts",
+              "with": "src/libs/frontend/shared/environments/src/lib/production.ts"
+            },
+            {
+              "replace": "src/libs/frontend/weather-forecast/framework/repositories/bff/src/environments/environment.ts",
               "with": "src/libs/frontend/shared/environments/src/lib/production.ts"
             }
           ],

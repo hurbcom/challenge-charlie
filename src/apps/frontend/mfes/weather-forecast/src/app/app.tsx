@@ -1,4 +1,4 @@
-import { ForecastOverviewComponent } from "@challenge-charlie/frontend/weather-forecast/framework/ui";
+import { ForecastOverviewComponent } from "@challenge-charlie/frontend/weather-forecast/framework/presentation/components";
 
 export function App() {
   return (
