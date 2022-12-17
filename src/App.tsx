@@ -1,13 +1,21 @@
 import React from 'react'
-
-import { Button } from './componentes/Button'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './styles/global'
+import { defaultTheme } from './styles/themes/default'
+import { Home } from './Views/Home'
 
 function App() {
+
     return (
         <>
-            <Button variant='primary'></Button>
-        </>)
+            <ThemeProvider theme={defaultTheme}>
+                <Home />
+                <GlobalStyle />
+
+            </ThemeProvider>
+        </>
+    )
 }
 
 
-export default App
+export { App }
