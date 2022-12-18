@@ -17,7 +17,35 @@ export const HomeContainer = styled.div<HomeContainerProps>`
 `
 
 export const HomeWeatherContainer = styled.div`
-    max-width: 400px;
+    width: 70%;
+    max-width: 700px;
+    min-width: 350px;
     height: 500px;
     padding: 20px;
+`
+
+export const TodaySection = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: aliceblue;
+`
+export const IconColumn = styled.div`
+    width: 100%;
+`
+export const InformationsColumn = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`
+
+export const NextDaysSection = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: aliceblue;
 `

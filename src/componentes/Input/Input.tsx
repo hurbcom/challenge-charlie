@@ -5,9 +5,7 @@ const InputForm = ({
     type,
     placeholder,
     value,
-    onChange,
-    onBlur,
-    error,
+    onChange
 }) => {
     return (
         <InputContainer>
@@ -16,7 +14,6 @@ const InputForm = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                onBlur={onBlur}
             ></Input>
         </InputContainer>
     );
