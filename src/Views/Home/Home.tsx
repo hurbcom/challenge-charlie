@@ -24,48 +24,8 @@ function Home() {
     const getUserLocation = () => {
         try {
             navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-                try {
-                    setLocation({ lat: coords.latitude, long: coords.longitude })
-                    const response = await Promise.all([OpenWeatherCoord(coords.latitude, coords.longitude), OpenWeatherForecast(coords.latitude, coords.longitude)])
-
-
-                    const coordResponse = response[0].data
-                    const forecastResponse = response[1].data
-
-
-                    const tomorrow = getRangeTemp(forecastResponse.list, 1)
-                    const afterTomorrow = getRangeTemp(forecastResponse.list, 2)
-
-                    const weatherData: WeatherInformations = {
-                        today: {
-                            temp: coordResponse.main.temp,
-                            description: coordResponse.weather[0].description,
-                            humidity: coordResponse.main.humidity,
-                            pressure: coordResponse.main.pressure,
-                            wind: coordResponse.wind.speed,
-                            icon: coordResponse.weather[0].icon
-                        },
-                        tomorrow: {
-                            tempMin: tomorrow.min,
-                            tempMax: tomorrow.max,
-                            icon: tomorrow.icon
-
-                        },
-                        afterTomorrow: {
-                            tempMin: afterTomorrow.min,
-                            tempMax: afterTomorrow.max,
-                            icon: afterTomorrow.icon
-                        }
-                    }
-
-                    setWeatherInformations(weatherData)
-
-
-
-                } catch (error) {
-                    console.log(error);
-
-                }
+                setLocation({ lat: coords.latitude, long: coords.longitude })
+                getWeatherInformations(coords.latitude, coords.longitude)
             })
         } catch (error) {
             console.error(error)
@@ -101,12 +61,56 @@ function Home() {
         }
     }
 
+    const getWeatherInformations = async (lat: number, long: number) => {
+        try {
+            const response = await Promise.all([OpenWeatherCoord(lat, long), OpenWeatherForecast(lat, long)])
+
+
+            const coordResponse = response[0].data
+            const forecastResponse = response[1].data
+
+
+            const tomorrow = getRangeTemp(forecastResponse.list, 1)
+            const afterTomorrow = getRangeTemp(forecastResponse.list, 2)
+
+            const weatherData: WeatherInformations = {
+                today: {
+                    temp: coordResponse.main.temp,
+                    description: coordResponse.weather[0].description,
+                    humidity: coordResponse.main.humidity,
+                    pressure: coordResponse.main.pressure,
+                    wind: coordResponse.wind.speed,
+                    icon: coordResponse.weather[0].icon
+                },
+                tomorrow: {
+                    tempMin: tomorrow.min,
+                    tempMax: tomorrow.max,
+                    icon: tomorrow.icon
+
+                },
+                afterTomorrow: {
+                    tempMin: afterTomorrow.min,
+                    tempMax: afterTomorrow.max,
+                    icon: afterTomorrow.icon
+                }
+            }
+
+            setWeatherInformations(weatherData)
+
+
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
 
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
-        const openResponse = await OpenWeather(city)
-        console.log(openResponse.data);
+        const { data } = await OpenWeather(city)
+        getWeatherInformations(data.coord.lat, data.coord.lon)
 
     }
 
