@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/paulofrare/challenge-charlie#readme",
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-react": "^7.18.6",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.15",
     "@types/react": "^18.0.26",

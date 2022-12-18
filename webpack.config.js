@@ -15,21 +15,29 @@ module.exports = env => {
             extensions: ['.ts', '.tsx', '.js', '.css'],
         },
         module: {
-            rules: [{
-                test: /\.ts(x?)$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/
-            }, {
-                test: /\.css$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true
-                    }
-                }]
-            }]
+            rules: [
+                {
+                    exclude: /node_modules/,
+                    loader: 'babel-loader',
+                    test: /\.ts$/
+                },
+                {
+                    test: /\.ts(x?)$/,
+                    loader: 'ts-loader',
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.css$/,
+                    use: [{
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }]
+                }
+            ]
         },
         devServer: {
             static: {
