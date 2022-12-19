@@ -66,8 +66,6 @@ function Home() {
 
     }
 
-
-
     const getWeatherInformations = async (lat: number, long: number) => {
         try {
             const response = await Promise.all([OpenWeatherCoord(lat, long), OpenWeatherForecast(lat, long), OpenWeatherGeo])
@@ -180,7 +178,6 @@ function Home() {
                                     <PrimaryIcon
                                         src={`/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
                                     ></PrimaryIcon>
-
                                 </IconColumn>
                                 <InformationsColumn>
                                     <InformationsColumnItem>
@@ -218,7 +215,6 @@ function Home() {
             </HomeContainer>
         </>)
 }
-
 
 export { Home }
 
