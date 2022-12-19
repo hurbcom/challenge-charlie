@@ -1,10 +1,26 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useRef } from 'react'
 import { getWallpaper } from '../../services/BingWallpaper'
 import { getLocation } from '../../services/OpenCage'
-import { OpenWeather, OpenWeatherForecast, OpenWeatherCoord } from '../../services/OpenWeather'
+import { OpenWeather, OpenWeatherForecast, OpenWeatherCoord, OpenWeatherGeo } from '../../services/OpenWeather'
 import { WeatherContext, WeatherInformations } from '../../contexts/WeatherContext'
-import { HomeContainer, HomeWeatherContainer, IconColumn, InformationsColumn, NextDaysSection, TodaySection, SecondColumn } from './Home.styles'
-import InputForm from '../../componentes/Input/input'
+import {
+    HomeContainer,
+    HomeWeatherContainer,
+    IconColumn,
+    InformationsColumn,
+    NextDaysSection,
+    TodaySection,
+    SecondColumn,
+    InformationText,
+    InformationTitle,
+    InformationsColumnItem,
+    PrimaryIcon,
+    SecondaryIcon,
+    FormContainer,
+    CityInformationContainer,
+    CityInformationSection
+} from './Home.styles'
+import { InputForm } from '../../componentes/Input/input'
 
 
 
@@ -12,13 +28,17 @@ function Home() {
 
     const { backgroundImage, setBackgroundImage, setLocation, weatherInformations, setWeatherInformations } = useContext(WeatherContext)
     const [city, setCity] = useState('')
-
+    const emailInput = useRef(null);
 
     useEffect(() => {
         getWallpaper().then((resp) => {
             setBackgroundImage(`https://bing.com${resp.images[0].url}`)
         })
         getUserLocation()
+
+        if (emailInput.current) {
+            emailInput.current.focus();
+        }
     }, [])
 
     const getUserLocation = () => {
@@ -63,17 +83,17 @@ function Home() {
 
     const getWeatherInformations = async (lat: number, long: number) => {
         try {
-            const response = await Promise.all([OpenWeatherCoord(lat, long), OpenWeatherForecast(lat, long)])
-
-
+            const response = await Promise.all([OpenWeatherCoord(lat, long), OpenWeatherForecast(lat, long), OpenWeatherGeo])
             const coordResponse = response[0].data
             const forecastResponse = response[1].data
 
+            const { data } = await OpenWeatherGeo(coordResponse.name)
 
             const tomorrow = getRangeTemp(forecastResponse.list, 1)
             const afterTomorrow = getRangeTemp(forecastResponse.list, 2)
 
             const weatherData: WeatherInformations = {
+                city: formattedCityName(data[0]),
                 today: {
                     temp: coordResponse.main.temp,
                     description: coordResponse.weather[0].description,
@@ -114,14 +134,25 @@ function Home() {
 
     }
 
+    const formattedCityName = (data: any) => {
+        return `${data.name}, ${data.state} - ${data.country}`
+    }
+
     return (
         <>
             <HomeContainer backgroundImage={backgroundImage}>
-                <form onSubmit={handleSubmit}>
+
+                <FormContainer onSubmit={handleSubmit}>
                     <InputForm
                         type="text"
                         placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
-                </form>
+                </FormContainer>
+                <CityInformationContainer>
+                    <CityInformationSection>
+                        <img src={`/assets/WeatherIcons/44.svg`} alt="Bússola" />
+                        {weatherInformations && <InformationTitle>{weatherInformations.city}</InformationTitle>}
+                    </CityInformationSection>
+                </CityInformationContainer>
                 <HomeWeatherContainer>
                     <TodaySection>
                         <IconColumn>
@@ -134,12 +165,18 @@ function Home() {
 
                         </IconColumn>
                         <InformationsColumn>
-                            <p>Hoje</p>
-                            {weatherInformations && <p>{weatherInformations.today.temp}</p>}
-                            {weatherInformations && <p>{weatherInformations.today.description}</p>}
-                            {weatherInformations && <p>Vento: {weatherInformations.today.wind}</p>}
-                            {weatherInformations && <p>Umidade: {weatherInformations.today.humidity}</p>}
-                            {weatherInformations && <p>Pressão: {weatherInformations.today.pressure}</p>}
+                            <InformationsColumnItem>
+                                <InformationTitle>Hoje</InformationTitle>
+                                {weatherInformations && <InformationTitle>{weatherInformations.today.temp}</InformationTitle>}
+                            </InformationsColumnItem>
+                            <InformationsColumnItem>
+                                {weatherInformations && <InformationTitle>{weatherInformations.today.description}</InformationTitle>}
+                            </InformationsColumnItem>
+                            <InformationsColumnItem>
+                                {weatherInformations && <InformationText>Vento: {weatherInformations.today.wind}</InformationText>}
+                                {weatherInformations && <InformationText>Umidade: {weatherInformations.today.humidity}</InformationText>}
+                                {weatherInformations && <InformationText>Pressão: {weatherInformations.today.pressure}</InformationText>}
+                            </InformationsColumnItem>
 
                         </InformationsColumn>
                     </TodaySection>
@@ -147,27 +184,38 @@ function Home() {
                         <NextDaysSection>
                             <IconColumn>
                                 {weatherInformations &&
-                                    <img
+                                    <PrimaryIcon
                                         src={`/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
-                                    ></img>
+                                    ></PrimaryIcon>
                                 }
                             </IconColumn>
                             <InformationsColumn>
-                                <p>Amanhã</p>
-                                {weatherInformations && <p>Mínima: {weatherInformations.tomorrow.tempMin} Máxima: {weatherInformations.tomorrow.tempMax} </p>}
+                                <InformationsColumnItem>
+                                    <InformationTitle>Amanhã</InformationTitle>
+                                </InformationsColumnItem>
+                                <InformationsColumnItem>
+                                    {weatherInformations && <InformationText>Mín: {weatherInformations.tomorrow.tempMin}</InformationText>}
+                                    {weatherInformations && <InformationText>Máx: {weatherInformations.tomorrow.tempMax} </InformationText>}
+                                </InformationsColumnItem>
                             </InformationsColumn>
                         </NextDaysSection>
                         <NextDaysSection>
                             <IconColumn>
                                 {weatherInformations &&
-                                    <img
+                                    <SecondaryIcon
                                         src={`/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
-                                    ></img>
+                                    ></SecondaryIcon>
                                 }
                             </IconColumn>
                             <InformationsColumn>
-                                <p>Depois de amanhã</p>
-                                {weatherInformations && <p>Mínima: {weatherInformations.afterTomorrow.tempMin} Máxima: {weatherInformations.afterTomorrow.tempMax} </p>}
+                                <InformationsColumnItem>
+                                    <InformationTitle>Depois de amanhã</InformationTitle>
+                                </InformationsColumnItem>
+                                <InformationsColumnItem>
+                                    {weatherInformations && <InformationText>Mín: {weatherInformations.afterTomorrow.tempMin}</InformationText>}
+                                    {weatherInformations && <InformationText>Máx: {weatherInformations.afterTomorrow.tempMax} </InformationText>}
+
+                                </InformationsColumnItem>
                             </InformationsColumn>
                         </NextDaysSection>
 

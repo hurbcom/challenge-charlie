@@ -12,9 +12,18 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  body {
+    min-height: 100vh;
+  }
+  
+
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
   }
+
+  
+
+
 `

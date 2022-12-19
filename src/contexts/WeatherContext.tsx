@@ -10,6 +10,7 @@ interface Location {
 }
 
 export interface WeatherInformations {
+    city: string,
     today: {
         temp: number
         description: string
