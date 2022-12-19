@@ -17,7 +17,7 @@ export const getRangeTemp = (list: any, sum: number) => {
         return (prev.main.temp_min < current.main.temp_min) ? prev : current
     })
 
-    const icon = filteredList[0].weather[0].icon
+    const icon = filteredList[3].weather[0].icon
 
     return {
         min: minTemp.main.temp_min,
