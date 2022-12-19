@@ -7,6 +7,9 @@ const InputForm = ({
     value,
     onChange
 }) => {
+
+
+
     return (
         <InputContainer>
             <Input
@@ -19,4 +22,4 @@ const InputForm = ({
     );
 };
 
-export default InputForm;
+export { InputForm };

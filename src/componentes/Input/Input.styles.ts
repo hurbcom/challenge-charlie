@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 const InputContainer = styled.div`
-  display: grid;
   width: 100%;
-  grid-gap: 4px;
 `;
 
 const Input = styled.input`
+  width: 100%;
   padding-left: 10px;
-  height: 40px;
+  height: 50px;
   box-sizing: border-box;
   ::placeholder {
     font-size: 16px;
