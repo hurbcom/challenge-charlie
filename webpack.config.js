@@ -12,7 +12,7 @@ module.exports = env => {
             path: path.resolve(__dirname, 'dist'),
         },
         resolve: {
-            extensions: ['.ts', '.tsx', '.js', '.css'],
+            extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
         module: {
             rules: [
@@ -22,21 +22,23 @@ module.exports = env => {
                     test: /\.ts$/
                 },
                 {
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: false,
+                            },
+                        },
+                    ]
+                },
+                {
                     test: /\.ts(x?)$/,
                     loader: 'ts-loader',
                     exclude: /node_modules/
-                },
-                {
-                    test: /\.css$/,
-                    use: [{
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    }]
                 }
+
             ]
         },
         devServer: {

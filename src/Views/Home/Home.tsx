@@ -21,24 +21,19 @@ import {
     CityInformationSection
 } from './Home.styles'
 import { InputForm } from '../../componentes/Input/input'
-
+import { toast } from "react-toastify";
 
 
 function Home() {
 
     const { backgroundImage, setBackgroundImage, setLocation, weatherInformations, setWeatherInformations } = useContext(WeatherContext)
     const [city, setCity] = useState('')
-    const emailInput = useRef(null);
 
     useEffect(() => {
         getWallpaper().then((resp) => {
             setBackgroundImage(`https://bing.com${resp.images[0].url}`)
         })
         getUserLocation()
-
-        if (emailInput.current) {
-            emailInput.current.focus();
-        }
     }, [])
 
     const getUserLocation = () => {
@@ -120,8 +115,20 @@ function Home() {
 
 
         } catch (error) {
-            console.log(error);
+            console.log("passei aqui");
+        }
+    }
 
+    const notify = (message: string) => {
+        toast.error(message)
+    }
+
+    const getCityNameInformations = async () => {
+        try {
+            const { data } = await OpenWeather(city)
+            return data.coord
+        } catch (error) {
+            notify("Não foi possível encontrar a cidade digitada")
         }
     }
 
@@ -129,8 +136,8 @@ function Home() {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
-        const { data } = await OpenWeather(city)
-        getWeatherInformations(data.coord.lat, data.coord.lon)
+        const { lat, lon } = await getCityNameInformations()
+        getWeatherInformations(lat, lon)
 
     }
 
