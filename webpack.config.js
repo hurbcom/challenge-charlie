@@ -6,10 +6,17 @@ module.exports = env => {
     const mode = env.development ? 'development' : 'production'
     return {
         mode,
-        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        entry: {
+            index: {
+                import: path.resolve(__dirname, 'src', 'index.tsx'),
+                dependOn: 'shared',
+            },
+            shared: ["react-toastify", 'react-loader-spinner'],
+        },
         output: {
             filename: '[name]-[chunkhash].js',
             path: path.resolve(__dirname, 'dist'),
+
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -38,27 +45,25 @@ module.exports = env => {
                     loader: 'ts-loader',
                     exclude: /node_modules/
                 }
-
             ]
         },
         devServer: {
             static: {
-                directory: path.join(__dirname, 'public'),
+                directory: path.join(__dirname),
 
             },
             port: 3000,
-            hot: true
+            hot: true,
         },
         plugins: [
             new CleanWebpackPlugin(),
             new HTMLWebpackPlugin({
                 template: path.resolve(
                     __dirname,
-                    'public',
                     'index.html'
                 )
             })
         ],
-        target: 'web',
+        target: 'web'
     }
 }

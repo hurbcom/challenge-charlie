@@ -164,7 +164,7 @@ function Home() {
 
                         <CityInformationContainer>
                             <CityInformationSection variant='background-gray'>
-                                <img src={`/assets/WeatherIcons/44.svg`} alt="Bússola" />
+                                <img src={`/src/assets/WeatherIcons/44.svg`} alt="Bússola" />
                                 <InformationTitle>{weatherInformations.city}</InformationTitle>
                             </CityInformationSection>
                         </CityInformationContainer>
@@ -172,7 +172,7 @@ function Home() {
                             <TodaySection variant={getCardBackgroundColor(weatherInformations.today.temp)}>
                                 <IconColumn>
                                     <img
-                                        src={`/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
+                                        src={`/src/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
                                         alt={`${weatherInformations.today.description}`}
                                     ></img>
                                 </IconColumn>
@@ -196,7 +196,7 @@ function Home() {
                                 <NextDaysSection variant={getCardBackgroundColor(weatherInformations.tomorrow.tempMax)}>
                                     <IconColumn>
                                         <PrimaryIcon
-                                            src={`/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
+                                            src={`/src/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
                                         ></PrimaryIcon>
                                     </IconColumn>
                                     <InformationsColumn>
@@ -212,7 +212,7 @@ function Home() {
                                 <NextDaysSection variant={getCardBackgroundColor(weatherInformations.afterTomorrow.tempMax)}>
                                     <IconColumn>
                                         <SecondaryIcon
-                                            src={`/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
+                                            src={`/src/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
                                         ></SecondaryIcon>
 
                                     </IconColumn>
