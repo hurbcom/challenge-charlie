@@ -138,90 +138,96 @@ function Home() {
         return `${data.name}, ${data.state} - ${data.country}`
     }
 
+    const getCardBackgroundColor = (temp: number) => {
+        if (temp <= 15) return 'background-blue'
+        else if (temp >= 35) return 'background-red'
+        else return 'background-yellow'
+    }
+
     return (
         <>
             <HomeContainer backgroundImage={backgroundImage}>
+                {weatherInformations && <>
+                    <FormContainer onSubmit={handleSubmit}>
+                        <InputForm
+                            type="text"
+                            placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
+                    </FormContainer>
 
-                <FormContainer onSubmit={handleSubmit}>
-                    <InputForm
-                        type="text"
-                        placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
-                </FormContainer>
-                <CityInformationContainer>
-                    <CityInformationSection>
-                        <img src={`/assets/WeatherIcons/44.svg`} alt="Bússola" />
-                        {weatherInformations && <InformationTitle>{weatherInformations.city}</InformationTitle>}
-                    </CityInformationSection>
-                </CityInformationContainer>
-                <HomeWeatherContainer>
-                    <TodaySection>
-                        <IconColumn>
-                            {weatherInformations &&
+                    <CityInformationContainer>
+                        <CityInformationSection variant='background-gray'>
+                            <img src={`/assets/WeatherIcons/44.svg`} alt="Bússola" />
+                            <InformationTitle>{weatherInformations.city}</InformationTitle>
+                        </CityInformationSection>
+                    </CityInformationContainer>
+                    <HomeWeatherContainer>
+                        <TodaySection variant={getCardBackgroundColor(weatherInformations.today.temp)}>
+                            <IconColumn>
                                 <img
                                     src={`/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
                                     alt={`${weatherInformations.today.description}`}
                                 ></img>
-                            }
 
-                        </IconColumn>
-                        <InformationsColumn>
-                            <InformationsColumnItem>
-                                <InformationTitle>Hoje</InformationTitle>
-                                {weatherInformations && <InformationTitle>{weatherInformations.today.temp}</InformationTitle>}
-                            </InformationsColumnItem>
-                            <InformationsColumnItem>
-                                {weatherInformations && <InformationTitle>{weatherInformations.today.description}</InformationTitle>}
-                            </InformationsColumnItem>
-                            <InformationsColumnItem>
-                                {weatherInformations && <InformationText>Vento: {weatherInformations.today.wind}</InformationText>}
-                                {weatherInformations && <InformationText>Umidade: {weatherInformations.today.humidity}</InformationText>}
-                                {weatherInformations && <InformationText>Pressão: {weatherInformations.today.pressure}</InformationText>}
-                            </InformationsColumnItem>
 
-                        </InformationsColumn>
-                    </TodaySection>
-                    <SecondColumn>
-                        <NextDaysSection>
-                            <IconColumn>
-                                {weatherInformations &&
+                            </IconColumn>
+                            <InformationsColumn>
+                                <InformationsColumnItem>
+                                    <InformationTitle>Hoje</InformationTitle>
+                                    <InformationTitle>{weatherInformations.today.temp}</InformationTitle>
+                                </InformationsColumnItem>
+                                <InformationsColumnItem>
+                                    <InformationTitle>{weatherInformations.today.description}</InformationTitle>
+                                </InformationsColumnItem>
+                                <InformationsColumnItem>
+                                    <InformationText>Vento: {weatherInformations.today.wind}</InformationText>
+                                    <InformationText>Umidade: {weatherInformations.today.humidity}</InformationText>
+                                    <InformationText>Pressão: {weatherInformations.today.pressure}</InformationText>
+                                </InformationsColumnItem>
+
+                            </InformationsColumn>
+                        </TodaySection>
+                        <SecondColumn>
+                            <NextDaysSection variant={getCardBackgroundColor(weatherInformations.tomorrow.tempMax)}>
+                                <IconColumn>
                                     <PrimaryIcon
                                         src={`/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
                                     ></PrimaryIcon>
-                                }
-                            </IconColumn>
-                            <InformationsColumn>
-                                <InformationsColumnItem>
-                                    <InformationTitle>Amanhã</InformationTitle>
-                                </InformationsColumnItem>
-                                <InformationsColumnItem>
-                                    {weatherInformations && <InformationText>Mín: {weatherInformations.tomorrow.tempMin}</InformationText>}
-                                    {weatherInformations && <InformationText>Máx: {weatherInformations.tomorrow.tempMax} </InformationText>}
-                                </InformationsColumnItem>
-                            </InformationsColumn>
-                        </NextDaysSection>
-                        <NextDaysSection>
-                            <IconColumn>
-                                {weatherInformations &&
+
+                                </IconColumn>
+                                <InformationsColumn>
+                                    <InformationsColumnItem>
+                                        <InformationTitle>Amanhã</InformationTitle>
+                                    </InformationsColumnItem>
+                                    <InformationsColumnItem>
+                                        <InformationText>Mín: {weatherInformations.tomorrow.tempMin}</InformationText>
+                                        <InformationText>Máx: {weatherInformations.tomorrow.tempMax} </InformationText>
+                                    </InformationsColumnItem>
+                                </InformationsColumn>
+                            </NextDaysSection>
+                            <NextDaysSection variant={getCardBackgroundColor(weatherInformations.afterTomorrow.tempMax)}>
+                                <IconColumn>
                                     <SecondaryIcon
                                         src={`/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
                                     ></SecondaryIcon>
-                                }
-                            </IconColumn>
-                            <InformationsColumn>
-                                <InformationsColumnItem>
-                                    <InformationTitle>Depois de amanhã</InformationTitle>
-                                </InformationsColumnItem>
-                                <InformationsColumnItem>
-                                    {weatherInformations && <InformationText>Mín: {weatherInformations.afterTomorrow.tempMin}</InformationText>}
-                                    {weatherInformations && <InformationText>Máx: {weatherInformations.afterTomorrow.tempMax} </InformationText>}
 
-                                </InformationsColumnItem>
-                            </InformationsColumn>
-                        </NextDaysSection>
+                                </IconColumn>
+                                <InformationsColumn>
+                                    <InformationsColumnItem>
+                                        <InformationTitle>Depois de amanhã</InformationTitle>
+                                    </InformationsColumnItem>
+                                    <InformationsColumnItem>
+                                        <InformationText>Mín: {weatherInformations.afterTomorrow.tempMin}</InformationText>
+                                        <InformationText>Máx: {weatherInformations.afterTomorrow.tempMax} </InformationText>
 
-                    </SecondColumn>
+                                    </InformationsColumnItem>
+                                </InformationsColumn>
+                            </NextDaysSection>
 
-                </HomeWeatherContainer>
+                        </SecondColumn>
+
+                    </HomeWeatherContainer>
+                </>
+                }
             </HomeContainer>
         </>)
 }

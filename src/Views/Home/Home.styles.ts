@@ -4,6 +4,11 @@ interface HomeContainerProps {
     backgroundImage: string
 }
 
+export type CardColorVariant = 'background-blue' | 'background-red' | 'background-yellow' | 'background-gray'
+
+interface SectionCardProps {
+    variant: CardColorVariant
+}
 
 export const HomeContainer = styled.div<HomeContainerProps>`
     display: flex;
@@ -39,7 +44,7 @@ export const HomeWeatherContainer = styled.div`
     }
 `
 
-export const TodaySection = styled.div`
+export const TodaySection = styled.div<SectionCardProps>`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
@@ -47,7 +52,7 @@ export const TodaySection = styled.div`
     align-items: center;
     padding: 20px;
     border-radius: 15px;
-    background-color: rgba(112, 112, 112, 0.8);
+    background-color: ${(props) => props.theme[props.variant]};
     & {
         img {
             max-width: 100px;
@@ -88,12 +93,12 @@ export const InformationText = styled.p`
     font-size: 16px;
 `
 
-export const NextDaysSection = styled.div`
+export const NextDaysSection = styled.div<SectionCardProps>`
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding: 20px;
     border-radius: 15px;
-    background-color: rgba(112, 112, 112, 0.8);
+    background-color: ${(props) => props.theme[props.variant]};
     & {
         img {
             max-width: 50px;
@@ -112,13 +117,13 @@ export const CityInformationContainer = styled.div`
     padding: 20px;
 `
 
-export const CityInformationSection = styled.div`
+export const CityInformationSection = styled.div<SectionCardProps>`
     display: grid;
     grid-template-columns: 1fr 5fr;
     align-items: center;
     border-radius: 15px;
     grid-gap: 10px;
-    background-color: rgba(112, 112, 112, 0.8);
+    background-color: ${(props) => props.theme[props.variant]};
     & {
         img {
             max-width: 50px;
