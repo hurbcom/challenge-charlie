@@ -11,15 +11,18 @@ interface SectionCardProps {
 }
 
 export const HomeContainer = styled.div<HomeContainerProps>`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(200, 200, 200, 0.8), rgba(0, 0, 0, 0.8)),url(${(props) => props.backgroundImage});
+`
+export const WeatherInformationsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
 export const FormContainer = styled.form`
@@ -27,6 +30,13 @@ export const FormContainer = styled.form`
     max-width: 700px;
     min-width: 350px;
     padding: 20px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    
+    @media (max-width: 860px) {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 `
 
 export const HomeWeatherContainer = styled.div`

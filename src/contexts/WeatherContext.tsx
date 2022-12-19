@@ -37,7 +37,9 @@ interface WeatherContextType {
     location: Location,
     setLocation: React.Dispatch<React.SetStateAction<Location>>,
     weatherInformations: WeatherInformations,
-    setWeatherInformations: React.Dispatch<React.SetStateAction<WeatherInformations>>
+    setWeatherInformations: React.Dispatch<React.SetStateAction<WeatherInformations>>,
+    loading: boolean,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const WeatherContext = createContext({} as WeatherContextType)
@@ -51,12 +53,24 @@ export function WeatherContextProvider({
 }: WeatherContextProviderProps) {
 
     const [location, setLocation] = useState<Location | null>(null)
+    const [loading, setLoading] = useState(false)
     const [backgroundImage, setBackgroundImage] = useState('')
     const [weatherInformations, setWeatherInformations] = useState<WeatherInformations | null>(null)
 
     return (
         <WeatherContext.Provider
-            value={{ backgroundImage, setBackgroundImage, location, setLocation, weatherInformations, setWeatherInformations }}
+            value={
+                {
+                    backgroundImage,
+                    setBackgroundImage,
+                    location,
+                    setLocation,
+                    weatherInformations,
+                    setWeatherInformations,
+                    loading,
+                    setLoading
+                }
+            }
         >
             {children}
         </WeatherContext.Provider>
