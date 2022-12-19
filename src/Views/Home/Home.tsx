@@ -3,7 +3,7 @@ import { getWallpaper } from '../../services/BingWallpaper'
 import { getLocation } from '../../services/OpenCage'
 import { OpenWeather, OpenWeatherForecast, OpenWeatherCoord } from '../../services/OpenWeather'
 import { WeatherContext, WeatherInformations } from '../../contexts/WeatherContext'
-import { HomeContainer, HomeWeatherContainer, IconColumn, InformationsColumn, NextDaysSection, TodaySection } from './Home.styles'
+import { HomeContainer, HomeWeatherContainer, IconColumn, InformationsColumn, NextDaysSection, TodaySection, SecondColumn } from './Home.styles'
 import InputForm from '../../componentes/Input/input'
 
 
@@ -117,15 +117,21 @@ function Home() {
     return (
         <>
             <HomeContainer backgroundImage={backgroundImage}>
+                <form onSubmit={handleSubmit}>
+                    <InputForm
+                        type="text"
+                        placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
+                </form>
                 <HomeWeatherContainer>
-                    <form onSubmit={handleSubmit}>
-                        <InputForm
-                            type="text"
-                            placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
-                    </form>
                     <TodaySection>
                         <IconColumn>
-                            {weatherInformations && <p>{weatherInformations.today.icon}</p>}
+                            {weatherInformations &&
+                                <img
+                                    src={`/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
+                                    alt={`${weatherInformations.today.description}`}
+                                ></img>
+                            }
+
                         </IconColumn>
                         <InformationsColumn>
                             <p>Hoje</p>
@@ -137,24 +143,36 @@ function Home() {
 
                         </InformationsColumn>
                     </TodaySection>
-                    <NextDaysSection>
-                        <div>
-                            {weatherInformations && <p>{weatherInformations.tomorrow.icon}</p>}
-                        </div>
-                        <InformationsColumn>
-                            <p>Amanhã</p>
-                            {weatherInformations && <p>Mínima: {weatherInformations.tomorrow.tempMin} Máxima: {weatherInformations.tomorrow.tempMax} </p>}
-                        </InformationsColumn>
-                    </NextDaysSection>
-                    <NextDaysSection>
-                        <div>
-                            {weatherInformations && <p>{weatherInformations.afterTomorrow.icon}</p>}
-                        </div>
-                        <InformationsColumn>
-                            <p>Depois de amanhã</p>
-                            {weatherInformations && <p>Mínima: {weatherInformations.afterTomorrow.tempMin} Máxima: {weatherInformations.afterTomorrow.tempMax} </p>}
-                        </InformationsColumn>
-                    </NextDaysSection>
+                    <SecondColumn>
+                        <NextDaysSection>
+                            <IconColumn>
+                                {weatherInformations &&
+                                    <img
+                                        src={`/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
+                                    ></img>
+                                }
+                            </IconColumn>
+                            <InformationsColumn>
+                                <p>Amanhã</p>
+                                {weatherInformations && <p>Mínima: {weatherInformations.tomorrow.tempMin} Máxima: {weatherInformations.tomorrow.tempMax} </p>}
+                            </InformationsColumn>
+                        </NextDaysSection>
+                        <NextDaysSection>
+                            <IconColumn>
+                                {weatherInformations &&
+                                    <img
+                                        src={`/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
+                                    ></img>
+                                }
+                            </IconColumn>
+                            <InformationsColumn>
+                                <p>Depois de amanhã</p>
+                                {weatherInformations && <p>Mínima: {weatherInformations.afterTomorrow.tempMin} Máxima: {weatherInformations.afterTomorrow.tempMax} </p>}
+                            </InformationsColumn>
+                        </NextDaysSection>
+
+                    </SecondColumn>
+
                 </HomeWeatherContainer>
             </HomeContainer>
         </>)
