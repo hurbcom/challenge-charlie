@@ -19,7 +19,7 @@ export const HomeContainer = styled.div<HomeContainerProps>`
     background-position: center;
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${(props) => props.backgroundImage});
+    background-image: linear-gradient(rgba(200, 200, 200, 0.8), rgba(0, 0, 0, 0.8)),url(${(props) => props.backgroundImage});
 `
 
 export const FormContainer = styled.form`
