@@ -2,8 +2,8 @@ export const formattedCityName = (data: any): string => {
     return `${data.name}, ${data.state} - ${data.country}`
 }
 
-export const formattedDegreesCelsius = (temp: number): string => {
-    return `${Math.round(temp)}º`
+export const formattedDegrees = (temp: number, isFahrenheit: boolean): string => {
+    return isFahrenheit ? `${convertToFahrenheit(temp)}ºF` : `${Math.round(temp)}ºC`
 }
 
 export const formattedUppercase = (word: string): string => {
@@ -19,3 +19,7 @@ export const formattedUmidity = (value: number): string => {
 export const formattedPressure = (value: number): string => {
     return `${value.toFixed(0)} hPa`;
 }
+
+const convertToFahrenheit = (temp: number): number => {
+    return Math.round((temp * 9) / 5 + 32);
+};

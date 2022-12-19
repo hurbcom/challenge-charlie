@@ -27,7 +27,7 @@ import { Puff } from 'react-loader-spinner'
 
 import {
     formattedCityName,
-    formattedDegreesCelsius,
+    formattedDegrees,
     formattedUppercase,
     formattedWindSpeed,
     formattedPressure,
@@ -48,6 +48,7 @@ function Home() {
         setLoading
     } = useContext(WeatherContext)
     const [city, setCity] = useState('')
+    const [isFahrenheit, setIsFahrenheit] = useState(false)
 
     const showContent = !loading && weatherInformations
 
@@ -150,6 +151,11 @@ function Home() {
         else if (temp >= 35) return 'background-red'
         else return 'background-yellow'
     }
+    const handleCelciusFahrenheit = () => {
+        if (isFahrenheit) setIsFahrenheit(false)
+        else setIsFahrenheit(true)
+
+    }
 
     return (
         <>
@@ -169,7 +175,7 @@ function Home() {
                             </CityInformationSection>
                         </CityInformationContainer>
                         <HomeWeatherContainer>
-                            <TodaySection variant={getCardBackgroundColor(weatherInformations.today.temp)}>
+                            <TodaySection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.today.temp)}>
                                 <IconColumn>
                                     <img
                                         src={`/src/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
@@ -179,7 +185,7 @@ function Home() {
                                 <InformationsColumn>
                                     <InformationsColumnItem>
                                         <InformationTitle>Hoje</InformationTitle>
-                                        <InformationTitle>{formattedDegreesCelsius(weatherInformations.today.temp)}</InformationTitle>
+                                        <InformationTitle>{formattedDegrees(weatherInformations.today.temp, isFahrenheit)}</InformationTitle>
                                     </InformationsColumnItem>
                                     <InformationsColumnItem>
                                         <InformationTitle>{formattedUppercase(weatherInformations.today.description)}</InformationTitle>
@@ -193,7 +199,7 @@ function Home() {
                                 </InformationsColumn>
                             </TodaySection>
                             <SecondColumn>
-                                <NextDaysSection variant={getCardBackgroundColor(weatherInformations.tomorrow.tempMax)}>
+                                <NextDaysSection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.tomorrow.tempMax)}>
                                     <IconColumn>
                                         <PrimaryIcon
                                             src={`/src/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
@@ -204,12 +210,12 @@ function Home() {
                                             <InformationTitle>Amanhã</InformationTitle>
                                         </InformationsColumnItem>
                                         <InformationsColumnItem>
-                                            <InformationText>Mín: {formattedDegreesCelsius(weatherInformations.tomorrow.tempMin)}</InformationText>
-                                            <InformationText>Máx: {formattedDegreesCelsius(weatherInformations.tomorrow.tempMax)} </InformationText>
+                                            <InformationText>Mín: {formattedDegrees(weatherInformations.tomorrow.tempMin, isFahrenheit)}</InformationText>
+                                            <InformationText>Máx: {formattedDegrees(weatherInformations.tomorrow.tempMax, isFahrenheit)} </InformationText>
                                         </InformationsColumnItem>
                                     </InformationsColumn>
                                 </NextDaysSection>
-                                <NextDaysSection variant={getCardBackgroundColor(weatherInformations.afterTomorrow.tempMax)}>
+                                <NextDaysSection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.afterTomorrow.tempMax)}>
                                     <IconColumn>
                                         <SecondaryIcon
                                             src={`/src/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
@@ -221,8 +227,8 @@ function Home() {
                                             <InformationTitle>Depois de amanhã</InformationTitle>
                                         </InformationsColumnItem>
                                         <InformationsColumnItem>
-                                            <InformationText>Mín: {formattedDegreesCelsius(weatherInformations.afterTomorrow.tempMin)}</InformationText>
-                                            <InformationText>Máx: {formattedDegreesCelsius(weatherInformations.afterTomorrow.tempMax)} </InformationText>
+                                            <InformationText>Mín: {formattedDegrees(weatherInformations.afterTomorrow.tempMin, isFahrenheit)}</InformationText>
+                                            <InformationText>Máx: {formattedDegrees(weatherInformations.afterTomorrow.tempMax, isFahrenheit)} </InformationText>
                                         </InformationsColumnItem>
                                     </InformationsColumn>
                                 </NextDaysSection>

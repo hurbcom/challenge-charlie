@@ -11,7 +11,6 @@ interface SectionCardProps {
 }
 
 export const HomeContainer = styled.div<HomeContainerProps>`
-    
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -62,7 +61,13 @@ export const TodaySection = styled.div<SectionCardProps>`
     align-items: center;
     padding: 20px;
     border-radius: 15px;
+    transition: all 0.2s;
+    :hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.01);
+    }
     background-color: ${(props) => props.theme[props.variant]};
+    cursor: pointer;
     & {
         img {
             max-width: 100px;
@@ -108,7 +113,13 @@ export const NextDaysSection = styled.div<SectionCardProps>`
     grid-template-columns: 1fr 2fr;
     padding: 20px;
     border-radius: 15px;
+    cursor: pointer;
     background-color: ${(props) => props.theme[props.variant]};
+    transition: all 0.2s;
+    :hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.01);
+    }
     & {
         img {
             max-width: 50px;
@@ -134,6 +145,7 @@ export const CityInformationSection = styled.div<SectionCardProps>`
     border-radius: 15px;
     grid-gap: 10px;
     background-color: ${(props) => props.theme[props.variant]};
+    
     & {
         img {
             max-width: 50px;
