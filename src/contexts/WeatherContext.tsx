@@ -4,9 +4,9 @@ import React, {
     useState,
 } from 'react'
 
-interface Location {
+export interface Location {
     lat: number
-    long: number
+    lon: number
 }
 
 export interface WeatherInformations {

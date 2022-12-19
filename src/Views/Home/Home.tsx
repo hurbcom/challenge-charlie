@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState, useRef } from 'react'
-import { getWallpaper } from '../../services/BingWallpaper'
-import { getLocation } from '../../services/OpenCage'
+import { BingWallpaper } from '../../services/BingWallpaper'
 import { OpenWeather, OpenWeatherForecast, OpenWeatherCoord, OpenWeatherGeo } from '../../services/OpenWeather'
 import { WeatherContext, WeatherInformations } from '../../contexts/WeatherContext'
 import {
@@ -18,10 +17,20 @@ import {
     SecondaryIcon,
     FormContainer,
     CityInformationContainer,
-    CityInformationSection
+    CityInformationSection,
+    CardColorVariant
 } from './Home.styles'
 import { InputForm } from '../../componentes/Input/input'
 import { toast } from "react-toastify";
+
+import {
+    formattedCityName,
+    formattedDegreesCelsius,
+    formattedUppercase,
+    formattedWindSpeed,
+    formattedPressure,
+    formattedUmidity
+} from '../../helpers/format'
 
 
 function Home() {
@@ -30,20 +39,27 @@ function Home() {
     const [city, setCity] = useState('')
 
     useEffect(() => {
-        getWallpaper().then((resp) => {
-            setBackgroundImage(`https://bing.com${resp.images[0].url}`)
-        })
+        getBackgroundImage();
         getUserLocation()
     }, [])
+
+    const getBackgroundImage = async () => {
+        try {
+            const { images } = await BingWallpaper()
+            setBackgroundImage(`https://bing.com${images[0].url}`)
+        } catch (error) {
+            notify("Não foi possível carregar a imagem de fundo")
+        }
+    }
 
     const getUserLocation = () => {
         try {
             navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-                setLocation({ lat: coords.latitude, long: coords.longitude })
+                setLocation({ lat: coords.latitude, lon: coords.longitude })
                 getWeatherInformations(coords.latitude, coords.longitude)
             })
         } catch (error) {
-            console.error(error)
+            notify("Não foi possível encontrar da sua cidade")
         }
 
     }
@@ -112,10 +128,8 @@ function Home() {
 
             setWeatherInformations(weatherData)
 
-
-
         } catch (error) {
-            console.log("passei aqui");
+            notify("Não foi possível encontrar as dados da cidade")
         }
     }
 
@@ -134,18 +148,13 @@ function Home() {
 
 
 
-    const handleSubmit = async (event: any) => {
+    const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
         event.preventDefault()
         const { lat, lon } = await getCityNameInformations()
         getWeatherInformations(lat, lon)
-
     }
 
-    const formattedCityName = (data: any) => {
-        return `${data.name}, ${data.state} - ${data.country}`
-    }
-
-    const getCardBackgroundColor = (temp: number) => {
+    const getCardBackgroundColor = (temp: number): CardColorVariant => {
         if (temp <= 15) return 'background-blue'
         else if (temp >= 35) return 'background-red'
         else return 'background-yellow'
@@ -180,15 +189,15 @@ function Home() {
                             <InformationsColumn>
                                 <InformationsColumnItem>
                                     <InformationTitle>Hoje</InformationTitle>
-                                    <InformationTitle>{weatherInformations.today.temp}</InformationTitle>
+                                    <InformationTitle>{formattedDegreesCelsius(weatherInformations.today.temp)}</InformationTitle>
                                 </InformationsColumnItem>
                                 <InformationsColumnItem>
-                                    <InformationTitle>{weatherInformations.today.description}</InformationTitle>
+                                    <InformationTitle>{formattedUppercase(weatherInformations.today.description)}</InformationTitle>
                                 </InformationsColumnItem>
                                 <InformationsColumnItem>
-                                    <InformationText>Vento: {weatherInformations.today.wind}</InformationText>
-                                    <InformationText>Umidade: {weatherInformations.today.humidity}</InformationText>
-                                    <InformationText>Pressão: {weatherInformations.today.pressure}</InformationText>
+                                    <InformationText>Vento: {formattedWindSpeed(weatherInformations.today.wind)}</InformationText>
+                                    <InformationText>Umidade: {formattedUmidity(weatherInformations.today.humidity)}</InformationText>
+                                    <InformationText>Pressão: {formattedPressure(weatherInformations.today.pressure)}</InformationText>
                                 </InformationsColumnItem>
 
                             </InformationsColumn>
@@ -206,8 +215,8 @@ function Home() {
                                         <InformationTitle>Amanhã</InformationTitle>
                                     </InformationsColumnItem>
                                     <InformationsColumnItem>
-                                        <InformationText>Mín: {weatherInformations.tomorrow.tempMin}</InformationText>
-                                        <InformationText>Máx: {weatherInformations.tomorrow.tempMax} </InformationText>
+                                        <InformationText>Mín: {formattedDegreesCelsius(weatherInformations.tomorrow.tempMin)}</InformationText>
+                                        <InformationText>Máx: {formattedDegreesCelsius(weatherInformations.tomorrow.tempMax)} </InformationText>
                                     </InformationsColumnItem>
                                 </InformationsColumn>
                             </NextDaysSection>
@@ -223,9 +232,8 @@ function Home() {
                                         <InformationTitle>Depois de amanhã</InformationTitle>
                                     </InformationsColumnItem>
                                     <InformationsColumnItem>
-                                        <InformationText>Mín: {weatherInformations.afterTomorrow.tempMin}</InformationText>
-                                        <InformationText>Máx: {weatherInformations.afterTomorrow.tempMax} </InformationText>
-
+                                        <InformationText>Mín: {formattedDegreesCelsius(weatherInformations.afterTomorrow.tempMin)}</InformationText>
+                                        <InformationText>Máx: {formattedDegreesCelsius(weatherInformations.afterTomorrow.tempMax)} </InformationText>
                                     </InformationsColumnItem>
                                 </InformationsColumn>
                             </NextDaysSection>
