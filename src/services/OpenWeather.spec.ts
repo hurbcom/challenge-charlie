@@ -7,12 +7,12 @@ jest.mock('./api')
 const city = 'Rio Grande'
 const lat = 12234
 const lon = 1279
-const apiID = '772920597e4ec8f00de8d376dfb3f094'
+const apiID = process.env.OPEN_WEATHER_API_KEY
 
 describe("OpenWeatherAPI", () => {
     it('should make the call to openWeather', async () => {
         await OpenWeather(city)
-        expect(api.get).toHaveBeenCalledWith(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=772920597e4ec8f00de8d376dfb3f094&units=metric&lang=pt_br`)
+        expect(api.get).toHaveBeenCalledWith(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiID}&units=metric&lang=pt_br`)
     })
 
     it('should make the call to openWeatherForecast', async () => {
