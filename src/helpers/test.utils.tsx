@@ -24,7 +24,7 @@ const weatherInformations = {
   }
 }
 
-const weatherContextProps = {
+export const weatherContextProps = {
   backgroundImage: 'imagem',
   setBackgroundImage: jest.fn(),
   location: {
