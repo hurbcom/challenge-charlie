@@ -25,7 +25,7 @@ function TodaySection({ onclick }: TodaySectionProps) {
 
     return (
         <>
-            <TodaySectionContainer onClick={onclick} variant={getCardBackgroundColor(weatherInformations.today.temp)}>
+            <TodaySectionContainer data-testid='today-section' onClick={onclick} variant={getCardBackgroundColor(weatherInformations.today.temp)}>
                 <IconColumn>
                     <img
                         src={`/src/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
