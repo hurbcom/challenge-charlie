@@ -78,6 +78,7 @@ function Home() {
 
             const { data } = await OpenWeatherGeo(coordResponse.name)
 
+
             const tomorrow = getRangeTemp(forecastResponse.list, 1)
             const afterTomorrow = getRangeTemp(forecastResponse.list, 2)
 
