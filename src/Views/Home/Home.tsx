@@ -5,20 +5,11 @@ import { WeatherContext, WeatherInformations } from '../../contexts/WeatherConte
 import {
     HomeContainer,
     HomeWeatherContainer,
-    IconColumn,
-    InformationsColumn,
-    NextDaysSection,
-    TodaySection,
     SecondColumn,
-    InformationText,
     InformationTitle,
-    InformationsColumnItem,
-    PrimaryIcon,
-    SecondaryIcon,
     FormContainer,
     CityInformationContainer,
     CityInformationSection,
-    CardColorVariant,
     WeatherInformationsContainer
 } from './Home.styles'
 import { InputForm } from '../../componentes/Input/input'
@@ -26,15 +17,12 @@ import { toast } from "react-toastify";
 import { Puff } from 'react-loader-spinner'
 
 import {
-    formattedCityName,
-    formattedDegrees,
-    formattedUppercase,
-    formattedWindSpeed,
-    formattedPressure,
-    formattedUmidity
+    formattedCityName
 } from '../../helpers/format'
 
 import { getRangeTemp } from '../../helpers/range-temp'
+import { TodaySection } from '../../componentes/TodaySection/TodaySection'
+import { NextDaySection } from '../../componentes/NextDaySection/NextDaySection'
 
 
 function Home() {
@@ -45,10 +33,11 @@ function Home() {
         weatherInformations,
         setWeatherInformations,
         loading,
-        setLoading
+        setLoading,
+        isFahrenheit,
+        setIsFahrenheit
     } = useContext(WeatherContext)
     const [city, setCity] = useState('')
-    const [isFahrenheit, setIsFahrenheit] = useState(false)
 
     const showContent = !loading && weatherInformations
 
@@ -62,6 +51,8 @@ function Home() {
             const { images } = await BingWallpaper()
             setBackgroundImage(`https://bing.com${images[0].url}`)
         } catch (error) {
+            console.log(error);
+
             notify("Não foi possível carregar a imagem de fundo")
         }
     }
@@ -146,15 +137,9 @@ function Home() {
         getWeatherInformations(lat, lon)
     }
 
-    const getCardBackgroundColor = (temp: number): CardColorVariant => {
-        if (temp <= 15) return 'background-blue'
-        else if (temp >= 35) return 'background-red'
-        else return 'background-yellow'
-    }
     const handleCelciusFahrenheit = () => {
         if (isFahrenheit) setIsFahrenheit(false)
         else setIsFahrenheit(true)
-
     }
 
     return (
@@ -167,7 +152,6 @@ function Home() {
                             placeholder="Escolha a cidade" value={city} onChange={(event: any) => setCity(event.target.value)}></InputForm>
                     </FormContainer>
                     {showContent ? <>
-
                         <CityInformationContainer>
                             <CityInformationSection variant='background-gray'>
                                 <img src={`/src/assets/WeatherIcons/44.svg`} alt="Bússola" />
@@ -175,66 +159,11 @@ function Home() {
                             </CityInformationSection>
                         </CityInformationContainer>
                         <HomeWeatherContainer>
-                            <TodaySection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.today.temp)}>
-                                <IconColumn>
-                                    <img
-                                        src={`/src/assets/WeatherIcons/${weatherInformations.today.icon}.svg`}
-                                        alt={`${weatherInformations.today.description}`}
-                                    ></img>
-                                </IconColumn>
-                                <InformationsColumn>
-                                    <InformationsColumnItem>
-                                        <InformationTitle>Hoje</InformationTitle>
-                                        <InformationTitle>{formattedDegrees(weatherInformations.today.temp, isFahrenheit)}</InformationTitle>
-                                    </InformationsColumnItem>
-                                    <InformationsColumnItem>
-                                        <InformationTitle>{formattedUppercase(weatherInformations.today.description)}</InformationTitle>
-                                    </InformationsColumnItem>
-                                    <InformationsColumnItem>
-                                        <InformationText>Vento: {formattedWindSpeed(weatherInformations.today.wind)}</InformationText>
-                                        <InformationText>Umidade: {formattedUmidity(weatherInformations.today.humidity)}</InformationText>
-                                        <InformationText>Pressão: {formattedPressure(weatherInformations.today.pressure)}</InformationText>
-                                    </InformationsColumnItem>
-
-                                </InformationsColumn>
-                            </TodaySection>
+                            <TodaySection onclick={handleCelciusFahrenheit} />
                             <SecondColumn>
-                                <NextDaysSection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.tomorrow.tempMax)}>
-                                    <IconColumn>
-                                        <PrimaryIcon
-                                            src={`/src/assets/WeatherIcons/${weatherInformations.tomorrow.icon}.svg`}
-                                        ></PrimaryIcon>
-                                    </IconColumn>
-                                    <InformationsColumn>
-                                        <InformationsColumnItem>
-                                            <InformationTitle>Amanhã</InformationTitle>
-                                        </InformationsColumnItem>
-                                        <InformationsColumnItem>
-                                            <InformationText>Mín: {formattedDegrees(weatherInformations.tomorrow.tempMin, isFahrenheit)}</InformationText>
-                                            <InformationText>Máx: {formattedDegrees(weatherInformations.tomorrow.tempMax, isFahrenheit)} </InformationText>
-                                        </InformationsColumnItem>
-                                    </InformationsColumn>
-                                </NextDaysSection>
-                                <NextDaysSection onClick={handleCelciusFahrenheit} variant={getCardBackgroundColor(weatherInformations.afterTomorrow.tempMax)}>
-                                    <IconColumn>
-                                        <SecondaryIcon
-                                            src={`/src/assets/WeatherIcons/${weatherInformations.afterTomorrow.icon}.svg`}
-                                        ></SecondaryIcon>
-
-                                    </IconColumn>
-                                    <InformationsColumn>
-                                        <InformationsColumnItem>
-                                            <InformationTitle>Depois de amanhã</InformationTitle>
-                                        </InformationsColumnItem>
-                                        <InformationsColumnItem>
-                                            <InformationText>Mín: {formattedDegrees(weatherInformations.afterTomorrow.tempMin, isFahrenheit)}</InformationText>
-                                            <InformationText>Máx: {formattedDegrees(weatherInformations.afterTomorrow.tempMax, isFahrenheit)} </InformationText>
-                                        </InformationsColumnItem>
-                                    </InformationsColumn>
-                                </NextDaysSection>
-
+                                <NextDaySection title={"Amanhã"} weatherInformations={weatherInformations.tomorrow} onclick={handleCelciusFahrenheit} />
+                                <NextDaySection title={"Depois de amanhã"} weatherInformations={weatherInformations.afterTomorrow} onclick={handleCelciusFahrenheit} />
                             </SecondColumn>
-
                         </HomeWeatherContainer>
                     </> :
                         <Puff
@@ -254,4 +183,3 @@ function Home() {
 }
 
 export { Home }
-
