@@ -2,6 +2,7 @@ import React, {
     createContext,
     ReactNode,
     useState,
+    useContext
 } from 'react'
 
 export interface Location {
@@ -46,7 +47,7 @@ interface WeatherContextType {
 
 export const WeatherContext = createContext({} as WeatherContextType)
 
-interface WeatherContextProviderProps {
+export interface WeatherContextProviderProps {
     children: ReactNode
 }
 
@@ -81,3 +82,5 @@ export function WeatherContextProvider({
         </WeatherContext.Provider>
     )
 }
+
+export const useWeatherContext = () => useContext(WeatherContext);
