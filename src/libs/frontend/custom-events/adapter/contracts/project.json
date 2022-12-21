@@ -1,0 +1,26 @@
+{
+  "name": "frontend-shared-custom-events-adapter-contracts",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/libs/frontend/custom-events/adapter/contracts/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "src/libs/frontend/custom-events/adapter/contracts/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/libs/frontend/custom-events/adapter/contracts/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
