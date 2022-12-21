@@ -1,21 +1,30 @@
 import * as React from 'react';
-import NxWelcome from './nx-welcome';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const CurrencyExchange = React.lazy(
-  () => import('remotes-currency-exchange/Module')
+  () => import('frontend-mfes-currency-exchange/Module')
 );
 
 const WeatherForecast = React.lazy(
-  () => import('remotes-weather-forecast/Module')
+  () => import('frontend-mfes-weather-forecast/Module')
 );
 
 export function App() {
+  useEffect(() => {
+    
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((json) => {
+        console.log('🚀 ~ file: app.tsx:21 ~ .then ~ json', json);
+      });
+  }, []);
+
   return (
-    <>
-      <CurrencyExchange />
+    <div className="grid grid-rows-auto gap-3">
       <WeatherForecast />
-    </>
+      <CurrencyExchange />
+    </div>
   );
 }
 

@@ -13,7 +13,7 @@ module.exports = {
       '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
     ),
     join(
-      './src/libs/frontend/**/framework/ui',
+      './src/libs/frontend/**/framework/presentation/**/',
       '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
     ),
     ...createGlobPatternsForDependencies(__dirname),

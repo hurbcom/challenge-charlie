@@ -22,7 +22,8 @@
         ],
         "styles": ["src/apps/frontend/shell/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "src/apps/frontend/shell/webpack.config.js"
+        "webpackConfig": "src/apps/frontend/shell/webpack.config.js",
+        "postcssConfig": "src/apps/frontend/shell/postcss.config.js"
       },
       "configurations": {
         "development": {
