@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'frontend-shared-environments',
-  preset: '../../../../../jest.preset.js',
+  displayName: 'frontend-environments',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,6 +12,5 @@ export default {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory:
-    '../../../../../coverage/src/libs/frontend/shared/environments',
+  coverageDirectory: '../../../../coverage/src/libs/frontend/environments',
 };
