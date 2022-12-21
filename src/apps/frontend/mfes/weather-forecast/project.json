@@ -18,9 +18,15 @@
         "tsConfig": "src/apps/frontend/mfes/weather-forecast/tsconfig.app.json",
         "assets": [
           "src/apps/frontend/mfes/weather-forecast/src/favicon.ico",
-          "src/apps/frontend/mfes/weather-forecast/src/assets"
+          {
+            "glob": "**/*",
+            "input": "src/apps/frontend/mfes/weather-forecast/src/assets",
+            "output": "assets"
+          }
         ],
-        "styles": ["src/apps/frontend/mfes/weather-forecast/src/styles.css"],
+        "styles": [
+          "src/apps/frontend/mfes/weather-forecast/src/styles.css"
+        ],
         "scripts": [],
         "webpackConfig": "src/apps/frontend/mfes/weather-forecast/webpack.config.js",
         "postcssConfig": "src/apps/frontend/mfes/weather-forecast/postcss.config.js"

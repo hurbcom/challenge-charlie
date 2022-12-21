@@ -2,14 +2,3 @@
 @tailwind base;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
-
-@font-face {
-  font-family: 'MeteoconsRegular';
-  src: url('./assets/meteocons-webfont.eot');
-  src: url('./assets/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
-    url('./assets/meteocons-webfont.woff') format('woff'),
-    url('./assets/meteocons-webfont.ttf') format('truetype'),
-    url('./assets/meteocons-webfont.svg#MeteoconsRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
