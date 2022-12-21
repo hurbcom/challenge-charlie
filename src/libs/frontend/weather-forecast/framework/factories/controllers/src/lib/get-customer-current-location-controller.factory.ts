@@ -15,3 +15,4 @@ export abstract class GetCustomerCurrentLocationControllerFactory {
     return this._instance;
   }
 }
+

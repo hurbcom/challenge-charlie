@@ -5,7 +5,7 @@ export class GetLocationDetailsByCoordinatesRepository implements GetLocationDet
     
     public async execute({ latitude, longitude }: GetLocationDetailsByCoordinatesRepositoryInput): Promise<GetLocationDetailsByCoordinatesRepositoryOutput> {        
         
-        const url = `${environment.bffs.weatherForecast.baseUrl}${environment.bffs.weatherForecast.endpoints.locationDetails}`
+        const url = `${environment.bffs.weatherForecast.baseUrl}${environment.bffs.weatherForecast.endpoints.locationDetailsByCoordinates}`
 
         const response = await fetch(url, {
             method: 'POST',
@@ -15,7 +15,12 @@ export class GetLocationDetailsByCoordinatesRepository implements GetLocationDet
             body: JSON.stringify({ latitude, longitude })
         });
 
-        const { data } = await response.json()
+        const { data, status } = await response.json()
+        
+        if (!response.ok) {
+            throw new Error(status)
+        }
+
 
         console.log("🚀 ~ file: get-location-details-by-coordinates.repository.ts:19 ~ GetLocationDetailsByCoordinatesRepository ~ execute ~ data", data)
 

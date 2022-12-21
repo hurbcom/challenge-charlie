@@ -1,4 +1,4 @@
-import { Environment } from 'src/libs/frontend/shared/environments/src';
+import { Environment } from '@challenge-charlie/frontend/environments';
 
 export const environment: Environment = {
   production: false,
@@ -6,8 +6,16 @@ export const environment: Environment = {
     weatherForecast: {
       baseUrl: '',
       endpoints: {
-        locationDetails: '',
-        locationForecast: ''
+        locationDetailsByCoordinates: '',
+        locationDetailsByAddress: '',
+        locationForecast: '',
+      },
+    },
+    currencyExchange: {
+      baseUrl: '',
+      endpoints: {
+        getCurrencies: '',
+        getQuotation: '',
       },
     },
   },

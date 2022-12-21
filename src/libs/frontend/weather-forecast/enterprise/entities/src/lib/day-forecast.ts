@@ -5,4 +5,5 @@ export type DayForecast = {
     wind: number
     humidity: number
     pressure: number
+    icon: string
 }

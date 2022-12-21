@@ -1,33 +1,32 @@
-import { LocationOverview } from '@challenge-charlie/frontend/weather-forecast/enterprise/entities';
 import {
-  ControllersContext,
-  ControllersContextProvider,
+  StateContext,
 } from '@challenge-charlie/frontend/weather-forecast/framework/presentation/contexts';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { CurrentForecastOverviewComponent } from '../current-forecast-details/current-forecast-details.component';
+import { ForecastOverviewSekeletonComponent } from '../forecast-overview-skeleton/forecast-overview-skeleton.component';
 import { FutureForecastsOverviewComponent } from '../future-forecasts-overview/future-forecasts-overview.component';
 import { GeolocationComponent } from '../geolocation/geolocation.component';
+import { SearchLocationByAddressComponent } from '../search-location-by-address/search-location-by-address.component';
+import './nice-styles.css'
 
 function ForecastOverviewComponent() {
-  const { getCurrentUserLocationController } = useContext(ControllersContext);
+  const { fetchingLocation, location } = useContext(StateContext);
 
-  const [location, setLocation] = useState<LocationOverview>()
+  if (fetchingLocation) {
+    return <ForecastOverviewSekeletonComponent />;
+  }
 
-  useEffect(() => {
-    getCurrentUserLocationController.execute().then((output) => {
-      setLocation(output.location)
-    });
-  }, [getCurrentUserLocationController]);
-
-  return (
-    <ControllersContextProvider>
-      <div className="grid grid-rows-[50px_400px_150px] grid-cols-1 rounded-xl overflow-hidden">
-        <GeolocationComponent address={location?.address} />
+  if (location) {
+    return (
+      <div className="containerShow">
+        <GeolocationComponent />
         <CurrentForecastOverviewComponent />
         <FutureForecastsOverviewComponent />
       </div>
-    </ControllersContextProvider>
-  );
+    );
+  }
+
+  return <SearchLocationByAddressComponent />;
 }
 
 export { ForecastOverviewComponent };

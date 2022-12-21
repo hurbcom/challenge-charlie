@@ -1,15 +1,25 @@
-import { Address } from "@challenge-charlie/frontend/weather-forecast/enterprise/entities";
+import { useContext } from 'react';
+import { StateContext } from '../../../../contexts/src/lib/state.context';
 
-type GeolocationComponentProps = {
-    address?: Address
-}
+function GeolocationComponent() {
+  const { changeLocation, location } = useContext(StateContext);
+  console.log("🚀 ~ file: geolocation.component.tsx:6 ~ GeolocationComponent ~ location", location)
 
-function GeolocationComponent({ address }: GeolocationComponentProps) {
-    return <div className="bg-gray-400 p-1">
-        { address?.city }
+  if (!location || !location.address) return null
+
+  return (
+    <div className="bg-gray-100 p-2 text-gray-600 font-bold text-xl grid grid-cols-[auto_1fr_auto] gap-2">
+      <div className="grid place-content-center">
+        <i className="fa-solid fa-compass" />
+      </div>
+      <span className="overflow-ellipsis whitespace-nowrap overflow-hidden text-lg">
+        {location.address.formatted}
+      </span>
+      <div className="grid place-content-center">
+        <i className="fa-solid fa-edit" onClick={changeLocation} />
+      </div>
     </div>
+  );
 }
 
-export {
-    GeolocationComponent
-}
+export { GeolocationComponent };

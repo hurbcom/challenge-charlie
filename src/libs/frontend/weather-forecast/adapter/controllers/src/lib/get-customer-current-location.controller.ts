@@ -10,10 +10,10 @@ export class GetCustomerCurrentLocationController
   ) {}
 
   public async execute(): Promise<GetCustomerCurrentLocationControllerOutput> {
-    const output = await this.getCustomerCurrentLocationUseCase.execute();
+    const { location } = await this.getCustomerCurrentLocationUseCase.execute();
 
     return {
-      location: output.location,
+      location,
     };
   }
 }
