@@ -15,8 +15,68 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@challenge-charlie/frontend/shared/environments": [
-        "src/libs/frontend/shared/environments/src/index.ts"
+      "@challenge-charlie/frontend/currency-exchange/adapter/contracts/controllers": [
+        "src/libs/frontend/currency-exchange/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/adapter/controllers": [
+        "src/libs/frontend/currency-exchange/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/application/contracts/repositories": [
+        "src/libs/frontend/currency-exchange/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/factories/controllers": [
+        "src/libs/frontend/currency-exchange/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/factories/repositories": [
+        "src/libs/frontend/currency-exchange/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/presentation/components": [
+        "src/libs/frontend/currency-exchange/framework/presentation/components/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/presentation/contexts": [
+        "src/libs/frontend/currency-exchange/framework/presentation/contexts/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/repositories/bff": [
+        "src/libs/frontend/currency-exchange/framework/repositories/bff/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/environments": [
+        "src/libs/frontend/environments/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/adapter/contracts": [
+        "src/libs/frontend/custom-events/adapter/contracts/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/adapter/controllers": [
+        "src/libs/frontend/custom-events/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/application/contracts/repositories": [
+        "src/libs/frontend/custom-events/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/framework/factories/controllers": [
+        "src/libs/frontend/custom-events/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/framework/factories/repositories": [
+        "src/libs/frontend/custom-events/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/custom-events/framework/repositories": [
+        "src/libs/frontend/custom-events/framework/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/adapter/contracts/controllers": [
+        "src/libs/frontend/utility/framework/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/adapter/controllers": [
+        "src/libs/frontend/utility/framework/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/application/contracts/repositories": [
+        "src/libs/frontend/utility/framework/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/factories/controllers": [
+        "src/libs/frontend/utility/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/factories/repositories": [
+        "src/libs/frontend/utility/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/framework/repositories/bff": [
+        "src/libs/frontend/utility/framework/repositories/bff/src/index.ts"
       ],
       "@challenge-charlie/frontend/weather-forecast/adapter/contracts/controllers": [
         "src/libs/frontend/weather-forecast/adapter/contracts/controllers/src/index.ts"
