@@ -34,7 +34,11 @@
           "fileReplacements": [
             {
               "replace": "src/apps/frontend/shell/src/environments/environment.ts",
-              "with": "src/libs/frontend/shared/environments/src/lib/development.ts"
+              "with": "src/libs/frontend/environments/src/lib/development.ts"
+            },
+            {
+              "replace": "src/libs/frontend/utility/framework/repositories/bff/src/environments/environment.ts",
+              "with": "src/libs/frontend/environments/src/lib/development.ts"
             }
           ]
         },
@@ -42,7 +46,11 @@
           "fileReplacements": [
             {
               "replace": "src/apps/frontend/shell/src/environments/environment.ts",
-              "with": "src/libs/frontend/shared/environments/src/lib/production.ts"
+              "with": "src/libs/frontend/environments/src/lib/production.ts"
+            },
+            {
+              "replace": "src/libs/frontend/utility/framework/repositories/bff/src/environments/environment.ts",
+              "with": "src/libs/frontend/environments/src/lib/production.ts"
             }
           ],
           "optimization": true,
