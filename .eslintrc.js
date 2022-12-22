@@ -18,6 +18,13 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "unused-imports", "simple-import-sort"],
+  settings: {
+    "import/resolver": {
+      node: {
+        moduleDirectory: [".", "node_modules"],
+      },
+    },
+  },
   rules: {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
