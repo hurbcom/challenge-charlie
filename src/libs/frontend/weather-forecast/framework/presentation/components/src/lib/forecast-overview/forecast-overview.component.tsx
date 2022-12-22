@@ -18,7 +18,7 @@ function ForecastOverviewComponent() {
 
   if (location) {
     return (
-      <div className="containerShow">
+      <div className='rounded-lg overflow-hidden shadow-lg'>
         <GeolocationComponent />
         <CurrentForecastOverviewComponent />
         <FutureForecastsOverviewComponent />

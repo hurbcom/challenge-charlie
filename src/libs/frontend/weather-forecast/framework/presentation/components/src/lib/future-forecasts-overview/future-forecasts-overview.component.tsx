@@ -16,9 +16,9 @@ function FutureForecastsOverviewComponent() {
     <div className="grid grid-cols-1 grid-rows-2 text-white">
       <div
         className={`p-2 grid grid-cols-2 gap-2 ${classNames({
-          'bg-yellow-400': tomorrowColor === 'yellow',
-          'bg-blue-400': tomorrowColor === 'blue',
-          'bg-red-400': tomorrowColor === 'red',
+          'bg-yellow-400/60': tomorrowColor === 'yellow',
+          'bg-blue-400/60': tomorrowColor === 'blue',
+          'bg-red-400/60': tomorrowColor === 'red',
         })}`}
       >
         <div></div>
@@ -33,9 +33,9 @@ function FutureForecastsOverviewComponent() {
         </div>
       </div>
       <div className={`p-2 grid grid-cols-2 gap-2 ${classNames({
-          'bg-yellow-500': afterTomorrowColor === 'yellow',
-          'bg-blue-500': afterTomorrowColor === 'blue',
-          'bg-red-500': afterTomorrowColor === 'red',
+          'bg-yellow-500/60': afterTomorrowColor === 'yellow',
+          'bg-blue-500/60': afterTomorrowColor === 'blue',
+          'bg-red-500/60': afterTomorrowColor === 'red',
         })}`}>
         <div></div>
         <div>

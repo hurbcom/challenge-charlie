@@ -8,7 +8,7 @@ function GeolocationComponent() {
   if (!location || !location.address) return null
 
   return (
-    <div className="bg-gray-100 p-2 text-gray-600 font-bold text-xl grid grid-cols-[auto_1fr_auto] gap-2">
+    <div className="bg-gray-100/60 p-2 text-gray-600 font-bold text-xl grid grid-cols-[auto_1fr_auto] gap-2">
       <div className="grid place-content-center">
         <i className="fa-solid fa-compass" />
       </div>

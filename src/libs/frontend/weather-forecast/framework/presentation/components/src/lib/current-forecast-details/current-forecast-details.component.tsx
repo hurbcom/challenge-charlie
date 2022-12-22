@@ -26,9 +26,9 @@ function CurrentForecastOverviewComponent() {
 
   return (
     <div className={`grid grid-cols-2 grid-rows-auto p-2 gap-2 text-white ${classNames({
-        'bg-yellow-300': color === 'yellow',
-        'bg-blue-300': color === 'blue',
-        'bg-red-300': color === 'red',
+        'bg-yellow-300/60': color === 'yellow',
+        'bg-blue-300/60': color === 'blue',
+        'bg-red-300/60': color === 'red',
     })}`}>
       <div className="grid place-items-center">{icons[props.today.icon]}</div>
       <div className="grid grid-rows-auto gap-4">

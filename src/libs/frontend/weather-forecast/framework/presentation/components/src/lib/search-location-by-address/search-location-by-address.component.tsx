@@ -36,7 +36,7 @@ export function SearchLocationByAddressComponent() {
           </p>
         </div>
       )}
-      <div className="p-6 rounded-lg shadow-lg bg-white grid gap-2 grid-rows-[auto_auto_auto]">
+      <div className="p-6 rounded-lg shadow-lg bg-white/60 grid gap-2 grid-rows-[auto_auto_auto]">
         <p className="font-medium leading-tight text-base mt-0 mb-0">
           Digite abaixo um endereço para continuar
         </p>
@@ -66,16 +66,6 @@ export function SearchLocationByAddressComponent() {
             usar minha localização
           </button>
         )}
-
-        <button onClick={() => {
-            const event = new CustomEvent<{ userDeniedLocation: boolean }>('weather-forecast-event', {
-                detail: {
-                    userDeniedLocation,
-                }
-            })
-
-            window.document.dispatchEvent(event)
-        }}>LOL</button>
       </div>
     </div>
   );
