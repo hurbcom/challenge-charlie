@@ -39,9 +39,6 @@
       "@challenge-charlie/frontend/currency-exchange/framework/repositories/bff": [
         "src/libs/frontend/currency-exchange/framework/repositories/bff/src/index.ts"
       ],
-      "@challenge-charlie/frontend/environments": [
-        "src/libs/frontend/environments/src/index.ts"
-      ],
       "@challenge-charlie/frontend/custom-events/adapter/contracts": [
         "src/libs/frontend/custom-events/adapter/contracts/src/index.ts"
       ],
@@ -60,14 +57,20 @@
       "@challenge-charlie/frontend/custom-events/framework/repositories": [
         "src/libs/frontend/custom-events/framework/repositories/src/index.ts"
       ],
-      "@challenge-charlie/frontend/utility/framework/adapter/contracts/controllers": [
-        "src/libs/frontend/utility/framework/adapter/contracts/controllers/src/index.ts"
+      "@challenge-charlie/frontend/environments": [
+        "src/libs/frontend/environments/src/index.ts"
       ],
-      "@challenge-charlie/frontend/utility/framework/adapter/controllers": [
-        "src/libs/frontend/utility/framework/adapter/controllers/src/index.ts"
+      "@challenge-charlie/frontend/shell/framework/presentation/components": [
+        "src/libs/frontend/shell/framework/presentation/components/src/index.ts"
       ],
-      "@challenge-charlie/frontend/utility/framework/application/contracts/repositories": [
-        "src/libs/frontend/utility/framework/application/contracts/repositories/src/index.ts"
+      "@challenge-charlie/frontend/utility/adapter/contracts/controllers": [
+        "src/libs/frontend/utility/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/adapter/controllers": [
+        "src/libs/frontend/utility/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/utility/application/contracts/repositories": [
+        "src/libs/frontend/utility/application/contracts/repositories/src/index.ts"
       ],
       "@challenge-charlie/frontend/utility/framework/factories/controllers": [
         "src/libs/frontend/utility/framework/factories/controllers/src/index.ts"

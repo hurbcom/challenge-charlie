@@ -1,1 +1,1 @@
-export * from './lib/frontend-utility-framework-repositories-bff';
+export * from './lib/get-background.respoitory'

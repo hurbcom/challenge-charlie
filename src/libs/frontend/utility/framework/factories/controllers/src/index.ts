@@ -1,1 +1,1 @@
-export * from './lib/frontend-utility-framework-factories-controllers';
+export * from './lib/get-background-controller.factory'
