@@ -38,6 +38,7 @@ dois dias seguintes.
   Para contornar esse problema e aproveitar o endpoit disponível, decidi usar na aplicação as temperaturas máxima e mínima para os próximos dias.
   Sendo assim, criei um método que filtra a lista de climas dos horários dos próximos dias e busquei dentro dela a temperatura máxima naquele dia,
   assim como a temperatura mínima.
+- Ao fazer a busca da imagem do Bing, usei a [API allOrigins](https://allorigins.win/) para evitar problemas de CORS. Além disso, é usada uma imagem default quando não é possivel buscar a imagem por qualquer motivo.
 
 ## Rodando a aplicação
 
