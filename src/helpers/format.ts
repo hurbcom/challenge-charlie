@@ -1,5 +1,6 @@
 export const formattedCityName = (data: any): string => {
-    return `${data.name}, ${data.state} - ${data.country}`
+    const state = data.state ? `, ${data.state}` : '';
+    return `${data.name}${state} - ${data.country}`
 }
 
 export const formattedDegrees = (temp: number, isFahrenheit: boolean): string => {
