@@ -2,3 +2,8 @@
 @tailwind base;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
+
+#root {
+    width: 100vw;
+    height: 100vh;
+}
