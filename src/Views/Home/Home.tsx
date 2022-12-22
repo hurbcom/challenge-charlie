@@ -12,7 +12,7 @@ import {
     CityInformationSection,
     WeatherInformationsContainer
 } from './Home.styles'
-import { InputForm } from '../../componentes/Input/input'
+import { InputForm } from '../../componentes/Input/Input'
 import { toast } from "react-toastify";
 import { Puff } from 'react-loader-spinner'
 

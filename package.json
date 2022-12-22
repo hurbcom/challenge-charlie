@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --env development",
+    "serve": "webpack serve --env development",
     "build": "webpack --env production",
+    "compose-dev": "docker-compose -f docker-compose-dev.yml up -d --build",
+    "compose-prod": "docker-compose -f docker-compose-prod.yml up -d --build",
+    "compose-dev-down": "docker-compose -f docker-compose-dev.yml down",
+    "compose-prod-down": "docker-compose -f docker-compose-prod.yml down",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
