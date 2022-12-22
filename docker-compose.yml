@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    image: node:18.9.1-alpine
+    command: yarn start
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
