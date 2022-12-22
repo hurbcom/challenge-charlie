@@ -1,6 +1,9 @@
+import "modules/getBingImage";
+import "modules/openCage";
+import "modules/openWeather";
 import "./App.css";
 
-import logo from "src/logo.svg";
+import logo from "logo.svg";
 
 function App() {
   return (
