@@ -10,12 +10,17 @@ module.exports = {
     "react-app/jest",
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
+    "plugin:import/recommended",
   ],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
-  rules: {},
+  plugins: ["react", "unused-imports", "simple-import-sort"],
+  rules: {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "unused-imports/no-unused-imports": "error",
+  },
 };
