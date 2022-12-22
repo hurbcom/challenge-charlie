@@ -1,0 +1,33 @@
+name: PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy_preview:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.9.1]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: >
+          sed -i 's/\(\s*"homepage": ".*\)",/\1\/pr-preview\/pr-'"$pr"'",/' package.json
+        env:
+          pr: ${{ github.event.number }}
+      - run: yarn build
+      - uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build

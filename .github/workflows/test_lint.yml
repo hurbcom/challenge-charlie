@@ -1,0 +1,50 @@
+name: Test and Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  yarn_install:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.9.1]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+
+  test:
+    needs: [yarn_install]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.9.1]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile --offline
+      - run: yarn test
+
+  lint:
+    needs: [yarn_install]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.9.1]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile --offline
+      - run: yarn lint
