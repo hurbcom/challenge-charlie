@@ -56,7 +56,8 @@ function Home() {
       const { images } = await BingWallpaper()
       setBackgroundImage(`https://bing.com${images[0].url}`)
     } catch (error) {
-      notify('Não foi possível carregar a imagem de fundo')
+      setBackgroundImage(`https://images.unsplash.com/photo-1669325513580-dfcd4e0ad564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80`)
+      notify('Não foi possível carregar a imagem de fundo do Bing')
     }
   }
 
