@@ -32,6 +32,13 @@ dois dias seguintes.
 
 - Quando o usuário clica em qualquer card é convertida a temperatura de Celcius para Fahrenheit ou de Fahrenheit para Celcius.
 
+## Problemas encontrados
+
+- Não encontrei na API OpenWeather uma rota contendo uma única temperatura para os próximos, somente um enpoint que retorna os dados do clima a cada 3 horas.
+  Para contornar esse problema e aproveitar o endpoit disponível, decidi usar na aplicação as temperaturas máxima e mínima para os próximos dias.
+  Sendo assim, criei um método que filtra a lista de climas dos horários dos próximos dias e busquei dentro dela a temperatura máxima naquele dia,
+  assim como a temperatura mínima.
+
 ## Rodando a aplicação
 
 Depois de clonado o projeto execute os seguintes comandos:
