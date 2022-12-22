@@ -34,7 +34,11 @@
           "fileReplacements": [
             {
               "replace": "src/apps/frontend/mfes/currency-exchange/src/environments/environment.ts",
-              "with": "src/libs/frontend/shared/environments/src/lib/development.ts"
+              "with": "src/libs/frontend/environments/src/lib/development.ts"
+            },
+            {
+              "replace": "src/libs/frontend/currency-exchange/framework/repositories/bff/src/environments/environment.ts",
+              "with": "src/libs/frontend/environments/src/lib/development.ts"
             }
           ]
         },
@@ -42,7 +46,7 @@
           "fileReplacements": [
             {
               "replace": "src/apps/frontend/mfes/currency-exchange/src/environments/environment.ts",
-              "with": "src/libs/frontend/shared/environments/src/lib/production.ts"
+              "with": "src/libs/frontend/environments/src/lib/production.ts"
             }
           ],
           "optimization": true,
