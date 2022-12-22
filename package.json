@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings=0",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
