@@ -10,11 +10,6 @@ export class GetQuotationRepository implements GetQuotationRepositoryContract {
     from,
     to,
   }: GetQuotationRepositoryInput): Promise<GetQuotationRepositoryOutput> {
-    console.log(
-      '🚀 ~ file: get-quotation.repository.ts:7 ~ GetQuotationRepository ~ execute ~ from, to',
-      from,
-      to
-    );
 
     const response = await fetch(
       `${environment.bffs.currencyExchange.baseUrl}${environment.bffs.currencyExchange.endpoints.getQuotation}`,

@@ -17,13 +17,15 @@ export function CurrencyExchangeOverviewComponent() {
     selectToCurrency,
   } = useContext(StateContext);
 
+  if (currencies.length === 0) return null
+
   return (
-    <div className='grid grid-rows-auto'>
-      <div className="text-xl text-gray-600 grid grid-cols-[auto_1fr] gap-2 font-bold bg-gray-200 p-2">
+    <div className='grid grid-rows-auto rounded-lg overflow-hidden shadow-lg'>
+      <div className="text-xl text-gray-600 grid grid-cols-[auto_1fr] gap-2 font-bold bg-gray-200/60 p-2">
         <i className="fa-solid fa-money-bill-transfer grid place-content-center"></i>
         <span>Cotação</span>
       </div>
-      <div className="grid grid-rows-auto bg-gray-100 gap-2 p-2">
+      <div className="grid grid-rows-auto bg-gray-100/60 gap-2 p-2">
         <QuoteComponent
           amount={selectedFromCurrencyAmount}
           amountChanged={selectedFromCurrencyAmountChanged}

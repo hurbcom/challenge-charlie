@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import { ContainerComponent } from '@challenge-charlie/frontend/currency-exchange/framework/presentation/components';
 
 export function App() {
-  return <h1>Currency Exchange</h1>;
+  return <ContainerComponent />;
 }
 
 export default App;
