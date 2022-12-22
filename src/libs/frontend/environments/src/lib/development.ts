@@ -18,5 +18,11 @@ export const environment: Environment = {
         getQuotation: '/api/quotation',
       },
     },
-  },
+    utility: {
+      baseUrl: 'http://localhost:3333',
+      endpoints: {
+        background: '/api/background'
+      }
+    }
+  }
 };
