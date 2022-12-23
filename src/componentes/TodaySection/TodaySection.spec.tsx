@@ -11,7 +11,7 @@ describe('Today section component', () => {
         const day = screen.getByText("Hoje")
         const description = screen.getByText("Ensolarado")
         const temp = screen.getByText("12ºC")
-        const wind = screen.getByText("Vento: 1242.0 Km/h")
+        const wind = screen.getByText("Vento: 38.6 Km/h")
 
         expect(day).toBeVisible()
         expect(description).toBeVisible()

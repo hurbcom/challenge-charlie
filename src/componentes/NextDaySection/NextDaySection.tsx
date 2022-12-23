@@ -12,7 +12,7 @@ import {
 
 import { getCardBackgroundColor } from '../../helpers/utils'
 import { WeatherContext } from '../../contexts/WeatherContext'
-import { formattedDegrees } from '../../helpers/format'
+import { formattedTemperature } from '../../helpers/format'
 
 interface IWeatherInformations {
     tempMax: number
@@ -44,8 +44,8 @@ function NextDaySection({ onclick, weatherInformations, title }: NextDaySectionP
                         <InformationTitle>{title}</InformationTitle>
                     </InformationsColumnItem>
                     <InformationsColumnItem>
-                        <InformationText>Mín: {formattedDegrees(weatherInformations.tempMin, isFahrenheit)}</InformationText>
-                        <InformationText>Máx: {formattedDegrees(weatherInformations.tempMax, isFahrenheit)} </InformationText>
+                        <InformationText>Mín: {formattedTemperature(weatherInformations.tempMin, isFahrenheit)}</InformationText>
+                        <InformationText>Máx: {formattedTemperature(weatherInformations.tempMax, isFahrenheit)} </InformationText>
                     </InformationsColumnItem>
                 </InformationsColumn>
             </NextDaysSectionContainer>

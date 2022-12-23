@@ -12,7 +12,7 @@ import {
 
 import { getCardBackgroundColor } from '../../helpers/utils'
 import { WeatherContext } from '../../contexts/WeatherContext'
-import { formattedDegrees, formattedPressure, formattedUmidity, formattedUppercase, formattedWindSpeed } from '../../helpers/format'
+import { formattedTemperature, formattedPressure, formattedUmidity, formattedUppercase, formattedWindSpeed } from '../../helpers/format'
 
 interface TodaySectionProps {
     onclick: () => void
@@ -35,7 +35,7 @@ function TodaySection({ onclick }: TodaySectionProps) {
                 <InformationsColumn>
                     <InformationsColumnItem>
                         <InformationTitle>Hoje</InformationTitle>
-                        <InformationTitle>{formattedDegrees(weatherInformations.today.temp, isFahrenheit)}</InformationTitle>
+                        <InformationTitle>{formattedTemperature(weatherInformations.today.temp, isFahrenheit)}</InformationTitle>
                     </InformationsColumnItem>
                     <InformationsColumnItem>
                         <InformationTitle>{formattedUppercase(weatherInformations.today.description)}</InformationTitle>

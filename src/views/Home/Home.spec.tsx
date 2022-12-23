@@ -12,7 +12,7 @@ describe('Home component', () => {
         const tomorrow = screen.getByText("Amanhã")
         const afterTomorrow = screen.getByText("Depois de amanhã")
         const description = screen.getByText("Ensolarado")
-        const wind = screen.getByText("Vento: 1242.0 Km/h")
+        const wind = screen.getByText("Vento: 38.6 Km/h")
 
         expect(day).toBeVisible()
         expect(cityName).toBeVisible()

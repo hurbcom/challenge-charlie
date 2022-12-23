@@ -8,7 +8,7 @@ const weatherInformations = {
     temp: 12,
     description: 'Ensolarado',
     humidity: 53,
-    wind: 345,
+    wind: 24,
     pressure: 1005,
     icon: '345'
   },
