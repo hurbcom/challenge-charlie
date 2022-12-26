@@ -1,0 +1,170 @@
+version: '3'
+services:
+  shell:
+    container_name: shell
+    build:
+      context: .
+      dockerfile: ./src/apps/frontend/shell/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+    ports:
+      - "4200:4200"
+    depends_on:
+      - mfe-weather-forecast
+      - mfe-currency-exchange
+      - bff-utility
+    volumes:
+      - "./src:/app/src"
+
+  mfe-weather-forecast:
+    container_name: mfe-weather-forecast
+    build:
+      context: .
+      dockerfile: ./src/apps/frontend/mfes/weather-forecast/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+    ports:
+      - "4201:4201"
+    stdin_open: true
+    depends_on:
+      - bff-weather-forecast
+    volumes:
+      - "./src:/app/src"
+
+  mfe-currency-exchange:
+    container_name: mfe-currency-exchange
+    build:
+      context: .
+      dockerfile: ./src/apps/frontend/mfes/currency-exchange/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+    ports:
+      - 4202:4202
+    stdin_open: true
+    depends_on:
+      - bff-currency-exchange
+    volumes:
+      - "./src:/app/src"
+  
+  bff-weather-forecast:
+    container_name: bff-weather-forecast
+    build: 
+      context: .
+      dockerfile: ./src/apps/backend/weather-forecast-bff/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+      REDIS_LOCATION_DETAILS_BY_COORDINATES_HOST: bff-weather-forecast-cache-1
+      REDIS_LOCATION_DETAILS_BY_COORDINATES_PORT: 6381
+      REDIS_LOCATION_DETAILS_BY_ADDRESS_HOST: bff-weather-forecast-cache-2
+      REDIS_LOCATION_DETAILS_BY_ADDRESS_PORT: 6382
+      REDIS_LOCATION_WEATHER_FORECAST_BY_COORDINATES_HOST: bff-weather-forecast-cache-3
+      REDIS_LOCATION_WEATHER_FORECAST_BY_COORDINATES_PORT: 6383
+      REDIS_PASSWORD: 123456
+    ports:
+      - 3331:3331
+    stdin_open: true
+    volumes:
+      - "./src:/app/src"
+    depends_on:
+      - bff-weather-forecast-cache-1
+      - bff-weather-forecast-cache-2
+      - bff-weather-forecast-cache-3
+
+  bff-weather-forecast-cache-1:
+    container_name: bff-weather-forecast-cache-1
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6381 --requirepass 123456
+    ports:
+      - 6381:6381
+
+  bff-weather-forecast-cache-2:
+    container_name: bff-weather-forecast-cache-2
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6382 --requirepass 123456
+    ports:
+      - 6382:6382
+
+  bff-weather-forecast-cache-3:
+    container_name: bff-weather-forecast-cache-3
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6383 --requirepass 123456
+    ports:
+      - 6383:6383
+
+  bff-currency-exchange:
+    container_name: bff-currency-exchange
+    build: 
+      context: .
+      dockerfile: ./src/apps/backend/currency-exchange-bff/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+      REDIS_QUOTATION_HOST: bff-currency-exchange-cache-1
+      REDIS_QUOTATION_PORT: 6379
+      REDIS_CURRENCIES_HOST: bff-currency-exchange-cache-2
+      REDIS_CURRENCIES_PORT: 6380
+      REDIS_PASSWORD: 123456
+    ports:
+      - 3332:3332
+    stdin_open: true
+    volumes:
+      - "./src:/app/src"
+    depends_on:
+      - bff-currency-exchange-cache-1
+      - bff-currency-exchange-cache-2
+
+  bff-currency-exchange-cache-1:
+    container_name: bff-currency-exchange-cache-1
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6379 --requirepass 123456
+    ports:
+      - 6379:6379
+
+  bff-currency-exchange-cache-2:
+    container_name: bff-currency-exchange-cache-2
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6380 --requirepass 123456
+    ports:
+      - 6380:6380
+
+  bff-utility:
+    container_name: bff-utility
+    build: 
+      context: .
+      dockerfile: ./src/apps/backend/utility-bff/localhost.dockerfile
+    environment:
+      CONTAINERIZED: true
+      REDIS_BACKGROUND_IMAGE_HOST: bff-utility-cache-1
+      REDIS_BACKGROUND_IMAGE_PORT: 6384
+      REDIS_PASSWORD: 123456
+    ports:
+      - 3333:3333
+    stdin_open: true
+    volumes:
+      - "./src:/app/src"
+    depends_on:
+      - bff-utility-cache-1
+
+  bff-utility-cache-1:
+    container_name: bff-utility-cache-1
+    image: 'redis:7.0.7-alpine'
+    restart: always
+    environment:
+      REDIS_PASSWORD: 123456
+    command: --port 6384 --requirepass 123456
+    ports:
+      - 6384:6384

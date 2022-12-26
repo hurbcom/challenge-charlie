@@ -75,7 +75,8 @@
       "options": {
         "buildTarget": "frontend-mfes-weather-forecast:build",
         "hmr": true,
-        "port": 4201
+        "port": 4201,
+        "host": "0.0.0.0"
       },
       "configurations": {
         "development": {

@@ -15,6 +15,108 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@challenge-charlie/backend/currency-exchange/adapter/contracts/controllers": [
+        "src/libs/backend/currency-exchange/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/adapter/controllers": [
+        "src/libs/backend/currency-exchange/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/application/contracts/repositories": [
+        "src/libs/backend/currency-exchange/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/application/contracts/use-cases": [
+        "src/libs/backend/currency-exchange/application/contracts/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/application/use-cases": [
+        "src/libs/backend/currency-exchange/application/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/factories/controllers": [
+        "src/libs/backend/currency-exchange/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/factories/repositories": [
+        "src/libs/backend/currency-exchange/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/factories/use-cases": [
+        "src/libs/backend/currency-exchange/framework/factories/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/handlers": [
+        "src/libs/backend/currency-exchange/framework/handlers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/repositories/coinbase": [
+        "src/libs/backend/currency-exchange/framework/repositories/coinbase/src/index.ts"
+      ],
+      "@challenge-charlie/backend/currency-exchange/framework/repositories/redis": [
+        "src/libs/backend/currency-exchange/framework/repositories/redis/src/index.ts"
+      ],
+      "@challenge-charlie/backend/environments": [
+        "src/libs/backend/environments/src/index.ts"
+      ],
+      "@challenge-charlie/backend/redis": [
+        "src/libs/backend/redis/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/adapter/contracts/controllers": [
+        "src/libs/backend/utility/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/adapter/controllers": [
+        "src/libs/backend/utility/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/application/contracts/repositories": [
+        "src/libs/backend/utility/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/framework/factories/controllers": [
+        "src/libs/backend/utility/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/framework/factories/repositories": [
+        "src/libs/backend/utility/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/framework/handlers": [
+        "src/libs/backend/utility/framework/handlers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/framework/repositories/bing": [
+        "src/libs/backend/utility/framework/repositories/bing/src/index.ts"
+      ],
+      "@challenge-charlie/backend/utility/framework/repositories/redis": [
+        "src/libs/backend/utility/framework/repositories/redis/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/adapter/contracts/controllers": [
+        "src/libs/backend/weather-forecast/adapter/contracts/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/adapter/controllers": [
+        "src/libs/backend/weather-forecast/adapter/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/application/contracts/repositories": [
+        "src/libs/backend/weather-forecast/application/contracts/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/application/contracts/use-cases": [
+        "src/libs/backend/weather-forecast/application/contracts/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/application/use-cases": [
+        "src/libs/backend/weather-forecast/application/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/enterprise/entities": [
+        "src/libs/backend/weather-forecast/enterprise/entities/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/factories/controllers": [
+        "src/libs/backend/weather-forecast/framework/factories/controllers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/factories/repositories": [
+        "src/libs/backend/weather-forecast/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/factories/use-cases": [
+        "src/libs/backend/weather-forecast/framework/factories/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/handlers": [
+        "src/libs/backend/weather-forecast/framework/handlers/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/repositories/open-cage-data": [
+        "src/libs/backend/weather-forecast/framework/repositories/open-cage-data/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/repositories/open-weather-map": [
+        "src/libs/backend/weather-forecast/framework/repositories/open-weather-map/src/index.ts"
+      ],
+      "@challenge-charlie/backend/weather-forecast/framework/repositories/redis": [
+        "src/libs/backend/weather-forecast/framework/repositories/redis/src/index.ts"
+      ],
       "@challenge-charlie/frontend/currency-exchange/adapter/contracts/controllers": [
         "src/libs/frontend/currency-exchange/adapter/contracts/controllers/src/index.ts"
       ],
@@ -24,11 +126,23 @@
       "@challenge-charlie/frontend/currency-exchange/application/contracts/repositories": [
         "src/libs/frontend/currency-exchange/application/contracts/repositories/src/index.ts"
       ],
+      "@challenge-charlie/frontend/currency-exchange/application/contracts/use-cases": [
+        "src/libs/frontend/currency-exchange/application/contracts/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/application/use-cases": [
+        "src/libs/frontend/currency-exchange/application/use-cases/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/enterprise/entities": [
+        "src/libs/frontend/currency-exchange/enterprise/entities/src/index.ts"
+      ],
       "@challenge-charlie/frontend/currency-exchange/framework/factories/controllers": [
         "src/libs/frontend/currency-exchange/framework/factories/controllers/src/index.ts"
       ],
       "@challenge-charlie/frontend/currency-exchange/framework/factories/repositories": [
         "src/libs/frontend/currency-exchange/framework/factories/repositories/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/currency-exchange/framework/factories/use-cases": [
+        "src/libs/frontend/currency-exchange/framework/factories/use-cases/src/index.ts"
       ],
       "@challenge-charlie/frontend/currency-exchange/framework/presentation/components": [
         "src/libs/frontend/currency-exchange/framework/presentation/components/src/index.ts"
@@ -59,6 +173,9 @@
       ],
       "@challenge-charlie/frontend/environments": [
         "src/libs/frontend/environments/src/index.ts"
+      ],
+      "@challenge-charlie/frontend/remote-mfe-loader": [
+        "src/libs/frontend/remote-mfe-loader/src/index.ts"
       ],
       "@challenge-charlie/frontend/shell/framework/presentation/components": [
         "src/libs/frontend/shell/framework/presentation/components/src/index.ts"
