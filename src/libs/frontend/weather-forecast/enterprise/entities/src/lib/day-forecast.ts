@@ -6,4 +6,5 @@ export type DayForecast = {
     humidity: number
     pressure: number
     icon: string
+    color: string
 }

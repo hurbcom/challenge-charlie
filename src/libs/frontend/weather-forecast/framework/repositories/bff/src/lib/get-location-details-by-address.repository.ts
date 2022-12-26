@@ -27,11 +27,6 @@ export class GetLocationDetailsByAddressRepository
         throw new Error(status)
     }
 
-    console.log(
-      '🚀 ~ file: get-location-details-by-Address.repository.ts:19 ~ GetLocationDetailsByAddressRepository ~ execute ~ data',
-      data
-    );
-
     return {
       location: {
         address: data.address,
