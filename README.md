@@ -1,6 +1,27 @@
 ## <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Challenge Bravo and Charlie
-> 
 > Application dedicated to travallers who wants to know preciselly the weather conditions and currency quotation of a destination
+
+  * [Architecture overview](#architecture-overview)
+  * [NX build system](#nx-build-system)
+    + [Weather Forecast MFE example](#weather-forecast-mfe-example)
+  * [Module federation](#module-federation)
+  * [Custom events](#custom-events)
+  * [Express](#express)
+  * [Redis](#redis)
+  * [Clean Architecture](#clean-architecture)
+  * [Design Patterns and SOLID](#design-patterns-and-solid)
+    + [Use of decorator, factory, dependency injection and singleton all in one place](#use-of-decorator--factory--dependency-injection-and-singleton-all-in-one-place)
+  * [fetch api](#fetch-api)
+  * [Tailwind CSS](#tailwind-css)
+- [Running](#running)
+  * [Prerequisite](#prerequisite)
+    + [1) Clone](#1--clone)
+    + [2) Run](#2--run)
+    + [3) Open](#3--open)
+  * [Available applications](#available-applications)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### Architecture overview
 ![Simple architecture overview](/docs/simple-architecture-overview.png)
@@ -74,6 +95,9 @@ run `docker-compose up -d --build`
 
 #### 3) Open
 `http://localhost:4200`
+
+##### Example
+![docker overview](/docs/app-running.png)
 
 ### Available applications
 > Running in dev mode with HMR activated but bugged, needs to refresh browser after each code change
