@@ -104,7 +104,7 @@ run `docker-compose up -d --build`
 ![docker overview](/docs/app-running.png)
 
 ### Tests
-run `npx nx test`
+run `npx nx run-many --parallel --target=test --projects=frontend-currency-exchange-application-use-cases,frontend-weather-forecast-application-use-cases`
 
 ### Available applications
 > Running in dev mode with HMR activated but bugged, needs to refresh browser after each code change
