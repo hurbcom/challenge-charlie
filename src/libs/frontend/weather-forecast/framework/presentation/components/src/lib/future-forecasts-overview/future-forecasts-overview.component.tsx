@@ -1,50 +1,50 @@
+import { StateContext } from '@challenge-charlie/frontend/weather-forecast/framework/presentation/contexts';
 import classNames from 'classnames';
 import { useContext } from 'react';
-import { StateContext } from '../../../../contexts/src/lib/state.context';
+import { DayForecastItemDetailComponent } from '../day-forecast-item-detail.component';
 
 function FutureForecastsOverviewComponent() {
-  const { location, getColorByTemp } = useContext(StateContext);
+  const { location } = useContext(StateContext);
 
   if (!location || !location.weatherForecast) return null;
 
   const props = location.weatherForecast;
 
-  const tomorrowColor = getColorByTemp(props.tomorrow.temp);
-  const afterTomorrowColor = getColorByTemp(props.afterTomorrow.temp);
-
   return (
     <div className="grid grid-cols-1 grid-rows-2 text-white">
       <div
         className={`p-2 grid grid-cols-2 gap-2 ${classNames({
-          'bg-yellow-400/60': tomorrowColor === 'yellow',
-          'bg-blue-400/60': tomorrowColor === 'blue',
-          'bg-red-400/60': tomorrowColor === 'red',
+          'bg-yellow-400/60': props.tomorrow.color === 'yellow',
+          'bg-blue-400/60': props.tomorrow.color === 'blue',
+          'bg-red-400/60': props.tomorrow.color === 'red',
         })}`}
       >
         <div></div>
         <div>
           <div className="text-gray-50 font-bold">AMANHÃ</div>
           <div className="grid grid-cols-[20px_auto]">
-            <div className="grid place-items-center">
-              <i className="fa-solid fa-temperature-three-quarters"></i>
-            </div>
-            <div>{props.tomorrow.temp}°C</div>
+            <DayForecastItemDetailComponent
+              icon="fa-temperature-three-quarters"
+              text={`${props.tomorrow.temp}°C`}
+            />
           </div>
         </div>
       </div>
-      <div className={`p-2 grid grid-cols-2 gap-2 ${classNames({
-          'bg-yellow-500/60': afterTomorrowColor === 'yellow',
-          'bg-blue-500/60': afterTomorrowColor === 'blue',
-          'bg-red-500/60': afterTomorrowColor === 'red',
-        })}`}>
+      <div
+        className={`p-2 grid grid-cols-2 gap-2 ${classNames({
+          'bg-yellow-500/60': props.afterTomorrow.color === 'yellow',
+          'bg-blue-500/60': props.afterTomorrow.color === 'blue',
+          'bg-red-500/60': props.afterTomorrow.color === 'red',
+        })}`}
+      >
         <div></div>
         <div>
           <div className="text-gray-50 font-bold">DEPOIS DE AMANHÃ</div>
           <div className="grid grid-cols-[20px_auto]">
-            <div className="grid place-items-center">
-              <i className="fa-solid fa-temperature-three-quarters"></i>
-            </div>
-            <div>{props.afterTomorrow.temp}°C</div>
+            <DayForecastItemDetailComponent
+              icon="fa-temperature-three-quarters"
+              text={`${props.afterTomorrow.temp}°C`}
+            />
           </div>
         </div>
       </div>

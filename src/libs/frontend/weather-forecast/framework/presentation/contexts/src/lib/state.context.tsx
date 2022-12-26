@@ -3,6 +3,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useCallback } from 'react';
 import { CustomerLocationChangedEventEmitterController } from 'src/libs/frontend/custom-events/adapter/controllers/src/lib/customer-location-changed-event-emitter.controller';
 import { ControllersContext } from './controllers.context';
+import { WatchGeolocationAvailabilityControllerFactory } from '@challenge-charlie/frontend/weather-forecast/framework/factories/controllers';
 
 type StateContextContract = {
   fetchingLocation: boolean;
@@ -15,7 +16,6 @@ type StateContextContract = {
   addressInputOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
   error: string;
   handleError: (message: string) => void;
-  getColorByTemp: (temp: number) => string;
 };
 
 const initialValue: StateContextContract = {
@@ -34,9 +34,6 @@ const initialValue: StateContextContract = {
   handleError: function (message: string): void {
     throw new Error('Function not implemented.');
   },
-  getColorByTemp: function (temp: number): string {
-    throw new Error('Function not implemented.');
-  },
 };
 
 export const StateContext =
@@ -49,6 +46,7 @@ export type StateContextProviderProps = {
 export function StateContextProvider(props: StateContextProviderProps) {
   const customerLocationChangedEventEmitterController =
     new CustomerLocationChangedEventEmitterController();
+    const watchGeolocationAvailabilityController = WatchGeolocationAvailabilityControllerFactory.execute()
 
   const { getCurrentUserLocationController, getLocationByAddressController } =
     useContext(ControllersContext);
@@ -98,18 +96,11 @@ export function StateContextProvider(props: StateContextProviderProps) {
   }, [tryGetCurrentUserLocation]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      navigator.geolocation.getCurrentPosition(
-        () => {
-          setUserDeniedLocation(false);
-        },
-        () => {
-          setUserDeniedLocation(true);
-        }
-      );
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+    watchGeolocationAvailabilityController.execute({
+      listener: ({ isGeolocationAvailable }) => {
+        setUserDeniedLocation(!isGeolocationAvailable)
+      }
+    })
   }, []);
 
   async function getLocationByAddress() {
@@ -150,18 +141,6 @@ export function StateContextProvider(props: StateContextProviderProps) {
     setError(message);
   }
 
-  function getColorByTemp(temp: number) {
-    if (temp > 35) {
-      return 'red';
-    }
-
-    if (temp < 16) {
-      return 'blue';
-    }
-
-    return 'yellow';
-  }
-
   return (
     <StateContext.Provider
       value={{
@@ -175,7 +154,6 @@ export function StateContextProvider(props: StateContextProviderProps) {
         handleError,
         error,
         getLocationByCoordinates: tryGetCurrentUserLocation,
-        getColorByTemp,
       }}
     >
       {props.children}

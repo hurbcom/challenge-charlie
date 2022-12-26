@@ -7,7 +7,6 @@ import { ForecastOverviewSekeletonComponent } from '../forecast-overview-skeleto
 import { FutureForecastsOverviewComponent } from '../future-forecasts-overview/future-forecasts-overview.component';
 import { GeolocationComponent } from '../geolocation/geolocation.component';
 import { SearchLocationByAddressComponent } from '../search-location-by-address/search-location-by-address.component';
-import './nice-styles.css'
 
 function ForecastOverviewComponent() {
   const { fetchingLocation, location } = useContext(StateContext);

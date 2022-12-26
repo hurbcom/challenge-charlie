@@ -1,5 +1,5 @@
+import { StateContext } from '@challenge-charlie/frontend/weather-forecast/framework/presentation/contexts';
 import { useContext } from 'react';
-import { StateContext } from '../../../../contexts/src/lib/state.context';
 
 function GeolocationComponent() {
   const { changeLocation, location } = useContext(StateContext);

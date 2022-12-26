@@ -1,5 +1,0 @@
-@layer components {
-    .containerShow {
-        @apply grid grid-rows-[auto_auto_auto] grid-cols-1 overflow-hidden
-    }
-}
