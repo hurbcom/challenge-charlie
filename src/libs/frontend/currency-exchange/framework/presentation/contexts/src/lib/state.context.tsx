@@ -1,14 +1,17 @@
 import {
+  ExchangeCurrenciesControllerFactory,
   GetCurrenciesControllerFactory,
   GetQuotationControllerFactory,
+  GetRandomMostTradedCurrencyIsoCodeControllerFactory,
 } from '@challenge-charlie/frontend/currency-exchange/framework/factories/controllers';
 import { CustomerLocationChangedEventListenerControllerOutput } from '@challenge-charlie/frontend/custom-events/adapter/contracts';
 import { CustomerLocationChangedEventListenerController } from '@challenge-charlie/frontend/custom-events/adapter/controllers';
+import { Currency } from '@challenge-charlie/frontend/currency-exchange/enterprise/entities';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 export type StateContextContract = {
-  currentCurrency: any;
-  currencies: any[];
+  currentCurrency?: Currency;
+  currencies: Currency[];
 
   selectedFromCurrency: string;
   selectFromCurrency: (event: ChangeEvent<HTMLSelectElement>) => void;
@@ -30,7 +33,6 @@ export type StateContextContract = {
 };
 
 const initialValue: StateContextContract = {
-  currentCurrency: {},
   currencies: [],
   selectedFromCurrency: '',
   selectedToCurrency: '',
@@ -68,44 +70,23 @@ export type StateContextProviderProps = {
 
 const getCurrenciesController = GetCurrenciesControllerFactory.execute();
 const getQuotationController = GetQuotationControllerFactory.execute();
+const exchangeCurrenciesController =
+  ExchangeCurrenciesControllerFactory.execute();
+const getRandomMostTradedCurrencyController = GetRandomMostTradedCurrencyIsoCodeControllerFactory.execute()
 
 export function StateContextProvider({ children }: StateContextProviderProps) {
-  const [currentCurrency, setCurrentCurrency] = useState<any>({});
-  const [currencies, setCurrencies] = useState<any>([]);
+  const [currentCurrency, setCurrentCurrency] = useState<Currency>();
+  const [currencies, setCurrencies] = useState<Currency[]>([]);
 
   const [selectedFromCurrency, setSelectedFromCurrency] = useState('');
   const [selectedToCurrency, setSelectedToCurrency] = useState('');
 
   const [selectedFromCurrencyAmount, setSelectedFromCurrencyAmount] =
     useState('1.00');
-  const [selectedToCurrencyAmount, setSelectedToCurrencyAmount] = useState('0.00');
+  const [selectedToCurrencyAmount, setSelectedToCurrencyAmount] =
+    useState('0.00');
 
   const [quotation, setQuotation] = useState('');
-
-  useEffect(() => {
-    async function customerLocationChangedEventListener(
-      output: CustomerLocationChangedEventListenerControllerOutput
-    ) {
-      setCurrentCurrency(output.currency);
-      setSelectedFromCurrency(output.currency.isoCode);
-
-      const { currencies } = await getCurrenciesController.execute();
-      
-      setCurrencies(currencies);
-
-      const index = Math.floor((Math.random() * currencies.length) + 1)
-
-      setSelectedToCurrency(currencies[index]['id'])
-
-      await getQuotation(output.currency.isoCode, currencies[index]['id']);
-
-    }
-
-    const controller = new CustomerLocationChangedEventListenerController();
-    controller.execute({
-      listener: customerLocationChangedEventListener,
-    });
-  }, []);
 
   async function getQuotation(from: string, to: string) {
     const { quotation } = await getQuotationController.execute({
@@ -115,12 +96,60 @@ export function StateContextProvider({ children }: StateContextProviderProps) {
 
     setQuotation(quotation);
 
-    const total =
-      Number.parseFloat(quotation) *
-      Number.parseFloat(selectedFromCurrencyAmount);
+    const { amountExchanged } = exchangeCurrenciesController.execute({
+      amount: selectedFromCurrencyAmount,
+      quotation: {
+        currency: from,
+        value: quotation,
+      },
+      from: {
+        currency: from,
+      },
+      to: {
+        currency: to,
+      },
+    });
 
-    setSelectedToCurrencyAmount(total.toFixed(2));
+    setSelectedToCurrencyAmount(amountExchanged);
   }
+
+  const controller = new CustomerLocationChangedEventListenerController();
+
+  controller.execute({
+    listener: customerLocationChangedEventListener,
+  });
+
+  async function customerLocationChangedEventListener(
+    output: CustomerLocationChangedEventListenerControllerOutput
+  ) {
+    if (currencies.length === 0) return
+
+    setCurrentCurrency(output.currency);
+    setSelectedFromCurrency(output.currency.isoCode);
+
+    const { randomCurrencyIsoCode } = getRandomMostTradedCurrencyController.execute({
+      currentCurrencyIsoCode: output.currency.isoCode
+    });
+    
+    setSelectedToCurrency(randomCurrencyIsoCode);
+
+    await getQuotation(output.currency.isoCode, randomCurrencyIsoCode);
+  }
+
+  useEffect(() => {
+    async function getCurrencies() {
+      const { currencies } = await getCurrenciesController.execute();
+
+      setCurrencies(currencies);
+
+      setSelectedFromCurrency('BRL');
+      setSelectedToCurrency('USD');
+
+      await getQuotation('BRL', 'USD');
+    }
+
+    getCurrencies();
+  }, []);
 
   async function selectFromCurrency(event: ChangeEvent<HTMLSelectElement>) {
     setSelectedFromCurrency(event.target.value);
@@ -135,34 +164,43 @@ export function StateContextProvider({ children }: StateContextProviderProps) {
   function selectedFromCurrencyAmountChanged(
     event: ChangeEvent<HTMLInputElement>
   ) {
-    setSelectedFromCurrencyAmount(event.target.value);
-    const l =
-      Number.parseFloat(event.target.value) * Number.parseFloat(quotation);
+    const { amountExchanged } = exchangeCurrenciesController.execute({
+      amount: event.target.value,
+      quotation: {
+        currency: selectedFromCurrency,
+        value: quotation,
+      },
+      from: {
+        currency: selectedFromCurrency,
+      },
+      to: {
+        currency: selectedToCurrency,
+      },
+    });
 
-    if (Number.isNaN(l)) {
-      setSelectedToCurrencyAmount('');
-    } else {
-      setSelectedToCurrencyAmount(l.toFixed(2));
-    }
+    setSelectedFromCurrencyAmount(event.target.value);
+    setSelectedToCurrencyAmount(amountExchanged);
   }
 
   function selectedToCurrencyAmountChanged(
     event: ChangeEvent<HTMLInputElement>
   ) {
+    const { amountExchanged } = exchangeCurrenciesController.execute({
+      amount: event.target.value,
+      quotation: {
+        currency: selectedToCurrency,
+        value: quotation,
+      },
+      from: {
+        currency: selectedFromCurrency,
+      },
+      to: {
+        currency: selectedToCurrency,
+      },
+    });
+
     setSelectedToCurrencyAmount(event.target.value);
-
-    const l =
-      Number.parseFloat(event.target.value) / Number.parseFloat(quotation);
-    console.log(
-      '🚀 ~ file: currency-exchange-overview.component.tsx:116 ~ CurrencyExchangeOverviewComponent ~ l',
-      l
-    );
-
-    if (Number.isNaN(l)) {
-      setSelectedFromCurrencyAmount('');
-    } else {
-      setSelectedFromCurrencyAmount(l.toFixed(2));
-    }
+    setSelectedFromCurrencyAmount(amountExchanged);
   }
 
   return (

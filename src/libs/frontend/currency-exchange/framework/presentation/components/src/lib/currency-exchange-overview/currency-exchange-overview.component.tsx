@@ -1,5 +1,7 @@
+import { Currency } from '@challenge-charlie/frontend/currency-exchange/enterprise/entities';
 import { StateContext } from '@challenge-charlie/frontend/currency-exchange/framework/presentation/contexts';
 import { useContext } from 'react';
+import { SkeletonLoader } from '../skeleton-loader/skeleton-loader';
 import { QuoteComponent } from './quote.component';
 
 export function CurrencyExchangeOverviewComponent() {
@@ -17,7 +19,7 @@ export function CurrencyExchangeOverviewComponent() {
     selectToCurrency,
   } = useContext(StateContext);
 
-  if (currencies.length === 0) return null
+  if (currencies.length === 0) return <SkeletonLoader />
 
   return (
     <div className='grid grid-rows-auto rounded-lg overflow-hidden shadow-lg'>
@@ -30,7 +32,7 @@ export function CurrencyExchangeOverviewComponent() {
           amount={selectedFromCurrencyAmount}
           amountChanged={selectedFromCurrencyAmountChanged}
           currencies={currencies.filter(
-            (c: any) => c.id !== selectedToCurrency
+            (c: Currency) => c.isoCode !== selectedToCurrency
           )}
           currency={selectedFromCurrency}
           selectOtherCurrency={selectFromCurrency}
@@ -39,7 +41,7 @@ export function CurrencyExchangeOverviewComponent() {
           amount={selectedToCurrencyAmount}
           amountChanged={selectedToCurrencyAmountChanged}
           currencies={currencies.filter(
-            (c: any) => c.id !== selectedFromCurrency
+            (c: Currency) => c.isoCode !== selectedFromCurrency
           )}
           currency={selectedToCurrency}
           selectOtherCurrency={selectToCurrency}

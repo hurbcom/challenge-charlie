@@ -13,7 +13,6 @@ export class GetQuotationController implements GetQuotationControllerContract {
   public async execute(
     { from, to }: GetQuotationControllerInput
   ): Promise<GetQuotationControllerOutput> {
-    console.log("🚀 ~ file: get-quotation.controller.ts:16 ~ GetQuotationController ~ from, to", from, to)
     const { quotation } = await this.getQuotationRepository.execute({
         from,
         to,
