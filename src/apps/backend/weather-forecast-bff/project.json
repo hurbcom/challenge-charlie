@@ -16,6 +16,14 @@
         "assets": ["src/apps/backend/weather-forecast-bff/src/assets"]
       },
       "configurations": {
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "src/apps/backend/weather-forecast-bff/src/environments/environment.ts",
+              "with": "src/libs/backend/environments/src/lib/development.ts"
+            }
+          ]
+        },
         "production": {
           "optimization": true,
           "extractLicenses": true,
@@ -31,10 +39,14 @@
     },
     "serve": {
       "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "backend-weather-forecast-bff:build"
       },
       "configurations": {
+        "development": {
+          "buildTarget": "backend-weather-forecast-bff:build:development"
+        },
         "production": {
           "buildTarget": "backend-weather-forecast-bff:build:production"
         }
