@@ -1,0 +1,26 @@
+{
+  "name": "backend-weather-forecast-framework-repositories-open-cage-data",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/libs/backend/weather-forecast/framework/repositories/open-cage-data/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "src/libs/backend/weather-forecast/framework/repositories/open-cage-data/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "src/libs/backend/weather-forecast/framework/repositories/open-cage-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
