@@ -1,0 +1,4 @@
+{
+  "frontend-mfes-weather-forecast": "http://localhost:4201",
+  "frontend-mfes-currency-exchange": "http://localhost:4202"
+}

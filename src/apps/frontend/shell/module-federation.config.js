@@ -5,7 +5,7 @@
  **/
 const moduleFederationConfig = {
   name: 'frontend-shell',
-  remotes: ['frontend-mfes-weather-forecast', 'frontend-mfes-currency-exchange'],
+  remotes: [],
 };
 
 module.exports = moduleFederationConfig;
