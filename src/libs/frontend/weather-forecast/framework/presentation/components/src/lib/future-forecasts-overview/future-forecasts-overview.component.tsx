@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { DayForecastItemDetailComponent } from '../day-forecast-item-detail.component';
 
 function FutureForecastsOverviewComponent() {
-  const { location } = useContext(StateContext);
+  const { location, celciusToFahrenheitToggle } = useContext(StateContext);
 
   if (!location || !location.weatherForecast) return null;
 
@@ -25,7 +25,8 @@ function FutureForecastsOverviewComponent() {
           <div className="grid grid-cols-[20px_auto]">
             <DayForecastItemDetailComponent
               icon="fa-temperature-three-quarters"
-              text={`${props.tomorrow.temp}°C`}
+              text={`${props.tomorrow.temp}${props.afterTomorrow.tempSymbol}`}
+              action={celciusToFahrenheitToggle}
             />
           </div>
         </div>
@@ -43,7 +44,8 @@ function FutureForecastsOverviewComponent() {
           <div className="grid grid-cols-[20px_auto]">
             <DayForecastItemDetailComponent
               icon="fa-temperature-three-quarters"
-              text={`${props.afterTomorrow.temp}°C`}
+              text={`${props.afterTomorrow.temp}${props.afterTomorrow.tempSymbol}`}
+              action={celciusToFahrenheitToggle}
             />
           </div>
         </div>

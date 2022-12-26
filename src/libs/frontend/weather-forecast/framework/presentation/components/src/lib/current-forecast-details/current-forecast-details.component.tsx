@@ -16,7 +16,8 @@ const icons: Record<string, JSX.Element> = {
 };
 
 function CurrentForecastOverviewComponent() {
-  const { location } = useContext(StateContext);
+  const { location, celciusToFahrenheitToggle } = useContext(StateContext);
+  console.log("🚀 ~ file: current-forecast-details.component.tsx:20 ~ CurrentForecastOverviewComponent ~ location", location)
 
   if (!location || !location.weatherForecast) return null;
 
@@ -36,18 +37,17 @@ function CurrentForecastOverviewComponent() {
       <div className="grid grid-rows-auto gap-4">
         <div className="grid grid-rows-auto gap-1">
           <div className="text-gray-50 font-bold">HOJE</div>
-          <div className="grid grid-cols-[20px_auto]">
-            <DayForecastItemDetailComponent
-              icon="fa-temperature-three-quarters"
-              text={`${props.today.temp}°C`}
-            />
-          </div>
+          <DayForecastItemDetailComponent
+            icon="fa-temperature-three-quarters"
+            text={`${props.today.temp}${props.today.tempSymbol}`}
+            action={celciusToFahrenheitToggle}
+          />
         </div>
         <div className="grid grid-rows-auto gap-1">
           <div className="uppercase text-gray-50 font-bold">
             {props.today.description}
           </div>
-          <div className="grid grid-rows-3 grid-cols-[20px_auto] gap-1">
+          <div className="grid grid-rows-3 gap-1">
             <DayForecastItemDetailComponent
               icon="fa-wind"
               text={`${props.today.wind}km/h`}

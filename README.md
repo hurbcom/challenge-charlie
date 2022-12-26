@@ -19,6 +19,7 @@
     + [2) Install](#2--install)
     + [3) Run](#3--run)
     + [4) Open](#3--open)
+  * [Tests](#tests)
   * [Available applications](#available-applications)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>

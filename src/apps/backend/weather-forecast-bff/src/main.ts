@@ -13,7 +13,9 @@ import {
 import { setupProcessEnv } from '@challenge-charlie/backend/environments';
 import { environment } from './environments/environment';
 
-setupProcessEnv(environment.weatherForecast);
+if (!process.env.CONTAINERIZED) {
+  setupProcessEnv(environment.weatherForecast);
+}
 
 const app = express();
 

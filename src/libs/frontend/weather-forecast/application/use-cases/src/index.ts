@@ -1,3 +1,6 @@
 export * from './lib/get-customer-current-location.use-case'
 export * from './lib/get-customer-location-by-address.use-case'
 export * from './lib/get-color-by-temperature.use-case'
+export * from './lib/temperature-converter.use-case'
+export * from './lib/celcius-to-fahrenheit-converter.useCase'
+export * from './lib/fahrenheit-to-celcius-converter.use-case'

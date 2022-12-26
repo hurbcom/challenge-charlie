@@ -3,7 +3,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useCallback } from 'react';
 import { CustomerLocationChangedEventEmitterController } from 'src/libs/frontend/custom-events/adapter/controllers/src/lib/customer-location-changed-event-emitter.controller';
 import { ControllersContext } from './controllers.context';
-import { WatchGeolocationAvailabilityControllerFactory } from '@challenge-charlie/frontend/weather-forecast/framework/factories/controllers';
+import { TemperatureConverterControllerFactory, WatchGeolocationAvailabilityControllerFactory } from '@challenge-charlie/frontend/weather-forecast/framework/factories/controllers';
 
 type StateContextContract = {
   fetchingLocation: boolean;
@@ -16,6 +16,7 @@ type StateContextContract = {
   addressInputOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
   error: string;
   handleError: (message: string) => void;
+  celciusToFahrenheitToggle?: () => void
 };
 
 const initialValue: StateContextContract = {
@@ -46,7 +47,9 @@ export type StateContextProviderProps = {
 export function StateContextProvider(props: StateContextProviderProps) {
   const customerLocationChangedEventEmitterController =
     new CustomerLocationChangedEventEmitterController();
-    const watchGeolocationAvailabilityController = WatchGeolocationAvailabilityControllerFactory.execute()
+  const watchGeolocationAvailabilityController =
+    WatchGeolocationAvailabilityControllerFactory.execute();
+  const temperatureConverterController = TemperatureConverterControllerFactory.execute()
 
   const { getCurrentUserLocationController, getLocationByAddressController } =
     useContext(ControllersContext);
@@ -98,9 +101,9 @@ export function StateContextProvider(props: StateContextProviderProps) {
   useEffect(() => {
     watchGeolocationAvailabilityController.execute({
       listener: ({ isGeolocationAvailable }) => {
-        setUserDeniedLocation(!isGeolocationAvailable)
-      }
-    })
+        setUserDeniedLocation(!isGeolocationAvailable);
+      },
+    });
   }, []);
 
   async function getLocationByAddress() {
@@ -141,6 +144,34 @@ export function StateContextProvider(props: StateContextProviderProps) {
     setError(message);
   }
 
+  function celciusToFahrenheitToggle() {
+    if (!location) return
+
+    const { forecast: today } = temperatureConverterController.execute({
+      forecast: location.weatherForecast.today,
+    });
+    console.log("🚀 ~ file: state.context.tsx:153 ~ celciusToFahrenheitToggle ~ today", today)
+
+    const { forecast: tomorrow } = temperatureConverterController.execute({
+      forecast: location.weatherForecast.tomorrow,
+    });
+    console.log("🚀 ~ file: state.context.tsx:158 ~ celciusToFahrenheitToggle ~ tomorrow", tomorrow)
+
+    const { forecast: afterTomorrow } = temperatureConverterController.execute({
+      forecast: location.weatherForecast.afterTomorrow,
+    });
+    console.log("🚀 ~ file: state.context.tsx:163 ~ celciusToFahrenheitToggle ~ afterTomorrow", afterTomorrow)
+
+    setLocation({
+      ...location,
+      weatherForecast: {
+        today,
+        tomorrow,
+        afterTomorrow
+      }
+    });
+  }
+
   return (
     <StateContext.Provider
       value={{
@@ -154,6 +185,7 @@ export function StateContextProvider(props: StateContextProviderProps) {
         handleError,
         error,
         getLocationByCoordinates: tryGetCurrentUserLocation,
+        celciusToFahrenheitToggle,
       }}
     >
       {props.children}

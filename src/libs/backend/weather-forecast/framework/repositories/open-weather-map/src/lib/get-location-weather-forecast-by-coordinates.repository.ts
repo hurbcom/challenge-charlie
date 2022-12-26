@@ -18,6 +18,7 @@ export class GetLocationWeatherForecastByCoordinatesRepository
         today: {
           title: today.weather[0].main,
           temp: Math.round(today.temp.max),
+          tempSymbol: '°C',
           description: today.weather[0].description,
           wind: Number.parseFloat(today.wind_speed).toFixed(1),
           humidity: today.humidity,
@@ -27,6 +28,7 @@ export class GetLocationWeatherForecastByCoordinatesRepository
         tomorrow: {
           title: tomorrow.weather[0].main,
           temp: Math.round(tomorrow.temp.max),
+          tempSymbol: '°C',
           description: tomorrow.weather[0].description,
           wind: Number.parseFloat(tomorrow.wind_speed).toFixed(1),
           humidity: tomorrow.humidity,
@@ -36,6 +38,7 @@ export class GetLocationWeatherForecastByCoordinatesRepository
         afterTomorrow: {
           title: afterTomorrow.weather[0].main,
           temp: Math.round(afterTomorrow.temp.max),
+          tempSymbol: '°C',
           description: afterTomorrow.weather[0].description,
           wind: Number.parseFloat(afterTomorrow.wind_speed).toFixed(1),
           humidity: afterTomorrow.humidity,
