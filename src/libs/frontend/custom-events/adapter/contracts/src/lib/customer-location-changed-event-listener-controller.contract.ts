@@ -1,11 +1,13 @@
-import { Currency } from "@challenge-charlie/frontend/weather-forecast/enterprise/entities"
 
 export type CustomerLocationChangedEventListenerControllerInput = {
     listener: (output: CustomerLocationChangedEventListenerControllerOutput) => void
 }
 
 export type CustomerLocationChangedEventListenerControllerOutput = {
-    currency: Currency
+    currency: {
+        name: string
+        isoCode: string
+    }
 }
 
 export type CustomerLocationChangedEventListenerControllerContract = {
