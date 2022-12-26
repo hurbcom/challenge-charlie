@@ -11,7 +11,6 @@ export class GetBackgroundRepository
 
     const url = `${environment.bffs.utility.baseUrl}${environment.bffs.utility.endpoints.background}`
 
-    console.log("🚀 ~ file: get-background.respoitory.ts:14 ~ execute ~ url", url)
     const response = await fetch(url);
 
     const json = await response.json();

@@ -16,7 +16,6 @@ export function setRemoteUrlResolver(
 let remoteUrlDefinitions: Record<string, string>;
 
 export function setRemoteDefinitions(definitions: Record<string, string>) {
-  console.log("🚀 ~ file: load-remote-module.ts:19 ~ setRemoteDefinitions ~ definitions", definitions)
   remoteUrlDefinitions = definitions;
 }
 
@@ -35,30 +34,19 @@ export async function loadRemoteModule(remoteName: string, moduleName: string) {
 
   const factory = await container.get(moduleName);
   const Module = factory();
-  console.log("🚀 ~ file: load-remote-module.ts:38 ~ loadRemoteModule ~ Module", Module)
 
   remoteModuleMap.set(remoteModuleKey, Module);
 
   return Module;
 }
 
-async function loadModule(url: string) {
-  console.log("🚀 ~ file: load-remote-module.ts:45 ~ loadModule ~ url", url)
-  const importTask = import(/* webpackIgnore:true */ url);
-  console.log("🚀 ~ file: load-remote-module.ts:48 ~ loadModule ~ importTask", importTask)
-  try {
-    const result = await importTask
-    return result
-  } catch(err) {
-    console.log("🚀 ~ file: load-remote-module.ts:52 ~ loadModule ~ err", err)
-  }
-
+function loadModule(url: string) {
+  return import(/* webpackIgnore:true */ url);
 }
 
 let initialSharingScopeCreated = false;
 
 async function loadRemoteContainer(remoteName: string) {
-  console.log("🚀 ~ file: load-remote-module.ts:51 ~ loadRemoteContainer ~ remoteName", remoteName)
   if (!resolveRemoteUrl && !remoteUrlDefinitions) {
     throw new Error(
       'Call setRemoteDefinitions or setRemoteUrlResolver to allow Dynamic Federation to find the remote apps correctly.'
@@ -77,10 +65,8 @@ async function loadRemoteContainer(remoteName: string) {
   const containerUrl = `${remoteUrl}${
     remoteUrl.endsWith('/') ? '' : '/'
   }remoteEntry.js`;
-  console.log("🚀 ~ file: load-remote-module.ts:70 ~ loadRemoteContainer ~ containerUrl", containerUrl)
 
   const container = await loadModule(containerUrl);
-  console.log("🚀 ~ file: load-remote-module.ts:74 ~ loadRemoteContainer ~ container", container)
   await container.init(__webpack_share_scopes__.default);
 
   remoteContainerMap.set(remoteName, container);

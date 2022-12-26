@@ -17,7 +17,6 @@ const icons: Record<string, JSX.Element> = {
 
 function CurrentForecastOverviewComponent() {
   const { location, celciusToFahrenheitToggle } = useContext(StateContext);
-  console.log("🚀 ~ file: current-forecast-details.component.tsx:20 ~ CurrentForecastOverviewComponent ~ location", location)
 
   if (!location || !location.weatherForecast) return null;
 

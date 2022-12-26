@@ -3,7 +3,6 @@ import { useContext } from 'react';
 
 function GeolocationComponent() {
   const { changeLocation, location } = useContext(StateContext);
-  console.log("🚀 ~ file: geolocation.component.tsx:6 ~ GeolocationComponent ~ location", location)
 
   if (!location || !location.address) return null
 

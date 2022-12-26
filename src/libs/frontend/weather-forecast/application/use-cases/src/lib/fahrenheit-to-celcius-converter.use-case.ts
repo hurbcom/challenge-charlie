@@ -10,7 +10,6 @@ export class FahrenheitToCelciusConverterUseCase
     public execute(
         input: TemperatureConverterUseCaseInput
     ): TemperatureConverterUseCaseOutput {
-        console.log("🚀 ~ file: fahrenheit-to-celcius-converter.use-case.ts:13 ~ input", input)
         const newTemp = Math.round((input.forecast.temp - 32) * 5/9);
 
         return {

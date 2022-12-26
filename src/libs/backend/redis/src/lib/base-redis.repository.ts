@@ -10,7 +10,6 @@ export abstract class BaseRedisRepository<TInput, TOutput> {
   protected readonly _client: RedisClientType;
 
   constructor(args: BaseRedisRepositoryConstructorArgs) {
-    console.log("🚀 ~ file: base-redis.repository.ts:13 ~ BaseRedisRepository<TInput, ~ constructor ~ args", args)
     this._client = createClient({
       socket: {
         host: args.host,

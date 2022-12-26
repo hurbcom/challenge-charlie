@@ -121,11 +121,6 @@ export function StateContextProvider(props: StateContextProviderProps) {
         currency: location.currency,
       });
     } catch (err: any) {
-      console.log(
-        '🚀 ~ file: state.context.tsx:81 ~ getLocationByAddress ~ err',
-        err
-      );
-
       setError(err.message);
     } finally {
       setFetchingLocation(false);
@@ -150,17 +145,14 @@ export function StateContextProvider(props: StateContextProviderProps) {
     const { forecast: today } = temperatureConverterController.execute({
       forecast: location.weatherForecast.today,
     });
-    console.log("🚀 ~ file: state.context.tsx:153 ~ celciusToFahrenheitToggle ~ today", today)
 
     const { forecast: tomorrow } = temperatureConverterController.execute({
       forecast: location.weatherForecast.tomorrow,
     });
-    console.log("🚀 ~ file: state.context.tsx:158 ~ celciusToFahrenheitToggle ~ tomorrow", tomorrow)
 
     const { forecast: afterTomorrow } = temperatureConverterController.execute({
       forecast: location.weatherForecast.afterTomorrow,
     });
-    console.log("🚀 ~ file: state.context.tsx:163 ~ celciusToFahrenheitToggle ~ afterTomorrow", afterTomorrow)
 
     setLocation({
       ...location,
