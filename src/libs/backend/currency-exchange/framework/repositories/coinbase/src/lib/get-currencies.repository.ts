@@ -6,7 +6,10 @@ export class GetCurrenciesRepository implements GetCurrenciesRepositoryContract 
     const { data } = await response.json();
 
     return {
-      currencies: data,
+      currencies: data.map((c: any) => ({
+        name: c.name,
+        isoCode: c.id,
+      })),
     };
   }
 }

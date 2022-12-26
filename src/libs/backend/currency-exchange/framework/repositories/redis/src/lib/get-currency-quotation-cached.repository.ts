@@ -3,23 +3,23 @@ import {
   GetCurrencyQuotationRepositoryInput,
   GetCurrencyQuotationRepositoryOutput,
 } from '@challenge-charlie/backend/currency-exchange/application/contracts/repositories';
-import { createClient } from '@redis/client';
-import { RedisClientType } from 'redis';
+import { BaseRedisRepository } from '@challenge-charlie/backend/redis';
 
 export class GetCurrencyQuotationCachedRepository
+  extends BaseRedisRepository<GetCurrencyQuotationRepositoryInput, GetCurrencyQuotationRepositoryOutput>
   implements GetCurrencyQuotationRepositoryContract
 {
-  private readonly _client: RedisClientType;
-
   constructor(
     private readonly getCurrencyQuotationRepository: GetCurrencyQuotationRepositoryContract
   ) {
-    this._client = createClient({
-      url: process.env.QUOTATION_CACHE_URL,
+    super({
+      host: process.env.REDIS_QUOTATION_HOST,
+      port: process.env.REDIS_QUOTATION_PORT,
+      password: process.env.REDIS_PASSWORD,
     });
   }
 
-  public async execute({
+  public async specializedExecute({
     isoCode,
   }: GetCurrencyQuotationRepositoryInput): Promise<GetCurrencyQuotationRepositoryOutput> {
     if (!this._client.isOpen) {

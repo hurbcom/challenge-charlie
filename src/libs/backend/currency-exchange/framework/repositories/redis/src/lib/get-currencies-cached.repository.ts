@@ -1,27 +1,22 @@
 import { GetCurrenciesRepositoryContract, GetCurrenciesRepositoryOutput } from '@challenge-charlie/backend/currency-exchange/application/contracts/repositories';
-import { createClient, RedisClientType } from 'redis';
+import { BaseRedisRepository } from '@challenge-charlie/backend/redis';
 
-export class GetCurrenciesCachedRepository implements GetCurrenciesRepositoryContract {
+export class GetCurrenciesCachedRepository
+extends BaseRedisRepository<void, GetCurrenciesRepositoryOutput>
+implements GetCurrenciesRepositoryContract {
   private readonly _key = 'currencies';
-  private readonly _client: RedisClientType;
 
   constructor(
     private readonly getCurrenciesRepository: GetCurrenciesRepositoryContract
   ) {
-    this._client = createClient({
-      socket: {
-        host: process.env.REDIS_CURRENCIES_HOST,
-        port: parseInt(process.env.REDIS_CURRENCIES_PORT),
-      },
+    super({
+      host: process.env.REDIS_CURRENCIES_HOST,
+      port: process.env.REDIS_CURRENCIES_PORT,
       password: process.env.REDIS_PASSWORD,
     });
   }
 
-  public async execute(): Promise<GetCurrenciesRepositoryOutput> {
-    if (!this._client.isOpen) {
-      await this._client.connect();
-    }
-
+  public async specializedExecute(): Promise<GetCurrenciesRepositoryOutput> {
     const cached = await this._client.get(this._key);
 
     let currencies = [];
