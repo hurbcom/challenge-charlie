@@ -26,7 +26,6 @@ export class GetRandomMostTradedCurrencyIsoCodeUseCase
     );
 
     const randomIndex = Math.floor(Math.random() * (filteredIsoCodes.length - 1));
-    console.log("🚀 ~ file: get-random-most-traded-currency.use-case.ts:29 ~ randomIndex", randomIndex)
 
     const randomIsoCode = filteredIsoCodes[randomIndex];
 

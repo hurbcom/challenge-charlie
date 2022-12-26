@@ -12,7 +12,7 @@ export class GetColorByTemperatureUseCase
   ): GetColorByTemperatureUseCaseOutput {
     let color = 'yellow';
 
-    if (input.temperature >= 35) {
+    if (input.temperature > 35) {
       color = 'red';
     } else if (input.temperature < 15) {
       color = 'blue';

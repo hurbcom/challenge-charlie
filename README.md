@@ -16,8 +16,9 @@
 - [Running](#running)
   * [Prerequisite](#prerequisite)
     + [1) Clone](#1--clone)
-    + [2) Run](#2--run)
-    + [3) Open](#3--open)
+    + [2) Install](#2--install)
+    + [3) Run](#3--run)
+    + [4) Open](#3--open)
   * [Available applications](#available-applications)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
@@ -52,7 +53,7 @@ The trade here was simple, express is a great tool for rest apis and thats way I
 To avoid subsequent unncessary apis calls to opencage, bing, openweather and coinbase, redis comes in hand to help delivering cached data easly and fast.
 
 ### Clean Architecture
-> to provide the code architecture
+> to provide the code architecture with a domain centric approach
 
 ![Code architecture overview](/docs/code-architecture-overview.png)
 
@@ -90,14 +91,20 @@ Tailwind is a great choince here, it allow us to delivery fast applications and 
 #### 1) Clone
 run `git clone https://github.com/vaugustoribeiro/challenge-charlie.git`
 
-#### 2) Run
+#### 2) Install
+run `npm install`
+
+#### 3) Run
 run `docker-compose up -d --build`
 
-#### 3) Open
+#### 4) Open
 `http://localhost:4200`
 
 ##### Example
 ![docker overview](/docs/app-running.png)
+
+### Tests
+run `npx nx test`
 
 ### Available applications
 > Running in dev mode with HMR activated but bugged, needs to refresh browser after each code change
