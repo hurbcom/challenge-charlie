@@ -64,7 +64,7 @@ To avoid subsequent unncessary apis calls to opencage, bing, openweather and coi
 - Objects created by the factory are singletons by default
 - Backend repositories are using decorator pattern to add the caching behaviour without change the actual code
 - Dependency injections are being made trough interface contracts to avoid unnecessary coupling
-- Classes have just one method keeping their responsabilities unique
+- Classes have just one method keeping their responsibilities unique
 
 #### Use of decorator, factory, dependency injection and singleton all in one place
 ![Patterns example](/docs/patterns-example.png)
@@ -120,3 +120,15 @@ run `npx nx run-many --parallel --target=test --projects=frontend-currency-excha
 | utility bff                     | http://localhost:3333 |
 
 ![docker overview](/docs/docker.png)
+
+## What is missing?
+> list of things that needs to be implemented or improved
+
+- Observability
+- Better user experience
+  - The proposed opacity for the card makes it hard to read the infos, I think that a solid background color would be better
+  - Temperature unit switching is hidden from the user, it is like a ghost feature
+- Mocks
+- Integration tests
+- Api Keys and secrets must be moved to env
+- Apply TTL to caches
