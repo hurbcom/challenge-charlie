@@ -1,9 +1,9 @@
-import { fetchCors } from "modules/fetchCors";
+import { axiosCors } from "modules/axiosCors";
 
-async function getBingImage(idx = 0) {
-  const bingJson = await fetchCors(
+export async function getBingImage(idx = 0) {
+  const bingJson = await axiosCors(
     `https://www.bing.com/HPImageArchive.aspx?format=js&idx=${idx}&n=1&mkt=pt-BR`
-  ).then((resp) => JSON.parse(resp));
+  ).then((resp) => resp.data);
   return `https://www.bing.com${bingJson.images[0].url}`;
 }
 

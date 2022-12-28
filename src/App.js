@@ -1,29 +1,43 @@
-import "modules/getBingImage";
-import "modules/openCage";
-import "modules/openWeather";
-import "./App.css";
+import { useQuery } from "@tanstack/react-query";
+import { NoGeolocation } from "components/NoGeolocation";
+import { getBingImage } from "modules/getBingImage";
+import { getPosition } from "modules/getPosition";
+import { useEffect } from "react";
+import { withHocs, withIf } from "react-new-hoc";
 
-import logo from "logo.svg";
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function useBingImage() {
+  return useQuery({
+    queryKey: ["bingImage"],
+    queryFn: getBingImage,
+  });
 }
 
-export default App;
+function usePosition({ isPermitted }) {
+  return useQuery({
+    queryKey: ["position"],
+    queryFn: getPosition,
+    enabled: isPermitted,
+  });
+}
+
+function App() {
+  const bingImage = useBingImage();
+
+  useEffect(() => {
+    if (bingImage.isFetched) {
+      document.body.style.backgroundImage = `url("${bingImage.data}")`;
+    }
+  }, [bingImage]);
+
+  // const permission = usePermissionLocation();
+  // const position = usePosition({ isPermitted: false });
+
+  return <div>Leo</div>;
+}
+
+export default withHocs(
+  withIf(() => navigator.geolocation, {
+    dependencyNames: [],
+    Else: NoGeolocation,
+  })
+)(App);
