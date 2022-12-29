@@ -7,6 +7,7 @@ export function Today({
   wind,
   humidity,
   pressure,
+  icon,
 }) {
   return (
     <div
@@ -16,7 +17,7 @@ export function Today({
       }}
     >
       <div style={{ overflow: "hidden" }}>
-        <span className="icon" data-icon="B" />
+        <span className="icon" data-icon={icon} />
       </div>
       <div className="info">
         <div style={{ fontWeight: "bold" }}>HOJE</div>
@@ -47,4 +48,5 @@ Today.propTypes = {
   wind: PropTypes.string.isRequired,
   humidity: PropTypes.string.isRequired,
   pressure: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };

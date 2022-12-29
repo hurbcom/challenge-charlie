@@ -57,6 +57,7 @@ it("App", async () => {
           weather: [
             {
               description: "Some description",
+              icon: "01",
             },
           ],
           wind: {

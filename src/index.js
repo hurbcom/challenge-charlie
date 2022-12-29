@@ -1,4 +1,5 @@
 import "controllers/axiosController";
+import "controllers/debug";
 import "modules/axiosCors";
 import "typeface-roboto";
 import "./index.css";

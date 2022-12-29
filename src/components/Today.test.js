@@ -10,6 +10,7 @@ it("renders", () => {
       wind="SomeWind"
       humidity="SomeHumidity"
       pressure="SomePressure"
+      icon="B"
     />
   );
   // eslint-disable-next-line testing-library/no-node-access

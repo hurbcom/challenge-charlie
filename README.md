@@ -8,6 +8,16 @@
 
 - Projeto com Github Actions
 - Pipeline de QA para novos PRs [Exemplo](https://github.com/leobastiani/challenge-charlie/pull/3)
+- Para debugar, no console JavaScript, insira o snippet
+
+```js
+debugTemperature({
+  today: 15,
+  tomorrow: 25,
+  afterTomorrow: 35,
+  icon: "13", // '01' | '02' | '03' | '04' | '09' | '10' | '11' | '13' | '50'
+});
+```
 
 ## Desenvolvimento sem Docker
 
@@ -16,7 +26,7 @@
 
 ## Desenvolvimento com Docker
 
-- `docker-compose run app yarn instal`
+- `docker-compose run app yarn install`
 - `docker-compose up`
 
 ## Compilar e iniciar imagem de produção

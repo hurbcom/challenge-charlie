@@ -13,6 +13,7 @@ import { usePermissionLocation } from "hooks/usePermissionLocation";
 import { usePosition } from "hooks/usePosition";
 import { colorByCelsius } from "modules/colorByCelsius";
 import { getFirstDayInfo } from "modules/getFirstDayInfo";
+import { iconParse } from "modules/iconParse";
 import { upperCaseFirst } from "modules/upperCaseFirst";
 import { useEffect, useMemo } from "react";
 import { withHocs, withIf, withState } from "react-new-hoc";
@@ -159,6 +160,7 @@ export const App = (() => {
                 wind={`${weather.data[0].data.wind.deg}º ${weather.data[0].data.wind.speed}m/s`}
                 humidity={`${weather.data[0].data.main.humidity}%`}
                 pressure={`${weather.data[0].data.main.pressure}hPA`}
+                icon={iconParse(weather.data[0].data.weather[0].icon)}
               />
               <Tomorrow
                 backgroundColor={colorByCelsius(nextDaysWeather[0].main.temp)}
