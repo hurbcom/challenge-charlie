@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://leobastiani.github.io/challenge-charlie",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@tanstack/react-query": "^4.20.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -13,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-new-hoc": "^0.0.10",
     "react-scripts": "5.0.1",
+    "typeface-roboto": "^1.1.13",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
