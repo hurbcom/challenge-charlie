@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { withHocs, withState } from "react-new-hoc";
 
 export const Header = (() => {
-  function Header({ isEditing, setIsEditing, cityName }) {
+  function Header({ isEditing, setIsEditing, cityName, setCityName }) {
     const [inputRef, setInputRef] = useState();
 
     useEffect(() => {
@@ -15,9 +15,9 @@ export const Header = (() => {
       inputRef.focus();
 
       return () => {
-        console.log("inputRef.value:", inputRef.value);
+        setCityName(inputRef.value);
       };
-    }, [inputRef]);
+    }, [inputRef, setCityName]);
 
     return (
       <div
@@ -66,7 +66,11 @@ export const Header = (() => {
     isEditing: PropTypes.bool.isRequired,
     setIsEditing: PropTypes.func.isRequired,
     cityName: PropTypes.string.isRequired,
+    setCityName: PropTypes.func.isRequired,
   };
 
-  return withHocs(withState("isEditing", { init: false }))(Header);
+  return withHocs(
+    withState("isEditing", { init: false }),
+    withState("cityName")
+  )(Header);
 })();
