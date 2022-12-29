@@ -4,10 +4,26 @@ body, html {
   font-family: Roboto;
 }
 
+input {
+  font-family: Roboto;
+}
+
 body {
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  animation: rotating 2s linear infinite;
 }
