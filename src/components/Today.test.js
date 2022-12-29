@@ -13,51 +13,49 @@ it("renders", () => {
     />
   );
   // eslint-disable-next-line testing-library/no-node-access
-  expect(document.body.children[0]).toMatchInlineSnapshot(`
-    <div>
+  expect(document.body.firstChild.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="today"
+      style="background-color: rgba(171, 205, 239, 0.867);"
+    >
       <div
-        class="today"
-        style="background-color: rgba(171, 205, 239, 0.867);"
+        style="overflow: hidden;"
+      >
+        <span
+          class="icon"
+          data-icon="B"
+        />
+      </div>
+      <div
+        class="info"
       >
         <div
-          style="overflow: hidden;"
+          style="font-weight: bold;"
         >
-          <span
-            class="icon"
-            data-icon="B"
-          />
+          HOJE
         </div>
         <div
-          class="info"
+          style="font-weight: bold;"
         >
-          <div
-            style="font-weight: bold;"
-          >
-            HOJE
-          </div>
-          <div
-            style="font-weight: bold;"
-          >
-            SomeTemperature
-          </div>
-          <div
-            style="height: 50px;"
-          />
-          <div>
-            SomeKind
-          </div>
-          <div>
-            Vento: 
-            SomeWind
-          </div>
-          <div>
-            Humidade: 
-            SomeHumidity
-          </div>
-          <div>
-            Pressão: 
-            SomePressure
-          </div>
+          SomeTemperature
+        </div>
+        <div
+          style="height: 50px;"
+        />
+        <div>
+          SomeKind
+        </div>
+        <div>
+          Vento: 
+          SomeWind
+        </div>
+        <div>
+          Humidade: 
+          SomeHumidity
+        </div>
+        <div>
+          Pressão: 
+          SomePressure
         </div>
       </div>
     </div>

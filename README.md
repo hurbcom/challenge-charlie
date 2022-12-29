@@ -1,5 +1,7 @@
 # Challenge Charlie
 
+![test_lint](https://github.com/leobastiani/challenge-charlie/actions/workflows/test_lint.yml/badge.svg)
+
 [Demo](https://leobastiani.github.io/challenge-charlie/)
 
 ## Pontos adicionais

@@ -5,22 +5,20 @@ import { withState } from "react-new-hoc";
 it("renders no editing", () => {
   render(<Header cityName="SomeCity" />);
   // eslint-disable-next-line testing-library/no-node-access
-  expect(document.body.children[0]).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="header"
+  expect(document.body.firstChild.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="header"
+    >
+      <span
+        class="icon"
+        data-icon="("
+        style="display: flex;"
+      />
+      <form
+        style="width: 100%;"
       >
-        <span
-          class="icon"
-          data-icon="("
-          style="display: flex;"
-        />
-        <form
-          style="width: 100%;"
-        >
-          SomeCity
-        </form>
-      </div>
+        SomeCity
+      </form>
     </div>
   `);
 });
@@ -28,24 +26,22 @@ it("renders no editing", () => {
 it("renders editing", () => {
   render(<Header cityName="SomeCity" isEditing />);
   // eslint-disable-next-line testing-library/no-node-access
-  expect(document.body.children[0]).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="header"
+  expect(document.body.firstChild.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="header"
+    >
+      <span
+        class="icon rotating"
+        data-icon="("
+        style="display: flex;"
+      />
+      <form
+        style="width: 100%;"
       >
-        <span
-          class="icon rotating"
-          data-icon="("
-          style="display: flex;"
+        <input
+          value="SomeCity"
         />
-        <form
-          style="width: 100%;"
-        >
-          <input
-            value="SomeCity"
-          />
-        </form>
-      </div>
+      </form>
     </div>
   `);
 });
