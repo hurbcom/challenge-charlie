@@ -3,6 +3,7 @@ import { AfterTomorrow } from "components/AfterTomorrow";
 import { Header } from "components/Header";
 import { Loading } from "components/Loading";
 import { NoGeolocation } from "components/NoGeolocation";
+import { Temperature } from "components/Temperature";
 import { Today } from "components/Today";
 import { Tomorrow } from "components/Tomorrow";
 import { useBingImageAsBackground } from "hooks/useBingImageAsBackground";
@@ -145,7 +146,9 @@ export const App = (() => {
             <>
               <Today
                 backgroundColor={colorByCelsius(weather.data[0].data.main.temp)}
-                temperature={`${weather.data[0].data.main.temp}ºC`}
+                temperature={
+                  <Temperature celsius={weather.data[0].data.main.temp} />
+                }
                 kind={upperCaseFirst(
                   weather.data[0].data.weather[0].description
                 )}
@@ -155,11 +158,15 @@ export const App = (() => {
               />
               <Tomorrow
                 backgroundColor={colorByCelsius(nextDaysWeather[0].main.temp)}
-                temperature={`${nextDaysWeather[0].main.temp}ºC`}
+                temperature={
+                  <Temperature celsius={nextDaysWeather[0].main.temp} />
+                }
               />
               <AfterTomorrow
                 backgroundColor={colorByCelsius(nextDaysWeather[1].main.temp)}
-                temperature={`${nextDaysWeather[1].main.temp}ºC`}
+                temperature={
+                  <Temperature celsius={nextDaysWeather[1].main.temp} />
+                }
               />
             </>
           ) : (
