@@ -4,7 +4,7 @@ import { getPosition } from "modules/getPosition";
 export function usePosition(options) {
   return useQuery({
     queryKey: ["position"],
-    queryFn: getPosition,
+    queryFn: () => getPosition(),
     ...options,
   });
 }

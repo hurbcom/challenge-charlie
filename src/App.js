@@ -1,12 +1,21 @@
 import styled from "@emotion/styled/macro";
 import { AfterTomorrow } from "components/AfterTomorrow";
 import { Header } from "components/Header";
+import { Loading } from "components/Loading";
 import { NoGeolocation } from "components/NoGeolocation";
 import { Today } from "components/Today";
 import { Tomorrow } from "components/Tomorrow";
 import { useBingImageAsBackground } from "hooks/useBingImageAsBackground";
+import { useCityInfoByLatLong } from "hooks/useCityInfoByLatLong";
+import { useOpenWeather } from "hooks/useOpenWeather";
+import { usePermissionLocation } from "hooks/usePermissionLocation";
+import { usePosition } from "hooks/usePosition";
 import { colorByCelsius } from "modules/colorByCelsius";
-import { withHocs, withIf } from "react-new-hoc";
+import { getFirstDayInfo } from "modules/getFirstDayInfo";
+import { upperCaseFirst } from "modules/upperCaseFirst";
+import { useEffect, useMemo } from "react";
+import { withHocs, withIf, withState } from "react-new-hoc";
+import create from "zustand";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -88,34 +97,84 @@ const Container = styled.div`
   }
 `;
 
-function App() {
-  useBingImageAsBackground();
+const useCityName = create(() => ({
+  cityName: "",
+}));
 
-  return (
-    <Container>
-      <div className="content">
-        <Header cityName="Rio de Janeiro, Rio de Janeiro" />
-        <Today
-          backgroundColor={colorByCelsius(25)}
-          temperature="25ºC"
-          kind="Ensolarado"
-          wind="NO 6.4km/h"
-          humidity="78%"
-          pressure="1003hPA"
-        />
-        <Tomorrow backgroundColor={colorByCelsius(10)} temperature="10ºC" />
-        <AfterTomorrow
-          backgroundColor={colorByCelsius(35)}
-          temperature="35ºC"
-        />
-      </div>
-    </Container>
-  );
-}
+export const App = (() => {
+  function App() {
+    useBingImageAsBackground();
+    const permission = usePermissionLocation();
+    const position = usePosition({
+      enabled: permission?.data === "granted",
+    });
+    const { data: cityInfo } = useCityInfoByLatLong(
+      position.isFetched
+        ? {
+            latitude: position.data.coords.latitude,
+            longitude: position.data.coords.longitude,
+          }
+        : {}
+    );
+    useEffect(() => {
+      if (cityInfo) {
+        const { city, state } = cityInfo.data.results[0].components;
+        const cityName = [city, state].filter(Boolean).join(", ");
+        useCityName.setState({
+          cityName,
+        });
+      }
+    }, [cityInfo]);
+    const cityName = useCityName((state) => state.cityName);
+    const weather = useOpenWeather(cityName);
+    const weatherData = weather.data;
+    const nextDaysWeather = useMemo(
+      () =>
+        weatherData && getFirstDayInfo(weatherData[1].data.list).slice(0, 2),
+      [weatherData]
+    );
 
-export default withHocs(
-  withIf(() => navigator.geolocation, {
-    dependencyNames: [],
-    Else: NoGeolocation,
-  })
-)(App);
+    return (
+      <Container>
+        <div className="content">
+          <Header
+            cityName={cityName}
+            setCityName={(cityName) => useCityName.setState({ cityName })}
+          />
+          {weather.data ? (
+            <>
+              <Today
+                backgroundColor={colorByCelsius(weather.data[0].data.main.temp)}
+                temperature={`${weather.data[0].data.main.temp}ºC`}
+                kind={upperCaseFirst(
+                  weather.data[0].data.weather[0].description
+                )}
+                wind={`${weather.data[0].data.wind.deg}º ${weather.data[0].data.wind.speed}m/s`}
+                humidity={`${weather.data[0].data.main.humidity}%`}
+                pressure={`${weather.data[0].data.main.pressure}hPA`}
+              />
+              <Tomorrow
+                backgroundColor={colorByCelsius(nextDaysWeather[0].main.temp)}
+                temperature={`${nextDaysWeather[0].main.temp}ºC`}
+              />
+              <AfterTomorrow
+                backgroundColor={colorByCelsius(nextDaysWeather[1].main.temp)}
+                temperature={`${nextDaysWeather[1].main.temp}ºC`}
+              />
+            </>
+          ) : (
+            <Loading />
+          )}
+        </div>
+      </Container>
+    );
+  }
+
+  return withHocs(
+    withIf(() => navigator.geolocation, {
+      dependencyNames: [],
+      Else: NoGeolocation,
+    }),
+    withState("cityName", { init: "" })
+  )(App);
+})();

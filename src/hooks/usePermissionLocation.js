@@ -11,7 +11,9 @@ export function usePermissionLocation() {
         .query({ name: "geolocation" })
         .then((result) => {
           if (result.state === "prompt") {
-            getPosition();
+            getPosition().then((position) => {
+              queryClient.setQueriesData(position);
+            });
           }
 
           result.addEventListener("change", () => {
