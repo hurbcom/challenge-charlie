@@ -46,15 +46,15 @@ it("renders", () => {
           SomeKind
         </div>
         <div>
-          Vento: 
+          Vento:
           SomeWind
         </div>
         <div>
-          Humidade: 
+          Humidade:
           SomeHumidity
         </div>
         <div>
-          Pressão: 
+          Pressão:
           SomePressure
         </div>
       </div>
