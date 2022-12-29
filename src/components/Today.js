@@ -1,8 +1,20 @@
 import PropTypes from "prop-types";
 
-export function Today({ temperature, kind, wind, humidity, pressure }) {
+export function Today({
+  backgroundColor,
+  temperature,
+  kind,
+  wind,
+  humidity,
+  pressure,
+}) {
   return (
-    <div className="today">
+    <div
+      className="today"
+      style={{
+        backgroundColor: `${backgroundColor}dd`,
+      }}
+    >
       <div style={{ overflow: "hidden" }}>
         <span className="icon" data-icon="B" />
       </div>
@@ -20,6 +32,7 @@ export function Today({ temperature, kind, wind, humidity, pressure }) {
 }
 
 Today.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
   temperature: PropTypes.string.isRequired,
   kind: PropTypes.string.isRequired,
   wind: PropTypes.string.isRequired,

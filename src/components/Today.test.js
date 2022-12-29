@@ -4,6 +4,7 @@ import { Today } from "components/Today";
 it("renders", () => {
   render(
     <Today
+      backgroundColor="#abcdef"
       temperature="SomeTemperature"
       kind="SomeKind"
       wind="SomeWind"
@@ -16,6 +17,7 @@ it("renders", () => {
     <div>
       <div
         class="today"
+        style="background-color: rgba(171, 205, 239, 0.867);"
       >
         <div
           style="overflow: hidden;"
@@ -45,15 +47,15 @@ it("renders", () => {
             SomeKind
           </div>
           <div>
-            Vento:
+            Vento: 
             SomeWind
           </div>
           <div>
-            Humidade:
+            Humidade: 
             SomeHumidity
           </div>
           <div>
-            Pressão:
+            Pressão: 
             SomePressure
           </div>
         </div>

@@ -43,7 +43,6 @@ const Container = styled.div`
 
     & > .today {
       height: 550px;
-      background: #e2b814dd;
       display: grid;
       grid-template-columns: 540px 1fr;
 
@@ -85,6 +84,7 @@ function App() {
       <div className="content">
         <Header cityName="Rio de Janeiro, Rio de Janeiro" />
         <Today
+          backgroundColor="#e2b814"
           temperature="25ºC"
           kind="Ensolarado"
           wind="NO 6.4km/h"
