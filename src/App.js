@@ -1,5 +1,9 @@
 import styled from "@emotion/styled/macro";
+import { AfterTomorrow } from "components/AfterTomorrow";
+import { Header } from "components/Header";
 import { NoGeolocation } from "components/NoGeolocation";
+import { Today } from "components/Today";
+import { Tomorrow } from "components/Tomorrow";
 import { useBingImageAsBackground } from "hooks/useBingImageAsBackground";
 import { withHocs, withIf } from "react-new-hoc";
 
@@ -79,38 +83,10 @@ function App() {
   return (
     <Container>
       <div className="content">
-        <div className="header">
-          <span className="icon" data-icon="(" />
-          <span
-            style={{
-              marginBottom: "15px",
-            }}
-          >
-            Rio de Janeiro, Rio de Janeiro
-          </span>
-        </div>
-        <div className="today">
-          <div style={{ overflow: "hidden" }}>
-            <span className="icon" data-icon="B" />
-          </div>
-          <div className="info">
-            <div style={{ fontWeight: "bold" }}>HOJE</div>
-            <div style={{ fontWeight: "bold" }}>32ºC</div>
-            <div style={{ height: "50px" }} />
-            <div>Ensolarado</div>
-            <div>Vento: NO 6.4km/h</div>
-            <div>Humidade: 78%</div>
-            <div>Pressão: 1003hPA</div>
-          </div>
-        </div>
-        <div className="tomorrow">
-          <div>AMANHÃ</div>
-          <div>25ºC</div>
-        </div>
-        <div className="after-tomorrow">
-          <div>DEPOIS DE AMANHÃ</div>
-          <div>25ºC</div>
-        </div>
+        <Header />
+        <Today />
+        <Tomorrow />
+        <AfterTomorrow />
       </div>
     </Container>
   );

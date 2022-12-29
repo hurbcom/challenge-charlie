@@ -5,7 +5,7 @@ import { useEffect } from "react";
 function useBingImage() {
   return useQuery({
     queryKey: ["bingImage"],
-    queryFn: getBingImage,
+    queryFn: () => getBingImage(),
   });
 }
 
