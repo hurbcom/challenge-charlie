@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export function Tomorrow({
   className = "tomorrow",
   title = "AMANHÃ",
-  temperature = "25ºC",
+  temperature,
 }) {
   return (
     <div className={className}>
@@ -16,5 +16,5 @@ export function Tomorrow({
 Tomorrow.propTypes = {
   className: PropTypes.oneOf(["tomorrow", "after-tomorrow"]),
   title: PropTypes.string,
-  temperature: PropTypes.string,
+  temperature: PropTypes.string.isRequired,
 };

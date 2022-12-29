@@ -84,9 +84,15 @@ function App() {
     <Container>
       <div className="content">
         <Header />
-        <Today />
-        <Tomorrow />
-        <AfterTomorrow />
+        <Today
+          temperature="25ºC"
+          kind="Ensolarado"
+          wind="NO 6.4km/h"
+          humidity="78%"
+          pressure="1003hPA"
+        />
+        <Tomorrow temperature="26ºC" />
+        <AfterTomorrow temperature="27ºC" />
       </div>
     </Container>
   );
