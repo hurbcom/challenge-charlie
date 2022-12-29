@@ -23,9 +23,18 @@ export function Today({
         <div style={{ fontWeight: "bold" }}>{temperature}</div>
         <div style={{ height: "50px" }} />
         <div>{kind}</div>
-        <div>Vento: {wind}</div>
-        <div>Humidade: {humidity}</div>
-        <div>Pressão: {pressure}</div>
+        <div>
+          Vento:
+          {wind}
+        </div>
+        <div>
+          Humidade:
+          {humidity}
+        </div>
+        <div>
+          Pressão:
+          {pressure}
+        </div>
       </div>
     </div>
   );
@@ -33,7 +42,7 @@ export function Today({
 
 Today.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
-  temperature: PropTypes.string.isRequired,
+  temperature: PropTypes.node.isRequired,
   kind: PropTypes.string.isRequired,
   wind: PropTypes.string.isRequired,
   humidity: PropTypes.string.isRequired,

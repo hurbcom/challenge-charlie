@@ -23,5 +23,5 @@ Tomorrow.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   className: PropTypes.oneOf(["tomorrow", "after-tomorrow"]),
   title: PropTypes.string,
-  temperature: PropTypes.string.isRequired,
+  temperature: PropTypes.node.isRequired,
 };

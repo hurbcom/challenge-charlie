@@ -98,7 +98,7 @@ const Container = styled.div`
   }
 `;
 
-const useCityName = create(() => ({
+export const useCityName = create(() => ({
   cityName: "",
 }));
 
