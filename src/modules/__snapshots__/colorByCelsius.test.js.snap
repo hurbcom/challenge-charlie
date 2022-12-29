@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`-1 1`] = `"#0039ff"`;
+
+exports[`0 1`] = `"#0039ff"`;
+
+exports[`1 1`] = `"#0046fe"`;
+
+exports[`2 1`] = `"#0053fd"`;
+
+exports[`3 1`] = `"#0061fc"`;
+
+exports[`4 1`] = `"#006efa"`;
+
+exports[`5 1`] = `"#007bf9"`;
+
+exports[`6 1`] = `"#0088f8"`;
+
+exports[`7 1`] = `"#0095f7"`;
+
+exports[`8 1`] = `"#00a3f6"`;
+
+exports[`9 1`] = `"#00b0f5"`;
+
+exports[`10 1`] = `"#00bdf4"`;
+
+exports[`11 1`] = `"#00caf3"`;
+
+exports[`12 1`] = `"#00d7f1"`;
+
+exports[`13 1`] = `"#00e5f0"`;
+
+exports[`14 1`] = `"#00f2ef"`;
+
+exports[`15 1`] = `"#00ffee"`;
+
+exports[`16 1`] = `"#f2fd00"`;
+
+exports[`17 1`] = `"#f2fb00"`;
+
+exports[`18 1`] = `"#f3f900"`;
+
+exports[`19 1`] = `"#f4f700"`;
+
+exports[`20 1`] = `"#f5f500"`;
+
+exports[`21 1`] = `"#f5f300"`;
+
+exports[`22 1`] = `"#f6f100"`;
+
+exports[`23 1`] = `"#f7ef00"`;
+
+exports[`24 1`] = `"#f7ed00"`;
+
+exports[`25 1`] = `"#f8eb00"`;
+
+exports[`26 1`] = `"#f9e900"`;
+
+exports[`27 1`] = `"#f9e700"`;
+
+exports[`28 1`] = `"#fae500"`;
+
+exports[`29 1`] = `"#fbe300"`;
+
+exports[`30 1`] = `"#fce100"`;
+
+exports[`31 1`] = `"#fcdf00"`;
+
+exports[`32 1`] = `"#fddd00"`;
+
+exports[`33 1`] = `"#fedb00"`;
+
+exports[`34 1`] = `"#fed900"`;
+
+exports[`35 1`] = `"#ff5a00"`;
+
+exports[`36 1`] = `"#ff5106"`;
+
+exports[`37 1`] = `"#ff480d"`;
+
+exports[`38 1`] = `"#ff3f13"`;
+
+exports[`39 1`] = `"#ff361a"`;
+
+exports[`40 1`] = `"#ff2d20"`;
+
+exports[`41 1`] = `"#ff2426"`;
+
+exports[`42 1`] = `"#ff1b2d"`;
+
+exports[`43 1`] = `"#ff1233"`;
+
+exports[`44 1`] = `"#ff093a"`;
+
+exports[`45 1`] = `"#ff0040"`;
+
+exports[`46 1`] = `"#ff0040"`;
