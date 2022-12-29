@@ -1,4 +1,6 @@
-export function Header() {
+import PropTypes from "prop-types";
+
+export function Header({ cityName }) {
   return (
     <div className="header">
       <span className="icon" data-icon="(" />
@@ -7,8 +9,12 @@ export function Header() {
           marginBottom: "15px",
         }}
       >
-        Rio de Janeiro, Rio de Janeiro
+        {cityName}
       </span>
     </div>
   );
 }
+
+Header.propTypes = {
+  cityName: PropTypes.string.isRequired,
+};

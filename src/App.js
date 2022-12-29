@@ -83,7 +83,7 @@ function App() {
   return (
     <Container>
       <div className="content">
-        <Header />
+        <Header cityName="Rio de Janeiro, Rio de Janeiro" />
         <Today
           temperature="25ºC"
           kind="Ensolarado"
