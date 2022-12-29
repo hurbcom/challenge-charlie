@@ -139,7 +139,11 @@ export const App = (() => {
       <Container>
         <div className="content">
           <Header
-            cityName={cityName}
+            cityName={
+              permission.data === "granted"
+                ? cityName
+                : "Permita o uso da localização"
+            }
             setCityName={(cityName) => useCityName.setState({ cityName })}
           />
           {weather.data ? (
