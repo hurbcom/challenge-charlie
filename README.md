@@ -32,4 +32,4 @@ debugTemperature({
 ## Compilar e iniciar imagem de produção
 
 - `docker build -t charlie .`
-- `docker run -it --rm -p 8080:80 charlie`
+- `docker run -it --rm -p 3000:80 charlie`
