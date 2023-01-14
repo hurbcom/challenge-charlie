@@ -9,7 +9,7 @@ type Error = AxiosError
 type UseGetLocationOptions = UseQueryOptions<Data, Error>
 type UseGetLocation = UseQueryResult<Data, Error>
 
-export default function useGetLocation(
+export default function useGetLocationByCoordinates(
   queryParams: GetLocationByCoordinatesParams | undefined,
   options?: UseGetLocationOptions
 ): UseGetLocation {

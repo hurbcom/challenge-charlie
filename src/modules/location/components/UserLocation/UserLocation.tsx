@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-import useGetLocation from '../../../../services/openCage/queries/useGetLocation'
+import useGetLocationByCoordinates from '../../../../services/openCage/queries/useGetLocationByCoordinates'
 import { GetLocationByCoordinatesParams } from '../../../../services/openCage/interfaces/GetLocationByCoordinatesParams'
 import { ReactComponent as IconCompass } from '../../../../assets/icons/compass.svg'
 
@@ -32,7 +32,7 @@ const InputStyled = styled('input')({
 export default function UserLocation(props: UserLocationProps) {
   const [location, setLocation] = useState<GetLocationByCoordinatesParams>()
   const [formattedAddress, setFormattedAddress] = useState<string>()
-  const { isLoading } = useGetLocation(location, {
+  const { isLoading } = useGetLocationByCoordinates(location, {
     onSuccess: data => {
       setFormattedAddress(`${data.components.city}, ${data.components.state}`)
     }
