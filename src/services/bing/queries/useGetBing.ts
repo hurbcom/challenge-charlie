@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios'
 import { useCallback, useMemo } from 'react'
 import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query'
-import { GetJsonBingApi } from '../Get'
-import { getBingResponse } from '../interfaces/getBingResponse'
+import { GetJsonBingApi } from '../get'
+import { GetBingResponse } from '../interfaces/GetBingResponse'
 
-type Data = getBingResponse
+type Data = GetBingResponse
 type Error = AxiosError
 type UseGetBingOptions = UseQueryOptions<Data, Error>
 type UseGetBingResult = UseQueryResult<Data, Error>

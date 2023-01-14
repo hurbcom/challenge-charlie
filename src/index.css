@@ -124,3 +124,7 @@ table {
   border-spacing: 0;
 }
 /* end reset css */
+
+body {
+  font-family: 'Roboto', sans-serif;
+}

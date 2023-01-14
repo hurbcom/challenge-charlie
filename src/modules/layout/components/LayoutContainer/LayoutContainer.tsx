@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
-import { PropsWithChildren } from 'react'
 import useGetBing from '../../../../services/bing/queries/useGetBing'
+import UserLocation from '../../../location/components/UserLocation'
+import LayoutHeader from '../LayoutHeader'
 
 type LayoutContainerProps = {}
 
@@ -18,13 +19,24 @@ const LayoutContainerRoot = styled('div', {
   backgroundSize: 'cover'
 }))
 
-export default function LayoutContainer(props: PropsWithChildren<LayoutContainerProps>) {
-  const { children } = props
+const LayoutContent = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '60%',
+  height: '100%',
+  minHeight: '100vh'
+})
+
+export default function LayoutContainer(props: LayoutContainerProps) {
   const { data: bingData } = useGetBing()
 
   return (
     <LayoutContainerRoot backgroundImage={bingData?.backgroundImage || ''}>
-      {children}
+      <LayoutContent>
+        <LayoutHeader>
+          <UserLocation />
+        </LayoutHeader>
+      </LayoutContent>
     </LayoutContainerRoot>
   )
 }
