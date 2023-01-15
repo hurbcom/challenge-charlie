@@ -27,7 +27,10 @@ const LayoutContent = styled('div')({
   flexDirection: 'column',
   width: '60%',
   height: '100%',
-  minHeight: '100vh'
+  minHeight: '100vh',
+  '@media (max-width: 600px)': {
+    width: '100%'
+  }
 })
 
 export default function LayoutContainer(props: LayoutContainerProps) {

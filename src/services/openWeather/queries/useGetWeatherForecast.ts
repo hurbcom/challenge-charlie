@@ -3,8 +3,9 @@ import { useCallback, useMemo } from 'react'
 import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query'
 import { getWeatherForecast } from '../get'
 import { GetWeatherForecastParams } from '../interfaces/GetWeatherForecastParams'
+import { GetWeatherForecastResponse } from '../interfaces/GetWeatherForecastResponse'
 
-type Data = any
+type Data = GetWeatherForecastResponse
 type Error = AxiosError
 type UseGetWeatherForecastOptions = UseQueryOptions<Data, Error>
 type UseGetWeatherForecastResult = UseQueryResult<Data, Error>

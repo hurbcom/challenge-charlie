@@ -3,7 +3,10 @@ import { PropsWithChildren } from 'react'
 
 type LayoutBodyProps = {}
 
-const LayoutBodyRoot = styled('div')({})
+const LayoutBodyRoot = styled('div')({
+  display: 'flex',
+  flex: 1
+})
 
 export default function LayoutBody(props: PropsWithChildren<LayoutBodyProps>) {
   const { children } = props

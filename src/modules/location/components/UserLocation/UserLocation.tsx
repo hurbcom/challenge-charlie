@@ -26,7 +26,8 @@ const InputStyled = styled('input')({
   color: '#7e7a79',
   backgroundColor: 'transparent',
   border: 0,
-  outline: 0
+  outline: 0,
+  fontWeight: 600
 })
 
 export default function UserLocation(props: UserLocationProps) {
