@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
 import useGetLocationByCoordinates from '../../../../services/openCage/queries/useGetLocationByCoordinates'
-import { GetLocationByCoordinatesParams } from '../../../../services/openCage/interfaces/GetLocationByCoordinatesParams'
 import { ReactComponent as IconCompass } from '../../../../assets/icons/compass.svg'
+import useLayoutContext from '../../../layout/hooks/useLayoutContext'
+import { useEffect, useState } from 'react'
 
 type UserLocationProps = {}
 
-const UserLocationRoot = styled.div({
+const UserLocationRoot = styled('div')({
   display: 'flex',
   alignItems: 'center',
   gap: '10px',
@@ -30,30 +30,32 @@ const InputStyled = styled('input')({
 })
 
 export default function UserLocation(props: UserLocationProps) {
-  const [location, setLocation] = useState<GetLocationByCoordinatesParams>()
-  const [formattedAddress, setFormattedAddress] = useState<string>()
-  const { isLoading } = useGetLocationByCoordinates(location, {
-    onSuccess: data => {
-      setFormattedAddress(`${data.components.city}, ${data.components.state}`)
-    }
-  })
+  const {
+    address: [formattedAddress, setFormattedAddress],
+    location
+  } = useLayoutContext()
+  const [inputValue, setInputValue] = useState<string>('')
+  const { isLoading } = useGetLocationByCoordinates(location)
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(location => {
-      setLocation({
-        lat: location.coords.latitude,
-        long: location.coords.longitude
-      })
-    })
-  }, [])
+    if (formattedAddress) {
+      setInputValue(formattedAddress)
+    }
+  }, [formattedAddress])
+
   return (
     <UserLocationRoot>
       <IconCompassStyled />
       <InputStyled
         type="text"
-        value={formattedAddress || ''}
+        value={inputValue}
         placeholder={isLoading ? 'Carregando localização' : 'Digite sua cidade e estado'}
-        onChange={event => setFormattedAddress(event.target.value)}
+        onChange={event => setInputValue(event.target.value)}
+        onKeyDown={event => {
+          if (event.key === 'Enter') {
+            setFormattedAddress(inputValue)
+          }
+        }}
       />
     </UserLocationRoot>
   )

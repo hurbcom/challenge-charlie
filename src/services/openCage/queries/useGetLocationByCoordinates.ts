@@ -6,13 +6,13 @@ import { getLocationByCoordinates } from '../get'
 
 type Data = any
 type Error = AxiosError
-type UseGetLocationOptions = UseQueryOptions<Data, Error>
-type UseGetLocation = UseQueryResult<Data, Error>
+type UseGetLocationByCoordinatesOptions = UseQueryOptions<Data, Error>
+type UseGetLocationByCoordinatesResult = UseQueryResult<Data, Error>
 
 export default function useGetLocationByCoordinates(
   queryParams: GetLocationByCoordinatesParams | undefined,
-  options?: UseGetLocationOptions
-): UseGetLocation {
+  options?: UseGetLocationByCoordinatesOptions
+): UseGetLocationByCoordinatesResult {
   const queryKey = useMemo(() => ['openCage'], [])
 
   const queryFn = useCallback(async () => {

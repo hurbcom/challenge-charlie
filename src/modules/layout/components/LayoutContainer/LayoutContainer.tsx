@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
+import WeatherForecastContainer from '../../../ weatherForecast/components/WeatherForecastContainer'
 import useGetBing from '../../../../services/bing/queries/useGetBing'
 import UserLocation from '../../../location/components/UserLocation'
+import LayoutProvider from '../../providers/LayoutProvider/LayoutProvider'
+import LayoutBody from '../LayoutBody'
 import LayoutHeader from '../LayoutHeader'
 
 type LayoutContainerProps = {}
@@ -19,7 +22,7 @@ const LayoutContainerRoot = styled('div', {
   backgroundSize: 'cover'
 }))
 
-const LayoutContent = styled.div({
+const LayoutContent = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   width: '60%',
@@ -32,11 +35,17 @@ export default function LayoutContainer(props: LayoutContainerProps) {
 
   return (
     <LayoutContainerRoot backgroundImage={bingData?.backgroundImage || ''}>
-      <LayoutContent>
-        <LayoutHeader>
-          <UserLocation />
-        </LayoutHeader>
-      </LayoutContent>
+      <LayoutProvider>
+        <LayoutContent>
+          <LayoutHeader>
+            <UserLocation />
+          </LayoutHeader>
+
+          <LayoutBody>
+            <WeatherForecastContainer />
+          </LayoutBody>
+        </LayoutContent>
+      </LayoutProvider>
     </LayoutContainerRoot>
   )
 }

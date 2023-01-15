@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 
 type LayoutHeaderProps = {}
 
-const LayoutHeaderRoot = styled.div({})
+const LayoutHeaderRoot = styled('div')({})
 
 export default function LayoutHeader(props: PropsWithChildren<LayoutHeaderProps>) {
   const { children } = props
