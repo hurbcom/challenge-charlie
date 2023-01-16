@@ -1,3 +1,29 @@
-export default function Home() {
-    return <h1>Hello World</h1>;
+import * as S from "@/styles";
+
+export default function Home({ imageURL }: { imageURL?: string }) {
+    return (
+        <S.Wrapper imageURL={imageURL}>
+            <h1>Weather Forecast</h1>
+        </S.Wrapper>
+    );
+}
+
+type BingImageResponse = {
+    images: [{ url: string }];
+} | null;
+
+export async function getServerSideProps() {
+    try {
+        const res = await fetch(`${process.env.HOSTNAME}/background`);
+        const data: BingImageResponse = await res.json();
+        const imageURL = data
+            ? `https://www.bing.com/${data?.images[0].url}`
+            : null;
+
+        return {
+            props: { imageURL },
+        };
+    } catch (error) {
+        throw new Error("Unable to get Bing image of the day");
+    }
 }
