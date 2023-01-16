@@ -5,14 +5,15 @@ import useGetWeatherForecast from '../../../../services/openWeather/queries/useG
 import useLayoutContext from '../../../layout/hooks/useLayoutContext'
 import WeatherForecastContainerError from '../WeatherForecastContainerError'
 import WeatherForecastContainerLoading from '../WeatherForecastContainerLoading'
+import { ReactComponent as IconO1D } from '../../../../assets/icons/01d.svg'
 import { ReactComponent as IconO1N } from '../../../../assets/icons/01n.svg'
+import { ReactComponent as IconO2D } from '../../../../assets/icons/02d.svg'
 import { ReactComponent as IconO2N } from '../../../../assets/icons/02n.svg'
-import { ReactComponent as IconO3N } from '../../../../assets/icons/03n.svg'
-import { ReactComponent as IconO4N } from '../../../../assets/icons/04n.svg'
-import { ReactComponent as IconO9N } from '../../../../assets/icons/09n.svg'
-import { ReactComponent as Icon11N } from '../../../../assets/icons/11n.svg'
-import { ReactComponent as Icon13N } from '../../../../assets/icons/13n.svg'
-import { ReactComponent as Icon50N } from '../../../../assets/icons/50n.svg'
+import { ReactComponent as IconO4D } from '../../../../assets/icons/04d.svg'
+import { ReactComponent as IconO9D } from '../../../../assets/icons/09d.svg'
+import { ReactComponent as Icon11D } from '../../../../assets/icons/11d.svg'
+import { ReactComponent as Icon13D } from '../../../../assets/icons/13d.svg'
+import { ReactComponent as Icon50D } from '../../../../assets/icons/50d.svg'
 import { GetWeatherForecastParams } from '../../../../services/openWeather/interfaces/GetWeatherForecastParams'
 import { WeatherForecastUnitsEnum } from '../../../../services/openWeather/enums/WeatherForecastUnitsEnum'
 
@@ -155,24 +156,42 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
   const icon = useCallback((icon: string) => {
     const formatIcon = icon.toLocaleUpperCase()
     switch (formatIcon) {
+      case WeatherForecastIconEnum['01D']:
+        return <IconO1D />
       case WeatherForecastIconEnum['01N']:
         return <IconO1N />
+      case WeatherForecastIconEnum['02D']:
+        return <IconO2D />
       case WeatherForecastIconEnum['02N']:
         return <IconO2N />
+      case WeatherForecastIconEnum['03D']:
+        return <IconO2D />
       case WeatherForecastIconEnum['03N']:
-        return <IconO3N />
+        return <IconO2D />
+      case WeatherForecastIconEnum['04D']:
+        return <IconO4D />
       case WeatherForecastIconEnum['04N']:
-        return <IconO4N />
+        return <IconO4D />
+      case WeatherForecastIconEnum['09D']:
+        return <IconO9D />
       case WeatherForecastIconEnum['09N']:
-        return <IconO9N />
+        return <IconO9D />
+      case WeatherForecastIconEnum['10D']:
+        return <IconO9D />
       case WeatherForecastIconEnum['10N']:
-        return <IconO9N />
+        return <IconO9D />
+      case WeatherForecastIconEnum['11D']:
+        return <Icon11D />
       case WeatherForecastIconEnum['11N']:
-        return <Icon11N />
+        return <Icon11D />
+      case WeatherForecastIconEnum['13D']:
+        return <Icon13D />
       case WeatherForecastIconEnum['13N']:
-        return <Icon13N />
+        return <Icon13D />
+      case WeatherForecastIconEnum['50D']:
+        return <Icon50D />
       case WeatherForecastIconEnum['50N']:
-        return <Icon50N />
+        return <Icon50D />
       default:
         return <IconO1N />
     }
