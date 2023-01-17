@@ -5,14 +5,37 @@ import { getCurrentWeather, getForecastForNextDays } from "../../../services/get
 import { Colors } from "../../../utils/colors";
 import Banner from "../../atoms/Banner";
 import Input from "../../atoms/Input";
-import Icon from  '../../../assets/icons/sun.svg'
 
 import { Container, Wrapper } from "./styles";
+import { CurrentWeatherProps, ForecastWeatherProps, LocationProps } from "./types";
+import { celsiusToFahrenheit, colorByTemperature, degToCardinal, firstLetterUppercase } from "../../../utils/functions";
 
 const Weather: React.FC = () => {
-  const [locationName, setLocationName] = useState('')
-  const [currentWeather, setCurrentWeather] = useState('')
-  const [forecast, setForecast] = useState('')
+  const [isCelsius, setIsCelsius] = useState(true)
+  const [locationName, setLocationName] = useState<LocationProps>({
+    results: []
+  })
+  const [currentWeather, setCurrentWeather] = useState<CurrentWeatherProps>({
+    wind: {
+      speed: 0,
+      deg: 0,
+    },
+    weather: [
+      {
+        main: '',
+        description: '',
+        icon: 0,
+      }
+    ],
+    main: {
+      temp: 0,
+      pressure: 0,
+      humidity: 0,
+    }
+  })
+  const [forecast, setForecast] = useState<ForecastWeatherProps>({
+    list: []
+  })
   const [bingBackground, setBingBackground] = useState('')
   const [localName, setLocalName] = useState('')
 
@@ -43,13 +66,24 @@ const Weather: React.FC = () => {
     }
   }
 
+
+  useEffect(() => {
+    if (locationName.results[0]?.components) {
+      setLocalName(`${locationName.results[0]?.components?.city}, ${locationName.results[0]?.components?.state || locationName.results[0]?.components?.country}`)
+    }
+    if (locationName.results[0]?.geometry) {
+      callCurrentWeather(locationName.results[0].geometry.lat, locationName.results[0].geometry.lng)
+      callForecastNextDays(locationName.results[0].geometry.lat, locationName.results[0].geometry.lng)
+     }
+  }, [locationName])
+
   useEffect( () => {
     navigator.geolocation.getCurrentPosition( position => {
       callLocationByCoordinates(position.coords.latitude, position.coords.longitude)
       callCurrentWeather(position.coords.latitude, position.coords.longitude)
       callForecastNextDays(position.coords.latitude, position.coords.longitude)
     })
-    getBackground()
+    // getBackground()
   }, [] )
 
   return (
@@ -57,18 +91,35 @@ const Weather: React.FC = () => {
     <Wrapper>
       <Input value={localName} onChange={(value) => setLocalName(value)} onBlur={callLocationByName}/>
       <Banner
-        imgSrc={Icon}
+        height="50vh"
+        opacity="0.7"
+        imgSrc={`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@4x.png`}
         dayTitle="HOJE"
-        temperature="23"
-        temperatureDescription="Calor"
+        temperature={isCelsius ? `${currentWeather.main.temp} °C` : `${celsiusToFahrenheit(currentWeather.main.temp)} °F`}
+        temperatureDescription={firstLetterUppercase(currentWeather.weather[0].description)}
         additionalInfo={{
-          vento: 'NO 6.4km/h',
-          umidade: '78%',
-          pressao: '100 3h PA'
+          vento: `${degToCardinal(currentWeather.wind.deg)} ${currentWeather.wind.speed}km/h`,
+          umidade: `${currentWeather.main.humidity}%`,
+          pressao: `${currentWeather.main.pressure}hPA`
         }}
-        backgroundColor={Colors.MEDIUM_YELLOW}/>
-      <Banner dayTitle="AMANHÃ"  temperature="25" backgroundColor={Colors.DARK_YELLOW}/>
-      <Banner dayTitle="DEPOIS DE AMANHÃ"  temperature="26" backgroundColor={Colors.DARKEST_YELLO}/>
+        backgroundColor={colorByTemperature(currentWeather.main.temp)}
+        temperatureConverter={() => setIsCelsius(!isCelsius)}
+      />
+      <Banner
+        height="15vh"
+        opacity="0.8"
+        dayTitle="AMANHÃ"
+        temperature={isCelsius ? `${forecast.list[4]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[4]?.main?.temp)} °F`}
+        backgroundColor={colorByTemperature(forecast.list[4]?.main?.temp)}
+        temperatureConverter={() => setIsCelsius(!isCelsius)}
+      />
+      <Banner
+        height="15vh"
+        opacity="1"
+        dayTitle="DEPOIS DE AMANHÃ"
+        temperature={isCelsius ? `${forecast.list[12]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[12]?.main?.temp)} °F`}
+        backgroundColor={colorByTemperature(forecast.list[12]?.main?.temp)}
+        temperatureConverter={() => setIsCelsius(!isCelsius)}/>
     </Wrapper>
 
   </Container>

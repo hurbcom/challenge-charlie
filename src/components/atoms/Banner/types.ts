@@ -11,4 +11,7 @@ export interface BannerProps {
   temperatureDescription?: string
   additionalInfo?: AdditionalInfoProps
   backgroundColor: string
+  temperatureConverter: () => void
+  height: string
+  opacity: string
 }

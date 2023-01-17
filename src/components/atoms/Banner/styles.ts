@@ -1,11 +1,13 @@
 import  styled  from 'styled-components'
 import { Colors } from '../../../utils/colors'
 
-export const ContainerBanner = styled.div<{ backgroundColor: string }>`
+export const ContainerBanner = styled.div<{ backgroundColor: string, height: string, opacity: string }>`
   width: 100%;
+  height: ${({height}) => height };
   display: flex;
   flex-direction: row;
   background: ${({backgroundColor}) => backgroundColor };
+  opacity: ${({opacity}) => opacity };
   align-items: center;
   justify-content: space-between;
 `
@@ -29,12 +31,14 @@ export const Description = styled.div`
   flex-direction: column;
 
 `
-export const Line = styled.p`
+export const Line = styled.p<{ tempMouseOver?: boolean }>`
   color: ${Colors.WHITE};
   font-size: 2.5vw;
-  line-height: 16px;
   font-weight: 600;
   margin:16px;
+  &:hover {
+    cursor: ${({tempMouseOver}) => tempMouseOver ? 'pointer' : ''};
+  }
 
 `
 
@@ -43,5 +47,9 @@ export const SpaceBetween = styled.div`
 `
 
 export const SmallLine = styled.p`
+    font-size: 1.5vw;
+    line-height: 14px;
+    font-weight: 600;
+    margin: 14px;
   color: ${Colors.WHITE};
 `

@@ -9,21 +9,25 @@ const Banner = ({
   temperature,
   temperatureDescription,
   additionalInfo,
-  backgroundColor
+  backgroundColor,
+  temperatureConverter,
+  height,
+  opacity,
 }: BannerProps) => {
   return (
-    <ContainerBanner backgroundColor={backgroundColor}>
+    <ContainerBanner backgroundColor={backgroundColor} height={height} opacity={opacity}>
       <LeftArea>
-       {imgSrc && <ImageArea src={imgSrc} alt={temperature}/>}
+       {imgSrc && <ImageArea src={imgSrc} alt={`temperature - ${temperature}`}/>}
       </LeftArea>
       <Description>
         <Line>{dayTitle}</Line>
-        <Line>{temperature}</Line>
+        <Line onClick={temperatureConverter} tempMouseOver={true}>{temperature}</Line>
         {
           additionalInfo &&
           <>
           <SpaceBetween />
           <Line>{temperatureDescription}</Line>
+          <SpaceBetween />
           <SmallLine>Vento: {additionalInfo.vento}</SmallLine>
           <SmallLine>Umidade: {additionalInfo.umidade}</SmallLine>
           <SmallLine>Pressão: {additionalInfo.pressao}</SmallLine>
