@@ -1,7 +1,10 @@
+const ESLintPlugin = require('eslint-webpack-plugin')
+
 module.exports = {
   devServer: {
     static: './',
   },
+  plugins: [new ESLintPlugin()],
   module: {
     rules: [
       {
