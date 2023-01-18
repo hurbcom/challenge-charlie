@@ -1,8 +1,12 @@
 .header {
   background-color: #f3eeeb;
-  padding: 15px 5px;
+  padding: 15px 10px;
+  display: flex;
+  color: #8c8986;
 }
 
 .header__location {
   font-size: 24px;
+  margin-left: 5px;
+  font-weight: 700;
 }
