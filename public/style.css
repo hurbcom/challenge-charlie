@@ -13,3 +13,7 @@ body {
 #root {
   height: var(--full-height);
 }
+
+p {
+  margin: 0;
+}
