@@ -19,6 +19,14 @@ export const colorByTemperature = (temp: number) => {
 
 }
 
+export const validateInput = (inputValue: string) => {
+  if (inputValue.match(/^[a-zA-Z]+$/)) {
+    return true
+  } else {
+    return false
+  }
+}
+
 
 export const degToCardinal = (deg: number) => {
   if (deg>11.25 && deg<=33.75) {

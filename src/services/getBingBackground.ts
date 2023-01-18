@@ -19,19 +19,14 @@ interface ImagesProp {
 }
 
 interface ResponseAPI {
-  images: ImagesProp[]
+  contents: string
 }
 export const getBingBackgroung = async () => {
-  console.log(process.env.REACT_APP_BASE_BING_API)
   try {
-    const url = String(process.env.REACT_APP_BASE_BING_API)
-    const response = await axios.get<ResponseAPI>(url, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-
-    return response.data.images
+    const url = `http://api.allorigins.win/get?url=${encodeURIComponent(String(process.env.REACT_APP_BASE_BING_API))}`
+    const response = await axios.get<ResponseAPI>(url)
+    const transformJson = JSON.parse(response.data.contents)
+    return transformJson.images[0].url
   } catch (err) {
     console.log(err)
     return []

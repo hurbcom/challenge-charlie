@@ -5,7 +5,9 @@ export const Container = styled.div<{ backgroundUrl: string }>`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('https://www.bing.com/th?id=OHR.Turku_PT-BR4751286608_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp');
+  ${({ backgroundUrl }) => {
+       return `background-image: url(${backgroundUrl});`
+    }}
   align-items: center;
 `
 

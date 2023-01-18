@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getBingBackgroung } from "../../../services/getBingBackground";
 import { getLocationByCoordinates, getLocationByLocalName } from "../../../services/getLocation";
 import { getCurrentWeather, getForecastForNextDays } from "../../../services/getWeather";
-import { Colors } from "../../../utils/colors";
 import Banner from "../../atoms/Banner";
 import Input from "../../atoms/Input";
-
+import loadingGif from  '../../../assets/icons/loading.gif'
 import { Container, Wrapper } from "./styles";
 import { CurrentWeatherProps, ForecastWeatherProps, LocationProps } from "./types";
-import { celsiusToFahrenheit, colorByTemperature, degToCardinal, firstLetterUppercase } from "../../../utils/functions";
+import { celsiusToFahrenheit, colorByTemperature, degToCardinal, firstLetterUppercase, validateInput } from "../../../utils/functions";
 
 const Weather: React.FC = () => {
+  const [loading, setLoading] = useState(true)
   const [isCelsius, setIsCelsius] = useState(true)
   const [locationName, setLocationName] = useState<LocationProps>({
     results: []
@@ -36,7 +36,7 @@ const Weather: React.FC = () => {
   const [forecast, setForecast] = useState<ForecastWeatherProps>({
     list: []
   })
-  const [bingBackground, setBingBackground] = useState('')
+  const [bingBackground, setBingBackground] = useState('https://www.bing.com/th?id=OHR.SessileOaks_PT-BR4247012653_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp')
   const [localName, setLocalName] = useState('')
 
   const callLocationByCoordinates = async (latitude: number, longitude: number) =>  {
@@ -56,7 +56,7 @@ const Weather: React.FC = () => {
 
   const getBackground = async () => {
     const response = await getBingBackgroung()
-    setBingBackground(response[0].url)
+    setBingBackground(`https://www.bing.com/${response}`)
   }
 
   const callLocationByName = async () =>  {
@@ -78,49 +78,62 @@ const Weather: React.FC = () => {
   }, [locationName])
 
   useEffect( () => {
+    getBackground()
     navigator.geolocation.getCurrentPosition( position => {
       callLocationByCoordinates(position.coords.latitude, position.coords.longitude)
       callCurrentWeather(position.coords.latitude, position.coords.longitude)
       callForecastNextDays(position.coords.latitude, position.coords.longitude)
     })
-    // getBackground()
+    setLoading(false)
   }, [] )
 
   return (
   <Container backgroundUrl={bingBackground}>
-    <Wrapper>
-      <Input value={localName} onChange={(value) => setLocalName(value)} onBlur={callLocationByName}/>
-      <Banner
-        height="50vh"
-        opacity="0.7"
-        imgSrc={`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@4x.png`}
-        dayTitle="HOJE"
-        temperature={isCelsius ? `${currentWeather.main.temp} °C` : `${celsiusToFahrenheit(currentWeather.main.temp)} °F`}
-        temperatureDescription={firstLetterUppercase(currentWeather.weather[0].description)}
-        additionalInfo={{
-          vento: `${degToCardinal(currentWeather.wind.deg)} ${currentWeather.wind.speed}km/h`,
-          umidade: `${currentWeather.main.humidity}%`,
-          pressao: `${currentWeather.main.pressure}hPA`
-        }}
-        backgroundColor={colorByTemperature(currentWeather.main.temp)}
-        temperatureConverter={() => setIsCelsius(!isCelsius)}
-      />
-      <Banner
-        height="15vh"
-        opacity="0.8"
-        dayTitle="AMANHÃ"
-        temperature={isCelsius ? `${forecast.list[4]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[4]?.main?.temp)} °F`}
-        backgroundColor={colorByTemperature(forecast.list[4]?.main?.temp)}
-        temperatureConverter={() => setIsCelsius(!isCelsius)}
-      />
-      <Banner
-        height="15vh"
-        opacity="1"
-        dayTitle="DEPOIS DE AMANHÃ"
-        temperature={isCelsius ? `${forecast.list[12]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[12]?.main?.temp)} °F`}
-        backgroundColor={colorByTemperature(forecast.list[12]?.main?.temp)}
-        temperatureConverter={() => setIsCelsius(!isCelsius)}/>
-    </Wrapper>
+    { loading ?
+      <img src={loadingGif}/>
+    :
+      <Wrapper>
+        <Input
+          value={localName}
+          onChange={(value) => {
+            setLocalName(value)
+          }}
+          onBlur={callLocationByName}
+        />
+        <Banner
+          height="50vh"
+          opacity="0.7"
+          imgSrc={`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@4x.png`}
+          dayTitle="HOJE"
+          temperature={isCelsius ? `${currentWeather.main.temp} °C` : `${celsiusToFahrenheit(currentWeather.main.temp)} °F`}
+          temperatureDescription={firstLetterUppercase(currentWeather.weather[0].description)}
+          additionalInfo={{
+            vento: `${degToCardinal(currentWeather.wind.deg)} ${currentWeather.wind.speed}km/h`,
+            umidade: `${currentWeather.main.humidity}%`,
+            pressao: `${currentWeather.main.pressure}hPA`
+          }}
+          backgroundColor={colorByTemperature(currentWeather.main.temp)}
+          temperatureConverter={() => setIsCelsius(!isCelsius)}
+        />
+        <Banner
+          height="15vh"
+          opacity="0.8"
+          dayTitle="AMANHÃ"
+          temperature={isCelsius ? `${forecast.list[4]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[4]?.main?.temp)} °F`}
+          backgroundColor={colorByTemperature(forecast.list[4]?.main?.temp)}
+          temperatureConverter={() => setIsCelsius(!isCelsius)}
+        />
+        <Banner
+          height="15vh"
+          opacity="1"
+          dayTitle="DEPOIS DE AMANHÃ"
+          temperature={isCelsius ? `${forecast.list[12]?.main?.temp} °C` : `${celsiusToFahrenheit(forecast.list[12]?.main?.temp)} °F`}
+          backgroundColor={colorByTemperature(forecast.list[12]?.main?.temp)}
+          temperatureConverter={() => setIsCelsius(!isCelsius)}/>
+       </Wrapper>
+  }
+
+
 
   </Container>
   )
