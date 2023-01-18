@@ -1,0 +1,15 @@
+html {
+  --full-height: 100%;
+  background-color: #F8FBF2;
+  height: var(--full-height);
+}
+
+body {
+  margin: 0px;
+  font-family: 'Roboto', 'sans-serif';
+  height: var(--full-height);
+}
+
+#root {
+  height: var(--full-height);
+}
