@@ -19,6 +19,8 @@ import { WeatherForecastUnitsEnum } from '../../../../services/openWeather/enums
 
 type WeatherForecastContainerProps = {}
 
+type WeatherForecastCardBackgroundColors = 'yellow' | 'red' | 'blue'
+
 const WeatherForecastContainerRoot = styled('div', {
   shouldForwardProp: prop => prop !== 'data'
 })<{ data: boolean }>(({ data }) => ({
@@ -35,23 +37,18 @@ const WeatherForecastContent = styled('div')({
 })
 
 const WeatherForecastCard = styled('div', {
-  shouldForwardProp: prop => prop !== 'height' && prop !== 'temperature' && prop !== 'unit'
-})<{ height: string; temperature?: number; unit?: WeatherForecastUnitsEnum }>(
-  ({ height, temperature, unit }) => {
-    let backgroundColor = 'rgb(255,215,0,0.8)'
+  shouldForwardProp: prop => prop !== 'height' && prop !== 'backgroundColor'
+})<{ height: string; backgroundColor: WeatherForecastCardBackgroundColors }>(
+  ({ height, backgroundColor }) => {
+    let backgroundColorRgb = 'rgb(255,215,0,0.8)'
 
-    if (
-      (unit === WeatherForecastUnitsEnum.METRIC && temperature && temperature > 35) ||
-      (unit === WeatherForecastUnitsEnum.IMPERIAL && temperature && temperature > 95)
-    ) {
-      backgroundColor = 'rgb(250,128,114, 0.8)'
-    }
-
-    if (
-      (unit === WeatherForecastUnitsEnum.METRIC && temperature && temperature < 15) ||
-      (unit === WeatherForecastUnitsEnum.IMPERIAL && temperature && temperature < 59)
-    ) {
-      backgroundColor = 'rgb(135,206,235, 0.8)'
+    switch (backgroundColor) {
+      case 'red':
+        backgroundColorRgb = 'rgb(250,128,114,0.8)'
+        break
+      case 'blue':
+        backgroundColorRgb = 'rgb(100,149,237,0.8)'
+        break
     }
 
     return {
@@ -60,10 +57,48 @@ const WeatherForecastCard = styled('div', {
       padding: '15px 0',
       overflow: 'hidden',
       height,
-      backgroundColor
+      backgroundColor: backgroundColorRgb
     }
   }
 )
+
+const WeatherForecastCardTomorrow = styled(WeatherForecastCard, {
+  shouldForwardProp: prop => prop !== 'backgroundColor'
+})<{ backgroundColor: WeatherForecastCardBackgroundColors }>(({ backgroundColor }) => {
+  let backgroundColorRgb = 'rgb(255,255,0,0.8)'
+
+  switch (backgroundColor) {
+    case 'red':
+      backgroundColorRgb = 'rgb(255,127,80,0.8)'
+      break
+    case 'blue':
+      backgroundColorRgb = 'rgb(65,105,225,0.8)'
+      break
+  }
+
+  return {
+    backgroundColor: backgroundColorRgb
+  }
+})
+
+const WeatherForecastCardAfterTomorrow = styled(WeatherForecastCard, {
+  shouldForwardProp: prop => prop !== 'backgroundColor'
+})<{ backgroundColor: WeatherForecastCardBackgroundColors }>(({ backgroundColor }) => {
+  let backgroundColorRgb = 'rgb(240,230,140,0.8)'
+
+  switch (backgroundColor) {
+    case 'red':
+      backgroundColorRgb = 'rgb(255,99,71,0.8)'
+      break
+    case 'blue':
+      backgroundColorRgb = 'rgb(30,144,255,0.8)'
+      break
+  }
+
+  return {
+    backgroundColor: backgroundColorRgb
+  }
+})
 
 const WeatherForecastCardIconContainer = styled('div')({
   display: 'flex',
@@ -129,6 +164,27 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
   const tomorrowWeatherResult = useMemo(() => data?.list[1], [data])
 
   const afterTomorrowWeatherResult = useMemo(() => data?.list[2], [data])
+
+  const cardBackgroundColor = useCallback(
+    (temperature?: number): WeatherForecastCardBackgroundColors => {
+      if (
+        (unit === WeatherForecastUnitsEnum.METRIC && temperature && temperature > 35) ||
+        (unit === WeatherForecastUnitsEnum.IMPERIAL && temperature && temperature > 95)
+      ) {
+        return 'red'
+      }
+
+      if (
+        (unit === WeatherForecastUnitsEnum.METRIC && temperature && temperature < 15) ||
+        (unit === WeatherForecastUnitsEnum.IMPERIAL && temperature && temperature < 59)
+      ) {
+        return 'blue'
+      }
+
+      return 'yellow'
+    },
+    [unit]
+  )
 
   const formattedTemperature = useCallback(
     (temperature: number) => {
@@ -205,7 +261,10 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
 
       {!!data && (
         <WeatherForecastContent>
-          <WeatherForecastCard height="60%" temperature={todayWeatherResult?.main.temp} unit={unit}>
+          <WeatherForecastCard
+            height="60%"
+            backgroundColor={cardBackgroundColor(todayWeatherResult?.main.temp)}
+          >
             {!!todayWeatherResult?.weather[0].icon && (
               <WeatherForecastCardIconContainer>
                 {icon(todayWeatherResult.weather[0].icon)}
@@ -242,10 +301,9 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
             </WeatherForecastCardDataInfoContainer>
           </WeatherForecastCard>
 
-          <WeatherForecastCard
+          <WeatherForecastCardTomorrow
             height="20%"
-            temperature={tomorrowWeatherResult?.main.temp}
-            unit={unit}
+            backgroundColor={cardBackgroundColor(tomorrowWeatherResult?.main.temp)}
           >
             <WeatherForecastCardDataInfoContainer>
               <WeatherForecastCardDataInfoContainerTemperature>
@@ -260,12 +318,11 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
                 )}
               </WeatherForecastCardDataInfoContainerTemperature>
             </WeatherForecastCardDataInfoContainer>
-          </WeatherForecastCard>
+          </WeatherForecastCardTomorrow>
 
-          <WeatherForecastCard
+          <WeatherForecastCardAfterTomorrow
             height="20%"
-            temperature={afterTomorrowWeatherResult?.main.temp}
-            unit={unit}
+            backgroundColor={cardBackgroundColor(afterTomorrowWeatherResult?.main.temp)}
           >
             <WeatherForecastCardDataInfoContainer>
               <WeatherForecastCardDataInfoContainerTemperature>
@@ -279,7 +336,7 @@ export default function WeatherForecastContainer(props: WeatherForecastContainer
                 )}
               </WeatherForecastCardDataInfoContainerTemperature>
             </WeatherForecastCardDataInfoContainer>
-          </WeatherForecastCard>
+          </WeatherForecastCardAfterTomorrow>
         </WeatherForecastContent>
       )}
     </WeatherForecastContainerRoot>
