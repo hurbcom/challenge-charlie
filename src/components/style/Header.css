@@ -1,0 +1,8 @@
+.header {
+  background-color: #f3eeeb;
+  padding: 15px 5px;
+}
+
+.header__location {
+  font-size: 24px;
+}
