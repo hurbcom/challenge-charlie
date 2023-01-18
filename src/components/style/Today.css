@@ -1,3 +1,33 @@
 .today {
-  background-color: red;
+  background-color: #edbc18;
+  color: #f3eeeb;
+  display: flex;
+  padding: 20px;
+}
+
+.today__icon-container {
+  width: 375px;
+  text-align: center;
+}
+
+.today__info {
+  width: 375px;
+  font-size: 1rem;
+}
+
+.today__info__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.today__info__temperature {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+
+.today__info__wheater {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
