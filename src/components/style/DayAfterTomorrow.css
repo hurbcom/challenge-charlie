@@ -1,3 +1,20 @@
 .day-after-tomorrow {
-  background-color: green;
+  background-color: rgb(237 188 24 / 90%);
+  color: #f3eeeb;
+  padding: 20px 0;
+}
+
+.day-after-tomorrow__info {
+  margin-left: 375px;
+}
+
+.day-after-tomorrow__info__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.day-after-tomorrow__info__temperature {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
 }

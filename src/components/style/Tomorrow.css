@@ -1,3 +1,20 @@
 .tomorrow {
-  background-color: blue;
+  background-color: rgb(249 222 33 / 90%);
+  color: #f3eeeb;
+  padding: 20px 0;
+}
+
+.tomorrow__info {
+  margin-left: 375px;
+}
+
+.tomorrow__info__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.tomorrow__info__temperature {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
 }

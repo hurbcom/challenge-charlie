@@ -4,7 +4,10 @@ import './style/DayAfterTomorrow.css';
 const DayAfterTomorrow = () => {
   return (
     <div className="day-after-tomorrow">
-      <p className="day-after-tomorrow__title">Depois de Amanha</p>
+      <div className="day-after-tomorrow__info">
+        <p className="day-after-tomorrow__info__title">Depois de Amanha</p>
+        <p className="day-after-tomorrow__info__temperature">22C</p>
+      </div>
     </div>
   );
 };
