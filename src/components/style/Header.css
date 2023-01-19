@@ -10,3 +10,12 @@
   margin-left: 15px;
   font-weight: 700;
 }
+
+.header__btn-metric {
+  margin-left: auto;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #8c8986;
+  color: #8c8986;
+  font-weight: 700;
+}

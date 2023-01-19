@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import MainView from '../components/MainView';
+import { TemperatureStore } from '../context/TemperatureContext';
 import './style/Home.css';
 
 const Home = () => {
@@ -18,7 +19,9 @@ const Home = () => {
 
   return (
     <div className="home" style={{ backgroundImage: `url(${wallpaperUrl})` }}>
-      <MainView />
+      <TemperatureStore>
+        <MainView />
+      </TemperatureStore>
     </div>
   );
 };
