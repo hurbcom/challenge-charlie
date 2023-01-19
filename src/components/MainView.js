@@ -1,6 +1,6 @@
 import React from 'react';
 import DayAfterTomorrow from './DayAfterTomorrow';
-import { getWeatherByLatLong } from '../api/OpenWeather';
+import { getForecastNextDaysByLatLong, getWeatherByLatLong } from '../api/OpenWeather';
 import Header from './Header';
 import './style/MainView.css';
 import Today from './Today';
@@ -9,14 +9,17 @@ import Tomorrow from './Tomorrow';
 const MainView = () => {
   const [cityName, setCityName] = React.useState('');
   const [forecast, setForecast] = React.useState({});
+  const [tomorrowTemp, setTomorrowTemp] = React.useState({});
+  const [dayAfterTemp, setDayAfterTemp] = React.useState({});
 
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
-      getWeatherInformation(position);
+      getTodayWeatherInformation(position);
+      getNextDaysWeatherInformation(position);
     });
   }, [forecast]);
 
-  const getWeatherInformation = (position) => {
+  const getTodayWeatherInformation = (position) => {
     getWeatherByLatLong(position.coords.latitude, position.coords.longitude)
       .get()
       .then((weatherForecast) => {
@@ -31,12 +34,32 @@ const MainView = () => {
       });
   };
 
+  const getNextDaysWeatherInformation = (position) => {
+    getForecastNextDaysByLatLong(position.coords.latitude, position.coords.longitude)
+      .get()
+      .then((response) => {
+        const today = new Date();
+        const tomorrowList = response.data.list.filter((item) => {
+          return new Date(item.dt_txt).getDate() === today.getDate() + 1;
+        });
+        const dayAfterList = response.data.list.filter((item) => {
+          return new Date(item.dt_txt).getDate() === today.getDate() + 2;
+        });
+        setTomorrowTemp(
+          tomorrowList.reduce((total, next) => total + next.main.temp, 0) / tomorrowList.length
+        );
+        setDayAfterTemp(
+          dayAfterList.reduce((total, next) => total + next.main.temp, 0) / dayAfterList.length
+        );
+      });
+  };
+
   return (
     <section className="main-view">
       <Header cityName={cityName} />
       <Today forecast={forecast} />
-      <Tomorrow />
-      <DayAfterTomorrow />
+      <Tomorrow tomorrowTemp={tomorrowTemp} />
+      <DayAfterTomorrow dayAfterTemp={dayAfterTemp} />
     </section>
   );
 };

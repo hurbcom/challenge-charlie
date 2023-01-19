@@ -1,12 +1,12 @@
 import React from 'react';
 import './style/Tomorrow.css';
 
-const Tomorrow = () => {
+const Tomorrow = ({ tomorrowTemp }) => {
   return (
     <div className="tomorrow">
       <div className="tomorrow__info">
         <p className="tomorrow__info__title">Amanhã</p>
-        <p className="tomorrow__info__temperature">25C</p>
+        <p className="tomorrow__info__temperature">{Math.round(tomorrowTemp)}°C</p>
       </div>
     </div>
   );
