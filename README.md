@@ -4,8 +4,9 @@ O Charlie Challenge é um desafio frontend que objetiva criar um microsite com d
 
 ## Status
 
-O desafio se encontra incompleto. Existem aindfa alguns pontos que é necessário desenvolvimento:
+O desafio se encontra incompleto. Existem ainda alguns pontos que é necessário maior desenvolvimento:
 -   A API de tempo está sendo chamada múltiplas vezes, mais que o necessário;
 -   As mudanças de layout de acordo com o clima não estão ocorrendo;
 -   Desenvolvimento de testes para a aplicação;
 -   Mudanças de layout;
+-   Devido a um problema com o setup do Docker em minha máquina, não pude testar a dockerização do projeto;
