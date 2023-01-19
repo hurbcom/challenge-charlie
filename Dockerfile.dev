@@ -1,0 +1,11 @@
+FROM node:14-alpine
+
+ENV HOME=/home/app
+WORKDIR $HOME
+
+COPY package.json ./
+RUN yarn install
+
+EXPOSE 3000
+
+CMD ["yarn", "start"]
