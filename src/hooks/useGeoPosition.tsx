@@ -1,38 +1,52 @@
 import { useEffect, useReducer } from "react";
 
-type State = {
-    isLoading: boolean;
-    position: GeolocationPosition | null;
-    coords: null | {
-        latitude: number;
-        longitude: number;
-    };
-    error: GeolocationPositionError | string | null;
-};
+enum ActionType {
+    ERROR,
+    SUCCESS,
+    START,
+}
+
+enum Status {
+    IDLE = "idle",
+    SUCCESS = "resolved",
+    ERROR = "rejected",
+    START = "pending",
+}
+
+type LocationError = GeolocationPositionError | string | null;
 
 type Action =
-    | { type: "success"; position: GeolocationPosition }
-    | { type: "error"; error: GeolocationPositionError | string | null }
-    | { type: ErrorConstructor };
+    | { type: ActionType.START }
+    | { type: ErrorConstructor }
+    | { type: ActionType.ERROR; error: LocationError }
+    | { type: ActionType.SUCCESS; position: GeolocationPosition };
+
+type State = {
+    status: Status;
+    position: GeolocationPosition | null;
+    error: LocationError;
+};
 
 function reducer(state: State, action: Action) {
     switch (action.type) {
-        case "error": {
+        case ActionType.ERROR: {
             return {
                 ...state,
-                isLoading: false,
                 error: action.error,
+                status: Status.ERROR,
             };
         }
-        case "success": {
+        case ActionType.SUCCESS: {
             return {
                 ...state,
-                isLoading: false,
                 position: action.position,
-                coords: {
-                    latitude: action.position.coords.latitude,
-                    longitude: action.position.coords.longitude,
-                },
+                status: Status.SUCCESS,
+            };
+        }
+        case ActionType.START: {
+            return {
+                ...state,
+                status: Status.START,
             };
         }
         default:
@@ -42,26 +56,32 @@ function reducer(state: State, action: Action) {
 
 export default function useGeoPosition() {
     const [state, dispatch] = useReducer(reducer, {
-        isLoading: true,
+        status: Status.IDLE,
         position: null,
-        coords: null,
         error: null,
     });
 
     useEffect(() => {
         if (!navigator.geolocation) {
             dispatch({
-                type: "error",
+                type: ActionType.ERROR,
                 error: "Geolocation is not supported by this browser.",
             });
-            return;
         }
 
+        dispatch({ type: ActionType.START });
         navigator.geolocation.getCurrentPosition(
-            (position) => dispatch({ type: "success", position }),
-            (error) => dispatch({ type: "error", error })
+            (position) => dispatch({ type: ActionType.SUCCESS, position }),
+            (error) => dispatch({ type: ActionType.ERROR, error })
         );
     }, []);
 
-    return state;
+    const { status } = state;
+
+    return {
+        isLoading: status === "idle" || status === "pending",
+        isResolved: status === "resolved",
+        isRejected: status === "rejected",
+        ...state,
+    };
 }
