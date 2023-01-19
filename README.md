@@ -44,10 +44,10 @@ E para disponibilização, o Docker.
 
 ## Melhorias futuras
 - Por questões de tempo não fiz testes unitários, como melhoria do código implementaria testes utilizando react-testing-library e jest.
-- Melhorar a responsividade do layout, que apesar de funcionar em vários tamanhos acredito que o layout poderia ser mais modificado pra ficar mais user-friendly na versão mobile.
+- Melhorar a responsividade do layout, que apesar de funcionar em vários tamanhos acredito que o layout poderia ser modificado pra ficar mais user-friendly na versão mobile.
 - Colocar animações e ícones mais bonitos que os fornecidos pela API do OpenWeather.
 - Configurar um Docker pra produção.
 - Fazer um melhor tratamento de erro pra exibir pro usuário caso alguma API tenha problemas.
 
 ## Contato
-- Agradeço a experiência e segue meu [Linkedin:](https://www.linkedin.com/in/nataliamayer/)
+- Agradeço a experiência e segue meu [Linkedin](https://www.linkedin.com/in/nataliamayer/)
