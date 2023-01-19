@@ -7,22 +7,29 @@ As cores de fundo em degradê são referentes às temperaturas, e ao clicar nest
 
 ## Tecnologias
 O projeto foi criado com React, utilizando Typescript e pra estilização o Styled Components.
+
 Foi configurado o Webpack do zero.
+
 Para as chamadas às APIs foi utilizado o Axios.
+
 E para disponibilização, o Docker.
 
 ## Como executar
 Clonar diretorio
   git clone https://github.com/mayersita/challenge-charlie.git
+
 Executar o projeto localmente
   npm install
+
 Em seguida
   npm start
+
 Navegar para
   http://localhost:3000/
 
 Executar usando Docker
   docker-compose up
+
 Navegar para
   http://localhost:3000/
 
