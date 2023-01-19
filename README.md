@@ -15,22 +15,28 @@ Para as chamadas às APIs foi utilizado o Axios.
 E para disponibilização, o Docker.
 
 ## Como executar
-Clonar diretorio
+Clonar diretorio:
+
   git clone https://github.com/mayersita/challenge-charlie.git
 
-Executar o projeto localmente
+Executar o projeto localmente:
+
   npm install
 
-Em seguida
+Em seguida:
+
   npm start
 
-Navegar para
+Navegar para:
+
   http://localhost:3000/
 
-Executar usando Docker
+Executar usando Docker:
+
   docker-compose up
 
-Navegar para
+Navegar para:
+
   http://localhost:3000/
 
 
