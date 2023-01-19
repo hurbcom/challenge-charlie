@@ -1,42 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { getBingBackgroung } from "../../../services/getBingBackground";
-import { getLocationByCoordinates, getLocationByLocalName } from "../../../services/getLocation";
-import { getCurrentWeather, getForecastForNextDays } from "../../../services/getWeather";
-import Banner from "../../atoms/Banner";
-import Input from "../../atoms/Input";
+import React, { useEffect, useState } from "react"
+import { getBingBackgroung } from "../../../services/getBingBackground"
+import { getLocationByCoordinates, getLocationByLocalName } from "../../../services/getLocation"
+import { getCurrentWeather, getForecastForNextDays } from "../../../services/getWeather"
+import Banner from "../../atoms/Banner"
+import Input from "../../atoms/Input"
 import loadingGif from  '../../../assets/icons/loading.gif'
-import { Container, Wrapper } from "./styles";
-import { CurrentWeatherProps, ForecastWeatherProps, LocationProps } from "./types";
-import { celsiusToFahrenheit, colorByTemperature, degToCardinal, firstLetterUppercase, validateInput } from "../../../utils/functions";
+import { Container, Wrapper } from "./styles"
+import { CurrentWeatherProps, ForecastWeatherProps, LocationProps } from "./types"
+import { celsiusToFahrenheit, colorByTemperature, degToCardinal, firstLetterUppercase, validateInput } from "../../../utils/functions"
+import { INITAL_STATE } from "../../../utils/consts"
 
 const Weather: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [isCelsius, setIsCelsius] = useState(true)
-  const [locationName, setLocationName] = useState<LocationProps>({
-    results: []
-  })
-  const [currentWeather, setCurrentWeather] = useState<CurrentWeatherProps>({
-    wind: {
-      speed: 0,
-      deg: 0,
-    },
-    weather: [
-      {
-        main: '',
-        description: '',
-        icon: 0,
-      }
-    ],
-    main: {
-      temp: 0,
-      pressure: 0,
-      humidity: 0,
-    }
-  })
-  const [forecast, setForecast] = useState<ForecastWeatherProps>({
-    list: []
-  })
-  const [bingBackground, setBingBackground] = useState('https://www.bing.com/th?id=OHR.SessileOaks_PT-BR4247012653_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp')
+  const [locationName, setLocationName] = useState<LocationProps>(INITAL_STATE.LOCATION_STATE)
+  const [currentWeather, setCurrentWeather] = useState<CurrentWeatherProps>(INITAL_STATE.CURRENT_WEATHER)
+  const [forecast, setForecast] = useState<ForecastWeatherProps>(INITAL_STATE.FORECAST)
+  const [bingBackground, setBingBackground] = useState(INITAL_STATE.BING)
   const [localName, setLocalName] = useState('')
 
   const callLocationByCoordinates = async (latitude: number, longitude: number) =>  {
@@ -65,7 +45,6 @@ const Weather: React.FC = () => {
      setLocationName(response)
     }
   }
-
 
   useEffect(() => {
     if (locationName.results[0]?.components) {
@@ -131,12 +110,9 @@ const Weather: React.FC = () => {
           backgroundColor={colorByTemperature(forecast.list[12]?.main?.temp)}
           temperatureConverter={() => setIsCelsius(!isCelsius)}/>
        </Wrapper>
-  }
-
-
-
+    }
   </Container>
   )
-};
+}
 
 export default Weather

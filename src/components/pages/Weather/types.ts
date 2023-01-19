@@ -3,13 +3,11 @@ export interface CurrentWeatherProps {
     speed: number
     deg: number
   }
-  weather: [
-    {
-      main: string
-      description: string
-      icon: number
-    }
-  ]
+  weather: {
+    main: string
+    description: string
+    icon: number
+  }[]
   main: {
     temp: number
     pressure: number

@@ -6,7 +6,7 @@ export const Container = styled.div<{ backgroundUrl: string }>`
   display: flex;
   flex-direction: column;
   ${({ backgroundUrl }) => {
-       return `background-image: url(${backgroundUrl});`
+      return `background-image: url(${backgroundUrl});`
     }}
   align-items: center;
 `

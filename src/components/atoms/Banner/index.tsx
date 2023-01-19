@@ -1,6 +1,6 @@
-import React from 'react';
-import { ContainerBanner, Description, ImageArea, LeftArea, Line, SmallLine, SpaceBetween } from './styles';
-import { BannerProps } from './types';
+import React from 'react'
+import { ContainerBanner, Description, ImageArea, LeftArea, Line, SmallLine, SpaceBetween } from './styles'
+import { BannerProps } from './types'
 
 
 const Banner = ({
@@ -21,7 +21,7 @@ const Banner = ({
       </LeftArea>
       <Description>
         <Line>{dayTitle}</Line>
-        <Line onClick={temperatureConverter} tempMouseOver={true}>{temperature}</Line>
+        <Line onClick={temperatureConverter} tempMouseHover={true}>{temperature}</Line>
         {
           additionalInfo &&
           <>

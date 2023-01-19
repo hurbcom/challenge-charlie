@@ -31,13 +31,13 @@ export const Description = styled.div`
   flex-direction: column;
 
 `
-export const Line = styled.p<{ tempMouseOver?: boolean }>`
+export const Line = styled.p<{ tempMouseHover?: boolean }>`
   color: ${Colors.WHITE};
   font-size: 2.5vw;
   font-weight: 600;
   margin:16px;
   &:hover {
-    cursor: ${({tempMouseOver}) => tempMouseOver ? 'pointer' : ''};
+    cursor: ${({tempMouseHover}) => tempMouseHover ? 'pointer' : ''};
   }
 
 `
@@ -47,9 +47,9 @@ export const SpaceBetween = styled.div`
 `
 
 export const SmallLine = styled.p`
-    font-size: 1.5vw;
-    line-height: 14px;
-    font-weight: 600;
-    margin: 14px;
+  font-size: 1.5vw;
+  line-height: 14px;
+  font-weight: 600;
+  margin: 14px;
   color: ${Colors.WHITE};
 `

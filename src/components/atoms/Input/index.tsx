@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { InputContainer, InputCustom, Image } from './styles';
+import React, { useState } from 'react'
+import { InputContainer, InputCustom, Image } from './styles'
 import Bussola from  '../../../assets/icons/compass.svg'
-import { InputProps } from './types';
+import { InputProps } from './types'
 
 
 
@@ -27,4 +27,4 @@ const Input = ({
 
 }
 
-export default Input;
+export default Input
