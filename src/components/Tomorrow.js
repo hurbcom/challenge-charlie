@@ -10,8 +10,9 @@ const Tomorrow = ({ tomorrowTemp }) => {
       <div className="tomorrow__info">
         <p className="tomorrow__info__title">Amanhã</p>
         <p className="tomorrow__info__temperature">
-          {Math.round(tomorrowTemp)}
-          {temperatureContext.isFarenheit ? '°F' : '°C'}
+          {tomorrowTemp
+            ? `${Math.round(tomorrowTemp)}${temperatureContext.isFarenheit ? '°F' : '°C'}`
+            : 'Carregando...'}
         </p>
       </div>
     </div>

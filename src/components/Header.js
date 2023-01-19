@@ -13,7 +13,7 @@ const Header = ({ cityName }) => {
   return (
     <header className="header">
       <ExploreOutlinedIcon style={{ fontSize: '30px' }} />
-      <p className="header__location">{cityName}</p>
+      <p className="header__location">{cityName ? cityName : 'Carregando...'}</p>
       <button className="header__btn-metric" onClick={toggleFarenheit}>
         {temperatureContext.isFarenheit ? '°F' : '°C'}
       </button>

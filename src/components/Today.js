@@ -14,8 +14,9 @@ const Today = ({ forecast }) => {
       <div className="today__info">
         <p className="today__info__title">Hoje</p>
         <p className="today__info__temperature">
-          {Math.round(forecast.temperature)}
-          {temperatureContext.isFarenheit ? '°F' : '°C'}
+          {forecast.temperature
+            ? `${Math.round(forecast.temperature)}${temperatureContext.isFarenheit ? '°F' : '°C'}`
+            : 'Carregando...'}
         </p>
         <p className="today__info__wheater">{forecast.weather}</p>
         <p>Vento: {forecast.windSpeed} km/h</p>

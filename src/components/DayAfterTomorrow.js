@@ -10,8 +10,9 @@ const DayAfterTomorrow = ({ dayAfterTemp }) => {
       <div className="day-after-tomorrow__info">
         <p className="day-after-tomorrow__info__title">Depois de Amanha</p>
         <p className="day-after-tomorrow__info__temperature">
-          {Math.round(dayAfterTemp)}
-          {temperatureContext.isFarenheit ? '°F' : '°C'}
+          {dayAfterTemp
+            ? `${Math.round(dayAfterTemp)}${temperatureContext.isFarenheit ? '°F' : '°C'}`
+            : 'Carregando...'}
         </p>
       </div>
     </div>
