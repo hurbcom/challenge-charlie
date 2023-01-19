@@ -2,7 +2,7 @@ import React from 'react';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import './style/Today.css';
 
-const Today = () => {
+const Today = ({ forecast }) => {
   return (
     <div className="today">
       <div className="today__icon-container">
@@ -10,11 +10,11 @@ const Today = () => {
       </div>
       <div className="today__info">
         <p className="today__info__title">Hoje</p>
-        <p className="today__info__temperature">32C</p>
-        <p className="today__info__wheater">Ensolarado</p>
-        <p>Vento: NO 6.4km/h</p>
-        <p>Humidade: 78%</p>
-        <p>Pressao: 1003hPA</p>
+        <p className="today__info__temperature">{Math.round(forecast.temperature)}°C</p>
+        <p className="today__info__wheater">{forecast.weather}</p>
+        <p>Vento: {forecast.windSpeed} km/h</p>
+        <p>Humidade: {forecast.humidity}%</p>
+        <p>Pressão: {forecast.pressure} hPA</p>
       </div>
     </div>
   );
