@@ -1,0 +1,10 @@
+version: "4.13"
+
+services:
+  app:
+    container_name: challenge-charlie-c
+    image: challenge-charlie-i
+    build:
+      context: .
+    ports:
+      - 8080:80
