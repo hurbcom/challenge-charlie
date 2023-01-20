@@ -1,0 +1,106 @@
+.background {
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dashboardCard {
+    width: 55%;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    font-family: Sans-serif;
+    opacity: 0.9;
+}
+
+.cardClimas {
+    font-size: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    color: #ffffff;
+}
+
+.today {
+    height: 57%;
+}
+
+.tomorrow {
+    height: 20%;
+    background-color: rgba(250, 204, 5, 1);
+}
+
+.depoisAmanha {
+    height: 20%;
+    background-color: #b59502;
+}
+
+.cardText {
+    height: calc(100% - 20px);
+    padding: 10px;
+}
+
+.cardNextDays {
+    padding-right: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.subtitle {
+    font-size: 25px;
+}
+
+.temperatura {
+    margin-top: 10px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+
+.iconTempo {
+    color: #ffffff;
+    height: 200%;
+}
+
+.cardIconTempo {
+    width: 55%;
+    height: 150px;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.linearProgress {
+    height: 15px;
+    width: 100%;
+}
+
+.iconCelsius {
+    height: 80px;
+    margin-left: -15px;
+}
+
+.temperaturaIcon {
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    height: 50px;
+}
+
+.cardBlank {
+    width: 55%;
+}
+
+.cardText {
+    margin-top: 30px;
+    font-size: 25px;
+}
