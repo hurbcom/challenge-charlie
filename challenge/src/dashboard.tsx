@@ -180,7 +180,6 @@ function App() {
                             <div className="subtitle">
                                 Pressão: {previsaoHoje.pressao}hPA
                             </div>
-                            <div style={{ height: 40 }} />
                         </div>
                     </div>
                     <div
