@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const URL = "https://api.opencagedata.com/geocode/v1/json";
-const key = "c63386b4f77e46de817bdf94f552cddf";
 const linguage = "pt";
 
 /**
@@ -10,5 +8,7 @@ const linguage = "pt";
  * @returns - requisição
  */
 export default function getOpenCageAPI(coordinates: string) {
-    return axios.get(`${URL}?key=${key}&q=${coordinates}&language=${linguage}`);
+    return axios.get(
+        `${process.env.OPENCAGE_API}?key=${process.env.OPENCAGE_KEY}&q=${coordinates}&language=${linguage}`
+    );
 }

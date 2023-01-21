@@ -40,7 +40,6 @@ function App() {
     useEffect(() => {
         getGeolocation();
         ImageBingApi().then((res) => {
-            console.log(res);
             setURLBackground(res);
         });
     }, []);
