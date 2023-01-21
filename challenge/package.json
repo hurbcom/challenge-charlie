@@ -4,7 +4,7 @@
   "description": "desafio",
   "scripts": {
     "start": "ENVIROMENT=development webpack serve --mode development",
-    "build": "ENVIROMENT=production webpack --mode production"
+    "build": "ENVIROMENT=production webpack serve --mode production"
   },
   "author": "",
   "license": "ISC",

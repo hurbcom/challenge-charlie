@@ -10,12 +10,15 @@ module.exports = (env) => ({
     resolve: {
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
     },
+    performance: {
+        hints: process.env.NODE_ENV === "production" ? "warning" : false,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: "public/index.html",
         }),
         new Dotenv({
-            path: `.env.${process.env.ENVIROMENT}`
+            path: `.env.${process.env.ENVIROMENT}`,
         }),
     ],
     devServer: {
