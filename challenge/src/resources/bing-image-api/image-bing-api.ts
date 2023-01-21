@@ -1,10 +1,19 @@
-const URL: string =
-    "https://www.bing.com/th?id=OHR.WhiteSands_PT-BR3735875439_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp";
+import axios from "axios";
+import ImageBingModel from "./image-bing-model";
 
 /**
  * Retorna a imagem de fundo do Bing
  * @returns - URL da imagem
  */
-export default function getBingImage() {
-    return URL;
+export default async function getBingImage() {
+    return axios.get(
+        `https://api.allorigins.win/get?url=${encodeURIComponent(
+            "https://www.bing.com/HPImageArchive.aspx?format=js&n=1"
+        )}`
+    ).then(async (response) => {
+        if (response.data) {
+            const imageResult: ImageBingModel = JSON.parse(response.data.contents);
+            return `https://www.bing.com` + imageResult.images[0].url;
+        }
+    });
 }

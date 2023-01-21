@@ -10,6 +10,7 @@ type ImageBingModel = {
  */
 type ImageModel = {
     url: string;
+    copyrightlink: string;
 };
 
 export default ImageBingModel;
