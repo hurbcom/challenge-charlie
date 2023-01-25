@@ -1,9 +1,10 @@
+import WeatherForecast from "@/components/WeatherForecast";
 import * as S from "@/styles";
 
 export default function Home({ imageURL }: { imageURL?: string }) {
     return (
         <S.Wrapper imageURL={imageURL}>
-            <h1>Weather Forecast</h1>
+            <WeatherForecast />
         </S.Wrapper>
     );
 }
