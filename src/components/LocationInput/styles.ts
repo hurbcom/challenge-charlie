@@ -66,6 +66,7 @@ export const List = styled.ul`
         max-height: 420px;
         overflow-y: scroll;
         background-color: ${theme.colors.white};
+        z-index: 1;
     `}
 `;
 

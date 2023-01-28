@@ -1,21 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { CoordsProps } from "@/types";
+import { CoordsProps, OpenWeatherMapResponse } from "@/types";
 import LocationInput from "../LocationInput";
+import ForecastInfo from "../ForecastInfo";
 
 import * as S from "./styles";
 
 export default function WeatherForecast() {
     const [locationCoords, setLocationCoords] = useState<CoordsProps>();
+    const [weatherData, setWeatherData] = useState<OpenWeatherMapResponse>();
+    const [isLoadingWeatherData, setIsLoadingWeatherData] = useState(false);
+
+    useEffect(() => {
+        if (locationCoords) {
+            setIsLoadingWeatherData(true);
+            fetch(
+                `https://openweathermap.org/data/2.5/onecall?lat=${locationCoords.latitude}&lon=${locationCoords.longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_OPEN_WEATHER_KEY}`
+            )
+                .then((res) => res.json())
+                .then((data) => setWeatherData(data))
+                .finally(() => setIsLoadingWeatherData(false));
+        }
+    }, [locationCoords]);
 
     return (
         <S.Wrapper>
             <LocationInput setLocationCoords={setLocationCoords} />
-            {locationCoords && (
-                <>
-                    <p>Latitude: {locationCoords.latitude}</p>
-                    <p>Longitude: {locationCoords.longitude}</p>
-                </>
+            {locationCoords && isLoadingWeatherData ? (
+                <S.WeatherDataLoading>
+                    <span>Checking the weather...</span>
+                </S.WeatherDataLoading>
+            ) : (
+                weatherData && (
+                    <>
+                        <ForecastInfo
+                            day="today"
+                            weatherData={weatherData.daily[0]}
+                        />
+                        <ForecastInfo
+                            day="tomorrow"
+                            weatherData={weatherData.daily[1]}
+                        />
+                        <ForecastInfo
+                            day="afterTomorrow"
+                            weatherData={weatherData.daily[2]}
+                        />
+                    </>
+                )
             )}
         </S.Wrapper>
     );

@@ -20,5 +20,28 @@ export type LocationInfo = {
 };
 
 export type OpenCageResponse = {
-    results: [LocationInfo];
+    results: LocationInfo[];
+};
+
+export type OpenWeatherMapResponse = {
+    daily: DailyWeatherProps[];
+};
+
+export type DailyWeatherProps = {
+    dt: number;
+    temp: {
+        day: number;
+    };
+    pressure: number;
+    humidity: number;
+    wind_speed: number;
+    wind_deg: number;
+    weather: [
+        {
+            id: number;
+            main: string;
+            description: string;
+            icon: string;
+        }
+    ];
 };
