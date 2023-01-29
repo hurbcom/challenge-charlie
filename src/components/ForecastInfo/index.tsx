@@ -56,6 +56,13 @@ export default function ForecastInfo({ day, weatherData }: ForecastInfoProps) {
         return "/icons/atmosphere.svg";
     }
 
+    function getDirection(angle: number) {
+        var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+        var index =
+            Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
+        return directions[index];
+    }
+
     return (
         <S.Wrapper bgColor={getColor()} day={day}>
             {weatherData && (
@@ -79,7 +86,10 @@ export default function ForecastInfo({ day, weatherData }: ForecastInfoProps) {
                                 <S.Subtitle>
                                     {weatherData.weather[0].description}
                                 </S.Subtitle>
-                                <p>Wind: {weatherData.wind_speed}km/h</p>
+                                <p>
+                                    Wind: {getDirection(weatherData.wind_deg)}{" "}
+                                    {weatherData.wind_speed}km/h
+                                </p>
                                 <p>Humidity: {weatherData.humidity}%</p>
                                 <p>Pressure: {weatherData.pressure}hPa</p>
                             </S.Details>
