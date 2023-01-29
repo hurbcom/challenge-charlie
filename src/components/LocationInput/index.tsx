@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import CompassIcon from "../icons/compass";
 import useGeoPosition from "@/hooks/useGeoPosition";
@@ -18,7 +19,14 @@ export default function LocationInput({ setLocationCoords }: Props) {
     const [data, setData] = useState<OpenCageResponse | null>(null);
     const [isListOpen, setIsListOpen] = useState(false);
 
-    const { position, status } = useGeoPosition();
+    const { position, status, error } = useGeoPosition();
+
+    useEffect(() => {
+        if (error)
+            toast.error("Your location is not available", {
+                id: "geoposition",
+            });
+    }, [error]);
 
     useEffect(() => {
         if (position?.coords) {
@@ -34,7 +42,12 @@ export default function LocationInput({ setLocationCoords }: Props) {
                         longitude: geometry.lng,
                     });
                 })
-                .finally(() => setLocationLoading(false));
+                .finally(() => setLocationLoading(false))
+                .catch(() =>
+                    toast.error("Error searching for your location", {
+                        id: "first-location",
+                    })
+                );
         }
     }, [position, setLocationCoords]);
 
@@ -45,7 +58,12 @@ export default function LocationInput({ setLocationCoords }: Props) {
             setIsListOpen(true);
             fetch(`${url}&q=${value}`)
                 .then((res) => res.json())
-                .then((data: OpenCageResponse) => setData(data));
+                .then((data: OpenCageResponse) => setData(data))
+                .catch(() =>
+                    toast.error("Error searching for your location", {
+                        id: "search-location",
+                    })
+                );
         } else {
             setData(null);
         }
@@ -66,7 +84,7 @@ export default function LocationInput({ setLocationCoords }: Props) {
                 <S.IconWrapper>
                     <CompassIcon width={30} height={30} />
                 </S.IconWrapper>
-                {status === "pending" || locationLoading ? (
+                {!error && (status === "pending" || locationLoading) ? (
                     <S.LoadingMessage>
                         Getting your location...
                     </S.LoadingMessage>

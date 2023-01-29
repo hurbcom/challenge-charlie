@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import { CoordsProps, OpenWeatherMapResponse } from "@/types";
 import LocationInput from "../LocationInput";
@@ -19,7 +20,12 @@ export default function WeatherForecast() {
             )
                 .then((res) => res.json())
                 .then((data) => setWeatherData(data))
-                .finally(() => setIsLoadingWeatherData(false));
+                .finally(() => setIsLoadingWeatherData(false))
+                .catch(() =>
+                    toast.error("Error checking the weather on your location", {
+                        id: "weather",
+                    })
+                );
         }
     }, [locationCoords]);
 
