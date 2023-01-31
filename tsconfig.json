@@ -3,7 +3,9 @@
     "target": "es5",
     "module": "es6",
     "allowJs": true,
-    "strict": true
+    "strict": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": ["src", "tsconfig.json"]
 }
