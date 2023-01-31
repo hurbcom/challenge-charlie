@@ -22,7 +22,8 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: '@svgr/webpack',
+        issuer: /\.[jt]sx?$/,
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }],
       },
     ],
   },
