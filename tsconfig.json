@@ -2,10 +2,16 @@
   "compilerOptions": {
     "target": "es5",
     "module": "es6",
-    "allowJs": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
   },
   "include": ["src", "tsconfig.json"]
 }
