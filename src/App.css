@@ -1,0 +1,21 @@
+:root {
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, input {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+}
+
+.app__container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
