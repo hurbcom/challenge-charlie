@@ -1,0 +1,11 @@
+.weatherdetail__container strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.weatherdetail__container p {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
