@@ -1,5 +1,5 @@
 export namespace OpenWeatherApi {
-  export type CurrentWeatherResult = {
+  export type WeatherObjectResult = {
     weather: [
       {
         description: string;
@@ -17,7 +17,9 @@ export namespace OpenWeatherApi {
     dt: number;
   };
 
-  export type WeatherForecastResult = {};
+  export type WeatherForecastResult = {
+    list: WeatherObjectResult[];
+  };
 }
 
 export namespace OpenCageApi {
