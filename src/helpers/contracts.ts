@@ -15,6 +15,7 @@ export namespace OpenWeatherApi {
       speed: number;
     };
     dt: number;
+    dt_txt: string;
   };
 
   export type WeatherForecastResult = {

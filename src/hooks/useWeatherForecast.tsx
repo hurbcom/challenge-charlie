@@ -3,7 +3,7 @@ import {
   findCurrentWeatherByCityName,
   findWeatherForecastByCityName,
 } from '../services/weather';
-import { WeatherInformation } from '../utils/models';
+import { WeatherInformation } from '../helpers/models';
 
 export function useWeatherForecast(cityName?: string) {
   const [loading, setLoading] = useState(false);

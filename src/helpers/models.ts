@@ -6,6 +6,10 @@ export type WeatherInformation = {
   humidity: string;
   pressure: string;
   icon: string;
+  colors: {
+    bgColor: string;
+    textColor: string;
+  };
 };
 
 export type UserLocation = {

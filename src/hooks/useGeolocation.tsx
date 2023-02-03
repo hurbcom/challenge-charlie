@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { findCityByCoordinates } from '../services/geocode';
-import { UserLocation } from '../utils/models';
+import { UserLocation } from '../helpers/models';
 
 export function useGeolocation() {
   const [loading, setLoading] = useState(true);

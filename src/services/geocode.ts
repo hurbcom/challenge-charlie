@@ -1,6 +1,6 @@
 import { httpService } from './_http';
-import { OpenCageApi } from '../utils/contracts';
-import { UserCoordinates, UserLocation } from '../utils/models';
+import { OpenCageApi } from '../helpers/contracts';
+import { UserCoordinates, UserLocation } from '../helpers/models';
 
 const openCageKey = '702ce6a0e9ae481b81e26693edb22926';
 
@@ -21,9 +21,7 @@ export const findCityByCoordinates = async (
     geocodeUrl
   );
 
-  if (result) {
-    return mapOpenCageApiResult(result);
-  }
+  if (!result) return null;
 
-  return null;
+  return mapOpenCageApiResult(result);
 };
