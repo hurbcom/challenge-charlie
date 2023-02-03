@@ -28,12 +28,13 @@ const mapWeatherObjectApiResult = (
   };
 };
 
-const openWeatherApiKey = '772920597e4ec8f00de8d376dfb3f094';
+const openWeatherApiUrl = process.env.OPEN_WEATHER_API_URL;
+const openWeatherApiKey = process.env.OPEN_WEATHER_API_KEY;
 const formatOpenWeatherApiUrl = (term: string, service: OpenWeatherApi.ServiceType) => {
-  const url = new URL(`http://api.openweathermap.org/data/2.5/${service}`);
+  const url = new URL(`${openWeatherApiUrl}${service}`);
 
   url.searchParams.append('q', term);
-  url.searchParams.append('appid', openWeatherApiKey);
+  url.searchParams.append('appid', openWeatherApiKey!);
   url.searchParams.append('units', 'metric');
   url.searchParams.append('lang', 'pt_br');
 

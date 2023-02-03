@@ -2,7 +2,8 @@ import { httpService } from './_http';
 import { OpenCageApi } from '../helpers/contracts';
 import { UserCoordinates, UserLocation } from '../helpers/models';
 
-const openCageKey = '702ce6a0e9ae481b81e26693edb22926';
+const openCageApiUrl = process.env.OPEN_CAGE_API_URL;
+const openCageApiKey = process.env.OPEN_CAGE_API_KEY;
 
 type CityByCoordinatesResultService = UserLocation | null;
 
@@ -16,7 +17,7 @@ const mapOpenCageApiResult = (data: OpenCageApi.CityByCoordinatesResult) => {
 export const findCityByCoordinates = async (
   coordinates: UserCoordinates
 ): Promise<CityByCoordinatesResultService> => {
-  const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json?q=${coordinates.latitude},%2B${coordinates.longitude}&key=${openCageKey}`;
+  const geocodeUrl = `${openCageApiUrl}?q=${coordinates.latitude},%2B${coordinates.longitude}&key=${openCageApiKey}`;
   const result = await httpService.get<OpenCageApi.CityByCoordinatesResult>(geocodeUrl);
 
   if (!result) return null;
