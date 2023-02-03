@@ -1,0 +1,44 @@
+.day-box__container {
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  height: 160px;
+}
+
+.day-box__container.--expanded {
+  flex: 1;
+}
+
+.day-box__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-box__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
+  grid-column-start: 2;
+}
+
+.day-box__temperature {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-box__temperature button {
+  background: transparent;
+  border: 0;
+  width: fit-content;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.day-box__temperature button,
+.day-box__temperature span {
+  color: inherit;
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: uppercase;
+}

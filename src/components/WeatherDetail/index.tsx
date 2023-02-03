@@ -12,10 +12,10 @@ interface WeatherDetailProps {
 export function WeatherDetail({ details }: WeatherDetailProps) {
   return (
     <div className="weatherdetail__container">
-      <strong>{details.description}</strong>
-      <p>Vento: {details.wind}</p>
-      <p>Humidade: {details.humidity}</p>
-      <p>Pressão: {details.pressure}</p>
+      <strong>{details?.description}</strong>
+      <p>Vento: {details?.wind}</p>
+      <p>Humidade: {details?.humidity}</p>
+      <p>Pressão: {details?.pressure}</p>
     </div>
   );
 }
