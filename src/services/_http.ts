@@ -1,4 +1,4 @@
-async function get<Type>(url: string): Promise<Type | null> {
+async function get<Type>(url: string | URL): Promise<Type | null> {
   try {
     const response = await fetch(url);
     if (!response.ok) return null;

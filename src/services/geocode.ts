@@ -17,9 +17,7 @@ export const findCityByCoordinates = async (
   coordinates: UserCoordinates
 ): Promise<CityByCoordinatesResultService> => {
   const geocodeUrl = `https://api.opencagedata.com/geocode/v1/json?q=${coordinates.latitude},%2B${coordinates.longitude}&key=${openCageKey}`;
-  const result = await httpService.get<OpenCageApi.CityByCoordinatesResult>(
-    geocodeUrl
-  );
+  const result = await httpService.get<OpenCageApi.CityByCoordinatesResult>(geocodeUrl);
 
   if (!result) return null;
 

@@ -21,6 +21,11 @@ export namespace OpenWeatherApi {
   export type WeatherForecastResult = {
     list: WeatherObjectResult[];
   };
+
+  export enum ServiceType {
+    WEATHER = 'weather',
+    FORECAST = 'forecast',
+  }
 }
 
 export namespace OpenCageApi {
