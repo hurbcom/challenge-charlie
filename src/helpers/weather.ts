@@ -1,10 +1,11 @@
 import { getColorByTemperatureAndIndex } from './colors';
+import { handleTemperatureObject } from './temperature';
+import { handleWindLabel } from './wind';
 import {
   TemperatureScales,
   WeatherInformation,
   WeatherInformationFormatted,
 } from './models';
-import { handleTemperatureObject } from './temperature';
 
 interface FormatWeatherForecastProps {
   weather: WeatherInformation;
@@ -25,9 +26,9 @@ export const formatWeatherForecast = (
     day: daysMap[index],
     temperature: handleTemperatureObject(weather.temperature, scale),
     description: weather.description,
-    wind: `${weather.wind}`,
-    humidity: `${weather.humidity}`,
-    pressure: `${weather.pressure}hPa`,
+    wind: handleWindLabel(weather.wind.speed, weather.wind.deg),
+    humidity: `${weather.humidity}%`,
+    pressure: `${weather.pressure}hPA`,
     icon: `http://openweathermap.org/img/wn/${weather.icon}@4x.png`,
     colors: getColorByTemperatureAndIndex(weather.temperature.value, index),
   };

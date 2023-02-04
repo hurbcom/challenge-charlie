@@ -13,6 +13,7 @@ export namespace IOpenWeatherApi {
     };
     wind: {
       speed: number;
+      deg: number;
     };
     dt: number;
     dt_txt: string;

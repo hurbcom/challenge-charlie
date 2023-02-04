@@ -8,7 +8,10 @@ export type WeatherInformation = {
   day: number;
   temperature: TemperatureObject;
   description: string;
-  wind: number;
+  wind: {
+    speed: number;
+    deg: number;
+  };
   humidity: number;
   pressure: number;
   icon: string;

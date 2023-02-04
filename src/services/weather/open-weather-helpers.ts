@@ -43,7 +43,10 @@ export const mapOpenWeatherObjectApiResult = (
       label: '',
     },
     description: data.weather[0].description,
-    wind: data.wind.speed,
+    wind: {
+      deg: data.wind.deg,
+      speed: data.wind.speed,
+    },
     humidity: data.main.humidity,
     pressure: data.main.pressure,
     icon: data.weather[0].icon,
