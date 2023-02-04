@@ -1,4 +1,4 @@
-export namespace OpenWeatherApi {
+export namespace IOpenWeatherApi {
   export type WeatherObjectResult = {
     weather: [
       {
@@ -26,15 +26,4 @@ export namespace OpenWeatherApi {
     WEATHER = 'weather',
     FORECAST = 'forecast',
   }
-}
-
-export namespace OpenCageApi {
-  export type CityByCoordinatesResult = {
-    results: Array<{
-      components: {
-        city: string;
-        state: string;
-      };
-    }>;
-  };
 }
