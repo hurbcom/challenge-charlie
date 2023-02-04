@@ -1,10 +1,11 @@
 import './styles.css';
 import { WeatherDetail } from '../WeatherDetail';
-import { WeatherInformation } from '../../helpers/models';
+import { WeatherInformationFormatted } from '../../helpers/models';
 
 interface DayBoxContainerPros {
   colors: { bgColor: string; textColor: string };
-  weather: WeatherInformation;
+  weather: WeatherInformationFormatted;
+  toogleScale: () => void;
   showDetail?: boolean;
 }
 
@@ -16,7 +17,12 @@ function WeatherIcon(props: { icon: string }) {
   );
 }
 
-export function DayBoxContainer({ colors, weather, showDetail }: DayBoxContainerPros) {
+export function DayBoxContainer({
+  colors,
+  weather,
+  toogleScale,
+  showDetail,
+}: DayBoxContainerPros) {
   const weatherIcon = showDetail && <WeatherIcon icon={weather.icon} />;
   const weatherDetails = showDetail && <WeatherDetail details={weather!} />;
 
@@ -29,8 +35,10 @@ export function DayBoxContainer({ colors, weather, showDetail }: DayBoxContainer
 
       <div className="day-box__info">
         <div className="day-box__temperature">
-          <button type="button">{weather.day}</button>
-          <span>{weather.temperature}</span>
+          <span>{weather.day}</span>
+          <button type="button" onClick={toogleScale}>
+            {weather.temperature.label}
+          </button>
         </div>
 
         {weatherDetails}

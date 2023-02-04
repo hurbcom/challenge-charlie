@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SearchField } from '../../components/SearchField';
 import { DayBoxContainer } from '../../components/DayBoxContainer';
 import { DayBoxFallback } from '../../components/DayBoxFallback';
-import { UserLocation } from '../../helpers/models';
+import { TemperatureScales, UserLocation } from '../../helpers/models';
 import { useWeatherForecast } from '../../hooks/useWeatherForecast';
 import CompassIcon from '../../assets/icons/compass.svg';
 
@@ -13,7 +13,17 @@ interface WeatherPageProps {
 
 export function WeatherPage({ location }: WeatherPageProps) {
   const [cityName, setCityName] = useState(location?.city || '');
-  const { weatherForecast, loading } = useWeatherForecast(cityName);
+  const [scale, setScale] = useState(TemperatureScales.DEFAULT);
+
+  const { weatherForecastFormatted, loading } = useWeatherForecast(scale, cityName);
+
+  const toogleTemperatureScale = () => {
+    const nextScale =
+      scale === TemperatureScales.CELSIUS
+        ? TemperatureScales.FAHRENHEIT
+        : TemperatureScales.CELSIUS;
+    setScale(nextScale);
+  };
 
   return (
     <div className="page-weather__container">
@@ -25,13 +35,14 @@ export function WeatherPage({ location }: WeatherPageProps) {
       {loading && <p className="page-weather__message">carregando..</p>}
 
       <main className="page-weather__content">
-        {weatherForecast.length === 0 && <DayBoxFallback />}
+        {weatherForecastFormatted.length === 0 && <DayBoxFallback />}
 
-        {weatherForecast.map((weatherForecast, i) => (
+        {weatherForecastFormatted.map((weatherForecast, i) => (
           <DayBoxContainer
             key={weatherForecast.day}
             colors={weatherForecast.colors}
             weather={weatherForecast}
+            toogleScale={toogleTemperatureScale}
             showDetail={i === 0}
           />
         ))}

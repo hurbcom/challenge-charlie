@@ -1,7 +1,6 @@
-import { getColorByTemperatureAndIndex } from '../../helpers/colors';
 import { IOpenWeatherApi } from '../../helpers/contracts';
 import { addDays, isMidday, isWithinPeriod } from '../../helpers/datetime';
-import { WeatherInformation } from '../../helpers/models';
+import { TemperatureScales, WeatherInformation } from '../../helpers/models';
 
 export const formatOpenWeatherApiUrl = (
   term: string,
@@ -33,24 +32,20 @@ export const filterOpenWeatherNextDaysApiResult = (
   return true;
 };
 
-const daysMap: Record<number, string> = {
-  0: 'hoje',
-  1: 'amanhã',
-  2: 'depois de amanhã',
-};
-
 export const mapOpenWeatherObjectApiResult = (
-  data: IOpenWeatherApi.WeatherObjectResult,
-  index: number = 0
+  data: IOpenWeatherApi.WeatherObjectResult
 ): WeatherInformation => {
   return {
-    day: data.dt_txt,
-    temperature: `${data.main.temp}`,
+    day: data.dt,
+    temperature: {
+      value: Math.round(data.main.temp),
+      scale: TemperatureScales.DEFAULT,
+      label: '',
+    },
     description: data.weather[0].description,
-    wind: `${data.wind.speed * 3.6}`, // add helper to convert mt/s - km/h
-    humidity: `${data.main.humidity}%`,
-    pressure: `${data.main.pressure}hPa`,
-    icon: `http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
-    colors: getColorByTemperatureAndIndex(data.main.temp, index),
+    wind: data.wind.speed,
+    humidity: data.main.humidity,
+    pressure: data.main.pressure,
+    icon: data.weather[0].icon,
   };
 };

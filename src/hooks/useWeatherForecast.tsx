@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
-import { WeatherInformation } from '../helpers/models';
+import {
+  TemperatureScales,
+  WeatherInformation,
+  WeatherInformationFormatted,
+} from '../helpers/models';
+import { formatWeatherForecast } from '../helpers/weather';
 import { getWeatherForecastByCityName } from '../services/weather/get-weather-forecast-by-city';
 
-export function useWeatherForecast(cityName?: string) {
+export function useWeatherForecast(scale: TemperatureScales, cityName?: string) {
   const [loading, setLoading] = useState(false);
   const [weatherForecast, setWeatherForecast] = useState<WeatherInformation[]>([]);
+  const [weatherForecastFormatted, setWeatherForecastFormatted] = useState<
+    WeatherInformationFormatted[]
+  >([]);
 
   const handleWeatherForecast = async () => {
-    const weatherForecast = await getWeatherForecastByCityName(cityName!);
+    const result = await getWeatherForecastByCityName(cityName!);
 
-    if (weatherForecast) {
-      setWeatherForecast(weatherForecast);
+    if (result) {
+      setWeatherForecast(result);
     }
 
     setLoading(false);
@@ -23,5 +31,12 @@ export function useWeatherForecast(cityName?: string) {
     }
   }, [cityName]);
 
-  return { weatherForecast, loading };
+  useEffect(() => {
+    const formatted = weatherForecast.map((weather, index) =>
+      formatWeatherForecast({ weather, scale }, index)
+    );
+    setWeatherForecastFormatted(formatted);
+  }, [weatherForecast, scale]);
+
+  return { weatherForecast, weatherForecastFormatted, loading };
 }
