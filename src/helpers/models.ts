@@ -46,3 +46,9 @@ export enum TemperatureScales {
   FAHRENHEIT = '°F',
   DEFAULT = CELSIUS,
 }
+
+export type CoverImage = {
+  title: string;
+  url: string;
+  copyright: string;
+};
