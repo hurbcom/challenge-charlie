@@ -1,4 +1,7 @@
 :root {
+  --z-index-main: 1;
+  --header-width: 130px;
+
   --gray-400: #9ca3af;
   --gray-500: #6b7280;
 }
@@ -9,7 +12,7 @@
   box-sizing: border-box;
 }
 
-html, body, input {
+html, body, input, button {
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
 }

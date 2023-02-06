@@ -1,17 +1,29 @@
 .day-box__container {
   display: grid;
   grid-template-columns: 60% 1fr;
-  height: 160px;
+  height: calc((100vh - var(--header-width)) / 5);
 }
 
-.day-box__container.--expanded {
+.day-box__container[data-expanded="true"] {
+  display: grid;
   flex: 1;
+  max-height: calc((100vh - var(--header-width)) / 5 * 3);
 }
 
-.day-box__icon {
+.day-box__weather-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.day-box__weather-icon svg {
+  width: 50%;
+  height: auto;
+  fill: inherit;
+}
+
+.day-box__container[data-expanded="false"] .day-box__weather-icon {
+  display: none;
 }
 
 .day-box__info {
@@ -41,4 +53,21 @@
   font-weight: 500;
   font-size: 2rem;
   text-transform: uppercase;
+}
+
+.day-box__details strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.day-box__details p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.day-box__container[data-expanded="false"] .day-box__details {
+  display: none;
 }

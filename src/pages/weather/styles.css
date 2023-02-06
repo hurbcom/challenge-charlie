@@ -13,8 +13,8 @@
 .page-weather__header {
   display: flex;
   align-items: center;
-  gap: 32px;
-  padding-left: 32px;
+  gap: 2rem;
+  padding-left: 3rem;
   background: #fff;
 }
 
@@ -40,4 +40,16 @@
 
 .page-weather__loading p {
   flex: 1;
+}
+
+@media (max-width: 600px) {
+  .page-weather__header {
+    gap: 0.8rem;
+    padding-left: 0.8rem;
+  }
+
+  .page-weather__header svg {
+    width: 40px;
+    height: 40px;
+  }
 }

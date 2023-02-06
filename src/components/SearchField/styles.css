@@ -1,7 +1,8 @@
 .search-field__input {
   flex: 1;
   background: transparent;
-  height: 130px;
+  width: 100%;
+  height: var(--header-width);
   border: 0;
   font-size: 2.5rem;
   font-weight: bold;
@@ -12,4 +13,14 @@
 .search-field__input::placeholder {
   font-size: 2rem;
   font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .search-field__input {
+    font-size: 1.2rem;
+  }
+
+  .search-field__input::placeholder {
+    font-size: 1.2rem;
+  }
 }
