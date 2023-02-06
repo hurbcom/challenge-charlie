@@ -1,41 +1,33 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { findCityByCoordinates } from '../services/geocode';
 import { UserLocation } from '../helpers/models';
 
 export function useGeolocation() {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [location, setLocation] = useState<UserLocation>();
-
-  const handleError = useCallback(() => {
-    setError(true);
-    setLoading(false);
-  }, []);
+  const [userLocation, setUserLocation] = useState<UserLocation>();
 
   const handleUserLocation = async ({ coords }: GeolocationPosition) => {
-    try {
-      const userLocation = await findCityByCoordinates(coords);
+    const userLocation = await findCityByCoordinates(coords);
 
-      if (userLocation) {
-        setLocation({
-          city: userLocation.city,
-          state: userLocation.state,
-        });
-      }
-
-      setLoading(false);
-    } catch (_) {
-      handleError();
+    if (userLocation) {
+      setUserLocation({
+        city: userLocation.city,
+        state: userLocation.state,
+      });
     }
+
+    setLoading(false);
   };
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleUserLocation, handleError);
+      navigator.geolocation.getCurrentPosition(handleUserLocation, (_) => {
+        setLoading(false);
+      });
     } else {
-      handleError();
+      setLoading(false);
     }
   }, []);
 
-  return { loading, error, location };
+  return { loading, userLocation };
 }
