@@ -15,7 +15,7 @@ export function WeatherPage({ location }: WeatherPageProps) {
   const [cityName, setCityName] = useState(location?.city || '');
   const [scale, setScale] = useState(TemperatureScales.DEFAULT);
 
-  const { weatherForecastFormatted, loading } = useWeatherForecast(scale, cityName);
+  const { weatherForecast, message } = useWeatherForecast(scale, cityName);
 
   const toogleTemperatureScale = () => {
     const nextScale =
@@ -25,6 +25,9 @@ export function WeatherPage({ location }: WeatherPageProps) {
     setScale(nextScale);
   };
 
+  const fallbackComponent = weatherForecast.length === 0 && <DayBoxFallback />;
+  const messageComponent = message && <p className="page-weather__message">{message}</p>;
+
   return (
     <div className="page-weather__container">
       <header className="page-weather__header">
@@ -32,12 +35,12 @@ export function WeatherPage({ location }: WeatherPageProps) {
         <SearchField initialValue={cityName} onSearch={setCityName} />
       </header>
 
-      {loading && <p className="page-weather__message">carregando..</p>}
+      {messageComponent}
 
       <main className="page-weather__content">
-        {weatherForecastFormatted.length === 0 && <DayBoxFallback />}
+        {fallbackComponent}
 
-        {weatherForecastFormatted.map((weatherForecast, i) => (
+        {weatherForecast.map((weatherForecast, i) => (
           <DayBoxContainer
             key={weatherForecast.day}
             colors={weatherForecast.colors}

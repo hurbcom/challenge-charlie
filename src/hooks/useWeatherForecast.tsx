@@ -1,42 +1,56 @@
 import { useEffect, useState } from 'react';
-import {
-  TemperatureScales,
-  WeatherInformation,
-  WeatherInformationFormatted,
-} from '../helpers/models';
-import { formatWeatherForecast } from '../helpers/weather';
 import { getWeatherForecastByCityName } from '../services/weather/get-weather-forecast-by-city';
+import { formatWeatherForecast } from '../helpers/weather';
+import { TemperatureScales, WeatherInformationFormatted } from '../helpers/models';
+import { handleTemperatureObject } from '../helpers/temperature';
+import { messages } from '../helpers/messages';
 
 export function useWeatherForecast(scale: TemperatureScales, cityName?: string) {
-  const [loading, setLoading] = useState(false);
-  const [weatherForecast, setWeatherForecast] = useState<WeatherInformation[]>([]);
-  const [weatherForecastFormatted, setWeatherForecastFormatted] = useState<
-    WeatherInformationFormatted[]
-  >([]);
+  const [message, setMessage] = useState(messages.initial);
+  const [weatherForecast, setWeatherForecast] = useState<WeatherInformationFormatted[]>(
+    []
+  );
+
+  const toggleTemperatureScale = () => {
+    const toggled = weatherForecast.map((weather) => ({
+      ...weather,
+      temperature: handleTemperatureObject(weather.temperature, scale),
+    }));
+    setWeatherForecast(toggled);
+  };
+
+  const handleClearWeatherData = () => {
+    if (weatherForecast.length > 0) {
+      setWeatherForecast([]);
+    }
+  };
 
   const handleWeatherForecast = async () => {
+    setMessage(messages.loading);
     const result = await getWeatherForecastByCityName(cityName!);
 
-    if (result) {
-      setWeatherForecast(result);
+    if (!result || !result.length) {
+      setMessage(messages.notFound);
+      handleClearWeatherData();
+      return;
     }
 
-    setLoading(false);
+    const resultFormatted = result.map((weather, index) =>
+      formatWeatherForecast({ weather, scale }, index)
+    );
+
+    setWeatherForecast(resultFormatted);
+    setMessage('');
   };
 
   useEffect(() => {
-    if (cityName) {
-      setLoading(true);
-      handleWeatherForecast();
-    }
+    const handler = cityName ? handleWeatherForecast : handleClearWeatherData;
+    handler();
   }, [cityName]);
 
   useEffect(() => {
-    const formatted = weatherForecast.map((weather, index) =>
-      formatWeatherForecast({ weather, scale }, index)
-    );
-    setWeatherForecastFormatted(formatted);
-  }, [weatherForecast, scale]);
+    toggleTemperatureScale();
+  }, [scale]);
 
-  return { weatherForecast, weatherForecastFormatted, loading };
+  return { weatherForecast, message };
 }
