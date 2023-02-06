@@ -7,8 +7,12 @@ module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     publicPath: '/',
+  },
+  devServer: {
+    compress: true,
+    port: 3000,
   },
   module: {
     rules: [

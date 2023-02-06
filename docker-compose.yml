@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  weatherapp-build:
+    build:
+      dockerfile: "Dockerfile.production"
+      context: .
+    ports:
+      - "80:80"
+    container_name: weatherapp-prod
+
+  weatherapp-development:
+    build:
+      dockerfile: "Dockerfile.development"
+      context: .
+    ports:
+      - "3000:3000"
+    container_name: weatherapp-dev
+    volumes:
+       - .:/app
+       - /app/node_modules
