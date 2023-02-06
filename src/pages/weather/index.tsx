@@ -46,7 +46,7 @@ export function WeatherPage({ location }: WeatherPageProps) {
             colors={weatherForecast.colors}
             weather={weatherForecast}
             toogleScale={toogleTemperatureScale}
-            showDetail={i === 0}
+            showDetails={i === 0}
           />
         ))}
       </main>
