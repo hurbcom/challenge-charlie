@@ -1,6 +1,7 @@
 import { getColorByTemperatureAndIndex } from './colors';
 import { handleTemperatureObject } from './temperature';
 import { handleWindLabel } from './wind';
+import { getIconById } from './icons';
 import {
   TemperatureScales,
   WeatherInformation,
@@ -29,7 +30,7 @@ export const formatWeatherForecast = (
     wind: handleWindLabel(weather.wind.speed, weather.wind.deg),
     humidity: `${weather.humidity}%`,
     pressure: `${weather.pressure}hPA`,
-    icon: `http://openweathermap.org/img/wn/${weather.icon}@4x.png`,
+    icon: getIconById(weather.icon),
     colors: getColorByTemperatureAndIndex(weather.temperature.value, index),
   };
 };

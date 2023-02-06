@@ -1,20 +1,13 @@
 import './styles.css';
 import { WeatherDetail } from '../WeatherDetail';
 import { WeatherInformationFormatted } from '../../helpers/models';
+import { WeatherIcon } from '../WeatherIcon';
 
 interface DayBoxContainerPros {
   colors: { bgColor: string; textColor: string };
   weather: WeatherInformationFormatted;
   toogleScale: () => void;
   showDetail?: boolean;
-}
-
-function WeatherIcon(props: { icon: string }) {
-  return (
-    <div className="day-box__icon">
-      <img src={props.icon} alt="" />
-    </div>
-  );
 }
 
 export function DayBoxContainer({
@@ -29,7 +22,11 @@ export function DayBoxContainer({
   return (
     <div
       className={`day-box__container ${showDetail && '--expanded'}`}
-      style={{ backgroundColor: colors.bgColor, color: colors.textColor }}
+      style={{
+        backgroundColor: colors.bgColor,
+        color: colors.textColor,
+        fill: colors.textColor,
+      }}
     >
       {weatherIcon}
 

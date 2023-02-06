@@ -1,0 +1,11 @@
+.weather-icon__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-icon__container svg {
+  width: 85%;
+  height: 85%;
+  fill: inherit;
+}

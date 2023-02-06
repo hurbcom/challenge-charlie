@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 export type TemperatureObject = {
   value: number;
   scale: TemperatureScales;
@@ -24,7 +26,7 @@ export type WeatherInformationFormatted = {
   wind: string;
   humidity: string;
   pressure: string;
-  icon: string;
+  icon: FunctionComponent;
   colors: {
     bgColor: string;
     textColor: string;
