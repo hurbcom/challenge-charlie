@@ -12,12 +12,13 @@ interface WeatherPageProps {
 }
 
 export function WeatherPage({ location }: WeatherPageProps) {
-  const [cityName, setCityName] = useState(location?.city || '');
+  const [cityName, setCityName] = useState(location?.label || '');
   const [scale, setScale] = useState(TemperatureScales.DEFAULT);
+  const [expandedIndex, setExpandedIndex] = useState(0);
 
   const { weatherForecast, message } = useWeatherForecast(scale, cityName);
 
-  const toogleTemperatureScale = () => {
+  const toggleScale = () => {
     const nextScale =
       scale === TemperatureScales.CELSIUS
         ? TemperatureScales.FAHRENHEIT
@@ -40,13 +41,14 @@ export function WeatherPage({ location }: WeatherPageProps) {
       <main className="page-weather__content">
         {fallbackComponent}
 
-        {weatherForecast.map((weatherForecast, i) => (
+        {weatherForecast.map((weatherForecast, index) => (
           <DayBoxContainer
             key={weatherForecast.day}
             colors={weatherForecast.colors}
             weather={weatherForecast}
-            toogleScale={toogleTemperatureScale}
-            showDetails={i === 0}
+            toggleScale={toggleScale}
+            toggleExpand={() => setExpandedIndex(index)}
+            showDetails={expandedIndex === index}
           />
         ))}
       </main>

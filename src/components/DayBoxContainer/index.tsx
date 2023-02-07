@@ -1,18 +1,20 @@
 import './styles.css';
-import './styles.media.css';
+import ExpandIcon from '../../assets/icons/expand.svg';
 import { WeatherInformationFormatted } from '../../helpers/models';
 
 interface DayBoxContainerPros {
   colors: { bgColor: string; textColor: string };
   weather: WeatherInformationFormatted;
-  toogleScale: () => void;
+  toggleExpand: () => void;
+  toggleScale: () => void;
   showDetails?: boolean;
 }
 
 export function DayBoxContainer({
   colors,
   weather,
-  toogleScale,
+  toggleScale,
+  toggleExpand,
   showDetails,
 }: DayBoxContainerPros) {
   const WeatherIcon = weather.icon;
@@ -32,7 +34,11 @@ export function DayBoxContainer({
       <div className="day-box__info">
         <div className="day-box__temperature">
           <span>{weather.day}</span>
-          <button type="button" onClick={toogleScale}>
+          <button
+            type="button"
+            title="Alterar escala de temperatura"
+            onClick={toggleScale}
+          >
             {weather.temperature.label}
           </button>
         </div>
@@ -44,6 +50,14 @@ export function DayBoxContainer({
           <p>Pressão: {weather.pressure}</p>
         </div>
       </div>
+
+      <button
+        className="day-box__btn-expand"
+        title="Expandir para mais informações"
+        onClick={toggleExpand}
+      >
+        <ExpandIcon />
+      </button>
     </div>
   );
 }
