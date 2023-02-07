@@ -11,7 +11,7 @@ export function App() {
   return (
     <div className="app__container">
       <BackgroundCover url={coverImage?.url} title={coverImage?.title} />
-      {loading ? <p>aguarde..</p> : <WeatherPage location={userLocation} />}
+      {!loading && <WeatherPage location={userLocation} />}
     </div>
   );
 }
