@@ -2,7 +2,7 @@ require('dotenv').config();
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/tests'],
   preset: 'ts-jest',
   testEnvironment: 'node',
   transform: {
