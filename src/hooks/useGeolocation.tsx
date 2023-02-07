@@ -13,6 +13,7 @@ export function useGeolocation() {
       setUserLocation({
         city: userLocation.city,
         state: userLocation.state,
+        label: `${userLocation.city}, ${userLocation.state}`,
       });
     }
 

@@ -36,6 +36,7 @@ export type WeatherInformationFormatted = {
 export type UserLocation = {
   state: string;
   city: string;
+  label?: string;
 };
 
 export type UserCoordinates = {

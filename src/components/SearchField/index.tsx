@@ -9,20 +9,15 @@ interface SearchFieldPros {
 export function SearchField({ initialValue, onSearch }: SearchFieldPros) {
   const [inputValue, setInputValue] = useState(initialValue);
 
-  const handleSearch = () => {
-    // valite input
-    onSearch(inputValue);
-  };
-
   return (
     <input
       className="search-field__input"
       type="text"
       placeholder="Digite o nome da cidade, estado"
-      onKeyDown={(event) => event.code === 'Enter' && handleSearch()}
-      onBlur={() => handleSearch()}
+      onKeyDown={(event) => event.code === 'Enter' && onSearch(inputValue)}
       value={inputValue}
-      onChange={(event) => setInputValue(event.target.value)}
+      onBlur={() => onSearch(inputValue)}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   );
 }
