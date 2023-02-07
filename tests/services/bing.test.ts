@@ -1,5 +1,6 @@
 import { httpService } from '../../src/services/_http';
 import { getCoverImage } from '../../src/services/bing';
+import { mockBingApiResult } from './_mocks';
 
 describe('Bing Service', () => {
   describe('getCoverImage', () => {
@@ -16,23 +17,15 @@ describe('Bing Service', () => {
     });
 
     test('should return mapped api result', async () => {
-      jest.spyOn(httpService, 'get').mockImplementationOnce(() =>
-        Promise.resolve({
-          images: [
-            {
-              title: 'any title',
-              url: 'bing.url',
-              copyright: '',
-            },
-          ],
-        })
-      );
+      jest
+        .spyOn(httpService, 'get')
+        .mockImplementationOnce(() => Promise.resolve(mockBingApiResult));
 
       const result = await getCoverImage();
 
       expect(result).toEqual({
-        title: 'any title',
-        url: `${process.env.MICROSOFT_BING_URL}bing.url`,
+        title: mockBingApiResult.images[0].title,
+        url: `${process.env.MICROSOFT_BING_URL}${mockBingApiResult.images[0].url}`,
         copyright: '',
       });
     });

@@ -1,5 +1,6 @@
 import { httpService } from '../../src/services/_http';
 import { findCityByCoordinates } from '../../src/services/geocode';
+import { mockGeocodeApiResult } from './_mocks';
 
 describe('Geocode Service', () => {
   describe('findCityByCoordinates', () => {
@@ -20,24 +21,15 @@ describe('Geocode Service', () => {
     });
 
     test('should return mapped api result', async () => {
-      jest.spyOn(httpService, 'get').mockImplementationOnce(() =>
-        Promise.resolve({
-          results: [
-            {
-              components: {
-                city: 'any city',
-                state: 'any state',
-              },
-            },
-          ],
-        })
-      );
+      jest
+        .spyOn(httpService, 'get')
+        .mockImplementationOnce(() => Promise.resolve(mockGeocodeApiResult));
 
       const result = await findCityByCoordinates(coordinates);
 
       expect(result).toEqual({
-        city: 'any city',
-        state: 'any state',
+        city: mockGeocodeApiResult.results[0].components.city,
+        state: mockGeocodeApiResult.results[0].components.state,
       });
     });
   });
