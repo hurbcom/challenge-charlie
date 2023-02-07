@@ -25,7 +25,7 @@ docker-compose up weatherapp-development
 ```sh
 docker-compose up --build weatherapp-production
 
-# acessar via http://localhost:80/
+# acessar via http://localhost/
 ```
 
 ## Outros comandos
@@ -34,7 +34,7 @@ docker-compose up --build weatherapp-production
 npm test 
 
 # gerar build local (pasta dist)
-npm build 
+npm run build 
 ```
 
 ## Melhorias
