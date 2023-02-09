@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.itarable", "esnext"],
+    "target": "ES2021",
+    //"lib": ["dom", "dom.itarable", "esnext"],
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "resolveJsonModule": true,
