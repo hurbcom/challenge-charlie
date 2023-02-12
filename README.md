@@ -14,7 +14,7 @@
 <hr/>
 
 <div style="margin: 0 auto;">
-<img src="asset_Readme/films.gif">
+<img src="asset_Readme/films.gif.gif">
 </div>
 
 ## 💡 Sobre o projeto:
