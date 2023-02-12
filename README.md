@@ -8,11 +8,11 @@
 </a>
 
 <a href="#">
-<img alt="Linguagens" src="[https://img.shields.io/github/languages/count/carlosbandelli/FullStack_APIEXTERNA_CONSUMINDO_PELO_BACKeND_PRISMA.IO](https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
+<img alt="Linguagens" src="https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
 </a>
 
 <a href="#">
-<img alt="Tamanho do código em bytes" src="[https://img.shields.io/github/languages/code-size/carlosbandelli/FullStack_APIEXTERNA_CONSUMINDO_PELO_BACKeND_PRISMA.IO](https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
+<img alt="Tamanho do código em bytes" src="https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
 </a>
 
 <a href="https://github.com/carlosbandelli/Cards/commits/main">
