@@ -1,0 +1,14 @@
+.temperature {
+    .numbers {
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .bigNumber {
+        @extend .numbers;
+        font-size: 2rem;
+        color: white;
+    }
+}

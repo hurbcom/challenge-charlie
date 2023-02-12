@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    background-color: rgb(235, 231, 231);
+    width: 100vw;
+    height: 100vh;
+}
+
+.app {
+    display: flex;
+    height: 100% !important;
+    width: 100%;
+    justify-content: center;
+
+    .weather-container {
+        padding: 1rem;
+    }
+
+    .middleContainer {
+        width: 50%;
+        min-width: 300px;
+        margin: 9rem;
+    }
+    // .input {
+    //     @media (max-device-width: 500px) and (orientation: portrait) {
+    //         height: 5rem;
+    //         font-size: 2.5rem;
+    //     }
+    //     font-weight: bold;
+    //     color: #fff;
+    //     display: inline-flex;
+    //     width: 100%;
+    //     height: 3rem;
+    //     font-size: 1.5rem;
+    //     padding: 0.25rem 0.5rem;
+    //     box-sizing: border-box;
+    //     border: none;
+    //     &::placeholder {
+    //         /* Chrome, Firefox, Opera, Safari 10.1+ */
+    //         color: #ababab;
+    //         opacity: 1; /* Firefox */
+    //     }
+    //     &:-ms-input-placeholder {
+    //         /* Internet Explorer 10-11 */
+    //         color: #ababab;
+    //     }
+    //     &::-ms-input-placeholder {
+    //         /* Microsoft Edge */
+    //         color: #ababab;
+    //     }
+    // }
+}

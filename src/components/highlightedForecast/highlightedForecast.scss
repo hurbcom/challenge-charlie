@@ -1,0 +1,22 @@
+.container-today {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.bold,
+.description,
+.location {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+}
+
+p,
+span {
+    color: #fff;
+}

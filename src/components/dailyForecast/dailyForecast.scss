@@ -1,0 +1,38 @@
+.temp-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 15%;
+    font-size: 1.4rem;
+}
+.daily {
+    width: 42%;
+    color: #fff;
+}
+.container-max-min {
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+    margin-right: 10%;
+    .max {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+        justify-content: flex-end;
+
+        span {
+            margin-right: 3%;
+        }
+    }
+    .min {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+        justify-content: flex-end;
+
+        span {
+            margin-right: 3%;
+        }
+    }
+}
