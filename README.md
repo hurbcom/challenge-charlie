@@ -7,13 +7,6 @@
 <img alt="Autor" src="https://img.shields.io/badge/autor-CarlosBandelli-004400?style=flat-square">
 </a>
 
-<a href="#">
-<img alt="Linguagens" src="https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
-</a>
-
-<a href="#">
-<img alt="Tamanho do código em bytes" src="https://github.com/carlosbandelli/challenge-charlie/tree/Chanllenge-Charlie---Carlos-Bandelli?color=004400&style=flat-square">
-</a>
 
 <a href="https://github.com/carlosbandelli/Cards/commits/main">
 <img alt="Commits" src="https://img.shields.io/github/last-commit/carlosbandelli/Cards?color=004400&style=flat-square">
