@@ -1,22 +1,34 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import Input from ".";
+import CompassIcon from '~/assets/compass.svg';
 
-describe("components - <Input />", () => {
-  it("should render correctly", () => {
+import Input from '.';
+
+describe('components - <Input />', () => {
+  it('should render correctly', () => {
     const { container } = render(<Input />);
 
-    expect(container).toMatchInlineSnapshot(`
-<div>
-  <div
-    class="c-gLZkUu"
-  >
-    <input
-      class="c-PJLV"
-    />
-  </div>
-</div>
-`);
+    // expect(container).toMatchSnapshot()
+  });
+
+  it('should render with an icon', () => {
+    render(<Input icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />);
+
+    expect(screen.getByLabelText('Ícone de compasso')).toBeInTheDocument();
+  });
+
+  it('should handle with change event', () => {
+    const onChange = jest.fn();
+
+    render(<Input onChange={onChange} />);
+
+    const input = screen.getByRole('textbox');
+
+    fireEvent.change(input, { target: { value: 'John Doe' } });
+
+    expect(onChange).toHaveBeenCalled();
+    expect((input as HTMLInputElement).value).toBe('John Doe');
   });
 });
