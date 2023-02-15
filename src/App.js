@@ -1,5 +1,7 @@
 import { Field, Image, Label } from "./components";
 import styled from "styled-components";
+import { DefaultTheme, SummerTheme, WinterTheme, WarmTheme } from './components/styles/themes';
+import { ThemeProvider } from "styled-components";
 import sunImage from './assets/svg/2.svg';
 
 const icons = {
@@ -19,6 +21,7 @@ const Main = styled.main`
 `
 
 const Section = styled.section`
+  background-color: ${props => props.theme.main.backgroundColor};
   display: flex;
   flex-direction: column;
   padding: 10px 0;
@@ -33,12 +36,14 @@ const TodayWeather = styled(Section)`
 `
 
 const TomorrowWeather = styled.div`
+  background-color: ${props => props.theme.tomorrow.backgroundColor};
   grid-area: tomorrowWeather;
   display: flex;
   flex-direction: column;
   padding: 10px 0;
 `
 const AfterTomorrowWeather = styled.div`
+  background-color: ${props => props.theme.afterTomorrow.backgroundColor};
   grid-area: afterTomorrowWeather;
   display: flex;
   flex-direction: column;
@@ -46,49 +51,53 @@ const AfterTomorrowWeather = styled.div`
 `
 
 const EmptySpaceBackgroundTomorrow = styled.div`
+  background-color: ${props => props.theme.tomorrow.backgroundColor};
   grid-area: tomorrowWeatherBackground;
 `
 
 const EmptySpaceBackgroundAfterTomorrow = styled.div`
+  background-color: ${props => props.theme.afterTomorrow.backgroundColor};
   grid-area: afterTomorrowWeatherBackground;
 `
 
 function App() {
   return (
-    <Main className="App">
-      <Field
-        gridArea='field'
-        placeholder={'Carregando...'}
-      />
+    <ThemeProvider theme={WinterTheme}>
+      <Main className="App">
+        <Field
+          gridArea='field'
+          placeholder={'Carregando...'}
+        />
 
-      <Image src={icons.sunImage} alt='sol' gridArea='image' />
+        <Image src={icons.sunImage} alt='sol' gridArea='image' />
 
-      <TodayTemperature>
-        <Label bold value={'Hoje'}/>
-        <Label value={`35°C`}/>
-      </TodayTemperature>
+        <TodayTemperature>
+          <Label bold value={'Hoje'}/>
+          <Label value={`35°C`}/>
+        </TodayTemperature>
 
-      <TodayWeather>
-        <Label bold value={'ensolarado'} />
-        <Label value={`Vento: 10km/h`} />
-        <Label value={`Humidade: 10%`} />
-        <Label value={`Pressão: 10hPa`} />
-      </TodayWeather>
+        <TodayWeather>
+          <Label bold value={'ensolarado'} />
+          <Label value={`Vento: 10km/h`} />
+          <Label value={`Humidade: 10%`} />
+          <Label value={`Pressão: 10hPa`} />
+        </TodayWeather>
 
-      <TomorrowWeather>
-        <Label bold value={'Amanhã'}/>
-        <Label value={`25°C`}/>
-      </TomorrowWeather>
+        <TomorrowWeather>
+          <Label bold value={'Amanhã'}/>
+          <Label value={`25°C`}/>
+        </TomorrowWeather>
 
-      <EmptySpaceBackgroundTomorrow />
+        <EmptySpaceBackgroundTomorrow />
 
-      <AfterTomorrowWeather>
-        <Label bold value={'Depois de amanhã'}/>
-        <Label value={`20°C`}/>
-      </AfterTomorrowWeather>
+        <AfterTomorrowWeather>
+          <Label bold value={'Depois de amanhã'}/>
+          <Label value={`20°C`}/>
+        </AfterTomorrowWeather>
 
-      <EmptySpaceBackgroundAfterTomorrow />
-    </Main>
+        <EmptySpaceBackgroundAfterTomorrow />
+      </Main>
+    </ThemeProvider>
   );
 }
 
