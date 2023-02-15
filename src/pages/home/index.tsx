@@ -3,15 +3,11 @@ import { useWindowSize } from '@react-hook/window-size';
 import Image from 'next/image';
 
 import { Input } from '~/components';
+import { WallpaperProps } from '~/@types';
 import CompassIcon from '~/assets/compass.svg';
 import { getWallpaper } from '~/services/wallpaper';
 
 import * as S from './styles';
-
-type WallpaperProps = {
-  src: string;
-  alt: string;
-};
 
 function Home() {
   const [width, height] = useWindowSize();
@@ -20,9 +16,9 @@ function Home() {
 
   useEffect(() => {
     async function handleGetWallpaper() {
-      const wallpaper = await getWallpaper();
+      const todayWallpaper = await getWallpaper();
 
-      setWallpaper(wallpaper);
+      setWallpaper(todayWallpaper);
     }
 
     handleGetWallpaper();
@@ -35,7 +31,7 @@ function Home() {
       )}
 
       <S.Content>
-        <Input placeholder="Testing" icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />
+        <Input placeholder="Insira o nome da cidade" icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />
       </S.Content>
     </S.Container>
   );
