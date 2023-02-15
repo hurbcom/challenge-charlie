@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { Input } from '~/components';
 import CompassIcon from '~/assets/compass.svg';
+import { getWallpaper } from '~/services/wallpaper';
 
 import * as S from './styles';
 
@@ -18,23 +19,13 @@ function Home() {
   const [wallpaper, setWallpaper] = useState<WallpaperProps | null>();
 
   useEffect(() => {
-    async function handleGetBingWallpaper() {
-      const BING_BASE_URL = 'https://www.bing.com';
+    async function handleGetWallpaper() {
+      const wallpaper = await getWallpaper();
 
-      const bingWallpaperURL = `${BING_BASE_URL}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
-
-      const response = await fetch(bingWallpaperURL);
-      const parsedResponse = await response.json();
-
-      const todayWallpaper = parsedResponse.images[0];
-
-      setWallpaper({
-        src: `${BING_BASE_URL}${todayWallpaper.url}`,
-        alt: todayWallpaper.copyright,
-      });
+      setWallpaper(wallpaper);
     }
 
-    handleGetBingWallpaper();
+    handleGetWallpaper();
   }, []);
 
   return (
