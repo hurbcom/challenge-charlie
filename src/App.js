@@ -89,6 +89,7 @@ function App() {
     const response = await fetchBackground();
     setBackgroundUrl(response);
   }
+
   const locationHandler = async () => {
     const res = await getLocation();
     setLocation(res);
@@ -118,6 +119,18 @@ function App() {
     }
   }, [location]);
 
+  const onSearch = async (event) => {
+    if (event.key === 'Enter') {
+      const weatherResponse = await Promise.all([
+        fetchTodayWeather(event.target.value),
+        fetchNextDaysWeather(event.target.value)
+      ]);
+
+      setCityValue(`${event.target.value}`);
+      setWeather(weatherResponse);
+    }
+  }
+
   return (
     <ThemeProvider theme={backgroundTemperature(weather[0].data.main.feels_like)}>
       <Container backgroundUrl={backgroundUrl}>
@@ -127,6 +140,7 @@ function App() {
             placeholder={'Carregando...'}
             value={cityValue}
             onChange={(event) => setCityValue(event.target.value)}
+            onKeyPress={(event) => onSearch(event)}
           />
 
           <Image src={icons.sunImage} alt='sol' gridArea='image' />
