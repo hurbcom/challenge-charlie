@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 async function fetchCity (latitude, longitude) {
-  const APP_OPEN_CAGE_KEY = 'c63386b4f77e46de817bdf94f552cddf';
+  const APP_OPEN_CAGE_KEY = process.env.REACT_APP_OPEN_CAGE_KEY;
 
   const OPEN_WEATHER_URL = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APP_OPEN_CAGE_KEY}&language=en`;
 
