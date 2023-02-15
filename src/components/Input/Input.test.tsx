@@ -31,4 +31,22 @@ describe('components - <Input />', () => {
     expect(onChange).toHaveBeenCalled();
     expect((input as HTMLInputElement).value).toBe('John Doe');
   });
+
+  it('should handle focus on input', () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+
+    render(<Input ref={inputRef} />);
+
+    const input = screen.getByRole('textbox');
+
+    if (input?.parentElement !== null) {
+      fireEvent.click(input?.parentElement);
+    }
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    expect(input).toHaveFocus();
+  });
 });
