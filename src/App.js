@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Field, Image, Label } from "./components";
 import styled from "styled-components";
-import fetchBackground from './components/services/fetchBackground';
-import { DefaultTheme, SummerTheme, WinterTheme, WarmTheme } from './components/styles/themes';
 import { ThemeProvider } from "styled-components";
+import { Field, Image, Label } from "./components";
 import sunImage from './assets/svg/2.svg';
+import fetchBackground from './components/services/fetchBackground';
+import getLocation from './components/services/getLocation';
+import fetchCity from './components/services/fetchCity';
+import backgroundTemperature from './components/utils/backgroundTemperature';
+import { fetchTodayWeather, fetchNextDaysWeather } from './components/services/fetchWeather';
+import { INITIAL_STATE } from './components/utils/consts';
 
 const icons = {
   sunImage,
@@ -76,50 +80,79 @@ const EmptySpaceBackgroundAfterTomorrow = styled.div`
 `
 
 function App() {
+  const [cityValue, setCityValue] = useState('');
+  const [weather, setWeather] = useState(INITIAL_STATE.CURRENT_WEATHER);
+  const [location, setLocation] = useState();
   const [backgroundUrl, setBackgroundUrl] = useState();
 
   const getImage = async () => {
     const response = await fetchBackground();
     setBackgroundUrl(response);
   }
+  const locationHandler = async () => {
+    const res = await getLocation();
+    setLocation(res);
+  }
 
   useEffect(() => {
     getImage();
+    locationHandler();
   }, []);
 
+  useEffect(() => {
+    if (location) {
+      async function cityHandler () {
+        const response = await fetchCity(location.latitude, location.longitude);
+        const city = response.data.results[0].components.city;
+        const state = response.data.results[0].components.state;
+
+        const weatherResponse = await Promise.all([
+          fetchTodayWeather(state),
+          fetchNextDaysWeather(state)
+        ]);
+
+        setCityValue(`${city}, ${state}`);
+        setWeather(weatherResponse);
+      }
+      cityHandler();
+    }
+  }, [location]);
+
   return (
-    <ThemeProvider theme={WinterTheme}>
+    <ThemeProvider theme={backgroundTemperature(weather[0].data.main.feels_like)}>
       <Container backgroundUrl={backgroundUrl}>
         <Main className="App">
           <Field
             gridArea='field'
             placeholder={'Carregando...'}
+            value={cityValue}
+            onChange={(event) => setCityValue(event.target.value)}
           />
 
           <Image src={icons.sunImage} alt='sol' gridArea='image' />
 
           <TodayTemperature>
             <Label bold value={'Hoje'}/>
-            <Label value={`35°C`}/>
+            <Label value={`${weather[0].data.main.feels_like}°C`}/>
           </TodayTemperature>
 
           <TodayWeather>
-            <Label bold value={'ensolarado'} />
-            <Label value={`Vento: 10km/h`} />
-            <Label value={`Humidade: 10%`} />
-            <Label value={`Pressão: 10hPa`} />
+            <Label bold value={weather[0].data.weather[0].description} />
+            <Label value={`Vento: ${weather[0].data.wind.speed}km/h`} />
+            <Label value={`Umidade: ${weather[0].data.main.humidity}%`} />
+            <Label value={`Pressão: ${weather[0].data.main.pressure}hPa`} />
           </TodayWeather>
 
           <TomorrowWeather>
             <Label bold value={'Amanhã'}/>
-            <Label value={`25°C`}/>
+            <Label value={`${weather[1].data.list[0].main.feels_like}°C`}/>
           </TomorrowWeather>
 
           <EmptySpaceBackgroundTomorrow />
 
           <AfterTomorrowWeather>
             <Label bold value={'Depois de amanhã'}/>
-            <Label value={`20°C`}/>
+            <Label value={`${weather[1].data.list[1].main.feels_like} °C`}/>
           </AfterTomorrowWeather>
 
           <EmptySpaceBackgroundAfterTomorrow />
