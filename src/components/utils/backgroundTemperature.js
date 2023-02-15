@@ -1,4 +1,4 @@
-import { DefaultTheme, SummerTheme, WinterTheme, WarmTheme } from '../components/styles/themes'
+import { DefaultTheme, SummerTheme, WinterTheme, WarmTheme } from '../styles/themes'
 
 function backgroundTemperature(temperature) {
   if (temperature === 0) return DefaultTheme;
