@@ -8,17 +8,21 @@ export const Container = styled('div', {
   width: '100%',
   padding: '$16 $8',
 
-  opacity: 0.9,
+  opacity: 0.85,
   background: '$gray200',
+
+  '&:has(input:focus)': {
+    opacity: 1,
+  },
 
   '@media (max-width: 600px)': {
     gap: '$8',
 
     img: {
       width: 40,
-      height: 40
-    }
-  }
+      height: 40,
+    },
+  },
 });
 
 export const Input = styled('input', {
