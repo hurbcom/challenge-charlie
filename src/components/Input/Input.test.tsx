@@ -4,13 +4,13 @@ import userEvent from '@testing-library/user-event';
 
 import CompassIcon from '~/assets/compass.svg';
 
-import Input from '.';
+import { Input } from '.';
 
 describe('components - <Input />', () => {
   it('should render correctly', () => {
     const { container } = render(<Input />);
 
-    // expect(container).toMatchSnapshot()
+    expect(container).toMatchSnapshot();
   });
 
   it('should render with an icon', () => {

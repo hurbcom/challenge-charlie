@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components - <Input /> should render correctly 1`] = `
+<div>
+  <div
+    class="c-kkPGTQ"
+  >
+    <input
+      class="c-exsVnQ"
+    />
+  </div>
+</div>
+`;

@@ -1,4 +1,4 @@
-import Input from "~/components/Input";
+import { Input } from '~/components';
 import CompassIcon from '~/assets/compass.svg';
 
 import * as S from './styles';
@@ -6,7 +6,9 @@ import * as S from './styles';
 function Home() {
   return (
     <S.Container>
-      <Input placeholder="Testing" icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />
+      <S.Content>
+        <Input placeholder="Testing" icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />
+      </S.Content>
     </S.Container>
   );
 }
