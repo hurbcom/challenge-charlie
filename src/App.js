@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import { Field, Image, Label } from "./components";
 import styled from "styled-components";
+import fetchBackground from './components/services/fetchBackground';
 import { DefaultTheme, SummerTheme, WinterTheme, WarmTheme } from './components/styles/themes';
 import { ThemeProvider } from "styled-components";
 import sunImage from './assets/svg/2.svg';
@@ -7,6 +9,19 @@ import sunImage from './assets/svg/2.svg';
 const icons = {
   sunImage,
 }
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ${({ backgroundUrl }) => {
+    return `background-image: url(${backgroundUrl});`
+  }}
+  background-size: cover;
+  background-repeat; no-repeat;
+`
 
 const Main = styled.main`
   margin: 20px;
@@ -61,42 +76,55 @@ const EmptySpaceBackgroundAfterTomorrow = styled.div`
 `
 
 function App() {
+  const [backgroundUrl, setBackgroundUrl] = useState();
+
+  const getImage = async () => {
+    const response = await fetchBackground();
+    setBackgroundUrl(response);
+  }
+
+  useEffect(() => {
+    getImage();
+  }, []);
+
   return (
     <ThemeProvider theme={WinterTheme}>
-      <Main className="App">
-        <Field
-          gridArea='field'
-          placeholder={'Carregando...'}
-        />
+      <Container backgroundUrl={backgroundUrl}>
+        <Main className="App">
+          <Field
+            gridArea='field'
+            placeholder={'Carregando...'}
+          />
 
-        <Image src={icons.sunImage} alt='sol' gridArea='image' />
+          <Image src={icons.sunImage} alt='sol' gridArea='image' />
 
-        <TodayTemperature>
-          <Label bold value={'Hoje'}/>
-          <Label value={`35°C`}/>
-        </TodayTemperature>
+          <TodayTemperature>
+            <Label bold value={'Hoje'}/>
+            <Label value={`35°C`}/>
+          </TodayTemperature>
 
-        <TodayWeather>
-          <Label bold value={'ensolarado'} />
-          <Label value={`Vento: 10km/h`} />
-          <Label value={`Humidade: 10%`} />
-          <Label value={`Pressão: 10hPa`} />
-        </TodayWeather>
+          <TodayWeather>
+            <Label bold value={'ensolarado'} />
+            <Label value={`Vento: 10km/h`} />
+            <Label value={`Humidade: 10%`} />
+            <Label value={`Pressão: 10hPa`} />
+          </TodayWeather>
 
-        <TomorrowWeather>
-          <Label bold value={'Amanhã'}/>
-          <Label value={`25°C`}/>
-        </TomorrowWeather>
+          <TomorrowWeather>
+            <Label bold value={'Amanhã'}/>
+            <Label value={`25°C`}/>
+          </TomorrowWeather>
 
-        <EmptySpaceBackgroundTomorrow />
+          <EmptySpaceBackgroundTomorrow />
 
-        <AfterTomorrowWeather>
-          <Label bold value={'Depois de amanhã'}/>
-          <Label value={`20°C`}/>
-        </AfterTomorrowWeather>
+          <AfterTomorrowWeather>
+            <Label bold value={'Depois de amanhã'}/>
+            <Label value={`20°C`}/>
+          </AfterTomorrowWeather>
 
-        <EmptySpaceBackgroundAfterTomorrow />
-      </Main>
+          <EmptySpaceBackgroundAfterTomorrow />
+        </Main>
+      </Container>
     </ThemeProvider>
   );
 }
