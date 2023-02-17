@@ -1,5 +1,4 @@
-import { TEMPERATURE_UNITS } from '@/common'
-import { ENDPOINTS } from '@/common/constants/endpoints'
+import { ENDPOINTS, TEMPERATURE_UNITS } from '@/common'
 import { IForecastApiResponse, IHttpClient } from '@/interfaces'
 import { Forecast, Temperature, Wind } from '@/models'
 

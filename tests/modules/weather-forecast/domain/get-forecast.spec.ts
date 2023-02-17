@@ -80,7 +80,7 @@ const RESPONSE: IForecastApiResponse = {
 }
 
 describe('get Forecast', () => {
-  it('should create a temperature object with initial value %p, and calculate => celsius %p and fahrenheit %p', async () => {
+  it('should create a class with the weather information for today, tomorrow and the day after tomorrow', async () => {
     const API = {
       get: jest.fn().mockResolvedValue(RESPONSE),
     }
