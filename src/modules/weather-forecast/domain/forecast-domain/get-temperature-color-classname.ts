@@ -3,7 +3,8 @@ import { BASE_TEMPERATURES, TEMPERATURE_COLORS } from '@/common'
 export function getCelsiusTemperatureColorClassName(
   temperature: number | null
 ) {
-  if (temperature === null) return TEMPERATURE_COLORS.DEFAULT
+  if (temperature === null || Number.isNaN(temperature))
+    return TEMPERATURE_COLORS.DEFAULT
 
   if (temperature < BASE_TEMPERATURES.C_COLD) return TEMPERATURE_COLORS.COLD
 
@@ -19,7 +20,8 @@ export function getCelsiusTemperatureColorClassName(
 export function getFahrenheitTemperatureColorClassName(
   temperature: number | null
 ) {
-  if (temperature === null) return TEMPERATURE_COLORS.DEFAULT
+  if (temperature === null || Number.isNaN(temperature))
+    return TEMPERATURE_COLORS.DEFAULT
 
   if (temperature < BASE_TEMPERATURES.F_COLD) return TEMPERATURE_COLORS.COLD
 

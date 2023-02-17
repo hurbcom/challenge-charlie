@@ -4,9 +4,11 @@ import { IWind, TWindDirection } from '@/interfaces'
 export class Wind implements IWind {
   direction: TWindDirection
   degrees: number
+  speed: number
 
-  constructor(degrees: number) {
+  constructor({ degrees, speed }: { degrees: number; speed: number }) {
     this.degrees = degrees
+    this.speed = speed
     this.direction = this.getDirection(degrees)
   }
 

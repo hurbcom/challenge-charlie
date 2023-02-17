@@ -1,7 +1,7 @@
 import {
   getCelsiusTemperatureColorClassName,
   getFahrenheitTemperatureColorClassName,
-} from '@/modules/weather-forecast/domain/get-temperature-color-classname'
+} from '@/modules/weather-forecast/domain/forecast-domain/get-temperature-color-classname'
 
 import { describe } from '@jest/globals'
 

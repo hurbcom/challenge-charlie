@@ -17,19 +17,23 @@ export class Temperature implements ITemperature {
     this.unit = unit
   }
 
-  get celsius(): string {
-    if (this.unit === TEMPERATURE_UNITS.CELSIUS) return `${this.value}°C`
-
+  get celsiusValue(): number {
+    if (this.unit === TEMPERATURE_UNITS.CELSIUS) return this.value
     const celsius = (this.value - this.OFFSET) / this.CONVERSION_FACTOR
+    return parseFloat(celsius.toFixed(2))
+  }
 
-    return `${parseFloat(celsius.toFixed(2))}°C`
+  get celsius(): string {
+    return `${this.celsiusValue}°C`
+  }
+
+  get fahrenheitValue(): number {
+    if (this.unit === TEMPERATURE_UNITS.FAHRENHEIT) return this.value
+    const fahrenheit = this.value * this.CONVERSION_FACTOR + this.OFFSET
+    return parseFloat(fahrenheit.toFixed(2))
   }
 
   get fahrenheit(): string {
-    if (this.unit === TEMPERATURE_UNITS.FAHRENHEIT) return `${this.value}°F`
-
-    const fahrenheit = this.value * this.CONVERSION_FACTOR + this.OFFSET
-
-    return `${parseFloat(fahrenheit.toFixed(2))}°F`
+    return `${this.fahrenheitValue}°F`
   }
 }

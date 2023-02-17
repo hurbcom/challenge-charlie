@@ -1,7 +1,7 @@
 import { TEMPERATURE_UNITS } from '@/common'
 import { IForecastApiResponse } from '@/interfaces'
-import { Forecast, Temperature, Wind } from '@/models'
-import { getForecast } from '@/modules/weather-forecast/domain/get-forecast'
+import { Condition, Forecast, Temperature, Wind } from '@/models'
+import { getForecast } from '@/modules/weather-forecast/domain/forecast-domain/get-forecast'
 import { describe } from '@jest/globals'
 
 const RESPONSE: IForecastApiResponse = {
@@ -97,8 +97,8 @@ describe('get Forecast', () => {
         pressure: 1005,
         humidity: 97,
         speed: 2.29,
-        wind: new Wind(256),
-        icon: '10',
+        wind: new Wind({ degrees: 256, speed: 2.29 }),
+        condition: new Condition({ description: 'moderate rain', icon: '10n' }),
       },
       tomorrow: {
         cod: '200',
@@ -109,8 +109,8 @@ describe('get Forecast', () => {
         pressure: 1005,
         humidity: 98,
         speed: 4.21,
-        wind: new Wind(219),
-        icon: '11',
+        wind: new Wind({ degrees: 219, speed: 4.21 }),
+        condition: new Condition({ description: 'moderate rain', icon: '11n' }),
       },
       dayAfterTomorrow: {
         cod: '200',
@@ -121,8 +121,8 @@ describe('get Forecast', () => {
         pressure: 1006,
         humidity: 97,
         speed: 4.23,
-        wind: new Wind(270),
-        icon: '12',
+        wind: new Wind({ degrees: 270, speed: 4.23 }),
+        condition: new Condition({ description: 'moderate rain', icon: '12n' }),
       },
     })
 

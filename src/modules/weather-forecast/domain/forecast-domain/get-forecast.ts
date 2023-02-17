@@ -1,6 +1,6 @@
 import { ENDPOINTS, TEMPERATURE_UNITS } from '@/common'
 import { IForecastApiResponse, IHttpClient } from '@/interfaces'
-import { Forecast, Temperature, Wind } from '@/models'
+import { Condition, Forecast, Temperature, Wind } from '@/models'
 
 interface Params {
   forecastApi: IHttpClient
@@ -11,10 +11,11 @@ export async function getForecast({ forecastApi }: Params) {
     ENDPOINTS.FORECAST.GET,
     {
       params: {
-        lat: '',
-        lon: '',
+        lat: '-23.102738',
+        lon: '-55.222347',
         cnt: 3,
         units: 'metric',
+        lang: 'pt',
       },
     }
   )
@@ -25,9 +26,13 @@ export async function getForecast({ forecastApi }: Params) {
       value: day.main.temp,
     })
 
-    const wind = new Wind(day.wind.deg)
+    const wind = new Wind({ degrees: day.wind.deg, speed: day.wind.speed })
 
-    const icon = day.weather[0].icon.replace(/\D/g, '')
+    const firstWeather = day.weather[0]
+    const condition = new Condition({
+      description: firstWeather.description,
+      icon: firstWeather.icon,
+    })
 
     return {
       cod: apiForecast.cod,
@@ -36,7 +41,7 @@ export async function getForecast({ forecastApi }: Params) {
       humidity: day.main.humidity,
       speed: day.wind.speed,
       wind,
-      icon,
+      condition,
     }
   })
 

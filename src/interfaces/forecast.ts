@@ -1,3 +1,4 @@
+import { ICondition } from './condition'
 import { ITemperature } from './temperature'
 import { IWind } from './wind'
 
@@ -8,7 +9,7 @@ export interface IForecastDay {
   humidity: number
   speed: number
   wind: IWind
-  icon: string
+  condition: ICondition
 }
 
 export interface IForecast {

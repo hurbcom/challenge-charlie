@@ -2,9 +2,17 @@ import { BingApi } from '@/config/axios'
 import { IHttpClient } from '@/interfaces'
 import { AxiosRequestConfig } from 'axios'
 
-export class BackgroundApiClient implements IHttpClient {
+const { BING_API_URL } = process.env
+
+export class BackgroundImageApiClient implements IHttpClient {
   async get<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
-    const result = await BingApi.get<T>(url, params)
+    const requestUrl = `${BING_API_URL}/${url}`
+
+    const URL = `http://api.allorigins.win/get?url=${encodeURIComponent(
+      requestUrl
+    )}`
+
+    const result = await BingApi.get<T>(URL, params)
 
     return result.data
   }

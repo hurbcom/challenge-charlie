@@ -18,3 +18,8 @@ export const TEMPERATURE_UNITS: Record<string, TemperatureUnit> = {
   CELSIUS: '°C',
   FAHRENHEIT: '°F',
 }
+
+export const TEMPERATURE_UNITS_NAMES = {
+  CELSIUS: 'celsius',
+  FAHRENHEIT: 'fahrenheit',
+}

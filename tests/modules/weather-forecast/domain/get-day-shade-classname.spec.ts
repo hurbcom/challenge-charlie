@@ -1,5 +1,5 @@
 import { DAY_DESCRIPTIONS } from '@/common'
-import { getShadeClassName } from '@/modules/weather-forecast/domain/get-day-shade-classname'
+import { getShadeClassName } from '@/modules/weather-forecast/domain/forecast-domain/get-day-shade-classname'
 
 import { describe } from '@jest/globals'
 

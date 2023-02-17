@@ -1,6 +1,6 @@
 import { IGeoLocationApiResponse } from '@/interfaces'
 import { GeoLocation } from '@/models'
-import { getGeolocation } from '@/modules/weather-forecast/domain/get-geolocation'
+import { getGeolocation } from '@/modules/weather-forecast/domain/forecast-domain/get-geolocation'
 import { describe } from '@jest/globals'
 
 const RESPONSE: IGeoLocationApiResponse = {

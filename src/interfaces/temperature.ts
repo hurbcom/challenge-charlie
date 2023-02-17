@@ -8,4 +8,6 @@ export type ITemperatureConstructor = {
 export interface ITemperature {
   get celsius(): string
   get fahrenheit(): string
+  get celsiusValue(): number | null
+  get fahrenheitValue(): number | null
 }
