@@ -1,4 +1,6 @@
-export const WIND_DIRECTIONS = {
+import { TWindDirection } from '@/interfaces'
+
+export const WIND_DIRECTIONS: Record<number, TWindDirection> = {
   0: 'N',
   45: 'NE',
   90: 'E',

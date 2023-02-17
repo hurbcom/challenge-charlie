@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { test } from '@/common/olaaaa'
 
 import './styles.css'
 
@@ -10,7 +9,6 @@ export const App = () => {
 
   const decrement = () => {
     setState({ count: state.count - 1 })
-    test(state.count)
   }
 
   return (

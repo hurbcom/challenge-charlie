@@ -1,3 +1,5 @@
+import { TemperatureUnit } from '@/interfaces'
+
 export const BASE_TEMPERATURES = {
   C_COLD: 15, // graus celsius
   C_HOT: 35, // graus celsius
@@ -10,4 +12,9 @@ export const TEMPERATURE_COLORS = {
   COLD: 'blue',
   WARM: 'yellow',
   HOT: 'red',
+}
+
+export const TEMPERATURE_UNITS: Record<string, TemperatureUnit> = {
+  CELSIUS: '°C',
+  FAHRENHEIT: '°F',
 }
