@@ -1,10 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { BingWallpaperResponseAPI } from '~/@types';
+import { BingWallpaperResponseAPI, WallpaperProps } from '~/@types';
+
+export type GetWallpaperResponse = WallpaperProps | { message: string };
 
 const BING_BASE_URL = 'https://www.bing.com';
 
-async function getWallpaper(_: NextApiRequest, res: NextApiResponse) {
+async function getWallpaper(req: NextApiRequest, res: NextApiResponse<GetWallpaperResponse>) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({
+      message: 'Method not allowed',
+    });
+  }
+
   try {
     const bingWallpaperURL = `${BING_BASE_URL}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
 
@@ -24,8 +32,10 @@ async function getWallpaper(_: NextApiRequest, res: NextApiResponse) {
       alt: todayWallpaper.copyright,
     });
   } catch (error) {
+    const message = (error as Error)?.message;
+
     return res.status(503).json({
-      message: `Something went wrong with wallpaper supplier, Error: ${(error as Error).message}`,
+      message: `Something went wrong with wallpaper supplier${!!message ? `, Error: ${message}` : ''}`,
     });
   }
 }
