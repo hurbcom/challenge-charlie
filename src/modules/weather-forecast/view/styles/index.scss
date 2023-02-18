@@ -50,12 +50,15 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     z-index: -1;
     overflow: hidden;
     background-color: gray;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .search-bar {
@@ -84,4 +87,17 @@
         font-size: 1em;
         cursor: pointer;
     }
+}
+
+.temperature-display {
+    cursor: pointer;
+}
+
+.tips-btn {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: gray;
+    font-size: 1em;
+    cursor: pointer;
 }

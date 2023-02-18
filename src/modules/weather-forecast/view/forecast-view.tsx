@@ -1,16 +1,10 @@
-import { LoadingOverlay } from '@/components'
+import { LoadingOverlay, Icon } from '@/components'
 import { IForecastViewModel } from '../interfaces'
-import {
-  Humidity,
-  Wind,
-  ConditionIcon,
-  Pressure,
-  SearchBar,
-  Temperature,
-} from './components'
+import { Humidity, Wind, Pressure, SearchBar, Temperature } from './components'
 import { loadingState } from '../state'
 
 import './styles/index.scss'
+import { TipsModal } from './components/tips-modal'
 
 interface Props {
   viewModel: IForecastViewModel
@@ -37,16 +31,19 @@ export const WeatherForecastView = ({ viewModel }: Props) => {
 
         <div className={`row ${className.today} transparent padding-10`}>
           <div className='column center'>
-            <ConditionIcon icon={state?.today.condition.icon} />
+            <Icon path={`/icons/${state?.today.condition.icon}`} />
           </div>
 
           <div className='column padding-10'>
-            <Temperature
-              day='Hoje'
-              unit={unit}
-              temperature={state?.today.temperature}
-              onClick={toggleUnit}
-            />
+            <div className='row'>
+              <Temperature
+                day='Hoje'
+                unit={unit}
+                temperature={state?.today.temperature}
+                onClick={toggleUnit}
+              />
+              <TipsModal />
+            </div>
 
             <p className='value'>{state?.today.condition.description || '-'}</p>
 

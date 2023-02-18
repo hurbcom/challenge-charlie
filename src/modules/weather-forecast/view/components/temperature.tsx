@@ -17,7 +17,7 @@ export const Temperature = ({ day, unit, temperature, onClick }: Props) => {
 
   return (
     <div
-      className='column'
+      className='column temperature-display'
       onClick={handleToggleUnit}
       onKeyDown={handleToggleUnit}
       role='button'

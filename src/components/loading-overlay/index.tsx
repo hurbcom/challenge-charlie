@@ -10,12 +10,19 @@ interface Props {
 export const LoadingOverlay = ({ observable }: Props) => {
   const [state, setState] = useState(false)
 
+  const handleUpdate = {
+    update: (loading: boolean) => {
+      setState(loading)
+    },
+  }
+
   useEffect(() => {
-    observable.subscribe({
-      update: (loading) => {
-        setState(loading)
-      },
-    })
+    observable.subscribe(handleUpdate)
+
+    return () => {
+      observable.unsubscribe(handleUpdate)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observable])
 
   if (!state) return null

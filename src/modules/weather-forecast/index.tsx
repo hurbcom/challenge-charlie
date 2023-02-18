@@ -31,9 +31,9 @@ const WeatherBackgroundImage = () => {
 
 export const WeatherForecast = () => {
   return (
-    <div>
+    <>
       <WeatherBackgroundImage />
       <WeatherForecastCard />
-    </div>
+    </>
   )
 }
