@@ -6,7 +6,7 @@ export function AfterTomorrow({days}) {
     <Container>
       <ContainerEmpty />
       <TextContainer>
-        <Title>Depois de Amanhã:</Title>
+        <Title>Depois de Amanhã</Title>
         <Title>{Math.round(days?.afterTomorrow?.main?.temp)} ºC</Title>
       </TextContainer>
     </Container>

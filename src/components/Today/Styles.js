@@ -31,6 +31,13 @@ export const Container = styled.div`
     }
 `;
 
+export const IconContainer = styled.div`
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+`
+
 export const TextContainer = styled.div`
     padding: 20px 20px;
     display: flex;

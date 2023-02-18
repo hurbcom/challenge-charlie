@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const ContainerEmpty = styled.div`
     width: 15%;
+
     @media  screen and (max-width: 1366px) {
-        width: 12%;
+        width: 25%;
     }
     
     /* (1280x1024) SXGA Display */
     @media  screen and (max-width: 1280px) {
-        width: 10%;
+        width: 25%;
     }
     
     /* (1440x900) WXGA+ Display */
@@ -18,12 +19,12 @@ export const ContainerEmpty = styled.div`
     
     /* (1680x1050) WSXGA+ Display */
     @media  screen and (min-width: 1680px) {
-        width: 2%;
+        width: 24%;
     }
     
     /* (1920x1080) Full HD Display */
     @media  screen and (min-width: 1920px)  {
-        width: 0%;
+        width: 21%;
     }
 
 `

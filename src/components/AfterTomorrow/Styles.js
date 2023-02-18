@@ -4,12 +4,12 @@ export const ContainerEmpty = styled.div`
     width: 50%;
 
     @media  screen and (max-width: 1366px) {
-        width: 51%;
+        width: 66%;
     }
     
     /* (1280x720) SXGA Display */
     @media  screen and (max-width: 1280px) {
-        width: 51%;
+        width: 68%;
     }
     
     /* (1440x900) WXGA+ Display */
@@ -19,12 +19,12 @@ export const ContainerEmpty = styled.div`
     
     /* (1680x1050) WSXGA+ Display */
     @media  screen and (min-width: 1680px) {
-        width: 46%;
+        width: 64%;
     }
     
     /* (1920x1080) Full HD Display */
     @media  screen and (min-width: 1920px)  {
-        width: 40%;
+        width: 61%;
     }
 `
 
