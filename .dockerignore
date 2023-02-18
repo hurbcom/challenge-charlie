@@ -1,0 +1,7 @@
+# All files
+Dockerfile
+.dockerignore
+.gitignore
+
+#Artfacts
+node_modules
