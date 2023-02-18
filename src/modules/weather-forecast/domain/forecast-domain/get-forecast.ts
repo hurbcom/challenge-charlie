@@ -4,15 +4,21 @@ import { Condition, Forecast, Temperature, Wind } from '@/models'
 
 interface Params {
   forecastApi: IHttpClient
+  latitude: number
+  longitude: number
 }
 
-export async function getForecast({ forecastApi }: Params) {
+export async function getForecast({
+  forecastApi,
+  latitude,
+  longitude,
+}: Params) {
   const apiForecast = await forecastApi.get<IForecastApiResponse>(
     ENDPOINTS.FORECAST.GET,
     {
       params: {
-        lat: '-23.102738',
-        lon: '-55.222347',
+        lat: latitude,
+        lon: longitude,
         cnt: 3,
         units: 'metric',
         lang: 'pt',

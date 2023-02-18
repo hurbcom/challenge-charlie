@@ -1,25 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { DAY_DESCRIPTIONS, TEMPERATURE_UNITS_NAMES } from '@/common'
-import { IForecast, ITemperature } from '@/interfaces'
-import { useCallback, useMemo, useState } from 'react'
-import { Domain } from '@/modules/weather-forecast/domain/forecast-domain'
-import { IForecastViewModel } from '@/modules/weather-forecast/interfaces'
+import { ITemperature } from '@/interfaces'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { ForecastDomain } from '@/modules/weather-forecast/domain/forecast-domain'
+import {
+  IForecastViewModel,
+  State,
+} from '@/modules/weather-forecast/interfaces'
 
 interface Params {
-  domain: Domain
+  domain: ForecastDomain
 }
 
 export const useForecastViewModel = ({
   domain,
 }: Params): IForecastViewModel => {
   const [unit, setUnit] = useState(TEMPERATURE_UNITS_NAMES.CELSIUS)
-  const [forecast, setForecast] = useState<IForecast | null>(null)
+  const [state, setState] = useState<State | null>(null)
 
-  const getForecast = async (query: string) => {
-    const _forecast = await domain.getForecast(query)
+  const searchForecast = async (query: string) => {
+    const forecast = await domain.getForecastByQuery(query)
 
-    setForecast(_forecast)
+    setState(forecast)
   }
+
+  const getForecastByGeolocation = async () => {
+    const location = await domain.getUserCurrentLocation()
+
+    if (!location) return
+
+    const { latitude, longitude } = location
+    const forecast = await domain.getForecastByGeolocation(latitude, longitude)
+
+    setState(forecast)
+  }
+
+  useEffect(() => {
+    getForecastByGeolocation()
+  }, [])
 
   const toggleUnit = () => {
     const nextUnit =
@@ -34,7 +52,6 @@ export const useForecastViewModel = ({
     (temperature: number | null, day: string) => {
       return domain.getClassName(day, temperature, unit)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [unit]
   )
 
@@ -45,29 +62,28 @@ export const useForecastViewModel = ({
   }
 
   const todayClassName = useMemo(
-    () => dayClassName(DAY_DESCRIPTIONS.TODAY, forecast?.today.temperature),
-    [forecast?.today.temperature, unit]
+    () => dayClassName(DAY_DESCRIPTIONS.TODAY, state?.today.temperature),
+    [state?.today.temperature, unit]
   )
 
   const tomorrowClassName = useMemo(
-    () =>
-      dayClassName(DAY_DESCRIPTIONS.TOMORROW, forecast?.tomorrow.temperature),
-    [forecast?.today.temperature, unit]
+    () => dayClassName(DAY_DESCRIPTIONS.TOMORROW, state?.tomorrow.temperature),
+    [state?.today.temperature, unit]
   )
 
   const dayAfterTomorrowClassName = useMemo(
     () =>
       dayClassName(
         DAY_DESCRIPTIONS.DAY_AFTER_TOMORROW,
-        forecast?.dayAfterTomorrow.temperature
+        state?.dayAfterTomorrow.temperature
       ),
-    [forecast?.today.temperature, unit]
+    [state?.today.temperature, unit]
   )
 
   return {
-    forecast,
+    state,
     unit,
-    getForecast,
+    searchForecast,
     toggleUnit,
     className: {
       today: todayClassName,

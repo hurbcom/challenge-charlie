@@ -11,7 +11,7 @@ export const Wind = ({ value }: Props) => {
   return (
     <div className='row'>
       <span className='label'>Vento:</span>
-      <span className='value space-right '>{direction}</span>
+      <span className='value margin-right-10'>{direction}</span>
 
       <span className='value lower-case'>{speed}</span>
     </div>

@@ -7,7 +7,7 @@ interface Params {
   query: string
 }
 
-export async function getGeolocation({ geoLocationApi, query }: Params) {
+export async function searchGeoLocation({ geoLocationApi, query }: Params) {
   const apiGeoLocation = await geoLocationApi.get<IGeoLocationApiResponse>(
     ENDPOINTS.GEOLOCATION.GET,
     {
@@ -18,6 +18,8 @@ export async function getGeolocation({ geoLocationApi, query }: Params) {
       },
     }
   )
+
+  if (!apiGeoLocation.results.length) return null
 
   const firstResult = apiGeoLocation.results[0]
 

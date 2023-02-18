@@ -1,3 +1,8 @@
+export interface INavigatorGeolocation {
+  latitude: number
+  longitude: number
+}
+
 export interface IGeoLocation {
   latitude: number
   longitude: number

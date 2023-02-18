@@ -6,6 +6,6 @@ export const ENDPOINTS = {
     GET: 'json',
   },
   BACKGROUND_IMAGE: {
-    GET: 'HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US',
+    GET: 'HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US',
   },
 }

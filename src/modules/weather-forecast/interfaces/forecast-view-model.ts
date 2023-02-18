@@ -1,13 +1,17 @@
-import { IForecast } from '@/interfaces'
+import { IForecast, IGeoLocation } from '@/interfaces'
+
+export interface State extends IForecast {
+  geolocation: IGeoLocation
+}
 
 export interface IForecastViewModel {
-  forecast: IForecast | null
+  state: State | null
   unit: string
   className: {
     today: string
     tomorrow: string
     dayAfterTomorrow: string
   }
-  getForecast: (query: string) => Promise<void>
+  searchForecast: (query: string) => Promise<void>
   toggleUnit: () => void
 }

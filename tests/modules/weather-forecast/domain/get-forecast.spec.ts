@@ -85,7 +85,11 @@ describe('get Forecast', () => {
       get: jest.fn().mockResolvedValue(RESPONSE),
     }
 
-    const response = await getForecast({ forecastApi: API })
+    const response = await getForecast({
+      forecastApi: API,
+      longitude: 0,
+      latitude: 0,
+    })
 
     const expected = new Forecast({
       today: {

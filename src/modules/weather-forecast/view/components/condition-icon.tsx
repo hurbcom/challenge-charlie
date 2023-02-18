@@ -3,9 +3,9 @@ interface Props {
 }
 
 export const ConditionIcon = ({ icon }: Props) => {
-  let path = '/icons/1.svg'
+  if (!icon) return null
 
-  if (icon) path = `/icons/${icon}`
+  const path = `/icons/${icon}`
 
   return <img src={path} alt={icon} className='icon' />
 }

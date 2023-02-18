@@ -2,6 +2,7 @@ import { IForecastViewModel } from '../interfaces'
 import { Humidity, Wind } from './components'
 import { ConditionIcon } from './components/condition-icon'
 import { Pressure } from './components/pressure'
+import { SearchBar } from './components/search-bar'
 import { Temperature } from './components/temperature'
 
 import './styles/index.scss'
@@ -11,60 +12,65 @@ interface Props {
 }
 
 export const WeatherForecastView = ({ viewModel }: Props) => {
-  const { forecast, getForecast, toggleUnit, unit, className } = viewModel
-
-  const handleGetForecast = () => {
-    getForecast('aa')
+  const { state, toggleUnit, unit, className, searchForecast } = viewModel
+  const handleSearchForecast = (value: string) => {
+    searchForecast(value)
   }
 
   return (
     <div className='container'>
-      <button onClick={handleGetForecast}>Get forecast</button>
-
       <div className='card'>
-        <div className={`row ${className.today} transparent`}>
+        <SearchBar onSearch={handleSearchForecast} initialValue={''} />
+
+        <div
+          className={`row ${className.today} transparent padding-10 geolocation`}
+        >
+          <span className='label'>{state?.geolocation.city}</span>
+        </div>
+
+        <div className={`row ${className.today} transparent padding-10`}>
           <div className='column center'>
-            <ConditionIcon icon={forecast?.today.condition.icon} />
+            <ConditionIcon icon={state?.today.condition.icon} />
           </div>
 
-          <div className='column'>
+          <div className='column padding-10'>
             <Temperature
               day='Hoje'
               unit={unit}
-              temperature={forecast?.today.temperature}
+              temperature={state?.today.temperature}
               onClick={toggleUnit}
             />
 
-            <p className='value'>
-              {forecast?.today.condition.description || '-'}
-            </p>
+            <p className='value'>{state?.today.condition.description || '-'}</p>
 
             <div className='column'>
-              <Wind value={forecast?.today.wind} />
-              <Humidity value={forecast?.today.humidity} />
-              <Pressure value={forecast?.today.pressure} />
+              <Wind value={state?.today.wind} />
+              <Humidity value={state?.today.humidity} />
+              <Pressure value={state?.today.pressure} />
             </div>
           </div>
         </div>
 
-        <div className={`row ${className.tomorrow} transparent`}>
+        <div className={`row ${className.tomorrow} transparent padding-10`}>
           <div className='column' />
 
           <Temperature
             day='Amanhã'
             unit={unit}
-            temperature={forecast?.tomorrow.temperature}
+            temperature={state?.tomorrow.temperature}
             onClick={toggleUnit}
           />
         </div>
 
-        <div className={`row ${className.dayAfterTomorrow} transparent`}>
+        <div
+          className={`row ${className.dayAfterTomorrow} transparent padding-10`}
+        >
           <div className='column' />
 
           <Temperature
             day='Depois de Amanhã'
             unit={unit}
-            temperature={forecast?.dayAfterTomorrow.temperature}
+            temperature={state?.dayAfterTomorrow.temperature}
             onClick={toggleUnit}
           />
         </div>

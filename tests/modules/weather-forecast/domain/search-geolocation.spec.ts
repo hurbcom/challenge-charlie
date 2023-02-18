@@ -1,6 +1,6 @@
 import { IGeoLocationApiResponse } from '@/interfaces'
 import { GeoLocation } from '@/models'
-import { getGeolocation } from '@/modules/weather-forecast/domain/forecast-domain/get-geolocation'
+import { searchGeoLocation } from '@/modules/weather-forecast/domain/forecast-domain/search-geolocation'
 import { describe } from '@jest/globals'
 
 const RESPONSE: IGeoLocationApiResponse = {
@@ -16,12 +16,27 @@ const RESPONSE: IGeoLocationApiResponse = {
 }
 
 describe('get GeoLocation', () => {
+  it('should return null for empty responses', async () => {
+    const API = {
+      get: jest.fn().mockResolvedValue({
+        results: [],
+      }),
+    }
+
+    const response = await searchGeoLocation({
+      geoLocationApi: API,
+      query: 'São Paulo',
+    })
+
+    expect(response).toBeNull()
+  })
+
   it('should return a class with the geolocation information for the queried city', async () => {
     const API = {
       get: jest.fn().mockResolvedValue(RESPONSE),
     }
 
-    const response = await getGeolocation({
+    const response = await searchGeoLocation({
       geoLocationApi: API,
       query: 'São Paulo',
     })
