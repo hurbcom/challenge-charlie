@@ -31,7 +31,10 @@ export const useForecastViewModel = ({
     loadingState.setLoading(true)
     const location = await domain.getUserCurrentLocation()
 
-    if (!location) return
+    if (!location) {
+      loadingState.setLoading(false)
+      return
+    }
 
     const { latitude, longitude } = location
     const forecast = await domain.getForecastByGeolocation(latitude, longitude)
