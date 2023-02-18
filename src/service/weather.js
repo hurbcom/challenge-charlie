@@ -1,7 +1,7 @@
 import axios from "axios";
 import { filterNextDays } from '../utils/dates'
 
-const APP_OPEN_WEATHER_KEY = '772920597e4ec8f00de8d376dfb3f094';
+const APP_OPEN_WEATHER_KEY = process.env.REACT_APP_WEATHER_KEY;
 export const getToday = (city) => {
    return axios.get(`http://api.openweathermap.org/data/2.5/weather`, {
     params: {
@@ -32,7 +32,7 @@ export const getNextDays = (city) => {
 }
 
 export const getByLocation = (latitude, longitude) => {
-    const APP_OPEN_CAGE_KEY = 'c63386b4f77e46de817bdf94f552cddf';
+    const APP_OPEN_CAGE_KEY = process.env.REACT_APP_CAGE_KEY;
     
     return axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APP_OPEN_CAGE_KEY}&language=en`)
    .then(response => {

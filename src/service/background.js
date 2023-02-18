@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const getBackground = () => {
-  const URL_BASE = 'https://www.bing.com/';
-  const COMPLETE_URL = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR';
+  const URL_BASE =  process.env.REACT_APP_BACKGROUND_BASE_URL;
+  const COMPLETE_URL =  process.env.REACT_APP_BACKGROUND_COMPLETE_URL;
 
-  const URL = `http://api.allorigins.win/get?url=${encodeURIComponent(String(COMPLETE_URL))}`;
+  const URL = `${ process.env.REACT_APP_BACKGROUND_URL}${encodeURIComponent(String(COMPLETE_URL))}`;
 
   return axios.get(URL)
   .then(response => {
