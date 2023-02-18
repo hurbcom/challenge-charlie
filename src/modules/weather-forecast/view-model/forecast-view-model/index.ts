@@ -7,6 +7,7 @@ import {
   IForecastViewModel,
   State,
 } from '@/modules/weather-forecast/interfaces'
+import { loadingState } from '../../state'
 
 interface Params {
   domain: ForecastDomain
@@ -19,12 +20,15 @@ export const useForecastViewModel = ({
   const [state, setState] = useState<State | null>(null)
 
   const searchForecast = async (query: string) => {
+    loadingState.setLoading(true)
     const forecast = await domain.getForecastByQuery(query)
 
     setState(forecast)
+    loadingState.setLoading(false)
   }
 
   const getForecastByGeolocation = async () => {
+    loadingState.setLoading(true)
     const location = await domain.getUserCurrentLocation()
 
     if (!location) return
@@ -33,6 +37,7 @@ export const useForecastViewModel = ({
     const forecast = await domain.getForecastByGeolocation(latitude, longitude)
 
     setState(forecast)
+    loadingState.setLoading(false)
   }
 
   useEffect(() => {

@@ -1,9 +1,14 @@
+import { LoadingOverlay } from '@/components'
 import { IForecastViewModel } from '../interfaces'
-import { Humidity, Wind } from './components'
-import { ConditionIcon } from './components/condition-icon'
-import { Pressure } from './components/pressure'
-import { SearchBar } from './components/search-bar'
-import { Temperature } from './components/temperature'
+import {
+  Humidity,
+  Wind,
+  ConditionIcon,
+  Pressure,
+  SearchBar,
+  Temperature,
+} from './components'
+import { loadingState } from '../state'
 
 import './styles/index.scss'
 
@@ -19,6 +24,8 @@ export const WeatherForecastView = ({ viewModel }: Props) => {
 
   return (
     <div className='container'>
+      <LoadingOverlay observable={loadingState} />
+
       <div className='card'>
         <SearchBar onSearch={handleSearchForecast} initialValue={''} />
 
