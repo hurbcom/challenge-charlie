@@ -1,0 +1,17 @@
+FROM node:18.04
+
+WORKDIR /app
+
+# vue
+COPY package.json yarn.lock ./
+RUN yarn install
+
+COPY . .
+
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+EXPOSE 3000
+
+CMD yarn build && yarn start

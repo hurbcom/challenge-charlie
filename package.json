@@ -7,6 +7,7 @@
     "scripts": {
         "dev": "webpack serve --config webpack/webpack.config.js --env env=dev",
         "build": "webpack --config webpack/webpack.config.js --env env=prod",
+        "start": "webpack serve --config webpack/webpack.config.js --env env=prod",
         "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
         "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
         "test": "jest",
