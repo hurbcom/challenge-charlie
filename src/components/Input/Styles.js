@@ -5,6 +5,10 @@ background-color: rgba(242, 237, 234, 0.9);
 padding: 20px 15px;
 display: flex;
 
+@media screen and (max-width: 1366px)  {
+    padding: 10px 15px;
+}
+
 input {
     &:focus-visible {
         outline-offset: 0px;
