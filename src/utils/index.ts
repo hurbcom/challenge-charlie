@@ -1,1 +1,1 @@
-export { mockRequestResponse } from './mockRequestResponse';
+export { convertCelsiusToFahrenheit } from './convertCelsiusToFahrenheit';
