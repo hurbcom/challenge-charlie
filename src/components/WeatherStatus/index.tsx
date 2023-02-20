@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
+import Image from 'next/image';
 
 import { Weather } from '~/@types/openWeather';
 import { convertCelsiusToFahrenheit } from '~/utils/convertCelsiusToFahrenheit';
@@ -17,7 +18,7 @@ export type WeatherStatusProps = {
 };
 
 /* TODO:
- - [] Adicionar os 3 ícones pra cada clima
+ - [x] Adicionar os ícones dinamicos
  - [] Estilizações
  - [] Fazer a parte com as infos detalhadas
  - [] Fazer a lógica das cores
@@ -31,21 +32,9 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
 
   const formattedTemperature = `${temperature.degrees}º${temperature.type}`;
 
-  const handleToggleTemperatureType = () => {
-    setTemperature((state) => {
-      if (state.type === TemperatureTypeEnum.celsius) {
-        return {
-          degrees: convertCelsiusToFahrenheit(weather.temperature),
-          type: TemperatureTypeEnum.fahrenheit,
-        };
-      }
-
-      return {
-        degrees: weather.temperature,
-        type: TemperatureTypeEnum.celsius,
-      };
-    });
-  };
+  const icon = useMemo(() => {
+    return weather.icon.replace(/\D/g, '');
+  }, [weather.icon]);
 
   const textDay = useMemo(() => {
     const MAX_DAYS_TO_SHOW = 3;
@@ -68,12 +57,35 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
     return 'Depois de amanhã';
   }, [date]);
 
+  const handleToggleTemperatureType = () => {
+    setTemperature((state) => {
+      if (state.type === TemperatureTypeEnum.celsius) {
+        return {
+          degrees: convertCelsiusToFahrenheit(weather.temperature),
+          type: TemperatureTypeEnum.fahrenheit,
+        };
+      }
+
+      return {
+        degrees: weather.temperature,
+        type: TemperatureTypeEnum.celsius,
+      };
+    });
+  };
+
   if (!textDay) {
     return <></>;
   }
 
   return (
     <S.Container>
+      <Image
+        width="100"
+        height="100"
+        src={`assets/${icon}.svg`}
+        alt={`Ícone representando o clima ${weather.description}`}
+      />
+
       <S.Info>
         <span>{textDay}</span>
 

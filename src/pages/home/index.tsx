@@ -44,6 +44,7 @@ function Home() {
         <WeatherStatus
           date={new Date()}
           weather={{
+            icon: '10n',
             humidity: 55,
             pressure: 1016,
             wind: {

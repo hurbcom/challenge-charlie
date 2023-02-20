@@ -6,6 +6,7 @@ export interface OpenWeatherDayInfo {
   wind_speed: number;
   weather: {
     description: string;
+    icon: string;
   };
 }
 
@@ -15,6 +16,7 @@ export interface OpenWeatherAPIResponse {
 }
 
 export interface Weather {
+  icon: string;
   pressure: number;
   humidity: number;
   temperature: number;
