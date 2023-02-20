@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-hook/window-size": "^3.1.1",
     "@stitches/react": "^1.2.8",
+    "date-fns": "^2.29.3",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^29.4.2",
     "jest-environment-jsdom": "^29.4.2",
+    "mockdate": "^3.0.5",
     "node-mocks-http": "^1.12.1"
   }
 }

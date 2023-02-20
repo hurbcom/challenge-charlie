@@ -7,6 +7,7 @@ import { WallpaperProps } from '~/@types';
 import { useGetUserLocation } from '~/hooks';
 import CompassIcon from '~/assets/compass.svg';
 import { getWallpaper } from '~/services/wallpaper';
+import WeatherStatus from '~/components/WeatherStatus';
 
 import * as S from './styles';
 
@@ -39,6 +40,20 @@ function Home() {
           ref={inputRef}
           placeholder="Insira o nome da cidade"
           icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }}
+        />
+
+        <WeatherStatus
+          date={new Date()}
+          weather={{
+            humidity: 55,
+            pressure: 1016,
+            wind: {
+              speed: 3.6,
+              degrees: 360,
+            },
+            temperature: 32.0,
+            description: 'Ensolarado',
+          }}
         />
       </S.Content>
     </S.Container>

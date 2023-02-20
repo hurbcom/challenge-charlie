@@ -1,4 +1,4 @@
-import { mockRequestResponse } from '~/utils';
+import { mockRequestResponse } from '~/utils/mockRequestResponse';
 
 import wallpaper, { GetWallpaperResponse } from './index.api';
 
