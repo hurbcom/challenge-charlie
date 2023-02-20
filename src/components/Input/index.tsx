@@ -25,7 +25,7 @@ export const Input = forwardRef<InputHandleProps, InputProps>(({ icon, ...rest }
 
   return (
     <S.Container onClick={() => inputRef.current?.focus()}>
-      {hasIcon && <Image src={icon.svg} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />}
+      {hasIcon && <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />}
 
       <S.Input {...rest} ref={inputRef} />
     </S.Container>

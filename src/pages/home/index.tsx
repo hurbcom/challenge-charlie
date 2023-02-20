@@ -5,7 +5,6 @@ import { useWindowSize } from '@react-hook/window-size';
 import { Input } from '~/components';
 import { WallpaperProps } from '~/@types';
 import { useGetUserLocation } from '~/hooks';
-import CompassIcon from '~/assets/compass.svg';
 import { getWallpaper } from '~/services/wallpaper';
 import WeatherStatus from '~/components/WeatherStatus';
 
@@ -39,7 +38,7 @@ function Home() {
         <Input
           ref={inputRef}
           placeholder="Insira o nome da cidade"
-          icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }}
+          icon={{ svg: 'compass', alt: 'Ícone de compasso' }}
         />
 
         <WeatherStatus
