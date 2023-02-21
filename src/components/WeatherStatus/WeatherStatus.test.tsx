@@ -106,7 +106,43 @@ describe('components - <WeatherStatus />', () => {
 
       const componentContainer = container.firstChild;
 
-      expect(componentContainer).toHaveStyle(`background: ${theme.colors.gray200}`);
+      expect(componentContainer).toHaveStyleRule('background', theme.colors.gray200, {
+        modifier: '::before',
+      });
+    });
+
+    it('should render blue when is less than 15ºC or 59ºF', () => {
+      const { container } = renderWithProviders(
+        <WeatherStatus date={mockedToday} weather={{ ...mockedWeather, temperature: 14 }} />,
+      );
+
+      const componentContainer = container.firstChild;
+
+      expect(componentContainer).toHaveStyleRule('background', theme.colors.blue, {
+        modifier: '::before',
+      });
+    });
+
+    it('should render red when is more than 35ºC or 95ºF', () => {
+      const { container } = renderWithProviders(
+        <WeatherStatus date={mockedToday} weather={{ ...mockedWeather, temperature: 36 }} />,
+      );
+
+      const componentContainer = container.firstChild;
+
+      expect(componentContainer).toHaveStyleRule('background', theme.colors.red, {
+        modifier: '::before',
+      });
+    });
+
+    it('should render yellow when is equal or between (15ºC or 59ºF) and (35ºC or 95ºF)', () => {
+      const { container } = renderWithProviders(<WeatherStatus date={mockedToday} weather={mockedWeather} />);
+
+      const componentContainer = container.firstChild;
+
+      expect(componentContainer).toHaveStyleRule('background', theme.colors.yellow, {
+        modifier: '::before',
+      });
     });
   });
 

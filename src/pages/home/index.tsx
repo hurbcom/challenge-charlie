@@ -41,20 +41,52 @@ function Home() {
           icon={{ svg: 'compass', alt: 'Ícone de compasso' }}
         />
 
-        <WeatherStatus
-          date={new Date()}
-          // weather={{
-          //   icon: '10n',
-          //   humidity: 55,
-          //   pressure: 1016,
-          //   wind: {
-          //     speed: 3.6,
-          //     degrees: 360,
-          //   },
-          //   temperature: 32.0,
-          //   description: 'Ensolarado',
-          // }}
-        />
+        <div>
+          <WeatherStatus
+            date={new Date()}
+            weather={{
+              icon: '10n',
+              humidity: 55,
+              pressure: 1016,
+              wind: {
+                speed: 3.6,
+                degrees: 360,
+              },
+              temperature: 18.0,
+              description: 'Ensolarado',
+            }}
+          />
+
+          <WeatherStatus
+            date={new Date()}
+            weather={{
+              icon: '10n',
+              humidity: 55,
+              pressure: 1016,
+              wind: {
+                speed: 3.6,
+                degrees: 360,
+              },
+              temperature: 18.0,
+              description: 'Ensolarado',
+            }}
+          />
+
+          <WeatherStatus
+            date={new Date()}
+            weather={{
+              icon: '10n',
+              humidity: 55,
+              pressure: 1016,
+              wind: {
+                speed: 3.6,
+                degrees: 360,
+              },
+              temperature: 18.0,
+              description: 'Ensolarado',
+            }}
+          />
+        </div>
       </S.Content>
     </S.Container>
   );

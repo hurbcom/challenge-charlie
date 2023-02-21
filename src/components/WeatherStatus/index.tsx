@@ -12,6 +12,12 @@ enum TemperatureTypeEnum {
   fahrenheit = 'F',
 }
 
+export enum BackgroundColorsEnum {
+  red = 'red',
+  blue = 'blue',
+  yellow = 'yellow',
+}
+
 export type WeatherStatusProps = {
   date: Date;
   weather?: Weather;
@@ -19,9 +25,9 @@ export type WeatherStatusProps = {
 
 /* TODO:
  - [x] Adicionar os ícones dinamicos
- - [] Estilizações
+ - [x] Estilizações
+ - [x] Fazer a lógica das cores
  - [] Fazer a parte com as infos detalhadas
- - [] Fazer a lógica das cores
 */
 
 const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
@@ -53,20 +59,20 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
     return 'Depois de amanhã';
   }, [date]);
 
-  const getBackgroundColor = useCallback(() => {
+  const backgroundColor = useMemo(() => {
     if (!textDay || !weather) {
-      return 'gray';
+      return;
     }
 
     if (weather.temperature < 15) {
-      return 'blue';
+      return BackgroundColorsEnum.blue;
     }
 
     if (weather.temperature > 35) {
-      return 'red';
+      return BackgroundColorsEnum.red;
     }
 
-    return 'yellow';
+    return BackgroundColorsEnum.yellow;
   }, [weather, textDay]);
 
   const icon = useMemo(() => {
@@ -74,16 +80,18 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
   }, [weather]);
 
   const handleToggleTemperatureType = () => {
+    if (!weather) return;
+
     setTemperature((state) => {
       if (state.type === TemperatureTypeEnum.celsius) {
         return {
-          degrees: !!weather?.temperature ? convertCelsiusToFahrenheit(weather.temperature) : null,
+          degrees: convertCelsiusToFahrenheit(weather.temperature),
           type: TemperatureTypeEnum.fahrenheit,
         };
       }
 
       return {
-        degrees: weather?.temperature ?? null,
+        degrees: weather.temperature,
         type: TemperatureTypeEnum.celsius,
       };
     });
@@ -94,7 +102,7 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
   }
 
   return (
-    <S.Container>
+    <S.Container color={backgroundColor}>
       <Image
         width="60"
         height="60"
