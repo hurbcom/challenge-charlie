@@ -1,17 +1,17 @@
-import { globalCss } from "~/lib/stitches";
+import { createGlobalStyle } from 'styled-components';
 
-export const globalStyles = globalCss({
-  '*': {
-    margin: 0,
-    padding: 0,
-    boxSizing: 'border-box',
+export const GlobalStyles = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
-    fontFamily: 'Roboto, sans-serif'
-  },
-
-  body: {
-    color: '$white',
-    backgroundColor: '$black',
-    '-webkit-font-smoothing': 'antialiased'
+    font-family: Roboto, sans-serif;
   }
-});
+
+  body {
+    color: white;
+    background-color: black;
+    -webkit-font-smoothing: 'antialiased'
+  }
+`;

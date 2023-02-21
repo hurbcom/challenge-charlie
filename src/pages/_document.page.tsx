@@ -1,28 +1,52 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript, DocumentInitialProps, DocumentContext } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
-import { getCssText } from "~/lib/stitches";
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
 
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
 
-        <link rel="manifest" href="icon/site.webmanifest" />
-        <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png" />
+  renderWithProviders() {
+    return (
+      <Html lang="en">
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
-      </Head>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+          <link rel="manifest" href="icon/site.webmanifest" />
+          <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png" />
+        </Head>
+
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }

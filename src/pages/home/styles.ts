@@ -1,20 +1,18 @@
-import Image from 'next/image';
+import styled from 'styled-components';
 
-import { styled } from '~/lib/stitches';
+export const Container = styled.main`
+  > img {
+    position: absolute;
+    z-index: -1;
 
-export const Container = styled('main', {
-  '> img': {
-    position: 'absolute',
-    zIndex: -1,
+    object-fit: cover;
+    opacity: 0.2;
+  }
+`;
 
-    objectFit: 'cover',
-    opacity: '0.2',
-  },
-});
-
-export const Content = styled('div', {
-  width: '100%',
-  height: '100vh',
-  maxWidth: '600px',
-  margin: '0 auto',
-});
+export const Content = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 600px;
+`;

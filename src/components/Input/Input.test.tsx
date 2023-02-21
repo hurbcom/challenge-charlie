@@ -1,20 +1,20 @@
 import React from "react";
-import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
 
 import CompassIcon from '~/assets/compass.svg';
+import renderWithProviders from '~/utils/renderWithProviders';
 
 import { Input } from '.';
 
 describe('components - <Input />', () => {
   it('should render correctly', () => {
-    const { container } = render(<Input />);
+    const { container } = renderWithProviders(<Input />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('should render with an icon', () => {
-    render(<Input icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />);
+    renderWithProviders(<Input icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />);
 
     expect(screen.getByLabelText('Ícone de compasso')).toBeInTheDocument();
   });
@@ -22,7 +22,7 @@ describe('components - <Input />', () => {
   it('should handle with change event', () => {
     const onChange = jest.fn();
 
-    render(<Input onChange={onChange} />);
+    renderWithProviders(<Input onChange={onChange} />);
 
     const input = screen.getByRole('textbox');
 
@@ -35,7 +35,7 @@ describe('components - <Input />', () => {
   it('should handle focus on input', () => {
     const inputRef = React.createRef<HTMLInputElement>();
 
-    render(<Input ref={inputRef} />);
+    renderWithProviders(<Input ref={inputRef} />);
 
     const input = screen.getByRole('textbox');
 

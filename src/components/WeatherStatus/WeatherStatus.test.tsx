@@ -1,9 +1,11 @@
 import React from 'react';
 import MockDate from 'mockdate';
 import { addDays, subDays } from 'date-fns';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { Weather } from '~/@types/openWeather';
+import renderWithProviders from '~/utils/renderWithProviders';
+import { theme } from '~/styles/theme';
 
 import WeatherStatus, { WeatherStatusProps } from '.';
 
@@ -33,7 +35,7 @@ describe('components - <WeatherStatus />', () => {
 
   describe('simple mode - day text and temperature tests', () => {
     it('should render with temperature and correct day', () => {
-      render(<WeatherStatus {...defaultValues} />);
+      renderWithProviders(<WeatherStatus {...defaultValues} />);
 
       expect(screen.getByText('Hoje')).toBeInTheDocument();
       expect(screen.getByText('32ºC')).toBeInTheDocument();
@@ -42,7 +44,7 @@ describe('components - <WeatherStatus />', () => {
     it('should show text date correctly when is tomorrow and send different weather infos', () => {
       const tomorrow = addDays(new Date(), 1);
 
-      render(<WeatherStatus date={tomorrow} weather={{ ...mockedWeather, temperature: 20.0 }} />);
+      renderWithProviders(<WeatherStatus date={tomorrow} weather={{ ...mockedWeather, temperature: 20.0 }} />);
 
       expect(screen.getByText('Amanhã')).toBeInTheDocument();
       expect(screen.getByText('20ºC')).toBeInTheDocument();
@@ -51,7 +53,7 @@ describe('components - <WeatherStatus />', () => {
     it('should show text date correctly when the date is after tomorrow', () => {
       const tomorrow = addDays(new Date(), 2);
 
-      render(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
       expect(screen.getByText('Depois de amanhã')).toBeInTheDocument();
     });
@@ -59,7 +61,7 @@ describe('components - <WeatherStatus />', () => {
     it('should return nothing when is not on range of three days', () => {
       const tomorrow = addDays(new Date(), 3);
 
-      const { container } = render(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      const { container } = renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
       const weatherInfos = container.firstChild?.firstChild;
 
@@ -69,7 +71,7 @@ describe('components - <WeatherStatus />', () => {
     it('should return nothing when the date is on the past', () => {
       const tomorrow = subDays(new Date(), 1);
 
-      const { container } = render(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      const { container } = renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
       const weatherInfos = container.firstChild?.firstChild;
 
@@ -77,7 +79,7 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should render be able to change between Celsius and Fahrenheit whens clicks on temperature', () => {
-      render(<WeatherStatus {...defaultValues} />);
+      renderWithProviders(<WeatherStatus {...defaultValues} />);
 
       const celciusTemperature = screen.getByText('32ºC');
 
@@ -100,14 +102,16 @@ describe('components - <WeatherStatus />', () => {
 
   describe('background color', () => {
     it("should render gray when doesn't have weather info", () => {
-      const { container } = render(<WeatherStatus date={mockedToday} weather={mockedWeather} />);
+      const { container } = renderWithProviders(<WeatherStatus date={mockedToday} />);
 
       const componentContainer = container.firstChild;
+
+      expect(componentContainer).toHaveStyle(`background: ${theme.colors.gray200}`);
     });
   });
 
   // it('should render with detailed info', () => {
-  //   render(<WeatherStatus {...defaultValues} isDetailed />);
+  //   renderWithProviders(<WeatherStatus {...defaultValues} isDetailed />);
 
   //   expect(screen.getByText('Hoje')).toBeInTheDocument();
   //   expect(screen.getByText('32ºC')).toBeInTheDocument();
