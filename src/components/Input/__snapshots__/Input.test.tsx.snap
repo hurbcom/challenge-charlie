@@ -52,7 +52,7 @@ exports[`components - <Input /> should render correctly 1`] = `
 
 @media (max-width:600px) {
   .c0 {
-    gap: $8;
+    gap: 0.5rem;
   }
 
   .c0 img {

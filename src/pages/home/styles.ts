@@ -16,3 +16,12 @@ export const Content = styled.div`
   margin: 0 auto;
   max-width: 600px;
 `;
+
+export const WeatherWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 3fr 1fr 1fr;
+
+  @media (max-width: 600px) {
+    height: calc(100vh - 80px);
+  }
+`;

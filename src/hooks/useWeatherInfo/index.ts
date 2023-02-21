@@ -9,7 +9,7 @@ enum TemperatureTypeEnum {
   fahrenheit = 'F',
 }
 
-enum BackgroundColorsEnum {
+export enum BackgroundColorsEnum {
   red = 'red',
   blue = 'blue',
   yellow = 'yellow',
@@ -34,14 +34,14 @@ export function useWeatherInfo({ date, weather }: WeatherStatusProps) {
     }
 
     if (isToday(date)) {
-      return 'Hoje';
+      return 'HOJE';
     }
 
     if (isTomorrow(date)) {
-      return 'Amanhã';
+      return 'AMANHÃ';
     }
 
-    return 'Depois de amanhã';
+    return 'DEPOIS DE AMANHÃ';
   }, [date]);
 
   const backgroundColor = useMemo(() => {

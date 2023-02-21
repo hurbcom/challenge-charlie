@@ -17,7 +17,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: 600px) {
-      gap: $8;
+      gap: ${theme.sizings[8]};
 
       img {
         width: 40;

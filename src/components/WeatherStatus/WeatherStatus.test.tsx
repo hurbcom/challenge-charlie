@@ -37,7 +37,7 @@ describe('components - <WeatherStatus />', () => {
     it('should render with temperature and correct day', () => {
       renderWithProviders(<WeatherStatus {...defaultValues} />);
 
-      expect(screen.getByText('Hoje')).toBeInTheDocument();
+      expect(screen.getByText(/Hoje/i)).toBeInTheDocument();
       expect(screen.getByText('32ºC')).toBeInTheDocument();
     });
 
@@ -46,7 +46,7 @@ describe('components - <WeatherStatus />', () => {
 
       renderWithProviders(<WeatherStatus date={tomorrow} weather={{ ...mockedWeather, temperature: 20.0 }} />);
 
-      expect(screen.getByText('Amanhã')).toBeInTheDocument();
+      expect(screen.getByText(/Amanhã/i)).toBeInTheDocument();
       expect(screen.getByText('20ºC')).toBeInTheDocument();
     });
 
@@ -55,7 +55,7 @@ describe('components - <WeatherStatus />', () => {
 
       renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
-      expect(screen.getByText('Depois de amanhã')).toBeInTheDocument();
+      expect(screen.getByText(/Depois de amanhã/i)).toBeInTheDocument();
     });
 
     it('should return nothing when is not on range of three days', () => {
@@ -146,15 +146,12 @@ describe('components - <WeatherStatus />', () => {
     });
   });
 
-  // it('should render with detailed info', () => {
-  //   renderWithProviders(<WeatherStatus {...defaultValues} isDetailed />);
+  it('should render with detailed infos', () => {
+    renderWithProviders(<WeatherStatus {...defaultValues} isDetailed />);
 
-  //   expect(screen.getByText('Hoje')).toBeInTheDocument();
-  //   expect(screen.getByText('32ºC')).toBeInTheDocument();
-
-  //   expect(screen.getByText('Ensolarado')).toBeInTheDocument();
-  //   expect(screen.getByText('Vento: NO 3.6km/H')).toBeInTheDocument();
-  //   expect(screen.getByText('Humidade: 55%')).toBeInTheDocument();
-  //   expect(screen.getByText('Pressão: 1016hPA')).toBeInTheDocument();
-  // });
+    expect(screen.getByText(/Ensolarado/i)).toBeInTheDocument();
+    expect(screen.getByText(/3\.6km\/h/i)).toBeInTheDocument();
+    expect(screen.getByText(/55%/i)).toBeInTheDocument();
+    expect(screen.getByText(/1016hPA/i)).toBeInTheDocument();
+  });
 });

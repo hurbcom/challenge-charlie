@@ -41,8 +41,9 @@ function Home() {
           icon={{ svg: 'compass', alt: 'Ícone de compasso' }}
         />
 
-        <div>
+        <S.WeatherWrapper>
           <WeatherStatus
+            isDetailed
             date={new Date()}
             weather={{
               icon: '10n',
@@ -86,7 +87,7 @@ function Home() {
               description: 'Ensolarado',
             }}
           />
-        </div>
+        </S.WeatherWrapper>
       </S.Content>
     </S.Container>
   );
