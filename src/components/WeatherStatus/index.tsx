@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
 import Image from 'next/image';
 
@@ -14,7 +14,7 @@ enum TemperatureTypeEnum {
 
 export type WeatherStatusProps = {
   date: Date;
-  weather: Weather;
+  weather?: Weather;
 };
 
 /* TODO:
@@ -26,15 +26,11 @@ export type WeatherStatusProps = {
 
 const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
   const [temperature, setTemperature] = useState({
-    degrees: weather.temperature,
+    degrees: weather?.temperature ?? null,
     type: TemperatureTypeEnum.celsius,
   });
 
   const formattedTemperature = `${temperature.degrees}º${temperature.type}`;
-
-  const icon = useMemo(() => {
-    return weather.icon.replace(/\D/g, '');
-  }, [weather.icon]);
 
   const textDay = useMemo(() => {
     const MAX_DAYS_TO_SHOW = 3;
@@ -57,31 +53,51 @@ const WeatherStatus = ({ date, weather }: WeatherStatusProps) => {
     return 'Depois de amanhã';
   }, [date]);
 
+  const getBackgroundColor = useCallback(() => {
+    if (!textDay || !weather) {
+      return 'gray';
+    }
+
+    if (weather.temperature < 15) {
+      return 'blue';
+    }
+
+    if (weather.temperature > 35) {
+      return 'red';
+    }
+
+    return 'yellow';
+  }, [weather, textDay]);
+
+  const icon = useMemo(() => {
+    return weather?.icon.replace(/\D/g, '');
+  }, [weather]);
+
   const handleToggleTemperatureType = () => {
     setTemperature((state) => {
       if (state.type === TemperatureTypeEnum.celsius) {
         return {
-          degrees: convertCelsiusToFahrenheit(weather.temperature),
+          degrees: !!weather?.temperature ? convertCelsiusToFahrenheit(weather.temperature) : null,
           type: TemperatureTypeEnum.fahrenheit,
         };
       }
 
       return {
-        degrees: weather.temperature,
+        degrees: weather?.temperature ?? null,
         type: TemperatureTypeEnum.celsius,
       };
     });
   };
 
-  if (!textDay) {
-    return <></>;
+  if (!textDay || !weather) {
+    return <S.Container />;
   }
 
   return (
     <S.Container>
       <Image
-        width="100"
-        height="100"
+        width="60"
+        height="60"
         src={`assets/${icon}.svg`}
         alt={`Ícone representando o clima ${weather.description}`}
       />

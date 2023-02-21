@@ -43,17 +43,17 @@ function Home() {
 
         <WeatherStatus
           date={new Date()}
-          weather={{
-            icon: '10n',
-            humidity: 55,
-            pressure: 1016,
-            wind: {
-              speed: 3.6,
-              degrees: 360,
-            },
-            temperature: 32.0,
-            description: 'Ensolarado',
-          }}
+          // weather={{
+          //   icon: '10n',
+          //   humidity: 55,
+          //   pressure: 1016,
+          //   wind: {
+          //     speed: 3.6,
+          //     degrees: 360,
+          //   },
+          //   temperature: 32.0,
+          //   description: 'Ensolarado',
+          // }}
         />
       </S.Content>
     </S.Container>

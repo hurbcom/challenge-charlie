@@ -3,13 +3,16 @@ import MockDate from 'mockdate';
 import { addDays, subDays } from 'date-fns';
 import { fireEvent, render, screen } from '@testing-library/react';
 
+import { Weather } from '~/@types/openWeather';
+
 import WeatherStatus, { WeatherStatusProps } from '.';
 
 const mockedToday = new Date(2023, 1, 19);
 
-const mockedWeather = {
+const mockedWeather: Weather = {
   humidity: 55,
   pressure: 1016,
+  icon: '10d',
   wind: {
     speed: 3.6,
     degrees: 360,
@@ -39,7 +42,7 @@ describe('components - <WeatherStatus />', () => {
     it('should show text date correctly when is tomorrow and send different weather infos', () => {
       const tomorrow = addDays(new Date(), 1);
 
-      render(<WeatherStatus date={tomorrow} weather={{ ...defaultValues.weather, temperature: 20.0 }} />);
+      render(<WeatherStatus date={tomorrow} weather={{ ...mockedWeather, temperature: 20.0 }} />);
 
       expect(screen.getByText('Amanhã')).toBeInTheDocument();
       expect(screen.getByText('20ºC')).toBeInTheDocument();
@@ -58,7 +61,9 @@ describe('components - <WeatherStatus />', () => {
 
       const { container } = render(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
-      expect(container.firstChild).toBeNull();
+      const weatherInfos = container.firstChild?.firstChild;
+
+      expect(weatherInfos).toBeNull();
     });
 
     it('should return nothing when the date is on the past', () => {
@@ -66,7 +71,9 @@ describe('components - <WeatherStatus />', () => {
 
       const { container } = render(<WeatherStatus {...defaultValues} date={tomorrow} />);
 
-      expect(container.firstChild).toBeNull();
+      const weatherInfos = container.firstChild?.firstChild;
+
+      expect(weatherInfos).toBeNull();
     });
 
     it('should render be able to change between Celsius and Fahrenheit whens clicks on temperature', () => {
@@ -88,6 +95,14 @@ describe('components - <WeatherStatus />', () => {
 
       expect(celciusTemperature).toBeInTheDocument();
       expect(screen.queryByText('89.6ºF')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('background color', () => {
+    it("should render gray when doesn't have weather info", () => {
+      const { container } = render(<WeatherStatus date={mockedToday} weather={mockedWeather} />);
+
+      const componentContainer = container.firstChild;
     });
   });
 
