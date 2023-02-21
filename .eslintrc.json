@@ -9,6 +9,7 @@
         "groups": [["/^react/", "module"], "/^~/", ["parent", "sibling", "index"]],
         "alphabetize": { "order": "ignore", "ignoreCase": true }
       }
-    ]
+    ],
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
   }
 }

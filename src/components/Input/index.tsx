@@ -1,4 +1,4 @@
-import React, { ComponentProps, ElementRef, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { ComponentProps, forwardRef, useImperativeHandle, useRef } from 'react';
 import Image from 'next/image';
 
 import * as S from './styles';
