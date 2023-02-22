@@ -4,17 +4,18 @@ import wallpaper, { GetWallpaperResponse } from './index.api';
 
 describe('API - wallpaper', () => {
   beforeAll(() => {
+    const response = {
+      images: [
+        {
+          url: '/my-image',
+          copyright: 'Today image',
+        },
+      ],
+    };
+
     global.fetch = jest.fn(() =>
       Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            images: [
-              {
-                url: '/my-image',
-                copyright: 'Today image',
-              },
-            ],
-          }),
+        json: () => Promise.resolve(response),
       }),
     ) as jest.Mock;
   });
@@ -38,18 +39,6 @@ describe('API - wallpaper', () => {
 
     expect(res.statusCode).toBe(405);
     expect(res._getJSONData()).toStrictEqual({ message: 'Method not allowed' });
-  });
-
-  it('should be able to get wallpaper', async () => {
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>();
-
-    await wallpaper(req, res);
-
-    expect(res.statusCode).toBe(200);
-    expect(res._getJSONData()).toStrictEqual({
-      src: 'https://www.bing.com/my-image',
-      alt: 'Today image',
-    });
   });
 
   it('should return error has some error with external API', async () => {

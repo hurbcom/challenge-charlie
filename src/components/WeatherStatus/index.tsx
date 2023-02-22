@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { useWeatherInfo } from '~/hooks';
 import { Weather } from '~/@types/openWeather';
+import { convertWindDegreeToDirection } from '~/utils';
 
 import * as S from './styles';
 
@@ -49,8 +50,9 @@ const WeatherStatus = ({ date, weather, isDetailed = false }: WeatherStatusProps
           <S.Info>
             <span>{weather.description}</span>
 
-            {/* TODO: colocar a direção do vento */}
-            <small>Vento: ?? {weather.wind.speed}km/H</small>
+            <small>
+              Vento: {convertWindDegreeToDirection(weather.wind.degrees)} {weather.wind.speed}km/H
+            </small>
             <small>Humidade: {weather.humidity}%</small>
             <small>Pressão: {weather.pressure}hPA</small>
           </S.Info>
