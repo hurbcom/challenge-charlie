@@ -42,51 +42,11 @@ function Home() {
         />
 
         <S.WeatherWrapper>
-          <WeatherStatus
-            isDetailed
-            date={new Date()}
-            weather={{
-              icon: '10n',
-              humidity: 55,
-              pressure: 1016,
-              wind: {
-                speed: 3.6,
-                degrees: 360,
-              },
-              temperature: 18.0,
-              description: 'Ensolarado',
-            }}
-          />
+          <WeatherStatus isDetailed date={new Date()} />
 
-          <WeatherStatus
-            date={new Date()}
-            weather={{
-              icon: '10n',
-              humidity: 55,
-              pressure: 1016,
-              wind: {
-                speed: 3.6,
-                degrees: 360,
-              },
-              temperature: 18.0,
-              description: 'Ensolarado',
-            }}
-          />
+          <WeatherStatus date={new Date()} />
 
-          <WeatherStatus
-            date={new Date()}
-            weather={{
-              icon: '10n',
-              humidity: 55,
-              pressure: 1016,
-              wind: {
-                speed: 3.6,
-                degrees: 360,
-              },
-              temperature: 18.0,
-              description: 'Ensolarado',
-            }}
-          />
+          <WeatherStatus date={new Date()} />
         </S.WeatherWrapper>
       </S.Content>
     </S.Container>

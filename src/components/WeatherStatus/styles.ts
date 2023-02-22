@@ -8,23 +8,10 @@ interface ContainerProps {
 }
 
 const containerModifiers = {
-  blue: () => css`
-    img {
-      filter: brightness(10);
-    }
-  `,
-  red: () => css`
-    img {
-      filter: brightness(10);
-    }
-  `,
-  yellow: () => css`
-    img {
-      filter: brightness(10);
-    }
-  `,
   isDetailed: () => css`
     @media (max-width: 600px) {
+      min-height: 24rem;
+
       img {
         width: 120px;
         height: 120px;
@@ -42,6 +29,7 @@ export const Container = styled.div<ContainerProps>`
     grid-template-columns: 2fr 1.5fr;
 
     height: 100%;
+    min-height: 8rem;
     padding: ${theme.sizings[24]} ${theme.sizings[32]};
 
     background: transparent;
@@ -88,6 +76,8 @@ export const Container = styled.div<ContainerProps>`
 
       margin: 0 auto;
 
+      filter: brightness(10);
+
       @media (max-width: 600px) {
         align-self: flex-start;
 
@@ -96,12 +86,9 @@ export const Container = styled.div<ContainerProps>`
       }
     }
 
-    ${!!color && containerModifiers[color]}
     ${!!isDetailed && containerModifiers.isDetailed}
   `}
 `;
-
-export const InfosWrapper = styled.div``;
 
 export const Info = styled.div`
   ${({ theme }) => css`

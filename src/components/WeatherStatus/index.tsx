@@ -39,7 +39,7 @@ const WeatherStatus = ({ date, weather, isDetailed = false }: WeatherStatusProps
         alt={`Ícone representando o clima ${weather.description}`}
       />
 
-      <S.InfosWrapper>
+      <div>
         <S.Info>
           <span>{textDay}</span>
 
@@ -57,7 +57,7 @@ const WeatherStatus = ({ date, weather, isDetailed = false }: WeatherStatusProps
             <small>Pressão: {weather.pressure}hPA</small>
           </S.Info>
         )}
-      </S.InfosWrapper>
+      </div>
     </S.Container>
   );
 };
