@@ -1,10 +1,11 @@
+import { BingWallpaperAPIResponse } from '~/@types';
 import { mockRequestResponse } from '~/utils/mockRequestResponse';
 
 import wallpaper, { GetWallpaperResponse } from './index.api';
 
 describe('API - wallpaper', () => {
   beforeAll(() => {
-    const response = {
+    const response: BingWallpaperAPIResponse = {
       images: [
         {
           url: '/my-image',
@@ -21,7 +22,7 @@ describe('API - wallpaper', () => {
   });
 
   it('should be able to get wallpaper', async () => {
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>();
+    const { req, res } = mockRequestResponse<GetWallpaperResponse>({});
 
     await wallpaper(req, res);
 
@@ -33,7 +34,7 @@ describe('API - wallpaper', () => {
   });
 
   it('should return error when method is not GET', async () => {
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>('POST');
+    const { req, res } = mockRequestResponse<GetWallpaperResponse>({ method: 'POST' });
 
     await wallpaper(req, res);
 
@@ -44,7 +45,7 @@ describe('API - wallpaper', () => {
   it('should return error has some error with external API', async () => {
     global.fetch = jest.fn(() => Promise.reject()) as jest.Mock;
 
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>();
+    const { req, res } = mockRequestResponse<GetWallpaperResponse>({});
 
     await wallpaper(req, res);
 
@@ -57,7 +58,7 @@ describe('API - wallpaper', () => {
       Promise.reject({ message: 'Service Unavailable Please try again later.' }),
     ) as jest.Mock;
 
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>();
+    const { req, res } = mockRequestResponse<GetWallpaperResponse>({});
 
     await wallpaper(req, res);
 
@@ -77,7 +78,7 @@ describe('API - wallpaper', () => {
       }),
     ) as jest.Mock;
 
-    const { req, res } = mockRequestResponse<GetWallpaperResponse>();
+    const { req, res } = mockRequestResponse<GetWallpaperResponse>({});
 
     await wallpaper(req, res);
 

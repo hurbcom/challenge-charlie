@@ -6,7 +6,12 @@ interface MockAPIReqRes<T> {
   res: NextApiResponse & { _getJSONData(): T };
 }
 
-export function mockRequestResponse<T = object>(method: RequestMethod = 'GET') {
+interface MockRequestResponseProps {
+  method?: RequestMethod;
+  query?: Partial<{ [key: string]: string | string[] }>;
+}
+
+export function mockRequestResponse<T = object>({ method = 'GET', query }: MockRequestResponseProps) {
   const { req, res }: MockAPIReqRes<T> = createMocks({
     method,
   });
@@ -14,6 +19,10 @@ export function mockRequestResponse<T = object>(method: RequestMethod = 'GET') {
   req.headers = {
     'content-type': 'application/json',
   };
+
+  if (query) {
+    req.query = query;
+  }
 
   return { req, res };
 }

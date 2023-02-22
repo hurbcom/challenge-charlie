@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { BingWallpaperResponseAPI, WallpaperProps } from '~/@types';
+import { BingWallpaperAPIResponse, WallpaperProps } from '~/@types';
 
 export type GetWallpaperResponse = WallpaperProps | { message: string };
 
@@ -17,7 +17,7 @@ async function getWallpaper(req: NextApiRequest, res: NextApiResponse<GetWallpap
     const bingWallpaperURL = `${BING_BASE_URL}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR`;
 
     const response = await fetch(bingWallpaperURL);
-    const parsedResponse = (await response.json()) as BingWallpaperResponseAPI;
+    const parsedResponse = (await response.json()) as BingWallpaperAPIResponse;
 
     if (!parsedResponse.images || parsedResponse.images.length === 0) {
       return res.status(404).json({
