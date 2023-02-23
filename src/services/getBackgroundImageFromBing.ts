@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 // interface BackgroundImageInterface {
 //   images?: Image[];
 //   tooltips?: any;

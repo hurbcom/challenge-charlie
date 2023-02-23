@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "proxy": "https://www.bing.com",
   "scripts": {
     "dev": "webpack serve",
     "build": "cross-env NODE_ENV=production webpack"
