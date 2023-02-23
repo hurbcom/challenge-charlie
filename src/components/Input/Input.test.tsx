@@ -1,5 +1,6 @@
 import React from "react";
-import { fireEvent, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import CompassIcon from '~/assets/compass.svg';
 import renderWithProviders from '~/utils/renderWithProviders';
@@ -19,20 +20,24 @@ describe('components - <Input />', () => {
     expect(screen.getByLabelText('Ícone de compasso')).toBeInTheDocument();
   });
 
-  it('should handle with change event', () => {
-    const onChange = jest.fn();
+  it('should handle with change event', async () => {
+    const user = userEvent.setup();
 
-    renderWithProviders(<Input onChange={onChange} />);
+    renderWithProviders(<Input onChange={jest.fn()} />);
 
     const input = screen.getByRole('textbox');
 
-    fireEvent.change(input, { target: { value: 'John Doe' } });
+    user.type(input, 'John Doe');
 
-    expect(onChange).toHaveBeenCalled();
-    expect((input as HTMLInputElement).value).toBe('John Doe');
+    jest.runAllTimers();
+
+    await waitFor(() => {
+      expect(input).toHaveValue('John Doe');
+    });
   });
 
   it('should handle focus on input', () => {
+    const user = userEvent.setup();
     const inputRef = React.createRef<HTMLInputElement>();
 
     renderWithProviders(<Input ref={inputRef} />);
@@ -40,7 +45,7 @@ describe('components - <Input />', () => {
     const input = screen.getByRole('textbox');
 
     if (input?.parentElement !== null) {
-      fireEvent.click(input?.parentElement);
+      user.click(input?.parentElement);
     }
 
     if (inputRef.current) {

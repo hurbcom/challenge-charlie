@@ -1,6 +1,7 @@
 import React from 'react';
 import { addDays, subDays } from 'date-fns';
 import { fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { theme } from '~/styles/theme';
 import { Weather } from '~/@types/openWeather';
@@ -80,6 +81,8 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should render be able to change between Celsius and Fahrenheit whens clicks on temperature', () => {
+      const user = userEvent.setup();
+
       renderWithProviders(<WeatherStatus {...defaultValues} />);
 
       const celciusTemperature = screen.getByText('32ºC');
