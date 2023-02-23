@@ -15,7 +15,7 @@ export enum BackgroundColorsEnum {
   yellow = 'yellow',
 }
 
-export function useWeatherInfo({ date, weather }: WeatherStatusProps) {
+export function useWeatherInfo({ weather }: WeatherStatusProps) {
   const [temperature, setTemperature] = useState({
     degrees: weather?.temperature ?? null,
     type: TemperatureTypeEnum.celsius,
@@ -26,23 +26,21 @@ export function useWeatherInfo({ date, weather }: WeatherStatusProps) {
   const textDay = useMemo(() => {
     const MAX_DAYS_TO_SHOW = 3;
 
-    const isBeforeToday = !isToday(date) && isPast(date);
-    const isOutOfRangeOfDays = isBeforeToday || differenceInDays(date, new Date()) >= MAX_DAYS_TO_SHOW;
+    if (!weather) return false;
 
-    if (isOutOfRangeOfDays) {
-      return false;
-    }
+    const weatherDate = new Date(weather.date);
 
-    if (isToday(date)) {
-      return 'HOJE';
-    }
+    const isBeforeToday = !isToday(weatherDate) && isPast(weatherDate);
+    const isOutOfRangeOfDays = isBeforeToday || differenceInDays(weatherDate, new Date()) >= MAX_DAYS_TO_SHOW;
 
-    if (isTomorrow(date)) {
-      return 'AMANHÃ';
-    }
+    if (isOutOfRangeOfDays) return false;
+
+    if (isToday(weatherDate)) return 'HOJE';
+
+    if (isTomorrow(weatherDate)) return 'AMANHÃ';
 
     return 'DEPOIS DE AMANHÃ';
-  }, [date]);
+  }, [weather]);
 
   const backgroundColor = useMemo(() => {
     if (!textDay || !weather) {

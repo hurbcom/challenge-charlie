@@ -13,7 +13,9 @@ export function useGetUserLocation(elementToFocus?: RefObject<HTMLInputElement>)
         elementToFocus?.current?.focus();
       };
 
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
+        enableHighAccuracy: true,
+      });
     }
   }, [elementToFocus]);
 

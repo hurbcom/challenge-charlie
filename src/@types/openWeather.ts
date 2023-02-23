@@ -7,7 +7,7 @@ export interface OpenWeatherDayInfo {
   weather: {
     description: string;
     icon: string;
-  };
+  }[];
 }
 
 export interface OpenWeatherAPIResponse {
@@ -16,6 +16,7 @@ export interface OpenWeatherAPIResponse {
 }
 
 export interface Weather {
+  date: Date;
   icon: string;
   pressure: number;
   humidity: number;

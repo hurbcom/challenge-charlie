@@ -36,7 +36,7 @@ async function getWeather(req: NextApiRequest, res: NextApiResponse<GetWeatherRe
 
     const nextDaysWeather = parsedResponse.daily
       .filter((_, index) => index + 1 <= NEXT_DAYS_TO_SHOW)
-      .map((info) => formatWeatherData({ data: info, temperatureFormat: 'object' }));
+      .map((info, index) => formatWeatherData({ data: info, temperatureFormat: 'object', daysToAdd: index + 1 }));
 
     const formattedResponse: Weather[] = [
       formatWeatherData({ data: parsedResponse.current, temperatureFormat: 'number' }),

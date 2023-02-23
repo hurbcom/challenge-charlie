@@ -111,6 +111,10 @@ export const Info = styled.div`
     }
 
     > span {
+      &:first-child {
+        text-transform: uppercase;
+      }
+
       font-size: ${theme.sizings[24]};
     }
 

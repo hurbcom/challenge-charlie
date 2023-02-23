@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { useWindowSize } from '@react-hook/window-size';
 
 import { Input } from '~/components';
-import { WallpaperProps } from '~/@types';
 import { useGetUserLocation } from '~/hooks';
-import { getWallpaper } from '~/services/wallpaper';
+import { WallpaperProps, Weather } from '~/@types';
+import { getWallpaper, getWeather } from '~/services';
 import WeatherStatus from '~/components/WeatherStatus';
 
 import * as S from './styles';
@@ -14,6 +14,8 @@ function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [wallpaper, setWallpaper] = useState<WallpaperProps | null>();
+  const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>();
+  console.log('🚀 ~ Home ~ weather:', weatherForecast);
 
   const [width, height] = useWindowSize();
   const { coordinates } = useGetUserLocation(inputRef);
@@ -27,6 +29,23 @@ function Home() {
 
     handleGetWallpaper();
   }, []);
+
+  useEffect(() => {
+    async function handleGetWeather() {
+      if (!coordinates?.coords?.latitude || !coordinates?.coords.longitude) {
+        return;
+      }
+
+      const weatherData = await getWeather({
+        latitude: coordinates?.coords.latitude,
+        longitude: coordinates?.coords.longitude,
+      });
+
+      setWeatherForecast(weatherData);
+    }
+
+    handleGetWeather();
+  }, [coordinates]);
 
   return (
     <S.Container>
@@ -42,11 +61,9 @@ function Home() {
         />
 
         <S.WeatherWrapper>
-          <WeatherStatus isDetailed date={new Date()} />
-
-          <WeatherStatus date={new Date()} />
-
-          <WeatherStatus date={new Date()} />
+          {weatherForecast?.map((weather, index) => {
+            return <WeatherStatus key={String(weather.date)} isDetailed={index === 0} weather={weather} />;
+          })}
         </S.WeatherWrapper>
       </S.Content>
     </S.Container>

@@ -8,28 +8,22 @@ import { convertWindDegreeToDirection } from '~/utils';
 import * as S from './styles';
 
 export type WeatherStatusProps = {
-  date: Date;
   weather?: Weather;
   isDetailed?: boolean;
 };
 
-const WeatherStatus = ({ date, weather, isDetailed = false }: WeatherStatusProps) => {
+const WeatherStatus = ({ weather, isDetailed = false }: WeatherStatusProps) => {
   const { icon, textDay, backgroundColor, formattedTemperature, handleToggleTemperatureType } = useWeatherInfo({
-    date,
     weather,
   });
 
   const imageDimensions = useMemo(() => {
-    if (isDetailed) {
-      return { width: 220, height: 220 };
-    }
+    if (isDetailed) return { width: 220, height: 220 };
 
     return { width: 80, height: 80 };
   }, [isDetailed]);
 
-  if (!textDay || !weather) {
-    return <S.Container />;
-  }
+  if (!textDay || !weather) return <S.Container />;
 
   return (
     <S.Container color={backgroundColor} isDetailed={isDetailed}>
