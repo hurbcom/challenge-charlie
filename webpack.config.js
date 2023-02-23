@@ -20,7 +20,6 @@ module.exports = {
     },
     compress: true,
     port: 3000,
-    allowedHosts: ['challanger-charlie.com'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -30,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },

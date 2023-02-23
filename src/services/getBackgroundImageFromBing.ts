@@ -4,14 +4,27 @@ const api = axios.create({
   baseURL: `http://localhost:3001`,
 });
 
-export async function getBackgroundImageFromBing() {
+interface BackgroundImageInterface {
+  images?: Image[] | undefined;
+}
+interface Image {
+  url?: string;
+}
+
+export async function getBackgroundImageFromBing(): Promise<
+  string | undefined
+> {
   try {
-    const response = await api.get(`/HPImageArchive.aspx`, {
-      params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' },
-    });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    console.log('response', response.data);
-    return response;
+    const response = await api.get<BackgroundImageInterface>(
+      `/HPImageArchive.aspx`,
+      {
+        params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' },
+      }
+    );
+
+    const urlBackgroundImage = response.data.images[0].url;
+
+    return `https://bing.com${urlBackgroundImage}`;
   } catch (error) {
     console.log(error);
     throw new Error('Faleid fetch background from api.');

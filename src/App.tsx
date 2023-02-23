@@ -10,9 +10,10 @@ const App: React.FC = () => {
     handleBackgroundImage();
   });
 
-  async function handleBackgroundImage(): any {
+  async function handleBackgroundImage(): string {
     const data = await getBackgroundImageFromBing();
 
+    console.log('data', data);
     return data;
   }
 
