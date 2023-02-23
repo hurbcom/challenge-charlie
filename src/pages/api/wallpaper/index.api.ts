@@ -35,7 +35,7 @@ async function getWallpaper(req: NextApiRequest, res: NextApiResponse<GetWallpap
     const message = (error as Error)?.message;
 
     return res.status(503).json({
-      message: `Something went wrong with wallpaper supplier${!!message ? `, Error: ${message}` : ''}`,
+      message: `Something went wrong with wallpaper API${!!message ? `, Error: ${message}` : ''}`,
     });
   }
 }

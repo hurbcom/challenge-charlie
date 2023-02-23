@@ -16,7 +16,7 @@ export interface OpenWeatherAPIResponse {
 }
 
 export interface Weather {
-  date: Date;
+  date: string;
   icon: string;
   pressure: number;
   humidity: number;

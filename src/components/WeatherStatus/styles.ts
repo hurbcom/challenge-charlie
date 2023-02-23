@@ -72,15 +72,11 @@ export const Container = styled.div<ContainerProps>`
     }
 
     img {
-      align-self: center;
-
       margin: 0 auto;
 
       filter: brightness(10);
 
       @media (max-width: 600px) {
-        align-self: flex-start;
-
         width: 60px;
         height: 60px;
       }

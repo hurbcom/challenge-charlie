@@ -2,6 +2,8 @@ import { addDays } from 'date-fns';
 
 import { OpenWeatherDayInfo, Weather } from '~/@types/openWeather';
 
+
+
 type FormatWeatherDataProps = {
   daysToAdd?: number;
   data: OpenWeatherDayInfo;
@@ -16,7 +18,7 @@ export function formatWeatherData({ data, temperatureFormat, daysToAdd = 0 }: Fo
     pressure: data.pressure,
     icon: data.weather[0].icon,
     temperature: Math.round(temperature),
-    date: addDays(new Date(), daysToAdd),
+    date: addDays(new Date(), daysToAdd).toJSON(),
     description: data.weather[0].description,
     wind: {
       degrees: data.wind_deg,

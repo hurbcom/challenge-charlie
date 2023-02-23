@@ -50,7 +50,7 @@ describe('API - wallpaper', () => {
     await wallpaper(req, res);
 
     expect(res.statusCode).toBe(503);
-    expect(res._getJSONData()).toStrictEqual({ message: 'Something went wrong with wallpaper supplier' });
+    expect(res._getJSONData()).toStrictEqual({ message: 'Something went wrong with wallpaper API' });
   });
 
   it('should return error has some error with external API and return the error message', async () => {
@@ -64,7 +64,7 @@ describe('API - wallpaper', () => {
 
     expect(res.statusCode).toBe(503);
     expect(res._getJSONData()).toStrictEqual({
-      message: 'Something went wrong with wallpaper supplier, Error: Service Unavailable Please try again later.',
+      message: 'Something went wrong with wallpaper API, Error: Service Unavailable Please try again later.',
     });
   });
 

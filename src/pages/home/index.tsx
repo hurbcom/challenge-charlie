@@ -15,7 +15,6 @@ function Home() {
 
   const [wallpaper, setWallpaper] = useState<WallpaperProps | null>();
   const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>();
-  console.log('🚀 ~ Home ~ weather:', weatherForecast);
 
   const [width, height] = useWindowSize();
   const { coordinates } = useGetUserLocation(inputRef);
@@ -47,6 +46,10 @@ function Home() {
     handleGetWeather();
   }, [coordinates]);
 
+  const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
+    <WeatherStatus key={index} isDetailed={index === 0} />
+  ));
+
   return (
     <S.Container>
       {wallpaper && (
@@ -61,9 +64,11 @@ function Home() {
         />
 
         <S.WeatherWrapper>
-          {weatherForecast?.map((weather, index) => {
-            return <WeatherStatus key={String(weather.date)} isDetailed={index === 0} weather={weather} />;
-          })}
+          {!!weatherForecast
+            ? weatherForecast?.map((weather, index) => {
+                return <WeatherStatus key={String(weather.date)} isDetailed={index === 0} weather={weather} />;
+              })
+            : weatherPlaceholder}
         </S.WeatherWrapper>
       </S.Content>
     </S.Container>

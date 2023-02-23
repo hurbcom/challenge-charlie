@@ -21,9 +21,9 @@ async function getWeather(req: NextApiRequest, res: NextApiResponse<GetWeatherRe
       });
     }
 
-    const openWeatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&lang=pt_br&exclude=minutely,hourly,alerts`;
+    const openWeatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&lang=pt_br&exclude=minutely,hourly,alerts`;
 
-    const response = await fetch(openWeatherUrl);
+    const response = await fetch(openWeatherURL);
     const parsedResponse = (await response.json()) as OpenWeatherAPIResponse;
 
     if (!parsedResponse.current || !parsedResponse.daily) {

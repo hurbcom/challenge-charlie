@@ -1,17 +1,17 @@
 import React from 'react';
-import MockDate from 'mockdate';
 import { addDays, subDays } from 'date-fns';
 import { fireEvent, screen } from '@testing-library/react';
 
+import { theme } from '~/styles/theme';
 import { Weather } from '~/@types/openWeather';
 import renderWithProviders from '~/utils/renderWithProviders';
-import { theme } from '~/styles/theme';
 
 import WeatherStatus, { WeatherStatusProps } from '.';
 
-const mockedToday = new Date(2023, 1, 19);
+const mockedToday = new Date(2023, 1, 19).toJSON();
 
 const mockedWeather: Weather = {
+  date: mockedToday,
   humidity: 55,
   pressure: 1016,
   icon: '10d',
@@ -25,11 +25,10 @@ const mockedWeather: Weather = {
 
 describe('components - <WeatherStatus />', () => {
   beforeEach(() => {
-    MockDate.set(new Date(2023, 1, 19));
+    jest.setSystemTime(new Date(2023, 1, 19));
   });
 
   const defaultValues: WeatherStatusProps = {
-    date: mockedToday,
     weather: mockedWeather,
   };
 
@@ -42,26 +41,28 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should show text date correctly when is tomorrow and send different weather infos', () => {
-      const tomorrow = addDays(new Date(), 1);
+      const tomorrow = addDays(new Date(), 1).toJSON();
 
-      renderWithProviders(<WeatherStatus date={tomorrow} weather={{ ...mockedWeather, temperature: 20.0 }} />);
+      renderWithProviders(<WeatherStatus weather={{ ...mockedWeather, temperature: 20.0, date: tomorrow }} />);
 
       expect(screen.getByText(/Amanhã/i)).toBeInTheDocument();
       expect(screen.getByText('20ºC')).toBeInTheDocument();
     });
 
     it('should show text date correctly when the date is after tomorrow', () => {
-      const tomorrow = addDays(new Date(), 2);
+      const afterTomorrow = addDays(new Date(), 2).toJSON();
 
-      renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      renderWithProviders(<WeatherStatus {...defaultValues} weather={{ ...mockedWeather, date: afterTomorrow }} />);
 
       expect(screen.getByText(/Depois de amanhã/i)).toBeInTheDocument();
     });
 
     it('should return nothing when is not on range of three days', () => {
-      const tomorrow = addDays(new Date(), 3);
+      const afterAfterTomorrow = addDays(new Date(), 3).toJSON();
 
-      const { container } = renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      const { container } = renderWithProviders(
+        <WeatherStatus weather={{ ...mockedWeather, date: afterAfterTomorrow }} />,
+      );
 
       const weatherInfos = container.firstChild?.firstChild;
 
@@ -69,9 +70,9 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should return nothing when the date is on the past', () => {
-      const tomorrow = subDays(new Date(), 1);
+      const tomorrow = subDays(new Date(), 1).toJSON();
 
-      const { container } = renderWithProviders(<WeatherStatus {...defaultValues} date={tomorrow} />);
+      const { container } = renderWithProviders(<WeatherStatus weather={{ ...mockedWeather, date: tomorrow }} />);
 
       const weatherInfos = container.firstChild?.firstChild;
 
@@ -102,7 +103,7 @@ describe('components - <WeatherStatus />', () => {
 
   describe('background color', () => {
     it("should render gray when doesn't have weather info", () => {
-      const { container } = renderWithProviders(<WeatherStatus date={mockedToday} />);
+      const { container } = renderWithProviders(<WeatherStatus />);
 
       const componentContainer = container.firstChild;
 
@@ -112,9 +113,7 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should render blue when is less than 15ºC or 59ºF', () => {
-      const { container } = renderWithProviders(
-        <WeatherStatus date={mockedToday} weather={{ ...mockedWeather, temperature: 14 }} />,
-      );
+      const { container } = renderWithProviders(<WeatherStatus weather={{ ...mockedWeather, temperature: 14 }} />);
 
       const componentContainer = container.firstChild;
 
@@ -124,9 +123,7 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should render red when is more than 35ºC or 95ºF', () => {
-      const { container } = renderWithProviders(
-        <WeatherStatus date={mockedToday} weather={{ ...mockedWeather, temperature: 36 }} />,
-      );
+      const { container } = renderWithProviders(<WeatherStatus weather={{ ...mockedWeather, temperature: 36 }} />);
 
       const componentContainer = container.firstChild;
 
@@ -136,7 +133,7 @@ describe('components - <WeatherStatus />', () => {
     });
 
     it('should render yellow when is equal or between (15ºC or 59ºF) and (35ºC or 95ºF)', () => {
-      const { container } = renderWithProviders(<WeatherStatus date={mockedToday} weather={mockedWeather} />);
+      const { container } = renderWithProviders(<WeatherStatus weather={mockedWeather} />);
 
       const componentContainer = container.firstChild;
 

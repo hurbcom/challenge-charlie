@@ -12,6 +12,10 @@ describe('API - weather', () => {
     ) as jest.Mock;
   });
 
+  beforeEach(() => {
+    jest.setSystemTime(new Date(2023, 1, 23, 0, 0, 0));
+  });
+
   it('should be able to get weather', async () => {
     const { req, res } = mockRequestResponse<GetWeatherResponse>({ query: mockedWeatherQuery });
 
