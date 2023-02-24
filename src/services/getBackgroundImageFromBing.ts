@@ -5,26 +5,24 @@ const api = axios.create({
 });
 
 interface BackgroundImageInterface {
-  images?: Image[] | undefined;
+  images?: Image[];
 }
 interface Image {
   url?: string;
 }
 
-export async function getBackgroundImageFromBing(): Promise<
-  string | undefined
-> {
+export async function getBackgroundImageFromBing(): Promise<Image> {
   try {
     const response = await api.get<BackgroundImageInterface>(
       `/HPImageArchive.aspx`,
       {
         params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' },
-      }
+      },
     );
 
     const urlBackgroundImage = response.data.images[0].url;
 
-    return `https://bing.com${urlBackgroundImage}`;
+    return { url: `https://bing.com${urlBackgroundImage}` };
   } catch (error) {
     console.log(error);
     throw new Error('Faleid fetch background from api.');
