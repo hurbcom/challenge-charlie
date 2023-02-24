@@ -1,8 +1,6 @@
 module.exports = {
-  testIgnorePatterns: ['/node_modules/'],
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
-  },
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
 };

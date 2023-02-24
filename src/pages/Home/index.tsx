@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getBackgroundImageFromBing } from '../../services/getBackgroundImageFromBing';
+import getBackgroundImageFromBing from '../../services/getBackgroundImageFromBing';
 
 import * as S from './styles';
 
@@ -10,7 +10,6 @@ const Home: React.FC = () => {
   async function handleBackgroundImage(): Promise<void> {
     const { url } = await getBackgroundImageFromBing();
 
-    console.log('handleBackgroundImage', url);
     setBackgroundImage(url);
   }
 
@@ -18,11 +17,13 @@ const Home: React.FC = () => {
     handleBackgroundImage();
   }, []);
 
-  useEffect(() => {
-    console.log(`useEffect`, backgroundImage);
-  }, [backgroundImage]);
-
-  return <S.Container backgroundImage={backgroundImage}></S.Container>;
+  return (
+    <S.Container backgroundImage={backgroundImage}>
+      <form>
+        <input></input>
+      </form>
+    </S.Container>
+  );
 };
 
 export default Home;
