@@ -22,10 +22,8 @@ const Home: React.FC = () => {
   return (
     <S.Container backgroundImage={backgroundImage}>
       <div className="weather-forecast-wrapper">
-        <header>
-          <LocationForm />
-          <WeatherForecastInfo />
-        </header>
+        <LocationForm />
+        <WeatherForecastInfo />
       </div>
     </S.Container>
   );

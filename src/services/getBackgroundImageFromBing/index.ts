@@ -20,8 +20,6 @@ export default async function getBackgroundImageFromBing(): Promise<Image> {
 
     return { url: `https://bing.com${urlBackgroundImage}` };
   } catch (error) {
-    console.log(`error`, error);
-
     throw new Error('Faleid fetch background from api.');
   }
 }

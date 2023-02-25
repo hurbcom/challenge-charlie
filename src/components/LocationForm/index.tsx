@@ -9,12 +9,14 @@ const LocationForm: React.FC = () => {
     console.log(data);
   };
   return (
-    <S.Container onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        placeholder="Rio de Janeiro, Rio de Janeiro"
-        {...register('location')}
-      ></input>
+    <S.Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          placeholder="Rio de Janeiro, Rio de Janeiro"
+          {...register('location')}
+        ></input>
+      </form>
     </S.Container>
   );
 };
