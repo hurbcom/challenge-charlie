@@ -1,8 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ backgroundImage: string }>`
-  width: 100vw;
-  height: 100vh;
+  ${({ theme, backgroundImage }) => css`
+    width: 100vw;
+    height: 100vh;
 
-  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+    display: flex;
+    justify-content: center;
+
+    background-image: ${`url(${backgroundImage})`};
+
+    .weather-forecast-wrapper {
+      width: 50%;
+      height: 100%;
+    }
+  `};
 `;

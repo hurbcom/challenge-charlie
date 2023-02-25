@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import LocationForm from '../../components/LocationForm';
+import WeatherForecastInfo from '../../components/WeatherForecastInfo';
 
 import getBackgroundImageFromBing from '../../services/getBackgroundImageFromBing';
 
@@ -19,9 +21,12 @@ const Home: React.FC = () => {
 
   return (
     <S.Container backgroundImage={backgroundImage}>
-      <form>
-        <input></input>
-      </form>
+      <div className="weather-forecast-wrapper">
+        <header>
+          <LocationForm />
+          <WeatherForecastInfo />
+        </header>
+      </div>
     </S.Container>
   );
 };
