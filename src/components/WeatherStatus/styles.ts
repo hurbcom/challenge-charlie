@@ -128,5 +128,28 @@ export const Info = styled.div`
 
 
 export const Temperature = styled.span`
-  cursor: pointer;
+  ${({ theme }) => css`
+    cursor: pointer;
+
+    > span {
+      & + span {
+        position: relative;
+
+        margin-left: ${theme.sizings[16]};
+
+        opacity: 0.5;
+
+        &:before {
+          position: absolute;
+          left: -${theme.sizings[8]};
+
+          width: 2px;
+          height: 100%;
+
+          content: '';
+          background: ${theme.colors.white};
+        }
+      }
+    }
+  `}
 `;

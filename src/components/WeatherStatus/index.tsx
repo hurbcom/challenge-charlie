@@ -13,9 +13,10 @@ export type WeatherStatusProps = {
 };
 
 const WeatherStatus = ({ weather, isDetailed = false }: WeatherStatusProps) => {
-  const { icon, textDay, backgroundColor, formattedTemperature, handleToggleTemperatureType } = useWeatherInfo({
-    weather,
-  });
+  const { icon, textDay, backgroundColor, formattedTemperature, reverseTemperatureType, handleToggleTemperatureType } =
+    useWeatherInfo({
+      weather,
+    });
 
   const imageDimensions = useMemo(() => {
     if (isDetailed) return { width: 220, height: 220 };
@@ -37,7 +38,10 @@ const WeatherStatus = ({ weather, isDetailed = false }: WeatherStatusProps) => {
         <S.Info>
           <span>{textDay}</span>
 
-          <S.Temperature onClick={handleToggleTemperatureType}>{formattedTemperature}</S.Temperature>
+          <S.Temperature onClick={handleToggleTemperatureType}>
+            <span>{formattedTemperature}</span>
+            <span>º{reverseTemperatureType}</span>
+          </S.Temperature>
         </S.Info>
 
         {isDetailed && (

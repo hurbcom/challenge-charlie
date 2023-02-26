@@ -88,11 +88,11 @@ describe('components - <WeatherStatus />', () => {
       const celciusTemperature = screen.getByText('32ºC');
 
       expect(celciusTemperature).toBeInTheDocument();
-      expect(screen.queryByText('89.6ºF')).not.toBeInTheDocument();
+      expect(screen.queryByText('90ºF')).not.toBeInTheDocument();
 
       fireEvent.click(celciusTemperature);
 
-      const fahrenheitTemperature = screen.getByText('89.6ºF');
+      const fahrenheitTemperature = screen.getByText('90ºF');
 
       expect(screen.queryByText('32ºC')).not.toBeInTheDocument();
       expect(fahrenheitTemperature).toBeInTheDocument();
@@ -100,7 +100,7 @@ describe('components - <WeatherStatus />', () => {
       fireEvent.click(fahrenheitTemperature);
 
       expect(celciusTemperature).toBeInTheDocument();
-      expect(screen.queryByText('89.6ºF')).not.toBeInTheDocument();
+      expect(screen.queryByText('90ºF')).not.toBeInTheDocument();
     });
   });
 

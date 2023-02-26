@@ -9,7 +9,7 @@ export const Container = styled.div`
     width: 100%;
     padding: ${theme.sizings[16]} ${theme.sizings[8]};
 
-    opacity: 0.85;
+    opacity: 0.9;
     background: ${theme.colors.gray200};
 
     &:has(input:focus) {

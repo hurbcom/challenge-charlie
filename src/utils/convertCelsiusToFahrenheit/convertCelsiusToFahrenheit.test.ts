@@ -6,4 +6,10 @@ describe('utils - convertCelsiusToFahrenheit', () => {
 
     expect(result).toBe(86);
   });
+
+  it('should round the result', () => {
+    const result = convertCelsiusToFahrenheit(26);
+
+    expect(result).toBe(79);
+  });
 });

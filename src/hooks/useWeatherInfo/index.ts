@@ -20,6 +20,7 @@ export function useWeatherInfo({ weather }: WeatherStatusProps) {
     degrees: weather?.temperature ?? null,
     type: TemperatureTypeEnum.celsius,
   });
+  const [reverseTemperatureType, setReverseTemperatureType] = useState(TemperatureTypeEnum.fahrenheit);
 
   const formattedTemperature = `${temperature.degrees}º${temperature.type}`;
 
@@ -67,12 +68,14 @@ export function useWeatherInfo({ weather }: WeatherStatusProps) {
 
     setTemperature((state) => {
       if (state.type === TemperatureTypeEnum.celsius) {
+        setReverseTemperatureType(TemperatureTypeEnum.celsius);
         return {
           degrees: convertCelsiusToFahrenheit(weather.temperature),
           type: TemperatureTypeEnum.fahrenheit,
         };
       }
 
+      setReverseTemperatureType(TemperatureTypeEnum.fahrenheit);
       return {
         degrees: weather.temperature,
         type: TemperatureTypeEnum.celsius,
@@ -85,6 +88,7 @@ export function useWeatherInfo({ weather }: WeatherStatusProps) {
     textDay,
     backgroundColor,
     formattedTemperature,
+    reverseTemperatureType,
     handleToggleTemperatureType,
   };
 }
