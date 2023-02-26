@@ -17,8 +17,3 @@ export interface Weather {
 export interface Wind {
   speed: number;
 }
-
-export interface GeoLocation {
-  latitude: number;
-  longitude: number;
-}
