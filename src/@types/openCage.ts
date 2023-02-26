@@ -11,9 +11,12 @@ export interface OpenCageAPIResponse {
   }[];
 }
 
-export interface Location {
-  city: string;
-  state: string;
+export interface Coordinates {
   latitude: number;
   longitude: number;
+}
+
+export interface Location extends Coordinates {
+  city: string;
+  state: string;
 }

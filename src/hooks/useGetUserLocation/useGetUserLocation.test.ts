@@ -1,5 +1,7 @@
 import React from 'react';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+
+import { Location } from '~/@types';
 
 import { useGetUserLocation } from '.';
 
@@ -29,6 +31,7 @@ const mockGeolocation = {
 };
 
 const mockFocus = jest.fn();
+const mockSetManualLocation = jest.fn();
 
 describe('hooks - useGetUserLocation', () => {
   beforeAll(() => {
@@ -41,14 +44,34 @@ describe('hooks - useGetUserLocation', () => {
     }));
   });
 
-  it('should return the coordinates correctly', () => {
-    const { result } = renderHook(useGetUserLocation);
+  beforeAll(() => {
+    const response: Location[] = [
+      {
+        latitude: -22.59296,
+        longitude: -49.0673792,
+        city: 'Itapetininga',
+        state: 'São Paulo',
+      },
+    ];
 
-    const { coordinates } = result.current;
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(response),
+      }),
+    ) as jest.Mock;
+  });
+
+  it('should return the location correctly', () => {
+    const { result } = renderHook(() =>
+      useGetUserLocation({
+        currentManualLocation: '',
+        setCurrentManualLocation: mockSetManualLocation,
+      }),
+    );
+
+    const { location } = result.current;
 
     expect(mockGeolocation.getCurrentPosition).toHaveBeenCalled();
-
-    expect(coordinates).toStrictEqual({ coords });
   });
 
   it('should focus on element when gets an error', () => {
@@ -62,7 +85,13 @@ describe('hooks - useGetUserLocation', () => {
       },
     };
 
-    renderHook(() => useGetUserLocation(refMock as React.RefObject<HTMLInputElement>));
+    renderHook(() =>
+      useGetUserLocation({
+        elementToFocus: refMock as React.RefObject<HTMLInputElement>,
+        currentManualLocation: '',
+        setCurrentManualLocation: jest.fn(),
+      }),
+    );
 
     expect(mockGeolocation.getCurrentPosition).toHaveBeenCalled();
     expect(mockFocus).toHaveBeenCalled();

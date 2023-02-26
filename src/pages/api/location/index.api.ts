@@ -31,12 +31,12 @@ async function getWeather(req: NextApiRequest, res: NextApiResponse<GetLocationR
       });
     }
 
-    const formattedResponse: Location[] = parsedResponse.results.map((location) => {
+    const formattedResponse: Location[] = parsedResponse.results.map((resultLocation) => {
       return {
-        city: location.components.city,
-        state: location.components.state,
-        latitude: location.geometry.lat,
-        longitude: location.geometry.lng,
+        city: resultLocation.components.city || (typeof location === 'string' && location) || '',
+        state: resultLocation.components.state,
+        latitude: resultLocation.geometry.lat,
+        longitude: resultLocation.geometry.lng,
       };
     });
 

@@ -73,6 +73,7 @@ exports[`components - <Input /> should render correctly 1`] = `
   >
     <input
       class="c1"
+      value=""
     />
   </div>
 </div>

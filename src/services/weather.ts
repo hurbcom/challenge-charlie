@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast';
+
 import { Weather } from '~/@types';
 
 type GetWeatherProps = {
@@ -12,6 +14,6 @@ export async function getWeather({ latitude, longitude }: GetWeatherProps) {
 
     return parsedResponse;
   } catch {
-    // TODO: mostrar um toast
+    toast.error('Algo deu errado ao buscar informações do clima, tente novamente mais tarde!');
   }
 }

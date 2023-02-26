@@ -1,7 +1,7 @@
-import React, { ChangeEventHandler, forwardRef, InputHTMLAttributes, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, InputHTMLAttributes, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import Image from 'next/image';
 
-import { debounce } from '~/utils';
+import { useInputDebounce } from '~/hooks';
 
 import * as S from './styles';
 
@@ -12,32 +12,40 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   };
 }
 
-interface InputHandleProps {
+export interface InputHandleProps {
   focus: () => void;
 }
 
-export const Input = forwardRef<InputHandleProps, InputProps>(({ icon, onChange, ...rest }, ref) => {
+export const Input = forwardRef<InputHandleProps, InputProps>(({ icon, onChange, value, ...rest }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [currentValue, setCurrentValue] = useState('');
+
+  const { debouncedCallback } = useInputDebounce(onChange);
 
   useImperativeHandle(ref, () => ({
     focus: () => inputRef?.current?.focus(),
   }));
 
+  useEffect(() => {
+    if (!!value && typeof value === 'string') {
+      setCurrentValue(value);
+    }
+  }, [value]);
+
   const hasIcon = !!icon && !!icon.svg;
 
-  const handleOnChange = () => {
-    if (!onChange) return;
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedCallback(event);
 
-    return debounce<React.ChangeEventHandler<HTMLInputElement>, React.ChangeEvent<HTMLInputElement>>({
-      action: onChange,
-    });
+    setCurrentValue(event.target.value);
   };
 
   return (
     <S.Container onClick={() => inputRef.current?.focus()}>
       {hasIcon && <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />}
 
-      <S.Input {...rest} ref={inputRef} onChange={handleOnChange()} />
+      <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} />
     </S.Container>
   );
 });
