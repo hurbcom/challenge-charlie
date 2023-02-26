@@ -8,34 +8,32 @@ const WeatherForecastInfo: React.FC = () => {
     <S.Container>
       <main>
         <div className="icon-weather-wrapper">
-          <p className="icon-weather" data-icon={MeteoconsWebfontEnum.sunny} />
+          <span data-icon={MeteoconsWebfontEnum.sunny} />
         </div>
-        <div className="info-weather-wrapper">
-          <div>
+        <div className="weather-info-wrapper ">
+          <div className="weather-info-temperature">
             <p>HOJE</p>
-            <span>23 C</span>
+            <span>32° C</span>
           </div>
-          <div>
-            <p>Ensolarado</p>
-          </div>
-          <dir>
+          <div className="weather-info-details">
+            <h1>Ensolarado</h1>
             <p>Vento: NO 6.4km/h</p>
             <p>Humidadade: 78%</p>
             <p>Pressão: 1003hPA</p>
-          </dir>
+          </div>
         </div>
       </main>
       <footer>
-        <div className="weather-tomorrow-info">
-          <div>
-            <p>AMANHA</p>
-            <span>25C</span>
+        <div className="weather-info weather-tomorrow-info">
+          <div className="weather-info-wrapper">
+            <p>AMANHÃ</p>
+            <span>25°C</span>
           </div>
         </div>
-        <div className="weather-after-tomorrow-info">
-          <div>
-            <p>DEPOIS DE AMANHA</p>
-            <span>22 C</span>
+        <div className="weather-info weather-after-tomorrow-info">
+          <div className="weather-info-wrapper">
+            <p>DEPOIS DE AMANHÃ</p>
+            <span>22°C</span>
           </div>
         </div>
       </footer>

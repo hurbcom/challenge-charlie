@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
 
 import * as S from './styles';
 
@@ -11,6 +12,10 @@ const LocationForm: React.FC = () => {
   return (
     <S.Container>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <span
+          className="location-icon"
+          data-icon={MeteoconsWebfontEnum.compass}
+        />
         <input
           type="text"
           placeholder="Rio de Janeiro, Rio de Janeiro"
