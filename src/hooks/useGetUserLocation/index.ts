@@ -17,9 +17,12 @@ export function useGetUserLocation({
 }: UseGetUserLocationProps) {
   const [location, setLocation] = useState<Partial<Location> | null>(null);
   const [isAutoLocation, setIsAutoLocation] = useState<boolean | null>(null);
+  const [isGeolocationRefused, setIsGeolocationRefused] = useState<boolean>(false);
+  const [lastLocationSearch, setLastLocationSearch] = useState<string | null>(null);
 
   const autoLocationSuccessCallback = useCallback(async (currentCoordinates: GeolocationPosition) => {
     setIsAutoLocation(true);
+    setIsGeolocationRefused(false);
 
     const newCoordinates = {
       latitude: currentCoordinates.coords.latitude,
@@ -43,6 +46,7 @@ export function useGetUserLocation({
 
   const autoLocationErrorCallback = useCallback(() => {
     setIsAutoLocation(false);
+    setIsGeolocationRefused(true);
 
     elementToFocus?.current?.focus();
   }, [elementToFocus]);
@@ -64,17 +68,24 @@ export function useGetUserLocation({
 
     const state = !!location?.state ? `, ${location.state}` : '';
 
-    setCurrentManualLocation(`${location?.city}${state}`);
+    const formattedForInputLocation = `${location?.city}${state}`;
+
+    setCurrentManualLocation(formattedForInputLocation);
+    setLastLocationSearch(formattedForInputLocation);
   }, [location, setCurrentManualLocation]);
 
   useEffect(() => {
     async function handleGetNewLocation() {
-      if (
+      const isUserManuallyChangeLocation =
         !!location &&
         !isAutoLocation &&
         !!currentManualLocation &&
-        !currentManualLocation.includes(location?.city || '')
-      ) {
+        !currentManualLocation.includes(location?.city || '');
+
+      const isUserRefusesGeolocationAndChangeManually =
+        isGeolocationRefused && !!currentManualLocation && currentManualLocation !== lastLocationSearch;
+
+      if (isUserManuallyChangeLocation || isUserRefusesGeolocationAndChangeManually) {
         const newLocation = await getLocation(currentManualLocation);
 
         if (!newLocation) return;
@@ -84,7 +95,7 @@ export function useGetUserLocation({
     }
 
     handleGetNewLocation();
-  }, [location, currentManualLocation, isAutoLocation]);
+  }, [location, currentManualLocation, isAutoLocation, isGeolocationRefused, lastLocationSearch]);
 
   return { location, setIsAutoLocation };
 }
