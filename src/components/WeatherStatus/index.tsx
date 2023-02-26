@@ -1,28 +1,98 @@
-import React, { useMemo } from 'react';
+import React, { Dispatch, SetStateAction, useMemo } from 'react';
 import Image from 'next/image';
+import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
 
-import { useWeatherInfo } from '~/hooks';
 import { Weather } from '~/@types/openWeather';
-import { convertWindDegreeToDirection } from '~/utils';
+import { BackgroundColorsEnum, TemperatureTypeEnum } from '~/pages/home';
+import { convertCelsiusToFahrenheit, convertWindDegreeToDirection } from '~/utils';
 
 import * as S from './styles';
 
 export type WeatherStatusProps = {
   weather?: Weather;
   isDetailed?: boolean;
+  temperatureType: TemperatureTypeEnum;
+  setTemperatureType: Dispatch<SetStateAction<TemperatureTypeEnum>>;
 };
 
-const WeatherStatus = ({ weather, isDetailed = false }: WeatherStatusProps) => {
-  const { icon, textDay, backgroundColor, formattedTemperature, reverseTemperatureType, handleToggleTemperatureType } =
-    useWeatherInfo({
-      weather,
-    });
+const WeatherStatus = ({ weather, isDetailed = false, temperatureType, setTemperatureType }: WeatherStatusProps) => {
+  const textDay = useMemo(() => {
+    const MAX_DAYS_TO_SHOW = 3;
+
+    if (!weather) return false;
+
+    const weatherDate = new Date(weather.date);
+
+    const isBeforeToday = !isToday(weatherDate) && isPast(weatherDate);
+    const isOutOfRangeOfDays = isBeforeToday || differenceInDays(weatherDate, new Date()) >= MAX_DAYS_TO_SHOW;
+
+    if (isOutOfRangeOfDays) return false;
+
+    if (isToday(weatherDate)) return 'HOJE';
+
+    if (isTomorrow(weatherDate)) return 'AMANHÃ';
+
+    return 'DEPOIS DE AMANHÃ';
+  }, [weather]);
+
+  const backgroundColor = useMemo(() => {
+    if (!textDay || !weather) {
+      return;
+    }
+
+    if (weather.temperature < 15) {
+      return BackgroundColorsEnum.blue;
+    }
+
+    if (weather.temperature > 35) {
+      return BackgroundColorsEnum.red;
+    }
+
+    return BackgroundColorsEnum.yellow;
+  }, [weather, textDay]);
+
+  const icon = useMemo(() => {
+    return weather?.icon.replace(/\D/g, '');
+  }, [weather]);
 
   const imageDimensions = useMemo(() => {
     if (isDetailed) return { width: 220, height: 220 };
 
     return { width: 80, height: 80 };
   }, [isDetailed]);
+
+  const weatherDynamicInfo = useMemo(() => {
+    if (!weather) return;
+
+    const fahrenheitTemperature = convertCelsiusToFahrenheit(weather?.temperature);
+
+    const info = {
+      [TemperatureTypeEnum.celsius]: {
+        temperature: weather?.temperature,
+        type: TemperatureTypeEnum.celsius,
+        revertedType: TemperatureTypeEnum.fahrenheit,
+        prettyText: `${weather?.temperature}º${TemperatureTypeEnum.celsius}`,
+      },
+      [TemperatureTypeEnum.fahrenheit]: {
+        temperature: fahrenheitTemperature,
+        type: TemperatureTypeEnum.fahrenheit,
+        revertedType: TemperatureTypeEnum.celsius,
+        prettyText: `${fahrenheitTemperature}º${TemperatureTypeEnum.fahrenheit}`,
+      },
+    };
+
+    return info[temperatureType];
+  }, [temperatureType, weather]);
+
+  const handleToggleTemperatureType = () => {
+    setTemperatureType((state) => {
+      if (state === TemperatureTypeEnum.celsius) {
+        return TemperatureTypeEnum.fahrenheit;
+      }
+
+      return TemperatureTypeEnum.celsius;
+    });
+  };
 
   if (!textDay || !weather) return <S.Container />;
 
@@ -39,8 +109,8 @@ const WeatherStatus = ({ weather, isDetailed = false }: WeatherStatusProps) => {
           <span>{textDay}</span>
 
           <S.Temperature onClick={handleToggleTemperatureType}>
-            <span>{formattedTemperature}</span>
-            <span>º{reverseTemperatureType}</span>
+            <span>{weatherDynamicInfo?.prettyText}</span>
+            <span>º{weatherDynamicInfo?.revertedType}</span>
           </S.Temperature>
         </S.Info>
 

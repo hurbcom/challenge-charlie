@@ -9,15 +9,26 @@ import { getWallpaper, getWeather } from '~/services';
 import { InputHandleProps } from '~/components/Input';
 import WeatherStatus from '~/components/WeatherStatus';
 
+export enum TemperatureTypeEnum {
+  celsius = 'C',
+  fahrenheit = 'F',
+}
+
+export enum BackgroundColorsEnum {
+  red = 'red',
+  blue = 'blue',
+  yellow = 'yellow',
+}
+
 import * as S from './styles';
 
 function Home() {
   const inputRef = useRef<InputHandleProps | null>(null);
 
-  const [currentManualLocation, setCurrentManualLocation] = useState('');
-
   const [wallpaper, setWallpaper] = useState<WallpaperProps | null>();
+  const [currentManualLocation, setCurrentManualLocation] = useState('');
   const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>();
+  const [temperatureType, setTemperatureType] = useState(TemperatureTypeEnum.celsius);
 
   const [width, height] = useWindowSize();
   const { location, setIsAutoLocation } = useGetUserLocation({
@@ -59,7 +70,12 @@ function Home() {
   };
 
   const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
-    <WeatherStatus key={index} isDetailed={index === 0} />
+    <WeatherStatus
+      key={index}
+      isDetailed={index === 0}
+      temperatureType={temperatureType}
+      setTemperatureType={setTemperatureType}
+    />
   ));
 
   return (
@@ -80,7 +96,15 @@ function Home() {
         <S.WeatherWrapper>
           {!!weatherForecast && weatherForecast.length > 0
             ? weatherForecast?.map((weather, index) => {
-                return <WeatherStatus key={String(weather.date)} isDetailed={index === 0} weather={weather} />;
+                return (
+                  <WeatherStatus
+                    key={String(weather.date)}
+                    isDetailed={index === 0}
+                    weather={weather}
+                    temperatureType={temperatureType}
+                    setTemperatureType={setTemperatureType}
+                  />
+                );
               })
             : weatherPlaceholder}
         </S.WeatherWrapper>
