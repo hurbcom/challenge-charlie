@@ -10,11 +10,6 @@ import { InputHandleProps } from '~/components/Search';
 
 import * as S from './styles';
 
-export enum TemperatureTypeEnum {
-  celsius = 'C',
-  fahrenheit = 'F',
-}
-
 export enum BackgroundColorsEnum {
   red = 'red',
   blue = 'blue',
@@ -28,7 +23,6 @@ function Home() {
   const [wallpaper, setWallpaper] = useState<WallpaperProps>();
   const [currentManualLocation, setCurrentManualLocation] = useState('');
   const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>(null);
-  const [temperatureType, setTemperatureType] = useState(TemperatureTypeEnum.celsius);
 
   const [width, height] = useWindowSize();
   const { location, setIsAutoLocation } = useGetUserLocation({
@@ -75,21 +69,20 @@ function Home() {
     handleGetWeather();
   }, [location]);
 
+  const existWeatherForecast = !!weatherForecast && weatherForecast.length > 0;
+
   const handleChangeLocationInput = (value: string) => {
     setIsAutoLocation(false);
     setCurrentManualLocation(value);
   };
 
-  const existWeatherForecast = !!weatherForecast && weatherForecast.length > 0;
+  const handleCleanSearch = () => {
+    setWeatherForecast(null);
+    setCurrentManualLocation('');
+  };
 
   const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
-    <WeatherStatus
-      key={index}
-      isLoading={isLoading}
-      isDetailed={index === 0}
-      temperatureType={temperatureType}
-      setTemperatureType={setTemperatureType}
-    />
+    <WeatherStatus key={index} isLoading={isLoading} isDetailed={index === 0} />
   ));
 
   return (
@@ -103,8 +96,8 @@ function Home() {
           ref={inputRef}
           isLoading={isLoading}
           value={currentManualLocation}
+          cleanSearch={handleCleanSearch}
           onSearch={handleChangeLocationInput}
-          cleanSearch={() => setCurrentManualLocation('')}
           placeholder="Digite a cidade"
           icon={{
             svg: 'compass',
@@ -122,8 +115,6 @@ function Home() {
                     isLoading={isLoading}
                     isDetailed={index === 0}
                     key={String(weather.date)}
-                    temperatureType={temperatureType}
-                    setTemperatureType={setTemperatureType}
                   />
                 );
               })

@@ -1,30 +1,33 @@
-import React, { Dispatch, SetStateAction, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
-import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
 import { IoIosRepeat } from 'react-icons/io';
+import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
 
+import { useLocalStorage } from '~/hooks';
 import { Weather } from '~/@types/openWeather';
-import { BackgroundColorsEnum, TemperatureTypeEnum } from '~/pages/home';
-import { convertCelsiusToFahrenheit, convertWindDegreeToDirection } from '~/utils';
 import WeatherStatusSkeleton from '~/components/WeatherStatus/skeleton';
+import { BackgroundColorsEnum } from '~/pages/home';
+import { convertCelsiusToFahrenheit, convertWindDegreeToDirection } from '~/utils';
 
 import * as S from './styles';
+
+export enum TemperatureTypeEnum {
+  celsius = 'C',
+  fahrenheit = 'F',
+}
 
 export type WeatherStatusProps = {
   weather?: Weather;
   isLoading: boolean;
   isDetailed?: boolean;
-  temperatureType: TemperatureTypeEnum;
-  setTemperatureType: Dispatch<SetStateAction<TemperatureTypeEnum>>;
 };
 
-export const WeatherStatus = ({
-  weather,
-  isLoading,
-  temperatureType,
-  isDetailed = false,
-  setTemperatureType,
-}: WeatherStatusProps) => {
+export const WeatherStatus = ({ weather, isLoading, isDetailed = false }: WeatherStatusProps) => {
+  const [temperatureType, setTemperatureType] = useLocalStorage<TemperatureTypeEnum>({
+    key: '@weather-app/temperatureType',
+    initialState: TemperatureTypeEnum.celsius,
+  });
+
   const textDay = useMemo(() => {
     const MAX_DAYS_TO_SHOW = 3;
 
@@ -154,5 +157,3 @@ export const WeatherStatus = ({
     </S.Container>
   );
 };
-
-
