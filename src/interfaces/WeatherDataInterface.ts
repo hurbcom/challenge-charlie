@@ -1,19 +1,22 @@
 export interface WeatherDataInterface {
-  main?: WeatherMainInfo;
-  weather: Weather[];
-  wind: Wind;
+  current?: WeatherInfo;
+  weather: Weather;
+  daily: DailyWeatherInfo[];
 }
 
-export interface WeatherMainInfo {
+export interface WeatherInfo {
   temp: number;
   humidity: number;
   pressure: number;
+  wind_speed: number;
 }
 
 export interface Weather {
-  main: string;
+  wind_speed: string;
 }
 
-export interface Wind {
-  speed: number;
+export interface DailyWeatherInfo {
+  temp: {
+    day: number;
+  };
 }

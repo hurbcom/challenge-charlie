@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-
-import { useGeoLocation } from '../useGeoLocation';
+import { useEffect, useState, useContext } from 'react';
+import { GeoLocationContext } from '../../contexts/GeoLocationContext';
 
 interface NavigatorGeoLocationInterface {
   allowLocation: boolean;
@@ -11,23 +10,26 @@ export default function useNavigatorGeoLocation(): NavigatorGeoLocationInterface
   const [allowLocation, setAllowLocation] = useState<boolean>(false);
   const [permissionDenid, setPermissionDenid] = useState<boolean>(false);
 
-  const { setLatitude, setLongitude } = useGeoLocation();
+  const { setGeoLocation } = useContext(GeoLocationContext);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
+        setGeoLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
         setAllowLocation(true);
       },
       function (error) {
         if (error.code === error.PERMISSION_DENIED) {
           setPermissionDenid(true);
+          console.log('error', error);
         }
         setAllowLocation(false);
       },
     );
-  });
+  }, []);
 
   return {
     allowLocation,

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+
 import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
+import { WeatherInfoContext } from '../../contexts/WeatherInfoContext';
 
 import * as S from './styles';
 
 const WeatherForecastInfo: React.FC = () => {
+  const { weatherInfo } = useContext(WeatherInfoContext);
+  const { current } = weatherInfo;
+
+  useEffect(() => {
+    console.log(`weatherInfo`, weatherInfo);
+  }, []);
+
   return (
     <S.Container>
       <main>
@@ -13,13 +22,13 @@ const WeatherForecastInfo: React.FC = () => {
         <div className="weather-info-wrapper ">
           <div className="weather-info-temperature">
             <p>HOJE</p>
-            <span>32° C</span>
+            <span>{current?.temp}° C</span>
           </div>
           <div className="weather-info-details">
             <h1>Ensolarado</h1>
-            <p>Vento: NO 6.4km/h</p>
-            <p>Humidadade: 78%</p>
-            <p>Pressão: 1003hPA</p>
+            <p>Vento: NO {current?.wind_speed} 6.4km/h</p>
+            <p>Humidadade: {current?.humidity}%</p>
+            <p>Pressão: {current?.pressure}hPA</p>
           </div>
         </div>
       </main>

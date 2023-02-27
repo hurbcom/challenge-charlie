@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
 
@@ -6,20 +6,27 @@ import * as S from './styles';
 
 const LocationForm: React.FC = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+
+  function handleSendLocationName(data: any) {
     console.log(data);
-  };
+  }
+
+  useState(() => {
+    handleSendLocationName();
+  });
+
   return (
     <S.Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleSendLocationName)}>
         <span
           className="location-icon"
           data-icon={MeteoconsWebfontEnum.compass}
         />
         <input
-          type="text"
+          id="location"
+          type="search"
           placeholder="Rio de Janeiro, Rio de Janeiro"
-          {...register('location')}
+          {...register('location-name')}
         ></input>
       </form>
     </S.Container>
