@@ -2,13 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useWindowSize } from '@react-hook/window-size';
 
-import { useGetUserLocation } from '~/hooks';
+import { useGetUserLocation, useLocalStorage } from '~/hooks';
 import { WallpaperProps, Weather } from '~/@types';
 import { Search, WeatherStatus } from '~/components';
 import { getWallpaper, getWeather } from '~/services';
 import { InputHandleProps } from '~/components/Search';
 
 import * as S from './styles';
+
+export enum TemperatureTypeEnum {
+  celsius = 'C',
+  fahrenheit = 'F',
+}
 
 export enum BackgroundColorsEnum {
   red = 'red',
@@ -20,14 +25,20 @@ function Home() {
   const inputRef = useRef<InputHandleProps | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [withError, setWithError] = useState(false);
   const [wallpaper, setWallpaper] = useState<WallpaperProps>();
   const [currentManualLocation, setCurrentManualLocation] = useState('');
   const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>(null);
 
   const [width, height] = useWindowSize();
+  const [temperatureType, setTemperatureType] = useLocalStorage<TemperatureTypeEnum>({
+    key: '@weather-app/temperatureType',
+    initialState: TemperatureTypeEnum.celsius,
+  });
   const { location, setIsAutoLocation } = useGetUserLocation({
     isLoading,
     setIsLoading,
+    setWithError,
     setWeatherForecast,
     currentManualLocation,
     setCurrentManualLocation,
@@ -77,12 +88,19 @@ function Home() {
   };
 
   const handleCleanSearch = () => {
+    setWithError(false);
     setWeatherForecast(null);
     setCurrentManualLocation('');
   };
 
   const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
-    <WeatherStatus key={index} isLoading={isLoading} isDetailed={index === 0} />
+    <WeatherStatus
+      key={index}
+      isLoading={isLoading}
+      isDetailed={index === 0}
+      temperatureType={temperatureType}
+      setTemperatureType={setTemperatureType}
+    />
   ));
 
   return (
@@ -95,10 +113,11 @@ function Home() {
         <Search
           ref={inputRef}
           isLoading={isLoading}
+          withError={withError}
+          placeholder="Digite a cidade"
           value={currentManualLocation}
           cleanSearch={handleCleanSearch}
           onSearch={handleChangeLocationInput}
-          placeholder="Digite a cidade"
           icon={{
             svg: 'compass',
             alt: 'Ícone de bússola',
@@ -115,6 +134,8 @@ function Home() {
                     isLoading={isLoading}
                     isDetailed={index === 0}
                     key={String(weather.date)}
+                    temperatureType={temperatureType}
+                    setTemperatureType={setTemperatureType}
                   />
                 );
               })

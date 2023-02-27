@@ -35,7 +35,7 @@ export const Container = styled.div<ContainerProps>`
     grid-template-columns: 2fr 1.5fr;
 
     height: 100%;
-    min-height: 8rem;
+    min-height: 9rem;
     padding: ${theme.sizings[24]} ${theme.sizings[32]};
 
     background: transparent;
@@ -137,7 +137,7 @@ export const Temperature = styled.span<{ isClickable: boolean }>`
   ${({ theme, isClickable }) => css`
     display: flex;
 
-    cursor: ${isClickable ? 'pointer' : 'unset'};
+    cursor: pointer;
 
     > span {
       & + span {

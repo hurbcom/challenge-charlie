@@ -5,8 +5,10 @@ import { useWindowWidth } from '@react-hook/window-size';
 import { theme } from '~/styles/theme';
 import { WeatherStatusProps } from '~/components/WeatherStatus';
 
-const WeatherStatusSkeleton = ({ isDetailed }: Pick<WeatherStatusProps, 'isDetailed'>) => {
-  const windowWidth = useWindowWidth();
+const WeatherStatusSkeleton = ({ isDetailed, isLoading }: Pick<WeatherStatusProps, 'isDetailed' | 'isLoading'>) => {
+  const windowWidth = useWindowWidth({
+    initialWidth: 1920,
+  });
 
   const isMobile = windowWidth <= 600;
   const isSmallMobile = windowWidth <= 375;
@@ -36,12 +38,13 @@ const WeatherStatusSkeleton = ({ isDetailed }: Pick<WeatherStatusProps, 'isDetai
     return (
       <ContentLoader
         speed={2}
-        width={getContentWidth(500)}
         height={92}
-        viewBox={`0 0 ${getContentWidth(500)} 92`}
         opacity={0.5}
+        animate={isLoading}
+        width={getContentWidth(500)}
         backgroundColor={theme.colors.white}
         foregroundColor={theme.colors.gray200}
+        viewBox={`0 0 ${getContentWidth(500)} 92`}
       >
         <rect x={contentPositionX.smallBox} y="13" rx="3" ry="3" width="92" height="89" />
         <rect x={contentPositionX.lines} y="22" rx="3" ry="3" width="104" height="24" />
@@ -53,12 +56,13 @@ const WeatherStatusSkeleton = ({ isDetailed }: Pick<WeatherStatusProps, 'isDetai
   return (
     <ContentLoader
       speed={2}
-      width={getContentWidth(500)}
       height={240}
       opacity={0.5}
-      viewBox={`0 0 ${getContentWidth(500)} 240`}
+      animate={isLoading}
+      width={getContentWidth(500)}
       backgroundColor={theme.colors.white}
       foregroundColor={theme.colors.gray200}
+      viewBox={`0 0 ${getContentWidth(500)} 240`}
     >
       <rect x={contentPositionX.bigBox} y="22" rx="3" ry="3" width={isMobile ? 140 : 236} height="215" />
       <rect x={contentPositionX.lines} y="22" rx="3" ry="3" width="69" height="24" />

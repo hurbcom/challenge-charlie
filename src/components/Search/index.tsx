@@ -9,6 +9,7 @@ import * as S from './styles';
 
 interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
   isLoading: boolean;
+  withError: boolean;
   cleanSearch: () => void;
   onSearch: (value: string) => void;
   icon?: {
@@ -23,9 +24,8 @@ export interface InputHandleProps {
 }
 
 export const Search = forwardRef<InputHandleProps, SearchProps>(
-  ({ icon, value, onSearch, cleanSearch, isLoading, ...rest }, ref) => {
+  ({ icon, value, onSearch, cleanSearch, isLoading, withError, ...rest }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
-
     const [currentValue, setCurrentValue] = useState('');
 
     useImperativeHandle(
@@ -45,7 +45,7 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
     }, [value]);
 
     useEffect(() => {
-      if (!currentValue) {
+      if (!currentValue || (currentValue.length <= 2 && currentValue !== value)) {
         cleanSearch();
       }
     }, [cleanSearch, currentValue, value]);
@@ -74,11 +74,11 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
     };
 
     const renderIcon = () => {
-      if (isLoading) return <ImSpinner2 color={theme.colors.gray300} size={theme.sizings[40]} />;
+      if (isLoading) return <ImSpinner2 color={theme.colors.white} size={theme.sizings[40]} />;
 
-      if (!!value) return <IoMdClose color={theme.colors.gray300} size={theme.sizings[40]} />;
+      if (!!value) return <IoMdClose color={theme.colors.white} size={theme.sizings[40]} />;
 
-      return <IoMdSearch color={theme.colors.blue} size={theme.sizings[40]} />;
+      return 'Buscar';
     };
 
     return (
@@ -87,9 +87,15 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
           <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />
         )}
 
-        <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} />
+        <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} withError={withError} />
 
-        <S.Button title="Buscar cidade" type="submit" disabled={isLoading}>
+        <S.Button
+          type="submit"
+          disabled={isLoading}
+          title="Buscar cidade"
+          withError={withError}
+          isClose={!isLoading && !!value}
+        >
           {renderIcon()}
         </S.Button>
       </S.Container>

@@ -7,6 +7,7 @@ import { InputHandleProps } from '~/components/Search';
 export interface UseGetUserLocationProps {
   isLoading: boolean;
   currentManualLocation: string;
+  setWithError: Dispatch<SetStateAction<boolean>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   elementToFocus?: RefObject<InputHandleProps> | null;
   setCurrentManualLocation: Dispatch<SetStateAction<string>>;
@@ -15,6 +16,7 @@ export interface UseGetUserLocationProps {
 
 export function useGetUserLocation({
   isLoading,
+  setWithError,
   setIsLoading,
   elementToFocus,
   setWeatherForecast,
@@ -95,6 +97,7 @@ export function useGetUserLocation({
         const newLocation = await getLocation({
           location: currentManualLocation,
           failureAction: () => {
+            setWithError(true);
             setIsLoading(false);
             setWeatherForecast(null);
           },
@@ -118,6 +121,7 @@ export function useGetUserLocation({
     lastLocationSearch,
     isGeolocationRefused,
     currentManualLocation,
+    setWithError,
   ]);
 
   return { location, setIsAutoLocation };

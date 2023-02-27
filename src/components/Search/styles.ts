@@ -1,10 +1,17 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, DefaultTheme, keyframes } from 'styled-components';
 
-export const Container = styled.form<{ iconPosition?: number }>`
+interface ContainerProps {
+  iconPosition?: number;
+}
+
+export const Container = styled.form<ContainerProps>`
   ${({ theme, iconPosition }) => css`
-    display: flex;
-    gap: ${theme.sizings[8]};
+    position: relative;
+
+    display: grid;
     align-items: center;
+    gap: ${theme.sizings[8]};
+    grid-template-columns: auto 1fr;
 
     width: 100%;
     padding: ${theme.sizings[16]} ${theme.sizings[8]};
@@ -26,26 +33,39 @@ export const Container = styled.form<{ iconPosition?: number }>`
     }
 
     img {
-      transform: rotate(${iconPosition}deg);
       transition: 0.3s;
+      transform: rotate(${iconPosition}deg);
     }
   `}
 `;
 
-export const Input = styled.input`
-  ${({ theme }) => css`
+const inputModifiers = {
+  withError: (theme: DefaultTheme) => css`
+    border-color: ${theme.colors.red};
+
+    &:focus {
+      border-color: ${theme.colors.red};
+    }
+  `,
+};
+
+export const Input = styled.input<{ withError: boolean }>`
+  ${({ theme, withError }) => css`
     border: 0;
     width: 100%;
-    border-radius: ${theme.sizings[4]};
-    padding: ${theme.sizings[8]} ${theme.sizings[8]};
+    border: 1px solid transparent;
+    border-radius: ${theme.sizings[8]};
+    padding: ${theme.sizings[8]} 5.5rem ${theme.sizings[8]} ${theme.sizings[8]};
 
     font-weight: 500;
+    filter: contrast(1.2);
     color: ${theme.colors.gray400};
     font-size: ${theme.sizings[32]};
     background: ${theme.colors.gray200};
 
     &:focus {
       outline: 0;
+      border-color: ${theme.colors.blue};
     }
 
     &::placeholder {
@@ -53,8 +73,12 @@ export const Input = styled.input`
     }
 
     @media (max-width: 600px) {
+      padding: ${theme.sizings[8]} 4rem ${theme.sizings[8]} ${theme.sizings[8]};
+
       font-size: ${theme.sizings[24]};
     }
+
+    ${withError && inputModifiers.withError(theme)}
   `}
 `;
 
@@ -67,24 +91,57 @@ const rotate = keyframes`
   }
 `;
 
+interface ButtonProps {
+  withError: boolean;
+  isClose: boolean;
+}
+
 const buttonModifiers = {
-  isLoading: () => css`
+  isLoading: (theme: DefaultTheme) => css`
+    background: ${theme.colors.gray300};
+
     svg {
       animation: ${rotate} 2s linear infinite;
     }
   `,
+  isClose: (theme: DefaultTheme) => css`
+    background: ${theme.colors.gray300};
+  `,
+  withError: (theme: DefaultTheme) => css`
+    background: ${theme.colors.red};
+  `,
 };
 
-export const Button = styled.button`
-  ${({ theme, disabled }) => css`
+export const Button = styled.button<ButtonProps>`
+  ${({ theme, disabled, isClose, withError }) => css`
+    position: absolute;
+    z-index: 1;
+    right: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: none;
-    padding: ${theme.sizings[8]} ${theme.sizings[16]};
+    width: 82px;
+    height: 55px;
+    opacity: 0.85;
+    padding: 0 ${theme.sizings[16]};
+    border-radius: 0 ${theme.sizings[8]} ${theme.sizings[8]} 0;
 
-    opacity: 0.8;
     cursor: pointer;
-    background-color: transparent;
+    color: ${theme.colors.white};
     font-size: ${theme.sizings[16]};
+    background: ${theme.colors.blue};
 
-    ${!!disabled && buttonModifiers.isLoading}
+    @media (max-width: 600px) {
+      width: 60px;
+      height: 46px;
+      padding: 0 ${theme.sizings[8]};
+    }
+
+    ${!!disabled && buttonModifiers.isLoading(theme)}
+    ${isClose && buttonModifiers.isClose(theme)}
+    ${withError && buttonModifiers.withError(theme)}
   `}
 `;
