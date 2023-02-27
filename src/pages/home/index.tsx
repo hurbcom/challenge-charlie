@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useWindowSize } from '@react-hook/window-size';
 
-import { Input } from '~/components';
 import { useGetUserLocation } from '~/hooks';
 import { WallpaperProps, Weather } from '~/@types';
+import { Search, WeatherStatus } from '~/components';
 import { getWallpaper, getWeather } from '~/services';
-import { InputHandleProps } from '~/components/Input';
-import WeatherStatus from '~/components/WeatherStatus';
+import { InputHandleProps } from '~/components/Search';
 
 import * as S from './styles';
 
@@ -100,10 +99,12 @@ function Home() {
       )}
 
       <S.Content>
-        <Input
+        <Search
           ref={inputRef}
+          isLoading={isLoading}
           value={currentManualLocation}
           onSearch={handleChangeLocationInput}
+          cleanSearch={() => setCurrentManualLocation('')}
           placeholder="Digite a cidade"
           icon={{
             svg: 'compass',

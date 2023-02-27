@@ -1,0 +1,100 @@
+import React, { forwardRef, InputHTMLAttributes, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import Image from 'next/image';
+import { ImSpinner2 } from 'react-icons/im';
+import { IoMdClose, IoMdSearch } from 'react-icons/io';
+
+import { theme } from '~/styles/theme';
+
+import * as S from './styles';
+
+interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
+  isLoading: boolean;
+  cleanSearch: () => void;
+  onSearch: (value: string) => void;
+  icon?: {
+    svg: string;
+    alt: string;
+    position: number;
+  };
+}
+
+export interface InputHandleProps {
+  focus: () => void;
+}
+
+export const Search = forwardRef<InputHandleProps, SearchProps>(
+  ({ icon, value, onSearch, cleanSearch, isLoading, ...rest }, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const [currentValue, setCurrentValue] = useState('');
+
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          focus: () => inputRef?.current?.focus(),
+        };
+      },
+      [],
+    );
+
+    useEffect(() => {
+      if (!!value && typeof value === 'string') {
+        setCurrentValue(value);
+      }
+    }, [value]);
+
+    useEffect(() => {
+      if (!currentValue) {
+        cleanSearch();
+      }
+    }, [cleanSearch, currentValue, value]);
+
+    const hasIcon = !!icon && !!icon.svg;
+
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+
+      if (!value.match(/^$|[A-Za-z]/g)) return;
+
+      setCurrentValue(event.target.value);
+    };
+
+    const handleOnSearch = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      if (!!value) {
+        cleanSearch();
+        setCurrentValue('');
+
+        return inputRef?.current?.focus();
+      }
+
+      return onSearch(currentValue);
+    };
+
+    const renderIcon = () => {
+      if (isLoading) return <ImSpinner2 color={theme.colors.gray300} size={theme.sizings[40]} />;
+
+      if (!!value) return <IoMdClose color={theme.colors.gray300} size={theme.sizings[40]} />;
+
+      return <IoMdSearch color={theme.colors.blue} size={theme.sizings[40]} />;
+    };
+
+    return (
+      <S.Container iconPosition={icon?.position} onSubmit={handleOnSearch}>
+        {hasIcon && (
+          <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />
+        )}
+
+        <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} />
+
+        <S.Button title="Buscar cidade" type="submit" disabled={isLoading}>
+          {renderIcon()}
+        </S.Button>
+      </S.Container>
+    );
+  },
+);
+
+Search.displayName = 'Search';

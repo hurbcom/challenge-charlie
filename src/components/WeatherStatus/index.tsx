@@ -18,7 +18,7 @@ export type WeatherStatusProps = {
   setTemperatureType: Dispatch<SetStateAction<TemperatureTypeEnum>>;
 };
 
-const WeatherStatus = ({
+export const WeatherStatus = ({
   weather,
   isLoading,
   temperatureType,
@@ -155,4 +155,4 @@ const WeatherStatus = ({
   );
 };
 
-export default WeatherStatus;
+

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-export const Container = styled.div<{ iconPosition?: number }>`
+export const Container = styled.form<{ iconPosition?: number }>`
   ${({ theme, iconPosition }) => css`
     display: flex;
     gap: ${theme.sizings[8]};
@@ -58,8 +58,25 @@ export const Input = styled.input`
   `}
 `;
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg)
+  }
+`;
+
+const buttonModifiers = {
+  isLoading: () => css`
+    svg {
+      animation: ${rotate} 2s linear infinite;
+    }
+  `,
+};
+
 export const Button = styled.button`
-  ${({ theme }) => css`
+  ${({ theme, disabled }) => css`
     border: none;
     padding: ${theme.sizings[8]} ${theme.sizings[16]};
 
@@ -67,5 +84,7 @@ export const Button = styled.button`
     cursor: pointer;
     background-color: transparent;
     font-size: ${theme.sizings[16]};
+
+    ${!!disabled && buttonModifiers.isLoading}
   `}
 `;

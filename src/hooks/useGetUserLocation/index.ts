@@ -1,8 +1,8 @@
 import { Dispatch, RefObject, SetStateAction, useCallback, useEffect, useState } from 'react';
 
-import { Location, Weather } from '~/@types';
 import { getLocation } from '~/services';
-import { InputHandleProps } from '~/components/Input';
+import { Location, Weather } from '~/@types';
+import { InputHandleProps } from '~/components/Search';
 
 export interface UseGetUserLocationProps {
   isLoading: boolean;

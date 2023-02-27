@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import CompassIcon from '~/assets/compass.svg';
 import renderWithProviders from '~/utils/renderWithProviders';
 
-import { Input } from '.';
+import { Search } from '.';
 
-describe('components - <Input />', () => {
+describe('components - <Search />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithProviders(<Input />);
+    const { container } = renderWithProviders(<Search />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('should render with an icon', () => {
-    renderWithProviders(<Input icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />);
+    renderWithProviders(<Search icon={{ svg: CompassIcon, alt: 'Ícone de compasso' }} />);
 
     expect(screen.getByLabelText('Ícone de compasso')).toBeInTheDocument();
   });
@@ -23,7 +23,7 @@ describe('components - <Input />', () => {
   it('should handle with change event', async () => {
     const user = userEvent.setup();
 
-    renderWithProviders(<Input onChange={jest.fn()} />);
+    renderWithProviders(<Search onChange={jest.fn()} />);
 
     const input = screen.getByRole('textbox');
 
@@ -40,7 +40,7 @@ describe('components - <Input />', () => {
     const user = userEvent.setup();
     const inputRef = React.createRef<HTMLInputElement>();
 
-    renderWithProviders(<Input ref={inputRef} />);
+    renderWithProviders(<Search ref={inputRef} />);
 
     const input = screen.getByRole('textbox');
 
