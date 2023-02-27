@@ -25,7 +25,7 @@ async function getWeather(req: NextApiRequest, res: NextApiResponse<GetLocationR
     const response = await fetch(openCageURL);
     const parsedResponse = (await response.json()) as OpenCageAPIResponse;
 
-    if (!parsedResponse.results) {
+    if (!parsedResponse.results || parsedResponse.results.length === 0) {
       return res.status(404).json({
         message: 'Out of location info',
       });

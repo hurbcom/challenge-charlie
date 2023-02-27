@@ -96,7 +96,7 @@ describe('API - location', () => {
       Promise.resolve({
         json: () =>
           Promise.resolve({
-            images: [],
+            results: [],
           }),
       }),
     ) as jest.Mock;

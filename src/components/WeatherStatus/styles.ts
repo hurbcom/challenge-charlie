@@ -1,10 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
-import { BackgroundColorsEnum } from '~/hooks/useWeatherInfo';
+import { BackgroundColorsEnum } from '~/pages/home';
 
 interface ContainerProps {
   color?: BackgroundColorsEnum;
   isDetailed?: boolean;
+  isLoading?: boolean;
 }
 
 const containerModifiers = {
@@ -18,10 +19,17 @@ const containerModifiers = {
       }
     }
   `,
+  isLoading: (theme: DefaultTheme) => css`
+    @media (max-width: 600px) {
+      padding: ${theme.sizings[24]} ${theme.sizings[16]};
+
+      display: block;
+    }
+  `,
 };
 
 export const Container = styled.div<ContainerProps>`
-  ${({ theme, color, isDetailed }) => css`
+  ${({ theme, color, isDetailed, isLoading }) => css`
     position: relative;
 
     display: grid;
@@ -83,6 +91,7 @@ export const Container = styled.div<ContainerProps>`
     }
 
     ${!!isDetailed && containerModifiers.isDetailed}
+    ${!!isLoading && containerModifiers.isLoading(theme)}
   `}
 `;
 
@@ -125,7 +134,6 @@ export const Info = styled.div`
     }
   `}
 `;
-
 
 export const Temperature = styled.span`
   ${({ theme }) => css`

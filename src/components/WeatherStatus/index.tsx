@@ -5,17 +5,25 @@ import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
 import { Weather } from '~/@types/openWeather';
 import { BackgroundColorsEnum, TemperatureTypeEnum } from '~/pages/home';
 import { convertCelsiusToFahrenheit, convertWindDegreeToDirection } from '~/utils';
+import WeatherStatusSkeleton from '~/components/WeatherStatus/skeleton';
 
 import * as S from './styles';
 
 export type WeatherStatusProps = {
   weather?: Weather;
+  isLoading: boolean;
   isDetailed?: boolean;
   temperatureType: TemperatureTypeEnum;
   setTemperatureType: Dispatch<SetStateAction<TemperatureTypeEnum>>;
 };
 
-const WeatherStatus = ({ weather, isDetailed = false, temperatureType, setTemperatureType }: WeatherStatusProps) => {
+const WeatherStatus = ({
+  weather,
+  isLoading,
+  temperatureType,
+  isDetailed = false,
+  setTemperatureType,
+}: WeatherStatusProps) => {
   const textDay = useMemo(() => {
     const MAX_DAYS_TO_SHOW = 3;
 
@@ -95,6 +103,13 @@ const WeatherStatus = ({ weather, isDetailed = false, temperatureType, setTemper
   };
 
   if (!textDay || !weather) return <S.Container />;
+
+  if (isLoading)
+    return (
+      <S.Container isLoading={isLoading}>
+        <WeatherStatusSkeleton isDetailed={isDetailed} />
+      </S.Container>
+    );
 
   return (
     <S.Container color={backgroundColor} isDetailed={isDetailed}>

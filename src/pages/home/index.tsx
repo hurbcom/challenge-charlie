@@ -9,6 +9,8 @@ import { getWallpaper, getWeather } from '~/services';
 import { InputHandleProps } from '~/components/Input';
 import WeatherStatus from '~/components/WeatherStatus';
 
+import * as S from './styles';
+
 export enum TemperatureTypeEnum {
   celsius = 'C',
   fahrenheit = 'F',
@@ -20,18 +22,20 @@ export enum BackgroundColorsEnum {
   yellow = 'yellow',
 }
 
-import * as S from './styles';
-
 function Home() {
   const inputRef = useRef<InputHandleProps | null>(null);
 
-  const [wallpaper, setWallpaper] = useState<WallpaperProps | null>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [wallpaper, setWallpaper] = useState<WallpaperProps>();
   const [currentManualLocation, setCurrentManualLocation] = useState('');
-  const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>();
+  const [weatherForecast, setWeatherForecast] = useState<Weather[] | null>(null);
   const [temperatureType, setTemperatureType] = useState(TemperatureTypeEnum.celsius);
 
   const [width, height] = useWindowSize();
   const { location, setIsAutoLocation } = useGetUserLocation({
+    isLoading,
+    setIsLoading,
+    setWeatherForecast,
     currentManualLocation,
     setCurrentManualLocation,
     elementToFocus: inputRef,
@@ -53,12 +57,20 @@ function Home() {
         return;
       }
 
-      const weatherData = await getWeather({
+      setIsLoading(true);
+
+      const coordinates = {
         latitude: location.latitude,
         longitude: location.longitude,
+      };
+
+      const weatherData = await getWeather({
+        coordinates,
+        failureAction: () => setIsLoading(false),
       });
 
-      setWeatherForecast(weatherData);
+      setIsLoading(false);
+      setWeatherForecast(weatherData || null);
     }
 
     handleGetWeather();
@@ -72,6 +84,7 @@ function Home() {
   const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
     <WeatherStatus
       key={index}
+      isLoading={isLoading}
       isDetailed={index === 0}
       temperatureType={temperatureType}
       setTemperatureType={setTemperatureType}
@@ -98,9 +111,10 @@ function Home() {
             ? weatherForecast?.map((weather, index) => {
                 return (
                   <WeatherStatus
-                    key={String(weather.date)}
-                    isDetailed={index === 0}
                     weather={weather}
+                    isLoading={isLoading}
+                    isDetailed={index === 0}
+                    key={String(weather.date)}
                     temperatureType={temperatureType}
                     setTemperatureType={setTemperatureType}
                   />

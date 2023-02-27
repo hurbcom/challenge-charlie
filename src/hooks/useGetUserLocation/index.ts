@@ -1,17 +1,23 @@
 import { Dispatch, RefObject, SetStateAction, useCallback, useEffect, useState } from 'react';
 
-import { Location } from '~/@types';
+import { Location, Weather } from '~/@types';
 import { getLocation } from '~/services';
 import { InputHandleProps } from '~/components/Input';
 
 export interface UseGetUserLocationProps {
+  isLoading: boolean;
   currentManualLocation: string;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
   elementToFocus?: RefObject<InputHandleProps> | null;
   setCurrentManualLocation: Dispatch<SetStateAction<string>>;
+  setWeatherForecast: Dispatch<SetStateAction<Weather[] | null>>;
 }
 
 export function useGetUserLocation({
+  isLoading,
+  setIsLoading,
   elementToFocus,
+  setWeatherForecast,
   currentManualLocation,
   setCurrentManualLocation,
 }: UseGetUserLocationProps) {
@@ -29,7 +35,9 @@ export function useGetUserLocation({
       longitude: currentCoordinates.coords.longitude,
     };
 
-    const currentLocation = await getLocation(`${newCoordinates.latitude}+${newCoordinates.longitude}`);
+    const currentLocation = await getLocation({
+      location: `${newCoordinates.latitude}+${newCoordinates.longitude}`,
+    });
 
     const restOfLocation: Partial<Location> = !!currentLocation
       ? {
@@ -76,17 +84,23 @@ export function useGetUserLocation({
 
   useEffect(() => {
     async function handleGetNewLocation() {
-      const isUserManuallyChangeLocation =
-        !!location &&
-        !isAutoLocation &&
-        !!currentManualLocation &&
-        !currentManualLocation.includes(location?.city || '');
+      const isDifferentInput = !!currentManualLocation && currentManualLocation !== lastLocationSearch;
 
-      const isUserRefusesGeolocationAndChangeManually =
-        isGeolocationRefused && !!currentManualLocation && currentManualLocation !== lastLocationSearch;
+      const isUserManuallyChangeLocation = !!location && !isAutoLocation && isDifferentInput;
+      const isUserRefusesGeolocationAndChangeManually = isGeolocationRefused && isDifferentInput;
 
-      if (isUserManuallyChangeLocation || isUserRefusesGeolocationAndChangeManually) {
-        const newLocation = await getLocation(currentManualLocation);
+      if (!isLoading && (isUserManuallyChangeLocation || isUserRefusesGeolocationAndChangeManually)) {
+        setIsLoading(true);
+
+        const newLocation = await getLocation({
+          location: currentManualLocation,
+          failureAction: () => {
+            setIsLoading(false);
+            setWeatherForecast(null);
+          },
+        });
+
+        setLastLocationSearch(currentManualLocation);
 
         if (!newLocation) return;
 
@@ -95,7 +109,16 @@ export function useGetUserLocation({
     }
 
     handleGetNewLocation();
-  }, [location, currentManualLocation, isAutoLocation, isGeolocationRefused, lastLocationSearch]);
+  }, [
+    location,
+    isLoading,
+    setIsLoading,
+    isAutoLocation,
+    setWeatherForecast,
+    lastLocationSearch,
+    isGeolocationRefused,
+    currentManualLocation,
+  ]);
 
   return { location, setIsAutoLocation };
 }

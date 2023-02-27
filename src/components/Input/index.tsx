@@ -38,7 +38,7 @@ export const Input = forwardRef<InputHandleProps, InputProps>(({ icon, onChange,
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
-    if (!value.match(/[A-Za-z]/g)) return;
+    if (!value.match(/^$|[A-Za-z]/g)) return;
 
     debouncedCallback(event);
 
