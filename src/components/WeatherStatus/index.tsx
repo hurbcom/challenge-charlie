@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useMemo } from 'react';
 import Image from 'next/image';
 import { differenceInDays, isPast, isToday, isTomorrow } from 'date-fns';
+import { IoIosRepeat } from 'react-icons/io';
 
 import { Weather } from '~/@types/openWeather';
 import { BackgroundColorsEnum, TemperatureTypeEnum } from '~/pages/home';
@@ -93,6 +94,8 @@ const WeatherStatus = ({
   }, [temperatureType, weather]);
 
   const handleToggleTemperatureType = () => {
+    if (!isDetailed) return;
+
     setTemperatureType((state) => {
       if (state === TemperatureTypeEnum.celsius) {
         return TemperatureTypeEnum.fahrenheit;
@@ -123,9 +126,16 @@ const WeatherStatus = ({
         <S.Info>
           <span>{textDay}</span>
 
-          <S.Temperature onClick={handleToggleTemperatureType}>
+          <S.Temperature onClick={handleToggleTemperatureType} isClickable={isDetailed}>
             <span>{weatherDynamicInfo?.prettyText}</span>
-            <span>º{weatherDynamicInfo?.revertedType}</span>
+
+            {isDetailed && (
+              <>
+                <span>º{weatherDynamicInfo?.revertedType}</span>
+
+                <IoIosRepeat size={24} />
+              </>
+            )}
           </S.Temperature>
         </S.Info>
 

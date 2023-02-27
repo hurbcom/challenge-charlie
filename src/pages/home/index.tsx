@@ -76,9 +76,9 @@ function Home() {
     handleGetWeather();
   }, [location]);
 
-  const handleChangeLocationInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeLocationInput = (value: string) => {
     setIsAutoLocation(false);
-    setCurrentManualLocation(event.target.value);
+    setCurrentManualLocation(value);
   };
 
   const existWeatherForecast = !!weatherForecast && weatherForecast.length > 0;
@@ -103,11 +103,11 @@ function Home() {
         <Input
           ref={inputRef}
           value={currentManualLocation}
-          onChange={handleChangeLocationInput}
-          placeholder="Insira o nome da cidade"
+          onSearch={handleChangeLocationInput}
+          placeholder="Digite a cidade"
           icon={{
             svg: 'compass',
-            alt: 'Ícone de compasso',
+            alt: 'Ícone de bússola',
             position: existWeatherForecast ? weatherForecast[0].wind.degrees : 0,
           }}
         />

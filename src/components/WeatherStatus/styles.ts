@@ -114,11 +114,11 @@ export const Info = styled.div`
     }
 
     > span {
+      font-size: ${theme.sizings[24]};
+
       &:first-child {
         text-transform: uppercase;
       }
-
-      font-size: ${theme.sizings[24]};
     }
 
     > small {
@@ -133,15 +133,17 @@ export const Info = styled.div`
   `}
 `;
 
-export const Temperature = styled.span`
-  ${({ theme }) => css`
-    cursor: pointer;
+export const Temperature = styled.span<{ isClickable: boolean }>`
+  ${({ theme, isClickable }) => css`
+    display: flex;
+
+    cursor: ${isClickable ? 'pointer' : 'unset'};
 
     > span {
       & + span {
         position: relative;
 
-        margin-left: ${theme.sizings[16]};
+        margin: 0 ${theme.sizings[4]} 0 ${theme.sizings[16]};
 
         opacity: 0.5;
 
@@ -156,6 +158,10 @@ export const Temperature = styled.span`
           background: ${theme.colors.white};
         }
       }
+    }
+
+    svg {
+      margin
     }
   `}
 `;
