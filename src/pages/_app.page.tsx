@@ -1,11 +1,15 @@
-import type { AppProps } from "next/app";
-import { Toaster } from 'react-hot-toast';
+import { useWindowWidth } from '@react-hook/window-size';
+import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
+import { Toaster, ToastPosition } from 'react-hot-toast';
 
-import { GlobalStyles } from '~/styles/global';
 import { theme } from '~/styles/theme';
+import { GlobalStyles } from '~/styles/global';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const windowWidth = useWindowWidth();
+
+  const toasterPosition: ToastPosition = windowWidth <= 600 ? 'bottom-center' : 'top-right';
 
   return (
     <ThemeProvider theme={theme}>
@@ -13,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Component {...pageProps} />
 
-      <Toaster position="top-right" />
+      <Toaster position={toasterPosition} />
     </ThemeProvider>
   );
 }
