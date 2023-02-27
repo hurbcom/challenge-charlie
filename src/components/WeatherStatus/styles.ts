@@ -11,8 +11,6 @@ interface ContainerProps {
 const containerModifiers = {
   isDetailed: () => css`
     @media (max-width: 600px) {
-      min-height: 24rem;
-
       img {
         width: 120px;
         height: 120px;

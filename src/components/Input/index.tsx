@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: {
     svg: string;
     alt: string;
+    position: number;
   };
 }
 
@@ -46,7 +47,7 @@ export const Input = forwardRef<InputHandleProps, InputProps>(({ icon, onChange,
   };
 
   return (
-    <S.Container onClick={() => inputRef.current?.focus()}>
+    <S.Container onClick={() => inputRef.current?.focus()} iconPosition={icon?.position}>
       {hasIcon && <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />}
 
       <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} />

@@ -81,6 +81,8 @@ function Home() {
     setCurrentManualLocation(event.target.value);
   };
 
+  const existWeatherForecast = !!weatherForecast && weatherForecast.length > 0;
+
   const weatherPlaceholder = Array.from([0, 1, 2]).map((index) => (
     <WeatherStatus
       key={index}
@@ -103,11 +105,15 @@ function Home() {
           value={currentManualLocation}
           onChange={handleChangeLocationInput}
           placeholder="Insira o nome da cidade"
-          icon={{ svg: 'compass', alt: 'Ícone de compasso' }}
+          icon={{
+            svg: 'compass',
+            alt: 'Ícone de compasso',
+            position: existWeatherForecast ? weatherForecast[0].wind.degrees : 0,
+          }}
         />
 
         <S.WeatherWrapper>
-          {!!weatherForecast && weatherForecast.length > 0
+          {existWeatherForecast
             ? weatherForecast?.map((weather, index) => {
                 return (
                   <WeatherStatus
