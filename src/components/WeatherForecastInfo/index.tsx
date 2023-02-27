@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 
-import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
 import { WeatherInfoContext } from '../../contexts/WeatherInfoContext';
+import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
+import convertWindDegreesToDirection from '../../utils/convertWindDegreesToDirection';
 
 import * as S from './styles';
 
@@ -10,8 +11,27 @@ const WeatherForecastInfo: React.FC = () => {
   const { current } = weatherInfo;
 
   useEffect(() => {
-    console.log(`weatherInfo`, weatherInfo);
-  }, []);
+    console.log(`weatherInfo.daily`, weatherInfo.daily);
+  }, [weatherInfo]);
+
+  const convertFloatTemperatureNumberToInteger = (
+    floatNumberTemperature: number,
+  ) => {
+    const newIntegerTemperature = floatNumberTemperature.toFixed(0);
+    return newIntegerTemperature;
+  };
+
+  const windDirection = useMemo(() => {
+    if (current?.wind_deg) {
+      return convertWindDegreesToDirection(current?.wind_deg);
+    }
+  }, [current?.wind_deg]);
+
+  const windSpeedInKilometers = useMemo(() => {
+    if (current?.wind_speed) {
+      return (current?.wind_speed * 3.6).toFixed(1);
+    }
+  }, [current?.wind_speed]);
 
   return (
     <S.Container>
@@ -22,11 +42,17 @@ const WeatherForecastInfo: React.FC = () => {
         <div className="weather-info-wrapper ">
           <div className="weather-info-temperature">
             <p>HOJE</p>
-            <span>{current?.temp}° C</span>
+            <span>
+              {current != null &&
+                convertFloatTemperatureNumberToInteger(current?.temp)}
+              °C
+            </span>
           </div>
           <div className="weather-info-details">
             <h1>Ensolarado</h1>
-            <p>Vento: NO {current?.wind_speed} 6.4km/h</p>
+            <p>
+              Vento: {windDirection} {windSpeedInKilometers}km/h
+            </p>
             <p>Humidadade: {current?.humidity}%</p>
             <p>Pressão: {current?.pressure}hPA</p>
           </div>

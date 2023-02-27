@@ -2,6 +2,8 @@ export interface WeatherDataInterface {
   current?: WeatherInfo;
   weather: Weather;
   daily: DailyWeatherInfo[];
+  afterTomorrowTempWeather: DailyWeatherInfo;
+  tomorrowTempWeather: DailyWeatherInfo;
 }
 
 export interface WeatherInfo {
@@ -9,6 +11,8 @@ export interface WeatherInfo {
   humidity: number;
   pressure: number;
   wind_speed: number;
+  wind_deg: number;
+  dt: number;
 }
 
 export interface Weather {
@@ -16,6 +20,7 @@ export interface Weather {
 }
 
 export interface DailyWeatherInfo {
+  dt: number;
   temp: {
     day: number;
   };
