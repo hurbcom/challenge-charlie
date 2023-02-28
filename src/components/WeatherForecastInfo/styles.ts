@@ -47,6 +47,7 @@ export const Container = styled.div`
 
           font-size: 2rem;
           font-family: 'Ubuntu';
+          cursor: pointer;
         }
 
         .weather-info-details {
@@ -64,6 +65,7 @@ export const Container = styled.div`
             margin-bottom: 16px;
 
             font-size: 2.4rem;
+            text-transform: capitalize;
           }
         }
       }
@@ -84,6 +86,8 @@ export const Container = styled.div`
       .weather-info-wrapper {
         width: 45%;
         padding-top: 16px;
+
+        cursor: pointer;
 
         span {
           font-size: 2rem;

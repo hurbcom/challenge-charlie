@@ -4,14 +4,12 @@ import React, {
   useState,
   useEffect,
   useContext,
-  useCallback,
 } from 'react';
 
 import { GeoLocationContext } from './GeoLocationContext';
 import getCurrentWeatherData from '../services/getCurrentWeatherData';
 import useNavigatorGeoLocation from '../hooks/useNavigatorGeoLocation';
 import type { WeatherDataInterface } from '../interfaces/WeatherDataInterface';
-import { add, parseISO } from 'date-fns';
 
 interface WeatherInfoProviderProps {
   children: ReactNode;
@@ -57,48 +55,7 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   }, [allowLocation]);
 
   useEffect(() => {
-    const teste = updateWeatherDailyTemperature();
-    console.log(`teste`, teste);
-  }, []);
-
-  useEffect(() => {
-    console.log(`weatherInfo`, weatherInfo);
-  }, [weatherInfo]);
-
-  // Unix, UTC
-
-  const updateWeatherDailyTemperature = useCallback(() => {
-    if (weatherInfo && weatherInfo.daily) {
-      const { daily } = weatherInfo;
-
-      const nextDaysList = daily.reduce((nextDaysList, item) => {
-        const currentDate = new Date(weatherInfo.current?.dt * 1000);
-        const dateByDailyListItem = new Date(item.dt * 1000);
-
-        const tomorrow = add(currentDate, {
-          days: 1,
-        });
-
-        const afterTomorrow = add(currentDate, {
-          days: 2,
-        });
-
-        if (dateByDailyListItem.getDay() === tomorrow.getDay()) {
-          setWeatherInfo({ ...weatherInfo, tomorrowTempWeather: item });
-        }
-
-        if (dateByDailyListItem.getDay() === afterTomorrow.getDay()) {
-          setWeatherInfo({
-            ...weatherInfo,
-            afterTomorrowTempWeather: item,
-          });
-        }
-      });
-
-      return nextDaysList;
-
-      // setWeatherInfo({});
-    }
+    console.log('weatherInfo', weatherInfo);
   }, [weatherInfo]);
 
   return (
