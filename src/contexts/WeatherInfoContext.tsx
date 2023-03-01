@@ -10,6 +10,7 @@ import { GeoLocationContext } from './GeoLocationContext';
 import getCurrentWeatherData from '../services/getCurrentWeatherData';
 import useNavigatorGeoLocation from '../hooks/useNavigatorGeoLocation';
 import type { WeatherDataInterface } from '../interfaces/WeatherDataInterface';
+import { add } from 'date-fns';
 
 interface WeatherInfoProviderProps {
   children: ReactNode;
@@ -36,7 +37,6 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   async function handleGetCurrentWeatherData(): Promise<void> {
     // console.log(`Home - latitude`, geoLocation.latitude);
     // console.log(`Home - longitude`, geoLocation.longitude);
-    console.log('entrou', allowLocation);
 
     const response = await getCurrentWeatherData({
       latitude: geoLocation.latitude,

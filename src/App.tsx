@@ -3,8 +3,6 @@ import { ThemeProvider } from 'styled-components';
 
 import Home from './pages/Home';
 import { GlobalStyle } from './styles/global';
-import { GeoLocationProvider } from './contexts/GeoLocationContext';
-import { WeatherInfoProvider } from './contexts/WeatherInfoContext';
 import useThemeByWeather from './hooks/useThemeByWeather';
 
 const App: React.FC = () => {
@@ -12,11 +10,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GeoLocationProvider>
-        <WeatherInfoProvider>
-          <Home />
-        </WeatherInfoProvider>
-      </GeoLocationProvider>
+      <Home />
       <GlobalStyle />
     </ThemeProvider>
   );

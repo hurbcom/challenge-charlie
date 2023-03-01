@@ -3,8 +3,10 @@ import { type DefaultTheme } from 'styled-components';
 
 import { heatTheme } from '../../styles/themes/heat';
 import { coldTheme } from '../../styles/themes/cold';
+import { grayTheme } from '../../styles/themes/grayTheme';
 import { defaultTheme } from '../../styles/themes/default';
 import { WeatherInfoContext } from '../../contexts/WeatherInfoContext';
+import { GeoLocationContext } from '../../contexts/GeoLocationContext';
 
 interface ThemeByWeatherInterface {
   theme: DefaultTheme;
@@ -19,6 +21,7 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
   const [theme, setTheme] = useState(defaultTheme);
 
   const { weatherInfo } = useContext(WeatherInfoContext);
+  const { geoLocation } = useContext(GeoLocationContext);
 
   const TemperatureVelues = useMemo<TemperatureVeluesInterface>(
     () => ({
@@ -29,7 +32,13 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
   );
 
   const changeThemeByWeatherTemperature = (): void => {
-    if (weatherInfo === undefined) setTheme(defaultTheme);
+    if (
+      geoLocation.locationName === undefined ||
+      geoLocation.locationName === ''
+    ) {
+      setTheme(grayTheme);
+      return;
+    }
 
     if (weatherInfo?.current?.temp > TemperatureVelues.heatMin) {
       setTheme(heatTheme);
@@ -38,12 +47,15 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
 
     if (weatherInfo?.current?.temp < TemperatureVelues.coldMax) {
       setTheme(coldTheme);
+      return;
     }
+
+    setTheme(defaultTheme);
   };
 
   useEffect(() => {
     changeThemeByWeatherTemperature();
-  }, []);
+  }, [geoLocation, weatherInfo]);
 
   return {
     theme,
