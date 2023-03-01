@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  type ReactNode,
-  useState,
-  useEffect,
-  useContext,
-} from 'react';
+import React, { createContext, type ReactNode, useState, useEffect, useContext } from 'react';
 
 import { GeoLocationContext } from './GeoLocationContext';
 import getCurrentWeatherData from '../services/getCurrentWeatherData';
@@ -21,14 +15,10 @@ interface WeatherInfoContextData {
   setWeatherInfo: React.Dispatch<React.SetStateAction<WeatherDataInterface>>;
 }
 
-export const WeatherInfoContext = createContext<WeatherInfoContextData>(
-  {} as WeatherInfoContextData,
-);
+export const WeatherInfoContext = createContext<WeatherInfoContextData>({} as WeatherInfoContextData);
 
 export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
-  const [weatherInfo, setWeatherInfo] = useState<WeatherDataInterface>(
-    {} as WeatherDataInterface,
-  );
+  const [weatherInfo, setWeatherInfo] = useState<WeatherDataInterface>({} as WeatherDataInterface);
 
   const { geoLocation } = useContext(GeoLocationContext);
 
@@ -40,7 +30,7 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
 
     const response = await getCurrentWeatherData({
       latitude: geoLocation.latitude,
-      longitude: geoLocation.longitude,
+      longitude: geoLocation.longitude
     });
 
     console.log('WeatherInfoProvider', response);
@@ -58,9 +48,5 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
     console.log('weatherInfo', weatherInfo);
   }, [weatherInfo]);
 
-  return (
-    <WeatherInfoContext.Provider value={{ weatherInfo, setWeatherInfo }}>
-      {children}
-    </WeatherInfoContext.Provider>
-  );
+  return <WeatherInfoContext.Provider value={{ weatherInfo, setWeatherInfo }}>{children}</WeatherInfoContext.Provider>;
 }

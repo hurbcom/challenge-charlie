@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  type ReactNode,
-  useState,
-  useEffect,
-} from 'react';
+import React, { createContext, type ReactNode, useState, useEffect } from 'react';
 
 import type GeoLocationInterface from '../interfaces/GeoLocationInterface';
 import getLocationNameByGeoCoordinates from '../services/getLocationNameByGeoCoordinates';
@@ -17,14 +12,12 @@ export interface GeoLocationContextData {
   setGeoLocation: (geoLocation: GeoLocationInterface) => void;
 }
 
-export const GeoLocationContext = createContext<GeoLocationContextData>(
-  {} as GeoLocationContextData,
-);
+export const GeoLocationContext = createContext<GeoLocationContextData>({} as GeoLocationContextData);
 
 export function GeoLocationProvider({ children }: GeoLocationProviderProps) {
   const [geoLocation, setGeoLocation] = useState<GeoLocationInterface>(
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    {} as GeoLocationInterface,
+    {} as GeoLocationInterface
   );
 
   async function handleGetLocationNameByGeoCoordinatesData(): Promise<void> {
@@ -33,13 +26,13 @@ export function GeoLocationProvider({ children }: GeoLocationProviderProps) {
 
     const response = await getLocationNameByGeoCoordinates({
       latitude: geoLocation.latitude,
-      longitude: geoLocation.longitude,
+      longitude: geoLocation.longitude
     });
 
     if (response)
       setGeoLocation({
         ...geoLocation,
-        locationName: `${response.city}, ${response.state}`,
+        locationName: `${response.city}, ${response.state}`
       });
   }
 
@@ -49,9 +42,5 @@ export function GeoLocationProvider({ children }: GeoLocationProviderProps) {
     }
   }, [geoLocation.latitude, geoLocation.longitude]);
 
-  return (
-    <GeoLocationContext.Provider value={{ geoLocation, setGeoLocation }}>
-      {children}
-    </GeoLocationContext.Provider>
-  );
+  return <GeoLocationContext.Provider value={{ geoLocation, setGeoLocation }}>{children}</GeoLocationContext.Provider>;
 }

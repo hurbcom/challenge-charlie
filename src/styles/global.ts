@@ -41,10 +41,8 @@ ${({ theme }) => css`
   @font-face {
     font-family: 'MeteoconsRegular';
     src: url(${MeteoconsWebfontEot});
-    src: url(${MeteoconsWebfontEot}) format('embedded-opentype'),
-      url(${MeteoconsWebfontWoff}) format('woff'),
-      url(${MeteoconsWebfontTtf}) format('truetype'),
-      url(${MeteoconsWebfontSvg}) format('svg');
+    src: url(${MeteoconsWebfontEot}) format('embedded-opentype'), url(${MeteoconsWebfontWoff}) format('woff'),
+      url(${MeteoconsWebfontTtf}) format('truetype'), url(${MeteoconsWebfontSvg}) format('svg');
     font-weight: normal;
     font-style: normal;
   }

@@ -26,16 +26,13 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
   const TemperatureVelues = useMemo<TemperatureVeluesInterface>(
     () => ({
       heatMin: 35,
-      coldMax: 15,
+      coldMax: 15
     }),
-    [],
+    []
   );
 
   const changeThemeByWeatherTemperature = (): void => {
-    if (
-      geoLocation.locationName === undefined ||
-      geoLocation.locationName === ''
-    ) {
+    if (geoLocation.locationName === undefined || geoLocation.locationName === '') {
       setTheme(grayTheme);
       return;
     }
@@ -58,6 +55,6 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
   }, [geoLocation, weatherInfo]);
 
   return {
-    theme,
+    theme
   };
 }

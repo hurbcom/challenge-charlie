@@ -12,8 +12,8 @@ export default async function getBackgroundImageFromBing(): Promise<Image> {
     const response = await axios.get<BackgroundImageInterface>(
       `${process.env.REACT_APP_REVERSE_PROXY_URL}/HPImageArchive.aspx`,
       {
-        params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' },
-      },
+        params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' }
+      }
     );
 
     const urlBackgroundImage = response.data.images[0].url;

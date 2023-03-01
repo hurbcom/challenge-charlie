@@ -17,7 +17,7 @@ export default function useNavigatorGeoLocation(): NavigatorGeoLocationInterface
       function (position) {
         setGeoLocation({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          longitude: position.coords.longitude
         });
         setAllowLocation(true);
       },
@@ -27,12 +27,12 @@ export default function useNavigatorGeoLocation(): NavigatorGeoLocationInterface
           console.log('error', error);
         }
         setAllowLocation(false);
-      },
+      }
     );
   }, []);
 
   return {
     allowLocation,
-    permissionDenid,
+    permissionDenid
   };
 }

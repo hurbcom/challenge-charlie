@@ -14,7 +14,7 @@ export interface LocationDetails {
 
 export default async function getLocationNameByGeoCoordinates({
   latitude,
-  longitude,
+  longitude
 }: Omit<GeoLocation, 'locationName'>): Promise<LocationDetails> {
   try {
     const response = await axios.get<LocationNameByGeoCoordinatesInterface>(
@@ -23,9 +23,9 @@ export default async function getLocationNameByGeoCoordinates({
         params: {
           key: `${process.env.REACT_APP_OPENCAGE_API_KEY}`,
           q: `${latitude},${longitude}`,
-          language: 'pt-BR',
-        },
-      },
+          language: 'pt-BR'
+        }
+      }
     );
 
     const geoLocationDetails = response.data.results[0].components;

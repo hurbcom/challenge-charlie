@@ -25,13 +25,10 @@ const LocationForm: React.FC = () => {
   return (
     <S.Container>
       <form onSubmit={handleSubmit(handleSendLocationName)}>
-        <span
-          className="location-icon"
-          data-icon={MeteoconsWebfontEnum.compass}
-        />
+        <span className='location-icon' data-icon={MeteoconsWebfontEnum.compass} />
         <input
-          id="location"
-          type="search"
+          id='location'
+          type='search'
           placeholder={geoLocation.locationName || 'Informe uma cidade'}
           {...register('location-name')}
         ></input>

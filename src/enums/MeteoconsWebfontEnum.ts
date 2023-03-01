@@ -16,10 +16,10 @@ export enum MeteoconsWebfontEnum {
   '13n' = 'W',
   '50d' = 'J',
   '50n' = 'K',
-  compass = '(',
+  compass = '('
 }
 
 export enum DayOrNightMeteoconsSuffixEnum {
   day = 'd',
-  night = 'n',
+  night = 'n'
 }

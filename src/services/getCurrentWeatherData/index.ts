@@ -2,30 +2,24 @@ import axios from 'axios';
 import { add } from 'date-fns';
 import type GeoLocation from '../../interfaces/GeoLocationInterface';
 
-import {
-  type DailyWeatherInfo,
-  type WeatherDataInterface,
-} from '../../interfaces/WeatherDataInterface';
+import { type DailyWeatherInfo, type WeatherDataInterface } from '../../interfaces/WeatherDataInterface';
 
 export default async function getCurrentWeatherData({
   latitude,
-  longitude,
+  longitude
 }: GeoLocation): Promise<WeatherDataInterface> {
   try {
     if (longitude && latitude) {
-      const response = await axios.get<WeatherDataInterface>(
-        `${process.env.REACT_APP_OPENWEATHER_API_URL}/onecall`,
-        {
-          params: {
-            appid: `${process.env.REACT_APP_OPENWEATHER_API_KEY}`,
-            lat: latitude,
-            lon: longitude,
-            units: 'metric',
-            exclude: 'minutely,hourly,alerts',
-            lang: 'pt_br',
-          },
-        },
-      );
+      const response = await axios.get<WeatherDataInterface>(`${process.env.REACT_APP_OPENWEATHER_API_URL}/onecall`, {
+        params: {
+          appid: `${process.env.REACT_APP_OPENWEATHER_API_KEY}`,
+          lat: latitude,
+          lon: longitude,
+          units: 'metric',
+          exclude: 'minutely,hourly,alerts',
+          lang: 'pt_br'
+        }
+      });
 
       const { current, daily } = response.data;
 
@@ -36,11 +30,11 @@ export default async function getCurrentWeatherData({
         const dateByDailyListItem = new Date(item.dt * 1000);
 
         const tomorrow = add(currentDate, {
-          days: 1,
+          days: 1
         });
 
         const afterTomorrow = add(currentDate, {
-          days: 2,
+          days: 2
         });
 
         if (dateByDailyListItem.getDay() === tomorrow.getDay()) {
@@ -50,7 +44,7 @@ export default async function getCurrentWeatherData({
         if (dateByDailyListItem.getDay() === afterTomorrow.getDay()) {
           return {
             ...list,
-            afterTomorrowTempWeather: item,
+            afterTomorrowTempWeather: item
           };
         }
 

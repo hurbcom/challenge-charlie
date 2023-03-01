@@ -5,7 +5,7 @@ export const grayTheme = {
 
     white: '#FFFFFF',
     gray: '#F6F1ED',
-    darkGray: '#8C8986',
+    darkGray: '#8C8986'
   },
 
   breakpoints: {
@@ -13,6 +13,6 @@ export const grayTheme = {
     hd: '1440px',
     mobile: '1100px',
     tablet: '768px',
-    smartphone: '480px',
-  },
+    smartphone: '480px'
+  }
 };

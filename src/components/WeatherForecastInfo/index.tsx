@@ -14,12 +14,11 @@ interface TemperaturesInterface {
 }
 
 const WeatherForecastInfo: React.FC = () => {
-  const [isChangeThermometricScale, setIsChangeThermometricScale] =
-    useState<boolean>(false);
+  const [isChangeThermometricScale, setIsChangeThermometricScale] = useState<boolean>(false);
   const [temperatures, setTemperatures] = useState<TemperaturesInterface>({
     currentTemp: 0,
     tomorrowTemp: 0,
-    afterTomorrowTemp: 0,
+    afterTomorrowTemp: 0
   });
 
   const { weatherInfo } = useContext(WeatherInfoContext);
@@ -35,7 +34,7 @@ const WeatherForecastInfo: React.FC = () => {
     setTemperatures({
       currentTemp: current?.temp,
       tomorrowTemp: daily?.tomorrowTempWeather.temp.day,
-      afterTomorrowTemp: daily?.afterTomorrowTempWeather.temp.day,
+      afterTomorrowTemp: daily?.afterTomorrowTempWeather.temp.day
     });
   }, [weatherInfo]);
 
@@ -45,12 +44,8 @@ const WeatherForecastInfo: React.FC = () => {
     if (isChangeThermometricScale) {
       setTemperatures({
         currentTemp: convertCelsiusToFahrenheit(current?.temp),
-        tomorrowTemp: convertCelsiusToFahrenheit(
-          daily?.tomorrowTempWeather.temp.day,
-        ),
-        afterTomorrowTemp: convertCelsiusToFahrenheit(
-          daily?.afterTomorrowTempWeather.temp.day,
-        ),
+        tomorrowTemp: convertCelsiusToFahrenheit(daily?.tomorrowTempWeather.temp.day),
+        afterTomorrowTemp: convertCelsiusToFahrenheit(daily?.afterTomorrowTempWeather.temp.day)
       });
       return;
     }
@@ -58,13 +53,11 @@ const WeatherForecastInfo: React.FC = () => {
     setTemperatures({
       currentTemp: current?.temp,
       tomorrowTemp: daily?.tomorrowTempWeather.temp.day,
-      afterTomorrowTemp: daily?.afterTomorrowTempWeather.temp.day,
+      afterTomorrowTemp: daily?.afterTomorrowTempWeather.temp.day
     });
   }, [isChangeThermometricScale]);
 
-  const convertFloatTemperatureNumberToInteger = (
-    floatNumberTemperature: number,
-  ) => {
+  const convertFloatTemperatureNumberToInteger = (floatNumberTemperature: number) => {
     if (floatNumberTemperature !== undefined) {
       const newIntegerTemperature = floatNumberTemperature.toFixed(0);
       return newIntegerTemperature;
@@ -86,25 +79,23 @@ const WeatherForecastInfo: React.FC = () => {
   return (
     <S.Container>
       <main>
-        <div className="icon-weather-wrapper">
+        <div className='icon-weather-wrapper'>
           <span data-icon={MeteoconsWebfontEnum[current?.weather[0].icon]} />
         </div>
-        <div className="weather-info-wrapper ">
+        <div className='weather-info-wrapper '>
           <div
-            className="weather-info-temperature"
+            className='weather-info-temperature'
             onClick={() => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
             <p>HOJE</p>
             <span>
-              {convertFloatTemperatureNumberToInteger(
-                temperatures?.currentTemp,
-              )}
+              {convertFloatTemperatureNumberToInteger(temperatures?.currentTemp)}
               {!isChangeThermometricScale ? '°C' : '°F'}
             </span>
           </div>
-          <div className="weather-info-details">
+          <div className='weather-info-details'>
             <h1>{current?.weather[0].description}</h1>
             <p>
               Vento: {windDirection} {windSpeedInKilometers}km/h
@@ -115,34 +106,30 @@ const WeatherForecastInfo: React.FC = () => {
         </div>
       </main>
       <footer>
-        <div className="weather-info weather-tomorrow-info">
+        <div className='weather-info weather-tomorrow-info'>
           <div
-            className="weather-info-wrapper"
+            className='weather-info-wrapper'
             onClick={() => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
             <p>AMANHÃ</p>
             <span>
-              {convertFloatTemperatureNumberToInteger(
-                temperatures?.tomorrowTemp,
-              )}
+              {convertFloatTemperatureNumberToInteger(temperatures?.tomorrowTemp)}
               {!isChangeThermometricScale ? '°C' : '°F'}
             </span>
           </div>
         </div>
-        <div className="weather-info weather-after-tomorrow-info">
+        <div className='weather-info weather-after-tomorrow-info'>
           <div
-            className="weather-info-wrapper"
+            className='weather-info-wrapper'
             onClick={() => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
             <p>DEPOIS DE AMANHÃ</p>
             <span>
-              {convertFloatTemperatureNumberToInteger(
-                temperatures?.afterTomorrowTemp,
-              )}
+              {convertFloatTemperatureNumberToInteger(temperatures?.afterTomorrowTemp)}
               {!isChangeThermometricScale ? '°C' : '°F'}
             </span>
           </div>

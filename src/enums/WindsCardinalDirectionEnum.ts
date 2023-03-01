@@ -6,5 +6,5 @@ export enum WindsCardinalDirectionEnum {
   Northeast = 'NE',
   Southeast = 'SE',
   Southwest = 'SO',
-  Northwest = 'NO',
+  Northwest = 'NO'
 }

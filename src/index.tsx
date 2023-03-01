@@ -16,5 +16,5 @@ root.render(
         <App />
       </WeatherInfoProvider>
     </GeoLocationProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

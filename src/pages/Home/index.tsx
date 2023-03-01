@@ -21,16 +21,13 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log(
-      `process.env.REACT_APP_OPENCAGE_API_URL`,
-      process.env.REACT_APP_OPENCAGE_API_URL,
-    );
+    console.log(`process.env.REACT_APP_OPENCAGE_API_URL`, process.env.REACT_APP_OPENCAGE_API_URL);
     handleBackgroundImage();
   });
 
   return (
     <S.Container backgroundImage={backgroundImage}>
-      <div className="weather-forecast-wrapper">
+      <div className='weather-forecast-wrapper'>
         <LocationForm />
         <WeatherForecastInfo />
       </div>
