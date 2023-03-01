@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { GeoLocationContext } from '../../contexts/GeoLocationContext';
-import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
+
+import { GeoLocationContext } from '@contexts/GeoLocationContext';
+import { MeteoconsWebfontEnum } from '@enums/MeteoconsWebfontEnum';
 
 import * as S from './styles';
 

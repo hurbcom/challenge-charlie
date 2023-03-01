@@ -1,7 +1,7 @@
 import React, { createContext, type ReactNode, useState, useEffect } from 'react';
 
-import type GeoLocationInterface from '../interfaces/GeoLocationInterface';
-import getLocationNameByGeoCoordinates from '../services/getLocationNameByGeoCoordinates';
+import type GeoLocationInterface from '@interfaces/GeoLocationInterface';
+import getLocationNameByGeoCoordinates from '@services/getLocationNameByGeoCoordinates';
 
 interface GeoLocationProviderProps {
   children: ReactNode;

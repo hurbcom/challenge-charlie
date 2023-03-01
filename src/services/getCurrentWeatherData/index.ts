@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { add } from 'date-fns';
-import type GeoLocation from '../../interfaces/GeoLocationInterface';
 
-import { type DailyWeatherInfo, type WeatherDataInterface } from '../../interfaces/WeatherDataInterface';
+import GeoLocation from '@interfaces/GeoLocationInterface';
+import { DailyWeatherInfo, WeatherDataInterface } from '@interfaces/WeatherDataInterface';
 
 export default async function getCurrentWeatherData({
   latitude,

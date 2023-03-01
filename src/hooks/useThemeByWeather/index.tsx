@@ -1,12 +1,12 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { type DefaultTheme } from 'styled-components';
 
-import { heatTheme } from '../../styles/themes/heat';
-import { coldTheme } from '../../styles/themes/cold';
-import { grayTheme } from '../../styles/themes/grayTheme';
-import { defaultTheme } from '../../styles/themes/default';
-import { WeatherInfoContext } from '../../contexts/WeatherInfoContext';
-import { GeoLocationContext } from '../../contexts/GeoLocationContext';
+import { heatTheme } from '@styles/themes/heat';
+import { coldTheme } from '@styles/themes/cold';
+import { grayTheme } from '@styles/themes/grayTheme';
+import { defaultTheme } from '@styles/themes/default';
+import { WeatherInfoContext } from '@contexts/WeatherInfoContext';
+import { GeoLocationContext } from '@contexts/GeoLocationContext';
 
 interface ThemeByWeatherInterface {
   theme: DefaultTheme;

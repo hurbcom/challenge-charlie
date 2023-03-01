@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import LocationForm from '../../components/LocationForm';
-import WeatherForecastInfo from '../../components/WeatherForecastInfo';
-import useNavigatorGeoLocation from '../../hooks/useNavigatorGeoLocation';
-import useThemeByWeather from '../../hooks/useThemeByWeather';
-import getBackgroundImageFromBing from '../../services/getBackgroundImageFromBing';
+import LocationForm from '@components/LocationForm';
+import useThemeByWeather from '@hooks/useThemeByWeather';
+import WeatherForecastInfo from '@components/WeatherForecastInfo';
+import useNavigatorGeoLocation from '@hooks/useNavigatorGeoLocation';
+import getBackgroundImageFromBing from '@services/getBackgroundImageFromBing';
 
 import * as S from './styles';
 

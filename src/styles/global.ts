@@ -1,9 +1,9 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-import MeteoconsWebfontEot from '../assets/fonts/meteocons-webfont.eot';
-import MeteoconsWebfontWoff from '../assets/fonts/meteocons-webfont.woff';
-import MeteoconsWebfontTtf from '../assets/fonts/meteocons-webfont.ttf';
-import MeteoconsWebfontSvg from '../assets/fonts/meteocons-webfont.svg';
+import MeteoconsWebfontEot from '@assets/fonts/meteocons-webfont.eot';
+import MeteoconsWebfontWoff from '@assets/fonts/meteocons-webfont.woff';
+import MeteoconsWebfontTtf from '@assets/fonts/meteocons-webfont.ttf';
+import MeteoconsWebfontSvg from '@assets/fonts/meteocons-webfont.svg';
 
 export const GlobalStyle = createGlobalStyle`
 ${({ theme }) => css`

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import { WeatherInfoContext } from '../../contexts/WeatherInfoContext';
-import { MeteoconsWebfontEnum } from '../../enums/MeteoconsWebfontEnum';
-import convertWindDegreesToDirection from '../../utils/convertWindDegreesToDirection';
-import { convertCelsiusToFahrenheit } from '../../utils/convertCelsiusToFahrenheit';
+import { WeatherInfoContext } from '@contexts/WeatherInfoContext';
+import { MeteoconsWebfontEnum } from '@enums/MeteoconsWebfontEnum';
+import convertWindDegreesToDirection from '@utils/convertWindDegreesToDirection';
+import { convertCelsiusToFahrenheit } from '@utils/convertCelsiusToFahrenheit';
 
 import * as S from './styles';
 

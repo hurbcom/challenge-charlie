@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import hexToRgba from '../../utils/hexToRgba';
+import hexToRgba from '@utils/hexToRgba';
 
 export const Container = styled.div`
   ${({ theme }) => css`

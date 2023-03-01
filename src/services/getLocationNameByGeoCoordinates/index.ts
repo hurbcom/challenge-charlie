@@ -1,5 +1,6 @@
 import axios from 'axios';
-import type GeoLocation from '../../interfaces/GeoLocationInterface';
+
+import GeoLocation from '@interfaces/GeoLocationInterface';
 
 export interface LocationNameByGeoCoordinatesInterface {
   results: Array<{

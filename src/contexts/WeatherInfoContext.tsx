@@ -1,10 +1,9 @@
 import React, { createContext, type ReactNode, useState, useEffect, useContext } from 'react';
 
 import { GeoLocationContext } from './GeoLocationContext';
-import getCurrentWeatherData from '../services/getCurrentWeatherData';
-import useNavigatorGeoLocation from '../hooks/useNavigatorGeoLocation';
-import type { WeatherDataInterface } from '../interfaces/WeatherDataInterface';
-import { add } from 'date-fns';
+import getCurrentWeatherData from '@services/getCurrentWeatherData';
+import useNavigatorGeoLocation from '@hooks/useNavigatorGeoLocation';
+import type { WeatherDataInterface } from '@interfaces/WeatherDataInterface';
 
 interface WeatherInfoProviderProps {
   children: ReactNode;

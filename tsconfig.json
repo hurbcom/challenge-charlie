@@ -13,7 +13,19 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+ 		  "@pages/*":  ["./src/pages/*"],
+      "@hooks/*":  ["./src/hooks/*"],
+      "@utils/*":  ["./src/utils/*"],
+      "@enums/*":  ["./src/enums/*"],
+      "@styles/*":  ["./src/styles/*"],
+      "@assets/*":  ["./src/assets/*"],
+      "@contexts/*":  ["./src/contexts/*"],
+      "@services/*":  ["./src/services/*"],
+      "@interfaces/*":  ["./src/interfaces/*"],
+      "@components/*":  ["./src/components/*"]
+		}
   },
   "include": ["src"]
 }

@@ -1,4 +1,4 @@
-import { WindsCardinalDirectionEnum } from '../enums/WindsCardinalDirectionEnum';
+import { WindsCardinalDirectionEnum } from '@enums/WindsCardinalDirectionEnum';
 
 export default function convertWindDegreesToDirection(windDegree: number): string {
   let windDirectionLabel;
