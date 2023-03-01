@@ -1,9 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = {
+module.exports = (env) => ({
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -24,6 +25,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
+    }),
+    new Dotenv({
+      path: `./.env.${env.production ? 'production' : 'development'}`,
     }),
   ],
   module: {
@@ -46,4 +50,4 @@ module.exports = {
       },
     ],
   },
-};
+});

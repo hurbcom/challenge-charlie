@@ -18,10 +18,10 @@ export default async function getLocationNameByGeoCoordinates({
 }: Omit<GeoLocation, 'locationName'>): Promise<LocationDetails> {
   try {
     const response = await axios.get<LocationNameByGeoCoordinatesInterface>(
-      `https://api.opencagedata.com/geocode/v1/json`,
+      `${process.env.REACT_APP_OPENCAGE_API_URL}/json`,
       {
         params: {
-          key: 'dbc0e41288af4c2987cd5c5e5f658f55',
+          key: `${process.env.REACT_APP_OPENCAGE_API_KEY}`,
           q: `${latitude},${longitude}`,
           language: 'pt-BR',
         },
@@ -32,6 +32,6 @@ export default async function getLocationNameByGeoCoordinates({
     console.log(`getLocationNameByGeoCoordinates`, geoLocationDetails);
     return geoLocationDetails;
   } catch (error) {
-    throw new Error('Faleid fetch background from api.');
+    throw new Error('Faleid to fetch data from Open Cage api.');
   }
 }

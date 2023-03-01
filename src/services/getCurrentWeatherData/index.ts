@@ -12,14 +12,12 @@ export default async function getCurrentWeatherData({
   longitude,
 }: GeoLocation): Promise<WeatherDataInterface> {
   try {
-    console.log(`longitude`, longitude);
-    console.log(`latitude`, latitude);
     if (longitude && latitude) {
       const response = await axios.get<WeatherDataInterface>(
-        `https://api.openweathermap.org/data/2.5/onecall`,
+        `${process.env.REACT_APP_OPENWEATHER_API_URL}/onecall`,
         {
           params: {
-            appid: '772920597e4ec8f00de8d376dfb3f094',
+            appid: `${process.env.REACT_APP_OPENWEATHER_API_KEY}`,
             lat: latitude,
             lon: longitude,
             units: 'metric',

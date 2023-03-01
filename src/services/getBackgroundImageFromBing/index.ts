@@ -10,7 +10,7 @@ export interface Image {
 export default async function getBackgroundImageFromBing(): Promise<Image> {
   try {
     const response = await axios.get<BackgroundImageInterface>(
-      `http://localhost:3001/HPImageArchive.aspx`,
+      `${process.env.REACT_APP_REVERSE_PROXY_URL}/HPImageArchive.aspx`,
       {
         params: { format: 'js', idx: '0', n: '1', mkt: 'pt-US' },
       },

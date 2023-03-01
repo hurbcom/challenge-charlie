@@ -21,6 +21,10 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log(
+      `process.env.REACT_APP_OPENCAGE_API_URL`,
+      process.env.REACT_APP_OPENCAGE_API_URL,
+    );
     handleBackgroundImage();
   });
 
