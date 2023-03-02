@@ -89,3 +89,6 @@ Rodar testes automatizados
 
 - **Troca de tipo de temperatura entre Celsius e Fahrenheit**
   - No layout passado não estava muito claro que a parte da temperatura era uma área clicável então pegando como referência o layout do google resolvi adicionar a letra da temperatura que não estava sendo usada meio opaca pra demonstrar que não estava ativa e coloquei um ícone representando que é algo trocável.
+
+- **Salvando estado do tipo e temperatura no local storage**
+  - Resolvi adicionar a funcionalidade de salvar a informação do tipo da temperatura no [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) para ao recarregar a página a escolha do usuário seja mantido.
