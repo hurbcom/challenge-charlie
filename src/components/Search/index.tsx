@@ -98,9 +98,9 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
 
         <S.Button
           type="submit"
-          disabled={isLoading}
           withError={withError}
           isClose={!isLoading && !!value}
+          disabled={isLoading || currentValue.length === 0}
           title={isLoading ? 'Buscando cidade...' : 'Buscar cidade'}
         >
           {renderIcon()}
