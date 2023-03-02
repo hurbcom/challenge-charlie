@@ -29,6 +29,7 @@ export function useGetUserLocation({
   const [lastLocationSearch, setLastLocationSearch] = useState<string | null>(null);
 
   const autoLocationSuccessCallback = useCallback(async (currentCoordinates: GeolocationPosition) => {
+    setIsLoading(true);
     setIsAutoLocation(true);
     setIsGeolocationRefused(false);
 
@@ -43,8 +44,8 @@ export function useGetUserLocation({
 
     const restOfLocation: Partial<Location> = !!currentLocation
       ? {
-          city: currentLocation[0].city,
-          state: currentLocation[0].state,
+          city: currentLocation[0]?.city,
+          state: currentLocation[0]?.state,
         }
       : {};
 
