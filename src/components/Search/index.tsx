@@ -1,7 +1,7 @@
 import React, { forwardRef, InputHTMLAttributes, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import Image from 'next/image';
+import { IoMdClose } from 'react-icons/io';
 import { ImSpinner2 } from 'react-icons/im';
-import { IoMdClose, IoMdSearch } from 'react-icons/io';
 
 import { theme } from '~/styles/theme';
 
@@ -84,7 +84,14 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
     return (
       <S.Container iconPosition={icon?.position} onSubmit={handleOnSearch}>
         {hasIcon && (
-          <Image src={`assets/${icon.svg}.svg`} alt={icon.alt} width={48} height={48} aria-label={icon.alt} />
+          <Image
+            title={`Posição atual do vento ${icon.position}º`}
+            src={`assets/${icon.svg}.svg`}
+            alt={icon.alt}
+            width={48}
+            height={48}
+            aria-label={icon.alt}
+          />
         )}
 
         <S.Input {...rest} ref={inputRef} value={currentValue} onChange={handleOnChange} withError={withError} />
@@ -92,9 +99,9 @@ export const Search = forwardRef<InputHandleProps, SearchProps>(
         <S.Button
           type="submit"
           disabled={isLoading}
-          title="Buscar cidade"
           withError={withError}
           isClose={!isLoading && !!value}
+          title={isLoading ? 'Buscando cidade...' : 'Buscar cidade'}
         >
           {renderIcon()}
         </S.Button>

@@ -1,16 +1,19 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { screen, waitFor } from '@testing-library/react';
 
+import { theme } from '~/styles/theme';
 import CompassIcon from '~/assets/compass.svg';
 import renderWithProviders from '~/utils/renderWithProviders';
 
 import { Search, SearchProps } from '.';
 
+const mockedOnSearch = jest.fn();
+
 const defaultValues: SearchProps = {
   isLoading: false,
   withError: false,
-  onSearch: jest.fn,
+  onSearch: mockedOnSearch,
   cleanSearch: jest.fn,
 };
 
@@ -19,6 +22,7 @@ describe('components - <Search />', () => {
     const { container } = renderWithProviders(<Search {...defaultValues} />);
 
     expect(container).toMatchSnapshot();
+    expect(screen.getByRole('button')).toHaveStyle(`background: ${theme.colors.blue}`);
   });
 
   it('should render with an icon', () => {
@@ -29,7 +33,7 @@ describe('components - <Search />', () => {
     expect(screen.getByLabelText('Ícone de compasso')).toBeInTheDocument();
   });
 
-  it('should handle with change event', async () => {
+  it('should handle with change event and send info', async () => {
     const user = userEvent.setup();
 
     renderWithProviders(<Search {...defaultValues} onChange={jest.fn()} />);
@@ -42,6 +46,14 @@ describe('components - <Search />', () => {
 
     await waitFor(() => {
       expect(input).toHaveValue('John Doe');
+    });
+
+    const sendButton = screen.getByRole('button');
+
+    user.click(sendButton);
+
+    await waitFor(() => {
+      expect(mockedOnSearch).toHaveBeenCalledWith('John Doe');
     });
   });
 
@@ -62,5 +74,22 @@ describe('components - <Search />', () => {
     }
 
     expect(input).toHaveFocus();
+  });
+
+  describe('send button', () => {
+    it('should disable button if is loading', () => {
+      renderWithProviders(<Search {...defaultValues} isLoading />);
+
+      const sendButton = screen.getByRole('button');
+
+      expect(sendButton).toBeDisabled();
+      expect(sendButton).toHaveStyle(`background: ${theme.colors.gray300}`);
+    });
+
+    it('should be red when has an error', () => {
+      renderWithProviders(<Search {...defaultValues} withError />);
+
+      expect(screen.getByRole('button')).toHaveStyle(`background: ${theme.colors.red}`);
+    });
   });
 });
