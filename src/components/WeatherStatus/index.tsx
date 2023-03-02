@@ -123,7 +123,7 @@ export const WeatherStatus = ({
         <S.Info>
           <span>{textDay}</span>
 
-          <S.Temperature onClick={handleToggleTemperatureType} isClickable={isDetailed}>
+          <S.Temperature onClick={handleToggleTemperatureType}>
             <span>{weatherDynamicInfo?.prettyText}</span>
 
             <span>º{weatherDynamicInfo?.revertedType}</span>

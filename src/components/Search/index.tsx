@@ -7,7 +7,7 @@ import { theme } from '~/styles/theme';
 
 import * as S from './styles';
 
-interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
   isLoading: boolean;
   withError: boolean;
   cleanSearch: () => void;

@@ -10,7 +10,7 @@ interface ContainerProps {
 
 const containerModifiers = {
   isDetailed: () => css`
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       img {
         width: 120px;
         height: 120px;
@@ -18,7 +18,7 @@ const containerModifiers = {
     }
   `,
   isLoading: (theme: DefaultTheme) => css`
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       padding: ${theme.sizings[24]} ${theme.sizings[16]};
 
       display: block;
@@ -40,7 +40,7 @@ export const Container = styled.div<ContainerProps>`
 
     background: transparent;
 
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       grid-template-columns: 1.5fr 2fr;
     }
 
@@ -82,7 +82,7 @@ export const Container = styled.div<ContainerProps>`
 
       filter: brightness(10);
 
-      @media (max-width: 600px) {
+      @media screen and (max-width: 600px) {
         width: 60px;
         height: 60px;
       }
@@ -133,8 +133,8 @@ export const Info = styled.div`
   `}
 `;
 
-export const Temperature = styled.span<{ isClickable: boolean }>`
-  ${({ theme, isClickable }) => css`
+export const Temperature = styled.span`
+  ${({ theme }) => css`
     display: flex;
 
     cursor: pointer;
@@ -158,10 +158,6 @@ export const Temperature = styled.span<{ isClickable: boolean }>`
           background: ${theme.colors.white};
         }
       }
-    }
-
-    svg {
-      margin
     }
   `}
 `;

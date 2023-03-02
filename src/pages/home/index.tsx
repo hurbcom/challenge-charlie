@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useWindowSize } from '@react-hook/window-size';
 
-import { useGetUserLocation, useLocalStorage } from '~/hooks';
 import { WallpaperProps, Weather } from '~/@types';
 import { Search, WeatherStatus } from '~/components';
 import { getWallpaper, getWeather } from '~/services';
 import { InputHandleProps } from '~/components/Search';
+import { useGetUserLocation, useLocalStorage } from '~/hooks';
 
 import * as S from './styles';
 

@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react';
 
 import { Location } from '~/@types';
 
-import { useGetUserLocation } from '.';
+import { useGetUserLocation, UseGetUserLocationProps } from '.';
 
 type CustomGlobal = {
   navigator: {
@@ -32,6 +32,15 @@ const mockGeolocation = {
 
 const mockFocus = jest.fn();
 const mockSetManualLocation = jest.fn();
+
+const defaultValues: UseGetUserLocationProps = {
+  isLoading: false,
+  setIsLoading: jest.fn,
+  setWithError: jest.fn,
+  currentManualLocation: '',
+  setWeatherForecast: jest.fn,
+  setCurrentManualLocation: jest.fn,
+};
 
 describe('hooks - useGetUserLocation', () => {
   beforeAll(() => {
@@ -62,14 +71,12 @@ describe('hooks - useGetUserLocation', () => {
   });
 
   it('should return the location correctly', () => {
-    const { result } = renderHook(() =>
+    renderHook(() =>
       useGetUserLocation({
-        currentManualLocation: '',
+        ...defaultValues,
         setCurrentManualLocation: mockSetManualLocation,
       }),
     );
-
-    const { location } = result.current;
 
     expect(mockGeolocation.getCurrentPosition).toHaveBeenCalled();
   });
@@ -87,9 +94,8 @@ describe('hooks - useGetUserLocation', () => {
 
     renderHook(() =>
       useGetUserLocation({
+        ...defaultValues,
         elementToFocus: refMock as React.RefObject<HTMLInputElement>,
-        currentManualLocation: '',
-        setCurrentManualLocation: jest.fn(),
       }),
     );
 
