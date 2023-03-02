@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { Location } from '~/@types';
 
@@ -70,7 +70,7 @@ describe('hooks - useGetUserLocation', () => {
     ) as jest.Mock;
   });
 
-  it('should return the location correctly', () => {
+  it('should return the location correctly', async () => {
     renderHook(() =>
       useGetUserLocation({
         ...defaultValues,
@@ -78,7 +78,9 @@ describe('hooks - useGetUserLocation', () => {
       }),
     );
 
-    expect(mockGeolocation.getCurrentPosition).toHaveBeenCalled();
+    await act(() => {
+      expect(mockGeolocation.getCurrentPosition).toHaveBeenCalled();
+    });
   });
 
   it('should focus on element when gets an error', () => {
