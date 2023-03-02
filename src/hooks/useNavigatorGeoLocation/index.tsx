@@ -10,12 +10,13 @@ export default function useNavigatorGeoLocation(): NavigatorGeoLocationInterface
   const [allowLocation, setAllowLocation] = useState<boolean>(false);
   const [permissionDenid, setPermissionDenid] = useState<boolean>(false);
 
-  const { setGeoLocation } = useContext(GeoLocationContext);
+  const { geoLocation, setGeoLocation } = useContext(GeoLocationContext);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       function (position) {
         setGeoLocation({
+          ...geoLocation,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         });
@@ -24,7 +25,6 @@ export default function useNavigatorGeoLocation(): NavigatorGeoLocationInterface
       function (error) {
         if (error.code === error.PERMISSION_DENIED) {
           setPermissionDenid(true);
-          console.log('error', error);
         }
         setAllowLocation(false);
       }

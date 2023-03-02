@@ -1,4 +1,5 @@
 export interface WeatherDataInterface {
+  loading: boolean;
   current?: WeatherInfo;
   daily: {
     tomorrowTempWeather: NextDayWeatherInfo;

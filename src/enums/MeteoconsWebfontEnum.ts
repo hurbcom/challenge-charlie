@@ -2,6 +2,7 @@ export enum MeteoconsWebfontEnum {
   '01d' = 'B',
   '01n' = 'C',
   '02d' = 'H',
+  '02n' = 'I',
   '03d' = 'N',
   '03n' = 'N',
   '04d' = 'Y',

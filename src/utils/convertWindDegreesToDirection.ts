@@ -2,7 +2,6 @@ import { WindsCardinalDirectionEnum } from '@enums/WindsCardinalDirectionEnum';
 
 export default function convertWindDegreesToDirection(windDegree: number): string {
   let windDirectionLabel;
-  console.log(`windDegree`, windDegree);
   switch (windDegree) {
     case 360:
       windDirectionLabel = WindsCardinalDirectionEnum.North;

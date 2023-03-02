@@ -8,3 +8,5 @@ declare module '*.jpg';
 declare module '*.ttf';
 declare module '*.eot';
 declare module '*.woff';
+
+declare module 'react-loading-skeleton';

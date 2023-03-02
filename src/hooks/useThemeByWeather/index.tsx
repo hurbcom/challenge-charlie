@@ -20,8 +20,8 @@ interface TemperatureVeluesInterface {
 export default function useThemeByWeather(): ThemeByWeatherInterface {
   const [theme, setTheme] = useState(defaultTheme);
 
-  const { weatherInfo } = useContext(WeatherInfoContext);
   const { geoLocation } = useContext(GeoLocationContext);
+  const { weatherInfo } = useContext(WeatherInfoContext);
 
   const TemperatureVelues = useMemo<TemperatureVeluesInterface>(
     () => ({

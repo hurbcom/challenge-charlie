@@ -24,28 +24,20 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   const { allowLocation } = useNavigatorGeoLocation();
 
   async function handleGetCurrentWeatherData(): Promise<void> {
-    // console.log(`Home - latitude`, geoLocation.latitude);
-    // console.log(`Home - longitude`, geoLocation.longitude);
-
+    setWeatherInfo({ ...weatherInfo, loading: true });
     const response = await getCurrentWeatherData({
       latitude: geoLocation.latitude,
       longitude: geoLocation.longitude
     });
 
-    console.log('WeatherInfoProvider', response);
-    if (response) setWeatherInfo(response);
+    if (response) setWeatherInfo({ loading: false, current: response.current, daily: response.daily });
   }
 
   useEffect(() => {
-    // console.log('entrou', allowLocation);
     if (allowLocation) {
       handleGetCurrentWeatherData();
     }
-  }, [allowLocation]);
-
-  useEffect(() => {
-    console.log('weatherInfo', weatherInfo);
-  }, [weatherInfo]);
+  }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
 
   return <WeatherInfoContext.Provider value={{ weatherInfo, setWeatherInfo }}>{children}</WeatherInfoContext.Provider>;
 }

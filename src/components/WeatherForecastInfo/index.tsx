@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import ReactLoading from 'react-loading';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { WeatherInfoContext } from '@contexts/WeatherInfoContext';
 import { MeteoconsWebfontEnum } from '@enums/MeteoconsWebfontEnum';
@@ -23,12 +26,9 @@ const WeatherForecastInfo: React.FC = () => {
 
   const { weatherInfo } = useContext(WeatherInfoContext);
 
-  const { current, daily } = weatherInfo;
-
-  console.log(`current?.weather`, current?.weather[0].description);
+  const { current, daily, loading } = weatherInfo;
 
   useEffect(() => {
-    console.log(`weatherInfo.daily`, weatherInfo.daily);
     if (!weatherInfo) return;
 
     setTemperatures({
@@ -80,7 +80,11 @@ const WeatherForecastInfo: React.FC = () => {
     <S.Container>
       <main>
         <div className='icon-weather-wrapper'>
-          <span data-icon={MeteoconsWebfontEnum[current?.weather[0].icon]} />
+          {loading ? (
+            <span data-icon={MeteoconsWebfontEnum['01d']} />
+          ) : (
+            <span data-icon={MeteoconsWebfontEnum[current?.weather[0].icon]} />
+          )}
         </div>
         <div className='weather-info-wrapper '>
           <div
@@ -89,19 +93,31 @@ const WeatherForecastInfo: React.FC = () => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
-            <p>HOJE</p>
-            <span>
-              {convertFloatTemperatureNumberToInteger(temperatures?.currentTemp)}
-              {!isChangeThermometricScale ? '°C' : '°F'}
-            </span>
+            {loading ? (
+              <Skeleton width='30%' count={2} />
+            ) : (
+              <>
+                <p>HOJE</p>
+                <span>
+                  {convertFloatTemperatureNumberToInteger(temperatures?.currentTemp)}
+                  {!isChangeThermometricScale ? '°C' : '°F'}
+                </span>
+              </>
+            )}
           </div>
           <div className='weather-info-details'>
-            <h1>{current?.weather[0].description}</h1>
-            <p>
-              Vento: {windDirection} {windSpeedInKilometers}km/h
-            </p>
-            <p>Humidadade: {current?.humidity}%</p>
-            <p>Pressão: {current?.pressure}hPA</p>
+            <h1> {loading ? <Skeleton width='60%' /> : current?.weather[0].description}</h1>
+            {loading ? (
+              <Skeleton width='75%' count={3} />
+            ) : (
+              <>
+                <p>
+                  Vento: {windDirection} {windSpeedInKilometers}km/h
+                </p>
+                <p>Humidadade: {current?.humidity}%</p>
+                <p>Pressão: {current?.pressure}hPA</p>
+              </>
+            )}
           </div>
         </div>
       </main>
@@ -113,11 +129,17 @@ const WeatherForecastInfo: React.FC = () => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
-            <p>AMANHÃ</p>
-            <span>
-              {convertFloatTemperatureNumberToInteger(temperatures?.tomorrowTemp)}
-              {!isChangeThermometricScale ? '°C' : '°F'}
-            </span>
+            {loading ? (
+              <Skeleton width='30%' count={2} />
+            ) : (
+              <>
+                <p>AMANHÃ</p>
+                <span>
+                  {convertFloatTemperatureNumberToInteger(temperatures?.tomorrowTemp)}
+                  {!isChangeThermometricScale ? '°C' : '°F'}
+                </span>
+              </>
+            )}
           </div>
         </div>
         <div className='weather-info weather-after-tomorrow-info'>
@@ -127,11 +149,22 @@ const WeatherForecastInfo: React.FC = () => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}
           >
-            <p>DEPOIS DE AMANHÃ</p>
-            <span>
-              {convertFloatTemperatureNumberToInteger(temperatures?.afterTomorrowTemp)}
-              {!isChangeThermometricScale ? '°C' : '°F'}
-            </span>
+            {loading ? (
+              <Skeleton width='70%' />
+            ) : (
+              <>
+                <p>DEPOIS DE AMANHÃ</p>
+              </>
+            )}
+
+            {loading ? (
+              <Skeleton width='30%' />
+            ) : (
+              <span>
+                {convertFloatTemperatureNumberToInteger(temperatures?.afterTomorrowTemp)}
+                {!isChangeThermometricScale ? '°C' : '°F'}
+              </span>
+            )}
           </div>
         </div>
       </footer>

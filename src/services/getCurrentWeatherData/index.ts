@@ -7,7 +7,7 @@ import { DailyWeatherInfo, WeatherDataInterface } from '@interfaces/WeatherDataI
 export default async function getCurrentWeatherData({
   latitude,
   longitude
-}: GeoLocation): Promise<WeatherDataInterface> {
+}: Omit<GeoLocation, 'locationName' | 'loading'>): Promise<WeatherDataInterface> {
   try {
     if (longitude && latitude) {
       const response = await axios.get<WeatherDataInterface>(`${process.env.REACT_APP_OPENWEATHER_API_URL}/onecall`, {
@@ -22,8 +22,6 @@ export default async function getCurrentWeatherData({
       });
 
       const { current, daily } = response.data;
-
-      console.log(`getCurrentWeatherData -response.data`, response.data);
 
       const nextDaysList = daily.reduce<DailyWeatherInfo>((list, item) => {
         const currentDate = new Date(current?.dt * 1000);
