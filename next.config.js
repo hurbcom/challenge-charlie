@@ -10,14 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    config.watchOptions = {
-      pool: 1000,
-      aggregateTimeout: 300,
-    };
-
-    return config;
-  },
 };
 
 module.exports = nextConfig
