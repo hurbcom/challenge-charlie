@@ -1,0 +1,15 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:react-hooks/recommended"],
+  "plugins": ["eslint-plugin-import-helpers"],
+  "rules": {
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [["/^react/", "module"], "/^~/", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "ignore", "ignoreCase": true }
+      }
+    ],
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
+  }
+}

@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components - <Search /> should render correctly 1`] = `
+.c0 {
+  position: relative;
+  display: grid;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  grid-template-columns: auto 1fr;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  opacity: 0.9;
+  background: #E1E1E6;
+}
+
+.c0:has(input:focus) {
+  opacity: 1;
+}
+
+.c0 img {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: rotate(deg);
+  -ms-transform: rotate(deg);
+  transform: rotate(deg);
+}
+
+.c1 {
+  border: 0;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 5.5rem 0.5rem 0.5rem;
+  font-weight: 500;
+  -webkit-filter: contrast(1.2);
+  filter: contrast(1.2);
+  color: #7A7673;
+  font-size: 2rem;
+  background: #E1E1E6;
+}
+
+.c1:focus {
+  outline: 0;
+  border-color: #0057B7;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #8F8F8F;
+}
+
+.c1::-moz-placeholder {
+  color: #8F8F8F;
+}
+
+.c1:-ms-input-placeholder {
+  color: #8F8F8F;
+}
+
+.c1::placeholder {
+  color: #8F8F8F;
+}
+
+.c2 {
+  position: absolute;
+  z-index: 1;
+  right: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  width: 82px;
+  height: 55px;
+  opacity: 0.85;
+  padding: 0 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+  color: #FFF;
+  font-size: 1rem;
+  background: #0057B7;
+}
+
+@media (max-width:600px) {
+  .c0 {
+    gap: 0.5rem;
+  }
+
+  .c0 img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width:600px) {
+  .c1 {
+    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width:600px) {
+  .c2 {
+    width: 60px;
+    height: 46px;
+    padding: 0 0.5rem;
+  }
+}
+
+<div>
+  <form
+    class="c0"
+  >
+    <input
+      class="c1"
+      value=""
+    />
+    <button
+      class="c2"
+      title="Buscar cidade"
+      type="submit"
+    >
+      Buscar
+    </button>
+  </form>
+</div>
+`;

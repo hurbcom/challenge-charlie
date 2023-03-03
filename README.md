@@ -1,59 +1,94 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+<h1 align="center">
+    <img alt="Logo do Weather App" src="./public/icon/android-chrome-192x192.png" />
+    <br>
+    Hurb Challenge
+</h1>
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+## ✨ Projeto
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+O Projeto mostra a previsão do tempo baseado na localização do usuário ou da localização que for inserida, envolve consumo da [API de geolocalização do navegador](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) para as coordenadas atuais, [OpenCageAPI](https://opencagedata.com/api) para conseguir dados da localização com base nas coordenadas ou conseguir as coordenadas com base na localização inserida e [OpenWeatherAPI](https://openweathermap.org/api) para as informações sobre o clima.
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+- Tempo aproximado para finalizar: 37h
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+[Mais Informações...](https://github.com/hurbcom/challenge-charlie)
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+### [Demonstração online](https://hurb-challenge-plum.vercel.app/)
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+<h1 align="center">
+    <img alt="Demonstração da aplicação" src="./weather-app-demo.gif" />
+</h1>
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+## :office: Buildando versão de produção com Docker
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+:cloud: Clonar projeto
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+`$ git clone git@github.com:efraim-andrade/hurb-challenge.git && cd hurb-challenge`
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+🚀 Iniciar o projeto com docker no modo desenvolvimento
 
-## Requirements
+`$ docker-compose up -d development`
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+🚀 Iniciar o projeto com docker no modo produção
 
-## Evaluation criteria
+`$ docker-compose up -d production`
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+---
+## :office: Usando Localmente versão de desenvolvimento
 
-## Doubts
+:cloud: Clonar projeto
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+`$ git clone git@github.com:efraim-andrade/hurb-challenge.git`
 
-Godspeed! ;)
+📦 Instalar dependências
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+`$ npm i`
+
+🚀 Iniciar o projeto
+
+`$ npm run dev`
+
+---
+
+### :scroll: Testes
+
+Rodar testes automatizados
+
+`$ npm run test`
+
+---
+## Padrões do projeto
+### Tecnologias
+- [NextJS](https://nextjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled-components](https://styled-components.com/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [Docker](https://www.docker.com/)
+
+### Padrões de código
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
+---
+## Decisões do projeto
+### Segurança
+- **API Routes**
+  - Escolhi utilizar o [API Routes](https://nextjs.org/docs/api-routes/introduction) do NextJS para consumir as API's de terceiro por dois motivos, na API do bing para evitar o erro de CORS que impede de consumir direto no client e para não deixar as chaves de utilização do  [OpenCageAPI](https://opencagedata.com/api) e do [OpenWeatherAPI](https://openweathermap.org/api) expostas no front-end.
+
+- **ENV**
+  - Coloquei as chaves das API's no .env para utilizar no back, porém para fins de utilização do pessoal que for analisar o teste subi no repositório para a aplicação funcionar quando forem clonar, porém em uma situação real o .env não seria enviado para o repositório
+
+### Usabilidade
+- **Contraste das cores**
+  - O amarelo apresentado no print do design não estava contrastando bem com as letras brancas das informações, optei por deixar mais escuro para deixar mais visível.
+
+- **Limitação da API free do OpenCage**
+  - Após dar uma olhada na API do [OpenCageAPI](https://opencagedata.com/api) verifiquei que a versão gratuita não fornece suporte a  [Fuzzy Search](https://www.techtarget.com/whatis/definition/fuzzy-search) (Buscar text por aproximação) oque torna inviável utilizar a estratégia de [Debounce](https://www.freecodecamp.org/news/javascript-debounce-example/) para apresentar sugestões de resultados enquanto for digitando no input de busca, a API só funciona colocando o nome da localidade inteiro.
+
+- **Melhorando a usabilidade da busca**
+  - Visando uma melhor usabilidade na hora de buscar a cidade optei por adicionar um botão de busca e limpeza do input tendo em vista que não temos um autocomplete na parte grátis da API de localidade. Também adicionei alguns loaders para mostrar um feedback enquanto a aplicação busca a localização e as informações da previsão do tempo.
+
+- **Troca de tipo de temperatura entre Celsius e Fahrenheit**
+  - No layout passado não estava muito claro que a parte da temperatura era uma área clicável então pegando como referência o layout do google resolvi adicionar a letra da temperatura que não estava sendo usada meio opaca pra demonstrar que não estava ativa e coloquei um ícone representando que é algo trocável.
+
+- **Salvando estado do tipo e temperatura no local storage**
+  - Resolvi adicionar a funcionalidade de salvar a informação do tipo da temperatura no [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) para ao recarregar a página a escolha do usuário seja mantido.
