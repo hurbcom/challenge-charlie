@@ -12,7 +12,7 @@ O Projeto mostra a previsão do tempo baseado na localização do usuário ou da
 
 [Mais Informações...](https://github.com/hurbcom/challenge-charlie)
 
-### [Demonstração online](https://hurb-challenge-plum.vercel.app/)
+### [Demonstração online](https://challenge-charlie-three.vercel.app/)
 
 <h1 align="center">
     <img alt="Demonstração da aplicação" src="./weather-app-demo.gif" />
