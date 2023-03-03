@@ -12,7 +12,7 @@ O Projeto mostra a previsão do tempo baseado na localização do usuário ou da
 
 [Mais Informações...](https://github.com/hurbcom/challenge-charlie)
 
-### [Demonstracao online](https://hurb-challenge-plum.vercel.app/)
+### [Demonstração online](https://hurb-challenge-plum.vercel.app/)
 
 <h1 align="center">
     <img alt="Demonstração da aplicação" src="./weather-app-demo.gif" />
@@ -24,13 +24,13 @@ O Projeto mostra a previsão do tempo baseado na localização do usuário ou da
 
 `$ git clone git@github.com:efraim-andrade/hurb-challenge.git && cd hurb-challenge`
 
-📦 Instalar dependências
+🚀 Iniciar o projeto com docker no modo desenvolvimento
 
-`$ docker build -t nextjs-docker .`
+`$ docker-compose up -d development`
 
-🚀 Iniciar o projeto
+🚀 Iniciar o projeto com docker no modo produção
 
-`$ docker run -p 3000:3000 nextjs-docker`
+`$ docker-compose up -d production`
 
 ---
 ## :office: Usando Localmente versão de desenvolvimento

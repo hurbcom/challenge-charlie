@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  development:
-    ports: 3000:3000
+  application:
     build:
-      context: .
-      dockerfile: Dockerfile.development
-
-  production:
-    ports: 8080:8080
-    build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./
+      target: runner
+    volumes:
+      - ./:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
