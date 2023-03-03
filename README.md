@@ -22,22 +22,19 @@ O Projeto mostra a previsão do tempo baseado na localização do usuário ou da
 
 :cloud: Clonar projeto
 
-`$ git clone git@github.com:efraim-andrade/hurb-challenge.git && cd hurb-challenge`
+`$ git clone git@github.com:efraim-andrade/challenge-charlie.git && cd challenge-charlie`
 
 🚀 Iniciar o projeto com docker no modo desenvolvimento
 
-`$ docker-compose up -d development`
-
-🚀 Iniciar o projeto com docker no modo produção
-
-`$ docker-compose up -d production`
+`$ docker-compose build`
+`$ docker-compose up`
 
 ---
 ## :office: Usando Localmente versão de desenvolvimento
 
 :cloud: Clonar projeto
 
-`$ git clone git@github.com:efraim-andrade/hurb-challenge.git`
+`$ git clone git@github.com:efraim-andrade/challenge-charlie.git`
 
 📦 Instalar dependências
 

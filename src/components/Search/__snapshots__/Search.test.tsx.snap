@@ -89,6 +89,12 @@ exports[`components - <Search /> should render correctly 1`] = `
   color: #FFF;
   font-size: 1rem;
   background: #0057B7;
+  background: #8F8F8F;
+}
+
+.c2 svg {
+  -webkit-animation: bcVRha 2s linear infinite;
+  animation: bcVRha 2s linear infinite;
 }
 
 @media (max-width:600px) {
@@ -127,6 +133,7 @@ exports[`components - <Search /> should render correctly 1`] = `
     />
     <button
       class="c2"
+      disabled=""
       title="Buscar cidade"
       type="submit"
     >

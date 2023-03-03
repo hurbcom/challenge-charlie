@@ -22,7 +22,7 @@ describe('components - <Search />', () => {
     const { container } = renderWithProviders(<Search {...defaultValues} />);
 
     expect(container).toMatchSnapshot();
-    expect(screen.getByRole('button')).toHaveStyle(`background: ${theme.colors.blue}`);
+    expect(screen.getByRole('button')).toHaveStyle(`background: ${theme.colors.gray300}`);
   });
 
   it('should render with an icon', () => {
