@@ -32,7 +32,7 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
   );
 
   const changeThemeByWeatherTemperature = (): void => {
-    if (geoLocation.locationName === undefined || geoLocation.locationName === '') {
+    if (!weatherInfo.current || geoLocation.locationName === undefined || geoLocation.locationName === '') {
       setTheme(grayTheme);
       return;
     }

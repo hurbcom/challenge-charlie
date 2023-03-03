@@ -34,9 +34,7 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   }
 
   useEffect(() => {
-    if (allowLocation) {
-      handleGetCurrentWeatherData();
-    }
+    handleGetCurrentWeatherData();
   }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
 
   return <WeatherInfoContext.Provider value={{ weatherInfo, setWeatherInfo }}>{children}</WeatherInfoContext.Provider>;

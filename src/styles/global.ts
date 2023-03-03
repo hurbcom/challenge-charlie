@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import MeteoconsWebfontEot from '@assets/fonts/meteocons-webfont.eot';
 import MeteoconsWebfontWoff from '@assets/fonts/meteocons-webfont.woff';

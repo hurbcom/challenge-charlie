@@ -1,6 +1,6 @@
 import GeoLocation, { GeoLocationInfoInterface } from '@interfaces/GeoLocationInterface';
 
-export default function useFormattedLocationName(data: GeoLocationInfoInterface): Pick<GeoLocation, 'locationName'> {
+export default function formatLocationName(data: GeoLocationInfoInterface): Pick<GeoLocation, 'locationName'> {
   const mainResult = data.results[0];
 
   console.log(`mainResult.formatted.length`, mainResult.formatted.length);

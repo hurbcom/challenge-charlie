@@ -17,8 +17,8 @@ const Home: React.FC = () => {
 
   const { geoLocation, setGeoLocation } = useContext(GeoLocationContext);
 
-  useNavigatorGeoLocation();
   useThemeByWeather();
+  useNavigatorGeoLocation();
 
   async function handleBackgroundImage(): Promise<void> {
     const { url } = await getBackgroundImageFromBing();
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     handleBackgroundImage();
-  });
+  }, []);
 
   async function handleGetLocationNameByGeoCoordinatesData(): Promise<void> {
     const response = await getLocationNameByGeoCoordinates({
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
     if (response) {
       const { locationName } = formatLocationName(response);
 
-      console.log(`Home - locationName`, locationName);
+      console.log('Home - locationName', locationName);
 
       setIsFirstAccess(true);
       return setGeoLocation({

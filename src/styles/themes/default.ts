@@ -9,6 +9,7 @@ export const defaultTheme = {
   },
 
   breakpoints: {
+    qHd: '2560px',
     fullHd: '1920px',
     hd: '1440px',
     mobile: '1100px',

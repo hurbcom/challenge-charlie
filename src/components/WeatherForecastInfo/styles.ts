@@ -24,12 +24,24 @@ export const Container = styled.div`
         font-size: 22rem;
         color: ${theme.colors.white};
 
+        @media (min-width: ${theme.breakpoints.qHd}) {
+          font-size: 25rem;
+        }
+
+        @media (max-width: ${theme.breakpoints.hd}) {
+          font-size: 16rem;
+        }
+
+        @media (max-width: ${theme.breakpoints.mobile}) {
+          font-size: 18rem;
+        }
+
         @media (max-width: ${theme.breakpoints.tablet}) {
-          font-size: 20rem;
+          font-size: 16rem;
         }
 
         @media (max-width: ${theme.breakpoints.smartphone}) {
-          font-size: 14rem;
+          font-size: 12rem;
         }
 
         span {
@@ -46,8 +58,16 @@ export const Container = styled.div`
           padding-top: 1.3rem;
 
           font-size: 2rem;
-          font-family: 'Ubuntu';
           cursor: pointer;
+          font-family: 'Ubuntu';
+
+          @media (min-width: ${theme.breakpoints.qHd}) {
+            font-size: 2.2rem;
+          }
+
+          @media (max-width: ${theme.breakpoints.smartphone}) {
+            font-size: 1.4rem;
+          }
         }
 
         .weather-info-details {
@@ -61,11 +81,27 @@ export const Container = styled.div`
           font-size: 1.5rem;
           letter-spacing: 0.02em;
 
+          @media (min-width: ${theme.breakpoints.qHd}) {
+            font-size: 2rem;
+          }
+
+          @media (max-width: ${theme.breakpoints.smartphone}) {
+            font-size: 1.1rem;
+          }
+
           h1 {
             margin-bottom: 16px;
 
             font-size: 2.4rem;
             text-transform: capitalize;
+
+            @media (min-width: ${theme.breakpoints.qHd}) {
+              font-size: 3rem;
+            }
+
+            @media (max-width: ${theme.breakpoints.smartphone}) {
+              font-size: 2rem;
+            }
           }
         }
       }
@@ -74,6 +110,14 @@ export const Container = styled.div`
     footer {
       height: 35%;
       font-size: 1.5rem;
+
+      @media (min-width: ${theme.breakpoints.qHd}) {
+        font-size: 2rem;
+      }
+
+      @media (max-width: ${theme.breakpoints.smartphone}) {
+        font-size: 1rem;
+      }
 
       .weather-info {
         height: 50%;
@@ -92,6 +136,14 @@ export const Container = styled.div`
         span {
           font-size: 2rem;
           font-family: 'Ubuntu';
+
+          @media (min-width: ${theme.breakpoints.qHd}) {
+            font-size: 2.2rem;
+          }
+
+          @media (max-width: ${theme.breakpoints.smartphone}) {
+            font-size: 1.4rem;
+          }
         }
       }
 
