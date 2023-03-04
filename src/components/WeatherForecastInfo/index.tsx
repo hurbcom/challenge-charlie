@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { Tooltip } from 'react-tooltip';
 
 import { WeatherInfoContext } from '@contexts/WeatherInfoContext';
 import { MeteoconsWebfontEnum } from '@enums/MeteoconsWebfontEnum';
@@ -74,6 +75,10 @@ const WeatherForecastInfo: React.FC = () => {
     }
   }, [current?.wind_speed]);
 
+  useEffect(() => {
+    console.log('current?.temp', current?.temp);
+  }, [current?.temp]);
+
   return (
     <S.Container>
       <main>
@@ -97,7 +102,12 @@ const WeatherForecastInfo: React.FC = () => {
               current && (
                 <>
                   <p>HOJE</p>
-                  <span>
+                  <span
+                    data-tooltip-id='temperature-tooltip'
+                    data-tooltip-content={`Clique na temperatura para trocar de ${
+                      !isChangeThermometricScale ? '°C para °F' : '°F para °C'
+                    }`}
+                  >
                     {convertFloatTemperatureNumberToInteger(temperatures?.currentTemp)}
                     {!isChangeThermometricScale ? '°C' : '°F'}
                   </span>
@@ -137,7 +147,12 @@ const WeatherForecastInfo: React.FC = () => {
               current && (
                 <>
                   <p>AMANHÃ</p>
-                  <span>
+                  <span
+                    data-tooltip-id='temperature-tooltip'
+                    data-tooltip-content={`Clique na temperatura para trocar de ${
+                      !isChangeThermometricScale ? '°C para °F' : '°F para °C'
+                    }`}
+                  >
                     {convertFloatTemperatureNumberToInteger(temperatures?.tomorrowTemp)}
                     {!isChangeThermometricScale ? '°C' : '°F'}
                   </span>
@@ -167,7 +182,12 @@ const WeatherForecastInfo: React.FC = () => {
               <Skeleton width='30%' />
             ) : (
               current && (
-                <span>
+                <span
+                  data-tooltip-id='temperature-tooltip'
+                  data-tooltip-content={`Clique na temperatura para trocar de ${
+                    !isChangeThermometricScale ? '°C para °F' : '°F para °C'
+                  }`}
+                >
                   {convertFloatTemperatureNumberToInteger(temperatures?.afterTomorrowTemp)}
                   {!isChangeThermometricScale ? '°C' : '°F'}
                 </span>
@@ -176,6 +196,7 @@ const WeatherForecastInfo: React.FC = () => {
           </div>
         </div>
       </footer>
+      <Tooltip id='temperature-tooltip' />
     </S.Container>
   );
 };

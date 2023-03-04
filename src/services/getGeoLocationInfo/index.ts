@@ -37,7 +37,9 @@ export async function getGeoCoordinatesByLocationName({
     });
 
     console.log('response', response);
+
     const geoLocationDetails = response.data;
+
     return geoLocationDetails;
   } catch (error) {
     console.log('error', error);

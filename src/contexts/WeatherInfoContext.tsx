@@ -34,6 +34,8 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   }
 
   useEffect(() => {
+    console.log('Context - locationName', geoLocation.locationName);
+    console.log('Context - geoLocation', geoLocation);
     handleGetCurrentWeatherData();
   }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
 

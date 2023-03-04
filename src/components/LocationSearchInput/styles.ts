@@ -14,6 +14,10 @@ export const Container = styled.header`
     background-color: ${theme.colors.white};
     padding: 16px;
 
+    :hover {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
     .location-icon {
       height: 100%;
 
@@ -38,6 +42,8 @@ export const Container = styled.header`
     .invalid-location-name-message {
       color: #e63946;
 
+      margin-top: 4px;
+
       @media (min-width: ${theme.breakpoints.qHd}) {
         font-size: 2rem;
       }
@@ -54,7 +60,24 @@ export const Container = styled.header`
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
+
+      .input-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+
+        .search-icon-wrapper {
+          all: unset;
+
+          width: 10%;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
 
       @media (max-width: ${theme.breakpoints.smartphone}) {
         margin-left: 0.5rem;
@@ -64,11 +87,15 @@ export const Container = styled.header`
     input {
       all: unset;
 
-      width: 100%;
+      width: 90%;
       height: 100%;
 
       font-size: 2rem;
       font-weight: 500;
+
+      &:focus {
+        border-bottom: 1px solid #dfe1e5;
+      }
 
       @media (min-width: ${theme.breakpoints.qHd}) {
         font-size: 2.2rem;

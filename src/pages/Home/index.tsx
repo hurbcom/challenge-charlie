@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import LocationForm from '@components/LocationForm';
+import LocationSearchInput from '@components/LocationSearchInput';
 import useThemeByWeather from '@hooks/useThemeByWeather';
 import formatLocationName from '@utils/formatLocationName';
 import { GeoLocationContext } from '@contexts/GeoLocationContext';
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
   return (
     <S.Container backgroundImage={backgroundImage}>
       <div className='weather-forecast-wrapper'>
-        <LocationForm />
+        <LocationSearchInput />
         <WeatherForecastInfo />
       </div>
     </S.Container>
