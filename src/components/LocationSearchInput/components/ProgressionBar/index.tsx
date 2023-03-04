@@ -11,7 +11,7 @@ interface ProgressionBar {
 export const ProgressionBar = ({ progressBarStatus }: ProgressionBar) => {
   return (
     <Container>
-      <Progression aria-label='barra de progressão' progressBarStatus={progressBarStatus} />
+      <Progression progressBarStatus={progressBarStatus} />
     </Container>
   );
 };

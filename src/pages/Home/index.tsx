@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import LocationSearchInput from '@components/LocationSearchInput';
 import useThemeByWeather from '@hooks/useThemeByWeather';
 import formatLocationName from '@utils/formatLocationName';
 import { GeoLocationContext } from '@contexts/GeoLocationContext';
+import LocationSearchInput from '@components/LocationSearchInput';
 import WeatherForecastInfo from '@components/WeatherForecastInfo';
 import useNavigatorGeoLocation from '@hooks/useNavigatorGeoLocation';
 import getBackgroundImageFromBing from '@services/getBackgroundImageFromBing';
@@ -20,15 +20,22 @@ const Home: React.FC = () => {
   useThemeByWeather();
   useNavigatorGeoLocation();
 
+  useEffect(() => {
+    handleBackgroundImage();
+  }, []);
+
+  useEffect(() => {
+    if (isFirstAccess) return;
+    if (geoLocation.latitude && geoLocation.longitude) {
+      handleGetLocationNameByGeoCoordinatesData();
+    }
+  }, [geoLocation]);
+
   async function handleBackgroundImage(): Promise<void> {
     const { url } = await getBackgroundImageFromBing();
 
     setBackgroundImage(url);
   }
-
-  useEffect(() => {
-    handleBackgroundImage();
-  }, []);
 
   async function handleGetLocationNameByGeoCoordinatesData(): Promise<void> {
     const response = await getLocationNameByGeoCoordinates({
@@ -39,22 +46,14 @@ const Home: React.FC = () => {
     if (response) {
       const { locationName } = formatLocationName(response);
 
-      console.log('Home - locationName', locationName);
-
       setIsFirstAccess(true);
+
       return setGeoLocation({
         ...geoLocation,
         locationName
       });
     }
   }
-
-  useEffect(() => {
-    if (isFirstAccess) return;
-    if (geoLocation.latitude && geoLocation.longitude) {
-      handleGetLocationNameByGeoCoordinatesData();
-    }
-  }, [geoLocation]);
 
   return (
     <S.Container backgroundImage={backgroundImage}>

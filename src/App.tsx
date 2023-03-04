@@ -1,9 +1,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import Home from './pages/Home';
-import { GlobalStyle } from './styles/global';
-import useThemeByWeather from './hooks/useThemeByWeather';
+import Home from '@pages/Home';
+import { GlobalStyle } from '@styles/global';
+import useThemeByWeather from '@hooks/useThemeByWeather';
 
 const App: React.FC = () => {
   const { theme } = useThemeByWeather();

@@ -1,4 +1,4 @@
-import React, { createContext, type ReactNode, useState, useEffect } from 'react';
+import React, { createContext, type ReactNode, useState } from 'react';
 
 import type GeoLocationInterface from '@interfaces/GeoLocationInterface';
 

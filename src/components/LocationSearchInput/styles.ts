@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.header`
   ${({ theme }) => css`
     height: 10%;
+    padding: 16px;
     max-height: 10%;
 
     display: flex;
@@ -10,9 +11,7 @@ export const Container = styled.header`
 
     font-family: 'Ubuntu';
     color: ${theme.colors.darkGray};
-
     background-color: ${theme.colors.white};
-    padding: 16px;
 
     :hover {
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

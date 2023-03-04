@@ -1,10 +1,10 @@
 import React, { createContext, type ReactNode, useState, useEffect, useContext } from 'react';
 
-import { GeoLocationContext } from './GeoLocationContext';
 import getCurrentWeatherData from '@services/getCurrentWeatherData';
 import useNavigatorGeoLocation from '@hooks/useNavigatorGeoLocation';
 import type { WeatherDataInterface } from '@interfaces/WeatherDataInterface';
 
+import { GeoLocationContext } from './GeoLocationContext';
 interface WeatherInfoProviderProps {
   children: ReactNode;
 }
@@ -34,8 +34,6 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
   }
 
   useEffect(() => {
-    console.log('Context - locationName', geoLocation.locationName);
-    console.log('Context - geoLocation', geoLocation);
     handleGetCurrentWeatherData();
   }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
 

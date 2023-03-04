@@ -1,3 +1,5 @@
+import { defaultTheme } from '@styles/themes/default';
+
 export const heatTheme = {
   colors: {
     primary: '#FF6464',
@@ -8,11 +10,5 @@ export const heatTheme = {
     darkGray: '#8C8986'
   },
 
-  breakpoints: {
-    fullHd: '1920px',
-    hd: '1440px',
-    mobile: '1100px',
-    tablet: '768px',
-    smartphone: '480px'
-  }
+  breakpoints: defaultTheme.breakpoints
 };

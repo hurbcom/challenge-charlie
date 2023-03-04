@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+
 import { GeoLocationContext } from '@contexts/GeoLocationContext';
 
 interface NavigatorGeoLocationInterface {

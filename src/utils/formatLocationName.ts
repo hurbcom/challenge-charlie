@@ -3,9 +3,6 @@ import GeoLocation, { GeoLocationInfoInterface } from '@interfaces/GeoLocationIn
 export default function formatLocationName(data: GeoLocationInfoInterface): Pick<GeoLocation, 'locationName'> {
   const mainResult = data.results[0];
 
-  console.log(`mainResult.formatted.length`, mainResult.formatted.length);
-  console.log(`mainResult.formatted`, data.results);
-
   if (mainResult.formatted.length <= 35) {
     return { locationName: `${mainResult.formatted}` };
   }

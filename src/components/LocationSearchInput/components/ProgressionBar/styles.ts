@@ -1,4 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components';
+
 import { ProgressBarStatusEnum } from '@enums/ProgressBarStatusEnum';
 
 export const Container = styled.div`
@@ -27,7 +28,7 @@ const progressionModifiers = {
       width: 100%;
       background: ${theme.colors.darkGray};
     `,
-  default: (theme: DefaultTheme) =>
+  default: () =>
     css`
       width: 0%;
     `

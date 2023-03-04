@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { Tooltip } from 'react-tooltip';
+import Skeleton from 'react-loading-skeleton';
 
 import { WeatherInfoContext } from '@contexts/WeatherInfoContext';
 import { MeteoconsWebfontEnum } from '@enums/MeteoconsWebfontEnum';
-import convertWindDegreesToDirection from '@utils/convertWindDegreesToDirection';
 import { convertCelsiusToFahrenheit } from '@utils/convertCelsiusToFahrenheit';
+import convertWindDegreesToDirection from '@utils/convertWindDegreesToDirection';
 
 import * as S from './styles';
 
@@ -26,6 +26,18 @@ const WeatherForecastInfo: React.FC = () => {
   const { weatherInfo } = useContext(WeatherInfoContext);
 
   const { current, daily, loading } = weatherInfo;
+
+  const windDirection = useMemo(() => {
+    if (current?.wind_deg) {
+      return convertWindDegreesToDirection(current?.wind_deg);
+    }
+  }, [current?.wind_deg]);
+
+  const windSpeedInKilometers = useMemo(() => {
+    if (current?.wind_speed) {
+      return (current?.wind_speed * 3.6).toFixed(1);
+    }
+  }, [current?.wind_speed]);
 
   useEffect(() => {
     if (!weatherInfo) return;
@@ -62,22 +74,6 @@ const WeatherForecastInfo: React.FC = () => {
       return newIntegerTemperature;
     }
   };
-
-  const windDirection = useMemo(() => {
-    if (current?.wind_deg) {
-      return convertWindDegreesToDirection(current?.wind_deg);
-    }
-  }, [current?.wind_deg]);
-
-  const windSpeedInKilometers = useMemo(() => {
-    if (current?.wind_speed) {
-      return (current?.wind_speed * 3.6).toFixed(1);
-    }
-  }, [current?.wind_speed]);
-
-  useEffect(() => {
-    console.log('current?.temp', current?.temp);
-  }, [current?.temp]);
 
   return (
     <S.Container>

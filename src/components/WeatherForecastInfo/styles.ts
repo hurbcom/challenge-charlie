@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
+
 import hexToRgba from '@utils/hexToRgba';
 
 export const Container = styled.div`
   ${({ theme }) => css`
     height: 100%;
     max-height: 90%;
+
     color: ${theme.colors.white};
 
     main {
@@ -109,6 +111,7 @@ export const Container = styled.div`
 
     footer {
       height: 35%;
+
       font-size: 1.5rem;
 
       @media (min-width: ${theme.breakpoints.qHd}) {

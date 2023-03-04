@@ -31,6 +31,10 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
     []
   );
 
+  useEffect(() => {
+    changeThemeByWeatherTemperature();
+  }, [geoLocation, weatherInfo]);
+
   const changeThemeByWeatherTemperature = (): void => {
     if (!weatherInfo.current || geoLocation.locationName === undefined || geoLocation.locationName === '') {
       setTheme(grayTheme);
@@ -49,10 +53,6 @@ export default function useThemeByWeather(): ThemeByWeatherInterface {
 
     setTheme(defaultTheme);
   };
-
-  useEffect(() => {
-    changeThemeByWeatherTemperature();
-  }, [geoLocation, weatherInfo]);
 
   return {
     theme

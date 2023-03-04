@@ -1,9 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
 
-import { GeoLocationProvider } from './contexts/GeoLocationContext';
-import { WeatherInfoProvider } from './contexts/WeatherInfoContext';
+import { GeoLocationProvider } from '@contexts/GeoLocationContext';
+import { WeatherInfoProvider } from '@contexts/WeatherInfoContext';
+
+import App from './App';
 
 const rootElement = document.getElementById('root');
 
