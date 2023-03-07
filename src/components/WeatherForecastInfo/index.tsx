@@ -40,6 +40,7 @@ const WeatherForecastInfo: React.FC = () => {
   }, [current?.wind_speed]);
 
   useEffect(() => {
+    console.log('weatherInfo', weatherInfo);
     if (!weatherInfo) return;
 
     setTemperatures({
@@ -82,12 +83,18 @@ const WeatherForecastInfo: React.FC = () => {
           {loading ? (
             <span data-icon={MeteoconsWebfontEnum['01d']} />
           ) : (
-            current && <span data-icon={MeteoconsWebfontEnum[current?.weather[0].icon]} />
+            current && (
+              <span
+                data-icon={MeteoconsWebfontEnum[current?.weather[0].icon]}
+                aria-label='imagem do status do tempo atual'
+              />
+            )
           )}
         </div>
-        <div className='weather-info-wrapper '>
+        <div className='weather-info-wrapper'>
           <div
             className='weather-info-temperature'
+            aria-label='botão para mudar temperatura'
             onClick={() => {
               setIsChangeThermometricScale(!isChangeThermometricScale);
             }}

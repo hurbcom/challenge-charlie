@@ -24,8 +24,8 @@ export interface Weather {
 }
 
 export interface DailyWeatherInfo {
-  tomorrowTempWeather: DailyWeatherInfo;
-  afterTomorrowTempWeather: DailyWeatherInfo;
+  tomorrowTempWeather: NextDayWeatherInfo;
+  afterTomorrowTempWeather: NextDayWeatherInfo;
 }
 export interface NextDayWeatherInfo {
   dt: number;

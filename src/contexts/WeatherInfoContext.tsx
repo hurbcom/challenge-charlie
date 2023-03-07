@@ -9,7 +9,7 @@ interface WeatherInfoProviderProps {
   children: ReactNode;
 }
 
-interface WeatherInfoContextData {
+export interface WeatherInfoContextData {
   weatherInfo: WeatherDataInterface;
   setWeatherInfo: React.Dispatch<React.SetStateAction<WeatherDataInterface>>;
 }
@@ -23,6 +23,12 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
 
   const { allowLocation } = useNavigatorGeoLocation();
 
+  useEffect(() => {
+    if (geoLocation.latitude && geoLocation.longitude) {
+      handleGetCurrentWeatherData();
+    }
+  }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
+
   async function handleGetCurrentWeatherData(): Promise<void> {
     setWeatherInfo({ ...weatherInfo, loading: true });
     const response = await getCurrentWeatherData({
@@ -32,10 +38,6 @@ export function WeatherInfoProvider({ children }: WeatherInfoProviderProps) {
 
     if (response) setWeatherInfo({ loading: false, current: response.current, daily: response.daily });
   }
-
-  useEffect(() => {
-    handleGetCurrentWeatherData();
-  }, [allowLocation, geoLocation.latitude, geoLocation.longitude]);
 
   return <WeatherInfoContext.Provider value={{ weatherInfo, setWeatherInfo }}>{children}</WeatherInfoContext.Provider>;
 }

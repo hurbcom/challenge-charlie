@@ -33,6 +33,8 @@ const LocationSearchInput: React.FC = () => {
     if (geoLocation.locationName) {
       setSearch(geoLocation.locationName);
     }
+
+    console.log('geoLocation', geoLocation);
   }, [geoLocation]);
 
   useEffect(() => {
