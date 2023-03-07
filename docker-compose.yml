@@ -7,11 +7,18 @@ services:
       dockerfile: docker/reverse-proxy/Dockerfile
     ports:
       - '3001:3001'
-  frontend:
+
+  develop:
     build:
       context: .
-      dockerfile: docker/frontend/Dockerfile
+      dockerfile: docker/development/Dockerfile
     ports:
       - '3000:3000'
+    volumes:
+      - .:/app/:rw
+      - '/app/node_modules'
+    working_dir: /app
+    env_file:
+      - ./.env.development
     depends_on:
       - reverse-proxy

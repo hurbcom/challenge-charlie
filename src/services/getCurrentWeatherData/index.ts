@@ -7,7 +7,7 @@ import { DailyWeatherInfo, WeatherDataInterface } from '@interfaces/WeatherDataI
 export default async function getCurrentWeatherData({
   latitude,
   longitude
-}: Omit<GeoLocation, 'locationName' | 'loading'>): Promise<WeatherDataInterface> {
+}: Omit<GeoLocation, 'locationName' | 'loading'>): Promise<Omit<WeatherDataInterface, 'loading'>> {
   try {
     if (longitude && latitude) {
       const response = await axios.get<WeatherDataInterface>(`${process.env.REACT_APP_OPENWEATHER_API_URL}/onecall`, {

@@ -64,4 +64,28 @@ describe('Components - <LocationSearchInput />', () => {
     expect(Input).toHaveValue('Ri');
     expect(screen.getByText(/Informe no mínimo 3 letras na pesquisa!/i));
   });
+
+  it('should render correctly value when user typed and clicked on button', async () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <GeoLocationContext.Provider value={{ geoLocation: geoLocationData, setGeoLocation: mockSetGeoLocation }}>
+          <WeatherInfoContext.Provider value={{ weatherInfo: weatherInfoData, setWeatherInfo: mockSetWeatherInfo }}>
+            <LocationSearchInput />
+          </WeatherInfoContext.Provider>
+        </GeoLocationContext.Provider>
+      </ThemeProvider>
+    );
+
+    const Input = screen.getByRole('searchbox');
+
+    await userEvent.click(Input);
+
+    userEvent.clear(Input);
+
+    await userEvent.type(Input, 'Itapetininga');
+
+    await userEvent.click(screen.getByRole('button'));
+
+    expect(Input).toHaveValue('Itapetininga');
+  });
 });
