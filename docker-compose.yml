@@ -22,3 +22,15 @@ services:
       - ./.env.development
     depends_on:
       - reverse-proxy
+
+  production:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: docker/production/Dockerfile
+    expose:
+      - 3001
+    ports:
+      - 3001:3001
+    environment:
+      - CHOKIDAR_USEPOLLING=true

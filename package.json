@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --env development --mode development",
-    "build": "cross-env NODE_ENV=production webpack --env production --mode production",
+    "build": "webpack --env production --mode production",
     "test": "jest --coverage --watchAll",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",

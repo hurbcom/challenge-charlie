@@ -40,7 +40,7 @@
 
 Para rodar o projeto em ambiente de desenvolvimento, utilize o comando:
 
-`npm run dev`
+`docker-compose up --build production`
 
 ---
 
