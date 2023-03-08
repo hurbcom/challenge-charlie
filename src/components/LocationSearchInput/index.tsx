@@ -33,8 +33,6 @@ const LocationSearchInput: React.FC = () => {
     if (geoLocation.locationName) {
       setSearch(geoLocation.locationName);
     }
-
-    console.log('geoLocation', geoLocation);
   }, [geoLocation]);
 
   useEffect(() => {
@@ -78,9 +76,6 @@ const LocationSearchInput: React.FC = () => {
       const response = await getGeoCoordinatesByLocationName({ locationName: nextValue });
       setProgression(ProgressBarStatusEnum.middle);
 
-      console.log('chegou aqui com backspace');
-
-      console.log('!response.results', !response.results.length);
       if (!response.results.length) {
         setIsLocationNotFound(true);
         return setProgression(ProgressBarStatusEnum.default);

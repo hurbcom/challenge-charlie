@@ -40,7 +40,6 @@ const WeatherForecastInfo: React.FC = () => {
   }, [current?.wind_speed]);
 
   useEffect(() => {
-    console.log('weatherInfo', weatherInfo);
     if (!weatherInfo) return;
 
     setTemperatures({
