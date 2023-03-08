@@ -8,10 +8,12 @@ Desafio para vaga de Desenvolvedor Front-end com objetivo de construir uma aplic
 
 ---
 
-- [🏗 Instalação](#🏗-Instalação)
-- [📦 Arquitetura](#📦-Arquitetura)
-- [🚀 Desafios](#🚀-Desafios)
-- [💡 Melhorias](#💡-Melhorias)
+- [🏗 Instalação](#installation)
+- [📦 Arquitetura](#architecture)
+- [🚀 Desafios](#challenges)
+- [💡 Melhorias](#improvements)
+
+<a name="installation"></a>
 
 # 🏗 Instalação
 
@@ -67,6 +69,8 @@ Assim, a aplicação pode ser acessada no endereço:
 
 [http://localhost:3000](http://localhost:3000)
 
+<a name="architecture"></a>
+
 # 📦 Arquitetura
 
 Para provisionar um Single Page Application foi optado por trabalhar com a biblioteca `React` e `Typescript` como linguagem para criação dos componentes e funções, para os testes end to end foi utilizado o `Jest` e `testing-library`, para estilização é utilizado _CSS in JS_ com o `styled-components` e o padrão [Idiomatic CSS](https://github.com/necolas/idiomatic-css), para criar os bundles é utilizado o `webpack` e todo o gerenciamento de estado da aplicação é feito com a API de contexto do react e `eslint` como _linter_ do projeto.
@@ -99,6 +103,8 @@ docker/
 
 Obs. Para facilitar a avaliação do teste mantive os arquivos .env versionados, mas o ideal e mais seguro seria adiciona-los no .gitignore e não rastrear-los.
 
+<a name="challenges"></a>
+
 # 🚀 Desafios
 
 ## Imagem de Background Dinâmica da API do Bing
@@ -128,6 +134,8 @@ Então para melhorar a experiencia, adicionei um _button_ com ícone de lupa par
 Uma das principais atenções no projeto foi com relação aos dados retornado pela API do [OpenWeather](https://openweathermap.org/api/one-call-api), dados como de temperatura atual, direção do vento, velocidade do vento, precisavam de tratamentos para apresentar, para o mesmo foi criado funções para converter números de ponto flutuante para inteiros no caso da temperatura, uma função em _util_ para converter a direção do vento que estava em _number_ para sua respectiva representação textual (Exemplo: 359 seria NO Noroeste). Todos esses armazenados em um Contexto do react chamado `WeatherInfoContext` que atualiza buscando na API, conforme o valor de latitude e longitude é modificado.
 
 Além das formatações de dados, foi adicionado algumas melhorias de UX como tooltip com mensagem para indicar que é possível mudar a unidade de medida de temperatura para fahrenheit e o mesmo para Celsius, para indicar que a tela está carregando, foi adicionado components _Skeleton_ no lugar dos textos e as cores da tela de informações do tempo mudam conforme o especificado (cores com tons de amarelo, azul, vermelho e cinza) por um hook chamado `useThemeByWeather` onde e verificado a temperatura atual armazenada no Contexto e que faz a mudança de _theme_,
+
+<a name="improvements"></a>
 
 # 💡 Melhorias
 
