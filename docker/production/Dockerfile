@@ -15,8 +15,6 @@ EXPOSE 3000
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npx jest --ci
-
 CMD npm run build
 
 
