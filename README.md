@@ -4,7 +4,7 @@
 
 # Challenge Charlie
 
-### Desafio para vaga de Desenvolvedor Front-end com objetivo de construir uma aplicação para consulta da previsão do tempo por localidade e descobrir a localidade do usuário com as coordenadas do navegador via reverse geocode e apresentar a previsão do tempo da mesma, a especificação do desafio pode ser encontrada em [https://github.com/hurbcom/challenge-charlie](https://github.com/hurbcom/challenge-charlie).
+Desafio para vaga de Desenvolvedor Front-end com objetivo de construir uma aplicação para consulta da previsão do tempo por localidade e descobrir a localidade do usuário com as coordenadas do navegador via reverse geocode e apresentar a previsão do tempo da mesma, a especificação do desafio pode ser encontrada em [https://github.com/hurbcom/challenge-charlie](https://github.com/hurbcom/challenge-charlie).
 
 ---
 
