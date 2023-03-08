@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  reverse-proxy:
+    build:
+      context: .
+      dockerfile: docker/reverse-proxy/Dockerfile
+    ports:
+      - '3001:3001'
+
+  development:
+    build:
+      context: .
+      dockerfile: docker/development/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app/:rw
+      - '/app/node_modules'
+    working_dir: /app
+    env_file:
+      - ./.env.development
+    depends_on:
+      - reverse-proxy
+
+  production:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: docker/production/Dockerfile
+    expose:
+      - 3001
+    ports:
+      - 3001:3001
+    environment:
+      - CHOKIDAR_USEPOLLING=true
