@@ -1,6 +1,6 @@
 const nextConfig = {
-    /* config options here */
     images: {
+        dangerouslyAllowSVG: true,
         remotePatterns: [
             {
                 protocol: 'https',
@@ -9,7 +9,16 @@ const nextConfig = {
                 pathname: '**'
             }
         ]
-    }
+    },
+    // webpack(config) {
+    //     config.module.rules.push({
+    //       test: /\.svg$/i,
+    //       issuer: /\.[jt]sx?$/,
+    //       use: ['@svgr/webpack'],
+    //     })
+    
+    //     return config
+    // },
 }
   
 module.exports = nextConfig

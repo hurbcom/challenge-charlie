@@ -1,0 +1,14 @@
+.search_container {
+    color: #767170;
+    fill: #767170;
+}
+
+.search_input {
+    opacity: 0.8;
+}
+
+.search_input:focus {
+    opacity: 1;
+    color: black;
+}
+
