@@ -8,7 +8,7 @@ services:
     ports:
       - '3001:3001'
 
-  develop:
+  development:
     build:
       context: .
       dockerfile: docker/development/Dockerfile
