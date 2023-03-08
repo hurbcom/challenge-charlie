@@ -9,13 +9,13 @@ RUN npm ci
 
 COPY . .
 
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 EXPOSE 3000
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-CMD npm run build
+RUN npm run build
 
 
 
