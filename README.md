@@ -23,7 +23,7 @@ Desafio para vaga de Desenvolvedor Front-end com objetivo de construir uma aplic
 
 ## Produção
 
-**Obs. Para os comandos a seguir, e necessário a configuração do [docker](https://docs.docker.com/get-docker/) e [docker-compose](https://docs.docker.com/compose), caso já tenha configurado basta executar o comando a seguir para disponibilizar o ambiente de produção.**
+**Obs. Para os comandos a seguir, é necessário a configuração do [docker](https://docs.docker.com/get-docker/) e [docker-compose](https://docs.docker.com/compose), caso já tenha configurado basta executar o comando a seguir para disponibilizar o ambiente de produção.**
 
 `docker-compose up --build production`
 
@@ -111,7 +111,7 @@ O primeiro desafio, foi o problema de CORS originada pela **não autorização**
 
 ## Coordenadas do Usuário, Reverse geocoding e Forward geocoding
 
-Para obter a localização atual do usuário, foi desenvolvido um hook consumindo a api `navigator.geolocation` do browser, através deste hook as coordenadas são salvas em um Contexto do react para centralizar esse dado, pois pode ser atualizado também pela pesquisa do usuário. Caso o usuário tenha permitido o compartilhamento da sua localização com o navegado, a primeira vez que a pagina renderiza é feito uma requisição para a API [OpenCage](https://opencagedata.com/api) para o obter e a localidade via _Reverse geocoding_, o contrario também é feito na pesquisa do usuário no _input_ e com a latitude e longitude é retornada a localidade via _Forward geocoding_.
+Para obter a localização atual do usuário, foi desenvolvido um hook consumindo a api `navigator.geolocation` do browser, através deste hook as coordenadas são salvas em um Contexto do react para centralizar esse dado, pois pode ser atualizado também pela pesquisa do usuário. Caso o usuário tenha permitido o compartilhamento da sua localização com o navegador, a primeira vez que a pagina renderiza é feito uma requisição para a API [OpenCage](https://opencagedata.com/api) para obter a localidade via _Reverse geocoding_, o contrario também é feito na pesquisa do usuário no _input_ e com a latitude e longitude é retornada a localidade via _Forward geocoding_.
 
 Entretanto, o texto com nome da localidade pode ser extenso e o objeto retornado pela _OpenCage_ pode não conter o valor esperado, por exemplo, não existir o campo "city" ou "state". Para resolver o problema de apresentação da localidade, foi criado um fluxo de condições para provisionar o texto de localidade mais adequado.
 
@@ -119,23 +119,23 @@ Caso exista um valor de _state_ é feita a tentativa de apresentar _city_ e _sta
 
 ## Input de Pesquisa da Localidade
 
-Uma das dificuldade foi equilibrar a experiencia do usuário com as limitações técnicas, no primeiro momento, tive a ideia de desenvolver um input onde o usuário possa digitar uma cidade e a aplicação apresentasse um _Dropdown_ com sugestões de cidade com base na sua pesquisa, mas não esperava que teria tantas variações de localidades, umas até com problemas de tradução, cheguei a desenvolver a adicionar uma função de _debounce_ para buscar as localidades, mas acabei optando por mostrar a primeira localidade retornada pela API do [OpenCage](https://opencagedata.com/api).
+Uma das dificuldade foi equilibrar a experiencia do usuário com as limitações técnicas, no primeiro momento, tive a ideia de desenvolver um input onde o usuário possa digitar uma cidade e a aplicação apresentasse um _Dropdown_ com sugestões de cidade com base na sua pesquisa, mas não esperava que teria tantas variações de localidades, umas até com problemas de tradução, adicionei uma função de _debounce_ para buscar as localidades, mas acabei optando por mostrar a primeira localidade retornada pela API do [OpenCage](https://opencagedata.com/api).
 
-Então para tornar melhorar a experiencia, adicionei um _button_ com ícone de lupa para indicar que é um campo de pesquisa e um `box-shadow` e `border-bottom` quando o usuário clica no _input_ para ficar mais evidente que é possível fazer uma edição no texto, existem três formas de o usuário efetuar a pesquisa, digitando as 3 primeiras letra e esperando (o debounce é executado apos 2 segundos), pelo ícone de pesquisa ou pressionando enter, caso o usuário digite menos que 3 letras, é exibida uma mensagem de texto invalido e caso não existe resultados para a pesquisa, também é apresentado neste uma mensagem destacada em vermelho.
+Então para melhorar a experiencia, adicionei um _button_ com ícone de lupa para indicar que é um campo de pesquisa e um `box-shadow` e `border-bottom` quando o usuário clica no _input_ para ficar mais evidente que é possível fazer uma edição no texto, existem três formas de o usuário efetuar a pesquisa, digitando as 3 primeiras letra e esperando (o debounce é executado apos 2 segundos), pelo ícone de pesquisa ou pressionando enter, caso o usuário digite menos que 3 letras, é exibida uma mensagem de texto invalido e caso não existe resultados para a pesquisa, também é apresentado neste uma mensagem destacada em vermelho.
 
 ## Informações da Previsão do Tempo
 
 Uma das principais atenções no projeto foi com relação aos dados retornado pela API do [OpenWeather](https://openweathermap.org/api/one-call-api), dados como de temperatura atual, direção do vento, velocidade do vento, precisavam de tratamentos para apresentar, para o mesmo foi criado funções para converter números de ponto flutuante para inteiros no caso da temperatura, uma função em _util_ para converter a direção do vento que estava em _number_ para sua respectiva representação textual (Exemplo: 359 seria NO Noroeste). Todos esses armazenados em um Contexto do react chamado `WeatherInfoContext` que atualiza buscando na API, conforme o valor de latitude e longitude é modificado.
 
-Além das formatações de dados, foi adicionado algumas melhorias de UX como tooltip com mensagem para indicar que é possível mudar a unidade de medida de temperatura para fahrenheit e o mesmo para Celsius, para indicar que a tela está carregando, foi adicionado components _Skelenton_ no lugar dos textos e as cores da tela de Informações do tempo mudam conforme o especificado (cores com tons de amarelo, azul, vermelho e cinza) por um hook chamado `useThemeByWeather` onde e verificado a temperatura atual armazenada no Contexto e que faz a mudança de _theme_,
+Além das formatações de dados, foi adicionado algumas melhorias de UX como tooltip com mensagem para indicar que é possível mudar a unidade de medida de temperatura para fahrenheit e o mesmo para Celsius, para indicar que a tela está carregando, foi adicionado components _Skeleton_ no lugar dos textos e as cores da tela de informações do tempo mudam conforme o especificado (cores com tons de amarelo, azul, vermelho e cinza) por um hook chamado `useThemeByWeather` onde e verificado a temperatura atual armazenada no Contexto e que faz a mudança de _theme_,
 
 # 💡 Melhorias
 
 - Acredito que poderia refatorar o utils de converter direção do vento _convertWindDegreesToDirection_, pois ficou verboso utilizar `switch` e `if` na mesma função.
-- Criar mais variáveis auxiliares para os hooks `useEffect` para ficar mais claros o que 'e feito em cada bloco de código.
-- Aumentar a cobertura de testes _end to end_ e unitários, algumas requisições e handles functions precisam de testes também.
+- Criar mais variáveis auxiliares para os hooks `useEffect` para ficar mais claros o que é feito em cada bloco de código.
+- Aumentar a cobertura de testes _end to end_ e unitários, algumas requisições e handles functions precisam de testes.
 - Adicionar um Dropdown na na busca por localidades para melhorar a experiencia do usuário.
-- Tratar quando a OpenWeather API retorna mais de um clima, como por exemplo, "Algumas nuvens" e "Nevoa", pois pode acontecer de vir mais de um status e não é mostrado atualmente.
+- Tratar quando a OpenWeather API retorna mais de um clima, como por exemplo, "algumas nuvens" e "névoa", pois pode acontecer de vir mais de um status e não é mostrado atualmente.
 - Utilizar [Next](https://nextjs.org/) para não necessitar criar um proxy reverso ou backend (API) para retornar a imagem de fundo do Bing API.
 - Seria importante criar uma API para retornar as informações do OpenWeather API e OpenCage API, pois evitaria a utilização de _KEYs_ de autenticação transitando pelo lado do cliente, assim aumentando a segurança dos serviços utilizados.
 
