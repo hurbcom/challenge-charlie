@@ -1,0 +1,25 @@
+{
+  "name": "challenge-charlie",
+  "version": "1.0.0",
+  "description": "hurb frontend code challenge",
+  "main": "index.js",
+  "repository": "https://github.com/felipebetts/challenge-charlie.git",
+  "author": "Felipe Betts <72316797+felipebetts@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^13.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  }
+}
