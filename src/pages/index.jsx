@@ -1,24 +1,12 @@
 import HeroImage from "@/components/hero-image";
 import Weather from "@/components/weather";
-import { getHeroImage } from "@/services/hero-image";
+import useBingImage from "@/hooks/use-bing-image";
+import useLocation from "@/hooks/use-location";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Main = () => {
-    const [imageAlt, setImageAlt] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
-
-    const handleGetImageUrl = useCallback(async () => {
-        const data = await getHeroImage();
-        console.log("data:", data);
-        setImageUrl(data.imageUrl);
-        setImageAlt(data.imageAlt);
-    }, []);
-
-    useEffect(() => {
-        handleGetImageUrl();
-    }, []);
-
-    useEffect(() => {}, [imageUrl]);
+    const { imageAlt, imageUrl } = useBingImage();
+    const location = useLocation();
 
     return (
         <div className="w-full h-screen">
