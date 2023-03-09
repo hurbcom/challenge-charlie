@@ -1,0 +1,8 @@
+{
+  "extends": "@rocketseat/eslint-config/react",
+  "rules": {
+    "camelcase": "off",
+    "no-redeclare": "off",
+    "@typescript-eslint/camelcase": "off"
+  }
+}
