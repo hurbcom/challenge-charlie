@@ -1,13 +1,9 @@
 import HeroImage from "@/components/hero-image";
 import Weather from "@/components/weather";
 import useBingImage from "@/hooks/use-bing-image";
-import useLocation from "@/hooks/use-location";
-import React, { useCallback, useEffect, useState } from "react";
 
 const Main = () => {
     const { imageAlt, imageUrl } = useBingImage();
-    const location = useLocation();
-
     return (
         <div className="w-full h-screen">
             {imageUrl && <HeroImage src={imageUrl} alt={imageAlt}></HeroImage>}
