@@ -22,11 +22,19 @@ const useLocation = () => {
     }, []);
 
     const handleGetLocation = useCallback(async () => {
-        const fetchedLocation = await getLocation(
-            coordinates.latitude,
-            coordinates.longitude
-        );
-        setLocation(fetchedLocation);
+        if (!location) {
+            const fetchedLocation = await getLocation(
+                coordinates.latitude,
+                coordinates.longitude
+            );
+            const locationWithCoordinates = {
+                ...fetchedLocation,
+                latitude: coordinates.latitude,
+                longitude: coordinates.longitude,
+            };
+            setLocation(locationWithCoordinates);
+            console.log("locationWithCoordinates", locationWithCoordinates);
+        }
     }, [coordinates]);
 
     useEffect(() => {
@@ -34,7 +42,6 @@ const useLocation = () => {
     }, []);
 
     useEffect(() => {
-        console.log("coordinates:", coordinates);
         if (coordinates) {
             handleGetLocation();
         }
