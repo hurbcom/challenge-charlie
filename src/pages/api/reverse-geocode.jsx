@@ -1,9 +1,8 @@
 const getCityFromCoords = async (req, res) => {
     const API_KEY = "6fadb7c6163e4493accb6f2354d09dcb";
-    const latitude = -22.9933056;
-    const longitude = -43.2308224;
+    const { lat, lon } = req.query;
 
-    const openCageUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${API_KEY}&pretty=1`;
+    const openCageUrl = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${API_KEY}&pretty=1`;
 
     const city = await fetch(openCageUrl)
         .then((r) => r.json())
