@@ -1,13 +1,17 @@
 .search_container {
-    color: #767170;
-    fill: #767170;
+    color: #545252;
 }
 
 .search_input {
     opacity: 0.8;
+    background: none;
 }
 
 .search_input:focus {
     opacity: 1;
     color: black;
+}
+
+.search_input::placeholder {
+    color: #545252;
 }
