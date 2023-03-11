@@ -1,7 +1,7 @@
 import { getLocation } from "@/services/location";
 import React, { useCallback, useEffect, useState } from "react";
 
-const useLocation = () => {
+const useGeolocation = () => {
     const [coordinates, setCoordinates] = useState(null);
     const [location, setLocation] = useState(null);
 
@@ -43,6 +43,7 @@ const useLocation = () => {
 
     useEffect(() => {
         if (coordinates) {
+            console.log("coordinates", coordinates);
             handleGetLocation();
         }
     }, [coordinates]);
@@ -50,4 +51,4 @@ const useLocation = () => {
     return location;
 };
 
-export default useLocation;
+export default useGeolocation;

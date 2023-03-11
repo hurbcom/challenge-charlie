@@ -4,27 +4,29 @@ import React, { useEffect, useRef, useState } from "react";
 import classNames from "@/utils/classnames";
 import compassSvg from "public/icons/compass.svg";
 import styles from "@/styles/weather.module.css";
-import useLocation from "@/hooks/use-location";
+import useGeolocation from "@/hooks/use-geolocation";
 import { getWeather } from "@/services/weather";
+import { getCoordinates } from "@/services/location";
 
 const SearchBar = () => {
     const [city, setCity] = useState("");
     const searchForm = useRef(null);
 
-    const location = useLocation();
+    const geolocation = useGeolocation();
 
-    // useEffect(() => {
-    //     if (location && !city) {
-    //         const cityString = `${location.city}, ${location.state}`;
-    //         setCity(cityString);
-    //     }
-    // }, [location]);
+    useEffect(() => {
+        if (geolocation && !city) {
+            const cityString = `${geolocation.city}, ${geolocation.state}`;
+            setCity(cityString);
+        }
+    }, [geolocation]);
 
     const handleSubmit = (e) => {
         e?.preventDefault();
         console.log("city:", city);
         console.log("submit");
-        handleSearchWeather(city);
+        handleGetCityCoordinates(city);
+        // handleSearchWeather(city);
     };
 
     const handleSearchWeather = async (locationName) => {
@@ -32,10 +34,15 @@ const SearchBar = () => {
         console.log("weather:", weather);
     };
 
+    const handleGetCityCoordinates = async (locationName) => {
+        const coords = await getCoordinates(locationName);
+        console.log("coords:", coords);
+    };
+
     return (
         <form
             className={classNames(
-                "text-3xl bg-white/80 max-w-[640px] mx-auto py-3 px-2",
+                "text-3xl bg-white/70 max-w-[640px] mx-auto py-3 px-2",
                 "flex items-center",
                 styles.search_container
             )}
