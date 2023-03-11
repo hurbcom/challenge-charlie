@@ -42,7 +42,7 @@ const SearchBar = () => {
     return (
         <form
             className={classNames(
-                "text-3xl bg-white/70 max-w-[640px] mx-auto py-3 px-2",
+                "text-3xl bg-white/70 py-3 px-2",
                 "flex items-center",
                 styles.search_container
             )}
