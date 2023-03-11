@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <div className="w-full h-screen">
             {imageUrl && <HeroImage src={imageUrl} alt={imageAlt}></HeroImage>}
-            <div className="w-full h-full bg-gray-900/50">
+            <div className="w-full h-full bg-gray-900/60">
                 <Weather />
             </div>
         </div>
