@@ -1,0 +1,7 @@
+export * from './celsius.svg'
+export * from './location.svg'
+export * from './sun.svg'
+export * from './raining.svg'
+export * from './moon.svg'
+export * from './clouds_moon.svg'
+export * from './clouds_sun.svg'
