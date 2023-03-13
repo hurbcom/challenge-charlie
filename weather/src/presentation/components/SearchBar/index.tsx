@@ -4,7 +4,7 @@ import * as  S from './style'
 import { useLocation } from '../../../helpers'
 
 export const SearchBar = () => {
-    const { location: locationName, handleChangeLocation} = useLocation();
+    const { location: locationName, setLocation } = useLocation();
     return (
         <S.LocationInput>
             <S.InputContainer >
@@ -14,8 +14,9 @@ export const SearchBar = () => {
                     icon={LocationIcon}
                 />
                 <S.Input type="text"
-                    defaultValue={locationName}
-                    onChange={e => handleChangeLocation(e)}
+                    value={locationName}
+                    onChange={e => setLocation(e.target.value)}
+                    onClick={() => setLocation('')}
                 />
             </S.InputContainer>
         </S.LocationInput>

@@ -30,9 +30,10 @@ export const Input = styled.input`
     background: none;
     width: 100%;
     height: 95%;
+    
     font: 600 24px 'Roboto', sans-serif;
-
     color: #8D8A87;
+    text-align: left;
 
     &:focus {
         outline-style: none;

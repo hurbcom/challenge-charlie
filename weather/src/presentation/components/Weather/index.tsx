@@ -1,4 +1,4 @@
-import { useLocation, useWindowSize, getBgColor } from '../../../helpers';
+import { useLocation, useWindowSize, getBgColor, getIcon } from '../../../helpers';
 import { ReactComponent as SunIcon } from '../../assets/sun.svg'
 import { IconRender } from '../IconRender';
 import * as S from './style';
@@ -19,10 +19,13 @@ export const Weather: React.FC = () => {
         humidity: `${weather?.current?.humidity}%`,
         wind: `NO ${weather?.current?.wind_speed}km/h`,
         weather: weather?.current?.weather[0]?.description || '',
-        mainWeather:  weather?.current?.weather[0]?.main || ''
+        weatherId:  weather?.current?.weather[0]?.id || '',
+        timezone: weather?.timezone
     }
     const tomorrowTemp = `${weather?.daily[1]?.temp?.day?.toFixed(0)} °C` || '';
     const dayAfterTomorrowTemp =`${weather?.daily[2]?.temp?.day?.toFixed(0)} °C` || '';
+
+    const icon = getIcon(current.weatherId, current.timezone)
 
     const mobile = (
         <S.Content>
@@ -32,8 +35,8 @@ export const Weather: React.FC = () => {
             >
                 <S.IconContainer>
                     <IconRender 
-                        icon={SunIcon}
-                        size="270px"
+                        icon={icon}
+                        size="200px"
                         responsiveSize="280px"
                     />
                 </S.IconContainer>
@@ -84,7 +87,7 @@ export const Weather: React.FC = () => {
         >
             <S.IconContainer>
                 <IconRender 
-                    icon={SunIcon}
+                    icon={icon}
                     size="170px"
                     responsiveSize="280px"
                 />
@@ -100,18 +103,18 @@ export const Weather: React.FC = () => {
                             <S.InfoData
                                 infoType='temperature'
                             >
-                                32 °C
+                                {current?.temp}
                             </S.InfoData>
                         </S.Wrapper>
                         <S.InfoData
-                        infoType='weather'
+                            infoType='weather'
                         >
-                            Ensolarado
+                            {current?.weather}
                         </S.InfoData>
                     <S.Wrapper>
-                        <S.InfoData infoType='others'>Vento:</S.InfoData>
-                        <S.InfoData infoType='others'>Humidade: 78%</S.InfoData>
-                        <S.InfoData infoType='others'>Pressão:</S.InfoData>
+                        <S.InfoData infoType='others'>Vento: {current?.wind}</S.InfoData>
+                        <S.InfoData infoType='others'>Humidade: {current?.humidity}</S.InfoData>
+                        <S.InfoData infoType='others'>Pressão: {current?.pressure}</S.InfoData>
                     </S.Wrapper>
                 </S.InfoDataContainer>
             </S.InfoContainer>

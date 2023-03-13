@@ -13,6 +13,7 @@ import {
     getWeather,
     CoordsType
 } from "../";
+import { useDebounceValue } from "../hooks/useDebounceValue";
 
 interface ContextProps {
     children: React.ReactNode
@@ -22,7 +23,7 @@ type LocationContextType = {
     coords: CoordsType;
     setCoords: React.Dispatch<React.SetStateAction<CoordsType>>;
     location: string;
-    handleChangeLocation: (e:  React.ChangeEvent<HTMLInputElement>) => void;
+    setLocation: React.Dispatch<React.SetStateAction<string>>;
     weather: any;
     isLoading: boolean;
 }
@@ -34,7 +35,7 @@ export const LocationContext = createContext<LocationContextType>({
     },
     setCoords: () => { },
     location: '',
-    handleChangeLocation: () => {},
+    setLocation: () => {},
     weather: '',
     isLoading: false,
 });
@@ -44,9 +45,19 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
         long: 0,
         lat: 0,
     })
-    // const [location, setLocation] = useState<string>('');
+    const [location, setLocation] = useState<string>('');
+    const debounceLocation = useDebounceValue(location);
+    const controller = new AbortController();
 
-    const coordsRef = useRef(null);
+    
+
+    //Pegando o tempo
+    const { data: weather, refetch, isLoading } = useQuery('weather', async () => {
+        const weather = await getWeather(coords.lat, coords.long);
+
+        return weather
+    });
+
 
     //Pegando as coordenadas pela primeira vez
     useLayoutEffect(() => {
@@ -54,53 +65,44 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
             setCoords({
                 lat: position.coords.latitude,
                 long: position.coords.longitude
-            })
+            });
         })
-    }, [])
+    }, []);
 
-    //Pegando o tempo
-    const { data: weather, refetch, isLoading } = useQuery('weather', async () => {
-        const weather = await getWeather(coords.lat, coords.long);
-
-        return weather
-    }, { enabled: false })
-
-    //Pegando a cidade/nome da localização
-    const { data: city} = useQuery('city', async () => {
-        const city = await getLocationName(coords.lat, coords.long);
-
-        return city?.results[0].formatted;
-    })
-    console.log('city', city)
-
-    const { data: convert, isLoading: loading } = useQuery('conver', async () => {
-        const coordsByLocationName = await convertToLocation(city);
-        setCoords({
-            lat: coordsByLocationName?.results[0]?.geometry?.lat,
-            long: coordsByLocationName?.results[0]?.geometry?.long
-        })
-
-        return coordsByLocationName;
-    })
-
-
-    const handleChangeLocation = (e:  React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-    }
-
-    useEffect(() => {
-        if (coords.lat !== 0 && coords.long !== 0) {
-            refetch();
-        };
+    //Pegando a cidade/nome da localização padrao
+    useLayoutEffect(() => {
+        if(coords.lat !== 0 && coords.long !== 0) {
+            const getLocation = async () => {
+                const city = await getLocationName(coords?.lat, coords?.long, controller.signal);
+                setLocation(city?.results[0].formatted);
+            }
+            getLocation();
+        }
+        return () => controller.abort("cancel request")
     }, [coords]);
+
+    useLayoutEffect(() => {
+        if (!debounceLocation) return;
+        const getNewCoords = async () => {
+            console.log('deb', debounceLocation)
+            const coordsByLocationName = await convertToLocation(debounceLocation, controller.signal);
+            setCoords({
+                lat: coordsByLocationName?.results[0]?.geometry?.lat,
+                long: coordsByLocationName?.results[0]?.geometry?.lng
+            })
+            refetch();
+        }
+        getNewCoords()
+        return () => controller.abort("cancel request")
+    }, [debounceLocation]);
 
     return (
         <LocationContext.Provider
             value={{
                 coords,
                 setCoords,
-                location: city,
-                handleChangeLocation,
+                location,
+                setLocation,
                 weather,
                 isLoading
             }}

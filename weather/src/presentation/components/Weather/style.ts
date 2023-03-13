@@ -49,9 +49,10 @@ export const IconContainer = styled.div`
     
     width: 100%;
     height: 50%;
-    padding-top: 30px;
     
     @media (min-width: 470px) {
+        padding-top: 30px;
+        padding-left: 10px;
         width: 50%;
         height: 100%;
     }
@@ -97,6 +98,7 @@ export const InfoData = styled.span<WeatherProps>`
     box-sizing: border-box;
     width: 100%;
     
+    
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: ${ props =>
@@ -113,11 +115,12 @@ export const InfoData = styled.span<WeatherProps>`
         fontSize: '18px',
         textAlign: 'left',
         width: '75%',
+        whiteSpace: 'nowrap'
     })}
     
     @media (min-width: 470px){
         width: ${props => props.infoType ? '70%': '100%'};
-        font: 600 24px 'Roboto', sans-serif;
+        font: 500 24px 'Roboto', sans-serif;
         color: #fff;
         text-transform: ${props => props.infoType === 'day' && 'uppercase'};
         text-align: left;
