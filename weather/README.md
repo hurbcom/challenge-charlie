@@ -41,8 +41,6 @@ Os ícones foram retirados do site: **Meteocons**
     # Instalar as dependências
     $ yarn
 
-    # Criar arquivo .env baseado no .env.example
-
     # Iniciar o projeto
     $ yarn dev
 ```
@@ -50,7 +48,15 @@ Os ícones foram retirados do site: **Meteocons**
 ---
 
 ## Observações
+Em caso de erro, deixei as keys das apis utilizadas por ENV.
+Só adicionar uma nova key alterando o documento `.env.example`.
 
+
+
+**Docker**
+Um dos requisitos era que o projeto rodasse em DOCKER, porém, a minha máquina não suporta Docker.
+
+---
 
 
 Desenvolvido 💜 por Isabella Santiago
