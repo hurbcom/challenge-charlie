@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import classNames from "@/utils/classnames";
 import compassSvg from "public/icons/compass.svg";
+import CompassIcon from "public/icons/compass.svg";
 import styles from "@/styles/weather.module.css";
 import useGeolocation from "@/hooks/use-geolocation";
 import { getWeather } from "@/services/weather";
@@ -37,12 +38,13 @@ const SearchBar = () => {
     const handleGetCityCoordinates = async (locationName) => {
         const coords = await getCoordinates(locationName);
         console.log("coords:", coords);
+        setCity(coords.locationName);
     };
 
     return (
         <form
             className={classNames(
-                "text-3xl bg-white/70 py-3 px-2",
+                "text-3xl font-semibold bg-white/70 py-3 px-2",
                 "flex items-center",
                 styles.search_container
             )}
@@ -54,6 +56,7 @@ const SearchBar = () => {
                 src={compassSvg}
                 alt="compass"
             />
+            {/* <CompassIcon className="h-10 w-10" /> */}
             <input
                 className={classNames(
                     "flex-1 rounded h-12 mx-2 p-2 outline-none",

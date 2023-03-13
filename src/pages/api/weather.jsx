@@ -13,7 +13,7 @@ const getWeatherForecast = async (req, res) => {
         await fetch(openWeatherUrl)
             .then((r) => r.json())
             .then((weatherResponse) => {
-                console.log("weatherResponse:", weatherResponse);
+                // console.log("weatherResponse:", weatherResponse);
                 if (weatherResponse?.coord) {
                     lat = weatherResponse.coord.lat;
                     lon = weatherResponse.coord.lon;
