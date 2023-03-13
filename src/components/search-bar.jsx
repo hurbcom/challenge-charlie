@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import classNames from "@/utils/classnames";
 import compassSvg from "public/icons/compass.svg";
@@ -8,12 +8,13 @@ import styles from "@/styles/weather.module.css";
 import useGeolocation from "@/hooks/use-geolocation";
 import { getWeather } from "@/services/weather";
 import { getCoordinates } from "@/services/location";
+import { WeatherContext } from "@/utils/weather-context";
 
 const SearchBar = () => {
-    const [city, setCity] = useState("");
     const searchForm = useRef(null);
 
     const geolocation = useGeolocation();
+    const { city, setCity, handleSearchForecast } = useContext(WeatherContext);
 
     useEffect(() => {
         if (geolocation && !city) {
@@ -22,23 +23,19 @@ const SearchBar = () => {
         }
     }, [geolocation]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e?.preventDefault();
-        console.log("city:", city);
-        console.log("submit");
-        handleGetCityCoordinates(city);
-        // handleSearchWeather(city);
-    };
-
-    const handleSearchWeather = async (locationName) => {
-        const weather = await getWeather(locationName);
-        console.log("weather:", weather);
+        const { lat, lon } = await handleGetCityCoordinates(city);
+        handleSearchForecast(lat, lon);
     };
 
     const handleGetCityCoordinates = async (locationName) => {
         const coords = await getCoordinates(locationName);
-        console.log("coords:", coords);
         setCity(coords.locationName);
+        return {
+            lat: coords.latitude,
+            lon: coords.longitude,
+        };
     };
 
     return (

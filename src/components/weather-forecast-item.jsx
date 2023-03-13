@@ -6,12 +6,6 @@ import SunIcon from "public/icons/sun.svg";
 import Icon from "./icon";
 import { useEffect } from "react";
 
-const colorShade = {
-    0: "300",
-    1: "500",
-    2: "700",
-};
-
 const AttributeDisplay = ({ label, value }) => (
     <div className="flex text-sm">
         <span className="mr-2">{label}:</span>
@@ -19,25 +13,13 @@ const AttributeDisplay = ({ label, value }) => (
     </div>
 );
 
-const getBgColor = (temp) => {
-    switch (temp) {
-        case "value":
-            break;
-
-        default:
-            return "bg-gray-500/80";
-            break;
-    }
-};
-
-const WeatherForecastItem = ({ day, index, data = false, active }) => {
+const WeatherForecastItem = ({ day, index, data = true, active }) => {
     if (!data) {
         return (
             <div
                 className={classNames(
                     "flex p-2 text-white",
-                    "transition-all duration-300",
-                    getBgColor(data),
+                    "transition-all duration-300 bg-gray-500/80",
                     active ? "h-64" : "h-24"
                 )}
             >
@@ -75,7 +57,6 @@ const WeatherForecastItem = ({ day, index, data = false, active }) => {
         <div
             className={classNames(
                 "flex p-2 text-white bg-yellow-400/70",
-                getBgColor(data),
                 "transition-all duration-300",
                 active ? "h-64" : "h-24"
             )}
