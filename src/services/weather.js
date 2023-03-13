@@ -7,8 +7,9 @@ export const getWeather = async (latitude, longitude) => {
         throw new Error('Latitude/longitude invalidas')
     }
     const url = `/api/weather?lat=${latitude}&lon=${longitude}`
-    console.log('url:', url)
     const weatherResponse = await fetch(url).then(res => res.json())
+
+    console.log('weatherResponse:', weatherResponse)
 
     let weatherData = []
 
@@ -17,7 +18,7 @@ export const getWeather = async (latitude, longitude) => {
         const todaysWeather = {
             label: "Hoje",
             description: current.weather[0].description,
-            icon: current.weather[0].icon,
+            icon: current.weather[0].main,
             temp: current.temp,
             humidity: current.humidity,
             pressure: current.pressure,
@@ -29,7 +30,7 @@ export const getWeather = async (latitude, longitude) => {
             .map((dailyWeather, i) => ({
                 label: days[i + 1],
                 description: dailyWeather.weather[0].description,
-                icon: dailyWeather.weather[0].icon,
+                icon: dailyWeather.weather[0].main,
                 temp: dailyWeather.temp.day,
             }));
         weatherData = [todaysWeather, ...forecastData];

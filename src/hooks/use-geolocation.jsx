@@ -33,7 +33,6 @@ const useGeolocation = () => {
                 longitude: coordinates.longitude,
             };
             setLocation(locationWithCoordinates);
-            console.log("locationWithCoordinates", locationWithCoordinates);
         }
     }, [coordinates]);
 
@@ -43,7 +42,6 @@ const useGeolocation = () => {
 
     useEffect(() => {
         if (coordinates) {
-            console.log("coordinates", coordinates);
             handleGetLocation();
         }
     }, [coordinates]);

@@ -6,20 +6,10 @@ const getCoordsFromCity = async (req, res) => {
         `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${API_KEY}`
     );
 
-    console.log("openCageUrl:", openCageUrl);
-
     const coords = await fetch(openCageUrl)
         .then((r) => r.json())
         .then((cityResponse) => {
             if (cityResponse?.results.length > 0) {
-                console.log(
-                    "cityResponse.results[0]:",
-                    cityResponse.results[0]
-                );
-                console.log(
-                    "cityResponse.results.length:",
-                    cityResponse.results.length
-                );
                 const cityName = cityResponse.results[0].components.city;
                 const stateName = cityResponse.results[0].components.state;
                 const { lat, lng } = cityResponse.results[0].geometry;
