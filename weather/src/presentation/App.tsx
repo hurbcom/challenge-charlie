@@ -1,7 +1,7 @@
-import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { LocationContextProvider } from '../helpers/context/location-context';
 import { MainPage } from './pages/MainPage';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient();
 
@@ -13,6 +13,7 @@ function App() {
         <LocationContextProvider>
             <MainPage />
         </LocationContextProvider>
+        <Toaster />
       </QueryClientProvider>
   )
 }

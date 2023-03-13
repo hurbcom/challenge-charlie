@@ -41,10 +41,16 @@ Os ícones foram retirados do site: **Meteocons**
     # Instalar as dependências
     $ yarn
 
+    # Criar arquivo .env baseado no .env.example
+
     # Iniciar o projeto
     $ yarn dev
 ```
 
 ---
+
+## Observações
+
+
 
 Desenvolvido 💜 por Isabella Santiago

@@ -17,6 +17,10 @@ export const Content = styled.div`
     flex-direction: column;
 `;
 
+export const CenterSpinner = styled.div`
+    margin: 10px auto;
+`;
+
 
 export const WeatherContent = styled.div<WeatherProps>`
     box-sizing: border-box;

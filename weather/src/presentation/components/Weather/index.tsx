@@ -1,5 +1,11 @@
-import { useLocation, useWindowSize, getBgColor, getIcon } from '../../../helpers';
-import { ReactComponent as SunIcon } from '../../assets/sun.svg'
+import {
+    useLocation,
+    useWindowSize,
+    getBgColor,
+    getIcon,
+    notify
+} from '../../../helpers';
+import { ClipLoader } from 'react-spinners';
 import { IconRender } from '../IconRender';
 import * as S from './style';
 
@@ -142,9 +148,16 @@ export const Weather: React.FC = () => {
         </S.Content>
     )
 
-    if (isLoading || !weather) return <h2>Loading</h2> 
+    if(isLoading) return (
+        <S.CenterSpinner>
+            <ClipLoader 
+                color='#FFF'
+                loading={isLoading}
+            />
+        </S.CenterSpinner>
+    )
 
     return (
-       width > 470 ? others : mobile
+        width > 470 && !isLoading ? others : mobile
     )
 }

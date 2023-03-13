@@ -3,15 +3,14 @@ import {
     useLayoutEffect,
     useState,
     useContext,
-    useEffect,
-    useRef
 } from "react";
 import { useQuery } from "react-query";
 import {
     convertToLocation,
     getLocationName,
     getWeather,
-    CoordsType
+    CoordsType,
+    notify
 } from "../";
 import { useDebounceValue } from "../hooks/useDebounceValue";
 
@@ -26,6 +25,7 @@ type LocationContextType = {
     setLocation: React.Dispatch<React.SetStateAction<string>>;
     weather: any;
     isLoading: boolean;
+    error: any;
 }
 
 export const LocationContext = createContext<LocationContextType>({
@@ -38,6 +38,7 @@ export const LocationContext = createContext<LocationContextType>({
     setLocation: () => {},
     weather: '',
     isLoading: false,
+    error: '',
 });
 
 export const LocationContextProvider = ({ children }: ContextProps) => {
@@ -52,7 +53,7 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
     
 
     //Pegando o tempo
-    const { data: weather, refetch, isLoading } = useQuery('weather', async () => {
+    const { data: weather, refetch, isLoading, error } = useQuery('weather', async () => {
         const weather = await getWeather(coords.lat, coords.long);
 
         return weather
@@ -71,29 +72,39 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
 
     //Pegando a cidade/nome da localização padrao
     useLayoutEffect(() => {
-        if(coords.lat !== 0 && coords.long !== 0) {
-            const getLocation = async () => {
-                const city = await getLocationName(coords?.lat, coords?.long, controller.signal);
-                setLocation(city?.results[0].formatted);
+        try{
+            if(coords.lat !== 0 && coords.long !== 0) {
+                const getLocation = async () => {
+                    const city = await getLocationName(coords?.lat, coords?.long, controller.signal);
+                    setLocation(city?.results[0].formatted);
+                }
+                getLocation();
             }
-            getLocation();
+            return () => controller.abort("cancel request")
+        }catch(error){
+            console.log('error getLocation', error)
+            notify('erro', 'error')
         }
-        return () => controller.abort("cancel request")
     }, [coords]);
 
     useLayoutEffect(() => {
         if (!debounceLocation) return;
-        const getNewCoords = async () => {
-            console.log('deb', debounceLocation)
-            const coordsByLocationName = await convertToLocation(debounceLocation, controller.signal);
-            setCoords({
-                lat: coordsByLocationName?.results[0]?.geometry?.lat,
-                long: coordsByLocationName?.results[0]?.geometry?.lng
-            })
-            refetch();
+        try {
+            const getNewCoords = async () => {
+                console.log('deb', debounceLocation)
+                const coordsByLocationName = await convertToLocation(debounceLocation, controller.signal);
+                setCoords({
+                    lat: coordsByLocationName?.results[0]?.geometry?.lat,
+                    long: coordsByLocationName?.results[0]?.geometry?.lng
+                })
+                refetch();
+            }
+            getNewCoords();
+            return () => controller.abort("cancel request")
+        }catch(error){
+            console.log('error convertToLocation', error)
+            notify('erro', 'error')
         }
-        getNewCoords()
-        return () => controller.abort("cancel request")
     }, [debounceLocation]);
 
     return (
@@ -104,6 +115,7 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
                 location,
                 setLocation,
                 weather,
+                error,
                 isLoading
             }}
         >
