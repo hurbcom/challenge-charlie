@@ -14,7 +14,8 @@ const SearchBar = () => {
     const searchForm = useRef(null);
 
     const geolocation = useGeolocation();
-    const { city, setCity, handleSearchForecast } = useContext(WeatherContext);
+    const { city, setCity, handleSearchForecast, setLoading } =
+        useContext(WeatherContext);
 
     useEffect(() => {
         if (geolocation && !city) {
@@ -25,8 +26,10 @@ const SearchBar = () => {
 
     const handleSubmit = async (e) => {
         e?.preventDefault();
+        setLoading(true);
         const { lat, lon } = await handleGetCityCoordinates(city);
         handleSearchForecast(lat, lon);
+        setLoading(false);
     };
 
     const handleGetCityCoordinates = async (locationName) => {

@@ -5,7 +5,7 @@ import WeatherForecastItem from "./weather-forecast-item";
 import WeatherForecastList from "./weather-forecast-list";
 
 const Weather = () => {
-    const { forecast } = useContext(WeatherContext);
+    const { forecast, loading } = useContext(WeatherContext);
 
     useEffect(() => {
         console.log("forecast:", forecast);
@@ -27,6 +27,7 @@ const Weather = () => {
                     forecast.map((data, i) => (
                         <WeatherForecastItem
                             data={data}
+                            loading={loading}
                             index={i}
                             key={`weather_item_${i}`}
                             active={i === 0}
