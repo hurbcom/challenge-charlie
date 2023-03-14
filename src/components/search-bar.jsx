@@ -11,7 +11,7 @@ import { getCoordinates } from "@/services/location";
 import { WeatherContext } from "@/utils/weather-context";
 
 const SearchBar = () => {
-    const searchForm = useRef(null);
+    const searchInput = useRef(null);
 
     const geolocation = useGeolocation();
     const { city, setCity, handleSearchForecast, setLoading } =
@@ -26,6 +26,9 @@ const SearchBar = () => {
 
     const handleSubmit = async (e) => {
         e?.preventDefault();
+        if (searchInput) {
+            searchInput.current.blur();
+        }
         setLoading(true);
         const { lat, lon } = await handleGetCityCoordinates(city);
         await handleSearchForecast(lat, lon);
@@ -49,7 +52,6 @@ const SearchBar = () => {
                 styles.search_container
             )}
             onSubmit={handleSubmit}
-            ref={searchForm}
         >
             {/* <Image
                 className={classNames("h-10 w-10", styles.compass)}
@@ -62,6 +64,7 @@ const SearchBar = () => {
                     "flex-1 rounded h-12 mx-2 p-2 outline-none",
                     styles.search_input
                 )}
+                ref={searchInput}
                 name="city"
                 placeholder="Digite a cidade aqui"
                 value={city}
