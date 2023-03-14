@@ -19,7 +19,7 @@ export const getWeather = async (latitude, longitude) => {
             label: "Hoje",
             description: current.weather[0].description,
             icon: current.weather[0].main,
-            temp: current.temp,
+            temp: current.temp.toFixed(1),
             humidity: current.humidity,
             pressure: current.pressure,
             wind_speed: current.wind_speed,
@@ -31,7 +31,7 @@ export const getWeather = async (latitude, longitude) => {
                 label: days[i + 1],
                 description: dailyWeather.weather[0].description,
                 icon: dailyWeather.weather[0].main,
-                temp: dailyWeather.temp.day,
+                temp: dailyWeather.temp.day.toFixed(1),
             }));
         weatherData = [todaysWeather, ...forecastData];
     }

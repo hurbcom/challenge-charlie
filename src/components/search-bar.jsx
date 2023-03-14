@@ -28,7 +28,7 @@ const SearchBar = () => {
         e?.preventDefault();
         setLoading(true);
         const { lat, lon } = await handleGetCityCoordinates(city);
-        handleSearchForecast(lat, lon);
+        await handleSearchForecast(lat, lon);
         setLoading(false);
     };
 
@@ -51,12 +51,12 @@ const SearchBar = () => {
             onSubmit={handleSubmit}
             ref={searchForm}
         >
-            <Image
+            {/* <Image
                 className={classNames("h-10 w-10", styles.compass)}
                 src={compassSvg}
                 alt="compass"
-            />
-            {/* <CompassIcon className="h-10 w-10" /> */}
+            /> */}
+            <CompassIcon className="h-12 w-12 fill-current text-white" />
             <input
                 className={classNames(
                     "flex-1 rounded h-12 mx-2 p-2 outline-none",

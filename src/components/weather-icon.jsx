@@ -1,4 +1,6 @@
-import React from "react";
+import SunIcon from "public/icons/sun.svg";
+import CloudsIcon from "public/icons/clouds.svg";
+import { useEffect } from "react";
 
 const WEATHER_ICONS = {
     Thunderstorm: "",
@@ -6,40 +8,28 @@ const WEATHER_ICONS = {
     Rain: "",
     Snow: "",
     Mist: "",
-    Clear: "",
-    Clouds: "",
-    Smoke,
-    Haze,
-    Dust,
-    Fog,
-    Sand,
-    Ash,
-    Squail,
-    Tornado,
+    Clear: SunIcon,
+    Clouds: CloudsIcon,
+    // Smoke,
+    // Haze,
+    // Dust,
+    // Fog,
+    // Sand,
+    // Ash,
+    // Squail,
+    // Tornado,
 };
 
-const WeatherIcon = ({ main, width, height }) => {
-    const Icon = WEATHER_ICONS[main];
+const WeatherIcon = ({ icon }) => {
+    const Icon = WEATHER_ICONS[icon];
 
-    return (
-        <div className="relative w-full h-full">
-            <Icon />
-        </div>
-    );
-    // return (
-    //     <div className="relative w-full h-full">
-    //         <Svg
-    //             style={{
-    //                 height: "100%",
-    //                 width: "100%",
-    //                 position: "absolute",
-    //                 top: 0,
-    //                 left: 0,
-    //             }}
-    //             preserveAspectRatio="xMidYMid meet"
-    //         />
-    //     </div>
-    // );
+    useEffect(() => {
+        console.log("icon:", icon);
+        console.log("Icon:", Icon);
+        console.log("<Icon />:", <Icon />);
+    }, [icon]);
+
+    return () => <Icon />;
 };
 
 export default WeatherIcon;

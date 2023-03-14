@@ -6,6 +6,7 @@ import SunIcon from "public/icons/sun.svg";
 // import Icon from "./weather-icon";
 import { useEffect } from "react";
 import { capitalizeFirstChar } from "@/utils/format";
+import WeatherIcon from "./weather-icon";
 
 const AttributeDisplay = ({ label, value }) => (
     <div className="flex text-sm">
@@ -73,12 +74,13 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
             )}
         >
             <div className="w-[55%] flex flex-col justify-center items-center">
-                <Image
+                {/* <Image
                     src={sunSvg}
                     alt="sun"
                     className={active ? "h-56 w-56" : "h-20 w-20"}
-                />
-                {/* <SunIcon className="h-96 w-96 stroke-none fill-current" /> */}
+                /> */}
+                <SunIcon className="h-96 w-96 stroke-none fill-current" />
+                <WeatherIcon icon={data.icon} />
                 {/* <Icon svg={SunIcon} /> */}
             </div>
             <div className="w-[45%] flex flex-col h-full">
