@@ -111,14 +111,7 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
             style={{ background: colorOptions[bgColor][index] }}
         >
             <div className="w-[55%] flex flex-col justify-center items-center">
-                {/* <Image
-                    src={sunSvg}
-                    alt="sun"
-                    className={active ? "h-56 w-56" : "h-20 w-20"}
-                /> */}
-                <SunIcon className="h-96 w-96 stroke-none fill-current" />
                 <WeatherIcon icon={data.icon} />
-                {/* <Icon svg={SunIcon} /> */}
             </div>
             <div className="w-[45%] flex flex-col h-full">
                 <div className="flex flex-col mb-4">

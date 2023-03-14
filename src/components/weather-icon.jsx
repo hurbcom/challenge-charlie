@@ -1,6 +1,7 @@
 import SunIcon from "public/icons/sun.svg";
 import CloudsIcon from "public/icons/clouds.svg";
 import { useEffect } from "react";
+import classNames from "@/utils/classnames";
 
 const WEATHER_ICONS = {
     Thunderstorm: "",
@@ -21,15 +22,9 @@ const WEATHER_ICONS = {
 };
 
 const WeatherIcon = ({ icon }) => {
-    const Icon = WEATHER_ICONS[icon];
+    const Icon = WEATHER_ICONS[icon] || SunIcon;
 
-    // useEffect(() => {
-    //     console.log("icon:", icon);
-    //     console.log("Icon:", Icon);
-    //     console.log("<Icon />:", <Icon />);
-    // }, [icon]);
-
-    return () => <Icon />;
+    return <Icon className="stroke-none fill-current" />;
 };
 
 export default WeatherIcon;
