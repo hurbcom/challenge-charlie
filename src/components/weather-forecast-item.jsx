@@ -1,6 +1,6 @@
 import classNames from "@/utils/classnames";
 import SunIcon from "public/icons/sun.svg";
-import { capitalizeFirstChar } from "@/utils/format";
+import { capitalizeFirstChar, getDirections } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -125,7 +125,9 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
                         </span>
                         <AttributeDisplay
                             label="Vento"
-                            value={`NO ${data.wind_speed}km/h`}
+                            value={`${getDirections(
+                                data.wind_deg
+                            )} ${Math.round(data.wind_speed * 3.6)}km/h`}
                         />
                         <AttributeDisplay
                             label="Umidade"
