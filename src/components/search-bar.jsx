@@ -58,7 +58,7 @@ const SearchBar = () => {
                 src={compassSvg}
                 alt="compass"
             /> */}
-            <CompassIcon className="h-12 w-12 fill-current text-white" />
+            <CompassIcon className="h-12 w-12 fill-current" />
             <input
                 className={classNames(
                     "flex-1 rounded h-12 mx-2 p-2 outline-none",

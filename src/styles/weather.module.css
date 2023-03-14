@@ -2,14 +2,18 @@
     color: #545252;
 }
 
+.search_container:focus-within {
+    color: black;
+}
+
 .search_input {
+    font: inherit;
     opacity: 0.8;
     background: none;
 }
 
 .search_input:focus {
     opacity: 1;
-    color: black;
 }
 
 .search_input::placeholder {
