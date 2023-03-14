@@ -12,9 +12,18 @@ const getCoordsFromCity = async (req, res) => {
             if (cityResponse?.results.length > 0) {
                 const cityName = cityResponse.results[0].components.city;
                 const stateName = cityResponse.results[0].components.state;
+                const countryName = cityResponse.results[0].components.country;
+                let locationName = countryName;
+                if (cityName && stateName) {
+                    locationName = `${cityName}, ${stateName}`;
+                } else if (cityName) {
+                    locationName = cityName + ", " + locationName;
+                } else if (stateName) {
+                    locationName = stateName + ", " + locationName;
+                }
                 const { lat, lng } = cityResponse.results[0].geometry;
                 const result = {
-                    locationName: `${cityName}, ${stateName}`,
+                    locationName,
                     latitude: lat,
                     longitude: lng,
                 };
