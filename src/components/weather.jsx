@@ -7,22 +7,10 @@ import WeatherForecastList from "./weather-forecast-list";
 const Weather = () => {
     const { forecast, loading } = useContext(WeatherContext);
 
-    useEffect(() => {
-        console.log("forecast:", forecast);
-    }, [forecast]);
-
     return (
         <div className="max-w-[640px] mx-auto">
             <SearchBar />
             <WeatherForecastList>
-                {/* {["Hoje", "Amanhã", "Depois de amanhã"].map((day, i) => (
-                    <WeatherForecastItem
-                        day={day}
-                        index={i}
-                        key={`weather_item_${i}`}
-                        active={i === 0}
-                    />
-                ))} */}
                 {forecast &&
                     forecast.map((data, i) => (
                         <WeatherForecastItem

@@ -1,12 +1,8 @@
-import Image from "next/image";
-
 import classNames from "@/utils/classnames";
-import sunSvg from "public/icons/sun.svg";
 import SunIcon from "public/icons/sun.svg";
-// import Icon from "./weather-icon";
-import { useEffect } from "react";
 import { capitalizeFirstChar } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const AttributeDisplay = ({ label, value }) => (
     <div className="flex text-sm">
@@ -15,13 +11,53 @@ const AttributeDisplay = ({ label, value }) => (
     </div>
 );
 
+const colorOptions = {
+    blue: [
+        "rgb(96 165 250 / 0.8)",
+        "rgb(59 130 246 / 0.8)",
+        "rgb(37 99 235 / 0.8)",
+    ],
+    red: [
+        "rgb(239 68 68 / 0.8)",
+        "rgb(220 38 38 / 0.8)",
+        "rgb(185 28 28 / 0.8)",
+    ],
+    yellow: [
+        "rgb(250 204 21 / 0.8)",
+        "rgb(234 179 8 / 0.9)",
+        "rgb(202 138 4 / 1)",
+    ],
+};
+
 const WeatherForecastItem = ({ index, data, active, loading }) => {
-    if (!data) {
+    const [bgColor, setBgColor] = useState("");
+
+    useEffect(() => {
+        if (data) {
+            console.log("data:", data);
+            const temp = Number(data.temp);
+            let color = "yellow";
+            if (temp > 35) {
+                color = "red";
+            }
+            if (temp < 15) {
+                color = "blue";
+            }
+            setBgColor(color);
+        }
+    }, [data]);
+
+    if (!data || !bgColor) {
         return (
             <div
                 className={classNames(
                     "flex p-2 text-white",
-                    "transition-all duration-300 bg-gray-500/80",
+                    "transition-all duration-300 ",
+                    index === 0
+                        ? "bg-gray-500/80"
+                        : index == 1
+                        ? "bg-gray-500/90"
+                        : "bg-gray-500",
                     active ? "h-64" : "h-24"
                 )}
             >
@@ -68,10 +104,11 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
     return (
         <div
             className={classNames(
-                "flex p-2 text-white bg-yellow-400/70",
+                "flex p-2 text-white bg-blue-600/80",
                 "transition-all duration-300",
                 active ? "h-64" : "h-24"
             )}
+            style={{ background: colorOptions[bgColor][index] }}
         >
             <div className="w-[55%] flex flex-col justify-center items-center">
                 {/* <Image

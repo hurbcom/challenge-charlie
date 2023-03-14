@@ -23,11 +23,11 @@ const WEATHER_ICONS = {
 const WeatherIcon = ({ icon }) => {
     const Icon = WEATHER_ICONS[icon];
 
-    useEffect(() => {
-        console.log("icon:", icon);
-        console.log("Icon:", Icon);
-        console.log("<Icon />:", <Icon />);
-    }, [icon]);
+    // useEffect(() => {
+    //     console.log("icon:", icon);
+    //     console.log("Icon:", Icon);
+    //     console.log("<Icon />:", <Icon />);
+    // }, [icon]);
 
     return () => <Icon />;
 };
