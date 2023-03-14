@@ -1,5 +1,6 @@
 import classNames from "@/utils/classnames";
 import SunIcon from "public/icons/sun.svg";
+import CelsiusIcon from "public/icons/celsius.svg";
 import { capitalizeFirstChar, getDirections } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -116,7 +117,16 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
             <div className="w-[45%] flex flex-col h-full">
                 <div className="flex flex-col mb-4">
                     <span className="text-lg">{data.label.toUpperCase()}</span>
-                    <span className="">{data.temp}</span>
+                    <div className="flex items-center h-11">
+                        <span className="text-xl font-semibold">
+                            {data.temp}
+                        </span>
+                        <CelsiusIcon
+                            className="fill-current mt-[2px] ml-[-6px]"
+                            width="44px"
+                            height="100%"
+                        />
+                    </div>
                 </div>
                 {active && (
                     <div className="flex flex-col">
