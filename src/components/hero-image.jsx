@@ -22,6 +22,7 @@ const HeroImage = ({ src, alt }) => {
                     alt={alt}
                     fill
                     className="object-cover"
+                    data-testid="hero-image"
                     priority={true}
                     onLoad={handleImageLoaded}
                 />

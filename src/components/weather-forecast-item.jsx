@@ -120,6 +120,7 @@ const WeatherForecastItem = ({ index, data, active }) => {
     return (
         <div
             className={classNames(
+                "forecast-item-full",
                 "flex p-2 text-white bg-blue-600/80",
                 "transition-all duration-300",
                 active
@@ -157,8 +158,12 @@ const WeatherForecastItem = ({ index, data, active }) => {
                         className="flex items-center h-11 cursor-pointer"
                         onClick={() => handleToggleUnit()}
                         type="button"
+                        data-testid="temp-btn"
                     >
-                        <span className="text-xl font-semibold">
+                        <span
+                            data-testid="temp"
+                            className="text-xl font-semibold"
+                        >
                             {Math.round(data.temp[unit])}
                         </span>
                         {unit === "metric" ? (
