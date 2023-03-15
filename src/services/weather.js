@@ -4,14 +4,11 @@ const days = ["Hoje", "Amanhã", "Depois de amanhã"];
 
 
 export const getWeather = async (latitude, longitude) => {
-    // const url = `/api/weather?location_name=${city}&lat=${latitude}&lon=${longitude}`
     if (!latitude || !longitude) {
         throw new Error('Latitude/longitude invalidas')
     }
     const url = `/api/weather?lat=${latitude}&lon=${longitude}`
     const weatherResponse = await fetch(url).then(res => res.json())
-
-    console.log('weatherResponse:', weatherResponse)
 
     let weatherData = []
 

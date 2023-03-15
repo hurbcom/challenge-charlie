@@ -25,7 +25,7 @@ const WeatherProvider = ({ children }) => {
                 setForecast(weather);
             }
         } catch (error) {
-            console.log("error:", error);
+            // console.log("error:", error);
         }
     };
 
