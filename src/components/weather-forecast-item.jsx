@@ -153,7 +153,11 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
                     )}
                 >
                     <span className="text-lg">{data.label.toUpperCase()}</span>
-                    <div className="flex items-center h-11 cursor-pointer">
+                    <button
+                        className="flex items-center h-11 cursor-pointer"
+                        onClick={() => handleToggleUnit()}
+                        type="button"
+                    >
                         <span className="text-xl font-semibold">
                             {Math.round(data.temp[unit])}
                         </span>
@@ -170,10 +174,7 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
                                 height="100%"
                             />
                         )}
-                        <button
-                            className="flex items-center justify-center mt-[2px]"
-                            onClick={() => handleToggleUnit()}
-                        >
+                        <div className="flex items-center justify-center mt-[2px]">
                             <SwitchIcon className="fill-current" width="18px" />
                             <span className="fill-current opacity-80">
                                 {unit === "metric" ? (
@@ -185,8 +186,8 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
                                     <CelsiusIcon width="36px" height="100%" />
                                 )}
                             </span>
-                        </button>
-                    </div>
+                        </div>
+                    </button>
                 </div>
                 {active && (
                     <div className="flex flex-col text-center sm:text-left">
