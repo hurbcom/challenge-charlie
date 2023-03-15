@@ -6,6 +6,10 @@ const getCoordsFromCity = async (req, res) => {
     const API_KEY = "6fadb7c6163e4493accb6f2354d09dcb";
     const { city } = req.query;
 
+    if (!city) {
+        return res.status(400).send({ error: "City not specified" });
+    }
+
     const openCageUrl = encodeURI(
         `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${API_KEY}`
     );
