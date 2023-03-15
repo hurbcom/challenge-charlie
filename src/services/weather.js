@@ -1,3 +1,5 @@
+import { celsiusToFahrenheit } from "@/utils/format";
+
 const days = ["Hoje", "Amanhã", "Depois de amanhã"];
 
 
@@ -19,7 +21,10 @@ export const getWeather = async (latitude, longitude) => {
             label: "Hoje",
             description: current.weather[0].description,
             icon: current.weather[0].main,
-            temp: current.temp.toFixed(1),
+            temp: {
+                metric: current.temp,
+                imperial: celsiusToFahrenheit(current.temp)
+            },
             humidity: current.humidity,
             pressure: current.pressure,
             wind_speed: current.wind_speed,
@@ -31,7 +36,10 @@ export const getWeather = async (latitude, longitude) => {
                 label: days[i + 1],
                 description: dailyWeather.weather[0].description,
                 icon: dailyWeather.weather[0].main,
-                temp: dailyWeather.temp.day.toFixed(1),
+                temp: {
+                    metric: dailyWeather.temp.day,
+                    imperial: celsiusToFahrenheit(dailyWeather.temp.day),
+                } 
             }));
         weatherData = [todaysWeather, ...forecastData];
     }

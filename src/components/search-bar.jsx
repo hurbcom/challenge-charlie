@@ -55,7 +55,7 @@ const SearchBar = () => {
         <form
             className={classNames(
                 "text-3xl font-semibold bg-white/70 py-3 px-2",
-                "flex items-center",
+                "flex items-center transition-colors duration-150",
                 styles.search_container
             )}
             onSubmit={handleSubmit}
