@@ -1,6 +1,7 @@
 import classNames from "@/utils/classnames";
 import SunIcon from "public/icons/sun.svg";
 import CelsiusIcon from "public/icons/celsius.svg";
+import SwitchIcon from "public/icons/switch.svg";
 import FahrenheitIcon from "public/icons/fahrenheit.svg";
 import { capitalizeFirstChar, getDirections } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
@@ -124,10 +125,7 @@ const WeatherForecastItem = ({
             <div className="w-[45%] flex flex-col h-full">
                 <div className="flex flex-col mb-4 select-none">
                     <span className="text-lg">{data.label.toUpperCase()}</span>
-                    <div
-                        className="flex items-center h-11 cursor-pointer"
-                        onClick={handleToggleUnit}
-                    >
+                    <div className="flex items-center h-11 cursor-pointer">
                         <span className="text-xl font-semibold">
                             {Math.round(data.temp[unit])}
                         </span>
@@ -144,6 +142,19 @@ const WeatherForecastItem = ({
                                 height="100%"
                             />
                         )}
+                        <button
+                            className=" mt-[2px] ml-[-6px]"
+                            onClick={handleToggleUnit}
+                        >
+                            <SwitchIcon className="fill-current" width="18px" />
+                        </button>
+                        <span className="fill-current mt-[2px] ml-[-6px]">
+                            {unit === "metric" ? (
+                                <FahrenheitIcon width="36px" height="100%" />
+                            ) : (
+                                <CelsiusIcon width="36px" height="100%" />
+                            )}
+                        </span>
                     </div>
                 </div>
                 {active && (
