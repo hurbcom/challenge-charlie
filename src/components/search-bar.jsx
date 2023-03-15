@@ -2,10 +2,9 @@ import Image from "next/image";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
 import classNames from "@/utils/classnames";
-import compassSvg from "public/icons/compass.svg";
 import CompassIcon from "public/icons/compass.svg";
 import styles from "@/styles/weather.module.css";
-import useGeolocation from "@/hooks/use-geolocation";
+import useGeolocation from "@/hooks/use-location";
 import { getWeather } from "@/services/weather";
 import { getCoordinates } from "@/services/location";
 import { WeatherContext } from "@/utils/weather-context";
@@ -15,7 +14,7 @@ import LoadingIndicator from "./loading-indicator";
 const SearchBar = () => {
     const searchInput = useRef(null);
 
-    const geolocation = useGeolocation();
+    const { geolocation, handleGetCityCoordinates } = useGeolocation();
     const { city, setCity, handleSearchForecast, setLoading, loading } =
         useContext(WeatherContext);
 
@@ -23,7 +22,7 @@ const SearchBar = () => {
         if (geolocation && !city) {
             const cityString = `${geolocation.city}, ${geolocation.state}`;
             setCity(cityString);
-            handleSearchWeather(cityString);
+            handleGetWeather(cityString);
         }
     }, [geolocation]);
 
@@ -32,13 +31,12 @@ const SearchBar = () => {
         if (!city) {
             return;
         }
-        await handleSearchWeather(city);
+        await handleGetWeather(city);
         setLoading(false);
     };
 
-    const handleSearchWeather = async (locationName) => {
+    const handleGetWeather = async (locationName) => {
         setLoading(true);
-        console.log("search:", locationName);
         try {
             if (searchInput) {
                 searchInput.current.blur();
@@ -49,15 +47,6 @@ const SearchBar = () => {
         } finally {
             setLoading(false);
         }
-    };
-
-    const handleGetCityCoordinates = async (locationName) => {
-        const coords = await getCoordinates(locationName);
-        setCity(coords.locationName);
-        return {
-            lat: coords.latitude,
-            lon: coords.longitude,
-        };
     };
 
     return (
@@ -82,22 +71,21 @@ const SearchBar = () => {
                 onChange={(e) => setCity(e.target.value)}
             />
             <div className="h-12 w-12 transition-all">
-                {loading ? (
-                    <div className="h-full w-full p-2 flex items-center justify-center">
+                <button
+                    className={classNames(
+                        "h-full w-full p-2 cursor-pointer",
+                        "transition-all",
+                        loading ? "" : "hover:ml-2"
+                    )}
+                    disabled={loading}
+                    type="submit"
+                >
+                    {loading ? (
                         <LoadingIndicator />
-                    </div>
-                ) : (
-                    <button
-                        className={classNames(
-                            "h-full w-full p-2 cursor-pointer",
-                            "transition-all hover:ml-2"
-                        )}
-                        disabled={!city || loading}
-                        type="submit"
-                    >
+                    ) : (
                         <ArrowRightIcon className="stroke-current fill-current" />
-                    </button>
-                )}
+                    )}
+                </button>
             </div>
         </form>
     );

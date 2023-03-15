@@ -1,9 +1,12 @@
-import { getLocation } from "@/services/location";
-import React, { useCallback, useEffect, useState } from "react";
+import { getCoordinates, getLocation } from "@/services/location";
+import { WeatherContext } from "@/utils/weather-context";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
-const useGeolocation = () => {
+const useLocation = () => {
     const [coordinates, setCoordinates] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [geolocation, setGeolocation] = useState(null);
+
+    const { setCity } = useContext(WeatherContext);
 
     const handleGetCoordinates = useCallback(() => {
         if (navigator.geolocation) {
@@ -22,7 +25,7 @@ const useGeolocation = () => {
     }, []);
 
     const handleGetLocation = useCallback(async () => {
-        if (!location) {
+        if (!geolocation) {
             const fetchedLocation = await getLocation(
                 coordinates.latitude,
                 coordinates.longitude
@@ -32,9 +35,18 @@ const useGeolocation = () => {
                 latitude: coordinates.latitude,
                 longitude: coordinates.longitude,
             };
-            setLocation(locationWithCoordinates);
+            setGeolocation(locationWithCoordinates);
         }
     }, [coordinates]);
+
+    const handleGetCityCoordinates = async (locationName) => {
+        const coords = await getCoordinates(locationName);
+        setCity(coords.locationName);
+        return {
+            lat: coords.latitude,
+            lon: coords.longitude,
+        };
+    };
 
     useEffect(() => {
         handleGetCoordinates();
@@ -46,7 +58,7 @@ const useGeolocation = () => {
         }
     }, [coordinates]);
 
-    return location;
+    return { geolocation, handleGetCityCoordinates };
 };
 
-export default useGeolocation;
+export default useLocation;
