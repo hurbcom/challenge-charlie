@@ -111,7 +111,7 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
             )}
             style={{ background: colorOptions[bgColor][index] }}
         >
-            <div className="w-[55%] flex flex-col justify-center items-center">
+            <div className="w-[55%] flex flex-col justify-center items-center py-3">
                 <WeatherIcon icon={data.icon} />
             </div>
             <div className="w-[45%] flex flex-col h-full">
@@ -119,7 +119,7 @@ const WeatherForecastItem = ({ index, data, active, loading }) => {
                     <span className="text-lg">{data.label.toUpperCase()}</span>
                     <div className="flex items-center h-11">
                         <span className="text-xl font-semibold">
-                            {data.temp}
+                            {Math.round(data.temp)}
                         </span>
                         <CelsiusIcon
                             className="fill-current mt-[2px] ml-[-6px]"

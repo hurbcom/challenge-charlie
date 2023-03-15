@@ -25,13 +25,16 @@ const SearchBar = () => {
     }, [geolocation]);
 
     const handleSubmit = async (e) => {
-        e?.preventDefault();
-        if (searchInput) {
-            searchInput.current.blur();
-        }
         setLoading(true);
-        const { lat, lon } = await handleGetCityCoordinates(city);
-        await handleSearchForecast(lat, lon);
+        e?.preventDefault();
+        if (!city) return;
+        try {
+            if (searchInput) {
+                searchInput.current.blur();
+            }
+            const { lat, lon } = await handleGetCityCoordinates(city);
+            await handleSearchForecast(lat, lon);
+        } catch (error) {}
         setLoading(false);
     };
 
@@ -53,11 +56,6 @@ const SearchBar = () => {
             )}
             onSubmit={handleSubmit}
         >
-            {/* <Image
-                className={classNames("h-10 w-10", styles.compass)}
-                src={compassSvg}
-                alt="compass"
-            /> */}
             <CompassIcon className="h-12 w-12 fill-current" />
             <input
                 className={classNames(
