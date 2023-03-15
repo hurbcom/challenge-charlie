@@ -43,7 +43,6 @@ const WeatherForecastItem = ({
 
     useEffect(() => {
         if (data) {
-            console.log("data:", data);
             const temp = Number(data.temp.metric);
             let color = "yellow";
             if (temp > 35) {
@@ -56,7 +55,7 @@ const WeatherForecastItem = ({
         }
     }, [data]);
 
-    if (!data || !bgColor) {
+    if (!data || !bgColor || loading) {
         return (
             <div
                 className={classNames(

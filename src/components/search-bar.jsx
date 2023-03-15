@@ -9,12 +9,14 @@ import useGeolocation from "@/hooks/use-geolocation";
 import { getWeather } from "@/services/weather";
 import { getCoordinates } from "@/services/location";
 import { WeatherContext } from "@/utils/weather-context";
+import ArrowRightIcon from "public/icons/arrow-right.svg";
+import LoadingIndicator from "./loading-indicator";
 
 const SearchBar = () => {
     const searchInput = useRef(null);
 
     const geolocation = useGeolocation();
-    const { city, setCity, handleSearchForecast, setLoading } =
+    const { city, setCity, handleSearchForecast, setLoading, loading } =
         useContext(WeatherContext);
 
     useEffect(() => {
@@ -36,6 +38,7 @@ const SearchBar = () => {
 
     const handleSearchWeather = async (locationName) => {
         setLoading(true);
+        console.log("search:", locationName);
         try {
             if (searchInput) {
                 searchInput.current.blur();
@@ -61,7 +64,7 @@ const SearchBar = () => {
         <form
             className={classNames(
                 "text-3xl font-semibold bg-white/70 py-3 px-2",
-                "flex items-center transition-colors duration-150",
+                "flex items-center transition-colors duration-200",
                 styles.search_container
             )}
             onSubmit={handleSubmit}
@@ -78,17 +81,24 @@ const SearchBar = () => {
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
             />
-            <div className="h-10 w-10"></div>
-            {/* <button
-                className={classNames(
-                    "bg-gray-500 text-white",
-                    "px-3 py-1 rounded min-w-[112px] h-12",
-                    "transition-opacity duration-200 opacity-100 hover:opacity-80"
+            <div className="h-12 w-12 transition-all">
+                {loading ? (
+                    <div className="h-full w-full p-2 flex items-center justify-center">
+                        <LoadingIndicator />
+                    </div>
+                ) : (
+                    <button
+                        className={classNames(
+                            "h-full w-full p-2 cursor-pointer",
+                            "transition-all hover:ml-2"
+                        )}
+                        disabled={!city || loading}
+                        type="submit"
+                    >
+                        <ArrowRightIcon className="stroke-current fill-current" />
+                    </button>
                 )}
-                type="submit"
-            >
-                Search
-            </button> */}
+            </div>
         </form>
     );
 };
