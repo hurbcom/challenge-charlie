@@ -3,7 +3,7 @@ const getWeatherForecast = async (req, res) => {
         return res.status(405).send({ error: "Method not allowed" });
     }
 
-    const APPID = "ed15efc9a5bafa25c396e9ea00b04e27"; // conta propria
+    const APPID = process.env.OPEN_WEATHER_API_KEY; // conta propria
     const DAYS = 3;
     const { lat, lon } = req.query;
     const unit = req.query?.unit || "metric";
