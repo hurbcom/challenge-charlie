@@ -44,7 +44,7 @@ const WeatherForecastItem = ({
     useEffect(() => {
         if (data) {
             console.log("data:", data);
-            const temp = Number(data.temp);
+            const temp = Number(data.temp.metric);
             let color = "yellow";
             if (temp > 35) {
                 color = "red";
@@ -123,7 +123,7 @@ const WeatherForecastItem = ({
                 <WeatherIcon icon={data.icon} />
             </div>
             <div className="w-[45%] flex flex-col h-full">
-                <div className="flex flex-col mb-4">
+                <div className="flex flex-col mb-4 select-none">
                     <span className="text-lg">{data.label.toUpperCase()}</span>
                     <div
                         className="flex items-center h-11 cursor-pointer"

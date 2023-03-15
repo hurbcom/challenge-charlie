@@ -9,7 +9,6 @@ const Weather = () => {
     const [unit, setUnit] = useState("metric");
 
     const handleToggleUnit = useCallback(() => {
-        console.log("unit:", unit);
         if (unit === "metric") {
             setUnit("imperial");
         } else {

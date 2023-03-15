@@ -21,25 +21,31 @@ const SearchBar = () => {
         if (geolocation && !city) {
             const cityString = `${geolocation.city}, ${geolocation.state}`;
             setCity(cityString);
-            handleSubmit(null, cityString);
+            handleSearchWeather(cityString);
         }
     }, [geolocation]);
 
-    const handleSubmit = async (e, city) => {
-        setLoading(true);
+    const handleSubmit = async (e) => {
         e?.preventDefault();
         if (!city) {
-            setLoading(false);
             return;
         }
+        await handleSearchWeather(city);
+        setLoading(false);
+    };
+
+    const handleSearchWeather = async (locationName) => {
+        setLoading(true);
         try {
             if (searchInput) {
                 searchInput.current.blur();
             }
-            const { lat, lon } = await handleGetCityCoordinates(city);
+            const { lat, lon } = await handleGetCityCoordinates(locationName);
             await handleSearchForecast(lat, lon);
-        } catch (error) {}
-        setLoading(false);
+        } catch (error) {
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleGetCityCoordinates = async (locationName) => {
