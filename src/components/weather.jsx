@@ -6,15 +6,6 @@ import WeatherForecastList from "./weather-forecast-list";
 
 const Weather = () => {
     const { forecast, loading } = useContext(WeatherContext);
-    const [unit, setUnit] = useState("metric");
-
-    const handleToggleUnit = useCallback(() => {
-        if (unit === "metric") {
-            setUnit("imperial");
-        } else {
-            setUnit("metric");
-        }
-    }, [unit]);
 
     return (
         <div className="max-w-[572px] mx-auto">
@@ -28,8 +19,6 @@ const Weather = () => {
                             index={i}
                             key={`weather_item_${i}`}
                             active={i === 0}
-                            unit={unit}
-                            handleToggleUnit={handleToggleUnit}
                         />
                     ))}
             </WeatherForecastList>

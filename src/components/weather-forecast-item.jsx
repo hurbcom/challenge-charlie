@@ -5,7 +5,8 @@ import SwitchIcon from "public/icons/switch.svg";
 import FahrenheitIcon from "public/icons/fahrenheit.svg";
 import { capitalizeFirstChar, getDirections } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { WeatherContext } from "@/utils/weather-context";
 
 const AttributeDisplay = ({ label, value }) => (
     <div className="flex text-sm">
@@ -37,10 +38,11 @@ const WeatherForecastItem = ({
     data,
     active,
     loading,
-    unit,
-    handleToggleUnit,
+    // unit,
+    // handleToggleUnit,
 }) => {
     const [bgColor, setBgColor] = useState("");
+    const { unit, handleToggleUnit } = useContext(WeatherContext);
 
     useEffect(() => {
         if (data) {
@@ -143,18 +145,21 @@ const WeatherForecastItem = ({
                             />
                         )}
                         <button
-                            className=" mt-[2px] ml-[-6px]"
-                            onClick={handleToggleUnit}
+                            className="flex items-center justify-center mt-[2px]"
+                            onClick={() => handleToggleUnit()}
                         >
                             <SwitchIcon className="fill-current" width="18px" />
+                            <span className="fill-current opacity-80">
+                                {unit === "metric" ? (
+                                    <FahrenheitIcon
+                                        width="36px"
+                                        height="100%"
+                                    />
+                                ) : (
+                                    <CelsiusIcon width="36px" height="100%" />
+                                )}
+                            </span>
                         </button>
-                        <span className="fill-current mt-[2px] ml-[-6px]">
-                            {unit === "metric" ? (
-                                <FahrenheitIcon width="36px" height="100%" />
-                            ) : (
-                                <CelsiusIcon width="36px" height="100%" />
-                            )}
-                        </span>
                     </div>
                 </div>
                 {active && (

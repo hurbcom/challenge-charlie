@@ -1,5 +1,5 @@
 import { getWeather } from "@/services/weather";
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 const emptyForecast = new Array(3).fill(null);
 
@@ -14,6 +14,15 @@ const WeatherProvider = ({ children }) => {
     const [city, setCity] = useState("");
     const [forecast, setForecast] = useState(emptyForecast);
     const [loading, setLoading] = useState(false);
+    const [unit, setUnit] = useState("metric");
+
+    const handleToggleUnit = useCallback(() => {
+        if (unit === "metric") {
+            setUnit("imperial");
+        } else {
+            setUnit("metric");
+        }
+    }, [unit]);
 
     const handleSearchForecast = async (latitude, longitude) => {
         try {
@@ -38,6 +47,8 @@ const WeatherProvider = ({ children }) => {
                 handleSearchForecast,
                 loading,
                 setLoading,
+                unit,
+                handleToggleUnit,
             }}
         >
             {children}
