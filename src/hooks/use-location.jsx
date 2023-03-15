@@ -37,12 +37,21 @@ const useLocation = () => {
     }, [coordinates]);
 
     const handleGetCityCoordinates = async (locationName) => {
-        const coords = await getCoordinates(locationName);
-        return {
-            lat: coords.latitude,
-            lon: coords.longitude,
-            locationName: coords.locationName,
-        };
+        if (locationName.length < 2) {
+            throw new Error(
+                "Nome da localidade deve ter pelo menos 2 caracteres"
+            );
+        }
+        try {
+            const coords = await getCoordinates(locationName);
+            return {
+                lat: coords.latitude,
+                lon: coords.longitude,
+                locationName: coords.locationName,
+            };
+        } catch (error) {
+            throw new Error("Localidade inválida. Tente novamente.");
+        }
     };
 
     useEffect(() => {

@@ -1,6 +1,7 @@
 import useLocation from "@/hooks/use-location";
 import { getWeather } from "@/services/weather";
 import { createContext, useCallback, useState } from "react";
+import { toast } from "react-toastify";
 
 export const WeatherContext = createContext({
     city: null,
@@ -13,7 +14,6 @@ const WeatherProvider = ({ children }) => {
     const [city, setCity] = useState("");
     const [forecast, setForecast] = useState(new Array(3).fill(null));
     const [loading, setLoading] = useState(false);
-    const [apiError, setApiError] = useState(false);
     const [unit, setUnit] = useState("metric");
 
     const { handleGetCityCoordinates } = useLocation();
@@ -46,6 +46,12 @@ const WeatherProvider = ({ children }) => {
                 await handleSearchForecast(coords.lat, coords.lon);
             }
         } catch (error) {
+            let message =
+                "Erro ao buscar dados da localidade. Tente novamente.";
+            if (error?.message) {
+                message = error.message;
+            }
+            toast.error(message);
             clearForecast();
         } finally {
             setLoading(false);

@@ -42,7 +42,7 @@ const SearchBar = () => {
                 )}
                 ref={searchInput}
                 name="city"
-                placeholder="Digite a cidade aqui"
+                placeholder="Digite a localidade aqui"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
             />
