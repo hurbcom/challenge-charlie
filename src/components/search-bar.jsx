@@ -21,13 +21,17 @@ const SearchBar = () => {
         if (geolocation && !city) {
             const cityString = `${geolocation.city}, ${geolocation.state}`;
             setCity(cityString);
+            handleSubmit(null, cityString);
         }
     }, [geolocation]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e, city) => {
         setLoading(true);
         e?.preventDefault();
-        if (!city) return;
+        if (!city) {
+            setLoading(false);
+            return;
+        }
         try {
             if (searchInput) {
                 searchInput.current.blur();
