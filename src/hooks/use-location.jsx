@@ -1,12 +1,9 @@
 import { getCoordinates, getLocation } from "@/services/location";
-import { WeatherContext } from "@/utils/weather-context";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useLocation = () => {
     const [coordinates, setCoordinates] = useState(null);
     const [geolocation, setGeolocation] = useState(null);
-
-    const { setCity } = useContext(WeatherContext);
 
     const handleGetCoordinates = useCallback(() => {
         if (navigator.geolocation) {
@@ -41,10 +38,10 @@ const useLocation = () => {
 
     const handleGetCityCoordinates = async (locationName) => {
         const coords = await getCoordinates(locationName);
-        setCity(coords.locationName);
         return {
             lat: coords.latitude,
             lon: coords.longitude,
+            locationName: coords.locationName,
         };
     };
 

@@ -1,20 +1,22 @@
+import useLocation from "@/hooks/use-location";
 import { getWeather } from "@/services/weather";
 import { createContext, useCallback, useState } from "react";
-
-const emptyForecast = new Array(3).fill(null);
 
 export const WeatherContext = createContext({
     city: null,
     setCity: null,
-    forecast: emptyForecast,
+    forecast: new Array(3).fill(null),
     handleSearchForecast: null,
 });
 
 const WeatherProvider = ({ children }) => {
     const [city, setCity] = useState("");
-    const [forecast, setForecast] = useState(emptyForecast);
+    const [forecast, setForecast] = useState(new Array(3).fill(null));
     const [loading, setLoading] = useState(false);
+    const [apiError, setApiError] = useState(false);
     const [unit, setUnit] = useState("metric");
+
+    const { handleGetCityCoordinates } = useLocation();
 
     const handleToggleUnit = useCallback(() => {
         if (unit === "metric") {
@@ -24,18 +26,29 @@ const WeatherProvider = ({ children }) => {
         }
     }, [unit]);
 
+    const clearForecast = useCallback(() => {
+        setForecast(new Array(3).fill(null));
+    }, []);
+
     const handleSearchForecast = async (latitude, longitude) => {
+        if (latitude && longitude) {
+            const weather = await getWeather(latitude, longitude);
+            setForecast(weather);
+        }
+    };
+
+    const handleGetWeather = async (locationName) => {
         try {
-            if (forecast[0]) {
-                setForecast(emptyForecast);
-            }
-            if (latitude && longitude) {
-                const weather = await getWeather(latitude, longitude);
-                setForecast(weather);
+            setLoading(true);
+            const coords = await handleGetCityCoordinates(locationName);
+            if (coords) {
+                setCity(coords.locationName);
+                await handleSearchForecast(coords.lat, coords.lon);
             }
         } catch (error) {
-            // console.log("error:", error);
-            setForecast(new Array(3).fill(null));
+            clearForecast();
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -45,11 +58,12 @@ const WeatherProvider = ({ children }) => {
                 city,
                 setCity,
                 forecast,
-                handleSearchForecast,
+                clearForecast,
                 loading,
                 setLoading,
                 unit,
                 handleToggleUnit,
+                handleGetWeather,
             }}
         >
             {children}

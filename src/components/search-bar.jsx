@@ -1,12 +1,9 @@
-import Image from "next/image";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
 import classNames from "@/utils/classnames";
 import CompassIcon from "public/icons/compass.svg";
 import styles from "@/styles/weather.module.css";
 import useGeolocation from "@/hooks/use-location";
-import { getWeather } from "@/services/weather";
-import { getCoordinates } from "@/services/location";
 import { WeatherContext } from "@/utils/weather-context";
 import ArrowRightIcon from "public/icons/arrow-right.svg";
 import LoadingIndicator from "./loading-indicator";
@@ -14,39 +11,18 @@ import LoadingIndicator from "./loading-indicator";
 const SearchBar = () => {
     const searchInput = useRef(null);
 
-    const { geolocation, handleGetCityCoordinates } = useGeolocation();
-    const { city, setCity, handleSearchForecast, setLoading, loading } =
+    const { city, setCity, loading, handleGetWeather } =
         useContext(WeatherContext);
-
-    useEffect(() => {
-        if (geolocation && !city) {
-            const cityString = `${geolocation.city}, ${geolocation.state}`;
-            setCity(cityString);
-            handleGetWeather(cityString);
-        }
-    }, [geolocation]);
 
     const handleSubmit = async (e) => {
         e?.preventDefault();
         if (!city) {
             return;
         }
-        await handleGetWeather(city);
-        setLoading(false);
-    };
-
-    const handleGetWeather = async (locationName) => {
-        setLoading(true);
-        try {
-            if (searchInput) {
-                searchInput.current.blur();
-            }
-            const { lat, lon } = await handleGetCityCoordinates(locationName);
-            await handleSearchForecast(lat, lon);
-        } catch (error) {
-        } finally {
-            setLoading(false);
+        if (searchInput) {
+            searchInput.current.blur();
         }
+        await handleGetWeather(city);
     };
 
     return (
