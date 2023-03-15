@@ -35,6 +35,7 @@ const WeatherProvider = ({ children }) => {
             }
         } catch (error) {
             // console.log("error:", error);
+            setForecast(new Array(3).fill(null));
         }
     };
 

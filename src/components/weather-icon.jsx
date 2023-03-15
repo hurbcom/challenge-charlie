@@ -24,10 +24,16 @@ const WEATHER_ICONS = {
     // Tornado,
 };
 
-const WeatherIcon = ({ icon }) => {
+const WeatherIcon = ({ icon, width, height }) => {
     const Icon = WEATHER_ICONS[icon] || SunIcon;
 
-    return <Icon className="stroke-none fill-current" />;
+    return (
+        <Icon
+            className="stroke-none fill-current"
+            width={width}
+            height={height}
+        />
+    );
 };
 
 export default WeatherIcon;

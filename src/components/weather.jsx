@@ -8,7 +8,7 @@ const Weather = () => {
     const { forecast, loading } = useContext(WeatherContext);
 
     return (
-        <div className="max-w-[572px] mx-auto">
+        <div className="w-full max-w-[572px] mx-auto">
             <SearchBar />
             <WeatherForecastList>
                 {forecast &&

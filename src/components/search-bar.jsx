@@ -63,7 +63,7 @@ const SearchBar = () => {
     return (
         <form
             className={classNames(
-                "text-3xl font-semibold bg-white/70 py-3 px-2",
+                "w-full text-3xl font-semibold bg-white/70 py-3 px-2",
                 "flex items-center transition-colors duration-200",
                 styles.search_container
             )}
@@ -72,7 +72,7 @@ const SearchBar = () => {
             <CompassIcon className="h-12 w-12 fill-current" />
             <input
                 className={classNames(
-                    "flex-1 rounded h-12 mx-2 p-2 outline-none",
+                    "flex-1 rounded h-12 mx-2 p-2 outline-none w-full",
                     styles.search_input
                 )}
                 ref={searchInput}
