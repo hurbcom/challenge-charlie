@@ -1,4 +1,8 @@
 const getWeatherForecast = async (req, res) => {
+    if (req.method !== "GET") {
+        return res.status(405).send({ error: "Method not allowed" });
+    }
+
     const APPID = "ed15efc9a5bafa25c396e9ea00b04e27"; // conta propria
     const DAYS = 3;
     const { lat, lon } = req.query;

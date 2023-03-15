@@ -1,4 +1,8 @@
 const getCityFromCoords = async (req, res) => {
+    if (req.method !== "GET") {
+        return res.status(405).send({ error: "Method not allowed" });
+    }
+
     const API_KEY = "6fadb7c6163e4493accb6f2354d09dcb";
     const { lat, lon } = req.query;
 
