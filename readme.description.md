@@ -1,6 +1,6 @@
-# Desafio Charlie
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb.[[Descricao do desafio](README.pt.md)]
+Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb [Descricao do desafio](README.pt.md)
 
 A aplicacao eh um microsite de previsao do tempo. Nela o usuario recebe a previsao do tempo para a sua propria localidade (adquirida atraves da geolocalizacao) ou de qualquer outra localidade que ele deseje buscar.
 
