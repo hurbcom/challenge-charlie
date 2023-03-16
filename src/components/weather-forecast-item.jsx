@@ -35,8 +35,14 @@ const colorOptions = {
 
 const WeatherForecastItem = ({ index, data, active }) => {
     const [bgColor, setBgColor] = useState("");
-    const { unit, handleToggleUnit, loading } = useContext(WeatherContext);
+    const {
+        unit,
+        handleToggleUnit,
+        // loading
+    } = useContext(WeatherContext);
     const iconSize = active ? "160px" : "44px";
+    const loading = true;
+    // const loading = false;
 
     useEffect(() => {
         if (data) {
@@ -65,7 +71,7 @@ const WeatherForecastItem = ({ index, data, active }) => {
                         : "bg-gray-500",
                     active
                         ? "h-auto sm:h-64 flex-col sm:flex-row"
-                        : "h-auto sm:h-24"
+                        : "h-32 sm:h-24"
                 )}
             >
                 <div
@@ -123,9 +129,7 @@ const WeatherForecastItem = ({ index, data, active }) => {
                 "forecast-item-full",
                 "flex p-2 text-white bg-blue-600/80",
                 "transition-all duration-300",
-                active
-                    ? "h-auto sm:h-64 flex-col sm:flex-row"
-                    : "h-auto sm:h-24"
+                active ? "h-auto sm:h-64 flex-col sm:flex-row" : "h-32 sm:h-24"
             )}
             style={{ background: colorOptions[bgColor][index] }}
         >
@@ -144,13 +148,13 @@ const WeatherForecastItem = ({ index, data, active }) => {
             <div
                 className={classNames(
                     "flex flex-col h-full",
-                    active ? "w-full sm:w-[45%]" : "w-[45%]"
+                    active ? "w-full sm:w-[45%]" : "w-[45%] justify-center"
                 )}
             >
                 <div
                     className={classNames(
-                        "flex flex-col mb-4 select-none",
-                        active ? "items-center sm:items-start" : ""
+                        "flex flex-col select-none",
+                        active ? "items-center sm:items-start mb-4" : ""
                     )}
                 >
                     <span className="text-lg">{data.label.toUpperCase()}</span>
