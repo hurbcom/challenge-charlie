@@ -1,59 +1,84 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb [[Descricao do desafio](README.pt.md)]
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+A aplicacao eh um microsite de previsao do tempo. Nela o usuario recebe a previsao do tempo de tres dias para a sua propria localidade (adquirida atraves da geolocalizacao) ou de qualquer outra localidade que ele deseje buscar.
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+Construida com o framework React para producao Next.js, estilizada com Tailwind CSS + CSS modules e testada com Cypress. Para rodar a aplicacao com diversos stages e com consistencia em diferentes maquinas, configurei o Docker com stage de desenvolvimento e producao.
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+## Iniciando a aplicacao 
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+Para rodar essa aplicacao eu criei dois stages para o docker: development e production.
+Para simplificar os comandos e aplicar boas praticas, utilizei um Makefile para manejar o docker.
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+### Iniciando a aplicacao no Docker (recomendado):
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+Para utilizar esse metodo eh necessario que voce tenha o docker instalado na sua maquina.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+#### Production
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+Para criar o container instalar as dependencias e fazer o build:
 
-## Requirements
+    sudo make build-production
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+Para iniciar o container e rodar a aplicacao:
+    
+    sudo make start-production
 
-## Evaluation criteria
+Para parar o container:
+    
+    sudo make stop-production
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
 
-## Doubts
+#### Development
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+Para criar o container, instalar as dependencias e fazer o build:
+    
+    sudo make build-development
 
-Godspeed! ;)
+Para iniciar o container e rodar a aplicacao:
+    
+    sudo make start-development
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+Para parar o container:
+    
+    sudo make stop-development
+
+
+### Iniciando a aplicacao localmente:
+
+Para utilizar esse metodo eh necessario que voce tenha o node e npm/yarn instalados na sua maquina.
+
+Para instalar as dependencias:
+
+`` yarn `` ou `` npm install ``
+    
+Para iniciar a aplicacao:
+
+`` yarn dev `` ou `` npm run dev ``
+        
+
+## Melhorias sugeridas
+
+Visando a melhoria da UX, sugiro algumas mudancas no layout fornecido.
+-  No lugar de uma caixa de texto com fundo branco, uma caixa com fundo transparente, de forma que a propria barra superior "apareca" como um grande campo editavel.
+-  Na imagem exemplo, nao temos um botao para submit da localidade pelo usuario. Isso pode confundir alguns usuarios que nao estao acostumados a utilizar a tecla enter. Por isso adicionei um botao bem simples com um icone indicando a funcionalidade de submit.
+
+
+## Testes 
+
+Por ser uma aplicacao pequena em que quase todos os componentes sao utilizados apenas uma vez, optei por implementar testes End-to-End com Cypress. Existem testes para cada um dos requisitos de funcionalidade explicitados na descricao, e alguns outros.
+
+### Rodando testes
+
+Para rodar os testes, basta usar o comando `` yarn test ``. Isso vai abrir o console de testes da cypress, de onde eh possivel rodar todos os testes.
+
+  
+## Escolhas tecnicas
+
+### Next.js
+  
+ Como temos que chamar a API do Bing para obter a imagem, e ela so muda uma vez por dia, chamar a api em cada requisicao do cliente nao seria a melhor pratica. 
+
+ O next.js faz Static Site Generation, pre renderizando a pagina na hora do build, ou no periodo que indicamos no cookie. Isso nos possibilita chamar a API do Bing apenas na hora do build, e gerando um arquivo estatico que ja chega para o cliente com os dados da imagem, diminuindo muito o efeito de blinking do imagem no site, e a sensacao de velocidade para o usuario. Por isso a escolha desse framework fez muito sentido para esse projeto, alem de alguns presets otimizados para a producao.
