@@ -36,7 +36,11 @@ export const getWeather = async (latitude, longitude) => {
                 temp: {
                     metric: dailyWeather.temp.day,
                     imperial: celsiusToFahrenheit(dailyWeather.temp.day),
-                } 
+                },
+                // humidity: dailyWeather.humidity,
+                // pressure: dailyWeather.pressure,
+                // wind_speed: dailyWeather.wind_speed,
+                // wind_deg: dailyWeather.wind_deg,
             }));
         weatherData = [todaysWeather, ...forecastData];
     }

@@ -35,14 +35,8 @@ const colorOptions = {
 
 const WeatherForecastItem = ({ index, data, active }) => {
     const [bgColor, setBgColor] = useState("");
-    const {
-        unit,
-        handleToggleUnit,
-        // loading
-    } = useContext(WeatherContext);
+    const { unit, handleToggleUnit, loading } = useContext(WeatherContext);
     const iconSize = active ? "160px" : "44px";
-    const loading = true;
-    // const loading = false;
 
     useEffect(() => {
         if (data) {
