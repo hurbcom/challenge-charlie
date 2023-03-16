@@ -12,9 +12,13 @@ Para utilizar esse metodo eh necessario que voce tenha o docker instalado na sua
 #### Production
 
 Para instalar as dependencias e fazer o build rodar esse comando:
+
     sudo make build-production
+
 Para iniciar o container e rodar a aplicacao:
+    
     sudo make start-production
+
 
 #### Development
 
