@@ -1,8 +1,8 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb [Descricao do desafio](README.pt.md)
+Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb [[Descricao do desafio](README.pt.md)]
 
-A aplicacao eh um microsite de previsao do tempo. Nela o usuario recebe a previsao do tempo para a sua propria localidade (adquirida atraves da geolocalizacao) ou de qualquer outra localidade que ele deseje buscar.
+A aplicacao eh um microsite de previsao do tempo. Nela o usuario recebe a previsao do tempo de tres dias para a sua propria localidade (adquirida atraves da geolocalizacao) ou de qualquer outra localidade que ele deseje buscar.
 
 Construida com o framework React para producao Next.js, estilizada com Tailwind CSS + CSS modules e testada com Cypress. Para rodar a aplicacao com diversos stages e com consistencia em diferentes maquinas, configurei o Docker com stage de desenvolvimento e producao.
 
@@ -52,11 +52,11 @@ Para utilizar esse metodo eh necessario que voce tenha o node e npm/yarn instala
 
 Para instalar as dependencias:
 
-`` yarn `` or `` npm install ``
+`` yarn `` ou `` npm install ``
     
 Para iniciar a aplicacao:
 
-`` yarn dev `` or `` npm run dev ``
+`` yarn dev `` ou `` npm run dev ``
         
 
 ## Melhorias sugeridas
@@ -74,6 +74,5 @@ Por ser uma aplicacao pequena em que quase todos os componentes sao utilizados a
 
 Para rodar os testes, basta usar o comando `` yarn test ``. Isso vai abrir o console de testes da cypress, de onde eh possivel rodar todos os testes.
 
-
-## Escolhas Tecnicas
-
+  
+    

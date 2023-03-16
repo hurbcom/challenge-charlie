@@ -2,6 +2,7 @@ describe('Main page', () => {
 
   beforeEach(() => {
     cy.visit('/')
+    cy.wait(500)
   })
 
   it('should visit main page', () => {
@@ -12,17 +13,17 @@ describe('Main page', () => {
   })
 
   it('should search and display weather forecast correctly', () => {
-    cy.get('input').type(`Rio de janeiro{enter}`)
+    cy.get('input#search_input').type(`Rio de janeiro{enter}`)
     cy.get('.forecast-item-full').should('be.visible')
   })
   
   it('should display error toast after invalid search input', () => {
-    cy.get('input').type(`oiuaysegrfvaniouwyergaieur{enter}`)
+    cy.get('input#search_input').type(`oiuaysegrfvaniouwyergaieur{enter}`)
     cy.get('div[role=alert]')
   })
   
   it('should submit search on button click', () => {
-    cy.get('input').type(`Rio de janeiro`)
+    cy.get('input#search_input').type(`Rio de janeiro`)
     cy.get('button[type=submit]').click()
     cy.get('.forecast-item-full').should('be.visible')
   })
