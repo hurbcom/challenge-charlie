@@ -2,12 +2,12 @@ import HeroImage from "@/components/hero-image";
 import Weather from "@/components/weather";
 import useBingImage from "@/hooks/use-bing-image";
 import useLocation from "@/hooks/use-location";
+import { getHeroImage } from "@/services/hero-image";
 import { WeatherContext } from "@/utils/weather-context";
 import Head from "next/head";
 import { useContext, useEffect } from "react";
 
-const Main = () => {
-    const { imageAlt, imageUrl } = useBingImage();
+const Main = ({ image }) => {
     const { geolocation } = useLocation();
     const { city, setCity, handleGetWeather } = useContext(WeatherContext);
 
@@ -17,7 +17,12 @@ const Main = () => {
             setCity(cityString);
             handleGetWeather(cityString);
         }
+        console.log('geolocation:', geolocation)
     }, [geolocation]);
+
+    useEffect(() => {
+        console.log('image:', image)
+    }, [image])
 
     return (
         <>
@@ -26,10 +31,11 @@ const Main = () => {
                     name="viewport"
                     content="width=device-width, initial-scale=1.0"
                 />
+                <title>Charlie's Weather Widget</title>
             </Head>
             <div className="w-full h-screen max-w-screen max-h-screen">
-                {imageUrl && (
-                    <HeroImage src={imageUrl} alt={imageAlt}></HeroImage>
+                {image && (
+                    <HeroImage src={image.url} alt={image.alt}></HeroImage>
                 )}
                 <main className="w-full h-full bg-gray-900/60">
                     <Weather />
@@ -38,5 +44,14 @@ const Main = () => {
         </>
     );
 };
+
+export async function getStaticProps() {
+    const image = await getHeroImage()
+    return {
+        props: { image },
+        // recria a pagina do cache no minimo a cada 8 horas, ja que a api do bing retorna uma imagem diferente todo dia
+        revalidate: 60 * 60 * 8
+    }
+}
 
 export default Main;

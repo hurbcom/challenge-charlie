@@ -13,7 +13,7 @@ const HeroImage = ({ src, alt }) => {
         <div className="absolute h-full w-full min-h-screen top-0 left-0 -z-10">
             <div
                 className={classNames(
-                    "relative w-full h-full transition-opacity duration-700",
+                    "relative w-full h-full transition-opacity duration-150",
                     imageLoaded ? "opacity-100" : "opacity-0"
                 )}
             >
@@ -23,7 +23,6 @@ const HeroImage = ({ src, alt }) => {
                     fill
                     className="object-cover"
                     data-testid="hero-image"
-                    priority={true}
                     onLoad={handleImageLoaded}
                 />
             </div>
