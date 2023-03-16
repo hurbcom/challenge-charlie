@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "cypress open"
   },
   "dependencies": {
     "next": "^13.2.3",

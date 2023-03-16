@@ -11,7 +11,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000',
     // supportFile: 'cypress/support/index.js',
-    specPattern: '**/*.test.js',
+    specPattern: '**/*.cy.js',
     env: {
       CYPRESS_webpackConfig: '@next/react-scripts/config/webpack.config.js',
       baseUrl: 'http://localhost:3000',
