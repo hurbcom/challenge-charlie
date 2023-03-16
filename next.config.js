@@ -1,6 +1,8 @@
 const nextConfig = {
+    // docker config
+    output: 'standalone',
+    // next image origin config
     images: {
-        // dangerouslyAllowSVG: true,
         remotePatterns: [
             {
                 protocol: 'https',
@@ -10,6 +12,7 @@ const nextConfig = {
             }
         ]
     },
+    // custom webpack config for loading svgs 
     webpack: (config, { isServer }) => {
         // Exclude SVG from default file-loader rule
         config.module.rules = config.module.rules.map(rule => {
