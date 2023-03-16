@@ -19,6 +19,10 @@ Para iniciar o container e rodar a aplicacao:
     
     sudo make start-production
 
+Para parar o container:
+    
+    sudo make stop-production
+
 
 #### Development
 
@@ -29,15 +33,21 @@ Para instalar as dependencias e fazer o build rodar esse comando:
 Para iniciar o container e rodar a aplicacao:
     
     sudo make start-development
+
+Para parar o container:
     
+    sudo make stop-development
+
 
 ### Rodando a aplicacao localmente:
 
 Para utilizar esse metodo eh necessario que voce tenha o node e npm/yarn instalados na sua maquina.
 
 Para instalar as dependencias e fazer o build rodar esse comando:
+
     `` yarn `` or `` npm install ``
     
 Para iniciar o container e rodar a aplicacao:
+
     `` yarn dev `` or `` npm run dev ``
         
