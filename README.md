@@ -1,30 +1,31 @@
 # <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-Este projeto eh um desafio para uma vaga de desenvolvedor na Hurb [[Descricao do desafio](README.description.pt.md)]
-
-A aplicacao eh um microsite de previsao do tempo. Nela o usuario recebe a previsao do tempo de tres dias para a sua propria localidade (adquirida atraves da geolocalizacao) ou de qualquer outra localidade que ele deseje buscar.
-
-Construida com o framework React para producao Next.js, estilizada com Tailwind CSS + CSS modules e testada com Cypress. Para rodar a aplicacao com diversos stages e com consistencia em diferentes maquinas, configurei o Docker com stage de desenvolvimento e producao.
+Este projeto é um desafio para uma vaga de desenvolvedor na Hurb [[Descrição do desafio](README.description.pt.md)].
 
 
-## Iniciando a aplicacao 
+A aplicação é um microsite de previsão do tempo. Nela, o usuário recebe a previsão do tempo de três dias para a sua própria localidade (adquirida através da geolocalização) ou de qualquer outra localidade que ele deseje buscar.
 
-Para rodar essa aplicacao eu criei dois stages para o docker: development e production.
-Para simplificar os comandos e aplicar boas praticas, utilizei um Makefile para manejar o docker.
+Construída com o framework React para produção Next.js, estilizada com Tailwind CSS + CSS modules e testada com Cypress. Para rodar a aplicação com diversos stages e com consistência em diferentes máquinas, configurei o Docker com stage de desenvolvimento e produção.
 
-**Obs**: o arquivo .env.local contendo as chaves de api como variaveis de ambiente ficara visivel para facilitar a avaliacao da hurb. Apos a avaliacao eles serao adicionados ao .gitignore novamente.
 
-### Iniciando a aplicacao no Docker (recomendado):
+## Iniciando a aplicação 
 
-Para utilizar esse metodo eh necessario que voce tenha o docker instalado na sua maquina.
+Para rodar essa aplicação, eu criei dois stages para o Docker: production e development. 
+Para simplificar os comandos e aplicar boas práticas, utilizei um Makefile para manejar o Docker.
+
+**Obs**: o arquivo .env.local contendo as chaves de API como variáveis de ambiente ficará visível para facilitar a avaliação da Hurb. Após a avaliação, elas serão adicionadas ao .gitignore novamente.
+
+### Iniciando a aplicação no Docker (recomendado):
+
+Para utilizar esse método, é necessário que você tenha o Docker instalado na sua máquina.
 
 #### Production
 
-Para criar o container instalar as dependencias e fazer o build:
+Para criar o container, instalar as dependências e fazer o build:
 
     sudo make build-production
 
-Para iniciar o container e rodar a aplicacao:
+Para iniciar o container e rodar a aplicação:
     
     sudo make start-production
 
@@ -35,11 +36,11 @@ Para parar o container:
 
 #### Development
 
-Para criar o container, instalar as dependencias e fazer o build:
+Para criar o container, instalar as dependências e fazer o build:
     
     sudo make build-development
 
-Para iniciar o container e rodar a aplicacao:
+Para iniciar o container e rodar a aplicação:
     
     sudo make start-development
 
@@ -48,39 +49,47 @@ Para parar o container:
     sudo make stop-development
 
 
-### Iniciando a aplicacao localmente:
+### Iniciando a aplicação localmente:
 
-Para utilizar esse metodo eh necessario que voce tenha o node e npm/yarn instalados na sua maquina.
+Para utilizar esse método, é necessário que você tenha o Node e NPM/Yarn instalados na sua máquina.
 
-Para instalar as dependencias:
+Para instalar as dependências:
 
-`` yarn `` ou `` npm install ``
+    yarn  
     
-Para iniciar a aplicacao:
+ou 
 
-`` yarn dev `` ou `` npm run dev ``
+    npm install
+    
+Para iniciar a aplicação:
+
+    yarn dev 
+
+ou 
+
+    npm run dev
         
 
 ## Melhorias sugeridas
 
-Visando a melhoria da UX, sugiro algumas mudancas no layout fornecido.
--  No lugar de uma caixa de texto com fundo branco, uma caixa com fundo transparente, de forma que a propria barra superior "apareca" como um grande campo editavel.
--  Na imagem exemplo, nao temos um botao para submit da localidade pelo usuario. Isso pode confundir alguns usuarios que nao estao acostumados a utilizar a tecla enter. Por isso adicionei um botao bem simples com um icone indicando a funcionalidade de submit.
+Visando a melhoria da UX, sugiro algumas mudanças no layout fornecido:
+-  No lugar de uma caixa de texto com fundo branco, uma caixa com fundo transparente, de forma que a própria barra superior "apareça" como um grande campo editável.
+-  Na imagem exemplo, não temos um botão para submit da localidade pelo usuário. Isso pode confundir alguns usuários que não estão acostumados a utilizar a tecla ``enter``. Por isso, adicionei um botão bem simples com um ícone indicando a funcionalidade de submit.
 
 
 ## Testes 
 
-Por ser uma aplicacao pequena em que quase todos os componentes sao utilizados apenas uma vez, optei por implementar testes End-to-End com Cypress. Existem testes para cada um dos requisitos de funcionalidade explicitados na descricao, e alguns outros.
+Por ser uma aplicação pequena em que quase todos os componentes são utilizados apenas uma vez, optei por implementar testes End-to-End com Cypress. Existem testes para cada um dos requisitos de funcionalidade explicitados na descrição e alguns outros.
 
 ### Rodando testes
 
-Para rodar os testes, basta usar o comando `` yarn test ``. Isso vai abrir o console de testes da cypress, de onde eh possivel rodar todos os testes.
+Para rodar os testes, basta usar o comando ``yarn test``. Isso vai abrir o console de testes da cypress, de onde é possível rodar todos os testes.
 
   
-## Escolhas tecnicas
+## Escolhas técnicas
 
 ### Next.js
   
- Como temos que chamar a API do Bing para obter a imagem, e ela so muda uma vez por dia, chamar a api em cada requisicao do cliente nao seria a melhor pratica. 
+Como precisamos chamar a API do Bing para obter a imagem, e ela muda apenas uma vez por dia, chamar a API em cada requisição do cliente não seria a melhor prática. 
 
- O next.js faz Static Site Generation, pre renderizando a pagina na hora do build, ou no periodo que indicamos no cookie. Isso nos possibilita chamar a API do Bing apenas na hora do build, e gerando um arquivo estatico que ja chega para o cliente com os dados da imagem, diminuindo muito o efeito de blinking do imagem no site, e melhorando a sensacao de velocidade para o usuario. Por isso a escolha desse framework fez muito sentido para esse projeto, alem de alguns presets otimizados para a producao.
+O Next.js é uma opção interessante por fazer Static Site Generation, pré-renderizando a página na hora do build ou no período que indicamos no cookie. Isso nos permite chamar a API do Bing apenas na hora do build, gerando um arquivo estático que já chega para o cliente com os dados da imagem, diminuindo muito o efeito de blinking da imagem no site e melhorando a sensação de velocidade para o usuário. Por isso, a escolha desse framework faz muito sentido para este projeto, além de possuir presets otimizados para produção.
