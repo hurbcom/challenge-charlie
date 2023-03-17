@@ -23,30 +23,35 @@ Para utilizar esse método, é necessário que você tenha o Docker instalado na
 
 Para criar o container, instalar as dependências e fazer o build:
 
-    sudo make build-production
+    make build-production
 
 Para iniciar o container e rodar a aplicação:
     
-    sudo make start-production
+    make start-production
 
 Para parar o container:
     
-    sudo make stop-production
+    make stop-production
 
 
 #### Development
 
 Para criar o container, instalar as dependências e fazer o build:
     
-    sudo make build-development
+    make build-development
 
 Para iniciar o container e rodar a aplicação:
     
-    sudo make start-development
+    make start-development
 
 Para parar o container:
     
-    sudo make stop-development
+    make stop-development
+
+
+ **Obs**: Se você estiver com problemas para rodar os comandos make, tente rodar com o ``sudo`` na frente (erro comum para usuários linux). Ex:
+
+    sudo make build-production
 
 
 ### Iniciando a aplicação localmente:
