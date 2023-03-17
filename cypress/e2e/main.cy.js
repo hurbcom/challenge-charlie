@@ -34,13 +34,11 @@ describe('Main page', () => {
   })
 
   it('should display forecast background color correctly', () => {
-    cy.get('input#search_input').type(`rio de janeiro{enter}`)
+    cy.get('input#search_input').type(`anchorage{enter}`)
 
     cy.get('span#temp-0').invoke('text').then(temp => {
-      console.log('temp:', temp)
       const temperature = Number(temp)
       const bgColor = getForecastBgColor(temperature)
-      console.log('bgColor:', bgColor)
       const expectedBgColor = colorOptions[bgColor][0]
       cy.get('#forecast-item-0')
         .should('have.css', 'background-color')
