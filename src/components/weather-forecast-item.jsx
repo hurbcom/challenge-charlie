@@ -1,37 +1,13 @@
 import classNames from "@/utils/classnames";
-import SunIcon from "public/icons/sun.svg";
 import CelsiusIcon from "public/icons/celsius.svg";
 import SwitchIcon from "public/icons/switch.svg";
 import FahrenheitIcon from "public/icons/fahrenheit.svg";
 import { capitalizeFirstChar, getDirections } from "@/utils/format";
 import WeatherIcon from "./weather-icon";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { WeatherContext } from "@/utils/weather-context";
-
-const AttributeDisplay = ({ label, value }) => (
-    <div className="flex justify-between sm:justify-start text-sm mx-auto sm:mx-0 w-40 sm:w-auto">
-        <span className="mr-2">{label}:</span>
-        <span>{value}</span>
-    </div>
-);
-
-const colorOptions = {
-    blue: [
-        "rgb(96 165 250 / 0.8)",
-        "rgb(59 130 246 / 0.8)",
-        "rgb(37 99 235 / 0.8)",
-    ],
-    red: [
-        "rgb(239 68 68 / 0.8)",
-        "rgb(220 38 38 / 0.8)",
-        "rgb(185 28 28 / 0.8)",
-    ],
-    yellow: [
-        "rgb(250 204 21 / 0.8)",
-        "rgb(234 179 8 / 0.9)",
-        "rgb(202 138 4 / 1)",
-    ],
-};
+import { colorOptions, getForecastBgColor } from "@/utils/bgColor";
+import AttributeDisplay from "./attribute-display";
 
 const WeatherForecastItem = ({ index, data, active }) => {
     const [bgColor, setBgColor] = useState("");
@@ -41,13 +17,7 @@ const WeatherForecastItem = ({ index, data, active }) => {
     useEffect(() => {
         if (data) {
             const temp = Number(data.temp.metric);
-            let color = "yellow";
-            if (temp > 35) {
-                color = "red";
-            }
-            if (temp < 15) {
-                color = "blue";
-            }
+            const color = getForecastBgColor(temp)
             setBgColor(color);
         }
     }, [data]);
@@ -58,15 +28,12 @@ const WeatherForecastItem = ({ index, data, active }) => {
                 className={classNames(
                     "flex p-2 text-white",
                     "transition-all duration-300 ",
-                    index === 0
-                        ? "bg-gray-500/80"
-                        : index == 1
-                        ? "bg-gray-500/90"
-                        : "bg-gray-500",
+                    "bg-gray-700/80",
                     active
                         ? "h-auto sm:h-64 flex-col sm:flex-row"
                         : "h-32 sm:h-24"
                 )}
+                style={{ background: colorOptions['gray'][index] }}
             >
                 <div
                     className={classNames(
@@ -126,6 +93,8 @@ const WeatherForecastItem = ({ index, data, active }) => {
                 active ? "h-auto sm:h-64 flex-col sm:flex-row" : "h-32 sm:h-24"
             )}
             style={{ background: colorOptions[bgColor][index] }}
+            id={`forecast-item-${index}`}
+
         >
             <div
                 className={classNames(
@@ -157,9 +126,11 @@ const WeatherForecastItem = ({ index, data, active }) => {
                         onClick={() => handleToggleUnit()}
                         type="button"
                         data-testid="temp-btn"
+                        id={`temp-btn-${index}`}
                     >
                         <span
                             data-testid="temp"
+                            id={`temp-${index}`}
                             className="text-xl font-semibold"
                         >
                             {Math.round(data.temp[unit])}
