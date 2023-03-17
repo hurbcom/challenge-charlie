@@ -6,16 +6,15 @@ const useLocation = () => {
     const [coordinates, setCoordinates] = useState(null);
     const [geolocation, setGeolocation] = useState(null);
 
-
     const handleGetLocation = async () => {
         if (!geolocation && coordinates) {
-            console.log('handleGetLocation')
-            console.log('coordinates:', coordinates)
+            console.log("handleGetLocation");
+            console.log("coordinates:", coordinates);
             const fetchedLocation = await getLocation(
                 coordinates.latitude,
                 coordinates.longitude
             );
-            console.log('fetchedLocation:', fetchedLocation)
+            console.log("fetchedLocation:", fetchedLocation);
             const locationWithCoordinates = {
                 ...fetchedLocation,
                 latitude: coordinates.latitude,
@@ -43,31 +42,35 @@ const useLocation = () => {
         }
     };
 
-
-    const handleGeolocationSuccess = useCallback((position) => {
-        if (!coordinates) {
-            const { latitude, longitude } = position.coords;
-            setCoordinates({ latitude, longitude });
-        }
-    }, [coordinates])
+    const handleGeolocationSuccess = useCallback(
+        (position) => {
+            if (!coordinates) {
+                const { latitude, longitude } = position.coords;
+                setCoordinates({ latitude, longitude });
+            }
+        },
+        [coordinates]
+    );
 
     const handleGeolocationError = (error) => {
-        console.error('Nao foi possivel encontrar a sua localizacao')
-    }
+        console.error("Não foi possível encontrar a sua localização.");
+    };
 
     useEffect(() => {
-        let watchId
+        let watchId;
         if (!navigator.geolocation) {
-            console.error('Geolocalizacao nao suportada pelo seu browser')
-            return
+            console.error("Geolocalização não suportada pelo seu navegador.");
+            return;
         }
 
-        watchId = navigator.geolocation.watchPosition(handleGeolocationSuccess, handleGeolocationError)
+        watchId = navigator.geolocation.watchPosition(
+            handleGeolocationSuccess,
+            handleGeolocationError
+        );
 
         return () => {
-            navigator.geolocation.clearWatch(watchId)
-        }
-
+            navigator.geolocation.clearWatch(watchId);
+        };
     }, []);
 
     useEffect(() => {
