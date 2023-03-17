@@ -33,6 +33,7 @@ const WeatherProvider = ({ children }) => {
     const handleSearchForecast = async (latitude, longitude) => {
         if (latitude && longitude) {
             const weather = await getWeather(latitude, longitude);
+            console.log("weather:", weather);
             setForecast(weather);
         }
     };

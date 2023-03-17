@@ -14,13 +14,14 @@ export const getWeather = async (latitude, longitude) => {
 
     if (weatherResponse) {
         const { current } = weatherResponse
+        const currentTemp = Math.round(current.temp)
         const todaysWeather = {
             label: "Hoje",
             description: current.weather[0].description,
             icon: current.weather[0].main,
             temp: {
-                metric: current.temp,
-                imperial: celsiusToFahrenheit(current.temp)
+                metric: currentTemp,
+                imperial: celsiusToFahrenheit(currentTemp)
             },
             humidity: current.humidity,
             pressure: current.pressure,
@@ -34,8 +35,8 @@ export const getWeather = async (latitude, longitude) => {
                 description: dailyWeather.weather[0].description,
                 icon: dailyWeather.weather[0].main,
                 temp: {
-                    metric: dailyWeather.temp.day,
-                    imperial: celsiusToFahrenheit(dailyWeather.temp.day),
+                    metric: Math.round(dailyWeather.temp.day),
+                    imperial: celsiusToFahrenheit(Math.round(dailyWeather.temp.day)),
                 },
                 // humidity: dailyWeather.humidity,
                 // pressure: dailyWeather.pressure,
