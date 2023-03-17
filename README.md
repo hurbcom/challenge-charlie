@@ -12,6 +12,8 @@ Construida com o framework React para producao Next.js, estilizada com Tailwind 
 Para rodar essa aplicacao eu criei dois stages para o docker: development e production.
 Para simplificar os comandos e aplicar boas praticas, utilizei um Makefile para manejar o docker.
 
+**Obs**: o arquivo .env.local contendo as chaves de api como variaveis de ambiente ficara visivel para facilitar a avaliacao da hurb. Apos a avaliacao eles serao adicionados ao .gitignore novamente.
+
 ### Iniciando a aplicacao no Docker (recomendado):
 
 Para utilizar esse metodo eh necessario que voce tenha o docker instalado na sua maquina.
