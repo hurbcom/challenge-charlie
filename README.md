@@ -17,9 +17,11 @@ Para simplificar os comandos e aplicar boas práticas, utilizei um Makefile para
 
 ### Iniciando a aplicação no Docker (recomendado):
 
-Para utilizar esse método, é necessário que você tenha o Docker instalado na sua máquina.
+Para utilizar esse método, é necessário que você tenha o Docker instalado na sua máquina. Cada container vai ser exposto em uma porta diferente no host, de forma que é possível rodar ambos os stages ao mesmo tempo.
 
 #### Production
+
+Após rodar o comando de start, a aplicação no stage production ficará disponível em http://localhost:3000/ .
 
 Para criar o container, instalar as dependências e fazer o build:
 
@@ -34,7 +36,10 @@ Para parar o container:
     make stop-production
 
 
+
 #### Development
+
+Após rodar o comando de start, a aplicação no stage development ficará disponível em http://localhost:3001/ .
 
 Para criar o container, instalar as dependências e fazer o build:
     
@@ -56,7 +61,7 @@ Para parar o container:
 
 ### Iniciando a aplicação localmente:
 
-Para utilizar esse método, é necessário que você tenha o Node e NPM/Yarn instalados na sua máquina.
+Para utilizar esse método, é necessário que você tenha o Node e NPM/Yarn instalados na sua máquina. Após iniciar, a aplicação ficará disponível em http://localhost:3000/ (ou na porta indicada nos logs se a porta 3000 estiver ocupada).
 
 Para instalar as dependências:
 
