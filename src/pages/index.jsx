@@ -1,6 +1,5 @@
 import HeroImage from "@/components/hero-image";
 import Weather from "@/components/weather";
-import useBingImage from "@/hooks/use-bing-image";
 import useLocation from "@/hooks/use-location";
 import { getHeroImage } from "@/services/hero-image";
 import { WeatherContext } from "@/utils/weather-context";
@@ -17,12 +16,7 @@ const Main = ({ image }) => {
             setCity(cityString);
             handleGetWeather(cityString);
         }
-        console.log('geolocation:', geolocation)
     }, [geolocation]);
-
-    useEffect(() => {
-        console.log('image:', image)
-    }, [image])
 
     return (
         <>

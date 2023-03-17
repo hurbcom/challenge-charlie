@@ -1,32 +1,21 @@
 import { getCoordinates, getLocation } from "@/services/location";
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const useLocation = () => {
     const [coordinates, setCoordinates] = useState(null);
     const [geolocation, setGeolocation] = useState(null);
 
-    const handleGetCoordinates = useCallback(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setCoordinates({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                    });
-                },
-                (error) => {
-                    console.error(error);
-                }
-            );
-        }
-    }, []);
 
-    const handleGetLocation = useCallback(async () => {
-        if (!geolocation) {
+    const handleGetLocation = async () => {
+        if (!geolocation && coordinates) {
+            console.log('handleGetLocation')
+            console.log('coordinates:', coordinates)
             const fetchedLocation = await getLocation(
                 coordinates.latitude,
                 coordinates.longitude
             );
+            console.log('fetchedLocation:', fetchedLocation)
             const locationWithCoordinates = {
                 ...fetchedLocation,
                 latitude: coordinates.latitude,
@@ -34,7 +23,7 @@ const useLocation = () => {
             };
             setGeolocation(locationWithCoordinates);
         }
-    }, [coordinates]);
+    };
 
     const handleGetCityCoordinates = async (locationName) => {
         if (locationName.length < 2) {
@@ -54,8 +43,31 @@ const useLocation = () => {
         }
     };
 
+
+    const handleGeolocationSuccess = useCallback((position) => {
+        if (!coordinates) {
+            const { latitude, longitude } = position.coords;
+            setCoordinates({ latitude, longitude });
+        }
+    }, [coordinates])
+
+    const handleGeolocationError = (error) => {
+        console.error('Nao foi possivel encontrar a sua localizacao')
+    }
+
     useEffect(() => {
-        handleGetCoordinates();
+        let watchId
+        if (!navigator.geolocation) {
+            console.error('Geolocalizacao nao suportada pelo seu browser')
+            return
+        }
+
+        watchId = navigator.geolocation.watchPosition(handleGeolocationSuccess, handleGeolocationError)
+
+        return () => {
+            navigator.geolocation.clearWatch(watchId)
+        }
+
     }, []);
 
     useEffect(() => {
