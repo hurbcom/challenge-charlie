@@ -55,7 +55,10 @@ describe('Main page', () => {
   it('should convert temperature unit on temperature click', () => {
     cy.get('input').type(`Rio de janeiro{enter}`)
 
+    let celsiusValues;
+
     cy.get('span[data-testid=temp]').invoke('text').then(initialValues => {
+      celsiusValues = initialValues
       cy.get('button[data-testid=temp-btn]').then(buttons => {
         cy.wrap(buttons[0]).click()
 
@@ -64,6 +67,18 @@ describe('Main page', () => {
         expect(newValues).not.to.equal(initialValues)
       })
     })
+    
+    cy.wait(100)
+    
+    cy.get('span[data-testid=temp]').invoke('text').then(initialValues => {
+      cy.get('button[data-testid=temp-btn]').then(buttons => {
+        cy.wrap(buttons[0]).click()
 
+      })
+      cy.get('span[data-testid=temp]').invoke('text').should(newValues => {
+        expect(newValues).not.to.equal(initialValues)
+        expect(newValues).to.equal(celsiusValues)
+      })
+    })
   })
 })
