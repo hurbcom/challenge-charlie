@@ -93,7 +93,7 @@ Por ser uma aplicação pequena em que quase todos os componentes são utilizado
 
 ### Rodando testes
 
-Para rodar os testes, basta usar o comando ``yarn test``. Isso vai abrir o console de testes da cypress, de onde é possível rodar todos os testes.
+Para rodar os testes, primeiro temos que ter a aplicação rodando na porta 3000, e depois basta usar o comando ``yarn test``. Isso vai abrir o console de testes da cypress, de onde é possível rodar todos os testes.
 
   
 ## Escolhas técnicas
