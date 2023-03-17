@@ -8,13 +8,10 @@ const useLocation = () => {
 
     const handleGetLocation = async () => {
         if (!geolocation && coordinates) {
-            console.log("handleGetLocation");
-            console.log("coordinates:", coordinates);
             const fetchedLocation = await getLocation(
                 coordinates.latitude,
                 coordinates.longitude
             );
-            console.log("fetchedLocation:", fetchedLocation);
             const locationWithCoordinates = {
                 ...fetchedLocation,
                 latitude: coordinates.latitude,
