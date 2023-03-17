@@ -1,3 +1,5 @@
+const { getForecastBgColor, colorOptions } = require("../../src/utils/bgColor")
+
 describe('Main page', () => {
 
   beforeEach(() => {
@@ -7,27 +9,51 @@ describe('Main page', () => {
 
   it('should visit main page', () => {
   })
-  
+
   it('should render bing image', () => {
     cy.get('img.object-cover').should('be.visible')
   })
 
-  it('should search and display weather forecast correctly', () => {
+  it('should submit search on enter', () => {
     cy.get('input#search_input').type(`Rio de janeiro{enter}`)
     cy.get('.forecast-item-full').should('be.visible')
   })
-  
-  it('should display error toast after invalid search input', () => {
-    cy.get('input#search_input').type(`oiuaysegrfvaniouwyergaieur{enter}`)
-    cy.get('div[role=alert]')
-  })
-  
+
   it('should submit search on button click', () => {
     cy.get('input#search_input').type(`Rio de janeiro`)
     cy.get('button[type=submit]').click()
     cy.get('.forecast-item-full').should('be.visible')
   })
-  
+
+  it('should reformat location name after submit', () => {
+    cy.get('input#search_input').type(`rio de janeiro{enter}`)
+    cy.get('input#search_input').invoke('val').should(formattedValue => {
+      const expected = 'Rio de Janeiro, Rio de Janeiro'
+      expect(formattedValue).to.equal(expected)
+    })
+  })
+
+  it('should display forecast background color correctly', () => {
+    cy.get('input#search_input').type(`rio de janeiro{enter}`)
+
+    cy.get('span#temp-0').invoke('text').then(temp => {
+      console.log('temp:', temp)
+      const temperature = Number(temp)
+      const bgColor = getForecastBgColor(temperature)
+      console.log('bgColor:', bgColor)
+      const expectedBgColor = colorOptions[bgColor][0]
+      cy.get('#forecast-item-0')
+        .should('have.css', 'background-color')
+        .and('eq', expectedBgColor)
+    })
+
+  })
+
+  it('should display error toast after invalid search input', () => {
+    cy.get('input#search_input').type(`oiuaysegrfvaniouwyergaieur{enter}`)
+    cy.get('div[role=alert]')
+  })
+
   it('should convert temperature unit on temperature click', () => {
     cy.get('input').type(`Rio de janeiro{enter}`)
 
@@ -40,6 +66,6 @@ describe('Main page', () => {
         expect(newValues).not.to.equal(initialValues)
       })
     })
-    
+
   })
 })

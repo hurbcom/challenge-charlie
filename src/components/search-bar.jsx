@@ -40,6 +40,7 @@ const SearchBar = () => {
                     "flex-1 rounded h-12 mx-2 p-2 outline-none w-full",
                     styles.search_input
                 )}
+                id='search_input'
                 ref={searchInput}
                 name="city"
                 placeholder="Digite a localidade aqui"
