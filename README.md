@@ -1,59 +1,105 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+Este projeto é um desafio para uma vaga de desenvolvedor na Hurb [[Descrição do desafio](README.description.pt.md)].
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+A aplicação é um microsite de previsão do tempo. Nela, o usuário recebe a previsão do tempo de três dias para a sua própria localidade (adquirida através da geolocalização) ou de qualquer outra localidade que ele deseje buscar.
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+Construída com o framework React para produção Next.js, estilizada com Tailwind CSS + CSS modules e testada com Cypress. Para rodar a aplicação com diversos stages e com consistência em diferentes máquinas, configurei o Docker com stage de desenvolvimento e produção.
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+## Iniciando a aplicação 
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+Para rodar essa aplicação, eu criei dois stages para o Docker: production e development. 
+Para simplificar os comandos e aplicar boas práticas, utilizei um Makefile para manejar o Docker.
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+**Obs**: o arquivo .env.local contendo as chaves de API como variáveis de ambiente ficará visível para facilitar a avaliação da Hurb. Após a avaliação, elas serão adicionadas ao .gitignore novamente.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+### Iniciando a aplicação no Docker (recomendado):
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+Para utilizar esse método, é necessário que você tenha o Docker instalado na sua máquina. Cada container vai ser exposto em uma porta diferente no host, de forma que é possível rodar ambos os stages ao mesmo tempo.
 
-## Requirements
+#### Production
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` fbravoor production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+Após rodar o comando de start, a aplicação no stage production ficará disponível em http://localhost:3000/ .
 
-## Evaluation criteria
+Para criar o container, instalar as dependências e fazer o build:
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+    make build-production
 
-## Doubts
+Para iniciar o container e rodar a aplicação:
+    
+    make start-production
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+Para parar o container:
+    
+    make stop-production
 
-Godspeed! ;)
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+
+#### Development
+
+Após rodar o comando de start, a aplicação no stage development ficará disponível em http://localhost:3001/ .
+
+Para criar o container, instalar as dependências e fazer o build:
+    
+    make build-development
+
+Para iniciar o container e rodar a aplicação:
+    
+    make start-development
+
+Para parar o container:
+    
+    make stop-development
+
+
+ **Obs**: Se você estiver com problemas para rodar os comandos make, tente rodar com o ``sudo`` na frente (erro comum para usuários linux). Ex:
+
+    sudo make build-production
+
+
+### Iniciando a aplicação localmente:
+
+Para utilizar esse método, é necessário que você tenha o Node e NPM/Yarn instalados na sua máquina. Após iniciar, a aplicação ficará disponível em http://localhost:3000/ (ou na porta indicada nos logs se a porta 3000 estiver ocupada).
+
+Para instalar as dependências:
+
+    yarn  
+    
+ou 
+
+    npm install
+    
+Para iniciar a aplicação:
+
+    yarn dev 
+
+ou 
+
+    npm run dev
+        
+
+## Melhorias sugeridas
+
+Visando a melhoria da UX, sugiro algumas mudanças no layout fornecido:
+-  No lugar de uma caixa de texto com fundo branco, uma caixa com fundo transparente, de forma que a própria barra superior "apareça" como um grande campo editável.
+-  Na imagem exemplo, não temos um botão para submit da localidade pelo usuário. Isso pode confundir alguns usuários que não estão acostumados a utilizar a tecla ``enter``. Por isso, adicionei um botão bem simples com um ícone indicando a funcionalidade de submit.
+
+
+## Testes 
+
+Por ser uma aplicação pequena em que quase todos os componentes são utilizados apenas uma vez, optei por implementar testes End-to-End com Cypress. Existem testes para cada um dos requisitos de funcionalidade explicitados na descrição e alguns outros.
+
+### Rodando testes
+
+Para rodar os testes, primeiro temos que ter a aplicação rodando na porta 3000, e depois basta usar o comando ``yarn test``. Isso vai abrir o console de testes da cypress, de onde é possível rodar todos os testes.
+
+  
+## Escolhas técnicas
+
+### Next.js
+  
+Como precisamos chamar a API do Bing para obter a imagem, e ela muda apenas uma vez por dia, chamar a API em cada requisição do cliente não seria a melhor prática. 
+
+O Next.js é uma opção interessante por fazer Static Site Generation, pré-renderizando a página na hora do build ou no período que indicamos no cookie. Isso nos permite chamar a API do Bing apenas na hora do build, gerando um arquivo estático que já chega para o cliente com os dados da imagem, diminuindo muito o efeito de blinking da imagem no site e melhorando a sensação de velocidade para o usuário. Por isso, a escolha desse framework faz muito sentido para este projeto, além de possuir presets otimizados para produção.
