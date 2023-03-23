@@ -3,12 +3,15 @@ import * as C from '@chakra-ui/react'
 
 import Compass from '~/assets/svg/compass.js'
 
-export const InputGroup = styled(C.InputGroup)``
+export const InputGroup = styled(C.InputGroup)`
+  width: auto;
+  height: auto;
+`
 
 export const InputLeftElement = styled(C.InputLeftElement)`
   width: auto;
+  height: auto;
   padding: 1.6rem;
-  height: -webkit-fill-available;
 `
 
 export const Icon = styled(Compass)`
@@ -17,6 +20,10 @@ export const Icon = styled(Compass)`
   height: auto;
 
   fill: #8a8987;
+
+  @media (max-width: 767px) {
+    max-width: 4.533rem;
+  }
 `
 
 export const Input = styled(C.Input)`
@@ -28,7 +35,7 @@ export const Input = styled(C.Input)`
   border-radius: 0;
 
   font-weight: 500;
-  font-size: 4.133rem;
+  font-size: 3.133rem;
   font-family: 'Roboto', sans-serif;
 
   color: #8a8987;
@@ -41,5 +48,12 @@ export const Input = styled(C.Input)`
 
   &::-webkit-calendar-picker-indicator {
     display: none !important;
+  }
+
+  @media (max-width: 767px) {
+    height: 7.733rem;
+    padding-left: 7.733rem;
+
+    font-size: 2.733rem;
   }
 `

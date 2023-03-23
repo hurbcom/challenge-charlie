@@ -6,7 +6,6 @@ import Sun from '~/assets/svg/sun.js'
 export const Container = styled(C.Flex)`
   width: 100%;
   height: auto;
-  min-height: 10rem;
 
   background-color: #f8ca0360;
 `
@@ -14,22 +13,38 @@ export const Container = styled(C.Flex)`
 export const Wrapper = styled(C.Flex)`
   width: 100%;
   height: auto;
+
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `
 
 export const ContentLeft = styled(C.Flex)`
   width: 100%;
   height: auto;
+  padding: 2.6rem;
 
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    padding: 2.2rem;
+  }
 `
 
 export const Icon = styled(Sun)`
   width: 100%;
-  max-width: 27.733rem;
   height: auto;
+  max-width: 27.733rem;
 
   fill: #ffffff;
+
+  @media (max-width: 767px) {
+    max-width: 20.733rem;
+  }
 `
 
 export const ContentRight = styled(C.Flex)`
@@ -64,6 +79,32 @@ export const ContentRight = styled(C.Flex)`
     font-weight: 400;
     font-size: 2.266rem;
     line-height: initial;
+  }
+
+  @media (max-width: 767px) {
+    padding: 2.2rem;
+
+    > h1,
+    > h2,
+    > h3 {
+      text-align: center;
+    }
+
+    > h1 {
+      font-size: 2.266rem;
+    }
+
+    > h2 {
+      font-size: 2.866rem;
+    }
+
+    > h2:last-of-type {
+      font-size: 2.8rem;
+    }
+
+    > h3 {
+      font-size: 1.866rem;
+    }
   }
 `
 

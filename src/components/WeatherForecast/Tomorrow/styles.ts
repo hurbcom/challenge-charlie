@@ -4,11 +4,14 @@ import * as C from '@chakra-ui/react'
 export const Container = styled(C.Flex)`
   width: 100%;
   height: auto;
-  min-height: 10rem;
 
   justify-content: flex-end;
 
   background-color: #f8ca0380;
+
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
 `
 
 export const Wrapper = styled(C.Flex)`
@@ -29,6 +32,23 @@ export const Wrapper = styled(C.Flex)`
     font-weight: 400;
     font-size: 3.6rem;
     line-height: initial;
+  }
+
+  @media (max-width: 767px) {
+    padding: 2.2rem;
+
+    > h2,
+    > p {
+      text-align: center;
+    }
+
+    > h2 {
+      font-size: 2.266rem;
+    }
+
+    > p {
+      font-size: 3.2rem;
+    }
   }
 `
 
