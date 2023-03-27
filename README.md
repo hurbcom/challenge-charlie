@@ -9,5 +9,5 @@
 <h1 align="center">Desafio Charlie</h1>
 
 <p align="center">
-  Uma aplicação Web responsiva desenvolvida com <a href="https://pt-br.reactjs.org/">React</a> que consulte a API disponibilizada pelo teste da empresa <a href="https://github.com/hurbcom">Hurb,</a> exibindo a previsão do tempo.
+  Uma aplicação Web responsiva desenvolvida com <a href="https://pt-br.reactjs.org/">NextJS</a> que consulte a API disponibilizada pelo teste da empresa <a href="https://github.com/hurbcom">Hurb,</a> exibindo a previsão do tempo.
 </p>
