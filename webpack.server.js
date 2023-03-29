@@ -1,11 +1,12 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
   entry: './src/index.tsx',
   mode: NODE_ENV,
-  devtool: 'inline-source-map',
   target: 'node',
   externals: [nodeExternals()], // ignore modules in node_modules
   module: {
@@ -24,7 +25,17 @@ module.exports = {
     }
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
+    chunkFilename: "[name].chunk.js",
     path: path.resolve(__dirname, 'dist'),
+  },
+  plugins: [new ForkTsCheckerWebpackPlugin()],
+  watchOptions: {
+    ignored: /node_modules/,
+  },
+  optimization: {
+    minimize: true,
+    runtimeChunk: true,
+    chunkIds: 'named'
   },
 };
