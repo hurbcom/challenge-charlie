@@ -9,7 +9,7 @@ import { webpack } from 'webpack';
 
 import webpackDevMiddleware from 'webpack-dev-middleware';
 
-import Content from './pages/_content';
+import Router from './pages/_router';
 
 dotenv.config({ path: './.env' });
 const compiler = webpack(require('../webpack.config'));
@@ -31,7 +31,7 @@ const port = 3000;
 app.get(['/', '/about'], (req, res) => {
   const stream = renderToPipeableStream(
     <StaticRouter location={req.url}>
-      <Content />
+      <Router />
     </StaticRouter>
   );
   res.set('Content-Type', 'text/html');
