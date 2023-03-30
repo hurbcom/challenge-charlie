@@ -1,15 +1,12 @@
-import React, { ReactNode } from "react";
+import React from 'react';
+import * as ReactDOMClient from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import Content from './_content';
 
-const App = (): ReactNode => {
-    return (
-        <html>
-            <body>
-                <div>
-                    <h1>Hello, World!</h1>
-                </div>
-            </body>
-        </html>
-    );
-};
-
-export default App
+const container = document.getElementById('root');
+const root = ReactDOMClient.createRoot(container as HTMLElement);
+root.render(
+  <BrowserRouter>
+    <Content />
+  </BrowserRouter>
+);
