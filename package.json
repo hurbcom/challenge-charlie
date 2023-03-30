@@ -5,10 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.server.js --stats-error-details",
+    "build": "webpack --config webpack.config.js",
     "lint": "ts --lint",
-    "start": "npm run build && node dist/main.js",
-    "dev": "webpack serve --config webpack.server.js"
+    "start": "npm run build && node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -32,15 +31,25 @@
     "webpack": "^5.76.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/node": "^18.15.10",
     "@types/react": "^18.0.30",
     "@types/react-dom": "^18.0.11",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react-router": "^6.9.0",
+    "react-router-dom": "^6.9.0",
+    "terser-webpack-plugin": "^5.3.7",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.2",
     "webpack-cli": "^5.0.1",
+    "webpack-dev-middleware": "^6.0.2",
     "webpack-dev-server": "^4.13.1",
+    "webpack-hot-middleware": "^2.25.3",
     "webpack-node-externals": "^3.0.0"
   }
 }
