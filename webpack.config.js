@@ -3,6 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 require('dotenv').config({ path: './.env' });
@@ -14,7 +15,7 @@ module.exports = [
   {
     mode: NODE_ENV,
     target: 'web',
-    entry: { client: './src/pages/_app.tsx' },
+    entry: { client: './src/pages/_document.tsx' },
     output: {
       filename: '[name]/bundle.js',
       path: path.resolve(__dirname, 'dist'),
@@ -48,6 +49,10 @@ module.exports = [
           test: /\.(woff|woff2|ttf|svg|eot)$/,
           loader: 'file-loader',
         },
+        {
+          test: /\.css$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        },
       ],
     },
     plugins: [
@@ -55,6 +60,9 @@ module.exports = [
         inject: true,
         filename: path.resolve(__dirname, 'dist/client/index.html'),
         template: 'src/public/template.html',
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'styles.css',
       }),
       new ForkTsCheckerWebpackPlugin(),
       new webpack.HotModuleReplacementPlugin(),
@@ -76,6 +84,10 @@ module.exports = [
           use: 'ts-loader',
           exclude: /(node_modules|public|dist)/,
         },
+        {
+          test: /\.css$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        },
       ],
     },
     resolve: {
@@ -88,7 +100,12 @@ module.exports = [
       path: path.join(__dirname, 'dist'),
       filename: 'server.js',
     },
-    plugins: [new ForkTsCheckerWebpackPlugin()],
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'styles.css',
+      }),
+      new ForkTsCheckerWebpackPlugin(),
+    ],
     watchOptions: {
       ignored: /node_modules/,
     },
