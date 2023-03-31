@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackDevMiddleware(compiler));
 }
 
-import App from './pages/_app';
+import Container from './pages/_document';
 import Router from './pages/_router';
 
 app.use(cors());
@@ -31,11 +31,11 @@ const port = 3000;
 
 app.use(['/', '/about', '/home'], (req, res) => {
   const { pipe } = renderToPipeableStream(
-    <App>
+    <Container>
       <StaticRouter location={req.url}>
         <Router />
       </StaticRouter>
-    </App>,
+    </Container>,
     {
       bootstrapScripts: ['client/bundle.js'],
       onShellReady() {

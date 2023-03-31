@@ -17,7 +17,7 @@ let serverConfig = {
 let clientConfig = {
   target: 'web',
   entry: {
-    client: './src/pages/_document.tsx',
+    client: './src/pages/_app.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

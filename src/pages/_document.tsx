@@ -1,18 +1,19 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import * as ReactDOMClient from 'react-dom/client';
+import '@/styles/global.css'
 
-import Router from './_router';
-import App from './_app';
-
-const container = document.getElementById('root') as HTMLElement;
-ReactDOMClient.hydrateRoot(
-  document,
-  <App>
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
-  </App>
+const Container = (props: React.PropsWithChildren) => (
+  <html lang="en">
+    <head>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+      <title>Charlie Challange</title>
+      <link href="styles.css" rel="stylesheet"></link>
+    </head>
+    <body>
+      <div id="root">{props.children}</div>
+    </body>
+  </html>
 );
 
-export default App;
+export default Container;
