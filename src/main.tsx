@@ -2,7 +2,7 @@ import express from 'express';
 import React from 'react';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { Helmet } from 'react-helmet';
+
 import { StaticRouter } from 'react-router-dom/server';
 import { renderToPipeableStream } from 'react-dom/server';
 import { webpack } from 'webpack';
@@ -17,6 +17,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(require('webpack-hot-middleware')(compiler));
   app.use(webpackDevMiddleware(compiler));
 }
+
+import App from './pages/_app';
 import Router from './pages/_router';
 
 app.use(cors());
@@ -29,24 +31,13 @@ const port = 3000;
 
 app.use(['/', '/about', '/home'], (req, res) => {
   const { pipe } = renderToPipeableStream(
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-        <title>Charlie Challange</title>
-        <script defer src="../client/bundle.js"></script>
-        <link href="../styles.css" rel="stylesheet"></link>
-      </head>
-      <body>
-        <div id="root">
-          <StaticRouter location={req.url}>
-            <Router />
-          </StaticRouter>
-        </div>
-      </body>
-    </html>,
+    <App>
+      <StaticRouter location={req.url}>
+        <Router />
+      </StaticRouter>
+    </App>,
     {
+      bootstrapScripts: ['client/bundle.js'],
       onShellReady() {
         res.set('Content-Type', 'text/html');
         pipe(res);
