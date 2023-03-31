@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Home = () => {
   const [textColor, setTextColor] = useState('text-red-500');
+
+  useEffect(() => {
+    fetch('/api/health').then(async (res) => {
+      console.log(await res.json());
+    });
+  }, []);
 
   const changeColor = () => {
     textColor === 'text-red-500'
