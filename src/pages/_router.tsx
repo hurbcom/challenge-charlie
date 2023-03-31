@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
-import '@/styles/global.css';
-
 import NavBar from '@/components/NavBar';
 import About from '@/pages/about';
 import Home from '@/pages/home';
