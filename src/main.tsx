@@ -1,3 +1,7 @@
+/**
+ * Server module based on express.
+ */
+
 import express from 'express';
 import React from 'react';
 import cors from 'cors';
@@ -8,18 +12,20 @@ import { renderToPipeableStream } from 'react-dom/server';
 import { webpack } from 'webpack';
 
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import Container from './pages/_document';
+import Router from './pages/_router';
+import ApiRoutes from './api/routes';
 
 dotenv.config({ path: './.env' });
 const compiler = webpack(require('../webpack.config'));
 const app = express();
 
-if (process.env.NODE_ENV !== 'production') {
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+if (isDevelopment) {
   app.use(require('webpack-hot-middleware')(compiler));
   app.use(webpackDevMiddleware(compiler));
 }
-
-import Container from './pages/_document';
-import Router from './pages/_router';
 
 app.use(cors());
 
@@ -27,9 +33,12 @@ app.use(cors());
 app.use(express.static('./dist'));
 app.use(express.static('./dist/client'));
 
-const port = 3000;
+//including internal API routes
+app.use('/api', ApiRoutes);
 
-app.use(['/', '/about', '/home'], (req, res) => {
+const port = process.env.PORT || 3000;
+
+app.use(['/', '/about'], (req, res) => {
   const { pipe } = renderToPipeableStream(
     <Container>
       <StaticRouter location={req.url}>
