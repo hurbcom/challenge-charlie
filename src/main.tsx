@@ -40,9 +40,9 @@ app.use(['/', '/about', '/home'], (req, res) => {
       </head>
       <body>
         <div id="root">
-            <StaticRouter location={req.url}>
-              <Router />
-            </StaticRouter>
+          <StaticRouter location={req.url}>
+            <Router />
+          </StaticRouter>
         </div>
       </body>
     </html>,
