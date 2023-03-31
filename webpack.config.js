@@ -4,6 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const webpack = require('webpack');
 
 require('dotenv').config({ path: './.env' });
@@ -57,9 +58,9 @@ module.exports = [
     },
     plugins: [
       new HtmlWebpackPlugin({
-        inject: true,
         filename: path.resolve(__dirname, 'dist/client/index.html'),
         template: 'src/public/template.html',
+        minify: true
       }),
       new MiniCssExtractPlugin({
         filename: 'styles.css',
@@ -69,7 +70,7 @@ module.exports = [
     ],
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
+      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
   },
   {
