@@ -1,3 +1,7 @@
+/**
+ * Common webpack configuration shared between SSR and CSR configuration.
+ */
+
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');

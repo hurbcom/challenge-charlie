@@ -1,5 +1,9 @@
+/**
+ * Module that holds the main container shared between server and client.
+ */
+
 import React from 'react';
-import '@/styles/global.css'
+import '@/styles/global.css';
 
 const Container = (props: React.PropsWithChildren) => (
   <html lang="en">

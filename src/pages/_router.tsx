@@ -1,3 +1,7 @@
+/**
+ * Main client routes module defined by react-router.
+ */
+
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 

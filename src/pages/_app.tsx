@@ -1,3 +1,7 @@
+/**
+ * Main app module, not meant to be changed.
+ */
+
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOMClient from 'react-dom/client';
