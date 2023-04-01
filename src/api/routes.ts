@@ -1,17 +1,15 @@
 import express from 'express';
-import OpenCageService, { LocalityType } from '@/api/services/OpenCagesService';
+import OpenCageService from '@/api/services/OpenCagesService';
+import { LocalityType } from '@/types/global';
 
 const ApiRoutes = express.Router();
 
-ApiRoutes.get('/health', (req, res) => {
+ApiRoutes.get('/health', (_, res) => {
   res.json({ message: 'ok' }).status(200);
 });
 
 ApiRoutes.get('/locality', async (req, res) => {
-  // TODO: move logics into controller
-  const openCageService = new OpenCageService();
-  const { latitude, longitude } = req.query;
-  res.json(await openCageService.retrieveLocation({ latitude, longitude } as LocalityType));
+  res.json(await new OpenCageService(req.query as LocalityType).retrieveLocation());
 });
 
 export default ApiRoutes;
