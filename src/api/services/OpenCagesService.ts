@@ -1,26 +1,35 @@
-export type LocalityType = { latitude: string; longitude: string };
-
 interface OpenCageInterface {
+  longitude: string;
+  latitude: string;
   apiKey?: string;
   url?: string;
-  queryString: string;
-  retrieveLocation: (locality: LocalityType) => Promise<JSON>;
 }
 
 class OpenCageService implements OpenCageInterface {
-  apiKey?: string = process.env.OPENCAGE_API_KEY;
-  url?: string = 'https://api.opencagedata.com/geocode/v1/json?';
-  queryString: string = `no_annotations=1&key=${this.apiKey}&q=`;
+  longitude: string;
+  latitude: string;
+  apiKey = process.env.OPENCAGE_API_KEY;
+  url = `https://api.opencagedata.com/geocode/v1/json?no_annotations=1&key=${this.apiKey}&q=`;
 
-  constructor(args?: OpenCageInterface) {
-    this.apiKey = args?.apiKey || this.apiKey;
-    this.url = args?.url || this.url;
+  constructor({ latitude, longitude }: OpenCageInterface) {
+    this.longitude = longitude;
+    this.latitude = latitude;
+    this.url += `${this.latitude},${this.longitude}`;
+    try {
+      if (!!this.apiKey === false) {
+        throw new Error(
+          '[OpenCageService] No OpenCage API key found. Provide a key as an env var.'
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  async retrieveLocation(locality: { longitude: string; latitude: string }): Promise<JSON> {
-    const fullUrl = this.url + this.queryString + `${locality.latitude}','${locality.longitude}`;
-    return await fetch(fullUrl).then(async (res) => {
-      return await res.json();
+  public async retrieveLocation(): Promise<JSON> {
+    return await fetch(this.url).then(async (res) => {
+      const { results } = await res.json();
+      return results;
     });
   }
 }
