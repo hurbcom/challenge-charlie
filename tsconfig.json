@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "ES6",
-    "target": "ES5",
+    "target": "ES6",
     "jsx": "react",
     "sourceMap": true,
     "allowJs": true,
@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./*"],
     }
-  }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
 }
