@@ -1,5 +1,5 @@
 import express from 'express';
-import OpenCageService from '@/api/services/OpenCagesService';
+import { getLocationResults, getWeatherForecast } from './controllers/LocalityController';
 import { LocalityType } from '@/types/global';
 
 const ApiRoutes = express.Router();
@@ -9,7 +9,11 @@ ApiRoutes.get('/health', (_, res) => {
 });
 
 ApiRoutes.get('/locality', async (req, res) => {
-  res.json(await new OpenCageService(req.query as LocalityType).retrieveLocation());
+  res.json(await getLocationResults(req.query as LocalityType));
+});
+
+ApiRoutes.get('/forecast', async (req, res) => {
+  res.json(await getWeatherForecast(req.query as LocalityType));
 });
 
 export default ApiRoutes;
