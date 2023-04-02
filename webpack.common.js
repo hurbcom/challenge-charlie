@@ -7,9 +7,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-const webpack = require('webpack');
-const path = require('path');
-
 require('dotenv').config({ path: './.env' });
 
 const NODE_ENV =
@@ -21,7 +18,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
-      '@': '../',
+      '@': __dirname + '/src',
     },
   },
   module: {
@@ -51,7 +48,6 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'client/styles.css'
     })
