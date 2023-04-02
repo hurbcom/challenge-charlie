@@ -9,23 +9,13 @@ import dotenv from 'dotenv';
 
 import { StaticRouter } from 'react-router-dom/server';
 import { renderToPipeableStream } from 'react-dom/server';
-import { webpack } from 'webpack';
 
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import Container from './pages/_document';
-import Router from './pages/_router';
-import ApiRoutes from './api/routes';
+import Container from '@/pages/_document';
+import Router from '@/pages/_router';
+import ApiRoutes from '@/api/routes';
 
 dotenv.config({ path: './.env' });
-const compiler = webpack(require('../webpack.config'));
 const app = express();
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
-
-if (isDevelopment) {
-  app.use(require('webpack-hot-middleware')(compiler));
-  app.use(webpackDevMiddleware(compiler));
-}
 
 app.use(cors());
 
