@@ -1,6 +1,8 @@
 import express from 'express';
-import { getLocationResults, getWeatherForecast } from './controllers/LocalityController';
+
 import { LocalityType } from '@/types/global';
+import { getLocationResults, getWeatherForecast } from '@/api/controllers/LocalityController';
+import { getDailyImageUrl } from '@/api/controllers/BgImageController';
 
 const ApiRoutes = express.Router();
 
@@ -14,6 +16,10 @@ ApiRoutes.get('/locality', async (req, res) => {
 
 ApiRoutes.get('/forecast', async (req, res) => {
   res.json(await getWeatherForecast(req.query as LocalityType));
+});
+
+ApiRoutes.get('/backgroundImage', async (req, res) => {
+  res.json(await getDailyImageUrl());
 });
 
 export default ApiRoutes;
