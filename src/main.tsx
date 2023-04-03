@@ -6,6 +6,7 @@ import express from 'express';
 import React from 'react';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 
 import { StaticRouter } from 'react-router-dom/server';
 import { renderToPipeableStream } from 'react-dom/server';
@@ -18,6 +19,9 @@ dotenv.config({ path: './.env' });
 const app = express();
 
 app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // For client side rendering
 app.use(express.static('./dist'));
