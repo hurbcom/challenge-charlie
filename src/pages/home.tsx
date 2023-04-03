@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import dayjs from 'dayjs';
 import { LocalityType } from '@/types/global';
 
 const Home = () => {
@@ -11,6 +13,17 @@ const Home = () => {
           console.log(await res.json());
         }
       );
+      fetch(`/api/forecast?latitude=${res.latitude}&longitude=${res.longitude}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          today: dayjs().format('YYYY-MM-DD'),
+        }),
+      }).then(async (res) => {
+        console.log(await res.json());
+      });
     });
   }, []);
 
