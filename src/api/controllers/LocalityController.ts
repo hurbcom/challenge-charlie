@@ -1,25 +1,51 @@
-import OpenCageService from '@/api/services/OpenCagesService';
-import OpenWeatherService from '@/api/services/OpenWeatherService';
-import { LocalityType } from '@/types/global';
 import dayjs from 'dayjs';
 
-const getLocationResults = async ({ latitude, longitude }: LocalityType) => {
-  const { results } = await new OpenCageService({ latitude, longitude }).retrieveLocation();
-  return results;
+import OpenCageService from '@/api/services/OpenCagesService';
+import OpenWeatherService from '@/api/services/OpenWeatherService';
+
+import { LocalityType } from '@/types/global';
+import { WeatherContentPayload, LocationResultsPayload } from '@/types/payload';
+import {
+  WeatherForecastParams,
+  LocationResultsParams,
+  BuildWeatherContentParams,
+} from '@/types/params';
+
+const getLocationResults = async (
+  params: LocationResultsParams
+): Promise<LocationResultsPayload> => {
+  return await new OpenCageService(params).retrieveLocation();
 };
 
 const getWeatherForecast = async (
-  { latitude, longitude }: LocalityType,
-  { today }: { today: string }
-) => {
-  const weatherList = await new OpenWeatherService({ latitude, longitude }).retrieveForecast();
+  params: WeatherForecastParams
+): Promise<WeatherContentPayload> => {
+  const locationResults = await getLocationResults(params as LocalityType);
+  const { components, formatted } = locationResults[0];
+  const weatherList = await new OpenWeatherService(params as LocalityType).retrieveForecast();
+  const forecast = _buildForecastPayload({
+    weatherList: weatherList.list,
+    browserDate: params.browserDate!,
+    count: params.count!,
+  });
+  return { geolocation: { ...components, formatted }, forecast } as WeatherContentPayload;
+};
 
-  const forecast = weatherList.list.reduce((acc: Array<Object>, cur: any) => {
-    if (dayjs(cur.dt_txt).isAfter(today)) {
-      today = dayjs(today).add(21, 'hours').toString();
+const _buildForecastPayload = ({
+  weatherList,
+  count,
+  browserDate,
+}: BuildWeatherContentParams): Array<Object> => {
+  return weatherList.reduce((acc: Array<Object>, cur: any) => {
+    if (acc.length <= parseInt(count) && dayjs(cur.dt_txt).isAfter(browserDate)) {
+      let dayText = 'HOJE';
+      if (acc.length === 1) dayText = 'AMANHÃ';
+      if (acc.length === 2) dayText = 'DEPOIS DE AMANHÃ';
       acc.push({
+        dayText,
         unixTime: cur.dt,
         date: cur.dt_txt,
+        tempColor: _getTemperatureColor(cur.main.temp),
         temp: `${Math.round(cur.main.temp)}°C`,
         temp_min: `${Math.round(cur.main.temp_min)}°C`,
         temp_max: `${Math.round(cur.main.temp_max)}°C`,
@@ -30,12 +56,19 @@ const getWeatherForecast = async (
         windDirection: OpenWeatherService.windDegreeToDirection(cur.wind.deg),
         windFull: `${OpenWeatherService.windDegreeToDirection(cur.wind.deg)} ${cur.wind.speed}km/h`,
         icon: cur.weather[0].icon,
-        description: cur.weather[0].description,
+        description:
+          cur.weather[0].description.charAt(0).toUpperCase() + cur.weather[0].description.slice(1),
       });
+      browserDate = dayjs(browserDate).add(1, 'day').toString();
     }
     return acc;
   }, []);
-  return { city: weatherList.city, forecast };
+};
+
+const _getTemperatureColor = (temperature: number) => {
+  if (Math.round(temperature) < 15) return 'blue';
+  if (Math.round(temperature) > 35) return 'red';
+  return 'yellow';
 };
 
 export { getLocationResults, getWeatherForecast };
