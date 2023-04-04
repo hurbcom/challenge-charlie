@@ -1,9 +1,10 @@
 import express from 'express';
+import dayjs from 'dayjs';
 
-import { LocalityType } from '@/types/global';
 import { getLocationResults, getWeatherForecast } from '@/api/controllers/LocalityController';
 import { getDailyImageUrl } from '@/api/controllers/BgImageController';
-import { nextTick } from 'process';
+
+import { WeatherForecastParams, LocationResultsParams } from '@/types/params';
 
 const ApiRoutes = express.Router();
 
@@ -11,7 +12,7 @@ ApiRoutes.all('*', (req, res, next) => {
   if (req.method === 'POST' && !!req.body === false) {
     res.status(400).json({ message: 'No request body' });
   }
-  next()
+  next();
 });
 
 ApiRoutes.get('/health', (_, res) => {
@@ -19,11 +20,21 @@ ApiRoutes.get('/health', (_, res) => {
 });
 
 ApiRoutes.get('/locality', async (req, res) => {
-  res.json(await getLocationResults(req.query as LocalityType));
+  req.query = {
+    latitude: req.query.latitude || '0',
+    longitude: req.query.longitude || '0',
+  };
+  res.json(await getLocationResults(req.query as LocationResultsParams));
 });
 
 ApiRoutes.post('/forecast', async (req, res) => {
-  res.json(await getWeatherForecast(req.query as LocalityType, req.body as {today: string}));
+  req.query = {
+    latitude: req.query.latitude || '0',
+    longitude: req.query.longitude || '0',
+    browserDate: req.query.browserDate || dayjs().format('YYYY-MM-DD'),
+    count: req.query.cnt || '2',
+  };
+  res.json(await getWeatherForecast(req.query as WeatherForecastParams));
 });
 
 ApiRoutes.get('/backgroundImage', async (req, res) => {
