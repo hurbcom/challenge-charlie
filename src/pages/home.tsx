@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 import dayjs from 'dayjs';
+import WeatherContent from '@/components/WeatherContent';
+
 import { LocalityType } from '@/types/global';
+import { WeatherContentPayload } from '@/types/payload';
 
 const Home = () => {
   const [textColor, setTextColor] = useState('text-red-500');
+  const [weatherData, setWeatherData] = useState<WeatherContentPayload | null>();
 
   useEffect(() => {
     getGeolocation().then((res: LocalityType) => {
-      fetch(`/api/locality?latitude=${res.latitude}&longitude=${res.longitude}`).then(
-        async (res) => {
-          console.log(await res.json());
-        }
-      );
       fetch(`/api/forecast?latitude=${res.latitude}&longitude=${res.longitude}`, {
         method: 'POST',
         headers: {
@@ -22,7 +21,7 @@ const Home = () => {
           today: dayjs().format('YYYY-MM-DD'),
         }),
       }).then(async (res) => {
-        console.log(await res.json());
+        setWeatherData(await res.json());
       });
     });
   }, []);
@@ -41,9 +40,9 @@ const Home = () => {
     textColor === 'text-red-500' ? setTextColor('text-blue-500') : setTextColor('text-red-500');
   };
   return (
-    <h1 className={textColor} onClick={() => changeColor()}>
-      Home
-    </h1>
+    <div className={`flex flex-col content-center max-w-full min-h-screen`}>
+      <WeatherContent {...(weatherData as WeatherContentPayload)} />
+    </div>
   );
 };
 
