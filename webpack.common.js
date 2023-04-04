@@ -9,12 +9,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 require('dotenv').config({ path: './.env' });
 
-const NODE_ENV =
-  process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
   mode: NODE_ENV,
-  devtool: 'source-map',
+  devtool: NODE_ENV === 'prodution' ? 'source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
@@ -34,11 +33,11 @@ module.exports = {
       },
       {
         test: /\.(mov|mp4|jpg|svg|gif|png|ico)$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.(woff|woff2|ttf|svg|eot)$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.css$/,
@@ -49,8 +48,8 @@ module.exports = {
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'client/styles.css'
-    })
+      filename: 'client/styles.css',
+    }),
   ],
   optimization: {
     minimize: true,
