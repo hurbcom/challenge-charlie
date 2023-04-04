@@ -10,11 +10,11 @@ class OpenWeatherService extends LocationService {
     super({ latitude, longitude, apiKey: process.env.OPENWEATHER_API_KEY || '' });
   }
 
-  public async retrieveForecast(): Promise<{ list: Array<Object>; city: Object; _: any }> {
+  public async retrieveForecast(): Promise<{ list: Array<Object>; city: any; _: any }> {
     this.endpoint = 'forecast';
     return await fetch(this.url).then(async (res) => {
       return await res.json();
-    });
+    }).catch(err => console.log(err));
   }
 
   public async retrieveCurrentWeather(): Promise<{ list: Array<Object>; _: any }> {
