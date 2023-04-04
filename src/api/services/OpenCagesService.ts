@@ -1,5 +1,6 @@
 import LocationService from '@/api/services/LocationService';
 import { LocalityType } from '@/types/global';
+import { LocationResultsPayload } from '@/types/payload';
 
 class OpenCageService extends LocationService {
   url =
@@ -10,9 +11,10 @@ class OpenCageService extends LocationService {
     super({ latitude, longitude, apiKey: process.env.OPENCAGE_API_KEY || '' });
   }
 
-  public async retrieveLocation(): Promise<{results: Array<object>, _: any}> {
+  public async retrieveLocation(): Promise<LocationResultsPayload> {
     return await fetch(this.url).then(async (res) => {
-      return await res.json();
+      const { results } = await res.json();
+      return results;
     });
   }
 }
