@@ -32,6 +32,8 @@ All the following dependencies must be installed:
     - [Optional] Docker 23.0.1
     - [Optional]Docker Compose 2.17.2
 
+<br />
+
 - application:
     - express": 4.18.2,
     - react: 18.2.0,
