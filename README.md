@@ -57,3 +57,11 @@ Godspeed! ;)
 <p align="center">
   <img src="ca.jpg" alt="Challange accepted" />
 </p>
+
+<br />
+
+---
+
+<br />
+
+## PS: If you need information to run the application completed for this challange, take a look at the [Running the Application](./docs/running.md) docs.
