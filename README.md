@@ -64,4 +64,4 @@ Godspeed! ;)
 
 <br />
 
-## PS: If you need information to run the application completed for this challange, take a look at the [Running the Application](./docs/running.md) docs.
+## PS: If you need information to run the application completed for this challange, take a look at the [Running the Application](./docs/running.md) docs, you can also take a look at the [API docs](./docs/api.md).
