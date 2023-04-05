@@ -7,6 +7,7 @@ import { LocalityType } from '@/types/global';
 
 const WeatherContent = ({ latitude, longitude }: LocalityType) => {
   const [inputValue, setInputValue] = useState('');
+  const [placeholderValue, setPlaceholderValue] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherContentPayload | null>();
 
   const handleInput = useCallback(
@@ -14,10 +15,8 @@ const WeatherContent = ({ latitude, longitude }: LocalityType) => {
       if (key === 'Enter' && inputValue) {
         setWeatherData(null);
         setInputValue('');
-        const res = await fetch(`/api/locality?address=${inputValue}`);
-        const [location] = await res.json();
-        const { lat, lng } = location.geometry;
-        const weatherData = await getWeatherData(lat, lng);
+        const geometry = await getLocationGeometry();
+        const weatherData = await getWeatherData(geometry.lat, geometry.lng);
         setWeatherData(weatherData);
       }
     },
@@ -27,8 +26,22 @@ const WeatherContent = ({ latitude, longitude }: LocalityType) => {
   useEffect(() => {
     if (!weatherData) {
       getWeatherData(latitude, longitude).then(setWeatherData);
+      getLocationGeometry(latitude, longitude);
     }
   }, [weatherData, latitude, longitude]);
+
+  const getLocationGeometry = async (
+    latitude = '0',
+    longitude = '0'
+  ): Promise<{ lat: string; lng: string }> => {
+    let url = inputValue
+      ? `/api/locality?address=${inputValue}`
+      : `/api/locality?latitude=${latitude}&longitude=${longitude}`;
+    const res = await fetch(url);
+    const { geometry, formatted } = await res.json();
+    setPlaceholderValue(formatted);
+    return geometry;
+  };
 
   const getWeatherData = async (lat: string, lng: string) => {
     const res = await fetch(`/api/forecast?latitude=${lat}&longitude=${lng}`, {
@@ -52,10 +65,7 @@ const WeatherContent = ({ latitude, longitude }: LocalityType) => {
         <div id="input" className="flex text-slate-600 bg-white">
           <p className="text-center py-5 font-['MeteoconsRegular'] w-1/6 text-5xl">(</p>
           <input
-            placeholder={
-              weatherData?.geolocation &&
-              `${weatherData.geolocation.city}, ${weatherData.geolocation.state}`
-            }
+            placeholder={placeholderValue}
             className="p-5 w-5/6"
             type="text"
             value={inputValue}

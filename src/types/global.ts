@@ -1,1 +1,1 @@
-export type LocalityType = { latitude: string; longitude: string; address?: string };
+export type LocalityType = { latitude: string; longitude: string; address: string };

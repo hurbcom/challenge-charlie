@@ -4,7 +4,11 @@ import OpenCageService from '@/api/services/OpenCagesService';
 import OpenWeatherService from '@/api/services/OpenWeatherService';
 
 import { LocalityType } from '@/types/global';
-import { WeatherContentPayload, LocationResultsPayload } from '@/types/payload';
+import {
+  WeatherContentPayload,
+  LocationResultsPayload,
+  LocationResultsPayloadReduced,
+} from '@/types/payload';
 import {
   WeatherForecastParams,
   LocationResultsParams,
@@ -13,15 +17,25 @@ import {
 
 const getLocationResults = async (
   params: LocationResultsParams
-): Promise<LocationResultsPayload> => {
-  return await new OpenCageService(params).retrieveLocation();
+): Promise<LocationResultsPayloadReduced> => {
+  const locationResults = await new OpenCageService(params).retrieveLocation();
+  const reducedResults = locationResults.reduce(
+    (acc, cur) => {
+      if (cur.components._type !== 'country' && cur.confidence < acc.confidence) {
+        return cur;
+      }
+      return acc;
+    },
+    { confidence: Infinity }
+  );
+  return reducedResults as LocationResultsPayloadReduced;
 };
 
 const getWeatherForecast = async (
   params: WeatherForecastParams
 ): Promise<WeatherContentPayload> => {
   const locationResults = await getLocationResults(params as LocalityType);
-  const { components, formatted } = locationResults[0];
+  const { components, formatted } = locationResults;
   const weatherList = await new OpenWeatherService(params as LocalityType).retrieveForecast();
   const forecast = _buildForecastPayload({
     weatherList: weatherList.list,

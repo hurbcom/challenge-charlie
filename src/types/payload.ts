@@ -83,3 +83,43 @@ export type LocationResultsPayload = [
     };
   }
 ];
+export type LocationResultsPayloadReduced = {
+  bounds: {
+    northeast: {
+      lat: number;
+      lng: number;
+    };
+    southwest: {
+      lat: number;
+      lng: number;
+    };
+  };
+  components: {
+    'ISO_3166-1_alpha-2': any;
+    'ISO_3166-1_alpha-3': any;
+    'ISO_3166-2': any;
+    _category: string;
+    _type: string;
+    city: string;
+    city_district: string;
+    continent: string;
+    country: string;
+    country_code: string;
+    county: string;
+    municipality: string;
+    postcode: string;
+    region: string;
+    road: string;
+    road_type: string;
+    state: string;
+    state_code: string;
+    state_district: string;
+    suburb: string;
+  };
+  confidence: number;
+  formatted: string;
+  geometry: {
+    lat: number;
+    lng: number;
+  };
+};
