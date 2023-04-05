@@ -45,7 +45,7 @@ const _buildForecastPayload = ({
         dayText,
         unixTime: cur.dt,
         date: cur.dt_txt,
-        tempColor: _getTemperatureColor(cur.main.temp),
+        tempColor: getTemperatureColor(cur.main.temp),
         temp: `${Math.round(cur.main.temp)}°C`,
         temp_min: `${Math.round(cur.main.temp_min)}°C`,
         temp_max: `${Math.round(cur.main.temp_max)}°C`,
@@ -65,9 +65,10 @@ const _buildForecastPayload = ({
   }, []);
 };
 
-const _getTemperatureColor = (temperature: number) => {
-  if (Math.round(temperature) < 15) return 'blue';
-  if (Math.round(temperature) > 35) return 'red';
+const getTemperatureColor = (temperature: number) => {
+  const roundedTemp = Math.round(temperature);
+  if (roundedTemp <= 15) return 'blue';
+  if (roundedTemp >= 35) return 'red';
   return 'yellow';
 };
 
