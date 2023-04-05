@@ -3,25 +3,21 @@ import { LocalityType } from '@/types/global';
 
 class OpenWeatherService extends LocationService {
   queryParams = `?lang=pt_br&units=metric&appid=${this.apiKey}&lat=${this.latitude}&lon=${this.longitude}`;
-  endpoint: 'forecast' | 'weather' = 'forecast';
-  url = `https://api.openweathermap.org/data/2.5/${this.endpoint}${this.queryParams}`;
+  endpoint: 'forecast' | 'weather';
+  url = `https://api.openweathermap.org/data/2.5/`;
 
   constructor({ latitude, longitude }: LocalityType) {
     super({ latitude, longitude, apiKey: process.env.OPENWEATHER_API_KEY || '' });
+    this.endpoint = 'forecast';
+    this.url += this.endpoint + this.queryParams;
   }
 
   public async retrieveForecast(): Promise<{ list: Array<Object>; city: any; _: any }> {
-    this.endpoint = 'forecast';
-    return await fetch(this.url).then(async (res) => {
-      return await res.json();
-    }).catch(err => console.log(err));
-  }
-
-  public async retrieveCurrentWeather(): Promise<{ list: Array<Object>; _: any }> {
-    this.endpoint = 'weather';
-    return await fetch(this.url).then(async (res) => {
-      return await res.json();
-    });
+    return await fetch(this.url)
+      .then(async (res) => {
+        return await res.json();
+      })
+      .catch((err) => console.log(err));
   }
 
   static convertTemperature(temperature: number, toCelsius: boolean = true) {
