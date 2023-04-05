@@ -19,3 +19,12 @@ I decided to use webpack + babel to win extra points ;)
 [] Use the (bing highlight api)[https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US] to show the backgropund image
 [] Dockerize
 [] Optmize and Clean up
+W
+
+## KISS
+
+I'll start as simply as possible. Just creating the layout and styles on the App.jsx and see how far I can go without feeling the urge to abstract html to components.
+
+To have a bunch of global styles and some css reset logic we'll need the `styles.css`.
+
+I'll put the famous reset.css content in my styles.css for reseting the browser styles and avoid de incompatible browser styles.WW
