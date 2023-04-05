@@ -1,47 +1,46 @@
 import React, { useState, useEffect } from 'react';
 
-import dayjs from 'dayjs';
 import WeatherContent from '@/components/WeatherContent';
-
 import { LocalityType } from '@/types/global';
-import { WeatherContentPayload } from '@/types/payload';
+import Spinner from '@/components/Spinner';
 
 const Home = () => {
-  const [textColor, setTextColor] = useState('text-red-500');
-  const [weatherData, setWeatherData] = useState<WeatherContentPayload | null>();
+  const [locality, setLocality] = useState<LocalityType>();
 
   useEffect(() => {
-    getGeolocation().then((res: LocalityType) => {
-      fetch(`/api/forecast?latitude=${res.latitude}&longitude=${res.longitude}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          today: dayjs().format('YYYY-MM-DD'),
-        }),
-      }).then(async (res) => {
-        setWeatherData(await res.json());
-      });
-    });
+    getGeolocation().then((res) => setLocality({ ...res }));
   }, []);
 
   async function getGeolocation(): Promise<LocalityType> {
-    if (!localStorage.getItem('locality')) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        localStorage.setItem('locality', JSON.stringify({ latitude, longitude }));
-      });
+    let localityData = JSON.parse(localStorage.getItem('locality') as string);
+
+    if (!localityData) {
+      const position = await getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+      localityData = { latitude, longitude };
+      localStorage.setItem('locality', JSON.stringify(localityData));
     }
-    return await JSON.parse(localStorage.getItem('locality') as string);
+
+    return localityData;
   }
 
-  const changeColor = () => {
-    textColor === 'text-red-500' ? setTextColor('text-blue-500') : setTextColor('text-red-500');
-  };
+  async function getCurrentPosition(): Promise<GeolocationPosition> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+
   return (
     <div className={`flex flex-col content-center max-w-full min-h-screen`}>
-      <WeatherContent {...(weatherData as WeatherContentPayload)} />
+      {locality ? (
+        <WeatherContent {...locality} />
+      ) : (
+        <div className="h-screen text-1xl flex-col bg-slate-300 bg-opacity-70 text-white shadow-lg md:mx-32 md:text-2xl lg:mx-80 lg:text-3xl">
+          <div className="pt-32">
+            <Spinner />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
