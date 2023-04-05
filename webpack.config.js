@@ -8,6 +8,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 
 require('dotenv').config({ path: './.env' });
@@ -15,20 +17,12 @@ require('dotenv').config({ path: './.env' });
 const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 const commonConfig = {
-  target: 'web',
-  entry: {
-    client: './src/pages/_app.tsx',
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name]/bundle.js',
-  },
   mode: NODE_ENV,
-  devtool: NODE_ENV === 'prodution' ? 'source-map' : 'eval',
+  devtool: NODE_ENV === 'production' ? 'source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
-      '@': __dirname + '/src',
+      '@': '/src',
     },
   },
   module: {
@@ -52,7 +46,7 @@ const commonConfig = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -72,10 +66,29 @@ const commonConfig = {
 module.exports = [
   merge(commonConfig, {
     target: 'web',
+    entry: {
+      client: './src/pages/_app.tsx',
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name]/bundle.js',
+    },
+    devServer: {
+      port: 3000,
+      hot: true,
+      proxy: {
+        '/': {
+          target: 'http://localhost:8000',
+        },
+      },
+      historyApiFallback: true,
+    },
   }),
   merge(commonConfig, {
     target: 'node',
-    entry: './src/main.tsx',
+    entry: [
+      './src/main.tsx',
+    ],
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'server.js',
