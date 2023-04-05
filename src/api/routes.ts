@@ -23,6 +23,7 @@ ApiRoutes.get('/locality', async (req, res) => {
   req.query = {
     latitude: req.query.latitude || '0',
     longitude: req.query.longitude || '0',
+    ...req.query,
   };
   res.json(await getLocationResults(req.query as LocationResultsParams));
 });
@@ -33,6 +34,7 @@ ApiRoutes.post('/forecast', async (req, res) => {
     longitude: req.query.longitude || '0',
     browserDate: req.query.browserDate || dayjs().format('YYYY-MM-DD'),
     count: req.query.cnt || '2',
+    ...req.query,
   };
   res.json(await getWeatherForecast(req.query as WeatherForecastParams));
 });
