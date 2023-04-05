@@ -1,8 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { WeatherContentPayload } from '@/types/payload';
 import Spinner from '@/components/Spinner';
 
-const WeatherContent = ({ geolocation, forecast }: WeatherContentPayload) => {
+import dayjs from 'dayjs';
+import { LocalityType } from '@/types/global';
+
+const WeatherContent = ({ latitude, longitude }: LocalityType) => {
+  const [inputValue, setInputValue] = useState('');
+  const [weatherData, setWeatherData] = useState<WeatherContentPayload | null>();
+
+  const handleInput = useCallback(
+    async (key: string) => {
+      if (key === 'Enter' && inputValue) {
+        setWeatherData(null);
+        setInputValue('');
+        const res = await fetch(`/api/locality?address=${inputValue}`);
+        const [location] = await res.json();
+        const { lat, lng } = location.geometry;
+        const weatherData = await getWeatherData(lat, lng);
+        setWeatherData(weatherData);
+      }
+    },
+    [inputValue]
+  );
+
+  useEffect(() => {
+    if (!weatherData) {
+      getWeatherData(latitude, longitude).then(setWeatherData);
+    }
+  }, [weatherData, latitude, longitude]);
+
+  const getWeatherData = async (lat: string, lng: string) => {
+    const res = await fetch(`/api/forecast?latitude=${lat}&longitude=${lng}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        today: dayjs().format('YYYY-MM-DD'),
+      }),
+    });
+    return res.json();
+  };
+
   return (
     <div className="flex min-h-screen w-full bg-transparent">
       <div
@@ -12,14 +52,19 @@ const WeatherContent = ({ geolocation, forecast }: WeatherContentPayload) => {
         <div id="input" className="flex text-slate-600 bg-white">
           <p className="text-center py-5 font-['MeteoconsRegular'] w-1/6 text-5xl">(</p>
           <input
-            placeholder={!!geolocation && `${geolocation.city}, ${geolocation.state}`}
+            placeholder={
+              weatherData?.geolocation &&
+              `${weatherData.geolocation.city}, ${weatherData.geolocation.state}`
+            }
             className="p-5 w-5/6"
             type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => handleInput(e.key)}
           />
         </div>
-        {!!geolocation && !!forecast ? (
-          forecast.map((e, index) => {
-            console.log(forecast.length, index);
+        {weatherData?.geolocation && weatherData?.forecast ? (
+          weatherData.forecast.map((e, index) => {
             return (
               <>
                 {e.dayText.toUpperCase() === 'HOJE' ? (
@@ -62,7 +107,7 @@ const WeatherContent = ({ geolocation, forecast }: WeatherContentPayload) => {
             );
           })
         ) : (
-          <div id="currentDay" className={`w-full h-full`}>
+          <div className={`w-full h-full`}>
             <div className="pt-32">
               <Spinner />
             </div>
