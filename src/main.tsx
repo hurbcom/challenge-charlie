@@ -39,7 +39,7 @@ app.use(express.static('./dist/client'));
 //including internal API routes
 app.use('/api', ApiRoutes);
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.use(['/'], (req, res) => {
   const { pipe } = renderToPipeableStream(
