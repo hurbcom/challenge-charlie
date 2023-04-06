@@ -7,7 +7,6 @@ module.exports = {
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "build"),
-        assetModuleFilename: "images/[hash][ext][query]",
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -29,31 +28,19 @@ module.exports = {
                 use: ["babel-loader"],
             },
             {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 1,
-                            modules: true,
-                        },
-                    },
-                ],
-                include: /\.module\.css$/,
+                test: /\.(svg|png|jp(e*)g|gif)$/,
+                type: "asset/resource",
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"],
-                exclude: /\.module\.css$/,
-            },
-            {
-                test: /\.(svg|png|jpg|jpeg)$/,
+                test: /\.(woff|woff2|ttf|svg|eot)$/,
                 type: "asset/resource",
             },
         ],
     },
     resolve: {
         extensions: ["*", ".js", ".jsx"],
+        alias: {
+            public: path.resolve(__dirname, "public"),
+        },
     },
 };
