@@ -73,6 +73,7 @@ export const ContentRight = styled(C.Flex)`
     margin-bottom: 2.4rem;
 
     font-size: 3.2rem;
+    text-transform: capitalize;
   }
 
   > h3 {

@@ -1,4 +1,4 @@
-export type BingWallpaperData = {
+export type WallpaperToBingAPIData = {
   images: [
     {
       startdate: string
@@ -18,6 +18,13 @@ export type BingWallpaperData = {
       hs: []
     },
   ]
+  tooltips: {
+    loading: string
+    previous: string
+    next: string
+    walle: string
+    walls: string
+  }
 }
 
 export type WallpaperData = {
