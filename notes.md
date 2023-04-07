@@ -18,4 +18,25 @@ I decided to use webpack + babel to win extra points ;)
 [] Collect and use geographic coordinates to retrieve user location name (OpenCage API)[https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en]
 [] Use the (bing highlight api)[https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US] to show the backgropund image
 [] Dockerize
-[] Optmize and Clean up
+[] Optmize
+[] Clean up
+
+## KISS
+
+I'll start as simply as possible. Just creating the layout and styles on the App.jsx and see how far I can go without feeling the urge to abstract to components.
+
+To have a bunch of global styles and some css reset logic we'll need the `styles.css`.
+
+I'll put the famous reset.css content in my styles.css for reseting the browser styles and avoid de incompatible browser styles.
+
+I decided to use styled-components as my main styling option and to use no framework as tailwind sounded like an overkill for such a small project.
+
+Beginning with the styling I found two tough decisions I had to make:
+
+1 - How to deal with the background image and it's overlay. My initial take was using a pseudoelement to show the image and the element as the overlay. But that seemed to be too unclear and a future developer would have a hard time to debug it. So I opted out to split components by it's function. Separating the overlay, the content and the background image components. That will a future developer will know where to look after problems. It's important to always think ahead and create things easy to change.
+
+2 - How to deal with the weather icons. First I I decided to use the icons as SVG for being more semantic and easy to find and reason about. But creating a SVG library and the respective mappings sounded like an overkill. So I'll stick with the font. That comes with it's own complexities. The font mapping is cumbersome and I neeeded to think about a way to when the Future Developer touch my code they know that "(" is equivalent to the compass icon. So I did a styled-component mixin for the compass and mapped the icon names given by OpenWeather to the cumbersome characters of the meteocons font. This should keep the Future Developer safe.
+
+## Organizing.
+
+Next thing I decided to clean up a little bit and organize the existent code, abstracting some of the View logic to separated dumb components. I'll stick with the most simply alternative of organization, a simple components folder as I'm avoiding premature optimizations and overengineering.
