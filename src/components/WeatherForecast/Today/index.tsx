@@ -1,6 +1,12 @@
 import * as S from './styles'
 
-export function Today() {
+import { Today } from '~/@types/Weather'
+
+interface TodayProps {
+  data: Today | undefined
+}
+
+export function Today({ data }: TodayProps) {
   return (
     <S.Container>
       <S.Wrapper>
@@ -11,15 +17,15 @@ export function Today() {
         <S.ContentRight>
           <S.Text as={'h1'}>HOJE</S.Text>
 
-          <S.Text as={'h2'}>32°C</S.Text>
+          <S.Text as={'h2'}>{data?.main.temp}°C</S.Text>
 
-          <S.Text as={'h2'}>Ensolarado</S.Text>
+          <S.Text as={'h2'}>{data?.weather.description}</S.Text>
 
-          <S.Text as={'h3'}>Vento: NO 6.4km/h</S.Text>
+          <S.Text as={'h3'}>Vento: NO {data?.wind.speed} km/h</S.Text>
 
-          <S.Text as={'h3'}>Humidade: 78%</S.Text>
+          <S.Text as={'h3'}>Humidade: {data?.main.humidity}%</S.Text>
 
-          <S.Text as={'h3'}>Pressão: 100 3hPA</S.Text>
+          <S.Text as={'h3'}>Pressão: {data?.main.pressure}hPA</S.Text>
         </S.ContentRight>
       </S.Wrapper>
     </S.Container>
