@@ -40,7 +40,8 @@ module.exports = {
     resolve: {
         extensions: ["*", ".js", ".jsx"],
         alias: {
-            public: path.resolve(__dirname, "public"),
+            "@public": path.resolve(__dirname, "public"),
+            "@components": path.resolve(__dirname, "src/components"),
         },
     },
 };

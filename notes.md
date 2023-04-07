@@ -29,8 +29,14 @@ To have a bunch of global styles and some css reset logic we'll need the `styles
 
 I'll put the famous reset.css content in my styles.css for reseting the browser styles and avoid de incompatible browser styles.
 
+I decided to use styled-components as my main styling option and to use no framework as tailwind sounded like an overkill for such a small project.
+
 Beginning with the styling I found two tough decisions I had to make:
 
-1 - How to deal with the background image and it's overlay. My initial take was using a pseudoelement to show the image and the element as the overlay. But that seemed to be too unclear and a future developer would have a hard time to debug it. So I opted out to split components by it's function. Separating the overlay, the content and the background image components. That will a future developer will know where to look after problems.
+1 - How to deal with the background image and it's overlay. My initial take was using a pseudoelement to show the image and the element as the overlay. But that seemed to be too unclear and a future developer would have a hard time to debug it. So I opted out to split components by it's function. Separating the overlay, the content and the background image components. That will a future developer will know where to look after problems. It's important to always think ahead and create things easy to change.
 
-2 - How to deal with the weather icons. First I thought about using it as a font. This seems to be the most performatic approach. BUT, the implementation leaves too much be done by the dev and has an unclear mapping strategy (e.g using A for the sunrise icon) so I decided to use the icons as SVG for being more semantic and easy to find and reason about.
+2 - How to deal with the weather icons. First I I decided to use the icons as SVG for being more semantic and easy to find and reason about. But creating a SVG library and the respective mappings sounded like an overkill. So I'll stick with the font. That comes with it's own complexities. The font mapping is cumbersome and I neeeded to think about a way to when the Future Developer touch my code they know that "(" is equivalent to the compass icon. So I did a styled-component mixin for the compass and mapped the icon names given by OpenWeather to the cumbersome characters of the meteocons font. This should keep the Future Developer safe.
+
+## Organizing.
+
+Next thing I decided to clean up a little bit and organize the existent code, abstracting some of the View logic to separated dumb components. I'll stick with the most simply alternative of organization, a simple components folder as I'm avoiding premature optimizations and overengineering.
