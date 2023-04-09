@@ -1,6 +1,8 @@
 export type bingImageModel = {
-    images: [
-        url: string,
-        title: string
-    ]
+    images: Images[]
+}
+
+type Images = {
+    url: string
+    title: string
 }
