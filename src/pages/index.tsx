@@ -4,6 +4,7 @@ import { CityModel } from "@/domain/models/city"
 import useLocation from "@/hooks/useLocation"
 import { RemoteGetImageBing } from "@/useCases/remote-get-image-bing"
 import { RemoteGetLocalCity } from "@/useCases/remote-get-local-city"
+import { RemoteGetWeather } from "@/useCases/remote-get-weather"
 import { useEffect, useState } from "react"
 import { toast } from 'react-hot-toast'
 
@@ -39,8 +40,9 @@ export default function Home({ bingApi }: Props) {
     })
 
     const city = new RemoteGetLocalCity()
+    const weather = new RemoteGetWeather
     const location = useLocation()
-
+    const cityDefault = state.CityApi.body?.results[0].components.city || 'são paulo'
     useEffect(() => {
         if (bingApi.error) {
             toast.error(bingApi.error)
@@ -50,13 +52,17 @@ export default function Home({ bingApi }: Props) {
         }
         city
             .get(location)
-            .then(res => setState(old => ({ ...old, CityApi: res })))
+            .then(res =>
+                setState(old => ({ ...old, CityApi: res })))
             .catch(err => {
                 toast.error(err)
                 toast.error('Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
             })
-
-    }, [])
+        weather
+            .get(cityDefault)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }, [cityDefault])
 
     const bgImg = `https://www.bing.com${state?.bingApi.body?.images[0].url}`
 
@@ -66,6 +72,7 @@ export default function Home({ bingApi }: Props) {
             style={{ backgroundImage: `url(${bgImg})` }}
         >
             <h1 className="text-blue-700">Hello world Hurb :D</h1>
+            <h1>{cityDefault}</h1>
         </div>
     )
 }
