@@ -14,6 +14,34 @@
     --tw-bg-opacity: 0.8 !important;
 }
 
+.card.first.blue{
+    @apply bg-blue-500
+}
+.card.second.blue{
+    @apply bg-blue-400
+}
+.card.third.blue{
+    @apply bg-blue-700
+}
+.card.first.red{
+    @apply bg-red-500
+}
+.card.second.red{
+    @apply bg-red-400
+}
+.card.third.red{
+    @apply bg-red-700
+}
+.card.first.yellow{
+    @apply bg-yellow-500
+}
+.card.second.yellow{
+    @apply bg-yellow-400
+}
+.card.third.yellow{
+    @apply bg-yellow-700
+}
+
 @font-face {
     font-family: 'MeteoconsRegular';
     src: url('../assets/font/metaocons/meteocons-webfont.eot');
