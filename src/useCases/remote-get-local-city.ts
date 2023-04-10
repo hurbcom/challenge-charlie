@@ -1,5 +1,7 @@
+import { HttpResponse, HttpStatusCode } from "@/data/http/http-client";
 import { GetLocalCity } from "@/data/useCases/get-local-city";
-import { LocationModel } from "@/domain/models/city";
+import { ForbiddenError, ServerError, UnauthorizedError } from "@/domain/Errors";
+import { CityModel, LocationModel } from "@/domain/models/city";
 import useLocation from "@/hooks/useLocation";
 import { AxiosHttpClientAdapter } from "@/infra/http/axios-client-adapter";
 
@@ -9,10 +11,15 @@ export class RemoteGetLocalCity implements GetLocalCity {
         const { latitude, longitude } = location.location
         const token = process.env.NEXT_PUBLIC_OPEN_CAGE
         const client = new AxiosHttpClientAdapter()
-        const response = client.request({
+        const response = await client.request({
             url: `https://api.opencagedata.com/geocode/v1/json?key=${token}&q=${latitude}%2C${longitude}&pretty=1`,
             method: 'get'
         })
-        return response
+        switch (response.statusCode) {
+            case HttpStatusCode.ok: return response.body
+            case HttpStatusCode.unauthorized: throw new UnauthorizedError()
+            case HttpStatusCode.forbidden: throw new ForbiddenError()
+            default: throw new ServerError(response.error)
+        }
     }
 }
