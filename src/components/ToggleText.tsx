@@ -3,7 +3,7 @@ import { usePopperTooltip } from 'react-popper-tooltip'
 import 'react-popper-tooltip/dist/styles.css'
 
 const ToggleText = ({ first, second }: any) => {
-    const [word, setWord] = useState(first);
+    const [showFirstWord, setShowFirstWord] = useState(true);
     const {
         getArrowProps,
         getTooltipProps,
@@ -14,15 +14,10 @@ const ToggleText = ({ first, second }: any) => {
         placement: 'left'
     })
 
-
-    function changeText() {
-        setWord(word === first ? second : first);
-    }
-
     return (
         <>
-            <div onClick={changeText} className="cursor-pointer">
-                <p className="text-white text-lg cursor-pointer" ref={setTriggerRef}>{word}</p>
+            <div onClick={() => setShowFirstWord(old => !old)} className="cursor-pointer">
+                <p className="text-white text-lg cursor-pointer" ref={setTriggerRef}>{showFirstWord ? first : second}</p>
             </div>
             {visible &&
                 <div
