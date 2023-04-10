@@ -1,6 +1,9 @@
 import { HttpResponse } from "@/data/http/http-client"
 import { bingImageModel } from "@/domain/models/bing-image-model"
+import { CityModel } from "@/domain/models/city"
+import useLocation from "@/hooks/useLocation"
 import { RemoteGetImageBing } from "@/useCases/remote-get-image-bing"
+import { RemoteGetLocalCity } from "@/useCases/remote-get-local-city"
 import { useEffect, useState } from "react"
 import { toast } from 'react-hot-toast'
 
@@ -8,11 +11,12 @@ type Props = {
     bingApi: HttpResponse<bingImageModel>
 }
 
-type StateProps = {
-    bingApi: HttpResponse<bingImageModel>
+type State = {
+    bingApi: HttpResponse<bingImageModel>,
+    CityApi: HttpResponse<CityModel>
 }
 export default function Home({ bingApi }: Props) {
-    const [state, setState] = useState<StateProps>({
+    const [state, setState] = useState<State>({
         bingApi: {
             body: {
                 images: [{
@@ -21,19 +25,38 @@ export default function Home({ bingApi }: Props) {
                 }]
             },
             statusCode: 200
+        },
+        CityApi: {
+            statusCode: 200,
+            body: {
+                results: [{
+                    components: {
+                        city: 'São Paulo'
+                    }
+                }]
+            }
         }
     })
+
+    const city = new RemoteGetLocalCity()
+    const location = useLocation()
 
     useEffect(() => {
         if (bingApi.error) {
             toast.error(bingApi.error)
-            toast.error('Não foi possivel recuperar a imagem de fundo, uma imagem template será exibida até o proximo sucesso!')
+            toast.error('Não foi possível recuperar a imagem de fundo, uma imagem template será exibida até o proximo sucesso!')
         } else {
             setState(old => ({ ...old, bingApi: bingApi }))
         }
-    }, [])
+        city
+            .get(location)
+            .then(res => setState(old => ({ ...old, CityApi: res })))
+            .catch(err => {
+                toast.error(err)
+                toast.error('Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
+            })
 
-    console.log(state)
+    }, [])
 
     const bgImg = `https://www.bing.com${state?.bingApi.body?.images[0].url}`
 
