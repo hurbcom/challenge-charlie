@@ -1,3 +1,4 @@
+import Card from "@/components/Card"
 import { HttpResponse } from "@/data/http/http-client"
 import { bingImageModel } from "@/domain/models/bing-image-model"
 import { CityModel } from "@/domain/models/city"
@@ -71,9 +72,8 @@ export default function Home({ bingApi }: Props) {
             className={`w-full h-screen flex justify-center items-center`}
             style={{ backgroundImage: `url(${bgImg})` }}
         >
-            <h1 className="text-blue-700">Hello world Hurb :D</h1>
-            <h1>{cityDefault}</h1>
-        </div>
+            <Card />
+        </div >
     )
 }
 
