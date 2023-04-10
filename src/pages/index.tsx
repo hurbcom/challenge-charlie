@@ -1,4 +1,6 @@
 import Card from "@/components/Card"
+import Error from "@/components/Error"
+import Spinner from "@/components/Spinner"
 import { HttpResponse } from "@/data/http/http-client"
 import { bingImageModel } from "@/domain/models/bing-image-model"
 import { CityModel } from "@/domain/models/city"
@@ -20,6 +22,9 @@ type State = {
     weatherApi?: HttpResponse<WeatherData>
     citySearch: string
     loading: boolean
+    isError: boolean
+    error: string
+    reload: boolean
 }
 export default function Home({ bingApi }: Props) {
     const [state, setState] = useState<State>({
@@ -32,46 +37,49 @@ export default function Home({ bingApi }: Props) {
             }
         },
         citySearch: 'São Paulo',
-        loading: false
+        loading: false,
+        isError: false,
+        error: '',
+        reload: false
     })
 
     const city = new RemoteGetLocalCity()
     const weather = new RemoteGetWeather
     const location = useLocation()
 
-
-
     useEffect(() => {
-        setState(old => ({ ...old, loading: true }))
+        setState(old => ({ ...old, loading: true, reload: false }))
         if (bingApi.error) {
             toast.error(bingApi.error)
             toast.error('Não foi possível recuperar a imagem de fundo, uma imagem template será exibida até o proximo sucesso!')
         } else {
-            setState(old => ({ ...old, bingApi: bingApi }))
+            setState(old => ({ ...old, bingApi: bingApi, reload: false }))
         }
         city
             .get(location)
-            .then(res =>
-                setState(old => ({ ...old, citySearch: res.body.results[0].components.city, loading: false })))
+            .then(res => {
+                setState(old => ({ ...old, citySearch: res.body.results[0].components.city, loading: false, reload: false }))
+            }
+            )
             .catch(err => {
-                toast.error(err)
+                setState(old => ({ ...old, loading: false, reload: false }))
                 toast.error('Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
-                setState(old => ({ ...old, loading: false }))
             })
     }, [])
 
     useEffect(() => {
-        setState(old => ({ ...old, loading: true }))
+        setState(old => ({ ...old, loading: true, reload: false }))
         weather
             .get(state.citySearch)
-            .then(res => setState(old => ({ ...old, weatherApi: res, loading: false })))
+            .then(res => {
+                setState(old => ({ ...old, weatherApi: res, loading: false, reload: false }))
+            })
             .catch(err => {
-                console.log(err)
+                setState(old => ({ ...old, loading: false, isError: true, error: 'A api de consulta climática está temporariamente offiline', reload: false }))
                 toast.error('Não foi possível realizar a requisição')
-                setState(old => ({ ...old, loading: false }))
             })
 
-    }, [state.citySearch])
+    }, [state.citySearch, state.reload])
 
     const bgImg = `https://www.bing.com${state?.bingApi?.body?.images[0].url}`
 
@@ -80,7 +88,11 @@ export default function Home({ bingApi }: Props) {
             className={`w-full h-screen flex justify-center items-center`}
             style={{ backgroundImage: `url(${bgImg})` }}
         >
-            <Card data={state.weatherApi?.body} setState={setState} search={state.citySearch} loading={state.loading} />
+            {state.isError && <Error error={state.error} reload={() => setState(old => ({ ...old, reload: true }))} />}
+            {state.loading && <Spinner />}
+            {state.weatherApi?.body &&
+                <Card data={state.weatherApi?.body} setState={setState} search={state.citySearch} loading={state.loading} />
+            }
         </div >
     )
 }
