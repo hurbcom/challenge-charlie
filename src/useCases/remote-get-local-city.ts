@@ -6,7 +6,6 @@ import { AxiosHttpClientAdapter } from "@/infra/http/axios-client-adapter";
 
 export class RemoteGetLocalCity implements GetLocalCity {
     async get(location: LocationModel) {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { latitude, longitude } = location.location
         const token = process.env.NEXT_PUBLIC_OPEN_CAGE
         const client = new AxiosHttpClientAdapter()
