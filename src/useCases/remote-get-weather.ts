@@ -19,7 +19,7 @@ export class RemoteGetWeather implements GetWeather {
             const latitude = cityInfo.body.results[0].geometry.lat
             const longitude = cityInfo.body.results[0].geometry.lng
             response = await client.request({
-                url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely,alerts&units=imperial&appid=${appWeatherId}`,
+                url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely,alerts&lang=pt_br&units=imperial&appid=${appWeatherId}`,
                 method: 'get'
             })
         } catch (error) {
