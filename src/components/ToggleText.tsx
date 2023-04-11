@@ -2,7 +2,7 @@ import { useState } from "react";
 import { usePopperTooltip } from 'react-popper-tooltip'
 import 'react-popper-tooltip/dist/styles.css'
 
-const ToggleText = ({ first, second }: any) => {
+const ToggleText = ({ first, second }: { first: string, second: string }) => {
     const [showFirstWord, setShowFirstWord] = useState(true);
     const {
         getArrowProps,

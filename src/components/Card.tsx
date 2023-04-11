@@ -1,5 +1,5 @@
 
-import { useMemo, useState } from 'react'
+import { Dispatch, FormEvent, SetStateAction, useMemo, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import ToggleText from './ToggleText'
 import { WeatherData } from '@/domain/models/weather'
@@ -8,10 +8,11 @@ import Spinner from './Spinner'
 import getColor from '@/utils/getColor'
 import getDirections from '@/utils/getDirections'
 import Image from 'next/image'
+import { HomeState } from '@/pages'
 
 type Props = {
     data: WeatherData
-    setState: any
+    setState: Dispatch<SetStateAction<HomeState>>
     search: string
     loading: boolean
 }
@@ -46,9 +47,9 @@ const Card = ({ data, setState, search, loading }: Props) => {
             }
         }
     }, [data])
-    const handleSearch = (e: any) => {
+    const handleSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setState((old: any) => ({ ...old, citySearch: cityName }))
+        setState((old: HomeState) => ({ ...old, citySearch: cityName }))
     }
 
     return (

@@ -17,7 +17,7 @@ type Props = {
     bingApi: HttpResponse<bingImageModel>
 }
 
-type State = {
+export type HomeState = {
     bingApi?: HttpResponse<bingImageModel>,
     CityApi?: CityModel
     weatherApi?: WeatherData
@@ -28,7 +28,7 @@ type State = {
     reload: boolean
 }
 export default function Home({ bingApi }: Props) {
-    const [state, setState] = useState<State>({
+    const [state, setState] = useState<HomeState>({
         bingApi: {
             body: {
 
