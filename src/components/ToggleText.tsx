@@ -16,7 +16,7 @@ const ToggleText = ({ first, second }: any) => {
 
     return (
         <>
-            <div onClick={() => setShowFirstWord(old => !old)} className="cursor-pointer">
+            <div onClick={() => setShowFirstWord(old => !old)} className="cursor-pointer" data-testid="toggle">
                 <p className="text-white text-lg cursor-pointer" ref={setTriggerRef}>{showFirstWord ? first : second}</p>
             </div>
             {visible &&
