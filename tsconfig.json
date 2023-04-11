@@ -7,8 +7,10 @@
         "lib": ["dom", "esnext"],
         "strict": true,
         "sourceMap": true,
-        "target": "esnext"
-    },
+        "target": "esnext",
+        "paths": {
+            "test-utils": ["./src/utils/test-utils.tsx"]
+        },
         "baseUrl": "src"
     },
     "include": ["./src"],

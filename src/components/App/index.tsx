@@ -1,9 +1,10 @@
 import React from "react";
 
 const App = () => {
+
     return (
         <div>
-            <h1>Hello World </h1>
+            <h2>Hello World! Jest is working fine!</h2>
         </div>
     );
 };

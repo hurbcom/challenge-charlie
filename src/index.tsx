@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
-import App from "./App";
 import React from "react";
+import App from "components/App";
 
 // Clear the existing HTML content
 const container = document.getElementById("root") as HTMLElement;
