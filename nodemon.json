@@ -1,0 +1,15 @@
+{
+    "watch": [
+        "server/",
+        "dev/",
+        "tsconfig.json",
+        "webpack.config.ts",
+        "swc.config.json",
+        ".env.defaults",
+        ".env"
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ext": "env,defaults,js,ts,tsx,html"
+}

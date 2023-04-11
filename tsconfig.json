@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["ES2019", "DOM"],
+        "allowJs": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noEmit": true,
+        "jsx": "react",
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "strict": true,
+        "paths": {
+            "@pages/*": ["./react/pages/*"],
+            "@components/*": ["./react/components/*"],
+            "*": ["./node_module/*"] // without this, it's trying to resolve import 'react' as react/index.ts from our workspace
+        }
+    }
+}

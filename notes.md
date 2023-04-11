@@ -40,3 +40,18 @@ Beginning with the styling I found two tough decisions I had to make:
 ## Organizing.
 
 Next thing I decided to clean up a little bit and organize the existent code, abstracting some of the View logic to separated dumb components. I'll stick with the most simply alternative of organization, a simple components folder as I'm avoiding premature optimizations and overengineering.
+
+I like to let related functions and related styled-components in the same file as the main component. This can become confusing in a case as WeatherTab where there are many little components composing the exported one. In that case a new file can be created to receive the styled-components for that component.
+
+## Serverside rendering
+
+In the beginning of the implementation of the background something became clear: The process of getting from the bing API and, after that, loading a large image was too much for the frontend and will result in a suboptimal experience with a white screen jumping to the image very fast.
+Aside for that, there is a CORS problem with the Bing API. My thesis is that I can solve both (at least minimize the first) with serverside rendering.
+
+I'll try to make the least absurd changes to the code as I can, just add the node server and the ssr related logic.
+
+In a first moment I wanted to use the brand new renderToPipeableStream API to get the best from Suspense and timeslicing features from react 18, but styled-components can't deal with the new API and has no plans on addressing this issue due to the react team plans on adding new features (issue)[https://github.com/styled-components/styled-components/issues/3658#issuecomment-1496198643]
+
+So I needed to change some details of my implementation. I've implemented a workaround to use renderToPipeableStream and be prepared for the new features that will be rolled out for React 18's streaming render when the styled-components lib update it's API. As the project grew in complexity I thought was reasonable to convert it to Typescript. At first, just as a soft conversion. The typing will be reforced before I actually finish. I also changed details of the webpack bundling, removed some plugins and changed the transpiler to use SWC. The main reason for the transpiler change was the speed in the typescript transpilation.
+
+I also bootstraped jest as my test engine.

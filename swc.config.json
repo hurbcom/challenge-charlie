@@ -1,0 +1,36 @@
+{
+    "jsc": {
+        "externalHelpers": true,
+        "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "dynamicImport": true
+        },
+        "transform": {
+            "react": {
+                "runtime": "automatic"
+            }
+        },
+        "keepClassNames": true,
+        "experimental": {
+            "plugins": [
+                [
+                    "@swc/plugin-styled-components",
+                    {
+                        "displayName": true,
+                        "ssr": true
+                    }
+                ]
+            ]
+        },
+        "baseUrl": ".",
+        "paths": {
+            "@pages/*": ["react/pages/*"],
+            "@components/*": ["react/components/*"]
+        }
+    },
+    "module": {
+        "type": "commonjs"
+    },
+    "sourceMaps": true
+}
