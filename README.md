@@ -50,4 +50,6 @@ assim podemos garantir: - Uma maior fidelidade na representação dos _status_ -
 **- Feedbacks**<br/>
 ![enter image description here](https://i.imgur.com/Qh3nbMa.png)
 <br/>
-Feedbacks dinamicos para manter o usário atualizado e informado do que ocorre.
+Feedbacks dinâmicos para manter o usuário atualizado e informado do que ocorre.
+
+obs:. as variáveis de ambiente estão expostas para que seja possível uma rápida inicialização
