@@ -1,8 +1,7 @@
-import { HttpResponse, HttpStatusCode } from "@/data/http/http-client";
+import { HttpStatusCode } from "@/data/http/http-client";
 import { GetLocalCity } from "@/data/useCases/get-local-city";
 import { ForbiddenError, ServerError, UnauthorizedError } from "@/domain/Errors";
-import { CityModel, LocationModel } from "@/domain/models/city";
-import useLocation from "@/hooks/useLocation";
+import { LocationModel } from "@/domain/models/city";
 import { AxiosHttpClientAdapter } from "@/infra/http/axios-client-adapter";
 
 export class RemoteGetLocalCity implements GetLocalCity {
