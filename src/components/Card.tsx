@@ -6,6 +6,8 @@ import { WeatherData } from '@/domain/models/weather'
 import fahrenheitToCelsius from '@/utils/convertTemp'
 import Spinner from './Spinner'
 import getColor from '@/utils/getColor'
+import getDirections from '@/utils/getDirections'
+import Image from 'next/image'
 
 type Props = {
     data: WeatherData
@@ -23,11 +25,14 @@ const Card = ({ data, setState, search, loading }: Props) => {
             first: {
                 tempF: data?.current.temp.toFixed(),
                 tempC: fahrenheitToCelsius(data?.current.temp || 0),
-                wind: data?.current.wind_speed,
+                windSpeed: (data?.current.wind_speed * 3.6).toFixed(2),
+                windAngle: getDirections(data.current.wind_deg),
                 pressure: data?.current.pressure,
                 humidity: data?.current.humidity,
                 climate: data?.current.weather[0].main,
-                color: getColor(parseInt(data?.current.temp.toFixed()))
+                color: getColor(parseInt(data?.current.temp.toFixed())),
+                desc: data.current.weather[0].description,
+                icon: data.current.weather[0].icon
             },
             second: {
                 tempF: parseInt(data.daily[2].temp.day.toFixed()),
@@ -41,7 +46,6 @@ const Card = ({ data, setState, search, loading }: Props) => {
             }
         }
     }, [data])
-
     const handleSearch = (e: any) => {
         e.preventDefault()
         setState((old: any) => ({ ...old, citySearch: cityName }))
@@ -66,14 +70,22 @@ const Card = ({ data, setState, search, loading }: Props) => {
                     <div
                         className={`flex w-full justify-center py-8 items-center card first ${temp.first.color}`}
                     >
-                        <span data-icon="B" className="icon text-9xl text-white w-1/2 text-center"></span>
+                        <div className='w-1/2 flex justify-center items center'>
+                            <Image
+                                width={108}
+                                height={108}
+                                className='bg-[rgba(255,255,255,0.1)] border-4 border-dotted border-[rgba(255,255,255,0.2)] rounded-2xl'
+                                src={`https://openweathermap.org/img/wn/${temp.first.icon}@2x.png`}
+                                alt={`representação gráfica da condição climatica %${temp.first.desc}`}
+                            />
+                        </div>
                         <div className="w-1/2">
                             <p className="text-white text-lg font-semibold">HOJE</p>
                             <ToggleText first={`${temp.first.tempC}°C`} second={`${temp.first.tempF}°F`} />
-                            <p className="text-white text-xl font-semibold my-4">ENSOLARADO</p>
-                            <p className="text-white font-medium">Vento: NO 6.4km/h</p>
-                            <p className="text-white font-medium">Humidade: 78%</p>
-                            <p className="text-white font-medium">Pressão: 100 3hPA</p>
+                            <p className="text-white text-xl font-semibold my-4 uppercase">{temp.first.desc}</p>
+                            <p className="text-white font-medium">Vento: {temp.first.windAngle} {temp.first.windSpeed} km/h</p>
+                            <p className="text-white font-medium">Humidade: {temp.first.humidity}%</p>
+                            <p className="text-white font-medium">Pressão: {temp.first.pressure}hPA</p>
                         </div>
                     </div>
                     <div

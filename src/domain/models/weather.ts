@@ -11,6 +11,7 @@ export interface WeatherData {
         uvi: number;
         clouds: number;
         wind_speed: number;
+        wind_deg: number;
         weather: {
             id: number;
             main: string;

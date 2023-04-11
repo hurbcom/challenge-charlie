@@ -14,4 +14,5 @@ export interface LocationModel {
         latitude: number,
         longitude: number
     }
+    loading: boolean
 }
