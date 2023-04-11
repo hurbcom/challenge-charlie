@@ -6,7 +6,7 @@ const path = require('path');
 const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: path.resolve(__dirname, './src/index.tsx'),
     devtool: prod ? undefined : 'inline-source-map',
     mode: prod ? 'production' : 'development',
     output: {
@@ -25,6 +25,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.tsx', '.ts', '.json'],
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
     },
     module: {
         rules: [
