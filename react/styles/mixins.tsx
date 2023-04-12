@@ -12,3 +12,9 @@ export const globalFontMixin = css`
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
 `;
+
+export const opacityVariables = css`
+    --max-bg-opacity: 0.4;
+    --medium-bg-opacity: 0.6;
+    --min-bg-opacity: 0.8;
+`;

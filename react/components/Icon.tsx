@@ -1,7 +1,9 @@
 // This seems a bit arbitrary, but is a dictionary based on the documentations from open weather and meteocons, for reference:
 // https://openweathermap.org/weather-conditions
 // https://www.alessioatzeni.com/meteocons/
+import { DEVICES } from "../constants/index";
 import React from "react";
+import styled from "styled-components";
 
 const iconDict: Record<string, string> = {
     "01d": "B", //clear sky day
@@ -23,6 +25,17 @@ const iconDict: Record<string, string> = {
     "13n": "V", //snow
     "50n": "M", //mist
 };
+
+export const WeatherIcon = styled.div<{ icon: string }>`
+    font-size: 9rem;
+    @media ${DEVICES["tablet"]} {
+        font-size: 12rem;
+    }
+    ::before {
+        content: "${({ icon }) => icon}";
+        font-family: "MeteoconsRegular";
+    }
+`;
 
 export default ({ iconCode }: { iconCode: string }) => {
     return <i data-icon={iconDict[iconCode]}></i>;
