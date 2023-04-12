@@ -49,17 +49,35 @@ export default function Home({ bingApi }: Props) {
     const weather = new RemoteGetWeather
     const location = useLocation()
 
+    const handleWeather = (cityName?: string): void => {
+        setState(old => ({ ...old, loading: true, reload: false }))
+        weather
+            .get(cityName || state.citySearch)
+            .then(res => {
+                setState(old => ({ ...old, weatherApi: res, loading: false, reload: false }))
+                console.log(res)
+                toast(`A busca retornou: ${res.location}`, {
+                    icon: '📍'
+                })
+            })
+            .catch(err => {
+                setState(old => ({ ...old, loading: false, isError: true, error: 'A api de consulta climática está temporariamente offiline', reload: false }))
+                toast.error('Não foi possível realizar a requisição')
+            })
+    }
+
     useEffect(() => {
         setState(old => ({ ...old, loading: true, reload: false }))
         if (bingApi.error) {
             toast.error(bingApi.error)
             toast.error('Não foi possível recuperar a imagem de fundo, uma imagem template será exibida até o proximo sucesso!')
         } else {
-            setState(old => ({ ...old, bingApi: bingApi, reload: false }))
+            setState(old => ({ ...old, bingApi: bingApi }))
         }
         if (cachedLocation !== "") {
             toast.success('Conseguimos pegar sua localização atual.')
             setState(old => ({ ...old, citySearch: cachedLocation, loading: false, reload: false }))
+            handleWeather()
         }
         else if (!location.loading) {
             city
@@ -68,6 +86,7 @@ export default function Home({ bingApi }: Props) {
                     setState(old => ({ ...old, citySearch: res.results[0].components.city, loading: false, reload: false }))
                     setCachedLocation(res.results[0].components.city)
                     toast.success('Conseguimos pegar sua localização atual.')
+                    handleWeather()
                 }
                 )
                 .catch(err => {
@@ -75,25 +94,12 @@ export default function Home({ bingApi }: Props) {
                     toast.error('Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
                 })
         } else {
-
-            toast.error('Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
+            toast.error('Error: Não foi possível localizar sua cidade atual, iremos usar São Paulo como padrão.')
+            handleWeather()
         }
 
     }, [location.loading])
 
-    useEffect(() => {
-        setState(old => ({ ...old, loading: true, reload: false }))
-        weather
-            .get(state.citySearch)
-            .then(res => {
-                setState(old => ({ ...old, weatherApi: res, loading: false, reload: false }))
-            })
-            .catch(err => {
-                setState(old => ({ ...old, loading: false, isError: true, error: 'A api de consulta climática está temporariamente offiline', reload: false }))
-                toast.error('Não foi possível realizar a requisição')
-            })
-
-    }, [state.citySearch, state.reload])
 
     const bgImg = `https://www.bing.com${state?.bingApi?.body?.images[0].url}`
 
@@ -102,11 +108,11 @@ export default function Home({ bingApi }: Props) {
             className={`w-full h-screen flex justify-center items-center`}
             style={{ backgroundImage: `url(${bgImg})` }}
         >
-            {state.isError && <Error error={state.error} reload={() => setState(old => ({ ...old, reload: true }))} />}
+            {state.isError && <Error error={state.error} reload={handleWeather} />}
             {state.loading && <Spinner />}
             {location.loading && <Spinner />}
             {state.weatherApi &&
-                <Card data={state.weatherApi} setState={setState} search={state.citySearch} loading={state.loading} />
+                <Card data={state.weatherApi} handleSearch={handleWeather} search={state.citySearch} loading={state.loading} />
             }
         </div >
     )

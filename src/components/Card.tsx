@@ -9,15 +9,16 @@ import getColor from '@/utils/getColor'
 import getDirections from '@/utils/getDirections'
 import Image from 'next/image'
 import { HomeState } from '@/pages'
+import { VoidExpression } from 'typescript'
 
 type Props = {
     data: WeatherData
-    setState: Dispatch<SetStateAction<HomeState>>
+    handleSearch: (c?: string) => void
     search: string
     loading: boolean
 }
 
-const Card = ({ data, setState, search, loading }: Props) => {
+const Card = ({ data, handleSearch, search, loading }: Props) => {
 
     const [cityName, setCityName] = useState(search)
 
@@ -47,14 +48,14 @@ const Card = ({ data, setState, search, loading }: Props) => {
             }
         }
     }, [data])
-    const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    const submitSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setState((old: HomeState) => ({ ...old, citySearch: cityName }))
+        handleSearch(cityName)
     }
 
     return (
         <div className="w-full max-w-md">
-            <form onSubmit={handleSearch} className="flex w-full bg-white p-2 px-4 items-center gap-4">
+            <form onSubmit={submitSearch} className="flex w-full bg-white p-2 px-4 items-center gap-4">
                 <span data-icon="(" className="icon text-2xl text-slate-500"></span>
                 <input
                     value={cityName}

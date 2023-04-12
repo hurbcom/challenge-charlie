@@ -22,6 +22,10 @@ export class RemoteGetWeather implements GetWeather {
                 url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely,alerts&lang=pt_br&units=imperial&appid=${appWeatherId}`,
                 method: 'get'
             })
+            response.body = {
+                ...response.body,
+                location: cityInfo.body.results[0].formatted
+            }
         } catch (error) {
             response = {
                 statusCode: 500,
