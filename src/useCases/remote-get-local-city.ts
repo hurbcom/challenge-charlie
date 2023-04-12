@@ -1,6 +1,6 @@
 import { HttpStatusCode } from "@/data/http/http-client";
 import { GetLocalCity } from "@/data/useCases/get-local-city";
-import { ForbiddenError, ServerError, UnauthorizedError } from "@/domain/Errors";
+import { BadRequestError, ForbiddenError, ServerError, UnauthorizedError } from "@/domain/Errors";
 import { LocationModel } from "@/domain/models/city";
 import { AxiosHttpClientAdapter } from "@/infra/http/axios-client-adapter";
 
@@ -17,6 +17,7 @@ export class RemoteGetLocalCity implements GetLocalCity {
             case HttpStatusCode.ok: return response.body
             case HttpStatusCode.unauthorized: throw new UnauthorizedError()
             case HttpStatusCode.forbidden: throw new ForbiddenError()
+            case HttpStatusCode.badRequest: throw new BadRequestError()
             default: throw new ServerError(response.error)
         }
     }
