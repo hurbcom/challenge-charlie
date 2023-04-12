@@ -16,6 +16,8 @@ const Input = styled.input`
     color: #666;
     font-size: 2rem;
     font-weight: 600;
+    box-sizing: border-box;
+    max-width: 500px;
 `;
 
 const InputWrapper = styled.span`

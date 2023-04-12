@@ -16,6 +16,8 @@
         "paths": {
             "@pages/*": ["./react/pages/*"],
             "@components/*": ["./react/components/*"],
+            "@interfaces/*": ["./react/interfaces/*"],
+            "@constants/*": ["./react/constants/*"],
             "*": ["./node_module/*"] // without this, it's trying to resolve import 'react' as react/index.ts from our workspace
         }
     }

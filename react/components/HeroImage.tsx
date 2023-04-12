@@ -28,6 +28,7 @@ const Content = styled.div`
     position: relative;
     z-index: 2;
     height: 100vh;
+    flex-direction: column;
 `;
 
 export default ({
