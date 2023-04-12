@@ -52,4 +52,8 @@ assim podemos garantir: - Uma maior fidelidade na representação dos _status_ -
 <br/>
 Feedbacks dinâmicos para manter o usuário atualizado e informado do que ocorre.
 
+**- Retorno de busca**<br/>
+<br/>
+Foi adicionado um feedback com o nome da região que a API retornou para informar o usuário o local exato que esta consumindo a informação.
+
 obs:. as variáveis de ambiente estão expostas para que seja possível uma rápida inicialização
