@@ -33,4 +33,12 @@ describe('remote get weather', () => {
         const promisse = await client.get('any_city')
         expect(promisse).toEqual(data)
     })
+
+    test('should correct error response', async () => {
+        mock
+            .onGet().reply(500, data) //first call
+            .onGet().reply(500, data) //second call
+
+        await expect(client.get('any_city')).rejects.toThrowError(new ServerError())
+    })
 })
