@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: transparent;
+  scroll-behavior: smooth;
+}
+
+.card {
+    --tw-bg-opacity: 0.8 !important;
+}
+
+.card.first.blue{
+    @apply bg-blue-500
+}
+.card.second.blue{
+    @apply bg-blue-400
+}
+.card.third.blue{
+    @apply bg-blue-700
+}
+.card.first.red{
+    @apply bg-red-500
+}
+.card.second.red{
+    @apply bg-red-400
+}
+.card.third.red{
+    @apply bg-red-700
+}
+.card.first.yellow{
+    @apply bg-yellow-500
+}
+.card.second.yellow{
+    @apply bg-yellow-400
+}
+.card.third.yellow{
+    @apply bg-yellow-700
+}
+
+@font-face {
+    font-family: 'MeteoconsRegular';
+    src: url('../assets/font/metaocons/meteocons-webfont.eot');
+    src: url('../assets/font/metaocons/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/font/metaocons/meteocons-webfont.woff') format('woff'),
+         url('../assets/font/metaocons/meteocons-webfont.ttf') format('truetype'),
+         url('../assets/font/metaocons/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.icon:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+}
+
+.tooltip-container {
+    --tooltipBorder: #1e293b !important;
+    --tooltipBackground: #020617 !important;
+}
