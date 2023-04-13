@@ -80,4 +80,27 @@ describe('Card component', () => {
 
         expect(spinner).toBeInTheDocument()
     })
+
+    test('should avoid render error and show correct value in case of not having the api data', () => {
+
+        props.data.current.temp = 0
+        props.data.daily[2].temp.day = 0
+        props.data.daily[3].temp.day = 0
+
+        const { getByTestId } = makeSut(props)
+        const element = getByTestId('card-condition')
+
+        expect(element).toBeInTheDocument()
+    })
+
+    test('should disable button', () => {
+
+        props.search = ''
+
+        const { getByTestId } = makeSut(props)
+        const element = getByTestId('card-btn')
+
+        expect(element).toHaveAttribute('disabled')
+    })
+
 });
