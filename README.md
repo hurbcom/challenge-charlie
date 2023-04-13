@@ -14,7 +14,6 @@ Para rodar em ambiente de **produção** no docker execute:
 
 a porta **_3002_** será aberta.
 
-
 Para rodar localmente você pode seguir a sequencia padrão de npm run dev, mas caso tenha qualquer problema se torna mais viavel a execução via docker :D
 
 ---
