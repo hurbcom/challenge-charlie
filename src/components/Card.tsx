@@ -54,21 +54,22 @@ const Card = ({ data, handleSearch, search, loading }: Props) => {
     }
 
     return (
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-md" data-testid='card'>
             <form onSubmit={submitSearch} className="flex w-full bg-white p-2 px-4 items-center gap-4">
                 <span data-icon="(" className="icon text-2xl text-slate-500"></span>
                 <input
                     value={cityName}
                     className="w-full bg-white h-12 outline-none font-bold text-slate-500"
                     onChange={e => setCityName(e.target.value)}
+                    data-testid='card-input'
                 />
-                <button type="submit" disabled={cityName === '' ? true : false}>
+                <button type="submit" disabled={cityName === '' ? true : false} data-testid='card-btn'>
                     <AiOutlineSearch className="w-8 h-8 cursor-pointer text-slate-500" />
                 </button>
             </form>
             {loading && <Spinner />}
             {data &&
-                <>
+                <div data-testid='card-content'>
                     <div
                         className={`flex w-full justify-center py-8 items-center card first ${temp.first.color}`}
                     >
@@ -84,7 +85,7 @@ const Card = ({ data, handleSearch, search, loading }: Props) => {
                         <div className="w-1/2">
                             <p className="text-white text-lg font-semibold">HOJE</p>
                             <ToggleText first={`${temp.first.tempC}°C`} second={`${temp.first.tempF}°F`} />
-                            <p className="text-white text-xl font-semibold my-4 uppercase">{temp.first.desc}</p>
+                            <p className="text-white text-xl font-semibold my-4 uppercase" data-testid='card-condition'>{temp.first.desc}</p>
                             <p className="text-white font-medium">Vento: {temp.first.windAngle} {temp.first.windSpeed} km/h</p>
                             <p className="text-white font-medium">Humidade: {temp.first.humidity}%</p>
                             <p className="text-white font-medium">Pressão: {temp.first.pressure}hPA</p>
@@ -106,7 +107,7 @@ const Card = ({ data, handleSearch, search, loading }: Props) => {
                             <ToggleText first={`${temp.third.tempC}°C`} second={`${temp.third.tempF}°F`} />
                         </div>
                     </div>
-                </>
+                </div>
             }
 
         </div>

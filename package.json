@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:watch": "jest --watch --passWithNoTests --noStackTrace --no-cache --runInBand"
+    "test:watch": "jest --watch --passWithNoTests --noStackTrace --no-cache --runInBand",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@types/node": "18.15.11",

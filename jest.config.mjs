@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 /** @type {import('jest').Config} */
 const config = {
   testEnvironment: 'jest-environment-jsdom',
+  coverageDirectory: 'coverage'
 }
 
 export default createJestConfig(config)
