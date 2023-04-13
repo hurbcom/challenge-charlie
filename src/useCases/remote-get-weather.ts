@@ -35,11 +35,8 @@ export class RemoteGetWeather implements GetWeather {
 
         switch (response.statusCode) {
             case HttpStatusCode.ok: return response.body
-            case HttpStatusCode.unauthorized: throw new UnauthorizedError()
-            case HttpStatusCode.forbidden: throw new ForbiddenError()
             default: throw new ServerError(response.error as string)
         }
-
 
     }
 }
