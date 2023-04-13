@@ -55,7 +55,6 @@ export default function Home({ bingApi }: Props) {
             .get(cityName || state.citySearch)
             .then(res => {
                 setState(old => ({ ...old, weatherApi: res, loading: false, reload: false }))
-                console.log(res)
                 toast(`A busca retornou: ${res.location}`, {
                     icon: '📍'
                 })
