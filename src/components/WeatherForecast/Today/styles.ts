@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 import * as C from '@chakra-ui/react'
 
-import Sun from '~/assets/svg/sun.js'
-
 export const Container = styled(C.Flex)`
   width: 100%;
   height: auto;
@@ -35,18 +33,6 @@ export const ContentLeft = styled(C.Flex)`
   }
 `
 
-export const Icon = styled(Sun)`
-  width: 100%;
-  height: auto;
-  max-width: 27.733rem;
-
-  fill: #ffffff;
-
-  @media (max-width: 767px) {
-    max-width: 20.733rem;
-  }
-`
-
 export const ContentRight = styled(C.Flex)`
   width: 100%;
   height: auto;
@@ -55,57 +41,92 @@ export const ContentRight = styled(C.Flex)`
 
   flex-direction: column;
 
-  > h1 {
-    font-weight: 500;
-    font-size: 2.666rem;
-    line-height: initial;
-  }
-
-  > h2 {
-    margin-bottom: 3.8rem;
-
-    font-weight: 400;
-    font-size: 3.266rem;
-    line-height: initial;
-  }
-
-  > h2:last-of-type {
-    margin-bottom: 2.4rem;
-
-    font-size: 3.2rem;
-    text-transform: capitalize;
-  }
-
-  > h3 {
-    font-weight: 400;
-    font-size: 2.266rem;
-    line-height: initial;
-  }
+  width: 100%;
+  height: auto;
 
   @media (max-width: 767px) {
     padding: 2.2rem;
+  }
+`
 
-    > h1,
-    > h2,
-    > h3 {
+export const ContentToday = styled(C.Flex)`
+  width: 100%;
+  height: 3.2rem;
+
+  align-items: center;
+
+  > h1 {
+    width: 100%;
+
+    font-weight: 500;
+    font-size: 2.666rem;
+    line-height: initial;
+
+    @media (max-width: 767px) {
       text-align: center;
-    }
-
-    > h1 {
       font-size: 2.266rem;
     }
+  }
+`
 
-    > h2 {
-      font-size: 2.866rem;
-    }
+export const ContentTemp = styled(C.Flex)`
+  width: 100%;
+  height: 3.9rem;
+  margin-bottom: 3.8rem;
 
-    > h2:last-of-type {
+  align-items: center;
+`
+
+export const ContentWeatherDescription = styled(C.Flex)`
+  width: 100%;
+  height: 3.9rem;
+  margin-bottom: 2.4rem;
+
+  align-items: center;
+
+  > h2 {
+    width: 100%;
+
+    font-size: 3.2rem;
+    text-transform: capitalize;
+
+    @media (max-width: 767px) {
+      text-align: center;
       font-size: 2.8rem;
     }
+  }
+`
 
-    > h3 {
+export const ContentMoreInformations = styled(C.Flex)`
+  width: 100%;
+  height: 2.8rem;
+  align-items: center;
+
+  > h3 {
+    width: 100%;
+
+    font-weight: 400;
+    font-size: 2.266rem;
+    line-height: initial;
+
+    @media (max-width: 767px) {
+      text-align: center;
+      text-align: center;
       font-size: 1.866rem;
     }
+  }
+`
+
+export const Button = styled.button`
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+
+  font-size: 3.2rem;
+  text-transform: capitalize;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    font-size: 2.866rem;
   }
 `
 

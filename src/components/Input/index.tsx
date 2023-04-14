@@ -16,11 +16,7 @@ const InputComponentForm: ForwardRefRenderFunction<
         <S.Icon />
       </S.InputLeftElement>
 
-      <S.Input ref={ref} list="search-suggestions" {...rest} />
-
-      <datalist id="search-suggestions">
-        <option value={'Itapetininga, São Paulo'} />
-      </datalist>
+      <S.Input ref={ref} {...rest} />
     </S.InputGroup>
   )
 }
