@@ -8,9 +8,24 @@ import { LocationData } from '~/@types/Location'
 import { Today, WeatherData } from '~/@types/Weather'
 import { TomorrowAndAfter, ForecastData } from '~/@types/Forecast'
 
+import { CountiesToIBGEAPIData, CountiesData } from '~/@types/Counties'
+
 interface LocationContextDataProps {
+  isLoading: boolean
+
+  tempType: string
+  userLocation: LocationData
+
   today: Today | undefined
   tomorrowAndAfter: TomorrowAndAfter[] | undefined
+
+  cities: string[] | undefined
+  counties: CountiesData[] | undefined
+
+  changeTemperatureTypeToFahrenheit: () => void
+
+  getWeather: (city: string) => Promise<void>
+  getForecast: (city: string) => Promise<void>
 }
 
 interface LocationContextProviderProps {
@@ -25,9 +40,14 @@ export function LocationContextProvider({
   children,
 }: LocationContextProviderProps) {
   const { '@challenge-charlie': currentLocationData } = parseCookies()
+  const [isLoading, setIsLoading] = useState(true)
 
+  const [tempType, setTempType] = useState<string>('tempC')
   const [today, setToday] = useState<Today>()
   const [tomorrowAndAfter, setTomorrowAndAfter] = useState<TomorrowAndAfter[]>()
+
+  const [cities, setCities] = useState<string[] | undefined>()
+  const [counties, setCounties] = useState<CountiesData[] | undefined>()
 
   const [userCoordinates, setUserCoordinates] = useState<{
     latitude: number | null
@@ -42,12 +62,20 @@ export function LocationContextProvider({
     state: null,
   })
 
-  async function getLocation(
+  function changeTemperatureTypeToFahrenheit() {
+    if (tempType === 'tempC') {
+      setTempType('tempF')
+    } else {
+      setTempType('tempC')
+    }
+  }
+
+  async function getUserLocation(
     longitude: number | null,
     latitude: number | null,
   ) {
     if (!longitude && !latitude) {
-      return console.log('Hm...')
+      return console.log('')
     }
 
     if (!currentLocationData) {
@@ -74,13 +102,16 @@ export function LocationContextProvider({
   }
 
   async function getWeather(city: string) {
+    setIsLoading(true)
+
     try {
       const getWeather = await fetch(`/api/weather?cidade=${city}`)
       const weatherData: WeatherData = await getWeather.json()
 
       setToday({
         main: {
-          temp: Math.trunc(weatherData.main.temp),
+          tempC: `${Math.trunc(weatherData.main.temp)} °C`,
+          tempF: `${Math.trunc(weatherData.main.temp * 1.8 + 32)} °F`,
           humidity: weatherData.main.humidity,
           pressure: weatherData.main.pressure,
         },
@@ -93,14 +124,18 @@ export function LocationContextProvider({
           speed: weatherData.wind.speed,
         },
       })
+
+      setIsLoading(false)
     } catch (err) {
-      console.log(err)
+      console.log('Erro: ', err)
     } finally {
       console.log('')
     }
   }
 
   async function getForecast(city: string) {
+    setIsLoading(true)
+
     try {
       const getForecast = await fetch(`/api/forecast?cidade=${city}`)
       const { list }: ForecastData = await getForecast.json()
@@ -117,11 +152,41 @@ export function LocationContextProvider({
       setTomorrowAndAfter(
         formattedList.map((item) => {
           return {
-            temp: Math.trunc(item.main.temp),
+            tempC: `${Math.trunc(item.main.temp)} °C`,
+            tempF: `${Math.trunc(item.main.temp * 1.8 + 32)} °F`,
             dt_txt: item.dt_txt,
           }
         }),
       )
+      setIsLoading(false)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      console.log('')
+    }
+  }
+
+  async function getCounties() {
+    try {
+      const response = await fetch(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/municipios`,
+      )
+      const data: CountiesToIBGEAPIData[] = await response.json()
+
+      const formattedCounties: CountiesData[] = data.map((item) => {
+        return {
+          id: item.id,
+          city: item.nome,
+          state: item.microrregiao.mesorregiao.UF.nome,
+        }
+      })
+
+      const formattedCities: string[] = data.map((item) =>
+        item.nome.toLowerCase(),
+      )
+
+      setCities(formattedCities)
+      setCounties(formattedCounties)
     } catch (err) {
       console.log(err)
     } finally {
@@ -130,6 +195,8 @@ export function LocationContextProvider({
   }
 
   useEffect(() => {
+    getCounties()
+
     if ('geolocation' in navigator && !currentLocationData) {
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         const { latitude, longitude } = coords
@@ -146,7 +213,7 @@ export function LocationContextProvider({
   useEffect(() => {
     const { latitude, longitude } = userCoordinates
 
-    getLocation(latitude, longitude)
+    getUserLocation(latitude, longitude)
   }, [userCoordinates])
 
   useEffect(() => {
@@ -157,7 +224,20 @@ export function LocationContextProvider({
   }, [userLocation])
 
   return (
-    <LocationContext.Provider value={{ today, tomorrowAndAfter }}>
+    <LocationContext.Provider
+      value={{
+        isLoading,
+        tempType,
+        userLocation,
+        today,
+        tomorrowAndAfter,
+        cities,
+        counties,
+        changeTemperatureTypeToFahrenheit,
+        getWeather,
+        getForecast,
+      }}
+    >
       {children}
     </LocationContext.Provider>
   )

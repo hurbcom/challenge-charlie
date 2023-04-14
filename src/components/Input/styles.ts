@@ -42,8 +42,8 @@ export const Input = styled(C.Input)`
   background-color: #f2eeeb90;
 
   &:focus {
-    border: #8a8987;
-    box-shadow: 0 0 0 1px #8a8987;
+    border: none;
+    box-shadow: none;
   }
 
   &::-webkit-calendar-picker-indicator {

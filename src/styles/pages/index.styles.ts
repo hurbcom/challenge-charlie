@@ -36,3 +36,36 @@ export const Form = styled(C.Flex)`
   display: flex;
   flex-direction: column;
 `
+
+export const Cities = styled(C.Flex)`
+  width: 100%;
+  height: auto;
+  padding: 0.8rem;
+
+  overflow: hidden;
+
+  flex-direction: column;
+
+  background-color: #f2eeeb90;
+
+  transition: all 0.2s;
+`
+
+export const Text = styled(C.Text)``
+
+export const List = styled(C.List)`
+  width: 100%;
+  height: auto;
+
+  gap: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+export const ListItem = styled(C.ListItem)`
+  width: max-content;
+  height: auto;
+  padding: 1.6rem;
+
+  background-color: #d9d9d9;
+`
