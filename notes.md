@@ -10,13 +10,14 @@ I decided to use webpack + babel to win extra points ;)
 
 ## To Do
 
-[] Create the skelleton for the application
-[] Create an functional accordeon for today, tomorrow and day after tomorrow
-[] Guarantee the gradient and its color changing logic
+[X] Create the skelleton for the application
+[X] Create an functional accordeon for today, tomorrow and day after tomorrow
+[X] Guarantee the gradient and its color changing logic
+[X] Serverside rendering
+[x] Use the (bing highlight api)[https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US] to show the background image
 [] Create the celsius/farenheit toggle on click in the temperature
 [] Retrieve the weather info from the (OpenWeather API)[http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=772920597e4ec8f00de8d376dfb3f094]
 [] Collect and use geographic coordinates to retrieve user location name (OpenCage API)[https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en]
-[] Use the (bing highlight api)[https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US] to show the backgropund image
 [] Dockerize
 [] Optmize
 [] Clean up
@@ -55,3 +56,14 @@ In a first moment I wanted to use the brand new renderToPipeableStream API to ge
 So I needed to change some details of my implementation. I've implemented a workaround to use renderToPipeableStream and be prepared for the new features that will be rolled out for React 18's streaming render when the styled-components lib update it's API. As the project grew in complexity I thought was reasonable to convert it to Typescript. At first, just as a soft conversion. The typing will be reforced before I actually finish. I also changed details of the webpack bundling, removed some plugins and changed the transpiler to use SWC. The main reason for the transpiler change was the speed in the typescript transpilation.
 
 I also bootstraped jest as my test engine.
+
+## The Forgotten Styles
+
+I forgot to include some notes in my latest PR. Well, I forgot what I was about to write there. So I'll improvise:
+I created some constants to abstract the logic of responsiveness and I have tested in many devices using chrome devtools. Also solved some tricky issues in the styling of the tab components, particularly the opacity. I pick some inspiration in the way the tailwind framework deal with the opacity class. Next style-related changes I'll do are stop using arbitrary values and use css variables instead.
+
+## Background Image
+
+The first thing I noticed was that the bing image API has issues with CORS being called from a localhost. So I created a endpoint on my express server to act as a proxy, solving the CORS issue.
+Next thing I did was use this proxy endpoint to get the background image url from the get API and load it as state in the serverside, dehydrating and hydrating the state when the app renders. For this to work correctly it was necessary to create a isServer helper on the window object to indentify the current environment the code is running. Because, for example, we don't have the process global in the client render, at least not yet.
+Now the image url loads together with the rendered app in the html render. The only thing that remains to optmize further the image loading is to optimize the very image(reduce file size, e.g).

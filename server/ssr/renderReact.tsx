@@ -1,6 +1,12 @@
 import React from "react";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import renderFromStream from "./renderFromStream";
+import ssrPrepass from "react-ssr-prepass";
+import {
+    dehydrate,
+    QueryClient,
+    QueryClientProvider,
+} from "@tanstack/react-query";
 
 async function renderReact(
     req: Req,
@@ -8,20 +14,26 @@ async function renderReact(
     next: Next
 ): Promise<Res | void> {
     try {
+        const queryClient = new QueryClient();
         const { default: App } = await import("../../react/App");
         // Style sheet object to contain all styles generated from styled components
         const styleSheet = new ServerStyleSheet();
-        // Must create a mock window object for components that might need it
-        global.window = {} as Window & typeof globalThis;
+
+        await ssrPrepass(<App />);
 
         // SSR render the full App
         const jsx = (
             <StyleSheetManager sheet={styleSheet.instance}>
-                <App />
+                <QueryClientProvider client={queryClient}>
+                    <App />
+                </QueryClientProvider>
             </StyleSheetManager>
         );
 
         const appHtml = await renderFromStream(jsx);
+
+        const dehydratedState = dehydrate(queryClient);
+
         const responseHtml = `
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -47,6 +59,9 @@ async function renderReact(
     </head>
     <body>
         <div id="react-app">${appHtml}</div>
+        <script>
+            window.__REACT_QUERY_STATE__ = ${JSON.stringify(dehydratedState)};
+        </script>
     </body>
 </html>`;
 

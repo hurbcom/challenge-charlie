@@ -55,7 +55,10 @@ const webpackConfig: webpack.Configuration = {
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                include: [path.join(__dirname, "react")], // only bundle files in this directory
+                include: [
+                    path.join(__dirname, "react"),
+                    path.join(__dirname, "shared"),
+                ], // only bundle files in this directory
                 use: {
                     loader: "swc-loader",
                     options: webpackSwcConfig,

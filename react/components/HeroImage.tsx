@@ -1,5 +1,10 @@
+import { BING_BASE_URL } from "../constants/index";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import styled from "styled-components";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
+import { ErrorBoundary } from "react-error-boundary";
+import { getBackgroundImageURL } from "../../shared/services/bg-image.service";
 
 const BackgroundWithImage = styled.div<{ image: string }>`
     width: 100%;
@@ -31,17 +36,38 @@ const Content = styled.div`
     flex-direction: column;
 `;
 
-export default ({
-    image,
-    children,
-}: {
-    image: string;
-    children: React.ReactNode;
-}) => {
+//TODO: testes unitárioos pra esse componente
+export default ({ children }: { children: React.ReactNode }) => {
+    const { data } = useQuery({
+        queryKey: ["background-image"],
+        queryFn: async () => {
+            return fetch(
+                `${window.isServer ? process.env.APP_URL : ""}/get-image`
+            ).then((res) => res.json());
+        },
+        suspense: true,
+    });
+
     return (
-        <BackgroundWithImage image={image}>
-            <Overlay />
-            <Content>{children}</Content>
-        </BackgroundWithImage>
+        <QueryErrorResetBoundary>
+            {({ reset }) => (
+                <ErrorBoundary
+                    onReset={reset}
+                    fallbackRender={({ resetErrorBoundary }) => (
+                        <div>
+                            There was an error fetching the image!
+                            <button onClick={() => resetErrorBoundary()}>
+                                Try again
+                            </button>
+                        </div>
+                    )}
+                >
+                    <BackgroundWithImage image={`${BING_BASE_URL}${data.url}`}>
+                        <Overlay />
+                        <Content>{children}</Content>
+                    </BackgroundWithImage>
+                </ErrorBoundary>
+            )}
+        </QueryErrorResetBoundary>
     );
 };
