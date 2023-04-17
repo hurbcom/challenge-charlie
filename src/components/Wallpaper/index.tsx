@@ -9,7 +9,7 @@ interface WallpaperProps {
         title: string
       }
     | undefined
-  temperatureValue?: string | undefined
+  temperatureValue?: number | undefined
 }
 
 export function Wallpaper({ data, temperatureValue }: WallpaperProps) {
@@ -17,16 +17,17 @@ export function Wallpaper({ data, temperatureValue }: WallpaperProps) {
 
   useEffect(() => {
     if (!temperatureValue) {
-      setDegrade('customGray')
-    } else if (Number(temperatureValue) <= 15) {
-      setDegrade('customBlue')
-    } else if (
-      Number(temperatureValue) >= 16 &&
-      Number(temperatureValue) <= 35
-    ) {
-      setDegrade('customYellow')
-    } else if (Number(temperatureValue) >= 36) {
-      setDegrade('customRed')
+      return setDegrade('customGray')
+    }
+
+    if (temperatureValue <= 15.99) {
+      return setDegrade('customBlue')
+    }
+    if (temperatureValue >= 16 && temperatureValue <= 35.99) {
+      return setDegrade('customYellow')
+    }
+    if (temperatureValue >= 36) {
+      return setDegrade('customRed')
     }
   }, [temperatureValue])
 

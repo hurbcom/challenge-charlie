@@ -56,6 +56,7 @@ export type ForecastData = {
 }
 
 export interface TomorrowAndAfter {
+  temp: number
   tempC: string
   tempF: string
   dt_txt: string

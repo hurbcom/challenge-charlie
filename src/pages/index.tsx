@@ -79,7 +79,7 @@ export default function Home({ wallpaperData }: HomeProps) {
 
   return (
     <S.Container>
-      <Wallpaper data={wallpaperData} temperatureValue={today?.main.tempC} />
+      <Wallpaper data={wallpaperData} temperatureValue={today?.main.temp} />
 
       <S.Wrapper>
         <S.Form as={'form'} onSubmit={handleSubmit(onSubmit)}>

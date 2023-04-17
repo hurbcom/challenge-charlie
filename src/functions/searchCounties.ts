@@ -12,7 +12,7 @@ export function searchCounties(
   search: string,
 ): any {
   if (!data) {
-    return console.log('')
+    return console.warn('A busca falhou!')
   }
 
   return data.filter(
