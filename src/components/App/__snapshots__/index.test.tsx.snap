@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> renders the <App/> component 1`] = `[Function]`;
+exports[`<App /> renders the <App/> component with background 1`] = `[Function]`;
+
+exports[`<App /> renders the <App/> component without background 1`] = `[Function]`;
