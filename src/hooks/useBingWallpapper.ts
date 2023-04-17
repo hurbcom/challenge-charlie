@@ -13,7 +13,7 @@ const useBingWallpapper = () => {
     const handleResult = async (response: Response) => {
         const data = await response.json();
         const wallpapper = {
-            url: `${process.env.BING_WALLPAPPER_API_BASE_URL ?? ""}${data.images[0].url}`,
+            url: `${process.env.REACT_APP_BING_WALLPAPPER_API_BASE_URL ?? ""}${data.images[0].url}`,
             copyright: data.images[0].copyright,
             copyrightlink: data.images[0].copyrightlink,
         };
@@ -25,7 +25,7 @@ const useBingWallpapper = () => {
     }
 
     const loadWallpaperOfDay = async () => {
-        fetch("/bing-wallpapper")
+        fetch(`/bing-wallpapper`)
             .then(handleResult)
             .catch(onError);
     };
