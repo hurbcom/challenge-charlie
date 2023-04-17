@@ -89,7 +89,7 @@ const GlobalStylesComposed = () => {
                     sizes="180x180"
                     href="https://static.ghucdn.net/static/cms-site/1.137.0/icons/apple-touch-180x180.png"
                 />
-                <link rel="stylesheet" href="/font/stylesheet.css" />
+                <link rel="stylesheet" href="/static/font/stylesheet.css" />
             </Helmet>
             <GlobalStyle />
         </>

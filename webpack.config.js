@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var webpack = require('webpack');
 
 require('dotenv').config();
@@ -15,7 +17,6 @@ module.exports = () => {
         weather: process.env.REACT_APP_WEATHER_API_BASE_URL
     }
 
-    console.log(urls)
     return {
         entry: path.resolve(__dirname, './src/index.tsx'),
         devtool: prod ? undefined : 'inline-source-map',
@@ -75,6 +76,11 @@ module.exports = () => {
             }),
             new webpack.DefinePlugin({
                 "process.env": JSON.stringify(process.env),
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: 'public/static', to: 'static' }
+                ]
             }),
             new MiniCssExtractPlugin()
         ]
