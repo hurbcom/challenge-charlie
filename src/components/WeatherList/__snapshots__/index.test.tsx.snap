@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherList /> render the weather list with 1 item 1`] = `[Function]`;
+
+exports[`<WeatherList /> render the weather list with 5 item 1`] = `[Function]`;
