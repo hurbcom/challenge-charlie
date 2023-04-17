@@ -1,4 +1,4 @@
-import useImageUrl from "./use-imageurl";
+import useImageUrl from "./useImageurl";
 import { useQuery } from "@tanstack/react-query";
 
 jest.mock("@tanstack/react-query");

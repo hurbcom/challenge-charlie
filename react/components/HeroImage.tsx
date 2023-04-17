@@ -1,5 +1,5 @@
 import React from "react";
-import useImageUrl from "../hooks/use-imageurl";
+import useImageUrl from "../hooks/useImageurl";
 import styled from "styled-components";
 
 const BackgroundWithImage = styled.div<{ image: string }>`

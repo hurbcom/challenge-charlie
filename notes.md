@@ -68,3 +68,7 @@ I created some constants to abstract the logic of responsiveness and I have test
 The first thing I noticed was that the bing image API has issues with CORS being called from a localhost. So I created a endpoint on my express server to act as a proxy, solving the CORS issue.
 Next thing I did was use this proxy endpoint to get the background image url from the get API and load it as state in the serverside, dehydrating and hydrating the state when the app renders. For this to work correctly it was necessary to create a isServer helper on the window object to indentify the current environment the code is running. Because, for example, we don't have the process global in the client render, at least not yet.
 Now the image url loads together with the rendered app in the html render. The only thing that remains to optmize further the image loading is to optimize the very image(reduce file size, e.g).
+
+## Toggle Temperature Scale
+
+This was really simple. Just abstracted this guy to a new component and the heavy logic of that component to a react hook.
