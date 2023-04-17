@@ -4,6 +4,17 @@ import HeroImage from "@components/HeroImage";
 import { WeatherData } from "@interfaces/WeatherData";
 import WeatherInfo from "@components/WeatherInfo";
 import Accordeon from "@components/Accordeon";
+import styled from "styled-components";
+
+const Content = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    flex-direction: column;
+`;
 
 export default () => {
     const weatherData = [
@@ -57,18 +68,21 @@ export default () => {
         },
     ];
     return (
-        <HeroImage
-            image={
-                "https://www.bing.com/th?id=OHR.KitsAspen_PT-BR8299899730_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
-            }
-        >
-            <LocationInput />
-            <Accordeon
-                tabDataArray={weatherData}
-                renderTab={(data: WeatherData, { isOpen, index }) => (
-                    <WeatherInfo {...data} isOpen={isOpen} position={index} />
-                )}
-            />
-        </HeroImage>
+        <>
+            <HeroImage />
+            <Content>
+                <LocationInput />
+                <Accordeon
+                    tabDataArray={weatherData}
+                    renderTab={(data: WeatherData, { isOpen, index }) => (
+                        <WeatherInfo
+                            {...data}
+                            isOpen={isOpen}
+                            position={index}
+                        />
+                    )}
+                />
+            </Content>
+        </>
     );
 };

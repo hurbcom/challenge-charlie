@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { WeatherData } from "@interfaces/WeatherData";
 import Spacer from "./Spacer";
 import { opacityVariables } from "../styles/mixins";
-import { POSITIONS_TO_OPACITIES } from "../constants";
+import { POSITIONS_TO_OPACITIES } from "../../shared/constants/index";
 
 //Let's just leave this guy right here because it's not generic enough to go to utils
 const getTemperatureColor = (temperature: number, position: number) => {
