@@ -13,15 +13,24 @@
         "@babel/preset-typescript": "^7.21.4",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^14.0.0",
+        "@testing-library/react-hooks": "^8.0.1",
         "@types/jest": "^29.5.0",
+        "@types/lodash": "^4.14.194",
         "@types/react": "^18.0.33",
         "@types/react-dom": "^18.0.11",
+        "@types/react-helmet": "^6.1.6",
+        "@types/styled-components": "^5.1.26",
         "babel-loader": "^9.1.2",
+        "babel-plugin-styled-components": "^2.1.1",
         "css-loader": "^6.7.3",
+        "dotenv-webpack": "^8.0.1",
         "html-webpack-plugin": "^5.5.0",
         "jest": "^29.5.0",
         "jest-environment-jsdom": "^29.5.0",
+        "jest-styled-components": "^7.1.1",
         "mini-css-extract-plugin": "^2.7.5",
+        "react-helmet": "^6.1.0",
+        "react-test-renderer": "^18.2.0",
         "serve": "^14.2.0",
         "ts-loader": "^9.4.2",
         "typescript": "^5.0.4",
@@ -30,22 +39,27 @@
         "webpack-dev-server": "^4.13.2"
     },
     "dependencies": {
+        "lodash": "^4.17.21",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "styled-components": "^5.3.9"
     },
     "scripts": {
         "start": "webpack-dev-server .",
-        "build": "webpack .",
+        "build": "webpack . --env",
         "test": "jest"
     },
     "jest": {
         "testEnvironment": "jsdom",
         "setupFilesAfterEnv": [
-            "<rootDir>/src/jest-setup.js"
+            "<rootDir>/src/jest-setup.ts"
+        ],
+        "moduleDirectories": [
+            "node_modules",
+            "src"
         ],
         "collectCoverageFrom": [
-            "src/**/*.tsx",
-            "src/components/*.tsx",
+            "src/**/*.(js|ts|tsx|jsx)",
             "!**/node_modules/**",
             "!**/src/test-utils/**",
             "!**/src/index.tsx"
@@ -58,5 +72,8 @@
                 "lines": 100
             }
         }
+    },
+    "resolutions": {
+        "styled-components": "^5"
     }
 }
