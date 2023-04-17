@@ -100,8 +100,8 @@ const WeatherListItemBase = styled.div<{ temperature: number }>`
     grid-column-gap: 16px;
     grid-template-columns: repeat(2, 1fr);
     background-color: ${(props) => getDayColor(props.temperature)};
-    opacity: 0.75;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.05);
+    opacity: 0.85;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.07);
 `;
 
 const WeatherListItem = ({
