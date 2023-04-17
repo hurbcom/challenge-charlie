@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import renderReact from "./ssr/renderReact";
 import { devMiddleware, hotMiddleware } from "../webpack.config";
-import { getBackgroundImageURL } from "../shared/services/bg-image.service";
+import { getBackgroundImageData } from "./services/bg-image.service";
 
 const isDevMode = process.env.NODE_ENV === "development";
 
@@ -32,7 +32,8 @@ app.use(express.urlencoded());
 
 app.get("/get-image", async function (req: Req, res: Res) {
     try {
-        res.send({ url: await getBackgroundImageURL() });
+        const data = await getBackgroundImageData();
+        res.send(data);
     } catch (error) {
         console.error(error);
         return { url: "" };
