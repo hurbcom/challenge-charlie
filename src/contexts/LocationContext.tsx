@@ -74,11 +74,11 @@ export function LocationContextProvider({
     longitude: number | null,
     latitude: number | null,
   ) {
-    if (!longitude && !latitude) {
-      return console.log('')
-    }
-
     if (!currentLocationData) {
+      if (!longitude && !latitude) {
+        return console.warn('A Longitude e a Latitude não foram encontradas!')
+      }
+
       try {
         const locationResponse = await fetch(
           `/api/location?lon=${longitude}&lat=${latitude}`,
@@ -94,9 +94,7 @@ export function LocationContextProvider({
           path: '/',
         })
       } catch (err) {
-        console.log(err)
-      } finally {
-        console.log('')
+        console.error(err)
       }
     }
   }
@@ -104,12 +102,15 @@ export function LocationContextProvider({
   async function getWeather(city: string) {
     setIsLoading(true)
 
+    const normalizedCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
     try {
-      const getWeather = await fetch(`/api/weather?cidade=${city}`)
+      const getWeather = await fetch(`/api/weather?cidade=${normalizedCity}`)
       const weatherData: WeatherData = await getWeather.json()
 
       setToday({
         main: {
+          temp: weatherData.main.temp,
           tempC: `${Math.trunc(weatherData.main.temp)} °C`,
           tempF: `${Math.trunc(weatherData.main.temp * 1.8 + 32)} °F`,
           humidity: weatherData.main.humidity,
@@ -127,17 +128,19 @@ export function LocationContextProvider({
 
       setIsLoading(false)
     } catch (err) {
-      console.log('Erro: ', err)
-    } finally {
-      console.log('')
+      setIsLoading(true)
+      console.error('Erro: ', err)
+      alert('Cidade não encontrada!')
     }
   }
 
   async function getForecast(city: string) {
     setIsLoading(true)
 
+    const normalizedCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
     try {
-      const getForecast = await fetch(`/api/forecast?cidade=${city}`)
+      const getForecast = await fetch(`/api/forecast?cidade=${normalizedCity}`)
       const { list }: ForecastData = await getForecast.json()
 
       const today = format(new Date(), 'dd/MM/yyyy')
@@ -152,6 +155,7 @@ export function LocationContextProvider({
       setTomorrowAndAfter(
         formattedList.map((item) => {
           return {
+            temp: item.main.temp,
             tempC: `${Math.trunc(item.main.temp)} °C`,
             tempF: `${Math.trunc(item.main.temp * 1.8 + 32)} °F`,
             dt_txt: item.dt_txt,
@@ -160,9 +164,8 @@ export function LocationContextProvider({
       )
       setIsLoading(false)
     } catch (err) {
-      console.log(err)
-    } finally {
-      console.log('')
+      console.error(err)
+      setIsLoading(true)
     }
   }
 
@@ -188,9 +191,7 @@ export function LocationContextProvider({
       setCities(formattedCities)
       setCounties(formattedCounties)
     } catch (err) {
-      console.log(err)
-    } finally {
-      console.log('')
+      console.error(err)
     }
   }
 

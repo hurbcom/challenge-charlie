@@ -45,6 +45,7 @@ export type WeatherData = {
 
 export interface Today {
   main: {
+    temp: number
     tempC: string
     tempF: string
     pressure: number
