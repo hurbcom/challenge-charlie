@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppHeader /> renders the <AppHeader/> component 1`] = `[Function]`;
+
+exports[`<AppHeader /> renders the <AppHeader/> component with users location 1`] = `[Function]`;
