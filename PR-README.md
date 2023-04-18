@@ -9,12 +9,43 @@ This microsite was build in React from scratch.
 You don't need Docker in order to run this app in you local development, but you will need Git, NodeJs, I strongly recomment v16 LTS and NPM installed.
 You must need to set some environment vars and generate a self-signed certificate in order to run this project.
 
-To generate a new certificate you can use `openssl` ;
-
-Run the followgin command on projects root folder. The certificates will be created at `config` folder;
+The following environemtn must be available in a `.env` file or any other methods avalable.
 
 ```
-openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Querido Vizinho./CN=querido.vizinho"  -newkey rsa:2048 -keyout ./config/nginx-selfsigned.key -out ./config/nginx-selfsigned.crt;
+REACT_APP_OPENCAGE_BASE_URL=https://api.opencagedata.com/geocode/v1/json?key={{API_KEY}}
+REACT_APP_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/3.0/onecall?APPID={{APP_ID}}
+REACT_APP_BING_WALLPAPPER_API_BASE_URL=https://www.bing.com
+
+```
+
+> do not forget to replace the `API_KEY` or `APP_ID` with your key values to get access to external apis.
+
+
+### Install and Run locally without docker
+
+To run this project, just fetch my main branch, install all dependencies, set some env vars and run with yarn or npm. If you use NVM, you can run `nvm use` before install the dependencies to match Node version used in this development.
+
+To install dependencies I strongly recommend to use `yarn`;
+
+`yarn` or `yarn install`
+
+After install all dependencies and have the environment vars done, you can run the application.
+
+`yarn start``
+
+You can run the tests for this application by running the command `yarn test`
+
+
+### Run as docker container
+
+You will need SSL certificates to NGINX run over https.
+
+To generate a new certificate you can use `openssl` ;
+
+Run the followgin command on projects root folder and certificates will be created and placed at `./config` folder;
+
+```
+openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Vagners Hurb Challenge./CN=hurb.challenge"  -newkey rsa:2048 -keyout ./config/nginx-selfsigned.key -out ./config/nginx-selfsigned.crt;
 ```
 
 > About openssl options
@@ -29,30 +60,44 @@ openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Querido Vizinho./CN=quer
 > -   -keyout /path/to/yourfile.key — specifies the location of the output .key file.
 > -   -out /path/to/yourfile.crt — specifies the location of the output .crt file.
 
-The following environemtn must be available in a `.env` file or any other methods avalabl.
+Assuming you already have Docker engine installed and running, please run the build command from the root 
+
+For build:
 
 ```
-REACT_APP_OPENCAGE_BASE_URL=https://api.opencagedata.com/geocode/v1/json?key={{API_KEY}}
-REACT_APP_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/3.0/onecall?APPID={{APP_ID}}
-REACT_APP_BING_WALLPAPPER_API_BASE_URL=https://www.bing.com
-
+docker build . -t IMAGE-NAME
 ```
 
-> do not forget to replace the `API_KEY` or `APP_ID` with your key values to get access to external apis.
+You can relpace IMAGE-NAME with any other name that make sense to you.
 
-### Install and Run
+For run the container.
 
-To run this project, just fetch my main branch, install all dependencies, set some env vars and run with yarn or npm. If you use NVM, you can run `nvm use` before install the dependencies to match Node version used in this development.
 
-To install dependencies I strongly recommend to use `yarn`;
+```
+docker run -it -d -p 80:80 -p 443:443 --name CONTAINER-NAME IMAGE-NAME
+```
 
-`yarn` or `yarn install`
+Don't forget to replace CONTAINER-NAME with any other name for your container istance and use the same name defined on buid command on IMAGE-NAME to run the docker images just created.
 
-After install all dependencies and have the environment vars done, you can run the application.
+After that your application will be runnint at `https://localhost/`.
 
-`yarn start``
 
-You can run the tests for this application by running the command `yarn test`
+You can use `https//hurb.challenge` as informed at certificate creation just setting the host file to point the aaddress to your local address.
+
+
+```
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+# ADD the following line ⤵
+127.0.0.1       hurb.challenge
+```
 
 ### Happy Code Review
 
