@@ -2,20 +2,43 @@
 
 ## Description
 
-This microsite was build in React from scratch and have a single Docker stage for development.
+This microsite was build in React from scratch.
 
 ### Requirements
 
 You don't need Docker in order to run this app in you local development, but you will need Git, NodeJs, I strongly recomment v16 LTS and NPM installed.
-You must need to set some environment vars in order to run this project.
+You must need to set some environment vars and generate a self-signed certificate in order to run this project.
+
+To generate a new certificate you can use `openssl` ;
+
+Run the followgin command on projects root folder. The certificates will be created at `config` folder;
+
+```
+openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Querido Vizinho./CN=querido.vizinho"  -newkey rsa:2048 -keyout ./config/nginx-selfsigned.key -out ./config/nginx-selfsigned.crt;
+```
+
+> About openssl options
+>
+> -   req — to specify we want to use -x509
+> -   -x509 — to specify we want to create a self-signed certificate instead of generating a certificate signing request.
+> -   -nodes — makes it so that we skip the option to secure our certificate with a passphrase, so that nginx can read it.
+> -   -days 365 — specifies how long the certificate would be valid for, which is 365 days.
+> -   -subj “/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" — this allows us to specify subject without filling in prompts. /C for country, /ST for state, /O for organization, and /CN for common name.
+> -   -newrsa rsa:2048 — specifies that we want to generate both a new certificate and a new key with an RSA key of 2048 bits.
+>     -newrsa rsa:2048 — specifies that we want to generate both a new certificate and a new key with an RSA key of 2048 bits.
+> -   -keyout /path/to/yourfile.key — specifies the location of the output .key file.
+> -   -out /path/to/yourfile.crt — specifies the location of the output .crt file.
+
+The following environemtn must be available in a `.env` file or any other methods avalabl.
 
 ```
 REACT_APP_OPENCAGE_BASE_URL=https://api.opencagedata.com/geocode/v1/json?key={{API_KEY}}
 REACT_APP_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/3.0/onecall?APPID={{APP_ID}}
 REACT_APP_BING_WALLPAPPER_API_BASE_URL=https://www.bing.com
+
 ```
 
-> do not forget to replace the API_KEY or APP_ID with your key values to get access to external apis.
+> do not forget to replace the `API_KEY` or `APP_ID` with your key values to get access to external apis.
 
 ### Install and Run
 
@@ -31,4 +54,6 @@ After install all dependencies and have the environment vars done, you can run t
 
 You can run the tests for this application by running the command `yarn test`
 
-Happy Code Review
+### Happy Code Review
+
+![and relax](https://media0.giphy.com/media/J4VVMzUcPQE0IbFE4z/giphy.gif?cid=ecf05e47jfi4ousnd367e7ftyvetwlxd6yus974b2kfcvra7&rid=giphy.gif&ct=g)
