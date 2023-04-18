@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherListItem /> render compact weather item 1`] = `[Function]`;
+
+exports[`<WeatherListItem /> render full weather item 1`] = `[Function]`;
+
+exports[`<WeatherListItem /> render weather item with 40 temperature render second-last red color 1`] = `[Function]`;
+
+exports[`<WeatherListItem /> render weather item with 44 temperature render last red color 1`] = `[Function]`;
+
+exports[`<WeatherListItem /> render weather item with yellow range temperature deg 1`] = `[Function]`;
+
+exports[`<WeatherListItem /> render weather item with zero temperature 1`] = `[Function]`;

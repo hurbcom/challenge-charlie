@@ -1,0 +1,8 @@
+node_modules
+dist
+
+coverage
+.env
+
+.DS_Store
+spaceport

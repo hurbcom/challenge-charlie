@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon /> component renders the <Icon/> component with default size 1`] = `[Function]`;
+
+exports[`<Icon /> component renders the <Icon/> component with large size 1`] = `[Function]`;
+
+exports[`<Icon /> component renders the <Icon/> component with small size 1`] = `[Function]`;
+
+exports[`<Icon /> component renders the <Icon/> component with xlarge size 1`] = `[Function]`;

@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "lib": ["dom", "esnext"],
+        "strict": true,
+        "sourceMap": true,
+        "target": "esnext",
+        "paths": {
+            "test-utils": ["./src/utils/test-utils.tsx"]
+        },
+        "baseUrl": "src"
+    },
+    "include": ["./src"],
+    "exclude": ["node_modules"]
+}
