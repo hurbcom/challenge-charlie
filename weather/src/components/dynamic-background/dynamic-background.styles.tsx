@@ -9,4 +9,5 @@ export const Background = styled.div<{ url?: string }>`
     background-image: url(${(props) => `${env.BING_URL}${props.url}`});
     background-color: #222;
     background-size: cover;
+    background-position: center center;
 `
