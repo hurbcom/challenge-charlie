@@ -1,7 +1,6 @@
 import { Box } from '@components/ui'
 import styled from 'styled-components'
-
-import CompassIcon from '@assets/icons/compass.svg'
+import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
 
 export const InputWrapper = styled(Box)`
     position: relative;
@@ -15,7 +14,7 @@ export const StartIcon = styled(CompassIcon)`
     padding-left: 16px;
     position: absolute;
     margin: auto 0;
-    color: #fff;
+    fill: ${(props) => props.theme.typography.colors.secondary};
 `
 
 export const Input = styled.input`
@@ -23,7 +22,9 @@ export const Input = styled.input`
     height: 60px;
     background-color: rgba(255, 255, 255, 0.9);
     font-size: 28px;
+    font-weight: bold;
     border: 0;
+    color: ${(props) => props.theme.typography.colors.secondary};
     :focus {
         outline: none;
     }
