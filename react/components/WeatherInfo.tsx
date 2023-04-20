@@ -11,6 +11,9 @@ import ToggleScaleButton from "./ToggleScaleButton";
 //Let's just leave this guy right here because it's not generic enough to go to utils
 const getTemperatureColor = (temperature: number, position: number) => {
     const roundedTemp = Math.round(temperature);
+    if (roundedTemp === 0) {
+        return `rgba(100,100,100, var(${POSITIONS_TO_OPACITIES[position]}))`;
+    }
     // I'll stick with the browser default "yellow", "red", and "blue" colors given that the specs don't mention a specific color.
     if (roundedTemp <= 15) {
         return `rgba(0,0,255, var(${POSITIONS_TO_OPACITIES[position]}))`;
@@ -51,23 +54,32 @@ const WeatherInfo = ({
     return (
         <WeatherInfoContent bg={backgroundColor} position={position}>
             <Spacer width={"45%"} padding={"5% 0"}>
-                {isOpen && <WeatherIcon icon={weather.icon} />}
+                {isOpen && <WeatherIcon icon={weather[0].icon} />}
             </Spacer>
             <WeatherText>
                 <Text strong size="1.2rem">
                     {day}
                 </Text>
-                <ToggleScaleButton temperature={main.temp} />
-                <Text m={"1rem 0"} size="1.35rem" capitalize strong>
-                    {weather.description}
-                </Text>
-                <div>
-                    <Text>
-                        Vento: {wind.deg} {wind.speed}
+                {!main.temp && isOpen && (
+                    <Text m={"1rem 0"} size="1.35rem">
+                        Sem informações de previsão, busque por uma cidade
                     </Text>
-                    <Text>Umidade: {main.humidity}%</Text>
-                    <Text>Pressão {main.pressure}hPA</Text>
-                </div>
+                )}
+                {!!main.temp && (
+                    <>
+                        <ToggleScaleButton temperature={main.temp} />
+                        <Text m={"1rem 0"} size="1.35rem" capitalize strong>
+                            {weather[0].description}
+                        </Text>
+                        <div>
+                            <Text>
+                                Vento: {wind.deg} {wind.speed}
+                            </Text>
+                            <Text>Umidade: {main.humidity}%</Text>
+                            <Text>Pressão {main.pressure}hPA</Text>
+                        </div>
+                    </>
+                )}
             </WeatherText>
         </WeatherInfoContent>
     );

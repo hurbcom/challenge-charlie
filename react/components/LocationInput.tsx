@@ -14,7 +14,7 @@ const Input = styled.input`
     padding-left: 5rem;
 
     color: #666;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
     box-sizing: border-box;
     max-width: 500px;
@@ -26,6 +26,8 @@ const InputWrapper = styled.span`
     height: auto;
     overflow: hidden;
     color: #666;
+    width: 100%;
+    max-width: 500px;
     ::before {
         ${CompassIconMixin}
         height: 100%;
@@ -38,10 +40,30 @@ const InputWrapper = styled.span`
     }
 `;
 
-export default () => {
+export default ({
+    value,
+    isLoading,
+    onChange,
+    onBlur,
+}: {
+    value: string;
+    isLoading: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
     return (
         <InputWrapper>
-            <Input type="text" name="location" id="location" />
+            <Input
+                type="text"
+                name="location"
+                id="location"
+                placeholder={
+                    isLoading ? "Carregando..." : "Digite o local desejado"
+                }
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+            />
         </InputWrapper>
     );
 };

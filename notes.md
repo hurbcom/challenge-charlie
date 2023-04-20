@@ -15,9 +15,9 @@ I decided to use webpack + babel to win extra points ;)
 [X] Guarantee the gradient and its color changing logic
 [X] Serverside rendering
 [x] Use the (bing highlight api)[https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US] to show the background image
-[] Create the celsius/farenheit toggle on click in the temperature
-[] Collect and use geographic coordinates to retrieve user location name (OpenCage API)[https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en]
-[] Retrieve the weather info from the (OpenWeather API)[http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=772920597e4ec8f00de8d376dfb3f094]
+[x] Create the celsius/farenheit toggle on click in the temperature
+[x] Collect and use geographic coordinates to retrieve user location name (OpenCage API)[https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en]
+[x] Retrieve the weather info from the (OpenWeather API)[http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=772920597e4ec8f00de8d376dfb3f094]
 [] Dockerize
 [] Optmize
 [] Clean up
@@ -72,3 +72,18 @@ Now the image url loads together with the rendered app in the html render. The o
 ## Toggle Temperature Scale
 
 This was really simple. Just abstracted this guy to a new component and the heavy logic of that component to a react hook.
+
+## User Coordinates and Location Name
+
+This was a logic heavy part. I needed to think how an error on the first affects the second. I decided to lift the state for both to the Main page where it can be separated from the inner state of the weather forecast component. First I thought about using context. I even implemented it, but later I perceived it'll be an overkill. I removed the context for the sake of simplicity. Just passing the props for the children component is enough in this case.
+I wrapped both asynchoronous calls, the one for geolocation.getCurrentPosition and the one to the OpenCage API in `useQuery` hooks for more granular state control.
+
+## Forecast API
+
+Next step was defining the logic for the forecast state. First thing I noticed was that we have 3 possible render cases for the weather component:
+
+-   One is the happy path where we can render the component having the `userLocation` information. In this case we need to call the forecast API and show the results.
+-   Another is the case the user provided a new string besides the one of their own location. In this case we need to call the API again with that string.
+-   and the last one is the sad path where we need to render the case which the user don't provided access to their geolocation.
+
+After contemplating all those cases, the error case and the loading states I moved on.

@@ -9,14 +9,10 @@ import {
 import { ErrorBoundary } from "react-error-boundary";
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            suspense: true,
-        },
-    },
+    defaultOptions: {},
 });
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <QueryErrorResetBoundary>

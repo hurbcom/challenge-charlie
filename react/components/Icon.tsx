@@ -8,7 +8,7 @@ export const WeatherIcon = styled.div<{ icon: string }>`
         font-size: 12rem;
     }
     ::before {
-        content: "${({ icon }) => icon}";
+        content: "${({ icon }) => CODES_TO_ICONS[icon]}";
         font-family: "MeteoconsRegular";
     }
 `;
