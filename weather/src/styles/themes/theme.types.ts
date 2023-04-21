@@ -17,11 +17,13 @@ export interface ThemeProps {
         fontFamily: string
         sizes: {
             title: string
+            subtitle: string
             body: string
         }
         colors: {
             primary: string
             secondary: string
+            contrastBackground: string
         }
     }
 }

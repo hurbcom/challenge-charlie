@@ -1,4 +1,5 @@
 import { Box } from '@components/ui'
+import { hexToRgba } from '@styles/utils.styles'
 import styled from 'styled-components'
 import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
 
@@ -20,7 +21,8 @@ export const StartIcon = styled(CompassIcon)`
 export const Input = styled.input`
     width: 100%;
     height: 60px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: ${(props) =>
+        hexToRgba(props.theme.typography.colors.contrastBackground, 0.9)};
     font-size: 28px;
     font-weight: bold;
     border: 0;

@@ -1,13 +1,16 @@
 import { DynamicBackground } from '@components/dynamic-background/dynamic-background.comp'
 import { SearchCityInput } from '@components/search-city-input/search-city-input.comp'
 import { TemperatureContainer } from '@components/temperature-container/temperature-container.comp'
-import { Box } from '@components/ui'
+import { Box, Typography } from '@components/ui'
 import { useDevice } from '@hooks/useDevice'
 import { requests } from '@services'
 import { ThemeProps } from '@styles/themes/theme.types'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { WeatherState } from 'src/services/open-weather/open-weather.service.types'
 import { ThemeContext } from 'styled-components'
+
+import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
+import { useTranslation } from 'react-i18next'
 
 interface Coordinates {
     latitude: number
@@ -22,6 +25,7 @@ export const Home: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true)
 
     const { device } = useDevice()
+    const { t } = useTranslation()
 
     const fetchWeather = useCallback(async () => {
         if (!city) return
@@ -110,7 +114,50 @@ export const Home: React.FC = () => {
                         temperature={todayWeather?.temp}
                         defaultColor={theme.colors.gray.light}
                         loading={loading}
-                    ></TemperatureContainer>
+                    >
+                        <Box
+                            height="100%"
+                            width={device === 'desktop' ? '60%' : '30%'}
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <SunIcon
+                                width={'100%'}
+                                height="100%"
+                                fill="white"
+                            />
+                        </Box>
+                        <Box
+                            height="100%"
+                            width={device === 'desktop' ? '40%' : '70%'}
+                            justifyContent="center"
+                            alignItems="center"
+                            direction="column"
+                        >
+                            <Typography variant="subtitle">
+                                {t('today')}
+                            </Typography>
+                            <Typography variant="subtitle">
+                                {todayWeather?.temp}C
+                            </Typography>
+                            <Typography variant="subtitle">
+                                {todayWeather?.description}
+                            </Typography>
+                            <Typography variant="body">
+                                {`${t('wind')}: ${t(
+                                    `${todayWeather?.windDirection}`
+                                )} ${todayWeather?.wind}km/h`}
+                            </Typography>
+                            <Typography variant="body">
+                                {`${t('humidity')}: ${todayWeather?.humidity}%`}
+                            </Typography>
+                            <Typography variant="body">
+                                {`${t('pressure')}: ${
+                                    todayWeather?.pressure
+                                }hPA`}
+                            </Typography>
+                        </Box>
+                    </TemperatureContainer>
                     <TemperatureContainer
                         height={150}
                         width="100%"
@@ -122,7 +169,23 @@ export const Home: React.FC = () => {
                         temperature={tomorrowWeather?.temp}
                         defaultColor={theme.colors.gray.base}
                         loading={loading}
-                    ></TemperatureContainer>
+                        justifyContent="flex-end"
+                    >
+                        <Box
+                            height="100%"
+                            width={device === 'desktop' ? '40%' : '70%'}
+                            justifyContent="center"
+                            alignItems="center"
+                            direction="column"
+                        >
+                            <Typography variant="subtitle">
+                                {t('tomorrow')}
+                            </Typography>
+                            <Typography variant="subtitle">
+                                {tomorrowWeather?.temp}C
+                            </Typography>
+                        </Box>
+                    </TemperatureContainer>
                     <TemperatureContainer
                         height={150}
                         width="100%"
@@ -134,7 +197,23 @@ export const Home: React.FC = () => {
                         temperature={afterTomorrowWeather?.temp}
                         defaultColor={theme.colors.gray.dark}
                         loading={loading}
-                    ></TemperatureContainer>
+                        justifyContent="flex-end"
+                    >
+                        <Box
+                            height="100%"
+                            width={device === 'desktop' ? '40%' : '70%'}
+                            justifyContent="center"
+                            alignItems="center"
+                            direction="column"
+                        >
+                            <Typography variant="subtitle">
+                                {t('tomorrow')}
+                            </Typography>
+                            <Typography variant="subtitle">
+                                {afterTomorrowWeather?.temp}C
+                            </Typography>
+                        </Box>
+                    </TemperatureContainer>
                 </Box>
             </Box>
         </DynamicBackground>

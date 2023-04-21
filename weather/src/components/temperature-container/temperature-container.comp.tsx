@@ -1,6 +1,6 @@
 import { Box } from '@components/ui'
-import { BoxProps } from '@components/ui/Box/box.types'
-import { Spinner } from '@components/ui/Spinner/spinner.styles'
+import { BoxProps } from '@components/ui/box/box.types'
+import { Spinner } from '@components/ui/spinner/spinner.styles'
 import { useMemo } from 'react'
 
 interface TemperatureContainerProps extends BoxProps {
