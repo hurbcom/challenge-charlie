@@ -10,8 +10,8 @@ export const DynamicBackground: React.FC<Props> = ({ children }) => {
     const [background, setBackground] = useState<string>()
 
     const fetchBackground = async () => {
-        const response = await requests.bing.getBackground()
-        setBackground(response.images[0].url)
+        const url = await requests.bing.getBackgroundUrl()
+        setBackground(url)
     }
 
     useEffect(() => {
