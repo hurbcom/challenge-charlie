@@ -1,4 +1,4 @@
-import { GetWeatherResponse, WeatherState } from './open-weather.service.types'
+import { WeatherResponse, WeatherState } from './open-weather.service.types'
 
 function getWindDirection(deg: number) {
     const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw']
@@ -6,15 +6,11 @@ function getWindDirection(deg: number) {
     return directions[index]
 }
 
-export function getThreeDaysWeather(data: GetWeatherResponse) {
+export function getThreeDaysWeather(
+    todayWeather: WeatherResponse,
+    list: WeatherResponse[]
+) {
     const today = new Date()
-
-    const list = data.list
-
-    const todayWeather = list.find((item: any) => {
-        const dt = new Date(item.dt_txt)
-        return dt.getDate() === today.getDate()
-    })
 
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)

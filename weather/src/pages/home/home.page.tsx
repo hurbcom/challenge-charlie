@@ -19,14 +19,20 @@ export const Home: React.FC = () => {
     const [city, setCity] = useState<string>()
     const [threeDaysWeather, setThreeDaysWeather] = useState<WeatherState[]>([])
     const [searchText, setSearchText] = useState<string>()
+    const [loading, setLoading] = useState<boolean>(true)
 
     const { device } = useDevice()
 
     const fetchWeather = useCallback(async () => {
         if (!city) return
 
-        const response = await requests.openWeather.getWeather(city)
-        setThreeDaysWeather(response)
+        setLoading(true)
+        try {
+            const response = await requests.openWeather.getWeather(city)
+            setThreeDaysWeather(response)
+        } finally {
+            setLoading(false)
+        }
     }, [city])
 
     const fetchCurrentLocation = useCallback(async () => {
@@ -103,6 +109,7 @@ export const Home: React.FC = () => {
                         ]}
                         temperature={todayWeather?.temp}
                         defaultColor={theme.colors.gray.light}
+                        loading={loading}
                     ></TemperatureContainer>
                     <TemperatureContainer
                         height={150}
@@ -114,6 +121,7 @@ export const Home: React.FC = () => {
                         ]}
                         temperature={tomorrowWeather?.temp}
                         defaultColor={theme.colors.gray.base}
+                        loading={loading}
                     ></TemperatureContainer>
                     <TemperatureContainer
                         height={150}
@@ -125,6 +133,7 @@ export const Home: React.FC = () => {
                         ]}
                         temperature={afterTomorrowWeather?.temp}
                         defaultColor={theme.colors.gray.dark}
+                        loading={loading}
                     ></TemperatureContainer>
                 </Box>
             </Box>

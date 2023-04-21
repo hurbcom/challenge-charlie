@@ -1,5 +1,6 @@
 import { Box } from '@components/ui'
 import { BoxProps } from '@components/ui/Box/box.types'
+import { Spinner } from '@components/ui/Spinner/spinner.styles'
 import { useMemo } from 'react'
 
 interface TemperatureContainerProps extends BoxProps {
@@ -7,6 +8,7 @@ interface TemperatureContainerProps extends BoxProps {
     defaultColor: string
     temperature?: number
     children?: React.ReactNode
+    loading?: boolean
 }
 
 export const TemperatureContainer: React.FC<TemperatureContainerProps> = ({
@@ -14,6 +16,7 @@ export const TemperatureContainer: React.FC<TemperatureContainerProps> = ({
     temperature,
     defaultColor,
     children,
+    loading,
     ...rest
 }) => {
     const currentColor = useMemo(() => {
@@ -31,7 +34,18 @@ export const TemperatureContainer: React.FC<TemperatureContainerProps> = ({
 
     return (
         <Box background={currentColor} {...rest}>
-            {children}
+            {loading ? (
+                <Box
+                    width="100%"
+                    height="100%"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Spinner />
+                </Box>
+            ) : (
+                children
+            )}
         </Box>
     )
 }

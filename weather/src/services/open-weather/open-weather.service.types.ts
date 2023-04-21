@@ -1,4 +1,4 @@
-interface ForecastItem {
+export interface WeatherResponse {
     dt: number
     main: {
         temp: number
@@ -18,8 +18,8 @@ interface ForecastItem {
     dt_txt: string
 }
 
-export interface GetWeatherResponse {
-    list: ForecastItem[]
+export interface GetForecastResponse {
+    list: WeatherResponse[]
 }
 
 export interface WeatherState {

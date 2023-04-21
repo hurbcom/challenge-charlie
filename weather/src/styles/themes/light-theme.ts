@@ -2,8 +2,8 @@ import { ThemeProps } from './theme.types'
 
 export const lightTheme: ThemeProps = {
     colors: {
-        primary: '#d00',
-        secondary: '#0f0',
+        primary: '#3F51B5',
+        secondary: '#FF9800',
         yellow: {
             light: 'rgba(255, 221, 87, 0.9)',
             base: 'rgba(255, 192, 0, 0.9)',
