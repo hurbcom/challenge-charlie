@@ -30,8 +30,6 @@ export function getThreeDaysWeather(data: GetWeatherResponse) {
         return dt.getDate() === afterTomorrow.getDate() && dt.getHours() === 12
     })
 
-    console.log(todayWeather, tomorrowWeather, afterTomorrowWeather)
-
     if (!todayWeather || !tomorrowWeather || !afterTomorrowWeather) {
         throw new Error('Could not get next three days weather')
     }
