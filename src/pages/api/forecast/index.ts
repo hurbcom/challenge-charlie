@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { format } from 'date-fns'
 
-import { ForecastData } from '~/@types/Forecast'
+import { ForecastData } from '~/types/Forecast'
 
 export default async function getForecastToOpenWeatherAPI(
   req: NextApiRequest,

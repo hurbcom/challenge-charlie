@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { LocationToOpenCageAPIData, LocationData } from '~/@types/Location'
+import { LocationToOpenCageAPIData, LocationData } from '~/types/Location'
 
 export default async function getLocationToOpenCageAPI(
   req: NextApiRequest,

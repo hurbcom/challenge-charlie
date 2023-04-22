@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { WallpaperToBingAPIData, WallpaperData } from '~/@types/Wallpaper'
+import { WallpaperToBingAPIData, WallpaperData } from '~/types/Wallpaper'
 
 export default async function getWallpaperToBingAPI(
   req: NextApiRequest,

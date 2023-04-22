@@ -3,7 +3,7 @@ import { useLocation } from '~/hooks/useLocation'
 import * as S from './styles'
 import { Skeleton } from '@chakra-ui/react'
 
-import { TomorrowAndAfter } from '~/@types/Forecast'
+import { TomorrowAndAfter } from '~/types/Forecast'
 
 interface TomorrowProps {
   data: TomorrowAndAfter[] | undefined

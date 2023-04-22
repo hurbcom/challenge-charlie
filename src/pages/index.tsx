@@ -14,8 +14,8 @@ import { AfterTomorrow } from '~/components/WeatherForecast/AfterTomorrow'
 
 import * as S from '~/styles/pages/index.styles'
 
-import { CountiesData } from '~/@types/Counties'
-import { WallpaperData } from '~/@types/Wallpaper'
+import { CountiesData } from '~/types/Counties'
+import { WallpaperData } from '~/types/Wallpaper'
 
 type FormData = {
   search: string
@@ -123,11 +123,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const protocol = req.headers['x-forwarded-proto'] || 'http'
   const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
 
-  console.log('AQUI: ', baseUrl)
-
-  const wallpaperResponse = await fetch(
-    `http://192.168.0.188:3000/api/wallpaper`,
-  )
+  const wallpaperResponse = await fetch(`${baseUrl}/api/wallpaper`)
   const wallpaperData: WallpaperData = await wallpaperResponse.json()
 
   return {
