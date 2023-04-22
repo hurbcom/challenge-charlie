@@ -26,7 +26,7 @@ export const lightTheme: ThemeProps = {
         },
     },
     typography: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Nunito',
         sizes: {
             title: '2em',
             subtitle: '1.5em',
