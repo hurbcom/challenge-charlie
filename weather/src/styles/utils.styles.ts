@@ -1,3 +1,5 @@
+import { SizeType } from './styles.types'
+
 export function hexToRgba(hex: string, opacity: number): string {
     if (!hex) return ''
 
@@ -9,4 +11,12 @@ export function hexToRgba(hex: string, opacity: number): string {
     const b = parseInt(hex.substring(4, 6), 16)
 
     return `rgba(${r}, ${g}, ${b}, ${opacity})`
+}
+
+export const getSizeTypeCssValue = (value?: SizeType) => {
+    if (!value) return
+    if (typeof value === 'string') {
+        return value
+    }
+    return `${value}px`
 }

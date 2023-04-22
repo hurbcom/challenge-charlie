@@ -1,3 +1,4 @@
+import { getSizeTypeCssValue } from '@styles/utils.styles'
 import styled, { css } from 'styled-components'
 import { TypographyProps } from './typography.types'
 
@@ -71,4 +72,10 @@ export const Typography = styled.span<TypographyProps>`
         }
     }};
     font-size: ${(props) => props.size};
+    padding: ${(props) => getSizeTypeCssValue(props.padding)};
+    padding-left: ${(props) => getSizeTypeCssValue(props.paddingLeft)};
+    padding-right: ${(props) => getSizeTypeCssValue(props.paddingRight)};
+    padding-top: ${(props) => getSizeTypeCssValue(props.paddingTop)};
+    padding-bottom: ${(props) => getSizeTypeCssValue(props.paddingBottom)};
+    text-transform: ${(props) => props.textTransform};
 `

@@ -1,4 +1,4 @@
-export type SizeType = string | number
+import { SizeType } from '@styles/styles.types'
 
 export interface BoxProps {
     width?: SizeType

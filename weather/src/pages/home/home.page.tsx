@@ -116,6 +116,7 @@ export const Home: React.FC = () => {
                         temperature={todayWeather?.temp}
                         defaultColor={theme.colors.gray.light}
                         loading={loading}
+                        justifyContent="space-between"
                     >
                         <Box
                             height="100%"
@@ -131,16 +132,26 @@ export const Home: React.FC = () => {
                         </Box>
                         <Box
                             height="100%"
-                            width={device === 'desktop' ? '40%' : '70%'}
+                            width={device === 'desktop' ? '40%' : '65%'}
                             justifyContent="center"
-                            alignItems="center"
+                            alignItems="flex-start"
                             direction="column"
                         >
-                            <Typography variant="subtitle" color="white">
-                                {t('today')}
+                            <Typography
+                                variant="subtitle"
+                                color="white"
+                                paddingBottom={4}
+                            >
+                                {t('today').toUpperCase()}
                             </Typography>
                             <TemperatureText temperature={todayWeather?.temp} />
-                            <Typography variant="subtitle" color="white">
+                            <Typography
+                                variant="subtitle"
+                                color="white"
+                                paddingTop={16}
+                                paddingBottom={4}
+                                textTransform="capitalize"
+                            >
                                 {todayWeather?.description}
                             </Typography>
                             <Typography variant="body" color="white">
@@ -173,13 +184,13 @@ export const Home: React.FC = () => {
                     >
                         <Box
                             height="100%"
-                            width={device === 'desktop' ? '40%' : '70%'}
+                            width={device === 'desktop' ? '40%' : '65%'}
                             justifyContent="center"
-                            alignItems="center"
+                            alignItems="flex-start"
                             direction="column"
                         >
                             <Typography variant="subtitle" color="white">
-                                {t('tomorrow')}
+                                {t('tomorrow').toUpperCase()}
                             </Typography>
                             <TemperatureText
                                 temperature={tomorrowWeather?.temp}
@@ -201,13 +212,13 @@ export const Home: React.FC = () => {
                     >
                         <Box
                             height="100%"
-                            width={device === 'desktop' ? '40%' : '70%'}
+                            width={device === 'desktop' ? '40%' : '65%'}
                             justifyContent="center"
-                            alignItems="center"
+                            alignItems="flex-start"
                             direction="column"
                         >
                             <Typography variant="subtitle" color="white">
-                                {t('tomorrow')}
+                                {t('tomorrow').toUpperCase()}
                             </Typography>
                             <TemperatureText
                                 temperature={afterTomorrowWeather?.temp}
