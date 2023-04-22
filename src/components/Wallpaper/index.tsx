@@ -23,9 +23,11 @@ export function Wallpaper({ data, temperatureValue }: WallpaperProps) {
     if (temperatureValue <= 15.99) {
       return setDegrade('customBlue')
     }
+
     if (temperatureValue >= 16 && temperatureValue <= 35.99) {
       return setDegrade('customYellow')
     }
+
     if (temperatureValue >= 36) {
       return setDegrade('customRed')
     }
@@ -33,7 +35,7 @@ export function Wallpaper({ data, temperatureValue }: WallpaperProps) {
 
   return (
     <Container>
-      <Gradient bg={degrade} />
+      <Gradient bg={degrade} id="gradient" />
 
       <Image alt={data?.title} src={data?.image} />
     </Container>

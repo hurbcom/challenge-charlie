@@ -5,18 +5,18 @@ import { format } from 'date-fns'
 import { parseCookies, setCookie } from 'nookies'
 
 import { LocationData } from '~/@types/Location'
-import { Today, WeatherData } from '~/@types/Weather'
+import { TToday, WeatherData } from '~/@types/Weather'
 import { TomorrowAndAfter, ForecastData } from '~/@types/Forecast'
 
 import { CountiesToIBGEAPIData, CountiesData } from '~/@types/Counties'
 
-interface LocationContextDataProps {
+export interface LocationContextDataProps {
   isLoading: boolean
 
   tempType: string
   userLocation: LocationData
 
-  today: Today | undefined
+  today: TToday | undefined
   tomorrowAndAfter: TomorrowAndAfter[] | undefined
 
   cities: string[] | undefined
@@ -43,7 +43,7 @@ export function LocationContextProvider({
   const [isLoading, setIsLoading] = useState(true)
 
   const [tempType, setTempType] = useState<string>('tempC')
-  const [today, setToday] = useState<Today>()
+  const [today, setToday] = useState<TToday>()
   const [tomorrowAndAfter, setTomorrowAndAfter] = useState<TomorrowAndAfter[]>()
 
   const [cities, setCities] = useState<string[] | undefined>()

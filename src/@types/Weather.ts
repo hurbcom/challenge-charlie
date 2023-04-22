@@ -43,7 +43,7 @@ export type WeatherData = {
   cod: number
 }
 
-export interface Today {
+export type TToday = {
   main: {
     temp: number
     tempC: string
