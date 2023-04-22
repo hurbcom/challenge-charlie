@@ -4,11 +4,11 @@ import { format } from 'date-fns'
 
 import { parseCookies, setCookie } from 'nookies'
 
-import { LocationData } from '~/@types/Location'
-import { TToday, WeatherData } from '~/@types/Weather'
-import { TomorrowAndAfter, ForecastData } from '~/@types/Forecast'
+import { LocationData } from '~/types/Location'
+import { TToday, WeatherData } from '~/types/Weather'
+import { TomorrowAndAfter, ForecastData } from '~/types/Forecast'
 
-import { CountiesToIBGEAPIData, CountiesData } from '~/@types/Counties'
+import { CountiesToIBGEAPIData, CountiesData } from '~/types/Counties'
 
 export interface LocationContextDataProps {
   isLoading: boolean

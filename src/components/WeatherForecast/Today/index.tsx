@@ -5,8 +5,8 @@ import { Icon } from '~/components/Icon'
 import * as S from './styles'
 import { Skeleton } from '@chakra-ui/react'
 
-import { TToday } from '~/@types/Weather'
-import { Icons } from '~/@types/Icons'
+import { TToday } from '~/types/Weather'
+import { Icons } from '~/types/Icons'
 
 interface TodayProps {
   data: TToday | undefined

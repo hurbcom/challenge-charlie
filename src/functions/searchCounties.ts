@@ -1,4 +1,4 @@
-import { CountiesData } from '~/@types/Counties'
+import { CountiesData } from '~/types/Counties'
 
 function normalizeData(data: string): string {
   return data
