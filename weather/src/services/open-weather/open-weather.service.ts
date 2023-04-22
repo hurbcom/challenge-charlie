@@ -1,10 +1,15 @@
 import { env } from '@config/env'
+import i18n from '@config/i18n'
 import { api } from '../api'
 import {
     GetForecastResponse,
     WeatherResponse,
 } from './open-weather.service.types'
 import { getThreeDaysWeather } from './open-weather.service.utils'
+
+const getLang = () => {
+    return i18n.language.replace('-', '_').toLowerCase()
+}
 
 export const openWeatherService = {
     getWeather: async (city: string) => {
@@ -15,7 +20,7 @@ export const openWeatherService = {
                     params: {
                         q: city,
                         APPID: env.OPEN_WEATHER_API_KEY,
-                        lang: 'pt',
+                        lang: getLang(),
                         units: 'metric',
                     },
                 }
@@ -26,7 +31,7 @@ export const openWeatherService = {
                     params: {
                         q: city,
                         APPID: env.OPEN_WEATHER_API_KEY,
-                        lang: 'pt',
+                        lang: getLang(),
                         cnt: 16,
                         units: 'metric',
                     },
