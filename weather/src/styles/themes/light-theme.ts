@@ -28,14 +28,19 @@ export const lightTheme: ThemeProps = {
     typography: {
         fontFamily: 'Roboto',
         sizes: {
-            title: '18px',
-            subtitle: '16px',
-            body: '12px',
+            title: '2em',
+            subtitle: '1.5em',
+            body: '1em',
         },
         colors: {
             primary: '#222',
             secondary: '#666',
             contrastBackground: '#FFF',
+        },
+        weights: {
+            light: 300,
+            normal: 400,
+            bold: 700,
         },
     },
 }

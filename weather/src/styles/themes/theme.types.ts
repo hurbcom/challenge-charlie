@@ -25,5 +25,10 @@ export interface ThemeProps {
             secondary: string
             contrastBackground: string
         }
+        weights: {
+            light: number
+            normal: number
+            bold: number
+        }
     }
 }

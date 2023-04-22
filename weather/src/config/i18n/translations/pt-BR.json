@@ -13,6 +13,7 @@
         "s": "S",
         "sw": "SO",
         "w": "O",
-        "nw": "NO"
+        "nw": "NO",
+        "change_scale": "Mudar escala"
     }
 }

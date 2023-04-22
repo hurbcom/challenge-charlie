@@ -11,6 +11,7 @@ import { ThemeContext } from 'styled-components'
 
 import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
 import { useTranslation } from 'react-i18next'
+import { TemperatureText } from '@components/temperature-text/temperature-text.comp'
 
 interface Coordinates {
     latitude: number
@@ -98,6 +99,7 @@ export const Home: React.FC = () => {
                 <Box
                     direction="column"
                     width={device === 'desktop' ? '50%' : '90%'}
+                    maxWidth={1366}
                 >
                     <SearchCityInput
                         onChange={handleChange}
@@ -134,24 +136,22 @@ export const Home: React.FC = () => {
                             alignItems="center"
                             direction="column"
                         >
-                            <Typography variant="subtitle">
+                            <Typography variant="subtitle" color="white">
                                 {t('today')}
                             </Typography>
-                            <Typography variant="subtitle">
-                                {todayWeather?.temp}C
-                            </Typography>
-                            <Typography variant="subtitle">
+                            <TemperatureText temperature={todayWeather?.temp} />
+                            <Typography variant="subtitle" color="white">
                                 {todayWeather?.description}
                             </Typography>
-                            <Typography variant="body">
+                            <Typography variant="body" color="white">
                                 {`${t('wind')}: ${t(
                                     `${todayWeather?.windDirection}`
                                 )} ${todayWeather?.wind}km/h`}
                             </Typography>
-                            <Typography variant="body">
+                            <Typography variant="body" color="white">
                                 {`${t('humidity')}: ${todayWeather?.humidity}%`}
                             </Typography>
-                            <Typography variant="body">
+                            <Typography variant="body" color="white">
                                 {`${t('pressure')}: ${
                                     todayWeather?.pressure
                                 }hPA`}
@@ -178,12 +178,12 @@ export const Home: React.FC = () => {
                             alignItems="center"
                             direction="column"
                         >
-                            <Typography variant="subtitle">
+                            <Typography variant="subtitle" color="white">
                                 {t('tomorrow')}
                             </Typography>
-                            <Typography variant="subtitle">
-                                {tomorrowWeather?.temp}C
-                            </Typography>
+                            <TemperatureText
+                                temperature={tomorrowWeather?.temp}
+                            />
                         </Box>
                     </TemperatureContainer>
                     <TemperatureContainer
@@ -206,12 +206,12 @@ export const Home: React.FC = () => {
                             alignItems="center"
                             direction="column"
                         >
-                            <Typography variant="subtitle">
+                            <Typography variant="subtitle" color="white">
                                 {t('tomorrow')}
                             </Typography>
-                            <Typography variant="subtitle">
-                                {afterTomorrowWeather?.temp}C
-                            </Typography>
+                            <TemperatureText
+                                temperature={afterTomorrowWeather?.temp}
+                            />
                         </Box>
                     </TemperatureContainer>
                 </Box>

@@ -15,4 +15,5 @@ export interface BoxProps {
     margin?: SizeType
     direction?: 'row' | 'column'
     background?: string
+    maxWidth?: SizeType
 }

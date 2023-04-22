@@ -19,4 +19,5 @@ export const Box = styled.div<BoxProps>`
     padding: ${(props) => getValueParsed(props.padding) || 0};
     margin: ${(props) => getValueParsed(props.margin) || 0};
     background: ${(props) => props.background};
+    max-width: ${(props) => getValueParsed(props.maxWidth)};
 `
