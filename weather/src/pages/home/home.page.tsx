@@ -12,6 +12,7 @@ import { ThemeContext } from 'styled-components'
 import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
 import { useTranslation } from 'react-i18next'
 import { TemperatureText } from '@components/temperature-text/temperature-text.comp'
+import { msToKmh } from 'src/utils/wind.utils'
 
 interface Coordinates {
     latitude: number
@@ -22,7 +23,7 @@ export const Home: React.FC = () => {
     const [coordinates, setCoordinates] = useState<Coordinates>()
     const [city, setCity] = useState<string>()
     const [threeDaysWeather, setThreeDaysWeather] = useState<WeatherState[]>([])
-    const [searchText, setSearchText] = useState<string>()
+    const [searchText, setSearchText] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(true)
 
     const { device } = useDevice()
@@ -104,6 +105,7 @@ export const Home: React.FC = () => {
                     <SearchCityInput
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
+                        value={searchText}
                     />
                     <TemperatureContainer
                         height={300}
@@ -157,7 +159,9 @@ export const Home: React.FC = () => {
                             <Typography variant="body" color="white">
                                 {`${t('wind')}: ${t(
                                     `${todayWeather?.windDirection}`
-                                )} ${todayWeather?.wind}km/h`}
+                                )} ${msToKmh(todayWeather?.wind).toFixed(
+                                    1
+                                )}km/h`}
                             </Typography>
                             <Typography variant="body" color="white">
                                 {`${t('humidity')}: ${todayWeather?.humidity}%`}
