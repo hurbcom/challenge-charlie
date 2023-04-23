@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    volumes:
+      - ./src:/app/src
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_OPEN_CAGE_KEY=c63386b4f77e46de817bdf94f552cddf
+      - REACT_APP_APP_OPEN_WEATHER_KEY=772920597e4ec8f00de8d376dfb3f094
+      - REACT_APP_BING_URL=https://www.bing.com/
+      - REACT_APP_BING_COMPLETE_URL=https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR
+    ports:
+      - "3000:3000"
