@@ -1,3 +1,9 @@
+/**
+ * This hook is intended to watch screen size changes for responsiveness.
+ * It returns what the current screen size is based on breakpoints.
+ * Sizes are desktop, tablet and phone.
+ */
+
 import { useLayoutEffect, useState } from 'react'
 import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from '@utils/constants.utils'
 

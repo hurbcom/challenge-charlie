@@ -1,3 +1,10 @@
+/**
+ * The box component is a component to facilitate layout.
+ * It basically receives some properties that css would need to use and passes
+ * these properties to the component. In addition, it uses the flex display by default,
+ * which helps in organizing the elements.
+ */
+
 import { getSizeTypeCssValue } from '@styles/utils.styles'
 import styled from 'styled-components'
 import { BoxProps } from './box.types'

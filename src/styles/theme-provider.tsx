@@ -1,3 +1,10 @@
+/**
+ * The application's themeprovider will wrap around the entire application offering
+ * both the theme for styled-components and the context api for theme switching,
+ * theme query within components, and theme name query.
+ * This is where the theme's toggle function resides.
+ */
+
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
 import { GlobalStyles } from './global.styles'

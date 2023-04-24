@@ -1,3 +1,7 @@
+/**
+ * This file is to help prevent environment variable typos, as well as help with future name changes.
+ */
+
 export const env = {
     BING_URL: process.env.REACT_APP_BING_URL,
     CORS_PROXY: process.env.REACT_APP_CORS_PROXY,

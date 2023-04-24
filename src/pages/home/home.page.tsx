@@ -52,6 +52,7 @@ export const Home: React.FC = () => {
         setCity(currentLocation.town)
     }, [coordinates])
 
+    // Get current latitude and longitude by navigator api and set in coordinates
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) =>
             setCoordinates({
@@ -61,12 +62,14 @@ export const Home: React.FC = () => {
         )
     }, [])
 
+    // Once coordinates is seted, fetch current location by latitude and longitude
     useEffect(() => {
         if (coordinates) {
             fetchCurrentLocation()
         }
     }, [coordinates, fetchCurrentLocation])
 
+    // When city is seted, fetch weather
     useEffect(() => {
         if (city) {
             fetchWeather()

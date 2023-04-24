@@ -1,3 +1,11 @@
+/**
+ * Configures the internationalization of the application.
+ * To add a new language, just add a json file inside the translations folder and insert
+ * a key in the translations object of this file that will be used to identify the language.
+ * It is important to remember to also change the component that changes the language to allow
+ * the user to switch to that language.
+ */
+
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'

@@ -1,3 +1,8 @@
+/**
+ * This component shows a temperature initially in celsius.
+ * When clicked, it shows the temperature in farenheint, and it inverts according to the clicks.
+ */
+
 import { Tooltip } from '@components/ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'

@@ -1,3 +1,9 @@
+/**
+ * This component is responsible for showing an input of cities on the screen.
+ * When the user starts typing, an api call is made to show an autocomplete and help with typing.
+ * When the user selects an option or presses the enter key, the onSelectCity callback will be called.
+ */
+
 import {
     useEffect,
     ChangeEvent,
@@ -29,6 +35,7 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
         setSearchText(defaultValue)
     }, [defaultValue])
 
+    // Using debounce to optimize api calls
     const [debouncedSearchText] = useDebounce(searchText, 500)
 
     const fetchCities = useCallback(async (value: string) => {
@@ -36,6 +43,8 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
         setCities(response)
     }, [])
 
+    // When searchText changes (in debounce) fetch cities.
+    // If searchText is empty remove suggestions of autocomplete
     useEffect(() => {
         if (debouncedSearchText) {
             fetchCities(debouncedSearchText)
@@ -50,6 +59,7 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
     }
 
     const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+        // This is to select the option before hiding the suggestions
         setTimeout(() => {
             setCanShow(false)
         }, 200)

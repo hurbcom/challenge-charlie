@@ -13,6 +13,7 @@ const getLang = () => {
 
 export const openWeatherService = {
     getWeather: async (city: string) => {
+        // Use promise.all to optimize and make the two calls together
         const [weatherResponse, forecastResponse] = await Promise.all([
             api.get<WeatherResponse>(
                 `${env.OPEN_WEATHER_URL}/data/2.5/weather`,
@@ -39,6 +40,8 @@ export const openWeatherService = {
             ),
         ])
 
+        // Makes the call to parse the data in the desired format.
+        // The weatherResponse already represents today's weather
         return getThreeDaysWeather(
             weatherResponse.data,
             forecastResponse.data.list

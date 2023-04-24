@@ -1,5 +1,11 @@
 import { SizeType } from './styles.types'
 
+/**
+ * Transforms a hexadecimal color value to rgba. Accepts 3 and 6 character string lengths
+ * @param hex Color in Hex
+ * @param opacity Number between 0 and 1
+ * @returns rgba string
+ */
 export function hexToRgba(hex: string, opacity: number): string {
     if (!hex) return ''
 
@@ -12,7 +18,11 @@ export function hexToRgba(hex: string, opacity: number): string {
 
     return `rgba(${r}, ${g}, ${b}, ${opacity})`
 }
-
+/**
+ *
+ * @param value Value in number or string
+ * @returns Value parsed to css format, including the px when needed
+ */
 export const getSizeTypeCssValue = (value?: SizeType) => {
     if (!value) return
     if (typeof value === 'string') {

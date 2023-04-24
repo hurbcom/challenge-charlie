@@ -1,3 +1,8 @@
+/**
+ * This component is responsible for fetching the background in the bing api and showing it on the screen.
+ * If the theme is dark, it shows an overlay to reduce the brightness of the image.
+ */
+
 import { useEffect, useState } from 'react'
 import { requests } from '@services'
 import * as Styles from './dynamic-background.styles'

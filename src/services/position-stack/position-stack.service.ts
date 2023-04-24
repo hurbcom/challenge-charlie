@@ -14,6 +14,7 @@ export const positionStack = {
                 },
             }
         )
+        // Filters for items with type locality, because they are cities.
         return response.data.data.filter((locale) => locale.type === 'locality')
     },
 }
