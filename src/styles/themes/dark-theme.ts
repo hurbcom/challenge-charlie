@@ -1,9 +1,9 @@
 import { ThemeProps } from './theme.types'
 
-export const lightTheme: ThemeProps = {
+export const darkTheme: ThemeProps = {
     colors: {
-        primary: '#3F51B5',
-        secondary: '#FF9800',
+        primary: '#2196f3',
+        secondary: '#ff9800',
         yellow: {
             light: 'rgba(255, 221, 87, 0.9)',
             base: 'rgba(255, 192, 0, 0.9)',
@@ -33,11 +33,11 @@ export const lightTheme: ThemeProps = {
             body: '1em',
         },
         colors: {
-            primary: '#222',
-            secondary: '#666',
-            contrast: '#FFF',
-            contrastBackground: '#FFF',
-            hover: '#e2e2e2',
+            primary: '#ddd',
+            secondary: '#b5b5b5',
+            contrast: '#666',
+            contrastBackground: '#444',
+            hover: '#333',
         },
         weights: {
             light: 300,

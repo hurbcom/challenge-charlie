@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import { requests } from '@services'
 import * as Styles from './dynamic-background.styles'
+import { useTheme } from '@styles/theme-provider'
+import { BoxProps } from '@components/ui/box/box.types'
 
-type Props = {
+interface Props extends BoxProps {
     children: React.ReactNode
 }
 
-export const DynamicBackground: React.FC<Props> = ({ children }) => {
+export const DynamicBackground: React.FC<Props> = ({ children, ...rest }) => {
     const [background, setBackground] = useState<string>()
+
+    const { themeName } = useTheme()
 
     const fetchBackground = async () => {
         const url = await requests.bing.getBackgroundUrl()
@@ -18,5 +22,11 @@ export const DynamicBackground: React.FC<Props> = ({ children }) => {
         fetchBackground()
     }, [])
 
-    return <Styles.Background url={background}>{children}</Styles.Background>
+    return (
+        <Styles.Background url={background}>
+            <Styles.Overlay show={themeName === 'dark'} {...rest}>
+                {children}
+            </Styles.Overlay>
+        </Styles.Background>
+    )
 }

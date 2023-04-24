@@ -4,16 +4,16 @@ import { TemperatureContainer } from '@components/temperature-container/temperat
 import { Box, Typography } from '@components/ui'
 import { useDevice } from '@hooks/useDevice'
 import { requests } from '@services'
-import { ThemeProps } from '@styles/themes/theme.types'
-import { useCallback, useContext, useEffect, useState } from 'react'
-import { WeatherState } from 'src/services/open-weather/open-weather.service.types'
-import { ThemeContext } from 'styled-components'
+import { useCallback, useEffect, useState } from 'react'
+import { WeatherState } from '@services/open-weather/open-weather.service.types'
 
 import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
 import { useTranslation } from 'react-i18next'
 import { TemperatureText } from '@components/temperature-text/temperature-text.comp'
-import { msToKmh } from 'src/utils/wind.utils'
+import { msToKmh } from '@utils/wind.utils'
 import LanguageSwitcher from '@components/language-switcher/language-switcher.comp'
+import { ToggleThemeButton } from '@components/toggle-theme-button/toggle-theme-button.comp'
+import { useTheme } from '@styles/theme-provider'
 
 interface Coordinates {
     latitude: number
@@ -73,21 +73,32 @@ export const Home: React.FC = () => {
         }
     }, [city, fetchWeather])
 
-    const theme: ThemeProps = useContext(ThemeContext)
+    const { theme } = useTheme()
 
     const [todayWeather, tomorrowWeather, afterTomorrowWeather] =
         threeDaysWeather
 
+    const textColor = theme.typography.colors.contrast
+
     return (
-        <DynamicBackground>
-            <Box justifyContent="flex-end" padding={16}>
+        <DynamicBackground direction="column">
+            <Box
+                justifyContent="flex-end"
+                padding={16}
+                alignItems="center"
+                width="100%"
+            >
                 <LanguageSwitcher />
+                <Box marginLeft={16}>
+                    <ToggleThemeButton />
+                </Box>
             </Box>
             <Box
                 justifyContent="center"
                 alignItems="center"
                 width="100%"
                 margin={24}
+                flex={1}
             >
                 <Box
                     direction="column"
@@ -120,7 +131,7 @@ export const Home: React.FC = () => {
                             <SunIcon
                                 width={'100%'}
                                 height="100%"
-                                fill="white"
+                                fill={textColor}
                             />
                         </Box>
                         <Box
@@ -132,32 +143,35 @@ export const Home: React.FC = () => {
                         >
                             <Typography
                                 variant="subtitle"
-                                color="white"
+                                color={textColor}
                                 paddingBottom={4}
                             >
                                 {t('today').toUpperCase()}
                             </Typography>
-                            <TemperatureText temperature={todayWeather?.temp} />
+                            <TemperatureText
+                                color={textColor}
+                                temperature={todayWeather?.temp}
+                            />
                             <Typography
                                 variant="subtitle"
-                                color="white"
+                                color={textColor}
                                 paddingTop={16}
                                 paddingBottom={4}
                                 textTransform="capitalize"
                             >
                                 {todayWeather?.description}
                             </Typography>
-                            <Typography variant="body" color="white">
+                            <Typography variant="body" color={textColor}>
                                 {`${t('wind')}: ${t(
                                     `${todayWeather?.windDirection}`
                                 )} ${msToKmh(todayWeather?.wind).toFixed(
                                     1
                                 )}km/h`}
                             </Typography>
-                            <Typography variant="body" color="white">
+                            <Typography variant="body" color={textColor}>
                                 {`${t('humidity')}: ${todayWeather?.humidity}%`}
                             </Typography>
-                            <Typography variant="body" color="white">
+                            <Typography variant="body" color={textColor}>
                                 {`${t('pressure')}: ${
                                     todayWeather?.pressure
                                 }hPA`}
@@ -184,10 +198,11 @@ export const Home: React.FC = () => {
                             alignItems="flex-start"
                             direction="column"
                         >
-                            <Typography variant="subtitle" color="white">
+                            <Typography variant="subtitle" color={textColor}>
                                 {t('tomorrow').toUpperCase()}
                             </Typography>
                             <TemperatureText
+                                color={textColor}
                                 temperature={tomorrowWeather?.temp}
                             />
                         </Box>
@@ -212,10 +227,11 @@ export const Home: React.FC = () => {
                             alignItems="flex-start"
                             direction="column"
                         >
-                            <Typography variant="subtitle" color="white">
+                            <Typography variant="subtitle" color={textColor}>
                                 {t('tomorrow').toUpperCase()}
                             </Typography>
                             <TemperatureText
+                                color={textColor}
                                 temperature={afterTomorrowWeather?.temp}
                             />
                         </Box>

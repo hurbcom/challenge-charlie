@@ -13,7 +13,13 @@ export interface BoxProps {
     alignItems?: 'flex-start' | 'flex-end' | 'center'
     padding?: SizeType
     margin?: SizeType
+    marginLeft?: SizeType
+    marginTop?: SizeType
+    marginRight?: SizeType
+    marginBottom?: SizeType
     direction?: 'row' | 'column'
     background?: string
     maxWidth?: SizeType
+    position?: 'absolute' | 'relative' | 'static' | 'fixed' | 'sticky'
+    flex?: string | number
 }

@@ -24,7 +24,8 @@
             "@services": ["src/services"],
             "@services/*": ["src/services/*"],
             "@pages/*": ["src/pages/*"],
-            "@hooks/*": ["src/hooks/*"]
+            "@hooks/*": ["src/hooks/*"],
+            "@utils/*": ["src/utils/*"]
         }
     },
     "include": ["src", "src/custom.d.ts"]

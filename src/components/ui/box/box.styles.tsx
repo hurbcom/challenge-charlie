@@ -11,6 +11,12 @@ export const Box = styled.div<BoxProps>`
     align-items: ${(props) => props.alignItems || 'flex-start'};
     padding: ${(props) => getSizeTypeCssValue(props.padding) || 0};
     margin: ${(props) => getSizeTypeCssValue(props.margin) || 0};
+    margin-left: ${(props) => getSizeTypeCssValue(props.marginLeft) || 0};
+    margin-top: ${(props) => getSizeTypeCssValue(props.marginTop) || 0};
+    margin-right: ${(props) => getSizeTypeCssValue(props.marginRight) || 0};
+    margin-bottom: ${(props) => getSizeTypeCssValue(props.marginBottom) || 0};
     background: ${(props) => props.background};
     max-width: ${(props) => getSizeTypeCssValue(props.maxWidth)};
+    position: ${(props) => getSizeTypeCssValue(props.position)};
+    flex: ${(props) => getSizeTypeCssValue(props.flex)};
 `

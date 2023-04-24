@@ -10,6 +10,7 @@ export const Select = styled.select`
 
     border: none;
     border-radius: 4px;
+    color: ${(props) => props.theme.typography.colors.secondary};
     background-color: ${(props) =>
         props.theme.typography.colors.contrastBackground};
 `

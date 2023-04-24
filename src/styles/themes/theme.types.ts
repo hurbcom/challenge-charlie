@@ -23,6 +23,7 @@ export interface ThemeProps {
         colors: {
             primary: string
             secondary: string
+            contrast: string
             contrastBackground: string
             hover: string
         }

@@ -1,5 +1,6 @@
 import { Box } from '@components/ui'
 import { hexToRgba } from '@styles/utils.styles'
+import { DESKTOP_BREAKPOINT } from '@utils/constants.utils'
 import styled from 'styled-components'
 import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
 
@@ -26,7 +27,7 @@ export const StartIcon = styled(CompassIcon)`
 
 export const Input = styled.input`
     width: 100%;
-    height: 60px;
+    height: 80px;
     background-color: ${(props) =>
         hexToRgba(props.theme.typography.colors.contrastBackground, 0.9)};
     font-size: 28px;
@@ -38,12 +39,16 @@ export const Input = styled.input`
     }
     padding: 16px;
     padding-left: 80px;
+    @media (max-width: ${DESKTOP_BREAKPOINT}px) {
+        height: 40px;
+        font-size: 18px;
+    }
 `
 
 export const SuggestionList = styled.ul`
     position: absolute;
     z-index: 999999;
-    margin-top: 90px;
+    margin-top: 80px;
     padding: 0;
     width: 100%;
     max-height: 200px;
