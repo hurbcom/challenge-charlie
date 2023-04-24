@@ -3,6 +3,12 @@ import { hexToRgba } from '@styles/utils.styles'
 import styled from 'styled-components'
 import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
 
+export const Wrapper = styled(Box)`
+    width: 100%;
+    height: 100%;
+    position: relative;
+`
+
 export const InputWrapper = styled(Box)`
     position: relative;
     width: 100%;
@@ -32,4 +38,27 @@ export const Input = styled.input`
     }
     padding: 16px;
     padding-left: 80px;
+`
+
+export const SuggestionList = styled.ul`
+    position: absolute;
+    z-index: 999999;
+    margin-top: 90px;
+    padding: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: ${(props) =>
+        props.theme.typography.colors.contrastBackground};
+    border: 1px solid ${(props) => props.theme.typography.colors.hover};
+    list-style: none;
+`
+
+export const SuggestionItem = styled.li`
+    padding: 24px 16px;
+    font-size: 22px;
+    cursor: pointer;
+    &:hover {
+        background-color: ${(props) => props.theme.typography.colors.hover};
+    }
 `

@@ -36,6 +36,7 @@ export const lightTheme: ThemeProps = {
             primary: '#222',
             secondary: '#666',
             contrastBackground: '#FFF',
+            hover: '#e2e2e2',
         },
         weights: {
             light: 300,

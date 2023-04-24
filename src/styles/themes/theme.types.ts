@@ -24,6 +24,7 @@ export interface ThemeProps {
             primary: string
             secondary: string
             contrastBackground: string
+            hover: string
         }
         weights: {
             light: number

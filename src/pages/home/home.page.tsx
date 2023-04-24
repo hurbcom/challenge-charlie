@@ -21,9 +21,8 @@ interface Coordinates {
 
 export const Home: React.FC = () => {
     const [coordinates, setCoordinates] = useState<Coordinates>()
-    const [city, setCity] = useState<string>()
+    const [city, setCity] = useState<string>('')
     const [threeDaysWeather, setThreeDaysWeather] = useState<WeatherState[]>([])
-    const [searchText, setSearchText] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(true)
 
     const { device } = useDevice()
@@ -50,7 +49,6 @@ export const Home: React.FC = () => {
         )
 
         setCity(currentLocation.town)
-        setSearchText(currentLocation.town)
     }, [coordinates])
 
     useEffect(() => {
@@ -74,16 +72,6 @@ export const Home: React.FC = () => {
         }
     }, [city, fetchWeather])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchText(e.target.value)
-    }
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            setCity(searchText)
-        }
-    }
-
     const theme: ThemeProps = useContext(ThemeContext)
 
     const [todayWeather, tomorrowWeather, afterTomorrowWeather] =
@@ -103,9 +91,8 @@ export const Home: React.FC = () => {
                     maxWidth={1366}
                 >
                     <SearchCityInput
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        value={searchText}
+                        defaultValue={city}
+                        onSelectCity={(name) => setCity(name)}
                     />
                     <TemperatureContainer
                         height={300}
