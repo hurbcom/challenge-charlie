@@ -58,4 +58,12 @@ The city search input in the application features an autocomplete function, whic
 
 ### With Docker
 
-1. [Step-by-step instructions on how to run the project with Docker]
+#### Development
+1. `docker-compose up`
+
+#### Production
+The port 80 of the container is being mapped to 8080. It can be changed to your choice.
+
+It's using nginx to serve the react. Depending on the infrastructure another docker file model could be made.
+1. `docker build . -t challenge-charlie`
+1. `docker run -p 8080:80 challenge-charlie`
