@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { WeatherData } from '~/@types/Weather'
+import { WeatherData } from '~/types/Weather'
 
 export default async function getWeatherToOpenWeatherAPI(
   req: NextApiRequest,
