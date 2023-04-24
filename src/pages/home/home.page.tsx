@@ -13,6 +13,7 @@ import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
 import { useTranslation } from 'react-i18next'
 import { TemperatureText } from '@components/temperature-text/temperature-text.comp'
 import { msToKmh } from 'src/utils/wind.utils'
+import LanguageSwitcher from '@components/language-switcher/language-switcher.comp'
 
 interface Coordinates {
     latitude: number
@@ -79,11 +80,14 @@ export const Home: React.FC = () => {
 
     return (
         <DynamicBackground>
+            <Box justifyContent="flex-end" padding={16}>
+                <LanguageSwitcher />
+            </Box>
             <Box
                 justifyContent="center"
                 alignItems="center"
                 width="100%"
-                height="100%"
+                margin={24}
             >
                 <Box
                     direction="column"
