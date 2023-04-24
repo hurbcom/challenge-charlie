@@ -21,10 +21,10 @@
     <img src="https://img.shields.io/static/v1?label=NextJS&message=13.1.6&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do NextJS" />
     <img src="https://img.shields.io/static/v1?label=Typescript&message=4.9.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Typescript" />
     <img src="https://img.shields.io/static/v1?label=ChakraUI&message=2.5.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do ChakraUI" />
-    <img src="https://img.shields.io/static/v1?label=React Hook Form&message=7.43.7&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do React Hook Form" />
+    <img src="https://img.shields.io/static/v1?label=React%20Hook%20Form&message=7.43.7&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do React Hook Form" />
     <img src="https://img.shields.io/static/v1?label=Nookies&message=2.5.2&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Nookies" />
     <img src="https://img.shields.io/static/v1?label=Jest&message=29.5.0&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Jest" />
-    <img src="https://img.shields.io/static/v1?label=Testing Library&message=14.0.0&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Testing Library" />
+    <img src="https://img.shields.io/static/v1?label=Testing%20Library&message=14.0.0&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Testing Library" />
 </div>
 
 <br/>
@@ -81,7 +81,7 @@
 $ git clone git@github.com:vitoremanuelqf/challenge-charlie.git && cd challenge-charlie
 ```
 
-**Siga os passos abaixo para rodar a aplicação localmente:**
+**Siga os passos a baixo para rodar a aplicação localmente:**
 
 ```bash
 # Certifique-se de que todas as variáveis de ambiente estão com as chaves das APIs ativas.
