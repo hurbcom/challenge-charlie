@@ -1,90 +1,181 @@
-<div>
-  <img src="https://img.shields.io/static/v1?label=NextJS&message=13.1.6&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Version of the React" />
-
-  <img src="https://img.shields.io/static/v1?label=Progress&message=99%&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" />
+<div align="left">
+    <img src="https://img.shields.io/static/v1?label=Progress&message=99%&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Progress"/>
 </div>
 
-![Logo do Markdown](/public/images/png/logo-hurb.png)
+<br/>
 
-<h1 align="center">Desafio Charlie</h1>
+<div align="center">
+    <img src="public/images/png/logo-hurb.png" alt="Logo" width="400px"/>
+</div>
 
-<p align="center">
-  Uma aplicação Web responsiva desenvolvida com <a href="https://nextjs.org/">NextJS</a> que consulta a API disponibilizada pelo teste da empresa <a href="https://github.com/hurbcom">Hurb,</a> exibindo a previsão do tempo.
-</p>
+<br/>
 
-- [Tecnologias](#Tecnologias)
-- [Decisões Técnicas](#decisões-técnicas)
-- [Desafios](#Desafios)
-- [Melhorias](#possíveis-melhorias)
-- [Instalação](#Instalação)
-- [Testes](#Testes)
+<div align="center">
+    <h1>Challenge Charlie</h1>
+    <h3>Projeto em NextJS para Previsão do Tempo</h3>
+    <p align="center">Uma aplicação Web responsiva desenvolvida em <a href="https://nextjs.org/">NextJS</a> que consulta a API <a href="https://openweathermap.org/">Open Weather</a> para pesquisar a previsão do tempo.
+    </p>
+</div>
+
+<div align="center">
+    <img src="https://img.shields.io/static/v1?label=NextJS&message=13.1.6&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do NextJS" />
+    <img src="https://img.shields.io/static/v1?label=Typescript&message=4.9.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Typescript" />
+    <img src="https://img.shields.io/static/v1?label=ChakraUI&message=2.5.5&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do ChakraUI" />
+    <img src="https://img.shields.io/static/v1?label=React Hook Form&message=7.43.7&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do React Hook Form" />
+    <img src="https://img.shields.io/static/v1?label=Nookies&message=2.5.2&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Nookies" />
+    <img src="https://img.shields.io/static/v1?label=Jest&message=29.5.0&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Jest" />
+    <img src="https://img.shields.io/static/v1?label=Testing Library&message=14.0.0&color=#009CA3%3CCOLOR%3E&style=plastic%3CSTYLE%3E&logo=react%3CLOGO%3E" alt="Versão do Testing Library" />
+</div>
+
+<br/>
+
+<div align="center">
+    <a href="#tecnologias">Tecnologias</a> •
+    <a href="#como-usar">Como usar</a> •
+    <a href="#arquitetura">Arquitetura</a> •
+    <a href="#decisões-técnicas">Decisões Técnicas</a> •
+    <a href="#desafios">Desafios</a> •
+    <a href="#melhorias">Melhorias</a>
+</div>
+
+<br/>
+
+<div align="center">
+    <img src="public/demo.gif" alt="Demo"/>
+</div>
+
+<br/>
+
+**Demo FIGMA:** [**https://www.figma.com/challenge-charlie**](https://www.figma.com/file/SeLoG8Ky6ZIzOtCKGAmF8w/challenge-charlie?node-id=0%3A1&t=wwxWFPAGt7NvvDr9-1)
 
 **Demo FRONT-END:** [**https://**](https://)
 
+<br/>
+
 # Tecnologias
-
-###### Linguagens e Ferramentas:
-
-- [React](https://react.dev/)
+#### Linguagens e Ferramentas:
+- [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-###### Front-end:
-- [Next.js](https://nextjs.org/)
+#### Front-end:
 - [Chakra UI](https://chakra-ui.com/)
 
-###### Testes unitários:
-
+#### Testes:
 - [Jest](https://jestjs.io/)
+- [Testing Library](https://testing-library.com/)
 
-###### Ambiente
-
-- [Docker](https://docs.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-
-###### Padronização de código/commits:
-
+#### Padronização de Código:
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [Commitizen](https://github.com/commitizen/cz-cli)
+
+#### Auxiliares
+- [Nookies](https://github.com/maticzav/nookies)
+- [React Hook Form](https://react-hook-form.com/)
+
+<br/>
+
+# Como usar
+**Clone o projeto e acesse a pasta:**
+
+```bash
+$ git clone git@github.com:vitoremanuelqf/challenge-charlie.git && cd challenge-charlie
+```
+
+**Siga os passos abaixo para rodar a aplicação localmente:**
+
+```bash
+# Certifique-se de que todas as variáveis de ambiente estão com as chaves das APIs ativas.
+
+# Instale as dependências:
+$ yarn
+
+# Inciar a aplicação
+$ yarn start
+```
+
+**Para rodar os testes:**
+```bash
+# Instale as dependências:
+$ yarn
+
+# Rodar o comando de teste:
+$ yarn test
+```
+
+<br/>
+
+<div align="left">
+    <img src="public/testes.png" alt="Tests"/>
+</div>
+
+<br/>
+
+# Arquitetura
+
+```shell
+public/
+|---- images/
+src/
+|---- assets/
+|---- components/
+|---- contexts/
+|---- functions/
+|---- hooks/
+|---- pages/
+|---- styles/
+|---- tests/
+|---- types/
+```
+
+<br/>
 
 # Decisões Técnicas
-
 **Next.js:**
-A razão pela qual escolhi o NextJS foi pela familiaridade com o framework e suas vantagens, uma das features utilizadas foi a de Server Side Rendering, para chamada do Wallpaper que fica em background na aplicação, pois a imagem deveria ser renderizada junto as demais funções da página.
+<p align="left">O Next.js é conhecido por oferecer suporte para renderização do lado do servidor, o que pode melhorar significativamente o desempenho da página, especialmente em conexões de internet mais lentas. Quanto a performance, o Next.js é projetado para oferecer o melhor desempenho, utilizando estratégias como o pré-carregamento de páginas e o lazy loading para melhorar o tempo de carregamento.</p>
+
+<br/>
 
 **ChakraUI:**
-O ChakraUI tem sido um forte aliado na construção dos projetos em que trabalho, é uma ferramenta que conta com o poder do emotion.js (CSS-IN-JS) e que nos permite personalizar os componentes da própria ferrementa, como também criar os nosso próprios componentes.
+<p align="left">O ChakraUI permite a criação de interfaces de usuário rapidamente, sem precisar escrever CSS personalizado ou estilizar cada componente individualmente. Isso economiza tempo e aumenta a produtividade. O framework também se preocupa com a acessibilidade, e seus componentes são projetados com esse recurso em mente. Isso significa que você pode criar interfaces de usuário que sejam acessíveis.</p>
+
+<br/>
 
 **React Hook Form:**
-O React Hook Form é altamente performático e oferece uma solução mais leve e rápida para gerenciamento de formulários em comparação com outras bibliotecas de gerenciamento de formulários.
+<p>O React Hook Form é projetado para ser flexível e escalável, permitindo que os desenvolvedores escolham as bibliotecas de UI que desejam usar e personalizem as funcionalidades de validação e manipulação de dados para atender às suas necessidades específicas, sendo assim, é possível criar formulários em React de forma mais rápida e fácil, reduzindo a quantidade de código necessário e melhorando a eficiência e desempenho do aplicativo.</p>
+
+<br/>
 
 **Nookies:**
-O Nookies é uma biblioteca para gerenciamento de cookies em Next.js. Ele é uma ferramenta muito útil para lidar com cookies do navegador, na aplicação eu o utilizei para armazenar a localidade do usuário, evitando a chamada que deveria ser feita pela api de conversão de LATITUTE E LONGITUDE.
+<p>Nookies é uma biblioteca de gerenciamento de cookies em JavaScript que pode ser utilizada em aplicações web. Ela permite que desenvolvedores gerenciem cookies no lado do cliente de forma fácil e flexível.</p>
 
-**Outros:**
-Outras dependências fazem parte do Boilerplate que criei recentemente, as quais acredito serem muito úteis para construção dos projetos.
+<br/>
 
 # Desafios
+- <p>Contornar o erro de CORS ao consumir a API do bing, em meio a pesquisas encontrei a solução com a implementação da feature de <a href="https://nextjs.org/docs/api-routes/introduction">API Routes do NextJS</a></p>
 
-- Contornar o erro de CORS no consumo das APIS;
-- Elaborar e implementar os Tests;
-- Configurar o Docker.
+- <p>Elaborar e implementar os testes com  <a href="https://nextjs.org/docs/api-routes/introduction">Jest</a> e <a href="https://nextjs.org/docs/api-routes/introduction">Testing Library</a></p>
 
-# Possíveis melhorias
+<br/>
 
-**Testes no Front-end:**
-Até então só havia visto testes no front-end em cursos, nunca aplicando em nenhuma outra aplicação, sabendo disso, imagino que existem muitas melhorias que podem ser aplicadas.
+# Melhorias
+**Alert:**
+- <p>O uso de alertas na web é uma forma eficaz de exibir informações importantes ou notificações aos usuários de um site ou aplicação web.</p>
 
-**API KEY:**
-Entendo que não podemos expor as chaves de acesso das APIs em nosso GitHub, mas deixei amostra de propósito para facilitar a avaliação.
+<br/>
 
-# Instalação
+**Skeleton:**
+- <p>O uso de skeleton para loading (ou carregamento) é uma técnica que pode melhorar significativamente a experiência do usuário em aplicações web ou mobile, especialmente em situações em que há carregamento assíncrono de conteúdo.</p>
 
-# Testes
+<br/>
 
----
+**Sugestões de Pesquisa no Input:**
+- <p>O uso de sugestões de autocompletar (ou autopreencher) em campos de entrada de formulários em aplicações web ou mobile pode ajudar a melhorar a experiência do usuário de várias maneiras, uma delas é evitar erros de digitação e garantir que os dados inseridos estejam precisos e consistentes.</p>
 
-## Contato
+- <p>Para implementar as sugestões de autopreenchimento, foi necessário integrar a API de localidades dos serviços de dados do <a href="https://servicodados.ibge.gov.br/api/docs/localidades">IBGE</a>. A integração com a API de localidades do <a href="https://servicodados.ibge.gov.br/api/docs/localidades">IBGE</a> foi fundamental para viabilizar as sugestões de autopreenchimento em nosso sistema. Por meio dessa integração, conseguimos acessar informações precisas e atualizadas sobre as localidades do país, o que nos permitiu fornecer sugestões relevantes e confiáveis aos usuários.</p>
+
+<br/>
+
+# Contato
 
 Qualquer dúvida, sugestão ou crítica estarei à disposição!
 
