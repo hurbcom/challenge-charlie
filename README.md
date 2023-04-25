@@ -68,3 +68,9 @@ The port 80 of the container is being mapped to 8080. It can be changed to your 
 It's using nginx to serve the react. Depending on the infrastructure another docker file model could be made.
 1. `docker build . -t challenge-charlie`
 1. `docker run -p 8080:80 challenge-charlie`
+
+## Disclaimer
+
+Please note that this project includes storing environment variables in Git, which is not considered a best practice. Saving environment variables in version control systems can pose security risks, as sensitive information such as API keys and passwords may be exposed to unauthorized users.
+
+However, for the purposes of making it easier to run this project, the decision was made to include the environment variables in Git.
