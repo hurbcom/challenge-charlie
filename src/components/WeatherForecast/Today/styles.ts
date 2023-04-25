@@ -75,6 +75,10 @@ export const ContentTemp = styled(C.Flex)`
   margin-bottom: 3.8rem;
 
   align-items: center;
+
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
 `
 
 export const ContentWeatherDescription = styled(C.Flex)`
