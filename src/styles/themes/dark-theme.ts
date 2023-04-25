@@ -17,7 +17,7 @@ export const darkTheme: ThemeProps = {
         red: {
             light: 'rgba(255, 130, 120, 0.9)',
             base: 'rgba(255, 70, 70, 0.9)',
-            dark: 'rgba(170, 50, 50, 0.9)',
+            dark: 'rgba(200, 60, 60, 0.9)',
         },
         gray: {
             light: 'rgba(224, 224, 224, 0.9)',
@@ -35,7 +35,7 @@ export const darkTheme: ThemeProps = {
         colors: {
             primary: '#ddd',
             secondary: '#b5b5b5',
-            contrast: '#666',
+            contrast: '#444',
             contrastBackground: '#444',
             hover: '#333',
         },

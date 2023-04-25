@@ -49,7 +49,7 @@ export const Home: React.FC = () => {
             coordinates?.longitude
         )
 
-        setCity(currentLocation?.town ?? '')
+        setCity(currentLocation?.city ?? currentLocation.town ?? '')
     }, [coordinates])
 
     // Get current latitude and longitude by navigator api and set in coordinates
@@ -189,7 +189,7 @@ export const Home: React.FC = () => {
                             theme.colors.yellow.base,
                             theme.colors.red.base,
                         ]}
-                        temperature={tomorrowWeather?.temp}
+                        temperature={todayWeather?.temp}
                         defaultColor={theme.colors.gray.base}
                         loading={loading}
                         justifyContent="flex-end"
@@ -218,7 +218,7 @@ export const Home: React.FC = () => {
                             theme.colors.yellow.dark,
                             theme.colors.red.dark,
                         ]}
-                        temperature={afterTomorrowWeather?.temp}
+                        temperature={todayWeather?.temp}
                         defaultColor={theme.colors.gray.dark}
                         loading={loading}
                         justifyContent="flex-end"
