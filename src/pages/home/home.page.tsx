@@ -49,7 +49,7 @@ export const Home: React.FC = () => {
             coordinates?.longitude
         )
 
-        setCity(currentLocation?.city ?? currentLocation.town ?? '')
+        setCity(currentLocation?.city ?? currentLocation?.town ?? '')
     }, [coordinates])
 
     // Get current latitude and longitude by navigator api and set in coordinates
