@@ -226,4 +226,6 @@ Qualquer dúvida, sugestão ou crítica estarei à disposição!
 
 E-mail: **vitoremanuelqf@gmail.com**
 
+WhatsApp: (15) 99605-5714
+
 LinkedIn: [**https://www.linkedin.com/in/vitoremanuelqf**](https://www.linkedin.com/in/vitoremanuelqf/)
