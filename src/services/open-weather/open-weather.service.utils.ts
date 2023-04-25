@@ -4,7 +4,7 @@ import { WeatherResponse, WeatherState } from './open-weather.service.types'
  * @param deg Wind angle in degrees
  * @returns The direction in the wind rose
  */
-function getWindDirection(deg: number) {
+export function getWindDirection(deg: number) {
     const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw']
     const index = Math.round(deg / 45) % 8
     return directions[index]
