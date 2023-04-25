@@ -1,4 +1,8 @@
-import { WeatherResponse, WeatherState } from './open-weather.service.types'
+import {
+    WeatherName,
+    WeatherResponse,
+    WeatherState,
+} from './open-weather.service.types'
 
 /**
  * @param deg Wind angle in degrees
@@ -39,6 +43,7 @@ export function getThreeDaysWeather(
     const result: WeatherState[] = [
         {
             temp: todayWeather.main.temp,
+            name: todayWeather.weather[0].main as WeatherName,
             description: todayWeather.weather[0].description,
             pressure: todayWeather.main.pressure,
             humidity: todayWeather.main.humidity,
@@ -48,6 +53,7 @@ export function getThreeDaysWeather(
         {
             temp: tomorrowWeather.main.temp,
             description: tomorrowWeather.weather[0].description,
+            name: tomorrowWeather.weather[0].main as WeatherName,
             pressure: tomorrowWeather.main.pressure,
             humidity: tomorrowWeather.main.humidity,
             wind: tomorrowWeather.wind.speed,
@@ -56,6 +62,7 @@ export function getThreeDaysWeather(
         {
             temp: afterTomorrowWeather.main.temp,
             description: afterTomorrowWeather.weather[0].description,
+            name: afterTomorrowWeather.weather[0].main as WeatherName,
             pressure: afterTomorrowWeather.main.pressure,
             humidity: afterTomorrowWeather.main.humidity,
             wind: afterTomorrowWeather.wind.speed,

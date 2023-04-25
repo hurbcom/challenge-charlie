@@ -25,6 +25,7 @@ describe('getThreeDaysWeather', () => {
         expect(result[0]).toEqual({
             temp: 25,
             description: 'céu limpo',
+            name: 'Clear',
             pressure: 1013,
             humidity: 44,
             wind: 4.1,
@@ -33,6 +34,7 @@ describe('getThreeDaysWeather', () => {
         expect(result[1]).toEqual({
             temp: 20,
             description: 'céu limpo',
+            name: 'Clear',
             pressure: 1012,
             humidity: 64,
             wind: 1,
@@ -41,6 +43,7 @@ describe('getThreeDaysWeather', () => {
         expect(result[2]).toEqual({
             temp: 18,
             description: 'poucas nuvens',
+            name: 'Clouds',
             pressure: 1014,
             humidity: 70,
             wind: 1,

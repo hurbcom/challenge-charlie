@@ -7,13 +7,13 @@ import { requests } from '@services'
 import { useCallback, useEffect, useState } from 'react'
 import { WeatherState } from '@services/open-weather/open-weather.service.types'
 
-import { ReactComponent as SunIcon } from '@assets/icons/sun.svg'
 import { useTranslation } from 'react-i18next'
 import { TemperatureText } from '@components/temperature-text/temperature-text.comp'
 import { msToKmh } from '@utils/wind.utils'
 import LanguageSwitcher from '@components/language-switcher/language-switcher.comp'
 import { ToggleThemeButton } from '@components/toggle-theme-button/toggle-theme-button.comp'
 import { useTheme } from '@styles/theme-provider'
+import { WeatherIcon } from '@components/weather-icon/weather-icon.comp'
 
 interface Coordinates {
     latitude: number
@@ -137,10 +137,9 @@ export const Home: React.FC = () => {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <SunIcon
-                                width={'100%'}
-                                height="100%"
-                                fill={textColor}
+                            <WeatherIcon
+                                color={textColor}
+                                weather={todayWeather?.name}
                             />
                         </Box>
                         <Box
