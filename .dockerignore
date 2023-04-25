@@ -1,0 +1,15 @@
+# Arquivos de build
+build/
+coverage/
+
+# Dependências
+node_modules/
+
+# Arquivos de cache
+*.log
+*.swp
+.DS_Store
+
+# Outros arquivos
+*.md
+LICENSE

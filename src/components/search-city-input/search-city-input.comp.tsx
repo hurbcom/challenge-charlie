@@ -98,6 +98,7 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
                     onFocus={handleFocus}
                     onKeyDown={handleKeyDown}
                     value={searchText}
+                    data-testid="input"
                     {...rest}
                 />
                 <Styles.StartIcon>
