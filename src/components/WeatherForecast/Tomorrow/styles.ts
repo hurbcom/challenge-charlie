@@ -52,6 +52,10 @@ export const ContentTemp = styled(C.Flex)`
   height: 4.3rem;
 
   align-items: center;
+
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
 `
 
 export const Button = styled.button`

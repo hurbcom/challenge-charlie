@@ -20,7 +20,17 @@ export function Today({ data }: TodayProps) {
     <S.Container>
       <S.Wrapper>
         <S.ContentLeft>
-          <Icon icon={data?.weather.icon as Icons} />
+          {isLoading ? (
+            <Skeleton
+              w={'20.733rem'}
+              height={'20.733rem'}
+              borderRadius={'full'}
+              startColor={'#f2eeeb50'}
+              endColor={'#f2eeeb'}
+            />
+          ) : (
+            <Icon icon={data?.weather.icon as Icons} />
+          )}
         </S.ContentLeft>
 
         <S.ContentRight>

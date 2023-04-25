@@ -90,7 +90,7 @@ export function LocationContextProvider({
         setUserLocation({ city, state })
 
         setCookie(null, '@challenge-charlie', JSON.stringify(newLocationData), {
-          maxAge: 60 * 60 * 4, // 4 Horas
+          maxAge: 1000 * 60 * 60 * 4, // 4 Horas
           path: '/',
         })
       } catch (err) {
