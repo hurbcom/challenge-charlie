@@ -77,6 +77,7 @@ export const Home: React.FC = () => {
         }
     }, [city, fetchWeather])
 
+    // When temperature is clicked toggle scale between celcius and fahrenheit
     const toggleShowInCelcius = () => {
         setShowInCelcius((_showInCelcius) => !_showInCelcius)
     }

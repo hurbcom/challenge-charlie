@@ -49,7 +49,7 @@ export const Typography = styled.span<TypographyProps>`
             `
         }
     }}
-        ${(props) => {
+    ${(props) => {
         if (props.weight === 'light') {
             return css`
                 font-weight: ${props.theme.typography.weights.light};

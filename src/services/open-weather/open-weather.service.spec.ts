@@ -43,7 +43,6 @@ describe('openWeatherService', () => {
             getThreeDaysWeather(mockWeatherData, mockForecastData.list)
         )
 
-        // Assertions to check if the API was called with the right parameters
         expect(api.get).toHaveBeenCalledTimes(2)
         expect(api.get).toHaveBeenCalledWith(
             `${env.OPEN_WEATHER_URL}/data/2.5/weather`,
