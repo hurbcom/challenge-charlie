@@ -14,9 +14,12 @@ export const Select: React.FC<SelectProps> = ({
                 onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                     onSelect(e.target.value)
                 }
+                data-testid="select"
             >
-                {options.map((option) => (
-                    <option value={option.value}>{option.label}</option>
+                {options.map((option, index) => (
+                    <option key={`option-${index}`} value={option.value}>
+                        {option.label}
+                    </option>
                 ))}
             </Styles.Select>
         </Styles.CustomSelect>

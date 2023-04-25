@@ -2,7 +2,6 @@ import { Box } from '@components/ui'
 import { hexToRgba } from '@styles/utils.styles'
 import { DESKTOP_BREAKPOINT } from '@utils/constants.utils'
 import styled from 'styled-components'
-import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
 
 export const Wrapper = styled(Box)`
     width: 100%;
@@ -16,13 +15,17 @@ export const InputWrapper = styled(Box)`
     height: 100%;
     align-items: center;
 `
-export const StartIcon = styled(CompassIcon)`
+export const StartIcon = styled.div`
     width: 40px;
     height: 40px;
     padding-left: 16px;
     position: absolute;
     margin: auto 0;
     fill: ${(props) => props.theme.typography.colors.secondary};
+    @media (max-width: ${DESKTOP_BREAKPOINT}px) {
+        height: 25px;
+        width: 25px;
+    }
 `
 
 export const Input = styled.input`
@@ -42,6 +45,7 @@ export const Input = styled.input`
     @media (max-width: ${DESKTOP_BREAKPOINT}px) {
         height: 40px;
         font-size: 18px;
+        padding-left: 55px;
     }
 `
 

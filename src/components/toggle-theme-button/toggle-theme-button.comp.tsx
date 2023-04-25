@@ -7,11 +7,17 @@ export const ToggleThemeButton = () => {
     const { theme, toggleTheme, themeName } = useTheme()
 
     return (
-        <Styles.IconButton onClick={() => toggleTheme()}>
+        <Styles.IconButton onClick={() => toggleTheme()} data-testid="button">
             {themeName === 'light' ? (
-                <SunIcon fill={theme.typography.colors.primary} />
+                <SunIcon
+                    fill={theme.typography.colors.primary}
+                    data-testid="sun"
+                />
             ) : (
-                <MoonIcon fill={theme.typography.colors.primary} />
+                <MoonIcon
+                    fill={theme.typography.colors.primary}
+                    data-testid="moon"
+                />
             )}
         </Styles.IconButton>
     )

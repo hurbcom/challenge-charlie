@@ -21,7 +21,8 @@ The decisions taken for the construction of the project took into account the gr
 │   ├── components/
 │   │   └── ui/
 │   ├── config/
-│   │   └── i18n/
+│   │   ├── i18n/
+│   │   └── tests/
 │   ├── hooks/
 │   ├── pages/
 │   ├── services/

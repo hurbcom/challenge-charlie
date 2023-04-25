@@ -16,6 +16,10 @@ import * as Styles from './search-city-input.styles'
 import { useDebounce } from 'use-debounce'
 import { requests } from '@services'
 
+import { ReactComponent as CompassIcon } from '../../assets/icons/compass.svg'
+import { useTheme } from '@styles/theme-provider'
+import { useDevice } from '@hooks/useDevice'
+
 export interface SearchCityInputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
     onSelectCity: (city: string) => void
@@ -82,6 +86,9 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
         }
     }
 
+    const { theme } = useTheme()
+    const { device } = useDevice()
+
     return (
         <Styles.Wrapper>
             <Styles.InputWrapper>
@@ -93,12 +100,19 @@ export const SearchCityInput: React.FC<SearchCityInputProps> = ({
                     value={searchText}
                     {...rest}
                 />
-                <Styles.StartIcon />
+                <Styles.StartIcon>
+                    <CompassIcon
+                        width={device === 'desktop' ? ' 40px' : '25px'}
+                        height={device === 'desktop' ? ' 40px' : '25px'}
+                        fill={theme.typography.colors.secondary}
+                    />
+                </Styles.StartIcon>
             </Styles.InputWrapper>
             {canShow && cities.length ? (
                 <Styles.SuggestionList>
-                    {cities.map((option) => (
+                    {cities.map((option, index) => (
                         <Styles.SuggestionItem
+                            key={`suggestion-${index}`}
                             onClick={() => handleSelect(option)}
                         >
                             {option.label}

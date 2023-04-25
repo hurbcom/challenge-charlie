@@ -43,7 +43,7 @@ export const TemperatureContainer: React.FC<TemperatureContainerProps> = ({
     }, [colors, temperature, defaultColor])
 
     return (
-        <Box background={currentColor} {...rest}>
+        <Box background={currentColor} data-testid="box" {...rest}>
             {loading ? (
                 <Box
                     width="100%"
@@ -51,7 +51,7 @@ export const TemperatureContainer: React.FC<TemperatureContainerProps> = ({
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Spinner />
+                    <Spinner size={32} data-testid="spinner" />
                 </Box>
             ) : (
                 children

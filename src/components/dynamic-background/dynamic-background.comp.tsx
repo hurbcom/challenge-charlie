@@ -10,7 +10,7 @@ import { useTheme } from '@styles/theme-provider'
 import { BoxProps } from '@components/ui/box/box.types'
 
 interface Props extends BoxProps {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 export const DynamicBackground: React.FC<Props> = ({ children, ...rest }) => {
