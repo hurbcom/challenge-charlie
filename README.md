@@ -50,9 +50,7 @@ The city search input in the application features an autocomplete function, whic
 
 ### Proxy Service
 
-I created a simple proxy service to enable calls that are not allowed from localhost. The project can be found in this GitHub repository: https://github.com/EduardoPedrosa/proxy-service.
-
-It's important to note that in this project, my main focus was on functionality rather than code organization.
+I created a simple proxy service to enable calls that are not allowed from localhost. The project can be found in this GitHub repository: https://github.com/EduardoPedrosa/proxy-service. It's important to note that in this project, my main focus was on functionality rather than code organization.
 
 
 ## How to Run the Project
