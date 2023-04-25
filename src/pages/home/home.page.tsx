@@ -25,6 +25,7 @@ export const Home: React.FC = () => {
     const [city, setCity] = useState<string>('')
     const [threeDaysWeather, setThreeDaysWeather] = useState<WeatherState[]>([])
     const [loading, setLoading] = useState<boolean>(true)
+    const [showInCelcius, setShowInCelcius] = useState<boolean>(true)
 
     const { device } = useDevice()
     const { t } = useTranslation()
@@ -75,6 +76,10 @@ export const Home: React.FC = () => {
             fetchWeather()
         }
     }, [city, fetchWeather])
+
+    const toggleShowInCelcius = () => {
+        setShowInCelcius((_showInCelcius) => !_showInCelcius)
+    }
 
     const { theme } = useTheme()
 
@@ -154,6 +159,8 @@ export const Home: React.FC = () => {
                             <TemperatureText
                                 color={textColor}
                                 temperature={todayWeather?.temp}
+                                showInCelcius={showInCelcius}
+                                onClick={toggleShowInCelcius}
                             />
                             <Typography
                                 variant="subtitle"
@@ -207,6 +214,8 @@ export const Home: React.FC = () => {
                             <TemperatureText
                                 color={textColor}
                                 temperature={tomorrowWeather?.temp}
+                                showInCelcius={showInCelcius}
+                                onClick={toggleShowInCelcius}
                             />
                         </Box>
                     </TemperatureContainer>
@@ -236,6 +245,8 @@ export const Home: React.FC = () => {
                             <TemperatureText
                                 color={textColor}
                                 temperature={afterTomorrowWeather?.temp}
+                                showInCelcius={showInCelcius}
+                                onClick={toggleShowInCelcius}
                             />
                         </Box>
                     </TemperatureContainer>

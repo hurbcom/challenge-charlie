@@ -1,28 +1,59 @@
 import { render } from '@config/tests/render'
 import { screen, fireEvent } from '@testing-library/react'
+import { celsiusToFahrenheit } from '@utils/temperature.utils'
 import { TemperatureText } from './temperature-text.comp'
 
 describe('TemperatureText', () => {
     it('shows temperature in celsius by default', () => {
         const temperature = 20
-        render(<TemperatureText temperature={temperature} color="red" />)
-        const temperatureText = screen.getByText(
-            `${Math.round(temperature)} °C`
+        render(
+            <TemperatureText
+                temperature={temperature}
+                color="red"
+                showInCelcius
+                onClick={() => {}}
+            />
         )
+        const temperatureText = screen.getByText(`${temperature} °C`)
         expect(temperatureText).toBeInTheDocument()
     })
 
-    it('converts temperature to farenheit when clicked', () => {
+    it('shows temperature in fahrenheit', () => {
         const temperature = 20
-        render(<TemperatureText temperature={temperature} color="red" />)
+
+        render(
+            <TemperatureText
+                temperature={temperature}
+                color="red"
+                showInCelcius={false}
+                onClick={() => {}}
+            />
+        )
+
+        expect(
+            screen.getByText(
+                `${Math.round(celsiusToFahrenheit(temperature))} °F`
+            )
+        ).toBeInTheDocument()
+    })
+
+    it('calls onClick when the temperature is clicked', () => {
+        const temperature = 20
+        const onClick = jest.fn()
+        render(
+            <TemperatureText
+                temperature={temperature}
+                color="red"
+                showInCelcius
+                onClick={onClick}
+            />
+        )
         const temperatureText = screen.getByText(
             `${Math.round(temperature)} °C`
         )
         fireEvent.click(temperatureText)
-        expect(screen.getByText(`${Math.round(68)} °F`)).toBeInTheDocument()
+        expect(onClick).toHaveBeenCalledTimes(1)
         fireEvent.click(temperatureText)
-        expect(
-            screen.getByText(`${Math.round(temperature)} °C`)
-        ).toBeInTheDocument()
+        expect(onClick).toHaveBeenCalledTimes(2)
     })
 })

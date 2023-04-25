@@ -4,7 +4,6 @@
  */
 
 import { Tooltip } from '@components/ui'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { celsiusToFahrenheit } from '@utils/temperature.utils'
 import * as Styles from './temperature-text.styles'
@@ -12,14 +11,16 @@ import * as Styles from './temperature-text.styles'
 interface TemperatureTextProps {
     temperature: number
     color: string
+    showInCelcius: boolean
+    onClick: () => void
 }
 
 export const TemperatureText: React.FC<TemperatureTextProps> = ({
     temperature,
     color,
+    showInCelcius,
+    onClick,
 }) => {
-    const [showInCelcius, setShowInCelcius] = useState<boolean>(true)
-
     const { t } = useTranslation()
 
     const getTemperature = (temp: number) => {
@@ -29,16 +30,12 @@ export const TemperatureText: React.FC<TemperatureTextProps> = ({
         return `${Math.round(celsiusToFahrenheit(temp))} °F`
     }
 
-    const toggleTemperatureScale = () => {
-        setShowInCelcius((current) => !current)
-    }
-
     return (
         <Tooltip text={t('change_scale')}>
             <Styles.TemperatureTypography
                 variant="subtitle"
                 color={color}
-                onClick={toggleTemperatureScale}
+                onClick={onClick}
             >
                 {getTemperature(temperature)}
             </Styles.TemperatureTypography>
