@@ -48,7 +48,7 @@
 
 **Demo FIGMA:** [**https://www.figma.com/challenge-charlie**](https://www.figma.com/file/SeLoG8Ky6ZIzOtCKGAmF8w/challenge-charlie?node-id=0%3A1&t=wwxWFPAGt7NvvDr9-1)
 
-**Demo FRONT-END:** [**https://**](https://)
+**Demo FRONT-END:** [**https://challenge-charlie-mu.vercel.app/**](https://challenge-charlie-mu.vercel.app/)
 
 <br/>
 
@@ -81,6 +81,8 @@
 $ git clone git@github.com:vitoremanuelqf/challenge-charlie.git && cd challenge-charlie
 ```
 
+___
+
 **Siga os passos a baixo para rodar a aplicação localmente:**
 
 ```bash
@@ -92,6 +94,10 @@ $ yarn
 # Inciar a aplicação
 $ yarn start
 ```
+
+Open http://localhost:3000
+
+___
 
 **Para rodar os testes:**
 ```bash
@@ -107,6 +113,43 @@ $ yarn test
 <div align="left">
     <img src="public/testes.png" alt="Tests"/>
 </div>
+
+___
+
+**Siga os passos a baixo para rodar a aplicação com Docker e Makefile:**
+
+### Development environment:
+
+```
+make build-development
+make start-development
+```
+
+Open http://localhost:3001
+
+___
+
+### Staging environment:
+
+```
+make build-staging
+make start-staging
+```
+
+Open http://localhost:3002
+
+___
+
+### Production environment:
+
+```
+make build-production
+make start-production
+```
+
+Open http://localhost:3003
+
+___
 
 <br/>
 
