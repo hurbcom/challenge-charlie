@@ -48,6 +48,11 @@ The application also includes support for theming using the Styled Components li
 
 The city search input in the application features an autocomplete function, which suggests cities based on the user's input. This feature improves the user experience by making it easier and faster to find the desired city.
 
+### Proxy Service
+
+I created a simple proxy service to enable calls that are not allowed from localhost. The project can be found in this GitHub repository: https://github.com/EduardoPedrosa/proxy-service.
+
+It's important to note that in this project, my main focus was on functionality rather than code organization.
 
 
 ## How to Run the Project
