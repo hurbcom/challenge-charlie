@@ -16,6 +16,7 @@ import * as S from '~/styles/pages/index.styles'
 
 import { CountiesData } from '~/types/Counties'
 import { WallpaperData } from '~/types/Wallpaper'
+import { Meta } from '~/components/Meta'
 
 type FormData = {
   search: string
@@ -78,44 +79,47 @@ export default function Home({ wallpaperData }: HomeProps) {
   }, [citySearch])
 
   return (
-    <S.Container>
-      <Wallpaper data={wallpaperData} temperatureValue={today?.main.temp} />
+    <>
+      <Meta />
+      <S.Container>
+        <Wallpaper data={wallpaperData} temperatureValue={today?.main.temp} />
 
-      <S.Wrapper>
-        <S.Form as={'form'} onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            list="search-suggestions"
-            placeholder={'Pesquisar cidade:'}
-            defaultValue={
-              userLocation.city && userLocation.state
-                ? `${userLocation.city}, ${userLocation.state}`
-                : ''
-            }
-            {...register('search')}
-          />
+        <S.Wrapper>
+          <S.Form as={'form'} onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              list="search-suggestions"
+              placeholder={'Pesquisar cidade:'}
+              defaultValue={
+                userLocation.city && userLocation.state
+                  ? `${userLocation.city}, ${userLocation.state}`
+                  : ''
+              }
+              {...register('search')}
+            />
 
-          {citySuggestions ? (
-            <datalist id="search-suggestions">
-              {citySuggestions.length &&
-                citySuggestions
-                  .map((item) => (
-                    <option
-                      key={item.id}
-                      value={`${item.city}, ${item.state}`}
-                    />
-                  ))
-                  .slice(0, 5)}
-            </datalist>
-          ) : null}
+            {citySuggestions ? (
+              <datalist id="search-suggestions">
+                {citySuggestions.length &&
+                  citySuggestions
+                    .map((item) => (
+                      <option
+                        key={item.id}
+                        value={`${item.city}, ${item.state}`}
+                      />
+                    ))
+                    .slice(0, 5)}
+              </datalist>
+            ) : null}
 
-          <Today data={today} />
+            <Today data={today} />
 
-          <Tomorrow data={tomorrowAndAfter} />
+            <Tomorrow data={tomorrowAndAfter} />
 
-          <AfterTomorrow data={tomorrowAndAfter} />
-        </S.Form>
-      </S.Wrapper>
-    </S.Container>
+            <AfterTomorrow data={tomorrowAndAfter} />
+          </S.Form>
+        </S.Wrapper>
+      </S.Container>
+    </>
   )
 }
 
