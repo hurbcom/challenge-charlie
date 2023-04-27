@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+    app:
+        container_name: wheater-forecast-prod
+        image: wheater-forecast-prod
+        build:
+            context: .
+            target: production
+        ports:
+            - 80:80
