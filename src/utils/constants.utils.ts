@@ -1,0 +1,2 @@
+export const TABLET_BREAKPOINT = 480
+export const DESKTOP_BREAKPOINT = 768

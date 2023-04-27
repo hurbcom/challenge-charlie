@@ -1,0 +1,19 @@
+{
+    "translation": {
+        "today": "Today",
+        "tomorrow": "Tomorrow",
+        "after_tomorrow": "After Tomorrow",
+        "wind": "Wind",
+        "humidity": "Humidity",
+        "pressure": "Pressure",
+        "n": "N",
+        "ne": "NE",
+        "e": "E",
+        "se": "SE",
+        "s": "S",
+        "sw": "SW",
+        "w": "W",
+        "nw": "NW",
+        "change_scale": "Change scale"
+    }
+}
