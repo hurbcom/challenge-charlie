@@ -240,7 +240,7 @@ export const Home: React.FC = () => {
                             direction="column"
                         >
                             <Typography variant="subtitle" color={textColor}>
-                                {t('tomorrow').toUpperCase()}
+                                {t('after_tomorrow').toUpperCase()}
                             </Typography>
                             <TemperatureText
                                 color={textColor}
