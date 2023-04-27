@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-query";
 
 async function renderReact(
-    req: Req,
+    _req: Req,
     res: Res,
     next: Next
 ): Promise<Res | void> {
@@ -30,6 +30,7 @@ async function renderReact(
             </StyleSheetManager>
         );
 
+        // To use streaming render, uncomment next line
         const appHtml = await renderFromStream(jsx);
 
         const dehydratedState = dehydrate(queryClient);

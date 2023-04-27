@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { globalFontMixin } from "./mixins";
+import { globalFontMixin, opacityVariables } from "./mixins";
 
 export const GlobalStyle = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -160,5 +160,4 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "MeteoconsRegular";
         content: attr(data-icon);
     }
-
 `;

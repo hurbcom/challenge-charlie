@@ -14,6 +14,7 @@ export default function useImageUrl(): ImgProps {
             ).then((res) => res.json());
         },
         suspense: true,
+        refetchOnWindowFocus: false,
     });
     return { src: `${BING_BASE_URL}${data.url}` };
 }
