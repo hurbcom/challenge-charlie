@@ -3,10 +3,10 @@ import { WeatherIcon } from "@components/Icon";
 import Text from "@components/Text";
 import styled from "styled-components";
 import { WeatherData } from "@interfaces/WeatherData";
-import Spacer from "./Spacer";
-import { opacityVariables } from "../styles/mixins";
-import { POSITIONS_TO_OPACITIES } from "../../shared/constants/index";
-import ToggleScaleButton from "./ToggleScaleButton";
+import Spacer from "@components/Spacer";
+import { opacityVariables } from "@styles/mixins";
+import { POSITIONS_TO_OPACITIES } from "@constants/index";
+import ToggleScaleButton from "@components/ToggleScaleButton";
 
 //Let's just leave this guy right here because it's not generic enough to go to utils
 const getTemperatureColor = (temperature: number, position: number) => {

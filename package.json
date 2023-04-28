@@ -5,8 +5,9 @@
     "main": "build/server/index.js",
     "scripts": {
         "test": "jest",
-        "start": "NODE_ENV=production node build/server",
-        "start:dev": "nodemon --exec node -- dev/server.js",
+        "start": "docker compose -f docker-compose.prod.yml up",
+        "start:prod": "NODE_ENV=production node build/server",
+        "start:dev": "nodemon -L --exec node -- dev/server.js",
         "prebuild": "rm -rf .tmp/dev-react-cache && rm -rf build && rm -rf .swc/plugins",
         "build:react:client": "NODE_ENV=production webpack",
         "build:react:server": "NODE_ENV=production swc ./react -d build/react --config-file swc.config.json",

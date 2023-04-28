@@ -1,7 +1,7 @@
 import React from "react";
 import HeroImage from "./HeroImage";
 import { render } from "@testing-library/react";
-import useImageUrl from "../hooks/useImageurl";
+import useImageUrl from "@hooks/useImageurl";
 
 jest.mock("../hooks/useImageurl");
 

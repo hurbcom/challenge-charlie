@@ -57,7 +57,6 @@ const webpackConfig: webpack.Configuration = {
                 exclude: /node_modules/,
                 include: [
                     path.join(__dirname, "react"),
-                    path.join(__dirname, "shared"),
                 ], // only bundle files in this directory
                 use: {
                     loader: "swc-loader",
@@ -85,6 +84,9 @@ const webpackConfig: webpack.Configuration = {
         moduleIds: "deterministic", // Now, despite any new local dependencies, our vendor hash should stay consistent between builds
         runtimeChunk: true, // see https://webpack.js.org/guides/build-performance/#minimal-entry-chunk
     },
+    watchOptions: {
+        poll: 1000
+    }
 };
 
 if (isDevMode) {

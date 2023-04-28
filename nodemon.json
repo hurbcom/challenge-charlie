@@ -1,7 +1,6 @@
 {
     "watch": [
         "server/",
-        "shared/",
         "dev/",
         "tsconfig.json",
         "webpack.config.ts",

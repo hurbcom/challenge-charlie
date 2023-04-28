@@ -1,4 +1,4 @@
-import { CODES_TO_ICONS, DEVICES } from "../../shared/constants/index";
+import { CODES_TO_ICONS, DEVICES } from "@constants/index";
 import React from "react";
 import styled from "styled-components";
 

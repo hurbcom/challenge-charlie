@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CompassIconMixin } from "../styles/mixins";
+import { CompassIconMixin } from "@styles/mixins";
 
 const Input = styled.input`
     box-shadow: 0px 3px 20px -9px rgba(51, 51, 51, 1);

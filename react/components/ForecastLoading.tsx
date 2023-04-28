@@ -1,6 +1,6 @@
 import React from "react";
-import ForecastWrapper from "./ForecastWrapper";
-import Spinner from "./Spinner";
+import ForecastWrapper from "@components/ForecastWrapper";
+import Spinner from "@components/Spinner";
 
 function ForecastLoading() {
     return (
