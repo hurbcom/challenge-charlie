@@ -1,8 +1,8 @@
 import React from "react";
-import Text from "./Text";
-import TextButton from "./TextButton";
-import Spacer from "./Spacer";
-import ForecastWrapper from "./ForecastWrapper";
+import Text from "@components/Text";
+import TextButton from "@components/TextButton";
+import Spacer from "@components/Spacer";
+import ForecastWrapper from "@components/ForecastWrapper";
 
 function ForecastError({ onClick }: { onClick: () => void }) {
     return (
@@ -10,7 +10,7 @@ function ForecastError({ onClick }: { onClick: () => void }) {
             <Text size="1.25rem">
                 Não foi possível carregar as informações de clima.
             </Text>
-            <Spacer>
+            <Spacer width="100%" padding="1rem 0">
                 <TextButton onClick={onClick}>
                     Clique aqui pra tentar novamente
                 </TextButton>

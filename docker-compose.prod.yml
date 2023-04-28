@@ -2,10 +2,12 @@ version: "3.8"
 
 services:
     app:
+        env_file:
+            - .env
         container_name: wheater-forecast-prod
         image: wheater-forecast-prod
         build:
             context: .
             target: production
         ports:
-            - 80:80
+            - 3000:3000

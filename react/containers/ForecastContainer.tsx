@@ -3,11 +3,12 @@ import ForecastError from "@components/ForecastError";
 import ForecastLoading from "@components/ForecastLoading";
 import LocationInput from "@components/LocationInput";
 import WeatherInfo from "@components/WeatherInfo";
-import useGetWeatherForecastData from "../hooks/useWeatherForecastData";
-import { initialForecastState } from "../services/getForecast";
+import ForecastContent from "@components/ForecastContent";
+import useGetWeatherForecastData from "@hooks/useWeatherForecastData";
+import { initialForecastState } from "@services/getForecast";
 import { WeatherData } from "@interfaces/WeatherData";
 import React from "react";
-import useLocationNameByUserLocation from "../hooks/useLocationNameByUserLocation";
+import useLocationNameByUserLocation from "@hooks/useLocationNameByUserLocation";
 
 export default function ForecastContainer({
     userLocation,
@@ -32,7 +33,7 @@ export default function ForecastContainer({
             : data;
 
     return (
-        <>
+        <ForecastContent>
             <LocationInput
                 value={inputText}
                 isLoading={isLoadingUserLocation}
@@ -42,10 +43,9 @@ export default function ForecastContainer({
                 }}
             />
             {!readyToShow && <ForecastLoading />}
-            {readyToShow && isError && (
-                <ForecastError onClick={() => refetch()} />
-            )}
-            {readyToShow && !isError && (
+            
+            <ForecastError onClick={() => refetch()} />
+            {/* {readyToShow && !isError && (
                 <Accordeon
                     tabDataArray={forecastData}
                     renderTab={(data: WeatherData, { isOpen, index }) => (
@@ -56,7 +56,7 @@ export default function ForecastContainer({
                         />
                     )}
                 />
-            )}
-        </>
+            )} */}
+        </ForecastContent>
     );
 }

@@ -8,10 +8,11 @@ const config = JSON.parse(
 const mainConfig = {
     setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
     moduleNameMapper: {
-        "@constants": "<rootDir>/shared/constants/index.ts",
-        "@interfaces/(.*)": "<rootDir>/shared/interfaces/$1",
+        "@constants": "<rootDir>/react/constants/index.ts",
+        "@interfaces/(.*)": "<rootDir>/react/interfaces/$1",
         "@hooks/(.*)": "<rootDir>/react/hooks/$1",
         "@components/(.*)": "<rootDir>/react/components/$1",
+        "@containers/(.*)": "<rootDir>/react/containers/$1",
         "@pages/(.*)": "<rootDir>/react/pages/$1",
     },
     transform: {

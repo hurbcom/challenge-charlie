@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { GlobalStyle } from "./styles/global";
+import { GlobalStyle } from "@styles/global";
 import MainPage from "@pages/main";
 import {
     QueryClient,

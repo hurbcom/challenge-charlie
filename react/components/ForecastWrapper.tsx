@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import { opacityVariables } from "../styles/mixins";
-import { POSITIONS_TO_OPACITIES } from "../../shared/constants";
+import { opacityVariables } from "@styles/mixins";
+import { POSITIONS_TO_OPACITIES } from "@constants/index";
 import styled from "styled-components";
 
 const Content = styled.div`
@@ -14,6 +14,7 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     color: white;
+    text-align: center;
 `;
 
 const Wrapper = styled.div`

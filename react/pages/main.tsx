@@ -1,20 +1,8 @@
 import React from "react";
+import ForecastContainer from "@containers/ForecastContainer";
 import HeroImage from "@components/HeroImage";
-
-import styled from "styled-components";
-import useGetUserLocationName from "../hooks/useGetUserLocationName";
-import ForecastContainer from "../containers/ForecastContainer";
-import useGeolocation from "../hooks/useGeolocation";
-
-const Content = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    height: 100vh;
-    flex-direction: column;
-`;
+import useGetUserLocationName from "@hooks/useGetUserLocationName";
+import useGeolocation from "@hooks/useGeolocation";
 
 const MainPage: React.FC = () => {
     const { data, isLoading } = useGeolocation();
@@ -32,13 +20,11 @@ const MainPage: React.FC = () => {
     return (
         <>
             <HeroImage />
-            <Content>
-                <ForecastContainer
-                    hasErrorOnUserLocation={hasErrorOnUserLocation}
-                    isLoadingUserLocation={isLoadingUserLocation}
-                    userLocation={userLocation}
-                />
-            </Content>
+            <ForecastContainer
+                hasErrorOnUserLocation={hasErrorOnUserLocation}
+                isLoadingUserLocation={isLoadingUserLocation}
+                userLocation={userLocation}
+            />
         </>
     );
 };

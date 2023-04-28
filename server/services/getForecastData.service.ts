@@ -3,11 +3,18 @@ export default async function getForecastData(location: string) {
     const response = await fetch(url);
 
     const data = await response.json();
+    if(!response?.ok) {
+        throw data;    
+    }
+
     const { list } = data;
+
     if (!list || list.length < 1) {
         throw new Error(`Forecast not found. Searched location: ${location}`);
     }
+
     const forecasts = list.slice(0, 3);
+    
     return [
         { ...forecasts[0], day: "HOJE" },
         { ...forecasts[1], day: "AMANHÃ" },

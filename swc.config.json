@@ -25,8 +25,14 @@
         },
         "baseUrl": ".",
         "paths": {
+            "@interfaces/*": ["react/interfaces/*"],
             "@pages/*": ["react/pages/*"],
-            "@components/*": ["react/components/*"]
+            "@components/*": ["react/components/*"],
+            "@containers/*": ["react/containers/*"],
+            "@hooks/*": ["react/hooks/*"],
+            "@services/*": ["react/services/*"],
+            "@styles/*": ["react/styles/*"],
+            "@constants/*": ["react/constants/*"]
         }
     },
     "module": {

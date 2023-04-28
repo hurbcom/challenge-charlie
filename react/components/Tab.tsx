@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "@components/Text";
 import React, { PropsWithChildren } from "react";
-import { DEVICES } from "../../shared/constants/index";
+import { DEVICES } from "@constants/index";
 
 export const TabBody = styled.div<{ open: boolean }>`
     width: 100%;

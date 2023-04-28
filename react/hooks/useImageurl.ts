@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { BING_BASE_URL } from "../../shared/constants/index";
+import { BING_BASE_URL } from "@constants/index";
 
 interface ImgProps {
     src: string;

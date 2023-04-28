@@ -14,10 +14,14 @@
         "baseUrl": ".",
         "strict": true,
         "paths": {
-            "@interfaces/*": ["./shared/interfaces/*"],
+            "@interfaces/*": ["./react/interfaces/*"],
             "@hooks/*": ["./react/hooks/*"],
             "@components/*": ["./react/components/*"],
             "@pages/*": ["./react/pages/*"],
+            "@services/*": ["./react/services/*"],
+            "@styles/*": ["./react/styles/*"],
+            "@constants/*": ["./react/constants/*"],
+            "@containers/*": ["./react/containers/*"],
             "*": ["./node_module/*"] // without this, it's trying to resolve import 'react' as react/index.ts from our workspace
         }
     }

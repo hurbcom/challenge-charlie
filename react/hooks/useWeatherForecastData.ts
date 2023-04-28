@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import getForecast from "../services/getForecast";
+import getForecast from "@services/getForecast";
 
 const useGetWeatherForecastData = (location: string) => {
     return useQuery({
