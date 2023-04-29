@@ -30,7 +30,7 @@ app.use(express.static(path.resolve(cwd, "build/public"), { index: false }));
 app.use("/favicon.ico", express.static(path.resolve(cwd, "favicon.ico")));
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 app.get("/get-image", async function (req: Req, res: Res) {
     try {
@@ -38,7 +38,7 @@ app.get("/get-image", async function (req: Req, res: Res) {
         res.send(data);
     } catch (error) {
         console.error(error);
-        return { url: "" };
+        res.send({ url: "" });
     }
 });
 

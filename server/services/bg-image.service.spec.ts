@@ -2,6 +2,7 @@ import { getBackgroundImageData } from "./bg-image.service";
 
 global.fetch = jest.fn(() =>
     Promise.resolve({
+        ok: true,
         json: () => Promise.resolve({ images: [{ url: "/zucc" }] }),
     })
 ) as jest.Mock;

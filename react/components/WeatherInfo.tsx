@@ -5,26 +5,9 @@ import styled from "styled-components";
 import { WeatherData } from "@interfaces/WeatherData";
 import Spacer from "@components/Spacer";
 import { opacityVariables } from "@styles/mixins";
-import { POSITIONS_TO_OPACITIES } from "@constants/index";
 import ToggleScaleButton from "@components/ToggleScaleButton";
-
-//Let's just leave this guy right here because it's not generic enough to go to utils
-const getTemperatureColor = (temperature: number, position: number) => {
-    const roundedTemp = Math.round(temperature);
-    if (roundedTemp === 0) {
-        return `rgba(100,100,100, var(${POSITIONS_TO_OPACITIES[position]}))`;
-    }
-    // I'll stick with the browser default "yellow", "red", and "blue" colors given that the specs don't mention a specific color.
-    if (roundedTemp <= 15) {
-        return `rgba(0,0,255, var(${POSITIONS_TO_OPACITIES[position]}))`;
-    }
-
-    if (roundedTemp >= 35) {
-        return `rgba(255,0,0, var(${POSITIONS_TO_OPACITIES[position]}))`;
-    }
-
-    return `rgba(255,255,0, var(${POSITIONS_TO_OPACITIES[position]}))`;
-};
+import useWindDegreeToDirection from '@hooks/useWindDegreeToDirection';
+import useTemperatureColor from '@hooks/useTemperatureColor';
 
 const WeatherInfoContent = styled.div<{ bg?: string; position?: number }>`
     ${opacityVariables}
@@ -50,14 +33,15 @@ const WeatherInfo = ({
     isOpen,
     position,
 }: WeatherData & { isOpen: boolean; position: number }) => {
-    const backgroundColor = getTemperatureColor(main.temp, position);
+    const backgroundColor = useTemperatureColor(main.temp, position);
+    const windDirection = useWindDegreeToDirection(wind.deg)
     return (
         <WeatherInfoContent bg={backgroundColor} position={position}>
             <Spacer width={"45%"} padding={"5% 0"}>
-                {isOpen && <WeatherIcon icon={weather[0].icon} />}
+                {isOpen && <WeatherIcon data-testid="weather-icon" icon={weather[0].icon} />}
             </Spacer>
             <WeatherText>
-                <Text strong size="1.2rem">
+                <Text strong>
                     {day}
                 </Text>
                 {!main.temp && isOpen && (
@@ -73,7 +57,7 @@ const WeatherInfo = ({
                         </Text>
                         <div>
                             <Text>
-                                Vento: {wind.deg} {wind.speed}
+                                Vento: <strong>{windDirection}</strong>{" "}{wind.speed}km/h
                             </Text>
                             <Text>Umidade: {main.humidity}%</Text>
                             <Text>Pressão {main.pressure}hPA</Text>

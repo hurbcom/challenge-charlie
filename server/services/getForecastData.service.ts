@@ -1,10 +1,13 @@
 export default async function getForecastData(location: string) {
+    if(!location) {
+        throw new Error("Invalid location")
+    }
     const url = `${process.env.OPEN_WEATHER_API_URL}?q=${location}&units=metric&lang=pt_br&APPID=${process.env.OPEN_WEATHER_API_KEY}`;
     const response = await fetch(url);
 
     const data = await response.json();
     if(!response?.ok) {
-        throw data;    
+        throw new Error(data.toString ? data.toString() : data);
     }
 
     const { list } = data;

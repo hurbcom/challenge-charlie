@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CompassIconMixin } from "@styles/mixins";
+import { CompassIconMixin, subTitleFontSize } from "@styles/mixins";
 
 const Input = styled.input`
     box-shadow: 0px 3px 20px -9px rgba(51, 51, 51, 1);
@@ -14,7 +14,7 @@ const Input = styled.input`
     padding-left: 5rem;
 
     color: #666;
-    font-size: 1.75rem;
+    font-size: ${subTitleFontSize};
     font-weight: 600;
     box-sizing: border-box;
     max-width: 500px;

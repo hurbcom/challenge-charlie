@@ -43,9 +43,8 @@ export default function ForecastContainer({
                 }}
             />
             {!readyToShow && <ForecastLoading />}
-            
-            <ForecastError onClick={() => refetch()} />
-            {/* {readyToShow && !isError && (
+            {readyToShow && isError && (<ForecastError onClick={() => refetch()} />)}
+            {readyToShow && !isError && (
                 <Accordeon
                     tabDataArray={forecastData}
                     renderTab={(data: WeatherData, { isOpen, index }) => (
@@ -56,7 +55,7 @@ export default function ForecastContainer({
                         />
                     )}
                 />
-            )} */}
+            )}
         </ForecastContent>
     );
 }

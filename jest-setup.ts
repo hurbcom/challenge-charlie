@@ -23,10 +23,12 @@ const mockGeolocation = {
             _fnE: (e: any) => void,
             _options: Record<string, unknown>
         ) => {
-            Promise.resolve(mockEvent);
+            _fn(mockEvent);
         }
     ),
 };
-// will need to ignore this line or it'll complain that geolocation is read-only
-// @ts-ignore
-global.navigator.geolocation = mockGeolocation;
+if(global.navigator) {
+    // will need to ignore this line or TS complain that geolocation is read-only
+    // @ts-ignore
+    global.navigator.geolocation = mockGeolocation;
+}
