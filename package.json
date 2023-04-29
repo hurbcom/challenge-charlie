@@ -15,7 +15,8 @@
         "build:server": "NODE_ENV=production swc ./server -d build/server --config-file swc.config.json",
         "build:webpackConfig": "NODE_ENV=production swc ./webpack.config.ts -d build --config-file swc.config.json",
         "build": "npm run build:react:client && npm run build:react:server && npm run build:server && npm run build:webpackConfig",
-        "dev": "docker compose -f docker-compose.dev.yml up"
+        "dev": "docker compose -f docker-compose.dev.yml up",
+        "prepare": "husky install"
     },
     "author": "Cesar de Barros <cesar@vaguarda.dev>",
     "license": "ISC",
@@ -49,6 +50,7 @@
         "copy-webpack-plugin": "^11.0.0",
         "dotenv": "^16.0.1",
         "dotenv-defaults": "^5.0.0",
+        "husky": "^8.0.3",
         "jest": "^29.4.3",
         "jest-environment-jsdom": "^29.5.0",
         "jsdom": "^21.1.1",

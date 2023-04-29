@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { globalFontMixin, opacityVariables } from "./mixins";
+import { globalFontMixin } from "./mixins";
 
 export const GlobalStyle = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
