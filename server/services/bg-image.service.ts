@@ -1,4 +1,6 @@
-import { FeaturedImageData } from "@/interfaces/FeaturedImageData";
+export interface FeaturedImageData {
+    url: string;
+}
 
 export const getBackgroundImageData = async (): Promise<FeaturedImageData> => {
     try {

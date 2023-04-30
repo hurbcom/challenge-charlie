@@ -18,7 +18,7 @@ I decided to use webpack + babel to win extra points ;)
 [x] Create the celsius/farenheit toggle on click in the temperature
 [x] Collect and use geographic coordinates to retrieve user location name (OpenCage API)[https://api.opencagedata.com/geocode/v1/json?q=%7B%7Blatitude%7D%7D,%7B%7Blongitude%7D%7D&key=c63386b4f77e46de817bdf94f552cddf&language=en]
 [x] Retrieve the weather info from the (OpenWeather API)[http://api.openweathermap.org/data/2.5/weather?q=%7B%7Blocation_name%7D%7D&APPID=772920597e4ec8f00de8d376dfb3f094]
-[] Dockerize
+[x] Dockerize
 [] Optmize
 [] Clean up
 [] write a readme
@@ -87,3 +87,25 @@ Next step was defining the logic for the forecast state. First thing I noticed w
 -   and the last one is the sad path where we need to render the case which the user don't provided access to their geolocation.
 
 After contemplating all those cases, the error case and the loading states I moved on.
+
+## Docker
+
+Dockerize was a simple step. I just created a multi-stage build with a dockerfile and two separated compose files. I like this approach for bein clean and comtemplating the dev/prod requirement. I opted to use the node:lts-slim image because it's really small and has apt as package manager. I also saw some refactores and did them.
+
+
+## Refactors and tests
+
+Did some minor refactors and write test for the most business critical components.
+
+[x] react/components/ToggleScaleButton.tsx
+[x] react/components/WeatherInfo.tsx
+[x] react/hooks/useGeolocation.ts
+[x] react/hooks/useGetUserLocationName.ts
+[x] react/hooks/useLocationNameByUserLocation.ts
+[x] react/hooks/useTemperatureColor.ts
+[x] react/hooks/useWeatherForecastData.ts
+[x] react/hooks/useWindDegreeToDirection.ts
+[x] react/services/getForecast.ts
+[x] react/services/getLocationName.ts
+[x] server/services/getForecastData.ts
+[x] server/services/getLocationData.ts

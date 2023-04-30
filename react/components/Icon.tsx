@@ -14,5 +14,5 @@ export const WeatherIcon = styled.div<{ icon: string }>`
 `;
 
 export default ({ iconCode }: { iconCode: string }) => {
-    return <i data-icon={CODES_TO_ICONS[iconCode]}></i>;
+    return <i  data-icon={CODES_TO_ICONS[iconCode]}></i>;
 };

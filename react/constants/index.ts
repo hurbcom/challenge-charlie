@@ -4,6 +4,13 @@ export const POSITIONS_TO_OPACITIES: Record<number, string> = {
     2: "--min-bg-opacity",
 };
 
+export const TEMPERATURE_COLORS: Record<string, string> = {
+    grey: "100,100,100",
+    blue: "0,0,255",
+    red:"255,0,0",
+    yellow:"255,255,0",
+}
+
 export const SIZE: Record<string, string> = {
     mobileS: "320px",
     mobileM: "375px",

@@ -50,8 +50,8 @@ const useGeolocation = (options: PositionOptions = {}) => {
     return useQuery({
         queryKey: ["coordinates"],
         queryFn: async () => {
-            const { coords } = await promisifiedGetCurrentPosition(options);
-            return coords;
+                const {coords} = await promisifiedGetCurrentPosition(options);
+                return coords;
         },
         enabled: !window.isServer,
         refetchOnWindowFocus: false,
