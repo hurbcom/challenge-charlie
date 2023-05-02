@@ -1,0 +1,42 @@
+{
+    "jsc": {
+        "externalHelpers": true,
+        "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "dynamicImport": true
+        },
+        "transform": {
+            "react": {
+                "runtime": "automatic"
+            }
+        },
+        "keepClassNames": true,
+        "experimental": {
+            "plugins": [
+                [
+                    "@swc/plugin-styled-components",
+                    {
+                        "displayName": true,
+                        "ssr": true
+                    }
+                ]
+            ]
+        },
+        "baseUrl": ".",
+        "paths": {
+            "@interfaces/*": ["react/interfaces/*"],
+            "@pages/*": ["react/pages/*"],
+            "@components/*": ["react/components/*"],
+            "@containers/*": ["react/containers/*"],
+            "@hooks/*": ["react/hooks/*"],
+            "@services/*": ["react/services/*"],
+            "@styles/*": ["react/styles/*"],
+            "@constants/*": ["react/constants/*"]
+        }
+    },
+    "module": {
+        "type": "commonjs"
+    },
+    "sourceMaps": true
+}

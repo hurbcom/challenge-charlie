@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+    app:
+        env_file:
+            - .env
+        container_name: wheater-forecast-dev
+        image: wheater-forecast-dev
+        build:
+            context: .
+            target: development
+        volumes:
+            - ./dev:/app/dev
+            - ./react:/app/react
+            - ./server:/app/server
+        ports:
+            - 3000:3000
