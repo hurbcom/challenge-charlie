@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 /* from https://epic-spinners.epicmax.co/#/ */
 
-const SpinnerInner = styled.div`
+export const SpinnerInner = styled.div`
     width: calc(70px / 7);
     height: calc(70px / 7);
     background-color: #fff;
@@ -26,7 +25,7 @@ const SpinnerInner = styled.div`
         }
     }
 `;
-const SpinnerComponent = styled.div`
+export const SpinnerComponent = styled.div`
     box-sizing: border-box;
     height: 70px;
     width: 70px;
@@ -38,13 +37,3 @@ const SpinnerComponent = styled.div`
         box-sizing: border-box;
     }
 `;
-
-function Spinner() {
-    return (
-        <SpinnerComponent>
-            <SpinnerInner></SpinnerInner>
-        </SpinnerComponent>
-    );
-}
-
-export default Spinner;

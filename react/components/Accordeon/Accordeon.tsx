@@ -1,17 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { useState } from "react";
 import Tab from "@components/Tab";
+import { AccordeonBody } from "./styles";
 
-export const AccordeonBody = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-`;
-
-type ConfigObject = {
+export type ConfigObject = {
     isOpen: boolean;
     index: number;
 };

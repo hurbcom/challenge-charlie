@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Text from "@components/Text";
-import React, { PropsWithChildren } from "react";
 import { DEVICES } from "@constants/index";
-
 export const TabBody = styled.div<{ open: boolean }>`
     width: 100%;
     max-width: 500px;
@@ -24,16 +22,3 @@ export const TabBody = styled.div<{ open: boolean }>`
         height: ${({ open }) => (open ? "17rem" : "6rem")};
     }
 `;
-
-interface TabProps {
-    open: boolean;
-    onClick: () => void;
-}
-
-export default ({ open, onClick, children }: PropsWithChildren<TabProps>) => {
-    return (
-        <TabBody open={open} onClick={onClick}>
-            {children}
-        </TabBody>
-    );
-};

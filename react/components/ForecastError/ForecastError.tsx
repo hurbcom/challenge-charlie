@@ -5,7 +5,11 @@ import Spacer from "@components/Spacer";
 import ForecastWrapper from "@components/ForecastWrapper";
 import { baseFontSize } from "@styles/mixins";
 
-function ForecastError({ onClick }: { onClick: () => void }) {
+interface ForecastErroProps {
+    onClick: () => void;
+}
+
+function ForecastError({ onClick }: ForecastErroProps) {
     return (
         <ForecastWrapper>
             <Text size={baseFontSize}>

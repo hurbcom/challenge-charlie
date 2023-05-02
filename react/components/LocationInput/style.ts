@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import { CompassIconMixin, subTitleFontSize } from "@styles/mixins";
 
-const Input = styled.input`
+export const Input = styled.input`
     box-shadow: 0px 3px 20px -9px rgba(51, 51, 51, 1);
     outline: none;
     opacity: 0.8;
@@ -20,7 +19,7 @@ const Input = styled.input`
     max-width: 500px;
 `;
 
-const InputWrapper = styled.span`
+export const InputWrapper = styled.span`
     position: relative;
     display: inline-block;
     height: auto;
@@ -39,31 +38,3 @@ const InputWrapper = styled.span`
         z-index: 3;
     }
 `;
-
-export default ({
-    value,
-    isLoading,
-    onChange,
-    onBlur,
-}: {
-    value: string;
-    isLoading: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
-    return (
-        <InputWrapper>
-            <Input
-                type="text"
-                name="location"
-                id="location"
-                placeholder={
-                    isLoading ? "Carregando..." : "Digite o local desejado"
-                }
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-            />
-        </InputWrapper>
-    );
-};

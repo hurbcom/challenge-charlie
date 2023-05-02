@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import WeatherInfo from './WeatherInfo';
+import WeatherInfo from '.';
 
 const mock = {
     day: "HOJE",

@@ -1,9 +1,9 @@
 import React from "react";
-import HeroImage from "./HeroImage";
+import HeroImage from ".";
 import { render } from "@testing-library/react";
 import useImageUrl from "@hooks/useImageurl";
 
-jest.mock("../hooks/useImageurl");
+jest.mock("../../hooks/useImageurl");
 
 describe("Testing Hero Image Component", () => {
     it("should render the image with the fetched background image", () => {

@@ -25,3 +25,4 @@ chrome-user-data
 *.swo
 .tmp
 .env
+tmp_*

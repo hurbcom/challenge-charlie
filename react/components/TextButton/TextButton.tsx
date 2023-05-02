@@ -1,13 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import styled from "styled-components";
-
-const Button = styled.button`
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    color: white;
-    cursor: pointer;
-`;
+import { Button } from "./style";
 
 type TextButtonProps = PropsWithChildren & { onClick: () => void };
 
