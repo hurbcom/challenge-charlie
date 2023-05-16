@@ -1,0 +1,11 @@
+{
+  "editor.folding": true,
+  "editor.foldingStrategy": "indentation",
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    110
+  ],
+  "editor.showFoldingControls": "always",
+  "editor.tabSize": 2,
+  "scssFormatter.singleQuote": true
+}

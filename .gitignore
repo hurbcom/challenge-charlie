@@ -1,0 +1,7 @@
+.env
+coverage
+junit.xml
+node_modules
+src/startup/swagger.json
+yarn-error.log
+.DS_Store
