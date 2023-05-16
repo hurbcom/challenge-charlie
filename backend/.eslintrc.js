@@ -19,6 +19,8 @@ module.exports = {
     'import/prefer-default-export': [0],
     'max-len': ['error', { code: 110, ignoreStrings: true }],
     'no-console': ['error', { allow: ['info'] }],
+    'no-shadow': [0],
+    'no-unused-vars': [0],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
   },
