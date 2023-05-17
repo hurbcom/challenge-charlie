@@ -1,5 +1,5 @@
 {
-  "name": "node-sample",
+  "name": "challenge-charlie",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/vitorspadacio/node-sample.git",
@@ -9,8 +9,7 @@
     "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov",
     "test:watch": "jest --watch",
-    "init:swagger": "ts-node src/startup/create-swagger-json.ts",
-    "migrate:latest": "knex migrate:latest"
+    "init:swagger": "ts-node src/startup/create-swagger-json.ts"
   },
   "devDependencies": {
     "@types/faker": "^5.5.9",

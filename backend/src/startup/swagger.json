@@ -11,10 +11,40 @@
     }
   ],
   "paths": {
+    "/bing/": {
+      "get": {
+        "tags": [
+          "Bing"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/health/": {
       "get": {
         "tags": [
           "Health"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/weather/location-by-lat-lng": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/weather/forecast": {
+      "get": {
+        "tags": [
+          "Weather"
         ],
         "description": "",
         "parameters": [],
