@@ -8,8 +8,8 @@ module.exports = {
     'testing-library',
   ],
   parserOptions: {
-    project: './tsconfig.json',
     ecmaVersion: 2018,
+    project: 'frontend/tsconfig.json',
   },
   root: true,
   rules: {
