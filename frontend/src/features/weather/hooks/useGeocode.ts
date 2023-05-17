@@ -14,7 +14,7 @@ export default () => {
           setLatitude(position.coords.latitude)
           setLongitude(position.coords.longitude)
         },
-        (error) => toast.warn(`Ocorreu um erro: ${error}`),
+        () => toast.warn('Não foi possível obter localização. Digite para buscar.'),
       )
     }
 

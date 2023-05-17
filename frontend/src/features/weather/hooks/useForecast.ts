@@ -14,7 +14,7 @@ export default (city: string) => {
         const { data } = await WeatherApi.getForecastByCity(city)
         setForecast(data)
       } catch (error) {
-        toast.error('Ocorreu um erro ao obter previsão')
+        toast.error('Ocorreu um erro ao obter previsão.')
       }
     }
 
