@@ -1,0 +1,13 @@
+{
+  "name": "challenge-charlie",
+  "version": "1.0.0",
+  "repository": "https://github.com/vitorspadacio/challenge-charlie.git",
+  "author": "Vitor Spadacio Pisani <vsp193@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "cd frontend && yarn install && cd ../backend && yarn install",
+    "start": "run-p start-backend start-frontend",
+    "start-backend": "cd backend && yarn start",
+    "start-frontend": "cd frontend && yarn start"
+  }
+}
