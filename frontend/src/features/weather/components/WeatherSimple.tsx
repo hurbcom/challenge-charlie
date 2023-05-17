@@ -1,5 +1,7 @@
 import na from '../../../assets/images/na.svg'
-import { Day, Info, Simple } from '../WeatherStyles'
+import {
+  Day, Info, Simple, SimpleImage,
+} from '../WeatherStyles'
 import { Weather } from '../WeatherTypes'
 import TemperatureText from './TemperatureText'
 
@@ -29,7 +31,7 @@ export default function ({
 
   return (
     <Simple color={color}>
-      <img src={getImage()} alt='clima' />
+      <SimpleImage><img src={getImage()} alt='clima' /></SimpleImage>
       <Info>
         <Day>{weather.day}</Day>
         <TemperatureText

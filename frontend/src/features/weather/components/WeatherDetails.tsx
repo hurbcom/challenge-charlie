@@ -1,6 +1,6 @@
 import na from '../../../assets/images/na.svg'
 import {
-  Day, Details, Info, Temperature, WeatherInfo, WeatherText,
+  Day, Details, Info, Temperature, WeatherImage, WeatherInfo, WeatherText,
 } from '../WeatherStyles'
 import { Weather } from '../WeatherTypes'
 import TemperatureText from './TemperatureText'
@@ -34,7 +34,7 @@ export default function ({
 
   return (
     <Details color={color}>
-      <img src={getImage()} alt='ícone GPS' />
+      <WeatherImage><img src={getImage()} alt='clima' /></WeatherImage>
       <Info>
         <Temperature>
           <Day>{weather.day}</Day>
