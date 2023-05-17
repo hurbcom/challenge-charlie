@@ -3,7 +3,7 @@ import { translateWeather } from './translator'
 describe('Translator', () => {
   test.each([
     ['Atmosphere', 'atmosférico'],
-    ['Clear', 'ensolarado'],
+    ['Clear', 'limpo'],
     ['Clouds', 'nublado'],
     ['Drizzle', 'garoando'],
     ['Rain', 'chovendo'],

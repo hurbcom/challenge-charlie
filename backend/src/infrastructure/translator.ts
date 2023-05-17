@@ -1,6 +1,6 @@
 export const translateWeather = (weather: string) => ({
   Atmosphere: 'atmosférico',
-  Clear: 'ensolarado',
+  Clear: 'limpo',
   Clouds: 'nublado',
   Drizzle: 'garoando',
   Rain: 'chovendo',
