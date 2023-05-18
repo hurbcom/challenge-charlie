@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import gpsIcon from '../../../../assets/images/gps.svg'
-import colors from '../../../../assets/styles/colors'
 import Input from '../../../../components/Input'
 import WeatherDetails from '../../components/WeatherDetails'
 import WeatherSimple from '../../components/WeatherSimple'
@@ -9,13 +8,7 @@ import useForecast from '../../hooks/useForecast'
 import useGeocode from '../../hooks/useGeocode'
 import useLocation from '../../hooks/useLocation'
 import { Container, Content, GpsIcon } from './WeatherPage.styles'
-
-const getColorByTemp = (temperature: number) => {
-  if (!temperature) return [colors.grayLight, colors.grayMid, colors.grayDark]
-  if (temperature < 15) return [colors.blueLight, colors.blueMid, colors.blueDark]
-  if (temperature > 35) return [colors.redLight, colors.redMid, colors.redDark]
-  return [colors.yellowLight, colors.yellowMid, colors.yellowDark]
-}
+import getColorByTemp from './get-color-by-temp'
 
 export default function () {
   const [timer, setTimer] = useState<NodeJS.Timeout>()
@@ -27,7 +20,7 @@ export default function () {
   const backgroundImage = useBingImageOfTheDay()
   const [latitude, longitude] = useGeocode()
   const [location, clearLocation] = useLocation(latitude, longitude)
-  const [forecast, _] = useForecast(location?.city || cityToSearch)
+  const [forecast] = useForecast(location?.city || cityToSearch)
 
   const colors = getColorByTemp(forecast[0]?.temperature)
 
@@ -55,7 +48,10 @@ export default function () {
   }
 
   return (
-    <Container url={backgroundImage}>
+    <Container
+      url={backgroundImage}
+      data-testid={backgroundImage}
+    >
       <Content>
         <GpsIcon src={gpsIcon} />
         <Input

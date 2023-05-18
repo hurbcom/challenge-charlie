@@ -3,7 +3,6 @@ import { render } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import * as React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
-import Navigation from '../../components/Navigation'
 
 const customRender = (
   ui: React.ReactElement,
@@ -19,7 +18,6 @@ const customRender = (
         location={location}
         navigator={history}
       >
-        <Navigation />
         <Routes>
           <Route path={path} element={children} />
         </Routes>
