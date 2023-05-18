@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 3502",
     "build": "vite build --emptyOutDir",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov",
     "test:watch": "jest --watch",
