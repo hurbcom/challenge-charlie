@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "build": "rm -rf dist && tsc",
+    "postbuild": "cp package.json dist/package.json && cd dist && yarn install --only=production",
     "test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov",
     "test:watch": "jest --watch",
     "init:swagger": "ts-node src/startup/create-swagger-json.ts"
@@ -47,6 +49,7 @@
     "koa2-swagger-ui": "^5.5.0",
     "node-fetch": "2",
     "opencage-api-client": "^1.0.1",
+    "pm2": "^5.3.0",
     "supertest": "^6.3.3",
     "swagger-autogen": "^2.20.5",
     "unix-timestamp": "^1.0.3",
