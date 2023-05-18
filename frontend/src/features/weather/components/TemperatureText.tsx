@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import convertToFarenheit from '../../../infrastructure/convert-to-farenheit'
 
 interface Props {
   temperature: number,
@@ -12,7 +13,7 @@ const TemperatureText = styled.p`
 `
 
 export default function ({ temperature, isFarenheit, onClick }: Props) {
-  const calculatedTemperature = isFarenheit ? (temperature * 9 / 5) + 32 : temperature
+  const calculatedTemperature = isFarenheit ? convertToFarenheit(temperature) : temperature
   const suffix = isFarenheit ? '°F' : '°C'
 
   return (
