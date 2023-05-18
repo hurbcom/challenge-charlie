@@ -7,14 +7,14 @@ export default () => {
 
   useEffect(() => {
     const getLocation = () => {
-      if (!navigator.geolocation) toast.warn('Geolocalização não suportada')
+      if (!navigator.geolocation) toast.warn('Geolocalização não suportada.')
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLatitude(position.coords.latitude)
           setLongitude(position.coords.longitude)
         },
-        () => toast.warn('Não foi possível obter localização. Digite para buscar.'),
+        () => toast.warn('Não foi possível obter localização.'),
       )
     }
 
