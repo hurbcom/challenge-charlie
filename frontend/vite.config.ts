@@ -6,6 +6,11 @@ export default defineConfig({
   envDir: '..',
   build: {
     outDir: '../dist',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/images/[name].[ext]',
+      },
+    },
   },
   plugins: [
     react({
