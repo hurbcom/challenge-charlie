@@ -44,8 +44,7 @@ Para iniciar o projeto localmente, utilize um dos seguintes comandos, dependendo
 
 ```shell
 yarn start
-ou
-npm run start
+npm start
 ```
 
 Isso iniciará o projeto e você poderá acessá-lo em seu navegador no endereço informado no console.
