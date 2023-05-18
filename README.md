@@ -73,10 +73,19 @@ Após criado o arquivo **.env** na raíz do repositório basta rodar o docker-co
 docker compose up -d --build
 ```
 
-## Contribuição
+## Aspectos e melhorias do teste
 
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver alguma sugestão, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+Neste projeto de teste foi realizado usando frontend disponibilizado por nginx no container docker, enquanto o backend foi usado PM2 para subir ele no container. Ambos se comunicam através da porta externa do docker, mas para publicação em produção seria necessário testar e validar o ambiente e condições específicas.
 
-## Licença
+Abaixo tem os **aspectos** do teste e da execução dele e após futuras **melhorias** que podem ser feitas.
 
-Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
+### Aspectos
+- Usando React com Typescript em cima de um sample criado por mim para suporte pessoal durante desenvolvimentos
+- Usando Testing-Library para testes integrados no frontend, no geral adotando a filosofia integrada para testes focados no usuário, permitindo mais confiança no teste independente da implementação
+- Usando Vite no lugar do Webpack pela facilidade e velocidade, também usa arquivo de configuração (**vite.config.ts**), mas deixo um exemplo de configuração Webpack usada por mim no meu sample pessoal [(config webpack exemplo)](https://github.com/vitorspadacio/react-sample/tree/main/config)
+- Utilizei swagger no backend, pode ser acessado pelo link informado no console assim que inicia o backend
+
+### Melhorias
+- Reutilização de itens em comum entre backend e frontend, dado que ambos são Javascript
+- Adicionar token de autenticação básica no backend para comunicação segura
+
