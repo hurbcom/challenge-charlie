@@ -3,9 +3,9 @@ import koa, { Context, Next } from 'koa'
 import Logger from './logger'
 import messages from './messages'
 
-const getPayload = ({ query, body }: koa.Request) => {
+const getPayload = ({ query, body }: any) => {
   if (Object.keys(query).length) return query
-  if (Object.keys(body as object).length) return body
+  if (Object.keys(body).length) return body
   return {}
 }
 
