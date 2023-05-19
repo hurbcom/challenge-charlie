@@ -2,11 +2,10 @@ FROM node:lts-alpine as builder
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json .
-COPY yarn.lock .
 COPY pm2.json .
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
-RUN yarn install
+RUN yarn install --frozen-lockfile
 COPY . .
 RUN yarn build
 
