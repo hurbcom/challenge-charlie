@@ -21,8 +21,8 @@ const getSchemas = async () => {
 
 const doc = {
   info: {
-    title: 'Node Sample',
-    description: 'Um exemplo de backend completo em Node',
+    title: 'Challenge Charlie',
+    description: 'Serviço de backend para o desafio Charlie',
   },
   basePath: '/api/v1',
   host: '',
