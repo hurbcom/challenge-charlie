@@ -7,6 +7,9 @@ services:
     env_file: .env
     build:
       context: ./frontend/
+      args:
+        - "NODE_ENV=${NODE_ENV}"
+        - "VITE_BACKEND_API=${VITE_BACKEND_API}"
     ports:
       - "${DOCKER_CLIENT_PORT_FORWARD}:${CLIENT_PORT}"
 
@@ -16,5 +19,7 @@ services:
     env_file: .env
     build:
       context: ./backend/
+      args:
+        - "NODE_ENV=${NODE_ENV}"
     ports:
       - "${DOCKER_SERVER_PORT_FORWARD}:${SERVER_PORT}"

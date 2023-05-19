@@ -5,7 +5,7 @@ COPY package.json .
 COPY yarn.lock .
 COPY pm2.json .
 ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
 RUN yarn install
 COPY . .
 RUN yarn build
@@ -15,5 +15,5 @@ WORKDIR /usr/share/pm2
 RUN rm -rf ./*
 COPY --from=builder /app/dist .
 COPY --from=builder /app/pm2.json .
-RUN echo "" >> .env
+RUN echo "" > .env
 ENTRYPOINT [ "pm2-runtime", "start", "pm2.json" ]
