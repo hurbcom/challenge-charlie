@@ -1,9 +1,8 @@
+.DS_Store
 .env
 coverage
+dist
 junit.xml
 node_modules
-package-lock.json
 src/startup/swagger.json
 yarn-error.log
-.DS_Store
-dist

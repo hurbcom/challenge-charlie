@@ -2,6 +2,7 @@ FROM node:lts-alpine as builder
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json .
+RUN yarn install vite typescript
 RUN yarn install --frozen-lockfile
 COPY . .
 ARG NODE_ENV=production
