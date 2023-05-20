@@ -7,6 +7,7 @@ Este é um projeto de teste para o desafio Charlie. Você pode encontrar o proje
 Este projeto utiliza as seguintes tecnologias:
 
 - Node 18.16
+- Yarn 1.22.18
 - React 18.2.0
 - Typescript 4.8.4
 - Testing-Library
@@ -20,8 +21,6 @@ Para instalar as dependências, utilize um dos seguintes comandos, dependendo do
 
 ```shell
 yarn install
-ou
-npm install
 ```
 
 Após a instalação será necessário criar um **.env** para cada um dos servidores: frontend e backend. Há um arquivo de exemplo chamado **.env.example** que é o esqueleto do **.env**.
@@ -44,7 +43,6 @@ Para iniciar o projeto localmente, utilize um dos seguintes comandos, dependendo
 
 ```shell
 yarn start
-npm start
 ```
 
 Isso iniciará o projeto e você poderá acessá-lo em seu navegador no endereço informado no console.
@@ -71,6 +69,14 @@ Após criado o arquivo **.env** na raíz do repositório basta rodar o docker-co
 
 ```shell
 docker compose up -d --build
+ou
+yarn compose-up
+```
+
+Para quaisquer erros ou problemas de instabilidade ao instalar pacotes do npm existe um comando de fácil utilização para limpar o **node_modules**:
+
+```shell
+yarn clear
 ```
 
 ## Aspectos e melhorias do teste
@@ -80,12 +86,13 @@ Neste projeto de teste foi realizado usando frontend disponibilizado por nginx n
 Abaixo tem os **aspectos** do teste e da execução dele e após futuras **melhorias** que podem ser feitas.
 
 ### Aspectos
+
 - Usando React com Typescript em cima de um sample criado por mim para suporte pessoal durante desenvolvimentos
 - Usando Testing-Library para testes integrados no frontend, no geral adotando a filosofia integrada para testes focados no usuário, permitindo mais confiança no teste independente da implementação
 - Usando Vite no lugar do Webpack pela facilidade e velocidade, também usa arquivo de configuração (**vite.config.ts**), mas deixo um exemplo de configuração Webpack usada por mim no meu sample pessoal [(config webpack exemplo)](https://github.com/vitorspadacio/react-sample/tree/main/config)
 - Utilizei swagger no backend, pode ser acessado pelo link informado no console assim que inicia o backend
 
 ### Melhorias
+
 - Reutilização de itens em comum entre backend e frontend, dado que ambos são Javascript
 - Adicionar token de autenticação básica no backend para comunicação segura
-
