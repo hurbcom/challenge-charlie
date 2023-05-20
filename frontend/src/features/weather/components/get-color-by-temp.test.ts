@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import colors from '../../../../assets/styles/colors'
+import colors from '../../../assets/styles/colors'
 import getColorByTemp from './get-color-by-temp'
 
 const naTrio = [colors.grayLight, colors.grayMid, colors.grayDark]

@@ -1,4 +1,4 @@
-import colors from '../../../../assets/styles/colors'
+import colors from '../../../assets/styles/colors'
 
 export default (temperature: number) => {
   if (!temperature) return [colors.grayLight, colors.grayMid, colors.grayDark]

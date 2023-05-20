@@ -8,7 +8,7 @@ import useForecast from '../../hooks/useForecast'
 import useGeocode from '../../hooks/useGeocode'
 import useLocation from '../../hooks/useLocation'
 import { Container, Content, GpsIcon } from './WeatherPage.styles'
-import getColorByTemp from './get-color-by-temp'
+import getColorByTemp from '../../components/get-color-by-temp'
 
 export default function () {
   const [timer, setTimer] = useState<NodeJS.Timeout>()
