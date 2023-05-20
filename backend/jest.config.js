@@ -7,7 +7,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '<rootDir>/src/index.ts',
     '<rootDir>/src/infrastructure/builders/*',
-    '<rootDir>/src/infrastructure/test-server.ts',
+    '<rootDir>/src/infrastructure/test/*',
     '<rootDir>/src/startup/*',
   ],
   coverageProvider: 'v8',

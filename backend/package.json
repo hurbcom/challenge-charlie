@@ -9,7 +9,7 @@
     "start": "NODE_ENV=development nodemon",
     "build": "rm -rf dist && tsc",
     "postbuild": "cp package.json dist/package.json && cd dist && yarn install --only=production",
-    "test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
     "init:swagger": "ts-node src/startup/create-swagger-json.ts"
   },
