@@ -6,8 +6,7 @@
     "start": "vite --port 3502",
     "build": "vite build --emptyOutDir",
     "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "emulator": "firebase emulators:start --only auth,firestore,storage,ui"
+    "test:watch": "jest --coverage --watch"
   },
   "devDependencies": {
     "@types/jest": "^29.1.1",
