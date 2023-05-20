@@ -1,7 +1,6 @@
 export default {
   roots: ['<rootDir>/src'],
   testEnvironment: 'jsdom',
-  resolver: '<rootDir>/config/resolver.cjs',
   setupFiles: [
     '<rootDir>/config/setup.cjs',
   ],

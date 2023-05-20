@@ -22,7 +22,7 @@ describe('Weather', () => {
       const expected = createContent(StatusCodes.OK, mapper.mapLocation(locationInfo), messages.empty)
       mockedFetch.mockResolvedValueOnce(createFetchResponse(StatusCodes.OK, locationInfo))
 
-      const { statusCode, body } = await request.get(`${baseUrl}/location-by-lat-lng`)
+      const { statusCode, body } = await request.get(`${baseUrl}/location-by-lat-lng?latitude=1&longitude=1`)
 
       expect(statusCode).toBe(StatusCodes.OK)
       expect(body).toStrictEqual(expected)
@@ -32,9 +32,22 @@ describe('Weather', () => {
       const expected = createContent(StatusCodes.BAD_GATEWAY, {}, messages.unknownError)
       mockedFetch.mockRejectedValueOnce(createFetchResponse(StatusCodes.BAD_GATEWAY))
 
-      const { statusCode, body } = await request.get(`${baseUrl}/location-by-lat-lng`)
+      const { statusCode, body } = await request.get(`${baseUrl}/location-by-lat-lng?latitude=1&longitude=1`)
 
       expect(statusCode).toBe(StatusCodes.BAD_GATEWAY)
+      expect(body).toStrictEqual(expected)
+    })
+
+    test('deve retornar status BadRequest quando não enviar latitude e/ou longitude corretamente', async () => {
+      const expected = createContent(
+        StatusCodes.BAD_REQUEST,
+        ['"latitude" é obrigatória', '"longitude" é obrigatório'],
+        messages.invalidRequest,
+      )
+
+      const { statusCode, body } = await request.get(`${baseUrl}/location-by-lat-lng`)
+
+      expect(statusCode).toBe(StatusCodes.BAD_REQUEST)
       expect(body).toStrictEqual(expected)
     })
   })
@@ -51,7 +64,7 @@ describe('Weather', () => {
         .mockResolvedValueOnce(createFetchResponse(StatusCodes.OK, weather))
         .mockResolvedValueOnce(createFetchResponse(StatusCodes.OK, forecast))
 
-      const { statusCode, body } = await request.get(`${baseUrl}/forecast`)
+      const { statusCode, body } = await request.get(`${baseUrl}/forecast?city=foobar`)
 
       expect(statusCode).toBe(StatusCodes.OK)
       expect(body).toEqual(expected)
@@ -61,9 +74,22 @@ describe('Weather', () => {
       const expected = createContent(StatusCodes.BAD_GATEWAY, {}, messages.unknownError)
       mockedFetch.mockRejectedValueOnce(createFetchResponse(StatusCodes.BAD_GATEWAY))
 
-      const { statusCode, body } = await request.get(`${baseUrl}/forecast`)
+      const { statusCode, body } = await request.get(`${baseUrl}/forecast?city=foobar`)
 
       expect(statusCode).toBe(StatusCodes.BAD_GATEWAY)
+      expect(body).toStrictEqual(expected)
+    })
+
+    test('deve retornar status BadRequest quando não enviar city corretamente', async () => {
+      const expected = createContent(
+        StatusCodes.BAD_REQUEST,
+        ['"city" é obrigatório'],
+        messages.invalidRequest,
+      )
+
+      const { statusCode, body } = await request.get(`${baseUrl}/forecast`)
+
+      expect(statusCode).toBe(StatusCodes.BAD_REQUEST)
       expect(body).toStrictEqual(expected)
     })
   })
