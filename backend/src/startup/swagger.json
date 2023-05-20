@@ -37,7 +37,15 @@
           "Weather"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/getLocationSchema"
+            }
+          }
+        ],
         "responses": {}
       }
     },
@@ -47,12 +55,51 @@
           "Weather"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/getWeatherSchema"
+            }
+          }
+        ],
         "responses": {}
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "getLocationSchema": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "additionalProperties": false
+      },
+      "getWeatherSchema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "additionalProperties": false
+      }
+    }
   }
 }

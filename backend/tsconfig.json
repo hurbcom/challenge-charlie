@@ -24,6 +24,5 @@
   "exclude": [
     "./**/*.test.ts",
     "./**/test/",
-    "./src/infrastructure/validate-request.ts"
   ]
 }
