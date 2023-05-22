@@ -11,7 +11,7 @@ ENV VITE_BACKEND_API=${VITE_BACKEND_API}
 RUN echo "VITE_BACKEND_API=${VITE_BACKEND_API}" > .env
 RUN yarn build
 
-FROM nginx:1.19.0
+FROM nginx:1.19.0 as production
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/dist .

@@ -91,6 +91,7 @@ Abaixo tem os **aspectos** do teste e da execução dele e após futuras **melho
 - Usando Testing-Library para testes integrados no frontend, no geral adotando a filosofia integrada para testes focados no usuário, permitindo mais confiança no teste independente da implementação
 - Usando Vite no lugar do Webpack pela facilidade e velocidade, também usa arquivo de configuração (**vite.config.ts**), mas deixo um exemplo de configuração Webpack usada por mim no meu sample pessoal [(config webpack exemplo)](https://github.com/vitorspadacio/react-sample/tree/main/config)
 - Utilizei swagger no backend, pode ser acessado pelo link informado no console assim que inicia o backend
+- Adicionei o stage de production no Docker, mas como o uso geral que fiz de variáveis fica no .env base usado pelo docker-compose, e nesse caso não existe variação do processo entre dev e prod além das variáveis. Contudo o arquivo está pronto para receber e ser adaptado para um novo stage quando necessário.
 
 ### Melhorias
 

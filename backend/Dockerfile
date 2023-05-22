@@ -9,7 +9,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 RUN yarn build
 
-FROM keymetrics/pm2:18-alpine
+FROM keymetrics/pm2:18-alpine as production
 WORKDIR /usr/share/pm2
 RUN rm -rf ./*
 COPY --from=builder /app/dist .
