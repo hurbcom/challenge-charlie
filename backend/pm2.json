@@ -1,0 +1,7 @@
+{
+  "name": "challenge-charlie-back",
+  "script": "index.js",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

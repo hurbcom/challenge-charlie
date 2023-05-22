@@ -1,59 +1,99 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Challenge Charlie
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+Este é um projeto de teste para o desafio Charlie. Você pode encontrar o projeto original em [https://github.com/hurbcom/challenge-charlie](https://github.com/hurbcom/challenge-charlie).
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+## Descrição
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+Este projeto utiliza as seguintes tecnologias:
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+- Node 18.16
+- Yarn 1.22.18
+- React 18.2.0
+- Typescript 4.8.4
+- Testing-Library
+- Styled-Component
+- Vite
+- Docker
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+## Instalação e execução local
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+Para instalar as dependências, utilize um dos seguintes comandos, dependendo do gerenciador de pacotes de sua preferência:
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+```shell
+yarn install
+```
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+Após a instalação será necessário criar um **.env** para cada um dos servidores: frontend e backend. Há um arquivo de exemplo chamado **.env.example** que é o esqueleto do **.env**.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+```shell
+(repositório) /frontend/.env
+(repositório) /backend/.env
+```
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+```shell
+PORT=3500
+BING_URL=
+OPENWEATHER_URL=
+OPENWEATHER_APPID=
+OPENCAGE_URL=
+OPENCAGE_KEY=
+```
 
-## Requirements
+Para iniciar o projeto localmente, utilize um dos seguintes comandos, dependendo do gerenciador de pacotes de sua preferência:
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` for production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+```shell
+yarn start
+```
 
-## Evaluation criteria
+Isso iniciará o projeto e você poderá acessá-lo em seu navegador no endereço informado no console.
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
 
-## Doubts
+## Publicando com Docker
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+Para subir todo projeto em docker é preciso primeiro criar o **.env** usado para publicação. Ele é uma união das variáveis usadas localmente do backend e frontend e dados básicos para o docker. Segue um exemplo abaixo:
 
-Godspeed! ;)
+```shell
+NODE_ENV=production
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+CLIENT_IP=127.0.0.1
+CLIENT_PORT=80
+DOCKER_CLIENT_PORT_FORWARD=3501
+SERVER_IP=127.0.0.1
+SERVER_PORT=3000
+DOCKER_SERVER_PORT_FORWARD=3500
+
+(...demais variáveis de env específica dos serviços)
+```
+
+Após criado o arquivo **.env** na raíz do repositório basta rodar o docker-compose up:
+
+```shell
+docker compose up -d --build
+ou
+yarn compose-up
+```
+
+Para quaisquer erros ou problemas de instabilidade ao instalar pacotes do npm existe um comando de fácil utilização para limpar o **node_modules**:
+
+```shell
+yarn clear
+```
+
+## Aspectos e melhorias do teste
+
+Neste projeto de teste foi realizado usando frontend disponibilizado por nginx no container docker, enquanto o backend foi usado PM2 para subir ele no container. Ambos se comunicam através da porta externa do docker, mas para publicação em produção seria necessário testar e validar o ambiente e condições específicas.
+
+Abaixo tem os **aspectos** do teste e da execução dele e após futuras **melhorias** que podem ser feitas.
+
+### Aspectos
+
+- Usando React com Typescript em cima de um sample criado por mim para suporte pessoal durante desenvolvimentos
+- Usando Testing-Library para testes integrados no frontend, no geral adotando a filosofia integrada para testes focados no usuário, permitindo mais confiança no teste independente da implementação
+- Usando Vite no lugar do Webpack pela facilidade e velocidade, também usa arquivo de configuração (**vite.config.ts**), mas deixo um exemplo de configuração Webpack usada por mim no meu sample pessoal [(config webpack exemplo)](https://github.com/vitorspadacio/react-sample/tree/main/config)
+- Utilizei swagger no backend, pode ser acessado pelo link informado no console assim que inicia o backend
+- Adicionei o stage de production no Docker, mas como o uso geral que fiz de variáveis fica no .env base usado pelo docker-compose, e nesse caso não existe variação do processo entre dev e prod além das variáveis. Contudo o arquivo está pronto para receber e ser adaptado para um novo stage quando necessário.
+
+### Melhorias
+
+- Reutilização de itens em comum entre backend e frontend, dado que ambos são Javascript
+- Adicionar token de autenticação básica no backend para comunicação segura

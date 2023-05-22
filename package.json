@@ -1,0 +1,18 @@
+{
+  "name": "challenge-charlie",
+  "version": "1.0.0",
+  "repository": "https://github.com/vitorspadacio/challenge-charlie.git",
+  "author": "Vitor Spadacio Pisani <vsp193@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "cd frontend && npm install && cd ../backend && npm install",
+    "start": "run-p start-backend start-frontend",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "compose-up": "docker compose up -d --build",
+    "clear": "rm -rf node_modules ./frontend/node_modules ./backend/node_modules"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

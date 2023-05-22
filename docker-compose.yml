@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  frontend:
+    container_name: challenge-charlie-front-c
+    image: challenge-charlie-front
+    env_file: .env
+    build:
+      context: ./frontend/
+      target: ${NODE_ENV}
+      args:
+        - "NODE_ENV=${NODE_ENV}"
+        - "VITE_BACKEND_API=${VITE_BACKEND_API}"
+    ports:
+      - "${DOCKER_CLIENT_PORT_FORWARD}:${CLIENT_PORT}"
+
+  backend:
+    container_name: challenge-charlie-back-c
+    image: challenge-charlie-back
+    env_file: .env
+    build:
+      context: ./backend/
+      target: ${NODE_ENV}
+      args:
+        - "NODE_ENV=${NODE_ENV}"
+    ports:
+      - "${DOCKER_SERVER_PORT_FORWARD}:${SERVER_PORT}"

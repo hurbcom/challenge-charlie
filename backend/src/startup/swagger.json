@@ -1,0 +1,105 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Challenge Charlie",
+    "description": "Serviço de backend para o desafio Charlie",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3500/api/v1"
+    }
+  ],
+  "paths": {
+    "/bing/": {
+      "get": {
+        "tags": [
+          "Bing"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/health/": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/weather/location-by-lat-lng": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/getLocationSchema"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/weather/forecast": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/getWeatherSchema"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "getLocationSchema": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "additionalProperties": false
+      },
+      "getWeatherSchema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
