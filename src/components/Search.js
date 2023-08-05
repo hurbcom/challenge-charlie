@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Error from '../components/ErrorSearch.js';
 import {
   getForecastLocalStorage,
   saveForeCastLocalStorage,
@@ -67,11 +68,6 @@ const Search = () => {
     setDefaultWeatherForecast();
   }, [location]);
 
-  function handleChange(event) {
-    setSearchValue(event.target.value);
-    setErrorRequest(false);
-    setLocation(true);
-  }
   useEffect(() => {
     if (debouncedSearchValue) {
       const searchHandler = async () => {
@@ -84,24 +80,41 @@ const Search = () => {
           const weatherForecastResponse = await request(
             `https://api.openweathermap.org/data/2.5/forecast?q=${formattedSearchValue}&units=metric&lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
           );
-          setData(weatherForecastResponse.json);
-          if (weatherForecastResponse.json) {
-            saveForeCastLocalStorage(formattedSearchValue, weatherForecastResponse.json);
+          const { json: ForecastResponseJson } = weatherForecastResponse;
+
+          if (ForecastResponseJson) {
+            saveForeCastLocalStorage(formattedSearchValue, ForecastResponseJson);
+            setData(ForecastResponseJson);
+          } else {
+            setErrorRequest(true);
           }
         }
       };
       searchHandler();
     }
   }, [debouncedSearchValue, request]);
-
+  function handleClick() {
+    setLocationEnable(true);
+    setErrorRequest(false);
+  }
+  function handleChange(event) {
+    setSearchValue(event.target.value);
+    setErrorRequest(false);
+    setLocation(true);
+  }
   return (
     <>
+      {errorRequest && <Error name={'Cidade não encontrada, pesquise novamente!'} />}
+      {!LocationEnable && (
+        <Error name={'Para melhor Utilizar o serviço, ative a geolocalização!'} />
+      )}
       <div className={style.search}>
         <input
-          data-search={'('}
-          onChange={handleChange}
-          placeholder={placeholderCity}
           className={style.search__bar}
+          onChange={handleChange}
+          onClick={handleClick}
+          placeholder={placeholderCity}
+          data-search={'('}
         ></input>
       </div>
     </>
