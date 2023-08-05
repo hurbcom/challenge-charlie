@@ -39,3 +39,22 @@
   font-size: 2rem;
   margin-left: 10px;
 }
+
+@media screen and (max-width: 700px) {
+  .search__bar {
+    width: 363px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search__bar {
+    width: 296px;
+    font-size: 1.5rem;
+    height: 50px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .search__bar {
+    width: 260px;
+  }
+}
