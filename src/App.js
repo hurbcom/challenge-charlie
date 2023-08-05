@@ -1,5 +1,10 @@
+import React from 'react';
+import Background from './components/Background.js';
+
+import globalStyle from './style/globalStyle.css';
+
 function App() {
-    return <div className="App"></div>;
+  return <Background />;
 }
 
 export default App;
