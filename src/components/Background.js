@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react'
-import formattedCurrentDate from '../utils/formattedCurrentDate'
-import useFetch from '../hooks/useFetch'
+import React, { useEffect } from 'react';
+import formattedCurrentDate from '../utils/formattedCurrentDate';
+import useFetch from '../hooks/useFetch';
 
 const Background = () => {
-  const { request } = useFetch()
+  const { request } = useFetch();
 
   const getLocalStorageValue = () => {
-    const keys = ['bingImageUrl', 'bingImageDate']
-    const imageUrl = localStorage.getItem(keys[0])
-    const imageDate = localStorage.getItem(keys[1])
-    return { imageUrl, imageDate }
-  }
+    const keys = ['bingImageUrl', 'bingImageDate'];
+    const imageUrl = localStorage.getItem(keys[0]);
+    const imageDate = localStorage.getItem(keys[1]);
+    return { imageUrl, imageDate };
+  };
 
   useEffect(() => {
     const setBackgroudImage = async () => {
       const { imageDate: backgroundImageDate, imageUrl: backgroundImageUrl } =
-        getLocalStorageValue()
+        getLocalStorageValue();
       if (backgroundImageDate !== formattedCurrentDate()) {
         try {
-          const response = await request(`http://localhost:8000/bingImgAPI`)
-          const { imgUrl, imgStartDate } = response.json
-          localStorage.setItem('bingImageUrl', imgUrl)
-          localStorage.setItem('bingImageDate', imgStartDate)
-          document.body.style.backgroundImage = `url(${imgUrl})`
+          const response = await request(`http://localhost:8000/bingImgAPI`);
+          const { imgUrl, imgStartDate } = response.json;
+          localStorage.setItem('bingImageUrl', imgUrl);
+          localStorage.setItem('bingImageDate', imgStartDate);
+          document.body.style.backgroundImage = `url(${imgUrl})`;
         } catch (err) {
-          throw new Error('Service API not enable', err)
+          throw new Error('Service API not enable', err);
         }
       } else {
-        document.body.style.backgroundImage = `url(${backgroundImageUrl})`
+        document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
       }
-    }
-    setBackgroudImage()
-  }, [request])
+    };
+    setBackgroudImage();
+  }, [request]);
 
-  return <></>
-}
+  return <></>;
+};
 
-export default Background
+export default Background;
