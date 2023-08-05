@@ -5,3 +5,10 @@ body {
   background-size: cover;
   height: 100vh;
 }
+
+.content-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
