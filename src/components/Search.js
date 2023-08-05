@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import style from '../style/search.module.css';
-
+import {
+  getForecastLocalStorage,
+  saveForeCastLocalStorage,
+  deleteForeCastLocalStorage,
+} from '../utils/weatherForecastLocalStorage.js';
 import useFetch from '../hooks/useFetch.js';
+
+import style from '../style/search.module.css';
 
 const Search = () => {
   const [location, setLocation] = useState(null);
@@ -27,6 +32,7 @@ const Search = () => {
       );
     } else {
     }
+    deleteForeCastLocalStorage();
   }, []);
 
   useEffect(() => {
@@ -43,9 +49,18 @@ const Search = () => {
         const weatherForecastResponse = await request(
           `https://api.openweathermap.org/data/2.5/forecast?q=${formattedGeoLocationCity}&units=metric&lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
         );
+        const foreCastLocalStorage = getForecastLocalStorage(formattedGeoLocationCity);
+        if (foreCastLocalStorage) {
+          const jsonForeCastLocalStorage = JSON.parse(foreCastLocalStorage);
+          setData(jsonForeCastLocalStorage);
+        } else {
+          const weatherForecastResponse = await request(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${formattedGeoLocationCity}&units=metric&lang=pt_br&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
+          );
 
-        setData(weatherForecastResponse.json);
-        console.log(weatherForecastResponse.json);
+          setData(weatherForecastResponse.json);
+          saveForeCastLocalStorage(formattedGeoLocationCity, weatherForecastResponse.json);
+        }
       }
     };
     setDefaultWeatherForecast();
