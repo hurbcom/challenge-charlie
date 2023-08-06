@@ -9,6 +9,7 @@ import useFetch from '../hooks/useFetch.js';
 import useDebounce from '../hooks/useDebounce.js';
 
 import style from '../style/search.module.css';
+import Content from './Content.js';
 
 const Search = () => {
   const [location, setLocation] = useState(null);
@@ -117,6 +118,7 @@ const Search = () => {
           data-search={'('}
         ></input>
       </div>
+      <Content data={data} />
     </>
   );
 };
