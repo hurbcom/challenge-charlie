@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import getNextThreeDays from '../utils/getNextThreeDays';
 import filterForecastData from '../utils/filterForecastData';
+import WeatherForecastContainer from './WeatherForecastContainer';
 
 const Content = (props) => {
   const { data } = props;
@@ -13,13 +14,14 @@ const Content = (props) => {
     });
     const formattedForecast = filterForecastData(filteredDays);
 
-    console.log(formattedForecast);
     return formattedForecast;
   }, [data]);
 
   return (
     <>
-      <div className={'forecastContainer'}>{}</div>
+      <div className={'forecastContainer'}>
+        <WeatherForecastContainer forecast={forecastData} />
+      </div>
     </>
   );
 };
