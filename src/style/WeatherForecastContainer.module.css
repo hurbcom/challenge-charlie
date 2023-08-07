@@ -1,0 +1,6 @@
+.forecastContainer__temp::after {
+  content: url('../images/change_symbol.svg');
+  cursor: pointer;
+  rotate: 90deg;
+  margin-left: 5px;
+}
