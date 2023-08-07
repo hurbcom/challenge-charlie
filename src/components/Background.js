@@ -18,13 +18,13 @@ const Background = () => {
         getLocalStorageValue();
       if (backgroundImageDate !== formattedCurrentDate()) {
         try {
-          const response = await request(`http://localhost:8000/bingImgAPI`);
+          const response = await request(`http://localhost:8000/bingImgAP`);
           const { imgUrl, imgStartDate } = response.json;
           localStorage.setItem('bingImageUrl', imgUrl);
           localStorage.setItem('bingImageDate', imgStartDate);
           document.body.style.backgroundImage = `url(${imgUrl})`;
         } catch (err) {
-          throw new Error('Service API not enable', err);
+          document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
         }
       } else {
         document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
