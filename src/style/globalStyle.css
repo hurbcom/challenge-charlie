@@ -12,3 +12,9 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+li {
+  list-style: none;
+}
+ul {
+  padding: 0px;
+}
