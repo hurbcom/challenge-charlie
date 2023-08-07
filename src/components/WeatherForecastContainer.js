@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import tempConverter from '../utils/temperatureConverter';
+
+import style from '../style/WeatherForecastContainer.module.css';
 
 const WeatherForecastContainer = (props) => {
+  const [isCelsius, setIsCelsius] = useState(true);
+
   const forecastEmpty = {
     today: '',
     tomorrow: '',
     dayAfterTomorrow: '',
   };
   const { forecast } = props;
+
+  useEffect(() => {
+    setIsCelsius(true);
+  }, [forecast]);
+
+  const handleClick = () => {
+    setIsCelsius(!isCelsius);
+    tempConverter(forecast, isCelsius);
+  };
 
   if (!forecast) {
     return (
@@ -27,7 +41,9 @@ const WeatherForecastContainer = (props) => {
             {day === 'today' ? <p>HOJE</p> : ''}
             {day === 'tomorrow' ? <p>AMANHÃ</p> : ''}
             {day === 'dayAfterTomorrow' ? <p>DEPOIS DE AMANHÃ</p> : ''}
-            <p>{temp}</p>
+            <p className={style.forecastContainer__temp} onClick={handleClick}>
+              {temp}
+            </p>
             <p>{description}</p>
             {wind && (
               <ul>
