@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('./Fonts/meteocons-webfont.eot');
+  src: url('./Fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/meteocons-webfont.woff') format('woff'),
+    url('./Fonts/meteocons-webfont.ttf') format('truetype'),
+    url('./Fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.search__bar {
+  opacity: 0.9;
+  border: none;
+  height: 4rem;
+  font-size: 2rem;
+  padding: 0.55rem;
+  display: flex;
+  width: 670px;
+  color: gray;
+  padding-left: 50px;
+  box-sizing: border-box;
+}
+
+.search__bar:focus {
+  border: none;
+  outline: none;
+}
+.search {
+  display: flex;
+  align-items: center;
+}
+.search::before {
+  font-family: 'MeteoconsRegular';
+  content: '(';
+  position: absolute;
+  z-index: 10;
+  color: gray;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .search__bar {
+    width: 363px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search__bar {
+    width: 296px;
+    font-size: 1.5rem;
+    height: 50px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .search__bar {
+    width: 260px;
+  }
+}

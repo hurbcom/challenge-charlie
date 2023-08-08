@@ -1,0 +1,168 @@
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('./Fonts/meteocons-webfont.eot');
+  src: url('./Fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/meteocons-webfont.woff') format('woff'),
+    url('./Fonts/meteocons-webfont.ttf') format('truetype'),
+    url('./Fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+p {
+  margin: 0px;
+}
+.forecastContainer__list {
+  margin: 10px 0 10px 0;
+}
+.forecastContainer__weatherWidget {
+  opacity: 0.9;
+  font-size: 1.5rem;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.forecastContainer__weatherWidget.today,
+.forecastContainer__noGeoLocation.today {
+  height: 293px;
+  width: 670px;
+}
+.forecastContainer__weatherWidget.tomorrow,
+.forecastContainer__weatherWidget.dayAfterTomorrow,
+.forecastContainer__noGeoLocation.tomorrow,
+.forecastContainer__noGeoLocation.dayAfterTomorrow {
+  height: 130px;
+  width: 670px;
+}
+
+[data-icon]::before {
+  font-family: 'MeteoconsRegular';
+  content: attr(data-icon);
+  text-decoration: none;
+  margin-left: 60px;
+  display: block;
+  text-align: center;
+}
+[data-icon].today::before {
+  font-size: 15rem;
+}
+[data-icon].tomorrow::before,
+[data-icon].dayAfterTomorrow::before {
+  font-size: 5rem;
+}
+
+.forecastContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecastContainer__temp {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100px;
+}
+.forecastContainer__temp.today {
+  margin: 10px 0 20px 0;
+}
+.forecastContainer__temp.tomorrow,
+.forecastContainer__temp.dayAfterTomorrow {
+  margin: 5px 0 5px 0;
+}
+
+.forecastContainer__content {
+  margin-top: 15px;
+}
+
+.forecastContainer__temp::after {
+  content: url('../images/change_symbol.svg');
+  cursor: pointer;
+  rotate: 90deg;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  [data-icon].tomorrow::before,
+  [data-icon].dayAfterTomorrow::before {
+    font-size: 5rem;
+  }
+  [data-icon].today::before {
+    font-size: 7rem;
+  }
+  [data-icon]::before {
+    margin: 0px;
+    justify-self: center;
+  }
+
+  .forecastContainer__weatherWidget {
+    font-size: 1rem;
+    gap: 30px;
+    place-items: center;
+    height: 100px;
+  }
+  .forecastContainer__weatherWidget.today,
+  .forecastContainer__weatherWidget.tomorrow,
+  .forecastContainer__weatherWidget.dayAfterTomorrow,
+  .forecastContainer__noGeoLocation.today,
+  .forecastContainer__noGeoLocation.tomorrow,
+  .forecastContainer__noGeoLocation.dayAfterTomorrow {
+    width: 363px;
+  }
+
+  .forecastContainer__weatherWidget.today {
+    height: 200px;
+  }
+  .forecastContainer__weatherWidget.tomorrow,
+  .forecastContainer__weatherWidget.dayAfterTomorrow {
+    height: 100px;
+  }
+  .forecastContainer__icon {
+    justify-self: center;
+  }
+  .forecastContainer__changeIcon {
+    width: 70px;
+  }
+  .forecastContainer__list {
+    justify-self: start;
+    margin-right: 10px;
+  }
+  .forecastContainer__temp::after {
+    transform: scale(0.8);
+    margin-left: 2px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .forecastContainer__weatherWidget.today,
+  .forecastContainer__weatherWidget.tomorrow,
+  .forecastContainer__weatherWidget.dayAfterTomorrow,
+  .forecastContainer__noGeoLocation.today,
+  .forecastContainer__noGeoLocation.tomorrow,
+  .forecastContainer__noGeoLocation.dayAfterTomorrow {
+    width: 296px;
+  }
+  [data-icon].tomorrow::before,
+  [data-icon].dayAfterTomorrow::before {
+    font-size: 4rem;
+  }
+  [data-icon].today::before {
+    font-size: 5rem;
+  }
+  .forecastContainer__weatherWidget {
+    font-size: 0.85rem;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .forecastContainer__weatherWidget.today,
+  .forecastContainer__weatherWidget.tomorrow,
+  .forecastContainer__weatherWidget.dayAfterTomorrow,
+  .forecastContainer__noGeoLocation.today,
+  .forecastContainer__noGeoLocation.tomorrow,
+  .forecastContainer__noGeoLocation.dayAfterTomorrow,
+  .forecastContainer__weatherWidget {
+    width: 260px;
+  }
+}

@@ -1,0 +1,20 @@
+body {
+  margin: 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.content-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+li {
+  list-style: none;
+}
+ul {
+  padding: 0px;
+}

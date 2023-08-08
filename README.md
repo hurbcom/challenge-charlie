@@ -1,59 +1,44 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Aplicativo de previsão do tempo - Charlie Challenge
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+Este desafio frontend do @hurbcom para o cargo de desenvolvedor consiste em criar um site que exibe a previsão do tempo para o dia atual e os dois dias seguintes. Além disso, o usuário pode escolher uma localidade para obter a previsão do tempo. Se a geolocalização do navegador estiver habilitada, o site automaticamente obtém a previsão com base na localização do usuário. Também é possível converter a temperatura entre Celsius e Fahrenheit.
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+![image](https://github.com/RCattoi/Weather-forecast-App/assets/109550362/be2fa27a-1295-4e13-a84e-2cb3d527c224)
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+## Stack utilizada
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+- React
+- Express
+- CSS
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+## APIS utilizadas
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+- Previsão do tempo [OpenWeather](https://openweathermap.org/api)
+- Geolocalização [OpenCage](https://opencagedata.com/)
+- Imagem de fundo [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US)
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+## Como executar o projeto
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+### Requisitos
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+- Instalar na sua máquina:
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+  - **[Docker](https://docs.docker.com/get-docker/)**
 
-## Requirements
+- Com o docker instalado
+  - **git clone https://github.com/RCattoi/challenge-charlie.git** <br>
+  - **cd challenge-charlie** <br>
+  - **Dentro da pasta /app, crie um arquivo .env seguindo o formato do arquivo .env.example. Nesse novo arquivo, preencha as variáveis com as chaves da API OpenWeather e OpenCage.**
+  - **Na raiz do projeto execute o comando docker-compose up**
+  - **O servidor é exposto na porta 8000 e o aplicativo é exposto na porta 3000**
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` for production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+## Alterações de design
 
-## Evaluation criteria
+- Ícones de Previsão do Tempo: Incluí ícones que representam a previsão para os 3 dias.
+- Temperatura e Descrição da Previsão: Além disso, incluí o texto descritivo e a temperatura para cada dia. Acredito que, em conjunto com os ícones, esses textos fornecem um contexto completo sobre a previsão do tempo, sem sobrecarregar visualmente a interface.
+- Botão de Conversão de Temperatura: Introduzi um botão de conversão para que os usuários possam perceber facilmente a possibilidade de realizar essa ação. O botão e a temperatura em si tem um hover, proporcionando um feedback visual imediato.
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+## Desafios do projeto
 
-## Doubts
-
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
-
-Godspeed! ;)
-
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+- **Imagem Bing**: Obter a imagem do Bing apresentou um desafio, já que não consegui realizar o fetch diretamente. Foi necessário estudar uma solução para esse problema, e descobri que a criação de um servidor com o Express resolveria a questão. Embora tenha sido o meu primeiro contato com express e criação de servidores/api achei a experiência interessante e desafiadora.
+- **Docker**: Outro ponto desafiador surgiu quando me deparei com a necessidade de dockerizar o projeto, algo que eu nunca havia feito antes. Aprendi para fazer o desafio e fiquei satisfeito com o resultado.
+- **Testes**: Ainda estou aprimorando meus conhecimentos em relação a testes, e por isso não me senti totalmente confiante em implementá-los antes de enviar o desafio.
