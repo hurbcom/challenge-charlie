@@ -1,8 +1,6 @@
 # Aplicativo de previsão do tempo - Charlie Challenge
 
-Este é um desafio frontend do @hurbcom para o cargo de desenvolvedor. O site mostra a previsão para o dia atual e os dois próximos dias, fazendo uma requisição na API de previsão do tempo (https://openweathermap.org/).
-Ao carregar a página com geolocalização ativada, exibe a previsão com base na localização do usuário e guarda as respostas no localStorage para economizar requisições futuras. O plano de fundo possui uma imagem da API do Bing,
-que troca diariamente, também armazenada no localStorage para economizar requisições. Um desafio foi contornar o CORS da API do Bing, resolvido através de uma API própria para a chamada.
+Este desafio frontend do @hurbcom para o cargo de desenvolvedor consiste em criar um site que exibe a previsão do tempo para o dia atual e os dois dias seguintes. Além disso, o usuário pode escolher uma localidade para obter a previsão do tempo. Se a geolocalização do navegador estiver habilitada, o site automaticamente obtém a previsão com base na localização do usuário. Também é possível converter a temperatura entre Celsius e Fahrenheit.
 
 ![image](https://github.com/RCattoi/Weather-forecast-App/assets/109550362/be2fa27a-1295-4e13-a84e-2cb3d527c224)
 
@@ -16,6 +14,7 @@ que troca diariamente, também armazenada no localStorage para economizar requis
 
 - Previsão do tempo [OpenWeather](https://openweathermap.org/api)
 - Geolocalização [OpenCage](https://opencagedata.com/)
+- Imagem de fundo [Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US)
 
 ## Como executar o projeto
 
@@ -28,18 +27,18 @@ que troca diariamente, também armazenada no localStorage para economizar requis
 - Com o docker instalado
   - **git clone https://github.com/RCattoi/challenge-charlie.git** <br>
   - **cd challenge-charlie** <br>
-  - **Dentro da pasta /app criar um arquivo .env igual ao arquivo .env.example, nele preecher as variáveis com as chaves da API OpenWeather e OpenCage**
-  - **Na raiz do projeto executar - docker-compose up**
+  - **Dentro da pasta /app, crie um arquivo .env seguindo o formato do arquivo .env.example. Nesse novo arquivo, preencha as variáveis com as chaves da API OpenWeather e OpenCage.**
+  - **Na raiz do projeto execute o comando docker-compose up**
   - **O servidor é exposto na porta 8000 e o aplicativo é exposto na porta 3000**
 
 ## Alterações de design
 
-Fiz duas alterações no design do projeto, a primeira foi colocar os icones para as previsões de todos os dias e também adicionar o texto para essa previsão em todos os dias, o motivo dessas alterações é que o ícone facilita a leitura da previsão do tempo sem carregar cognitivamente o usuário, enquanto as informações descritas trazem mais contexto sobre o ícone.
-
-A segunda alteração foi um botão de conversão da temperatura, senti falta de ter algo explicito ao usuário sobre a possibilidade de conversão de temperatura, tentei resolver isso colocando um botão com um hover.
+- Ícones de Previsão do Tempo: Incluí ícones que representam a previsão para os 3 dias.
+- Temperatura e Descrição da Previsão: Além disso, incluí o texto descritivo e a temperatura para cada dia. Acredito que, em conjunto com os ícones, esses textos fornecem um contexto completo sobre a previsão do tempo, sem sobrecarregar visualmente a interface.
+- Botão de Conversão de Temperatura: Introduzi um botão de conversão para que os usuários possam perceber facilmente a possibilidade de realizar essa ação. O botão e a temperatura em si tem um hover, proporcionando um feedback visual imediato.
 
 ## Desafios do projeto
 
-- **Imagem Bing**: Pegar a imagem do bing foi desafiador pois eu não consegui fazer o fetch direto, tive que estudar como resolveria o problema e descobri que conseguiria resolver criando um servidor com express, nunca havia feito antes mas foi bem divertido e desafiador.
-- **Docker**: Foi um outro ponto de dificuldade pois eu nunca tinha dockerizado nada, aprendi para fazer o desafio e fiquei satisfeito com o resultado.
-- **Testes**: Eu ainda estou estudando sobre testes, e não me senti confortavel de enviar o desafio com eles.
+- **Imagem Bing**: Obter a imagem do Bing apresentou um desafio, já que não consegui realizar o fetch diretamente. Foi necessário estudar uma solução para esse problema, e descobri que a criação de um servidor com o Express resolveria a questão. Embora tenha sido o meu primeiro contato com express e criação de servidores/api achei a experiência interessante e desafiadora.
+- **Docker**: Outro ponto desafiador surgiu quando me deparei com a necessidade de dockerizar o projeto, algo que eu nunca havia feito antes. Aprendi para fazer o desafio e fiquei satisfeito com o resultado.
+- **Testes**: Ainda estou aprimorando meus conhecimentos em relação a testes, e por isso não me senti totalmente confiante em implementá-los antes de enviar o desafio.
