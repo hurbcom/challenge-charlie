@@ -67,7 +67,8 @@ const Search = () => {
       }
     };
     setDefaultWeatherForecast();
-  }, [location]);
+    console.log('fez request');
+  }, [location, request]);
 
   useEffect(() => {
     if (debouncedSearchValue) {
