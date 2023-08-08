@@ -1,4 +1,4 @@
-# Aplicativo de previsão do tempo - Charlie Challenge
+# Charlie Challenge - Rodrigo Cattoi
 
 Este é um desafio frontend do @hurbcom para o cargo de desenvolvedor. O site mostra a previsão para o dia atual e os dois próximos dias, fazendo uma requisição na API de previsão do tempo (https://openweathermap.org/).
 Ao carregar a página com geolocalização ativada, exibe a previsão com base na localização do usuário e guarda as respostas no localStorage para economizar requisições futuras. O plano de fundo possui uma imagem da API do Bing,
