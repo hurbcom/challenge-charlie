@@ -1,4 +1,4 @@
-# Aplicativo de previsão do tempo - Charlie Challenge
+# Charlie Challenge - Rodrigo Cattoi
 
 Este desafio frontend do @hurbcom para o cargo de desenvolvedor consiste em criar um site que exibe a previsão do tempo para o dia atual e os dois dias seguintes. Além disso, o usuário pode escolher uma localidade para obter a previsão do tempo. Se a geolocalização do navegador estiver habilitada, o site automaticamente obtém a previsão com base na localização do usuário. Também é possível converter a temperatura entre Celsius e Fahrenheit.
 
