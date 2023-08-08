@@ -3,11 +3,20 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 
 const app = express();
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+
+const allowedOrigins = ['http://localhost:3000'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 const PORT = 8000;
 

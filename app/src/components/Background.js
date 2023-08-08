@@ -18,7 +18,7 @@ const Background = () => {
         getLocalStorageValue();
       if (backgroundImageDate !== formattedCurrentDate()) {
         try {
-          const response = await request(`http://localhost:8000/bingImgAP`);
+          const response = await request(`http://localhost:8000/bingImgAPI`);
           const { imgUrl, imgStartDate } = response.json;
           localStorage.setItem('bingImageUrl', imgUrl);
           localStorage.setItem('bingImageDate', imgStartDate);
