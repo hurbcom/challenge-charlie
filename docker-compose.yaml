@@ -1,12 +1,12 @@
 version: '3.8'
 services:
-  api:
+  server:
     build: ./server
     container_name: server_container
     ports:
       - '8000:8000'
 
-  myapp:
+  app:
     build: ./app
     container_name: react_app_container
     ports:
