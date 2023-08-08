@@ -67,7 +67,6 @@ const Search = () => {
       }
     };
     setDefaultWeatherForecast();
-    console.log('fez request');
   }, [location, request]);
 
   useEffect(() => {
