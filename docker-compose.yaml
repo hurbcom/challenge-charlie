@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  api:
+    build: ./server
+    container_name: server_container
+    ports:
+      - '8000:8000'
+
+  myapp:
+    build: ./app
+    container_name: react_app_container
+    ports:
+      - '3000:3000'
