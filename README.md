@@ -23,16 +23,16 @@ Este desafio frontend do @hurbcom para o cargo de desenvolvedor consiste em cria
 - Instalar na sua máquina:
 
   - **[Docker](https://docs.docker.com/get-docker/)**
+  - **[Docker Compose](https://docs.docker.com/compose/install/)**
 
 - Com o docker instalado
   - **git clone https://github.com/RCattoi/challenge-charlie.git** <br>
   - **cd challenge-charlie** <br>
   - **Dentro da pasta /app, crie um arquivo .env seguindo o formato do arquivo .env.example. Nesse novo arquivo, preencha as variáveis com as chaves da API OpenWeather e OpenCage.**
   - **Na raiz do projeto execute o comando docker-compose up**
-  - **O servidor é exposto na porta 8000 e o aplicativo é exposto na porta 3000**
+  - **Tenha certeza que as portas 8000 e 3000 estejam disponiveis. O servidor é exposto na porta 8000 e o aplicativo é exposto na porta 3000**
 
 ## Alterações de design
-
 
 - Ícones de Previsão do Tempo: Incluí ícones que representam a previsão para os 3 dias.
 - Temperatura e Descrição da Previsão: Além disso, incluí o texto descritivo e a temperatura para cada dia. Acredito que, em conjunto com os ícones, esses textos fornecem um contexto completo sobre a previsão do tempo, sem sobrecarregar visualmente a interface.
