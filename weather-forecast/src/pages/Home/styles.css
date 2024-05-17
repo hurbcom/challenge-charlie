@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url("../../assets/images/bing-wallpaper.jpg") no-repeat center
+        center fixed;
+    background-size: cover;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+.weather-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.blue-today {
+    background-color: rgb(132, 172, 206, 0.7);
+}
+
+.blue-tomorrow {
+    background-color: rgb(164, 198, 225, 0.9);
+}
+
+.blue-after-tomorrow {
+    background-color: rgb(60, 79, 118, 0.9);
+}
+
+.yellow-today {
+    background-color: rgb(232, 186, 21, 0.7);
+}
+
+.yellow-tomorrow {
+    background-color: rgb(246, 202, 5, 0.9);
+}
+
+.yellow-after-tomorrow {
+    background-color: rgb(183, 148, 5, 0.9);
+}
+
+.red-today {
+    background-color: rgb(225, 111, 124, 0.7);
+}
+.red-tomorrow {
+    background-color: rgb(231, 29, 54, 0.9);
+}
+.red-after-tomorrow {
+    background-color: rgb(84, 11, 14, 0.9);
+}
+
+.gray {
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+.weather-header {
+    display: flex;
+    align-items: center;
+    padding: 0.781vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 40vw;
+}
+
+.compass-icon {
+    width: 3.125vw;
+    height: 6vh;
+    margin-right: 10px;
+}
+
+.weather-input {
+    width: 40vw;
+    background-color: transparent;
+    border-width: 0px;
+    font-size: calc(16px + 2vmin);
+    color: #8a8987;
+    font-weight: bold;
+}
+
+.weather-today {
+    width: 40vw;
+    display: flex;
+    flex: 2;
+}
+
+.weather-today .icon {
+    width: 250px;
+    height: 300px;
+}
+
+.weather-today h2 {
+    font-size: calc(12px + 2vmin);
+    margin: 10px 0;
+}
+
+.weather-today .description {
+    font-size: calc(18px + 2vmin);
+    margin: 10px 0;
+}
+
+.weather-today .details {
+    font-size: calc(14px + 2vmin);
+    margin-top: 6.7vh;
+    margin-bottom: 4.2vh;
+}
+
+.weather-today .weather-today-icon-container {
+    flex: 1;
+    padding-top: 3vh;
+    padding-bottom: 7vh;
+}
+
+.weather-today .weather-today-icon {
+    width: 21.719vw;
+    height: 41.7vh;
+}
+
+.weather-today .weather-today-infos {
+    flex: 1;
+    color: white;
+    text-align: left;
+    padding-top: 3vh;
+    padding-right: 8vw;
+    padding-bottom: 7vh;
+}
+
+.weather-today .weather-today-infos .weather {
+    margin-top: 7vh;
+}
+
+.weather-forecast {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-forecast .day {
+    padding-top: 1.7vh;
+    padding-right: 4.74vw;
+    padding-left: 21vw;
+    height: 18.6vh;
+    justfy-content: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.weather-forecast .day h3 {
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.weather-forecast .day p {
+    font-size: calc(16px + 2vmin);
+    color: white;
+}
