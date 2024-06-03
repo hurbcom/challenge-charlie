@@ -1,0 +1,25 @@
+version: '3'
+services:
+  dev:
+    build:
+      context: .
+      target: dev
+    container_name: challenge-eduardo-zaqueu-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=dev
+    restart: always
+
+  prod:
+    build:
+      context: .
+      target: prod
+    container_name: challenge-eduardo-zaqueu-prod
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=prod
+    restart: always

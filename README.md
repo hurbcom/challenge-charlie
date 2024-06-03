@@ -1,59 +1,69 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+<img src="https://github.com/zaqueu-1/challenge-charlie/blob/master/github/logo.png" width='50' height='50' alt="logo">
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+## Challenge Charlie | Teste Técnico
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+O projeto aqui encontrado se trata de um desafio técnico e foi desenvolvido com base em requisitos pré-estabelecidos pela empresa. 
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+O objetivo é exibir a previsão do tempo de acordo com a localização atual do usuário usando a [API de geolocalização](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) para coletar coordenadas, a [OpenCageAPI](https://opencagedata.com/api) para identificar a localização e [OpenWeatherAPI](https://openweathermap.org/api) para retornar os dados de clima do dia atual e dos dois seguintes.
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+Utilizei as seguintes tecnologias:
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+## Deploy
+https://challenge-charlie-eduardo-zaqueu.vercel.app/
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+## Demonstração
+![demo](https://github.com/zaqueu-1/challenge-charlie/blob/master/github/demo.gif)
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+## Rodar o projeto localmente
+Os passos a seguir são para clonar e rodar o projeto localmente, em modo de desenvolvimento:
+```bash
+  git clone https://github.com/zaqueu-1/challenge-charlie.git
+```
+```bash
+  cd challenge-charlie
+```
+```bash
+  npm install
+```
+```bash
+  npm run dev
+```  
+## Rodar o projeto via Docker
+Também é possível rodar o projeto através de um contêiner pelo Docker. Para isso, siga os seguintes comandos após clonar e estar na raiz do projeto:
+- Iniciar em ambiente de produção
+```bash
+  docker-compose up --build prod
+```
+O projeto estará rodando na porta 3001 em http://localhost:3001
+- Iniciar em ambiente de desenvolvimento
+```bash
+  docker-compose up --build dev
+```
+O projeto estará rodando na porta 3000 em http://localhost:3000
 
-## Requirements
+## Testes
+Os testes foram realizados usando Jest e React Testing Library. Para rodá-los, execute o seguinte comando: 
+```bash
+  npm run test
+```  
+## Estrutura do Projeto
+Abaixo, algumas informações sobre minhas escolhas e tomadas de decisão durante o andamento do projeto:
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` for production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+* Optei por utilizar o próprio ícone de bússola como loader, a fim de manter a simplicidade da interface;
+* Utilizei [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) para criar rotas para o consumo das APIs requeridas no desafio. Dessa forma é possível fazer requisições com todos os métodos HTTP, facilitando também a criação dos serviços e suas respectivas funções;
+* O input realiza a busca da localidade ao pressionar o Enter, removendo a necessidade de um botão adicional na interface. Além disso, incluí uma função simples de limpeza do input ao clicar na div que o contem, facilitando a inserção de uma nova localidade;
+* Para a unidade de temperatura, além de torná-la clicável, adicionei uma legenda contendo a unidade oposta à atual. Ao ser clicada, ela alterna a unidade de todas as ocorrências de temperatura na página, assim como a própria legenda;
+* Incluí no input uma renderização condicional que exibe 'Buscando...' enquanto a API não retorna a localidade;
+* Mantive a .env no repositório pelo fato de a chave de API fornecida no desafio para a OpenCage estar inválida. Criei minha própria conta e inseri minha chave, que servirá para os eventuais testes da equipe de avaliação;
+* Incluí uma sutil faixa abaixo do input que exibe uma mensagem de erro caso a API não encontre a localização desejada. Na ausência de erros, ela irá exibir uma dica pro usuário, informando que é possível separar estado e cidade por vírgula caso a busca não retorne o resultado esperado.
 
-## Evaluation criteria
+## Autor
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
-
-## Doubts
-
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
-
-Godspeed! ;)
-
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+- [@zaqueu-1](https://www.github.com/zaqueu-1)
+Acesse também meu [LinkedIn](https://linkedin.com/in/zaqueu1) e dê uma olhada em meu [portfolio](https://zaqueu.tech)!
