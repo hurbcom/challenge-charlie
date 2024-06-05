@@ -1,0 +1,20 @@
+services:
+    weather-app:
+      build: ./weather-app
+      command: npm run start
+      ports:
+        - "3000:3000"
+      volumes:
+         - ./weather-app/build:/usr/app/
+      environment:
+         - PORT=3000
+         - BASE_URL=http://localhost:3000
+    weather-server:
+        build: ./weather-server
+        command: npm run start:server
+        volumes:
+            - ./weather-server/:/usr/src/app/
+        ports:
+            - 3005:3005
+        env_file:
+            - ./weather-server/.env

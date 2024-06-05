@@ -1,0 +1,53 @@
+.location-container {
+    background-color: #FFFFFF;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.location-container span {
+    font-size: 1.8em;
+    color: #808080;
+    margin: 0 5px;
+    border-bottom: 1px solid transparent;
+}
+
+.location-container input {
+    font-size: 1.8em;
+    color: #808080;
+    margin: 0 4px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    transition: border-bottom-color 0.3s;
+    width: 70%;
+}
+
+.location-container input:focus {
+    border-bottom: 2px solid #000;
+}
+
+.icon {
+    text-decoration: none;
+    font-size: 1.8em;
+    color: #808080;
+    display: flex;
+    border-bottom: 1px solid transparent;
+}
+
+.icon:before {
+    font-family: 'MeteoconsRegular';
+    content: attr(data-icon);
+}
+
+@media (min-width: 801px) {
+    .location-container {
+        max-width: 70vw;
+        padding: 15px;
+        min-width: 400px;
+    }
+}
