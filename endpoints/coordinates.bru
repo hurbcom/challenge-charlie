@@ -1,0 +1,18 @@
+meta {
+  name: coordinates
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/coordinates
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "latitude": "-32.7642309",
+    "longitude": "152.0782407"
+  }
+}

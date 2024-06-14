@@ -1,0 +1,17 @@
+meta {
+  name: forecast
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/forecast
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "location": "Rio de Janeiro"
+  }
+}
