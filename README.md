@@ -1,59 +1,95 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Charlie Challenge
+# Weather Forecast Program
 
-[[English](README.md) | [Portuguese](README.pt.md)]
+![Main weather forecast screen](/images/program_gif.gif)
 
-Build a responsive microsite to display the weather forecast at the locations given in the white text box (in the [example](./exemplo.jpg) image is where "Rio de Janeiro, Rio de Janeiro" appears. This text box should be an `input`, where the user can change the location. With the change of location, the weather forecast information for the new location must be loaded.
+## Introduction
 
-Once the page is opened, the user's geographic coordinates must be collected by the browser API to discover the city name via _reverse geocode_.
+Welcome to the Weather App! This application provides updated weather forecasts for today, tomorrow, and the day after tomorrow based on your current location or a specified location.\
+Additionally, it provides extra weather information such as wind, humidity, and pressure.
 
-The Bing highlight image should be used as the background. Forecasts for: today, tomorrow and the day after tomorrow should be shown.
+![Main weather forecast screen](/images/main_screen.png)
 
-Note that there is a gradient superimposed on the original image, in fact this color reflects the current temperature of the place searched for the three dates. For temperatures below 15ºC, shades of blue should be used, for temperatures above 35ºC, shades of red should be used and shades of yellow should be used for other temperatures. When there is no chosen location, shades of gray should be used as the basis for the gradient. If the user clicks on any temperature, the temperatures should be changed from Celsius to Fahrenheit or from Fahrenheit to Celsius.
+## Gettind Started
 
-The background image URL should be extracted from the [Bing API](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-US).
+When you start the application, it automatically fetches and displays weather information for your current geographical location using your device's GPS.\
+ The app's background dynamically updates to show a daily image from Bing, enhancing the user interface.
 
-To consult the weather forecast, use the one from [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=772920597e4ec8f00de8d376dfb3f094) informing the name of the location instead of ` {{location_name}}` using app id `772920597e4ec8f00de8d376dfb3f094`. If necessary, create a new account.
+## Guide
 
-To convert latitude and longitude to a location use [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) using the API key `c63386b4f77e46de817bdf94f552cddf`. If necessary, create a new account.
+-   Access the [website](https://nataliazambe.github.io/challenge-charlie/) or read _how to use_;
+-   Allow the program to access your location to provide weather forecasts based on your current coordinates.
+-   If you prefer, manually enter a location to get forecasts for another area.
+-   By default, temperatures are displayed in Celsius, but you can view the equivalent in Fahrenheit by clicking on any temperature.
 
-Icons can be found at http://www.alessioatzeni.com/meteocons/.
+## How to Use
 
-The layout must be followed, but you can suggest improvements. Describe these improvements in the README and why. You get extra points if these improvements are positive, or lose points otherwise.
+1. Clone the repository: `git clone [repository-link]`;
+2. Navigate to the project directory: `cd [repository-name]`;
+3. Install the dependencies: `npm install`;
+4. Start the application: `npm start`;
+5. Open your browser at `localhost:3000`.
 
-## Requirements
+[Or use the web version](https://nataliazambe.github.io/challenge-charlie/)
 
--   Preferably do it in React, but you can use other libraries or frameworks (Angular, Vue.js, etc) or pure JavaScript (Vanilla JS).
--   For the style sheet, you can use whatever you prefer (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferably use Webpack. If you prefer, you can use [create-react-app](https://github.com/facebook/create-react-app) or similar. Doing your own Webpack setup gives you extra points.
--   It is interesting that your application is ready for production. Create in Docker a `stage` for production and one for development of extra points.
--   Fork this challenge and create your project (or workspace) using your version of that repository, as soon as you finish the challenge, submit a _pull request_.
-    -   If you have any reason not to submit a _pull request_, create a private repository on Github, do every challenge on the **master** branch and don't forget to fill in the `pull-request.txt` file. As soon as you finish your development, add the user [`automator-hurb`](https://github.com/automator-hurb) to your repository as a contributor and make it available for at least 30 days. **Do not add the `automator-hurb` until development is complete.**
-    -   If you have any problem creating the private repository, at the end of the challenge fill in the file called `pull-request.txt`, compress the project folder - including the `.git` folder - and send it to us by email.
--   The code needs to run inside a Docker container.
--   To run your code, all you need to do is run the following commands:
-    -   git clone \$your-fork
-    -   cd \$your-fork
-    -   command to install dependencies
-    -   command to run the application
+## Improvements
 
-## Evaluation criteria
+### Extended Color Palette
 
--   **Organization of code**: Separation of modules, view and model, back-end and front-end
--   **Clarity**: Does the README explain briefly what the problem is and how can I run the application?
--   **Assertiveness**: Is the application doing what is expected? If something is missing, does the README explain why?
--   **Code readability** (including comments)
--   **Security**: Are there any clear vulnerabilities?
--   **Test coverage** (We don't expect full coverage)
--   **History of commits** (structure and quality)
--   **UX**: Is the interface user-friendly and self-explanatory? Is the API intuitive?
--   **Technical choices**: Is the choice of libraries, database, architecture, etc. the best choice for the application?
+To provide a more accurate and intuitive visual representation of temperatures, a gradient with more colors was implemented over the background image.\
+While the inspiration project used only blue, yellow, and red, a more diverse gradient offers a more faithful sense of weather conditions, improving the visual perception of the forecasts.
 
-## Doubts
+![Low temperature contrast](/images/cold_temp_contrast.png)
 
-Any questions you may have, check the [_issues_](https://github.com/HurbCom/challenge-charlie/issues) to see if someone hasn't already and if you can't find your answer, open one yourself. new issue!
+![High temperature contrast](/images/mild_temp_contrast.png)
 
-Godspeed! ;)
+![Medium temperature contrast](/images/medium_temp_contrast.png)
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+![High temperature contrast](/images/high_temp_contrast.png)
+
+### Independent Colors by Day
+
+To better understand sudden temperature changes, such as a drop from 27 to 18 degrees, individual colors have been introduced in the gradient for each temperature range.\
+This makes it easier to perceive significant variations.
+
+![Medium temperature contrast](/images/medium_temp_contrastt.png)
+
+### High Contrast
+
+A high contrast theme was introduced to significantly improve the app's accessibility.\
+This theme is specially designed for users with visual impairments, providing clear reading and easy access to all weather information.\
+The high contrast colors help highlight important interface elements, ensuring that all users can effectively use the app regardless of their visual needs.
+
+### How to Use:
+
+-   To activate the high contrast mode, click the button with an eye icon in the upper right corner. To deactivate, click it again to return to the previous screen.
+
+![Auto contrast](/images/auto_contrast.png)
+
+### Responsiveness
+
+The app is fully responsive and adjusts to different screen sizes, ensuring a consistent user experience on mobile devices, tablets, and ultra-wide desktop screens.
+
+![Half ultrawide curve screen size](/images/half_ultrawide_screen.png)
+
+![Ultrawide curve screen size](/images/ultrawide_screen_size.png)
+
+![Screen size](/images/screen_size.png)
+
+![iPad screen size](/images/ipad_screen_size.png)
+
+![Cellphone screen size](/images/cell_screen_size.png)
+
+## Assertiveness
+
+-   Dockers were not added to the repository for now;
+-   Security issues with API keys must be fixed in the future.
+
+## References
+
+-   Meteocons;
+-   React icons;
+-   Material Design Color.
+
+## Credits
+
+> "My imagination has always been stronger than the cold. It was what kept my heart warm and my hopes alive.". :blue_heart:
