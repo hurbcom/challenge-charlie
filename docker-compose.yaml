@@ -1,0 +1,37 @@
+version: '3'
+services:
+    dev-web:
+        build:
+            context: ./app-web
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./app-web:/app
+
+    prod-web:
+        build:
+            context: ./app-web
+            dockerfile: Dockerfile.prod
+        ports:
+            - "3001:3001"
+
+    api-dev:
+        build:
+            context: ./app-server
+            dockerfile: Dockerfile
+        ports:
+            - "4200:4200"
+        env_file:
+            - ./app-server/.env.development
+        volumes:
+            - ./app-server:/app
+
+    api-prod:
+        build:
+            context: ./app-server
+            dockerfile: Dockerfile.prod
+        ports:
+            - "3333:3333"
+        env_file:
+            - ./app-server/.env.production

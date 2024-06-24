@@ -1,0 +1,10 @@
+app-web/node_modules
+app-web/dist
+app-web/.vscode
+app-web/.env
+app-server/node_modules
+app-server/dist
+app-server/.vscode
+app-server/.env
+.git
+*.log

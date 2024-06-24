@@ -1,0 +1,33 @@
+# Build stage
+FROM node:20-alpine AS build
+
+# Create the working directory folder
+WORKDIR /app
+
+# Copy the package.json and set up/install project dependencies
+COPY package*.json ./
+RUN npm install --silent
+
+# Build the project
+COPY . ./
+RUN npm run build
+
+# Remove development dependencies
+RUN npm prune --production
+
+#Run stage
+FROM node:20-alpine AS stage
+WORKDIR /app
+
+# Copy the build files to the root
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+
+# Copy the package.json
+COPY package.json .
+
+# Expose on the Docker external port
+EXPOSE 3333
+
+# Run the command to start the server
+CMD ["node", "dist/server.js"]

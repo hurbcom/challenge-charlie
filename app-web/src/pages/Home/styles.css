@@ -1,0 +1,72 @@
+/* variable to store breakpoints per device in css  */
+:root {
+    --breakpoint-mobileXS: 576px;
+    --breakpoint-mobileSM: 768px;
+    --breakpoint-tabletsMD: 992px;
+    --breakpoint-laptopsLG: 1200px;
+    --breakpoint-desktopXL: 1400px;
+    --breakpoint-tvXXL: 1920px;
+}
+
+.row{
+    flex: 1;
+}
+
+.row.primary{
+    flex: 3;
+}
+
+.row.secondary{
+    flex: 1;
+}
+
+.row.tertiary{
+    flex: 1;
+}
+
+.column{
+    flex-direction: column;
+    height: 100%;
+}
+
+.column.primary{
+    align-items: center;
+    justify-content: center;
+    flex: 6;
+}
+
+.column.secondary{
+    flex: 4;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.left-view{
+    width: 60%;
+}
+
+.icon{
+    height: 70%;
+}
+
+.teste{
+    flex-direction: column;
+}
+
+@media (max-width: 992px){
+
+    .column.secondary{
+        flex: 4;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px){
+    .column.primary{
+        flex: 5;
+    }
+    .column.secondary{
+        flex: 5;
+        justify-content: center;
+    }
+}

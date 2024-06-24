@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "target": "ES2015",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "jsx": "react-jsx",
+      "skipLibCheck": true,
+      "strict": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*",
+        "public/**/*",
+        "src/interfaces/svg.d.ts"
+    ],
+    "exclude": ["node_modules"]
+  }
