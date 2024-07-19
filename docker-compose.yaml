@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    container_name: weather-server
+    networks:
+      - node-network
+    volumes:
+      - ./server/:/usr/src/weather-server/
+      - server_node_modules:/usr/src/weather-server/node_modules
+    tty: true
+    ports:
+      - "3000:3000"
+    entrypoint: docker-entrypoint.sh
+    command: "npm run dev"
+
+  client:
+    build:
+      dockerfile: Dockerfile
+    container_name: weather-client
+    tty: true
+    volumes:
+      - .:/usr/src/weather-client/
+      - /usr/src/weather-client/node_modules
+    networks:
+      - node-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server
+
+networks:
+  node-network:
+    driver: bridge
+volumes:
+  client_node_modules:
+  server_node_modules:
